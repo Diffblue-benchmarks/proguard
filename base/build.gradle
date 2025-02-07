@@ -81,6 +81,9 @@ task testAllJavaVersions() { testAllTask ->
 }
 
 jacocoTestReport {
+    dependsOn ":base:javadoc"
+    dependsOn ":base:ktlintTestSourceSetCheck"
+
     // Define which classes need to be monitored
     def sources = files(project.sourceSets.main.allSource.srcDirs)
     sourceDirectories.setFrom(sources)
