@@ -10,23 +10,14 @@ repositories {
     mavenCentral()
 }
 
-sourceSets.main {
-    java {
-        srcDirs = ['src']
-        include '**/*.java'
-    }
-    resources {
-        srcDirs = ['src']
-        include '**/*.properties'
-        include '**/*.gif'
-        include '**/*.png'
-        include '**/*.pro'
-    }
-}
-
 dependencies {
     implementation project(':base')
     implementation 'org.apache.ant:ant:1.10.15'
+
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.11.4")
+    testImplementation("org.junit.vintage:junit-vintage-engine:5.11.3")
+    testImplementation("com.diffblue.cover:cover-annotations:1.3.0")
+    testImplementation("org.mockito:mockito-core:4.11.0")
 }
 
 task fatJar(type: ShadowJar) {
