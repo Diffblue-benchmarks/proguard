@@ -44,7 +44,8 @@ dependencies {
         exclude module: 'proguard-base'
     }
     implementation 'com.github.zafarkhaja:java-semver:0.10.2'
-    testCompileOnly ("com.android.tools.build:gradle:$agpVersion") {
+    // Diffblue: changed to implementation for pitest.
+    testImplementation ("com.android.tools.build:gradle:$agpVersion") {
         exclude module: 'proguard-gradle'
         exclude module: 'proguard-base'
     }

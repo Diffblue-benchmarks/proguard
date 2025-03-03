@@ -3,7 +3,12 @@ plugins {
     id 'io.github.gradle-nexus.publish-plugin'
     id 'signing'
     id "org.jetbrains.kotlin.jvm" version "$kotlinVersion" apply false
+    id 'info.solidsoft.pitest' version '1.15.0' apply false
 }
+
+apply plugin: 'info.solidsoft.pitest.aggregator' // to 'pitestReportAggregate' appear
+
+
 
 allprojects {
     group = 'com.guardsquare'
@@ -11,6 +16,38 @@ allprojects {
     repositories {
         mavenLocal()
 	    mavenCentral()
+    }
+
+    pluginManager.withPlugin('java') {
+		apply plugin: 'info.solidsoft.pitest'
+
+		pitest {
+			//adds dependency to org.pitest:pitest-junit5-plugin and sets "testPlugin" to "junit5"
+			junit5PluginVersion = '1.2.1'
+			pitestVersion = '1.15.2'
+			// ...
+			targetClasses = [
+				'proguard.*']  //by default "${project.group}.*"
+			//targetTests = ['proguard.*DiffblueTest']
+			pitestVersion = '1.15.0' //not needed when a default PIT version should be used
+			threads = 1
+			outputFormats = ['XML', 'HTML']
+
+			exportLineCoverage = true
+			timestampedReports = false
+
+			reportAggregator {
+				//since 1.9.11 - extra results validation, if needed
+				//testStrengthThreshold.set(50)
+				//mutationThreshold.set(40)
+				//maxSurviving.set(3)
+			}
+			if (project.name in ['gui', 'proguard-app', 'annotations']) {
+				failWhenNoMutations = false
+			}
+ 			verbose=true
+		}
+
     }
 }
 
