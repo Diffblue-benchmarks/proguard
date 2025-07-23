@@ -4,6 +4,7 @@ import static org.mockito.Mockito.atLeast;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -16,22 +17,24 @@ import proguard.optimize.InfluenceFixpointVisitor.MemberVisitorFactory;
 class InfluenceFixpointVisitorDiffblueTest {
   /**
    * Test {@link InfluenceFixpointVisitor#InfluenceFixpointVisitor(MemberVisitorFactory)}.
+   *
    * <ul>
-   *   <li>Then calls {@link ClassPool#classesAccept(ClassVisitor)}.</li>
+   *   <li>Then calls {@link ClassPool#classesAccept(ClassVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link InfluenceFixpointVisitor#InfluenceFixpointVisitor(MemberVisitorFactory)}
+   *
+   * <p>Method under test: {@link
+   * InfluenceFixpointVisitor#InfluenceFixpointVisitor(MemberVisitorFactory)}
    */
   @Test
-  @DisplayName("Test new InfluenceFixpointVisitor(MemberVisitorFactory); then calls classesAccept(ClassVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.InfluenceFixpointVisitor.<init>(proguard.optimize.InfluenceFixpointVisitor$MemberVisitorFactory)"})
+  @DisplayName(
+      "Test new InfluenceFixpointVisitor(MemberVisitorFactory); then calls classesAccept(ClassVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void InfluenceFixpointVisitor.<init>(MemberVisitorFactory)"})
   void testNewInfluenceFixpointVisitor_thenCallsClassesAccept() {
     // Arrange and Act
-    InfluenceFixpointVisitor actualInfluenceFixpointVisitor = new InfluenceFixpointVisitor(
-        mock(MemberVisitorFactory.class));
-    new RuntimeException("foo");
+    InfluenceFixpointVisitor actualInfluenceFixpointVisitor =
+        new InfluenceFixpointVisitor(mock(MemberVisitorFactory.class));
     ClassPool classPool = mock(ClassPool.class);
     doNothing().when(classPool).classesAccept(Mockito.<ClassVisitor>any());
     actualInfluenceFixpointVisitor.visitClassPool(classPool);
@@ -42,20 +45,24 @@ class InfluenceFixpointVisitorDiffblueTest {
 
   /**
    * Test {@link InfluenceFixpointVisitor#visitClassPool(ClassPool)}.
+   *
    * <ul>
-   *   <li>When {@link ClassPool} {@link ClassPool#classesAccept(ClassVisitor)} does nothing.</li>
-   *   <li>Then calls {@link ClassPool#classesAccept(ClassVisitor)}.</li>
+   *   <li>When {@link ClassPool} {@link ClassPool#classesAccept(ClassVisitor)} does nothing.
+   *   <li>Then calls {@link ClassPool#classesAccept(ClassVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link InfluenceFixpointVisitor#visitClassPool(ClassPool)}
+   *
+   * <p>Method under test: {@link InfluenceFixpointVisitor#visitClassPool(ClassPool)}
    */
   @Test
-  @DisplayName("Test visitClassPool(ClassPool); when ClassPool classesAccept(ClassVisitor) does nothing; then calls classesAccept(ClassVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.optimize.InfluenceFixpointVisitor.visitClassPool(proguard.classfile.ClassPool)"})
+  @DisplayName(
+      "Test visitClassPool(ClassPool); when ClassPool classesAccept(ClassVisitor) does nothing; then calls classesAccept(ClassVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void InfluenceFixpointVisitor.visitClassPool(ClassPool)"})
   void testVisitClassPool_whenClassPoolClassesAcceptDoesNothing_thenCallsClassesAccept() {
     // Arrange
-    InfluenceFixpointVisitor influenceFixpointVisitor = new InfluenceFixpointVisitor(mock(MemberVisitorFactory.class));
+    InfluenceFixpointVisitor influenceFixpointVisitor =
+        new InfluenceFixpointVisitor(mock(MemberVisitorFactory.class));
     ClassPool classPool = mock(ClassPool.class);
     doNothing().when(classPool).classesAccept(Mockito.<ClassVisitor>any());
 

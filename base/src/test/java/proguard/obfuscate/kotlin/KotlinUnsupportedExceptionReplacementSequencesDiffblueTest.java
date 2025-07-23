@@ -3,13 +3,18 @@ package proguard.obfuscate.kotlin;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.io.UnsupportedEncodingException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import proguard.classfile.ClassPool;
+import proguard.classfile.Clazz;
+import proguard.classfile.LibraryClass;
+import proguard.classfile.ProgramClass;
 import proguard.classfile.constant.ClassConstant;
 import proguard.classfile.constant.Constant;
 import proguard.classfile.constant.MethodrefConstant;
@@ -23,22 +28,29 @@ import proguard.classfile.instruction.VariableInstruction;
 
 class KotlinUnsupportedExceptionReplacementSequencesDiffblueTest {
   /**
-   * Test {@link KotlinUnsupportedExceptionReplacementSequences#KotlinUnsupportedExceptionReplacementSequences(ClassPool, ClassPool)}.
-   * <p>
-   * Method under test: {@link KotlinUnsupportedExceptionReplacementSequences#KotlinUnsupportedExceptionReplacementSequences(ClassPool, ClassPool)}
+   * Test {@link
+   * KotlinUnsupportedExceptionReplacementSequences#KotlinUnsupportedExceptionReplacementSequences(ClassPool,
+   * ClassPool)}.
+   *
+   * <p>Method under test: {@link
+   * KotlinUnsupportedExceptionReplacementSequences#KotlinUnsupportedExceptionReplacementSequences(ClassPool,
+   * ClassPool)}
    */
   @Test
   @DisplayName("Test new KotlinUnsupportedExceptionReplacementSequences(ClassPool, ClassPool)")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.obfuscate.kotlin.KotlinUnsupportedExceptionReplacementSequences.<init>(proguard.classfile.ClassPool, proguard.classfile.ClassPool)"})
+    "void KotlinUnsupportedExceptionReplacementSequences.<init>(ClassPool, ClassPool)"
+  })
   void testNewKotlinUnsupportedExceptionReplacementSequences() throws UnsupportedEncodingException {
     // Arrange
     ClassPool programClassPool = new ClassPool();
 
     // Act and Assert
-    Constant[] constants = (new KotlinUnsupportedExceptionReplacementSequences(programClassPool, new ClassPool()))
-        .getConstants();
+    Constant[] constants =
+        new KotlinUnsupportedExceptionReplacementSequences(programClassPool, new ClassPool())
+            .getConstants();
     Constant constant = constants[1];
     assertTrue(constant instanceof Utf8Constant);
     Constant constant2 = constants[3];
@@ -59,18 +71,316 @@ class KotlinUnsupportedExceptionReplacementSequencesDiffblueTest {
   }
 
   /**
-   * Test {@link KotlinUnsupportedExceptionReplacementSequences#KotlinUnsupportedExceptionReplacementSequences(ClassPool, ClassPool)}.
-   * <p>
-   * Method under test: {@link KotlinUnsupportedExceptionReplacementSequences#KotlinUnsupportedExceptionReplacementSequences(ClassPool, ClassPool)}
+   * Test {@link
+   * KotlinUnsupportedExceptionReplacementSequences#KotlinUnsupportedExceptionReplacementSequences(ClassPool,
+   * ClassPool)}.
+   *
+   * <p>Method under test: {@link
+   * KotlinUnsupportedExceptionReplacementSequences#KotlinUnsupportedExceptionReplacementSequences(ClassPool,
+   * ClassPool)}
    */
   @Test
   @DisplayName("Test new KotlinUnsupportedExceptionReplacementSequences(ClassPool, ClassPool)")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.obfuscate.kotlin.KotlinUnsupportedExceptionReplacementSequences.<init>(proguard.classfile.ClassPool, proguard.classfile.ClassPool)"})
-  void testNewKotlinUnsupportedExceptionReplacementSequences2() throws UnsupportedEncodingException {
-    // Arrange, Act and Assert
-    Constant[] constants = (new KotlinUnsupportedExceptionReplacementSequences(null, new ClassPool())).getConstants();
+    "void KotlinUnsupportedExceptionReplacementSequences.<init>(ClassPool, ClassPool)"
+  })
+  void testNewKotlinUnsupportedExceptionReplacementSequences2()
+      throws UnsupportedEncodingException {
+    // Arrange
+    ClassPool programClassPool = new ClassPool();
+    LibraryClass clazz =
+        new LibraryClass(
+            1,
+            "java/lang/UnsupportedOperationException",
+            "java/lang/UnsupportedOperationException");
+
+    programClassPool.addClass("java/lang/UnsupportedOperationException", clazz);
+
+    // Act and Assert
+    Constant[] constants =
+        new KotlinUnsupportedExceptionReplacementSequences(programClassPool, new ClassPool())
+            .getConstants();
+    Constant constant = constants[2];
+    Clazz clazz2 = ((ClassConstant) constant).referencedClass;
+    assertTrue(clazz2 instanceof LibraryClass);
+    assertTrue(constant instanceof ClassConstant);
+    Constant constant2 = constants[1];
+    assertTrue(constant2 instanceof Utf8Constant);
+    Constant constant3 = constants[3];
+    assertTrue(constant3 instanceof Utf8Constant);
+    Constant constant4 = constants[4];
+    assertTrue(constant4 instanceof Utf8Constant);
+    Constant constant5 = constants[7];
+    assertTrue(constant5 instanceof Utf8Constant);
+    assertEquals(10, constants.length);
+    assertSame(clazz, clazz2);
+    byte[] expectedBytes = "()V".getBytes("UTF-8");
+    assertArrayEquals(expectedBytes, ((Utf8Constant) constant5).getBytes());
+    byte[] expectedBytes2 = "(Ljava/lang/String;)V".getBytes("UTF-8");
+    assertArrayEquals(expectedBytes2, ((Utf8Constant) constant4).getBytes());
+    byte[] expectedBytes3 = "<init>".getBytes("UTF-8");
+    assertArrayEquals(expectedBytes3, ((Utf8Constant) constant3).getBytes());
+    byte[] expectedBytes4 = "java/lang/UnsupportedOperationException".getBytes("UTF-8");
+    assertArrayEquals(expectedBytes4, ((Utf8Constant) constant2).getBytes());
+  }
+
+  /**
+   * Test {@link
+   * KotlinUnsupportedExceptionReplacementSequences#KotlinUnsupportedExceptionReplacementSequences(ClassPool,
+   * ClassPool)}.
+   *
+   * <p>Method under test: {@link
+   * KotlinUnsupportedExceptionReplacementSequences#KotlinUnsupportedExceptionReplacementSequences(ClassPool,
+   * ClassPool)}
+   */
+  @Test
+  @DisplayName("Test new KotlinUnsupportedExceptionReplacementSequences(ClassPool, ClassPool)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void KotlinUnsupportedExceptionReplacementSequences.<init>(ClassPool, ClassPool)"
+  })
+  void testNewKotlinUnsupportedExceptionReplacementSequences3()
+      throws UnsupportedEncodingException {
+    // Arrange
+    ClassPool programClassPool = new ClassPool();
+    ProgramClass clazz = new ProgramClass();
+    programClassPool.addClass("java/lang/UnsupportedOperationException", clazz);
+
+    // Act and Assert
+    Constant[] constants =
+        new KotlinUnsupportedExceptionReplacementSequences(programClassPool, new ClassPool())
+            .getConstants();
+    Constant constant = constants[2];
+    assertTrue(constant instanceof ClassConstant);
+    Constant constant2 = constants[1];
+    assertTrue(constant2 instanceof Utf8Constant);
+    Constant constant3 = constants[3];
+    assertTrue(constant3 instanceof Utf8Constant);
+    Constant constant4 = constants[4];
+    assertTrue(constant4 instanceof Utf8Constant);
+    Constant constant5 = constants[7];
+    assertTrue(constant5 instanceof Utf8Constant);
+    assertEquals(10, constants.length);
+    assertSame(clazz, ((ClassConstant) constant).referencedClass);
+    byte[] expectedBytes = "()V".getBytes("UTF-8");
+    assertArrayEquals(expectedBytes, ((Utf8Constant) constant5).getBytes());
+    byte[] expectedBytes2 = "(Ljava/lang/String;)V".getBytes("UTF-8");
+    assertArrayEquals(expectedBytes2, ((Utf8Constant) constant4).getBytes());
+    byte[] expectedBytes3 = "<init>".getBytes("UTF-8");
+    assertArrayEquals(expectedBytes3, ((Utf8Constant) constant3).getBytes());
+    byte[] expectedBytes4 = "java/lang/UnsupportedOperationException".getBytes("UTF-8");
+    assertArrayEquals(expectedBytes4, ((Utf8Constant) constant2).getBytes());
+  }
+
+  /**
+   * Test {@link
+   * KotlinUnsupportedExceptionReplacementSequences#KotlinUnsupportedExceptionReplacementSequences(ClassPool,
+   * ClassPool)}.
+   *
+   * <p>Method under test: {@link
+   * KotlinUnsupportedExceptionReplacementSequences#KotlinUnsupportedExceptionReplacementSequences(ClassPool,
+   * ClassPool)}
+   */
+  @Test
+  @DisplayName("Test new KotlinUnsupportedExceptionReplacementSequences(ClassPool, ClassPool)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void KotlinUnsupportedExceptionReplacementSequences.<init>(ClassPool, ClassPool)"
+  })
+  void testNewKotlinUnsupportedExceptionReplacementSequences4()
+      throws UnsupportedEncodingException {
+    // Arrange
+    ClassPool programClassPool = new ClassPool();
+    ClassConstant classConstant = new ClassConstant();
+    ProgramClass clazz =
+        new ProgramClass(1, 3, new Constant[] {classConstant, new ClassConstant()}, 1, 1, 1);
+
+    programClassPool.addClass("java/lang/UnsupportedOperationException", clazz);
+
+    // Act and Assert
+    Constant[] constants =
+        new KotlinUnsupportedExceptionReplacementSequences(programClassPool, new ClassPool())
+            .getConstants();
+    Constant constant = constants[2];
+    assertTrue(constant instanceof ClassConstant);
+    Constant constant2 = constants[1];
+    assertTrue(constant2 instanceof Utf8Constant);
+    Constant constant3 = constants[3];
+    assertTrue(constant3 instanceof Utf8Constant);
+    Constant constant4 = constants[4];
+    assertTrue(constant4 instanceof Utf8Constant);
+    Constant constant5 = constants[7];
+    assertTrue(constant5 instanceof Utf8Constant);
+    assertEquals(10, constants.length);
+    assertSame(clazz, ((ClassConstant) constant).referencedClass);
+    byte[] expectedBytes = "()V".getBytes("UTF-8");
+    assertArrayEquals(expectedBytes, ((Utf8Constant) constant5).getBytes());
+    byte[] expectedBytes2 = "(Ljava/lang/String;)V".getBytes("UTF-8");
+    assertArrayEquals(expectedBytes2, ((Utf8Constant) constant4).getBytes());
+    byte[] expectedBytes3 = "<init>".getBytes("UTF-8");
+    assertArrayEquals(expectedBytes3, ((Utf8Constant) constant3).getBytes());
+    byte[] expectedBytes4 = "java/lang/UnsupportedOperationException".getBytes("UTF-8");
+    assertArrayEquals(expectedBytes4, ((Utf8Constant) constant2).getBytes());
+  }
+
+  /**
+   * Test {@link
+   * KotlinUnsupportedExceptionReplacementSequences#KotlinUnsupportedExceptionReplacementSequences(ClassPool,
+   * ClassPool)}.
+   *
+   * <p>Method under test: {@link
+   * KotlinUnsupportedExceptionReplacementSequences#KotlinUnsupportedExceptionReplacementSequences(ClassPool,
+   * ClassPool)}
+   */
+  @Test
+  @DisplayName("Test new KotlinUnsupportedExceptionReplacementSequences(ClassPool, ClassPool)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void KotlinUnsupportedExceptionReplacementSequences.<init>(ClassPool, ClassPool)"
+  })
+  void testNewKotlinUnsupportedExceptionReplacementSequences5()
+      throws UnsupportedEncodingException {
+    // Arrange
+    ClassPool programClassPool = new ClassPool();
+    ClassConstant classConstant = new ClassConstant();
+    ProgramClass clazz =
+        new ProgramClass(
+            1,
+            3,
+            new Constant[] {
+              classConstant,
+              new ClassConstant(
+                  1,
+                  new LibraryClass(
+                      1,
+                      "java/lang/UnsupportedOperationException",
+                      "java/lang/UnsupportedOperationException"))
+            },
+            1,
+            1,
+            1);
+
+    programClassPool.addClass("java/lang/UnsupportedOperationException", clazz);
+
+    // Act and Assert
+    Constant[] constants =
+        new KotlinUnsupportedExceptionReplacementSequences(programClassPool, new ClassPool())
+            .getConstants();
+    Constant constant = constants[2];
+    assertTrue(constant instanceof ClassConstant);
+    Constant constant2 = constants[1];
+    assertTrue(constant2 instanceof Utf8Constant);
+    Constant constant3 = constants[3];
+    assertTrue(constant3 instanceof Utf8Constant);
+    Constant constant4 = constants[4];
+    assertTrue(constant4 instanceof Utf8Constant);
+    Constant constant5 = constants[7];
+    assertTrue(constant5 instanceof Utf8Constant);
+    assertEquals(10, constants.length);
+    assertSame(clazz, ((ClassConstant) constant).referencedClass);
+    byte[] expectedBytes = "()V".getBytes("UTF-8");
+    assertArrayEquals(expectedBytes, ((Utf8Constant) constant5).getBytes());
+    byte[] expectedBytes2 = "(Ljava/lang/String;)V".getBytes("UTF-8");
+    assertArrayEquals(expectedBytes2, ((Utf8Constant) constant4).getBytes());
+    byte[] expectedBytes3 = "<init>".getBytes("UTF-8");
+    assertArrayEquals(expectedBytes3, ((Utf8Constant) constant3).getBytes());
+    byte[] expectedBytes4 = "java/lang/UnsupportedOperationException".getBytes("UTF-8");
+    assertArrayEquals(expectedBytes4, ((Utf8Constant) constant2).getBytes());
+  }
+
+  /**
+   * Test {@link
+   * KotlinUnsupportedExceptionReplacementSequences#KotlinUnsupportedExceptionReplacementSequences(ClassPool,
+   * ClassPool)}.
+   *
+   * <p>Method under test: {@link
+   * KotlinUnsupportedExceptionReplacementSequences#KotlinUnsupportedExceptionReplacementSequences(ClassPool,
+   * ClassPool)}
+   */
+  @Test
+  @DisplayName("Test new KotlinUnsupportedExceptionReplacementSequences(ClassPool, ClassPool)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void KotlinUnsupportedExceptionReplacementSequences.<init>(ClassPool, ClassPool)"
+  })
+  void testNewKotlinUnsupportedExceptionReplacementSequences6()
+      throws UnsupportedEncodingException {
+    // Arrange
+    ClassPool programClassPool = new ClassPool();
+    ClassConstant classConstant = new ClassConstant();
+    ProgramClass clazz =
+        new ProgramClass(
+            1,
+            3,
+            new Constant[] {classConstant, new ClassConstant(1, new ProgramClass())},
+            1,
+            1,
+            1);
+
+    programClassPool.addClass("java/lang/UnsupportedOperationException", clazz);
+
+    // Act and Assert
+    Constant[] constants =
+        new KotlinUnsupportedExceptionReplacementSequences(programClassPool, new ClassPool())
+            .getConstants();
+    Constant constant = constants[2];
+    assertTrue(constant instanceof ClassConstant);
+    Constant constant2 = constants[1];
+    assertTrue(constant2 instanceof Utf8Constant);
+    Constant constant3 = constants[3];
+    assertTrue(constant3 instanceof Utf8Constant);
+    Constant constant4 = constants[4];
+    assertTrue(constant4 instanceof Utf8Constant);
+    Constant constant5 = constants[7];
+    assertTrue(constant5 instanceof Utf8Constant);
+    assertEquals(10, constants.length);
+    assertSame(clazz, ((ClassConstant) constant).referencedClass);
+    byte[] expectedBytes = "()V".getBytes("UTF-8");
+    assertArrayEquals(expectedBytes, ((Utf8Constant) constant5).getBytes());
+    byte[] expectedBytes2 = "(Ljava/lang/String;)V".getBytes("UTF-8");
+    assertArrayEquals(expectedBytes2, ((Utf8Constant) constant4).getBytes());
+    byte[] expectedBytes3 = "<init>".getBytes("UTF-8");
+    assertArrayEquals(expectedBytes3, ((Utf8Constant) constant3).getBytes());
+    byte[] expectedBytes4 = "java/lang/UnsupportedOperationException".getBytes("UTF-8");
+    assertArrayEquals(expectedBytes4, ((Utf8Constant) constant2).getBytes());
+  }
+
+  /**
+   * Test {@link
+   * KotlinUnsupportedExceptionReplacementSequences#KotlinUnsupportedExceptionReplacementSequences(ClassPool,
+   * ClassPool)}.
+   *
+   * <ul>
+   *   <li>Then return array length is one.
+   * </ul>
+   *
+   * <p>Method under test: {@link
+   * KotlinUnsupportedExceptionReplacementSequences#KotlinUnsupportedExceptionReplacementSequences(ClassPool,
+   * ClassPool)}
+   */
+  @Test
+  @DisplayName(
+      "Test new KotlinUnsupportedExceptionReplacementSequences(ClassPool, ClassPool); then return array length is one")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void KotlinUnsupportedExceptionReplacementSequences.<init>(ClassPool, ClassPool)"
+  })
+  void testNewKotlinUnsupportedExceptionReplacementSequences_thenReturnArrayLengthIsOne()
+      throws UnsupportedEncodingException {
+    // Arrange and Act
+    KotlinUnsupportedExceptionReplacementSequences
+        actualKotlinUnsupportedExceptionReplacementSequences =
+            new KotlinUnsupportedExceptionReplacementSequences(null, new ClassPool());
+
+    // Assert
+    Constant[] constants = actualKotlinUnsupportedExceptionReplacementSequences.getConstants();
     Constant constant = constants[1];
     assertTrue(constant instanceof Utf8Constant);
     Constant constant2 = constants[3];
@@ -79,7 +389,13 @@ class KotlinUnsupportedExceptionReplacementSequencesDiffblueTest {
     assertTrue(constant3 instanceof Utf8Constant);
     Constant constant4 = constants[7];
     assertTrue(constant4 instanceof Utf8Constant);
+    Instruction[][][] sequences =
+        actualKotlinUnsupportedExceptionReplacementSequences.getSequences();
+    assertEquals(1, sequences.length);
     assertEquals(10, constants.length);
+    Instruction[][] instructionArray = sequences[0];
+    assertEquals(2, instructionArray.length);
+    assertEquals(5, (instructionArray[1]).length);
     byte[] expectedBytes = "()V".getBytes("UTF-8");
     assertArrayEquals(expectedBytes, ((Utf8Constant) constant4).getBytes());
     byte[] expectedBytes2 = "(Ljava/lang/String;)V".getBytes("UTF-8");
@@ -92,8 +408,9 @@ class KotlinUnsupportedExceptionReplacementSequencesDiffblueTest {
 
   /**
    * Test getters and setters.
-   * <p>
-   * Methods under test:
+   *
+   * <p>Methods under test:
+   *
    * <ul>
    *   <li>{@link KotlinUnsupportedExceptionReplacementSequences#getConstants()}
    *   <li>{@link KotlinUnsupportedExceptionReplacementSequences#getSequences()}
@@ -101,19 +418,22 @@ class KotlinUnsupportedExceptionReplacementSequencesDiffblueTest {
    */
   @Test
   @DisplayName("Test getters and setters")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "proguard.classfile.constant.Constant[] proguard.obfuscate.kotlin.KotlinUnsupportedExceptionReplacementSequences.getConstants()",
-      "proguard.classfile.instruction.Instruction[][][] proguard.obfuscate.kotlin.KotlinUnsupportedExceptionReplacementSequences.getSequences()"})
+    "Constant[] KotlinUnsupportedExceptionReplacementSequences.getConstants()",
+    "Instruction[][][] KotlinUnsupportedExceptionReplacementSequences.getSequences()"
+  })
   void testGettersAndSetters() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
-    KotlinUnsupportedExceptionReplacementSequences kotlinUnsupportedExceptionReplacementSequences = new KotlinUnsupportedExceptionReplacementSequences(
-        programClassPool, new ClassPool());
+    KotlinUnsupportedExceptionReplacementSequences kotlinUnsupportedExceptionReplacementSequences =
+        new KotlinUnsupportedExceptionReplacementSequences(programClassPool, new ClassPool());
 
     // Act
     Constant[] actualConstants = kotlinUnsupportedExceptionReplacementSequences.getConstants();
-    Instruction[][][] actualSequences = kotlinUnsupportedExceptionReplacementSequences.getSequences();
+    Instruction[][][] actualSequences =
+        kotlinUnsupportedExceptionReplacementSequences.getSequences();
 
     // Assert
     Constant constant = actualConstants[2];
@@ -122,8 +442,10 @@ class KotlinUnsupportedExceptionReplacementSequencesDiffblueTest {
     assertTrue(constant2 instanceof MethodrefConstant);
     Constant constant3 = actualConstants[9];
     assertTrue(constant3 instanceof MethodrefConstant);
-    assertTrue(actualConstants[5] instanceof NameAndTypeConstant);
-    assertTrue(actualConstants[8] instanceof NameAndTypeConstant);
+    Constant constant4 = actualConstants[5];
+    assertTrue(constant4 instanceof NameAndTypeConstant);
+    Constant constant5 = actualConstants[8];
+    assertTrue(constant5 instanceof NameAndTypeConstant);
     assertTrue(actualConstants[1] instanceof Utf8Constant);
     assertTrue(actualConstants[3] instanceof Utf8Constant);
     assertTrue(actualConstants[4] instanceof Utf8Constant);
@@ -176,10 +498,15 @@ class KotlinUnsupportedExceptionReplacementSequencesDiffblueTest {
     assertEquals(2, instructionArray.length);
     assertEquals(2, ((ConstantInstruction) instruction2).constantIndex);
     assertEquals((byte) 25, ((VariableInstruction) instruction7).opcode);
+    assertEquals(3, ((NameAndTypeConstant) constant4).u2nameIndex);
+    assertEquals(3, ((NameAndTypeConstant) constant5).u2nameIndex);
+    assertEquals(4, ((NameAndTypeConstant) constant4).u2descriptorIndex);
     assertEquals(5, instructionArray3.length);
     assertEquals(6, instructionArray2.length);
     assertEquals(6, ((ConstantInstruction) instruction4).constantIndex);
+    assertEquals(7, ((NameAndTypeConstant) constant5).u2descriptorIndex);
     assertEquals(9, ((ConstantInstruction) instruction5).constantIndex);
+    assertTrue(((VariableInstruction) instruction7).wide);
     assertEquals('Y', ((SimpleInstruction) instruction6).opcode);
   }
 }

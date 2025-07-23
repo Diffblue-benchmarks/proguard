@@ -5,6 +5,7 @@ import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -17,17 +18,20 @@ import proguard.classfile.visitor.ClassVisitor;
 class PreverificationClearerDiffblueTest {
   /**
    * Test {@link PreverificationClearer#execute(AppView)}.
+   *
    * <ul>
-   *   <li>When {@link ClassPool} {@link ClassPool#classesAccept(ClassVisitor)} does nothing.</li>
-   *   <li>Then calls {@link ClassPool#classesAccept(ClassVisitor)}.</li>
+   *   <li>When {@link ClassPool} {@link ClassPool#classesAccept(ClassVisitor)} does nothing.
+   *   <li>Then calls {@link ClassPool#classesAccept(ClassVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link PreverificationClearer#execute(AppView)}
+   *
+   * <p>Method under test: {@link PreverificationClearer#execute(AppView)}
    */
   @Test
-  @DisplayName("Test execute(AppView); when ClassPool classesAccept(ClassVisitor) does nothing; then calls classesAccept(ClassVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.preverify.PreverificationClearer.execute(proguard.AppView)"})
+  @DisplayName(
+      "Test execute(AppView); when ClassPool classesAccept(ClassVisitor) does nothing; then calls classesAccept(ClassVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void PreverificationClearer.execute(AppView)"})
   void testExecute_whenClassPoolClassesAcceptDoesNothing_thenCallsClassesAccept() {
     // Arrange
     PreverificationClearer preverificationClearer = new PreverificationClearer();
@@ -43,15 +47,17 @@ class PreverificationClearerDiffblueTest {
 
   /**
    * Test new {@link PreverificationClearer} (default constructor).
-   * <p>
-   * Method under test: default or parameterless constructor of {@link PreverificationClearer}
+   *
+   * <p>Method under test: default or parameterless constructor of {@link PreverificationClearer}
    */
   @Test
   @DisplayName("Test new PreverificationClearer (default constructor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.preverify.PreverificationClearer.<init>()"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void PreverificationClearer.<init>()"})
   void testNewPreverificationClearer() {
     // Arrange, Act and Assert
-    assertEquals("proguard.preverify.PreverificationClearer", (new PreverificationClearer()).getName());
+    assertEquals(
+        "proguard.preverify.PreverificationClearer", new PreverificationClearer().getName());
   }
 }

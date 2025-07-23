@@ -9,6 +9,7 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -17,11 +18,9 @@ import org.mockito.Mockito;
 import proguard.classfile.Clazz;
 import proguard.classfile.LibraryClass;
 import proguard.classfile.LibraryField;
-import proguard.classfile.LibraryMember;
 import proguard.classfile.LibraryMethod;
 import proguard.classfile.ProgramClass;
 import proguard.classfile.ProgramField;
-import proguard.classfile.ProgramMember;
 import proguard.classfile.ProgramMethod;
 import proguard.classfile.visitor.MemberVisitor;
 import proguard.fixer.kotlin.KotlinAnnotationCounter;
@@ -33,14 +32,14 @@ import proguard.optimize.info.ProgramFieldOptimizationInfo;
 class KeptMemberFilterDiffblueTest {
   /**
    * Test {@link KeptMemberFilter#visitProgramField(ProgramClass, ProgramField)}.
-   * <p>
-   * Method under test: {@link KeptMemberFilter#visitProgramField(ProgramClass, ProgramField)}
+   *
+   * <p>Method under test: {@link KeptMemberFilter#visitProgramField(ProgramClass, ProgramField)}
    */
   @Test
   @DisplayName("Test visitProgramField(ProgramClass, ProgramField)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.KeptMemberFilter.visitProgramField(proguard.classfile.ProgramClass, proguard.classfile.ProgramField)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void KeptMemberFilter.visitProgramField(ProgramClass, ProgramField)"})
   void testVisitProgramField() {
     // Arrange
     KeptMemberFilter keptMemberFilter = new KeptMemberFilter(mock(MemberVisitor.class));
@@ -48,7 +47,9 @@ class KeptMemberFilterDiffblueTest {
     ProgramField programField = mock(ProgramField.class);
     LibraryClass clazz = new LibraryClass();
     when(programField.getProcessingInfo())
-        .thenReturn(new ProgramFieldOptimizationInfo(clazz, new LibraryField(1, "Name", "Descriptor"), true));
+        .thenReturn(
+            new ProgramFieldOptimizationInfo(
+                clazz, new LibraryField(1, "Name", "Descriptor"), true));
 
     // Act
     keptMemberFilter.visitProgramField(programClass, programField);
@@ -59,21 +60,25 @@ class KeptMemberFilterDiffblueTest {
 
   /**
    * Test {@link KeptMemberFilter#visitProgramField(ProgramClass, ProgramField)}.
+   *
    * <ul>
-   *   <li>Then calls {@link MemberVisitor#visitProgramField(ProgramClass, ProgramField)}.</li>
+   *   <li>Then calls {@link MemberVisitor#visitProgramField(ProgramClass, ProgramField)}.
    * </ul>
-   * <p>
-   * Method under test: {@link KeptMemberFilter#visitProgramField(ProgramClass, ProgramField)}
+   *
+   * <p>Method under test: {@link KeptMemberFilter#visitProgramField(ProgramClass, ProgramField)}
    */
   @Test
-  @DisplayName("Test visitProgramField(ProgramClass, ProgramField); then calls visitProgramField(ProgramClass, ProgramField)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.KeptMemberFilter.visitProgramField(proguard.classfile.ProgramClass, proguard.classfile.ProgramField)"})
+  @DisplayName(
+      "Test visitProgramField(ProgramClass, ProgramField); then calls visitProgramField(ProgramClass, ProgramField)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void KeptMemberFilter.visitProgramField(ProgramClass, ProgramField)"})
   void testVisitProgramField_thenCallsVisitProgramField() {
     // Arrange
     MemberVisitor memberVisitor = mock(MemberVisitor.class);
-    doNothing().when(memberVisitor).visitProgramField(Mockito.<ProgramClass>any(), Mockito.<ProgramField>any());
+    doNothing()
+        .when(memberVisitor)
+        .visitProgramField(Mockito.<ProgramClass>any(), Mockito.<ProgramField>any());
     KeptMemberFilter keptMemberFilter = new KeptMemberFilter(memberVisitor);
     ProgramClass programClass = new ProgramClass();
     ProgramField programField = mock(ProgramField.class);
@@ -89,18 +94,20 @@ class KeptMemberFilterDiffblueTest {
 
   /**
    * Test {@link KeptMemberFilter#visitProgramField(ProgramClass, ProgramField)}.
+   *
    * <ul>
-   *   <li>When {@link ProgramField} {@link ProgramMember#accept(Clazz, MemberVisitor)} does nothing.</li>
-   *   <li>Then calls {@link ProgramMember#accept(Clazz, MemberVisitor)}.</li>
+   *   <li>When {@link ProgramField} {@link ProgramField#accept(Clazz, MemberVisitor)} does nothing.
+   *   <li>Then calls {@link ProgramField#accept(Clazz, MemberVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link KeptMemberFilter#visitProgramField(ProgramClass, ProgramField)}
+   *
+   * <p>Method under test: {@link KeptMemberFilter#visitProgramField(ProgramClass, ProgramField)}
    */
   @Test
-  @DisplayName("Test visitProgramField(ProgramClass, ProgramField); when ProgramField accept(Clazz, MemberVisitor) does nothing; then calls accept(Clazz, MemberVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.KeptMemberFilter.visitProgramField(proguard.classfile.ProgramClass, proguard.classfile.ProgramField)"})
+  @DisplayName(
+      "Test visitProgramField(ProgramClass, ProgramField); when ProgramField accept(Clazz, MemberVisitor) does nothing; then calls accept(Clazz, MemberVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void KeptMemberFilter.visitProgramField(ProgramClass, ProgramField)"})
   void testVisitProgramField_whenProgramFieldAcceptDoesNothing_thenCallsAccept() {
     // Arrange
     KeptMemberFilter keptMemberFilter = new KeptMemberFilter(new KotlinAnnotationCounter());
@@ -119,18 +126,19 @@ class KeptMemberFilterDiffblueTest {
 
   /**
    * Test {@link KeptMemberFilter#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   *
    * <ul>
-   *   <li>Given {@link MethodOptimizationInfo} {@link MethodOptimizationInfo#isKept()} return {@code false}.</li>
+   *   <li>Then calls {@link MethodOptimizationInfo#isKept()}.
    * </ul>
-   * <p>
-   * Method under test: {@link KeptMemberFilter#visitProgramMethod(ProgramClass, ProgramMethod)}
+   *
+   * <p>Method under test: {@link KeptMemberFilter#visitProgramMethod(ProgramClass, ProgramMethod)}
    */
   @Test
-  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); given MethodOptimizationInfo isKept() return 'false'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.KeptMemberFilter.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
-  void testVisitProgramMethod_givenMethodOptimizationInfoIsKeptReturnFalse() {
+  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); then calls isKept()")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void KeptMemberFilter.visitProgramMethod(ProgramClass, ProgramMethod)"})
+  void testVisitProgramMethod_thenCallsIsKept() {
     // Arrange
     KeptMemberFilter keptMemberFilter = new KeptMemberFilter(mock(MemberVisitor.class));
     ProgramClass programClass = new ProgramClass();
@@ -149,54 +157,25 @@ class KeptMemberFilterDiffblueTest {
 
   /**
    * Test {@link KeptMemberFilter#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   *
    * <ul>
-   *   <li>Given {@link MethodOptimizationInfo} {@link MethodOptimizationInfo#isKept()} return {@code true}.</li>
+   *   <li>Then calls {@link MemberVisitor#visitProgramMethod(ProgramClass, ProgramMethod)}.
    * </ul>
-   * <p>
-   * Method under test: {@link KeptMemberFilter#visitProgramMethod(ProgramClass, ProgramMethod)}
+   *
+   * <p>Method under test: {@link KeptMemberFilter#visitProgramMethod(ProgramClass, ProgramMethod)}
    */
   @Test
-  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); given MethodOptimizationInfo isKept() return 'true'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.KeptMemberFilter.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
-  void testVisitProgramMethod_givenMethodOptimizationInfoIsKeptReturnTrue() {
-    // Arrange
-    MemberVisitor memberVisitor = mock(MemberVisitor.class);
-    doNothing().when(memberVisitor).visitProgramMethod(Mockito.<ProgramClass>any(), Mockito.<ProgramMethod>any());
-    KeptMemberFilter keptMemberFilter = new KeptMemberFilter(memberVisitor);
-    ProgramClass programClass = new ProgramClass();
-    MethodOptimizationInfo methodOptimizationInfo = mock(MethodOptimizationInfo.class);
-    when(methodOptimizationInfo.isKept()).thenReturn(true);
-    ProgramMethod programMethod = mock(ProgramMethod.class);
-    when(programMethod.getProcessingInfo()).thenReturn(methodOptimizationInfo);
-
-    // Act
-    keptMemberFilter.visitProgramMethod(programClass, programMethod);
-
-    // Assert
-    verify(memberVisitor).visitProgramMethod(isA(ProgramClass.class), isA(ProgramMethod.class));
-    verify(methodOptimizationInfo).isKept();
-    verify(programMethod, atLeast(1)).getProcessingInfo();
-  }
-
-  /**
-   * Test {@link KeptMemberFilter#visitProgramMethod(ProgramClass, ProgramMethod)}.
-   * <ul>
-   *   <li>Then calls {@link MemberVisitor#visitProgramMethod(ProgramClass, ProgramMethod)}.</li>
-   * </ul>
-   * <p>
-   * Method under test: {@link KeptMemberFilter#visitProgramMethod(ProgramClass, ProgramMethod)}
-   */
-  @Test
-  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); then calls visitProgramMethod(ProgramClass, ProgramMethod)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.KeptMemberFilter.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
+  @DisplayName(
+      "Test visitProgramMethod(ProgramClass, ProgramMethod); then calls visitProgramMethod(ProgramClass, ProgramMethod)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void KeptMemberFilter.visitProgramMethod(ProgramClass, ProgramMethod)"})
   void testVisitProgramMethod_thenCallsVisitProgramMethod() {
     // Arrange
     MemberVisitor memberVisitor = mock(MemberVisitor.class);
-    doNothing().when(memberVisitor).visitProgramMethod(Mockito.<ProgramClass>any(), Mockito.<ProgramMethod>any());
+    doNothing()
+        .when(memberVisitor)
+        .visitProgramMethod(Mockito.<ProgramClass>any(), Mockito.<ProgramMethod>any());
     KeptMemberFilter keptMemberFilter = new KeptMemberFilter(memberVisitor);
     ProgramClass programClass = new ProgramClass();
     ProgramMethod programMethod = mock(ProgramMethod.class);
@@ -212,18 +191,21 @@ class KeptMemberFilterDiffblueTest {
 
   /**
    * Test {@link KeptMemberFilter#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   *
    * <ul>
-   *   <li>When {@link ProgramMethod} {@link ProgramMember#accept(Clazz, MemberVisitor)} does nothing.</li>
-   *   <li>Then calls {@link ProgramMember#accept(Clazz, MemberVisitor)}.</li>
+   *   <li>When {@link ProgramMethod} {@link ProgramMethod#accept(Clazz, MemberVisitor)} does
+   *       nothing.
+   *   <li>Then calls {@link ProgramMethod#accept(Clazz, MemberVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link KeptMemberFilter#visitProgramMethod(ProgramClass, ProgramMethod)}
+   *
+   * <p>Method under test: {@link KeptMemberFilter#visitProgramMethod(ProgramClass, ProgramMethod)}
    */
   @Test
-  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); when ProgramMethod accept(Clazz, MemberVisitor) does nothing; then calls accept(Clazz, MemberVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.KeptMemberFilter.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
+  @DisplayName(
+      "Test visitProgramMethod(ProgramClass, ProgramMethod); when ProgramMethod accept(Clazz, MemberVisitor) does nothing; then calls accept(Clazz, MemberVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void KeptMemberFilter.visitProgramMethod(ProgramClass, ProgramMethod)"})
   void testVisitProgramMethod_whenProgramMethodAcceptDoesNothing_thenCallsAccept() {
     // Arrange
     KeptMemberFilter keptMemberFilter = new KeptMemberFilter(new KotlinAnnotationCounter());
@@ -242,14 +224,14 @@ class KeptMemberFilterDiffblueTest {
 
   /**
    * Test {@link KeptMemberFilter#visitLibraryField(LibraryClass, LibraryField)}.
-   * <p>
-   * Method under test: {@link KeptMemberFilter#visitLibraryField(LibraryClass, LibraryField)}
+   *
+   * <p>Method under test: {@link KeptMemberFilter#visitLibraryField(LibraryClass, LibraryField)}
    */
   @Test
   @DisplayName("Test visitLibraryField(LibraryClass, LibraryField)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.KeptMemberFilter.visitLibraryField(proguard.classfile.LibraryClass, proguard.classfile.LibraryField)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void KeptMemberFilter.visitLibraryField(LibraryClass, LibraryField)"})
   void testVisitLibraryField() {
     // Arrange
     KeptMemberFilter keptMemberFilter = new KeptMemberFilter(new KotlinAnnotationCounter());
@@ -270,14 +252,14 @@ class KeptMemberFilterDiffblueTest {
 
   /**
    * Test {@link KeptMemberFilter#visitLibraryField(LibraryClass, LibraryField)}.
-   * <p>
-   * Method under test: {@link KeptMemberFilter#visitLibraryField(LibraryClass, LibraryField)}
+   *
+   * <p>Method under test: {@link KeptMemberFilter#visitLibraryField(LibraryClass, LibraryField)}
    */
   @Test
   @DisplayName("Test visitLibraryField(LibraryClass, LibraryField)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.KeptMemberFilter.visitLibraryField(proguard.classfile.LibraryClass, proguard.classfile.LibraryField)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void KeptMemberFilter.visitLibraryField(LibraryClass, LibraryField)"})
   void testVisitLibraryField2() {
     // Arrange
     KeptMemberFilter keptMemberFilter = new KeptMemberFilter(new KotlinAnnotationCounter());
@@ -285,8 +267,8 @@ class KeptMemberFilterDiffblueTest {
 
     LibraryField libraryField = new LibraryField(1, "Name", "Descriptor");
     LibraryClass clazz = new LibraryClass();
-    ProgramFieldOptimizationInfo programFieldOptimizationInfo = new ProgramFieldOptimizationInfo(clazz,
-        new LibraryField(1, "Name", "Descriptor"), true);
+    ProgramFieldOptimizationInfo programFieldOptimizationInfo =
+        new ProgramFieldOptimizationInfo(clazz, new LibraryField(1, "Name", "Descriptor"), true);
 
     libraryField.setProcessingInfo(programFieldOptimizationInfo);
 
@@ -301,17 +283,20 @@ class KeptMemberFilterDiffblueTest {
 
   /**
    * Test {@link KeptMemberFilter#visitLibraryField(LibraryClass, LibraryField)}.
+   *
    * <ul>
-   *   <li>Given {@link KeptMemberFilter#KeptMemberFilter(MemberVisitor)} with memberVisitor is {@link MemberNameCleaner} (default constructor).</li>
+   *   <li>Given {@link KeptMemberFilter#KeptMemberFilter(MemberVisitor)} with memberVisitor is
+   *       {@link MemberNameCleaner} (default constructor).
    * </ul>
-   * <p>
-   * Method under test: {@link KeptMemberFilter#visitLibraryField(LibraryClass, LibraryField)}
+   *
+   * <p>Method under test: {@link KeptMemberFilter#visitLibraryField(LibraryClass, LibraryField)}
    */
   @Test
-  @DisplayName("Test visitLibraryField(LibraryClass, LibraryField); given KeptMemberFilter(MemberVisitor) with memberVisitor is MemberNameCleaner (default constructor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.KeptMemberFilter.visitLibraryField(proguard.classfile.LibraryClass, proguard.classfile.LibraryField)"})
+  @DisplayName(
+      "Test visitLibraryField(LibraryClass, LibraryField); given KeptMemberFilter(MemberVisitor) with memberVisitor is MemberNameCleaner (default constructor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void KeptMemberFilter.visitLibraryField(LibraryClass, LibraryField)"})
   void testVisitLibraryField_givenKeptMemberFilterWithMemberVisitorIsMemberNameCleaner() {
     // Arrange
     KeptMemberFilter keptMemberFilter = new KeptMemberFilter(new MemberNameCleaner());
@@ -329,17 +314,20 @@ class KeptMemberFilterDiffblueTest {
 
   /**
    * Test {@link KeptMemberFilter#visitLibraryField(LibraryClass, LibraryField)}.
+   *
    * <ul>
-   *   <li>When {@link LibraryField#LibraryField(int, String, String)} with u2accessFlags is one and {@code Name} and {@code Descriptor}.</li>
+   *   <li>When {@link LibraryField#LibraryField(int, String, String)} with u2accessFlags is one and
+   *       {@code Name} and {@code Descriptor}.
    * </ul>
-   * <p>
-   * Method under test: {@link KeptMemberFilter#visitLibraryField(LibraryClass, LibraryField)}
+   *
+   * <p>Method under test: {@link KeptMemberFilter#visitLibraryField(LibraryClass, LibraryField)}
    */
   @Test
-  @DisplayName("Test visitLibraryField(LibraryClass, LibraryField); when LibraryField(int, String, String) with u2accessFlags is one and 'Name' and 'Descriptor'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.KeptMemberFilter.visitLibraryField(proguard.classfile.LibraryClass, proguard.classfile.LibraryField)"})
+  @DisplayName(
+      "Test visitLibraryField(LibraryClass, LibraryField); when LibraryField(int, String, String) with u2accessFlags is one and 'Name' and 'Descriptor'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void KeptMemberFilter.visitLibraryField(LibraryClass, LibraryField)"})
   void testVisitLibraryField_whenLibraryFieldWithU2accessFlagsIsOneAndNameAndDescriptor() {
     // Arrange
     KeptMemberFilter keptMemberFilter = new KeptMemberFilter(new KotlinAnnotationCounter());
@@ -355,18 +343,19 @@ class KeptMemberFilterDiffblueTest {
 
   /**
    * Test {@link KeptMemberFilter#visitLibraryMethod(LibraryClass, LibraryMethod)}.
+   *
    * <ul>
-   *   <li>Given {@link MethodOptimizationInfo} {@link MethodOptimizationInfo#isKept()} return {@code false}.</li>
+   *   <li>Then calls {@link MethodOptimizationInfo#isKept()}.
    * </ul>
-   * <p>
-   * Method under test: {@link KeptMemberFilter#visitLibraryMethod(LibraryClass, LibraryMethod)}
+   *
+   * <p>Method under test: {@link KeptMemberFilter#visitLibraryMethod(LibraryClass, LibraryMethod)}
    */
   @Test
-  @DisplayName("Test visitLibraryMethod(LibraryClass, LibraryMethod); given MethodOptimizationInfo isKept() return 'false'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.KeptMemberFilter.visitLibraryMethod(proguard.classfile.LibraryClass, proguard.classfile.LibraryMethod)"})
-  void testVisitLibraryMethod_givenMethodOptimizationInfoIsKeptReturnFalse() {
+  @DisplayName("Test visitLibraryMethod(LibraryClass, LibraryMethod); then calls isKept()")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void KeptMemberFilter.visitLibraryMethod(LibraryClass, LibraryMethod)"})
+  void testVisitLibraryMethod_thenCallsIsKept() {
     // Arrange
     KeptMemberFilter keptMemberFilter = new KeptMemberFilter(mock(MemberVisitor.class));
     LibraryClass libraryClass = new LibraryClass();
@@ -385,54 +374,25 @@ class KeptMemberFilterDiffblueTest {
 
   /**
    * Test {@link KeptMemberFilter#visitLibraryMethod(LibraryClass, LibraryMethod)}.
+   *
    * <ul>
-   *   <li>Given {@link MethodOptimizationInfo} {@link MethodOptimizationInfo#isKept()} return {@code true}.</li>
+   *   <li>Then calls {@link MemberVisitor#visitLibraryMethod(LibraryClass, LibraryMethod)}.
    * </ul>
-   * <p>
-   * Method under test: {@link KeptMemberFilter#visitLibraryMethod(LibraryClass, LibraryMethod)}
+   *
+   * <p>Method under test: {@link KeptMemberFilter#visitLibraryMethod(LibraryClass, LibraryMethod)}
    */
   @Test
-  @DisplayName("Test visitLibraryMethod(LibraryClass, LibraryMethod); given MethodOptimizationInfo isKept() return 'true'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.KeptMemberFilter.visitLibraryMethod(proguard.classfile.LibraryClass, proguard.classfile.LibraryMethod)"})
-  void testVisitLibraryMethod_givenMethodOptimizationInfoIsKeptReturnTrue() {
-    // Arrange
-    MemberVisitor memberVisitor = mock(MemberVisitor.class);
-    doNothing().when(memberVisitor).visitLibraryMethod(Mockito.<LibraryClass>any(), Mockito.<LibraryMethod>any());
-    KeptMemberFilter keptMemberFilter = new KeptMemberFilter(memberVisitor);
-    LibraryClass libraryClass = new LibraryClass();
-    MethodOptimizationInfo methodOptimizationInfo = mock(MethodOptimizationInfo.class);
-    when(methodOptimizationInfo.isKept()).thenReturn(true);
-    LibraryMethod libraryMethod = mock(LibraryMethod.class);
-    when(libraryMethod.getProcessingInfo()).thenReturn(methodOptimizationInfo);
-
-    // Act
-    keptMemberFilter.visitLibraryMethod(libraryClass, libraryMethod);
-
-    // Assert
-    verify(memberVisitor).visitLibraryMethod(isA(LibraryClass.class), isA(LibraryMethod.class));
-    verify(methodOptimizationInfo).isKept();
-    verify(libraryMethod, atLeast(1)).getProcessingInfo();
-  }
-
-  /**
-   * Test {@link KeptMemberFilter#visitLibraryMethod(LibraryClass, LibraryMethod)}.
-   * <ul>
-   *   <li>Then calls {@link MemberVisitor#visitLibraryMethod(LibraryClass, LibraryMethod)}.</li>
-   * </ul>
-   * <p>
-   * Method under test: {@link KeptMemberFilter#visitLibraryMethod(LibraryClass, LibraryMethod)}
-   */
-  @Test
-  @DisplayName("Test visitLibraryMethod(LibraryClass, LibraryMethod); then calls visitLibraryMethod(LibraryClass, LibraryMethod)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.KeptMemberFilter.visitLibraryMethod(proguard.classfile.LibraryClass, proguard.classfile.LibraryMethod)"})
+  @DisplayName(
+      "Test visitLibraryMethod(LibraryClass, LibraryMethod); then calls visitLibraryMethod(LibraryClass, LibraryMethod)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void KeptMemberFilter.visitLibraryMethod(LibraryClass, LibraryMethod)"})
   void testVisitLibraryMethod_thenCallsVisitLibraryMethod() {
     // Arrange
     MemberVisitor memberVisitor = mock(MemberVisitor.class);
-    doNothing().when(memberVisitor).visitLibraryMethod(Mockito.<LibraryClass>any(), Mockito.<LibraryMethod>any());
+    doNothing()
+        .when(memberVisitor)
+        .visitLibraryMethod(Mockito.<LibraryClass>any(), Mockito.<LibraryMethod>any());
     KeptMemberFilter keptMemberFilter = new KeptMemberFilter(memberVisitor);
     LibraryClass libraryClass = new LibraryClass();
     LibraryMethod libraryMethod = mock(LibraryMethod.class);
@@ -448,18 +408,21 @@ class KeptMemberFilterDiffblueTest {
 
   /**
    * Test {@link KeptMemberFilter#visitLibraryMethod(LibraryClass, LibraryMethod)}.
+   *
    * <ul>
-   *   <li>When {@link LibraryMethod} {@link LibraryMember#accept(Clazz, MemberVisitor)} does nothing.</li>
-   *   <li>Then calls {@link LibraryMember#accept(Clazz, MemberVisitor)}.</li>
+   *   <li>When {@link LibraryMethod} {@link LibraryMethod#accept(Clazz, MemberVisitor)} does
+   *       nothing.
+   *   <li>Then calls {@link LibraryMethod#accept(Clazz, MemberVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link KeptMemberFilter#visitLibraryMethod(LibraryClass, LibraryMethod)}
+   *
+   * <p>Method under test: {@link KeptMemberFilter#visitLibraryMethod(LibraryClass, LibraryMethod)}
    */
   @Test
-  @DisplayName("Test visitLibraryMethod(LibraryClass, LibraryMethod); when LibraryMethod accept(Clazz, MemberVisitor) does nothing; then calls accept(Clazz, MemberVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.KeptMemberFilter.visitLibraryMethod(proguard.classfile.LibraryClass, proguard.classfile.LibraryMethod)"})
+  @DisplayName(
+      "Test visitLibraryMethod(LibraryClass, LibraryMethod); when LibraryMethod accept(Clazz, MemberVisitor) does nothing; then calls accept(Clazz, MemberVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void KeptMemberFilter.visitLibraryMethod(LibraryClass, LibraryMethod)"})
   void testVisitLibraryMethod_whenLibraryMethodAcceptDoesNothing_thenCallsAccept() {
     // Arrange
     KeptMemberFilter keptMemberFilter = new KeptMemberFilter(new KotlinAnnotationCounter());

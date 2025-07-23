@@ -1,6 +1,7 @@
 package proguard.optimize.info;
 
 import static org.junit.jupiter.api.Assertions.assertNull;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -11,20 +12,25 @@ import proguard.classfile.Method;
 class ProgramMethodOptimizationInfoDiffblueTest {
   /**
    * Test {@link ProgramMethodOptimizationInfo#getProgramMethodOptimizationInfo(Method)}.
+   *
    * <ul>
-   *   <li>Then return {@code null}.</li>
+   *   <li>Then return {@code null}.
    * </ul>
-   * <p>
-   * Method under test: {@link ProgramMethodOptimizationInfo#getProgramMethodOptimizationInfo(Method)}
+   *
+   * <p>Method under test: {@link
+   * ProgramMethodOptimizationInfo#getProgramMethodOptimizationInfo(Method)}
    */
   @Test
   @DisplayName("Test getProgramMethodOptimizationInfo(Method); then return 'null'")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "proguard.optimize.info.ProgramMethodOptimizationInfo proguard.optimize.info.ProgramMethodOptimizationInfo.getProgramMethodOptimizationInfo(proguard.classfile.Method)"})
+    "ProgramMethodOptimizationInfo ProgramMethodOptimizationInfo.getProgramMethodOptimizationInfo(Method)"
+  })
   void testGetProgramMethodOptimizationInfo_thenReturnNull() {
     // Arrange, Act and Assert
     assertNull(
-        ProgramMethodOptimizationInfo.getProgramMethodOptimizationInfo(new LibraryMethod(1, "Name", "Descriptor")));
+        ProgramMethodOptimizationInfo.getProgramMethodOptimizationInfo(
+            new LibraryMethod(1, "Name", "Descriptor")));
   }
 }

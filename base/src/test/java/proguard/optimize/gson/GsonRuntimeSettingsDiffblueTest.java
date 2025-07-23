@@ -1,6 +1,7 @@
 package proguard.optimize.gson;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -9,13 +10,14 @@ import org.junit.jupiter.api.Test;
 class GsonRuntimeSettingsDiffblueTest {
   /**
    * Test new {@link GsonRuntimeSettings} (default constructor).
-   * <p>
-   * Method under test: default or parameterless constructor of {@link GsonRuntimeSettings}
+   *
+   * <p>Method under test: default or parameterless constructor of {@link GsonRuntimeSettings}
    */
   @Test
   @DisplayName("Test new GsonRuntimeSettings (default constructor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.optimize.gson.GsonRuntimeSettings.<init>()"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void GsonRuntimeSettings.<init>()"})
   void testNewGsonRuntimeSettings() {
     // Arrange and Act
     GsonRuntimeSettings actualGsonRuntimeSettings = new GsonRuntimeSettings();

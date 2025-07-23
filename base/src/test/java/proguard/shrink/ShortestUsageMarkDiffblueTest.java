@@ -7,6 +7,7 @@ import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -21,8 +22,9 @@ import proguard.classfile.visitor.ClassVisitor;
 class ShortestUsageMarkDiffblueTest {
   /**
    * Test getters and setters.
-   * <p>
-   * Methods under test:
+   *
+   * <p>Methods under test:
+   *
    * <ul>
    *   <li>{@link ShortestUsageMark#ShortestUsageMark(String)}
    *   <li>{@link ShortestUsageMark#getReason()}
@@ -31,10 +33,13 @@ class ShortestUsageMarkDiffblueTest {
    */
   @Test
   @DisplayName("Test getters and setters")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.shrink.ShortestUsageMark.<init>(java.lang.String)",
-      "java.lang.String proguard.shrink.ShortestUsageMark.getReason()",
-      "boolean proguard.shrink.ShortestUsageMark.isCertain()"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void ShortestUsageMark.<init>(String)",
+    "String ShortestUsageMark.getReason()",
+    "boolean ShortestUsageMark.isCertain()"
+  })
   void testGettersAndSetters() {
     // Arrange and Act
     ShortestUsageMark actualShortestUsageMark = new ShortestUsageMark("Just cause");
@@ -47,24 +52,27 @@ class ShortestUsageMarkDiffblueTest {
 
   /**
    * Test {@link ShortestUsageMark#ShortestUsageMark(ShortestUsageMark, String, int, Clazz)}.
+   *
    * <ul>
-   *   <li>Then return Reason is {@code Just cause}.</li>
+   *   <li>Then return Reason is {@code Just cause}.
    * </ul>
-   * <p>
-   * Method under test: {@link ShortestUsageMark#ShortestUsageMark(ShortestUsageMark, String, int, Clazz)}
+   *
+   * <p>Method under test: {@link ShortestUsageMark#ShortestUsageMark(ShortestUsageMark, String,
+   * int, Clazz)}
    */
   @Test
-  @DisplayName("Test new ShortestUsageMark(ShortestUsageMark, String, int, Clazz); then return Reason is 'Just cause'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.shrink.ShortestUsageMark.<init>(proguard.shrink.ShortestUsageMark, java.lang.String, int, proguard.classfile.Clazz)"})
+  @DisplayName(
+      "Test new ShortestUsageMark(ShortestUsageMark, String, int, Clazz); then return Reason is 'Just cause'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ShortestUsageMark.<init>(ShortestUsageMark, String, int, Clazz)"})
   void testNewShortestUsageMark_thenReturnReasonIsJustCause() {
     // Arrange
     ShortestUsageMark previousUsageMark = new ShortestUsageMark("Just cause");
 
     // Act
-    ShortestUsageMark actualShortestUsageMark = new ShortestUsageMark(previousUsageMark, "Just cause", 1,
-        new LibraryClass());
+    ShortestUsageMark actualShortestUsageMark =
+        new ShortestUsageMark(previousUsageMark, "Just cause", 1, new LibraryClass());
 
     // Assert
     assertEquals("Just cause", actualShortestUsageMark.getReason());
@@ -72,26 +80,33 @@ class ShortestUsageMarkDiffblueTest {
   }
 
   /**
-   * Test {@link ShortestUsageMark#ShortestUsageMark(ShortestUsageMark, String, int, Clazz, Member)}.
+   * Test {@link ShortestUsageMark#ShortestUsageMark(ShortestUsageMark, String, int, Clazz,
+   * Member)}.
+   *
    * <ul>
-   *   <li>Then return Reason is {@code Just cause}.</li>
+   *   <li>Then return Reason is {@code Just cause}.
    * </ul>
-   * <p>
-   * Method under test: {@link ShortestUsageMark#ShortestUsageMark(ShortestUsageMark, String, int, Clazz, Member)}
+   *
+   * <p>Method under test: {@link ShortestUsageMark#ShortestUsageMark(ShortestUsageMark, String,
+   * int, Clazz, Member)}
    */
   @Test
-  @DisplayName("Test new ShortestUsageMark(ShortestUsageMark, String, int, Clazz, Member); then return Reason is 'Just cause'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test new ShortestUsageMark(ShortestUsageMark, String, int, Clazz, Member); then return Reason is 'Just cause'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.shrink.ShortestUsageMark.<init>(proguard.shrink.ShortestUsageMark, java.lang.String, int, proguard.classfile.Clazz, proguard.classfile.Member)"})
+    "void ShortestUsageMark.<init>(ShortestUsageMark, String, int, Clazz, Member)"
+  })
   void testNewShortestUsageMark_thenReturnReasonIsJustCause2() {
     // Arrange
     ShortestUsageMark previousUsageMark = new ShortestUsageMark("Just cause");
     LibraryClass clazz = new LibraryClass();
 
     // Act
-    ShortestUsageMark actualShortestUsageMark = new ShortestUsageMark(previousUsageMark, "Just cause", 1, clazz,
-        new LibraryField(1, "Name", "Descriptor"));
+    ShortestUsageMark actualShortestUsageMark =
+        new ShortestUsageMark(
+            previousUsageMark, "Just cause", 1, clazz, new LibraryField(1, "Name", "Descriptor"));
 
     // Assert
     assertEquals("Just cause", actualShortestUsageMark.getReason());
@@ -100,19 +115,23 @@ class ShortestUsageMarkDiffblueTest {
 
   /**
    * Test {@link ShortestUsageMark#ShortestUsageMark(ShortestUsageMark, boolean)}.
+   *
    * <ul>
-   *   <li>Then return Reason is {@code Just cause}.</li>
+   *   <li>Then return Reason is {@code Just cause}.
    * </ul>
-   * <p>
-   * Method under test: {@link ShortestUsageMark#ShortestUsageMark(ShortestUsageMark, boolean)}
+   *
+   * <p>Method under test: {@link ShortestUsageMark#ShortestUsageMark(ShortestUsageMark, boolean)}
    */
   @Test
-  @DisplayName("Test new ShortestUsageMark(ShortestUsageMark, boolean); then return Reason is 'Just cause'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.shrink.ShortestUsageMark.<init>(proguard.shrink.ShortestUsageMark, boolean)"})
+  @DisplayName(
+      "Test new ShortestUsageMark(ShortestUsageMark, boolean); then return Reason is 'Just cause'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ShortestUsageMark.<init>(ShortestUsageMark, boolean)"})
   void testNewShortestUsageMark_thenReturnReasonIsJustCause3() {
     // Arrange and Act
-    ShortestUsageMark actualShortestUsageMark = new ShortestUsageMark(new ShortestUsageMark("Just cause"), true);
+    ShortestUsageMark actualShortestUsageMark =
+        new ShortestUsageMark(new ShortestUsageMark("Just cause"), true);
 
     // Assert
     assertEquals("Just cause", actualShortestUsageMark.getReason());
@@ -121,16 +140,18 @@ class ShortestUsageMarkDiffblueTest {
 
   /**
    * Test {@link ShortestUsageMark#isShorter(ShortestUsageMark)}.
+   *
    * <ul>
-   *   <li>Then return {@code true}.</li>
+   *   <li>Then return {@code true}.
    * </ul>
-   * <p>
-   * Method under test: {@link ShortestUsageMark#isShorter(ShortestUsageMark)}
+   *
+   * <p>Method under test: {@link ShortestUsageMark#isShorter(ShortestUsageMark)}
    */
   @Test
   @DisplayName("Test isShorter(ShortestUsageMark); then return 'true'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.shrink.ShortestUsageMark.isShorter(proguard.shrink.ShortestUsageMark)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean ShortestUsageMark.isShorter(ShortestUsageMark)"})
   void testIsShorter_thenReturnTrue() {
     // Arrange
     ShortestUsageMark shortestUsageMark = new ShortestUsageMark("Just cause");
@@ -138,22 +159,27 @@ class ShortestUsageMarkDiffblueTest {
 
     // Act and Assert
     assertTrue(
-        shortestUsageMark.isShorter(new ShortestUsageMark(previousUsageMark, "Just cause", 1, new LibraryClass())));
+        shortestUsageMark.isShorter(
+            new ShortestUsageMark(previousUsageMark, "Just cause", 1, new LibraryClass())));
   }
 
   /**
    * Test {@link ShortestUsageMark#isShorter(ShortestUsageMark)}.
+   *
    * <ul>
-   *   <li>When {@link ShortestUsageMark#ShortestUsageMark(String)} with reason is {@code Just cause}.</li>
-   *   <li>Then return {@code false}.</li>
+   *   <li>When {@link ShortestUsageMark#ShortestUsageMark(String)} with reason is {@code Just
+   *       cause}.
+   *   <li>Then return {@code false}.
    * </ul>
-   * <p>
-   * Method under test: {@link ShortestUsageMark#isShorter(ShortestUsageMark)}
+   *
+   * <p>Method under test: {@link ShortestUsageMark#isShorter(ShortestUsageMark)}
    */
   @Test
-  @DisplayName("Test isShorter(ShortestUsageMark); when ShortestUsageMark(String) with reason is 'Just cause'; then return 'false'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.shrink.ShortestUsageMark.isShorter(proguard.shrink.ShortestUsageMark)"})
+  @DisplayName(
+      "Test isShorter(ShortestUsageMark); when ShortestUsageMark(String) with reason is 'Just cause'; then return 'false'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean ShortestUsageMark.isShorter(ShortestUsageMark)"})
   void testIsShorter_whenShortestUsageMarkWithReasonIsJustCause_thenReturnFalse() {
     // Arrange
     ShortestUsageMark shortestUsageMark = new ShortestUsageMark("Just cause");
@@ -164,18 +190,20 @@ class ShortestUsageMarkDiffblueTest {
 
   /**
    * Test {@link ShortestUsageMark#isCausedBy(Clazz, Member)} with {@code clazz}, {@code member}.
+   *
    * <ul>
-   *   <li>When {@link LibraryClass#LibraryClass()}.</li>
-   *   <li>Then return {@code false}.</li>
+   *   <li>When {@link LibraryClass#LibraryClass()}.
+   *   <li>Then return {@code false}.
    * </ul>
-   * <p>
-   * Method under test: {@link ShortestUsageMark#isCausedBy(Clazz, Member)}
+   *
+   * <p>Method under test: {@link ShortestUsageMark#isCausedBy(Clazz, Member)}
    */
   @Test
-  @DisplayName("Test isCausedBy(Clazz, Member) with 'clazz', 'member'; when LibraryClass(); then return 'false'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "boolean proguard.shrink.ShortestUsageMark.isCausedBy(proguard.classfile.Clazz, proguard.classfile.Member)"})
+  @DisplayName(
+      "Test isCausedBy(Clazz, Member) with 'clazz', 'member'; when LibraryClass(); then return 'false'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean ShortestUsageMark.isCausedBy(Clazz, Member)"})
   void testIsCausedByWithClazzMember_whenLibraryClass_thenReturnFalse() {
     // Arrange
     ShortestUsageMark shortestUsageMark = new ShortestUsageMark("Just cause");
@@ -187,17 +215,19 @@ class ShortestUsageMarkDiffblueTest {
 
   /**
    * Test {@link ShortestUsageMark#isCausedBy(Clazz)} with {@code clazz}.
+   *
    * <ul>
-   *   <li>When {@link LibraryClass#LibraryClass()}.</li>
-   *   <li>Then return {@code false}.</li>
+   *   <li>When {@link LibraryClass#LibraryClass()}.
+   *   <li>Then return {@code false}.
    * </ul>
-   * <p>
-   * Method under test: {@link ShortestUsageMark#isCausedBy(Clazz)}
+   *
+   * <p>Method under test: {@link ShortestUsageMark#isCausedBy(Clazz)}
    */
   @Test
   @DisplayName("Test isCausedBy(Clazz) with 'clazz'; when LibraryClass(); then return 'false'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.shrink.ShortestUsageMark.isCausedBy(proguard.classfile.Clazz)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean ShortestUsageMark.isCausedBy(Clazz)"})
   void testIsCausedByWithClazz_whenLibraryClass_thenReturnFalse() {
     // Arrange
     ShortestUsageMark shortestUsageMark = new ShortestUsageMark("Just cause");
@@ -208,17 +238,19 @@ class ShortestUsageMarkDiffblueTest {
 
   /**
    * Test {@link ShortestUsageMark#isCausedByMember(Clazz)}.
+   *
    * <ul>
-   *   <li>When {@link LibraryClass#LibraryClass()}.</li>
-   *   <li>Then return {@code false}.</li>
+   *   <li>When {@link LibraryClass#LibraryClass()}.
+   *   <li>Then return {@code false}.
    * </ul>
-   * <p>
-   * Method under test: {@link ShortestUsageMark#isCausedByMember(Clazz)}
+   *
+   * <p>Method under test: {@link ShortestUsageMark#isCausedByMember(Clazz)}
    */
   @Test
   @DisplayName("Test isCausedByMember(Clazz); when LibraryClass(); then return 'false'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.shrink.ShortestUsageMark.isCausedByMember(proguard.classfile.Clazz)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean ShortestUsageMark.isCausedByMember(Clazz)"})
   void testIsCausedByMember_whenLibraryClass_thenReturnFalse() {
     // Arrange
     ShortestUsageMark shortestUsageMark = new ShortestUsageMark("Just cause");
@@ -229,21 +261,23 @@ class ShortestUsageMarkDiffblueTest {
 
   /**
    * Test {@link ShortestUsageMark#acceptClassVisitor(ClassVisitor)}.
+   *
    * <ul>
-   *   <li>Then calls {@link ClassVisitor#visitLibraryClass(LibraryClass)}.</li>
+   *   <li>Then calls {@link ClassVisitor#visitLibraryClass(LibraryClass)}.
    * </ul>
-   * <p>
-   * Method under test: {@link ShortestUsageMark#acceptClassVisitor(ClassVisitor)}
+   *
+   * <p>Method under test: {@link ShortestUsageMark#acceptClassVisitor(ClassVisitor)}
    */
   @Test
   @DisplayName("Test acceptClassVisitor(ClassVisitor); then calls visitLibraryClass(LibraryClass)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.shrink.ShortestUsageMark.acceptClassVisitor(proguard.classfile.visitor.ClassVisitor)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ShortestUsageMark.acceptClassVisitor(ClassVisitor)"})
   void testAcceptClassVisitor_thenCallsVisitLibraryClass() {
     // Arrange
     ShortestUsageMark previousUsageMark = new ShortestUsageMark("Just cause");
-    ShortestUsageMark shortestUsageMark = new ShortestUsageMark(previousUsageMark, "Just cause", 1, new LibraryClass());
+    ShortestUsageMark shortestUsageMark =
+        new ShortestUsageMark(previousUsageMark, "Just cause", 1, new LibraryClass());
     ClassVisitor classVisitor = mock(ClassVisitor.class);
     doNothing().when(classVisitor).visitLibraryClass(Mockito.<LibraryClass>any());
 
@@ -256,39 +290,46 @@ class ShortestUsageMarkDiffblueTest {
 
   /**
    * Test {@link ShortestUsageMark#toString()}.
+   *
    * <ul>
-   *   <li>Then return {@code certain=true, depth=0: Just cause(none): (none)}.</li>
+   *   <li>Then return {@code certain=true, depth=0: Just cause(none): (none)}.
    * </ul>
-   * <p>
-   * Method under test: {@link ShortestUsageMark#toString()}
+   *
+   * <p>Method under test: {@link ShortestUsageMark#toString()}
    */
   @Test
   @DisplayName("Test toString(); then return 'certain=true, depth=0: Just cause(none): (none)'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"java.lang.String proguard.shrink.ShortestUsageMark.toString()"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"String ShortestUsageMark.toString()"})
   void testToString_thenReturnCertainTrueDepth0JustCauseNoneNone() {
     // Arrange, Act and Assert
-    assertEquals("certain=true, depth=0: Just cause(none): (none)", (new ShortestUsageMark("Just cause")).toString());
+    assertEquals(
+        "certain=true, depth=0: Just cause(none): (none)",
+        new ShortestUsageMark("Just cause").toString());
   }
 
   /**
    * Test {@link ShortestUsageMark#toString()}.
+   *
    * <ul>
-   *   <li>Then return {@code certain=true, depth=1: Just causenull: (none)}.</li>
+   *   <li>Then return {@code certain=true, depth=1: Just causenull: (none)}.
    * </ul>
-   * <p>
-   * Method under test: {@link ShortestUsageMark#toString()}
+   *
+   * <p>Method under test: {@link ShortestUsageMark#toString()}
    */
   @Test
   @DisplayName("Test toString(); then return 'certain=true, depth=1: Just causenull: (none)'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"java.lang.String proguard.shrink.ShortestUsageMark.toString()"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"String ShortestUsageMark.toString()"})
   void testToString_thenReturnCertainTrueDepth1JustCausenullNone() {
     // Arrange
     ShortestUsageMark previousUsageMark = new ShortestUsageMark("Just cause");
 
     // Act and Assert
-    assertEquals("certain=true, depth=1: Just causenull: (none)",
-        (new ShortestUsageMark(previousUsageMark, "Just cause", 1, new LibraryClass())).toString());
+    assertEquals(
+        "certain=true, depth=1: Just causenull: (none)",
+        new ShortestUsageMark(previousUsageMark, "Just cause", 1, new LibraryClass()).toString());
   }
 }

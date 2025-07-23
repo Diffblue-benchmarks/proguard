@@ -6,6 +6,7 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -19,31 +20,38 @@ import proguard.classfile.instruction.ConstantInstruction;
 
 class DynamicInvocationMarkerDiffblueTest {
   /**
-   * Test {@link DynamicInvocationMarker#visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction)}.
+   * Test {@link DynamicInvocationMarker#visitConstantInstruction(Clazz, Method, CodeAttribute, int,
+   * ConstantInstruction)}.
+   *
    * <ul>
-   *   <li>Then calls {@link ProgramMethodOptimizationInfo#setInvokesDynamically()}.</li>
+   *   <li>Then calls {@link ProgramMethodOptimizationInfo#setInvokesDynamically()}.
    * </ul>
-   * <p>
-   * Method under test: {@link DynamicInvocationMarker#visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction)}
+   *
+   * <p>Method under test: {@link DynamicInvocationMarker#visitConstantInstruction(Clazz, Method,
+   * CodeAttribute, int, ConstantInstruction)}
    */
   @Test
-  @DisplayName("Test visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction); then calls setInvokesDynamically()")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction); then calls setInvokesDynamically()")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.info.DynamicInvocationMarker.visitConstantInstruction(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.CodeAttribute, int, proguard.classfile.instruction.ConstantInstruction)"})
+    "void DynamicInvocationMarker.visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction)"
+  })
   void testVisitConstantInstruction_thenCallsSetInvokesDynamically() {
     // Arrange
     DynamicInvocationMarker dynamicInvocationMarker = new DynamicInvocationMarker();
     LibraryClass clazz = new LibraryClass();
-    ProgramMethodOptimizationInfo programMethodOptimizationInfo = mock(ProgramMethodOptimizationInfo.class);
+    ProgramMethodOptimizationInfo programMethodOptimizationInfo =
+        mock(ProgramMethodOptimizationInfo.class);
     doNothing().when(programMethodOptimizationInfo).setInvokesDynamically();
     Method method = mock(Method.class);
     when(method.getProcessingInfo()).thenReturn(programMethodOptimizationInfo);
     CodeAttribute codeAttribute = new CodeAttribute(1);
 
     // Act
-    dynamicInvocationMarker.visitConstantInstruction(clazz, method, codeAttribute, 2,
-        new ConstantInstruction((byte) -70, 1));
+    dynamicInvocationMarker.visitConstantInstruction(
+        clazz, method, codeAttribute, 2, new ConstantInstruction((byte) -70, 1));
 
     // Assert
     verify(programMethodOptimizationInfo).setInvokesDynamically();
@@ -52,18 +60,20 @@ class DynamicInvocationMarkerDiffblueTest {
 
   /**
    * Test {@link DynamicInvocationMarker#invokesDynamically(Method)}.
+   *
    * <ul>
-   *   <li>Given {@link MethodOptimizationInfo} (default constructor).</li>
-   *   <li>Then return {@code true}.</li>
+   *   <li>Given {@link MethodOptimizationInfo} (default constructor).
+   *   <li>Then return {@code true}.
    * </ul>
-   * <p>
-   * Method under test: {@link DynamicInvocationMarker#invokesDynamically(Method)}
+   *
+   * <p>Method under test: {@link DynamicInvocationMarker#invokesDynamically(Method)}
    */
   @Test
-  @DisplayName("Test invokesDynamically(Method); given MethodOptimizationInfo (default constructor); then return 'true'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "boolean proguard.optimize.info.DynamicInvocationMarker.invokesDynamically(proguard.classfile.Method)"})
+  @DisplayName(
+      "Test invokesDynamically(Method); given MethodOptimizationInfo (default constructor); then return 'true'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean DynamicInvocationMarker.invokesDynamically(Method)"})
   void testInvokesDynamically_givenMethodOptimizationInfo_thenReturnTrue() {
     // Arrange
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");

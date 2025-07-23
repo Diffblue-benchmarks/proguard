@@ -5,9 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.anyInt;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.util.Stack;
 import org.junit.jupiter.api.DisplayName;
@@ -27,6 +29,7 @@ import proguard.classfile.constant.RefConstant;
 import proguard.classfile.instruction.BranchInstruction;
 import proguard.classfile.instruction.Instruction;
 import proguard.classfile.instruction.VariableInstruction;
+import proguard.classfile.instruction.visitor.InstructionVisitor;
 import proguard.classfile.util.BranchTargetFinder;
 import proguard.evaluation.BasicBranchUnit;
 import proguard.evaluation.PartialEvaluator;
@@ -39,92 +42,113 @@ import proguard.optimize.evaluation.LoadingInvocationUnit;
 class TypeArgumentFinderDiffblueTest {
   /**
    * Test getters and setters.
-   * <p>
-   * Methods under test:
+   *
+   * <p>Methods under test:
+   *
    * <ul>
    *   <li>{@link TypeArgumentFinder#TypeArgumentFinder(ClassPool, ClassPool, PartialEvaluator)}
    *   <li>{@link TypeArgumentFinder#visitAnyConstant(Clazz, Constant)}
-   *   <li>{@link TypeArgumentFinder#visitAnyInstruction(Clazz, Method, CodeAttribute, int, Instruction)}
+   *   <li>{@link TypeArgumentFinder#visitAnyInstruction(Clazz, Method, CodeAttribute, int,
+   *       Instruction)}
    * </ul>
    */
   @Test
   @DisplayName("Test getters and setters")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.gson.TypeArgumentFinder.<init>(proguard.classfile.ClassPool, proguard.classfile.ClassPool, proguard.evaluation.PartialEvaluator)",
-      "void proguard.optimize.gson.TypeArgumentFinder.visitAnyConstant(proguard.classfile.Clazz, proguard.classfile.constant.Constant)",
-      "void proguard.optimize.gson.TypeArgumentFinder.visitAnyInstruction(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.CodeAttribute, int, proguard.classfile.instruction.Instruction)"})
+    "void TypeArgumentFinder.<init>(ClassPool, ClassPool, PartialEvaluator)",
+    "void TypeArgumentFinder.visitAnyConstant(Clazz, Constant)",
+    "void TypeArgumentFinder.visitAnyInstruction(Clazz, Method, CodeAttribute, int, Instruction)"
+  })
   void testGettersAndSetters() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
     Builder createResult = Builder.create();
-    Builder setBranchTargetFinderResult = createResult.setBranchTargetFinder(new BranchTargetFinder());
+    Builder setBranchTargetFinderResult =
+        createResult.setBranchTargetFinder(new BranchTargetFinder());
     Builder setBranchUnitResult = setBranchTargetFinderResult.setBranchUnit(new BasicBranchUnit());
-    Builder setEvaluateAllCodeResult = setBranchUnitResult.setCallingInstructionBlockStack(new Stack<>())
-        .setEvaluateAllCode(true);
-    Builder setExtraInstructionVisitorResult = setEvaluateAllCodeResult
-        .setExtraInstructionVisitor(new DuplicateInitializerInvocationFixer());
-    Builder setPrettyPrintingResult = setExtraInstructionVisitorResult
-        .setInvocationUnit(new LoadingInvocationUnit(new ParticularReferenceValueFactory()))
-        .setPrettyPrinting(1);
-    Builder stopAnalysisAfterNEvaluationsResult = setPrettyPrintingResult.setStateTracker(new JsonPrinter())
-        .stopAnalysisAfterNEvaluations(42);
-    PartialEvaluator partialEvaluator = stopAnalysisAfterNEvaluationsResult
-        .setValueFactory(new ParticularReferenceValueFactory())
-        .build();
+    Builder setEvaluateAllCodeResult =
+        setBranchUnitResult.setCallingInstructionBlockStack(new Stack<>()).setEvaluateAllCode(true);
+    Builder setExtraInstructionVisitorResult =
+        setEvaluateAllCodeResult.setExtraInstructionVisitor(
+            new DuplicateInitializerInvocationFixer());
+    Builder setPrettyPrintingResult =
+        setExtraInstructionVisitorResult
+            .setInvocationUnit(new LoadingInvocationUnit(new ParticularReferenceValueFactory()))
+            .setPrettyPrinting(1);
+    Builder stopAnalysisAfterNEvaluationsResult =
+        setPrettyPrintingResult
+            .setStateTracker(new JsonPrinter())
+            .stopAnalysisAfterNEvaluations(42);
+    PartialEvaluator partialEvaluator =
+        stopAnalysisAfterNEvaluationsResult
+            .setValueFactory(new ParticularReferenceValueFactory())
+            .build();
 
     // Act
-    TypeArgumentFinder actualTypeArgumentFinder = new TypeArgumentFinder(programClassPool, libraryClassPool,
-        partialEvaluator);
+    TypeArgumentFinder actualTypeArgumentFinder =
+        new TypeArgumentFinder(programClassPool, libraryClassPool, partialEvaluator);
     LibraryClass clazz = new LibraryClass();
     actualTypeArgumentFinder.visitAnyConstant(clazz, new ClassConstant());
     LibraryClass clazz2 = new LibraryClass();
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
 
     CodeAttribute codeAttribute = new CodeAttribute(1);
-    actualTypeArgumentFinder.visitAnyInstruction(clazz2, method, codeAttribute, 2,
-        new BranchInstruction((byte) 'A', 1));
+    actualTypeArgumentFinder.visitAnyInstruction(
+        clazz2, method, codeAttribute, 2, new BranchInstruction((byte) 'A', 1));
 
     // Assert
     assertNull(actualTypeArgumentFinder.typeArgumentClasses);
   }
 
   /**
-   * Test {@link TypeArgumentFinder#visitVariableInstruction(Clazz, Method, CodeAttribute, int, VariableInstruction)}.
+   * Test {@link TypeArgumentFinder#visitVariableInstruction(Clazz, Method, CodeAttribute, int,
+   * VariableInstruction)}.
+   *
    * <ul>
-   *   <li>Given {@code A}.</li>
-   *   <li>Then calls {@link VariableInstruction#canonicalOpcode()}.</li>
+   *   <li>Given {@code A}.
    * </ul>
-   * <p>
-   * Method under test: {@link TypeArgumentFinder#visitVariableInstruction(Clazz, Method, CodeAttribute, int, VariableInstruction)}
+   *
+   * <p>Method under test: {@link TypeArgumentFinder#visitVariableInstruction(Clazz, Method,
+   * CodeAttribute, int, VariableInstruction)}
    */
   @Test
-  @DisplayName("Test visitVariableInstruction(Clazz, Method, CodeAttribute, int, VariableInstruction); given 'A'; then calls canonicalOpcode()")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitVariableInstruction(Clazz, Method, CodeAttribute, int, VariableInstruction); given 'A'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.gson.TypeArgumentFinder.visitVariableInstruction(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.CodeAttribute, int, proguard.classfile.instruction.VariableInstruction)"})
-  void testVisitVariableInstruction_givenA_thenCallsCanonicalOpcode() {
+    "void TypeArgumentFinder.visitVariableInstruction(Clazz, Method, CodeAttribute, int, VariableInstruction)"
+  })
+  void testVisitVariableInstruction_givenA() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
     Builder createResult = Builder.create();
-    Builder setBranchTargetFinderResult = createResult.setBranchTargetFinder(new BranchTargetFinder());
+    Builder setBranchTargetFinderResult =
+        createResult.setBranchTargetFinder(new BranchTargetFinder());
     Builder setBranchUnitResult = setBranchTargetFinderResult.setBranchUnit(new BasicBranchUnit());
-    Builder setEvaluateAllCodeResult = setBranchUnitResult.setCallingInstructionBlockStack(new Stack<>())
-        .setEvaluateAllCode(true);
-    Builder setExtraInstructionVisitorResult = setEvaluateAllCodeResult
-        .setExtraInstructionVisitor(new DuplicateInitializerInvocationFixer());
-    Builder setPrettyPrintingResult = setExtraInstructionVisitorResult
-        .setInvocationUnit(new LoadingInvocationUnit(new ParticularReferenceValueFactory()))
-        .setPrettyPrinting(1);
-    Builder stopAnalysisAfterNEvaluationsResult = setPrettyPrintingResult.setStateTracker(new JsonPrinter())
-        .stopAnalysisAfterNEvaluations(42);
-    PartialEvaluator partialEvaluator = stopAnalysisAfterNEvaluationsResult
-        .setValueFactory(new ParticularReferenceValueFactory())
-        .build();
-    TypeArgumentFinder typeArgumentFinder = new TypeArgumentFinder(programClassPool, libraryClassPool,
-        partialEvaluator);
+    Builder setEvaluateAllCodeResult =
+        setBranchUnitResult.setCallingInstructionBlockStack(new Stack<>()).setEvaluateAllCode(true);
+    Builder setExtraInstructionVisitorResult =
+        setEvaluateAllCodeResult.setExtraInstructionVisitor(
+            new DuplicateInitializerInvocationFixer());
+    Builder setPrettyPrintingResult =
+        setExtraInstructionVisitorResult
+            .setInvocationUnit(new LoadingInvocationUnit(new ParticularReferenceValueFactory()))
+            .setPrettyPrinting(1);
+    Builder stopAnalysisAfterNEvaluationsResult =
+        setPrettyPrintingResult
+            .setStateTracker(new JsonPrinter())
+            .stopAnalysisAfterNEvaluations(42);
+    PartialEvaluator partialEvaluator =
+        stopAnalysisAfterNEvaluationsResult
+            .setValueFactory(new ParticularReferenceValueFactory())
+            .build();
+    TypeArgumentFinder typeArgumentFinder =
+        new TypeArgumentFinder(programClassPool, libraryClassPool, partialEvaluator);
     LibraryClass clazz = new LibraryClass();
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
 
@@ -133,48 +157,195 @@ class TypeArgumentFinderDiffblueTest {
     when(variableInstruction.canonicalOpcode()).thenReturn((byte) 'A');
 
     // Act
-    typeArgumentFinder.visitVariableInstruction(clazz, method, codeAttribute, 2, variableInstruction);
+    typeArgumentFinder.visitVariableInstruction(
+        clazz, method, codeAttribute, 2, variableInstruction);
 
     // Assert
     verify(variableInstruction).canonicalOpcode();
   }
 
   /**
-   * Test {@link TypeArgumentFinder#visitAnyRefConstant(Clazz, RefConstant)}.
+   * Test {@link TypeArgumentFinder#visitVariableInstruction(Clazz, Method, CodeAttribute, int,
+   * VariableInstruction)}.
+   *
    * <ul>
-   *   <li>Given {@code Class Name}.</li>
-   *   <li>When {@link LibraryClass}.</li>
-   *   <li>Then calls {@link RefConstant#getClassName(Clazz)}.</li>
+   *   <li>Given twenty-five.
+   *   <li>When {@code A}.
+   *   <li>Then calls {@link VariableInstruction#canonicalOpcode()}.
    * </ul>
-   * <p>
-   * Method under test: {@link TypeArgumentFinder#visitAnyRefConstant(Clazz, RefConstant)}
+   *
+   * <p>Method under test: {@link TypeArgumentFinder#visitVariableInstruction(Clazz, Method,
+   * CodeAttribute, int, VariableInstruction)}
    */
   @Test
-  @DisplayName("Test visitAnyRefConstant(Clazz, RefConstant); given 'Class Name'; when LibraryClass; then calls getClassName(Clazz)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitVariableInstruction(Clazz, Method, CodeAttribute, int, VariableInstruction); given twenty-five; when 'A'; then calls canonicalOpcode()")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.gson.TypeArgumentFinder.visitAnyRefConstant(proguard.classfile.Clazz, proguard.classfile.constant.RefConstant)"})
+    "void TypeArgumentFinder.visitVariableInstruction(Clazz, Method, CodeAttribute, int, VariableInstruction)"
+  })
+  void testVisitVariableInstruction_givenTwentyFive_whenA_thenCallsCanonicalOpcode() {
+    // Arrange
+    ClassPool programClassPool = new ClassPool();
+    ClassPool libraryClassPool = new ClassPool();
+    Builder createResult = Builder.create();
+    Builder setBranchTargetFinderResult =
+        createResult.setBranchTargetFinder(new BranchTargetFinder());
+    Builder setBranchUnitResult = setBranchTargetFinderResult.setBranchUnit(new BasicBranchUnit());
+    Builder setEvaluateAllCodeResult =
+        setBranchUnitResult.setCallingInstructionBlockStack(new Stack<>()).setEvaluateAllCode(true);
+    Builder setExtraInstructionVisitorResult =
+        setEvaluateAllCodeResult.setExtraInstructionVisitor(
+            new DuplicateInitializerInvocationFixer());
+    Builder setPrettyPrintingResult =
+        setExtraInstructionVisitorResult
+            .setInvocationUnit(new LoadingInvocationUnit(new ParticularReferenceValueFactory()))
+            .setPrettyPrinting(1);
+    Builder stopAnalysisAfterNEvaluationsResult =
+        setPrettyPrintingResult
+            .setStateTracker(new JsonPrinter())
+            .stopAnalysisAfterNEvaluations(42);
+    PartialEvaluator partialEvaluator =
+        stopAnalysisAfterNEvaluationsResult
+            .setValueFactory(new ParticularReferenceValueFactory())
+            .build();
+    TypeArgumentFinder typeArgumentFinder =
+        new TypeArgumentFinder(programClassPool, libraryClassPool, partialEvaluator);
+    LibraryClass clazz = new LibraryClass();
+    LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
+
+    CodeAttribute codeAttribute =
+        new CodeAttribute(1, 3, 3, 3, new byte[] {'A', 25, 'A', 25, 'A', 25, 'A', 25});
+
+    VariableInstruction variableInstruction = mock(VariableInstruction.class);
+    when(variableInstruction.canonicalOpcode()).thenReturn((byte) 25);
+
+    // Act
+    typeArgumentFinder.visitVariableInstruction(
+        clazz, method, codeAttribute, 2, variableInstruction);
+
+    // Assert
+    verify(variableInstruction).canonicalOpcode();
+  }
+
+  /**
+   * Test {@link TypeArgumentFinder#visitVariableInstruction(Clazz, Method, CodeAttribute, int,
+   * VariableInstruction)}.
+   *
+   * <ul>
+   *   <li>Then calls {@link CodeAttribute#instructionsAccept(Clazz, Method, int, int,
+   *       InstructionVisitor)}.
+   * </ul>
+   *
+   * <p>Method under test: {@link TypeArgumentFinder#visitVariableInstruction(Clazz, Method,
+   * CodeAttribute, int, VariableInstruction)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitVariableInstruction(Clazz, Method, CodeAttribute, int, VariableInstruction); then calls instructionsAccept(Clazz, Method, int, int, InstructionVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void TypeArgumentFinder.visitVariableInstruction(Clazz, Method, CodeAttribute, int, VariableInstruction)"
+  })
+  void testVisitVariableInstruction_thenCallsInstructionsAccept() {
+    // Arrange
+    ClassPool programClassPool = new ClassPool();
+    ClassPool libraryClassPool = new ClassPool();
+    Builder createResult = Builder.create();
+    Builder setBranchTargetFinderResult =
+        createResult.setBranchTargetFinder(new BranchTargetFinder());
+    Builder setBranchUnitResult = setBranchTargetFinderResult.setBranchUnit(new BasicBranchUnit());
+    Builder setEvaluateAllCodeResult =
+        setBranchUnitResult.setCallingInstructionBlockStack(new Stack<>()).setEvaluateAllCode(true);
+    Builder setExtraInstructionVisitorResult =
+        setEvaluateAllCodeResult.setExtraInstructionVisitor(
+            new DuplicateInitializerInvocationFixer());
+    Builder setPrettyPrintingResult =
+        setExtraInstructionVisitorResult
+            .setInvocationUnit(new LoadingInvocationUnit(new ParticularReferenceValueFactory()))
+            .setPrettyPrinting(1);
+    Builder stopAnalysisAfterNEvaluationsResult =
+        setPrettyPrintingResult
+            .setStateTracker(new JsonPrinter())
+            .stopAnalysisAfterNEvaluations(42);
+    PartialEvaluator partialEvaluator =
+        stopAnalysisAfterNEvaluationsResult
+            .setValueFactory(new ParticularReferenceValueFactory())
+            .build();
+    TypeArgumentFinder typeArgumentFinder =
+        new TypeArgumentFinder(programClassPool, libraryClassPool, partialEvaluator);
+    LibraryClass clazz = new LibraryClass();
+    LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
+
+    CodeAttribute codeAttribute = mock(CodeAttribute.class);
+    doNothing()
+        .when(codeAttribute)
+        .instructionsAccept(
+            Mockito.<Clazz>any(),
+            Mockito.<Method>any(),
+            anyInt(),
+            anyInt(),
+            Mockito.<InstructionVisitor>any());
+    VariableInstruction variableInstruction = mock(VariableInstruction.class);
+    when(variableInstruction.canonicalOpcode()).thenReturn((byte) 25);
+
+    // Act
+    typeArgumentFinder.visitVariableInstruction(
+        clazz, method, codeAttribute, 2, variableInstruction);
+
+    // Assert
+    verify(codeAttribute)
+        .instructionsAccept(
+            isA(Clazz.class), isA(Method.class), eq(0), eq(2), isA(InstructionVisitor.class));
+    verify(variableInstruction).canonicalOpcode();
+  }
+
+  /**
+   * Test {@link TypeArgumentFinder#visitAnyRefConstant(Clazz, RefConstant)}.
+   *
+   * <ul>
+   *   <li>Given {@code Class Name}.
+   *   <li>When {@link LibraryClass}.
+   *   <li>Then calls {@link FieldrefConstant#getClassName(Clazz)}.
+   * </ul>
+   *
+   * <p>Method under test: {@link TypeArgumentFinder#visitAnyRefConstant(Clazz, RefConstant)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitAnyRefConstant(Clazz, RefConstant); given 'Class Name'; when LibraryClass; then calls getClassName(Clazz)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void TypeArgumentFinder.visitAnyRefConstant(Clazz, RefConstant)"})
   void testVisitAnyRefConstant_givenClassName_whenLibraryClass_thenCallsGetClassName() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
     Builder createResult = Builder.create();
-    Builder setBranchTargetFinderResult = createResult.setBranchTargetFinder(new BranchTargetFinder());
+    Builder setBranchTargetFinderResult =
+        createResult.setBranchTargetFinder(new BranchTargetFinder());
     Builder setBranchUnitResult = setBranchTargetFinderResult.setBranchUnit(new BasicBranchUnit());
-    Builder setEvaluateAllCodeResult = setBranchUnitResult.setCallingInstructionBlockStack(new Stack<>())
-        .setEvaluateAllCode(true);
-    Builder setExtraInstructionVisitorResult = setEvaluateAllCodeResult
-        .setExtraInstructionVisitor(new DuplicateInitializerInvocationFixer());
-    Builder setPrettyPrintingResult = setExtraInstructionVisitorResult
-        .setInvocationUnit(new LoadingInvocationUnit(new ParticularReferenceValueFactory()))
-        .setPrettyPrinting(1);
-    Builder stopAnalysisAfterNEvaluationsResult = setPrettyPrintingResult.setStateTracker(new JsonPrinter())
-        .stopAnalysisAfterNEvaluations(42);
-    PartialEvaluator partialEvaluator = stopAnalysisAfterNEvaluationsResult
-        .setValueFactory(new ParticularReferenceValueFactory())
-        .build();
-    TypeArgumentFinder typeArgumentFinder = new TypeArgumentFinder(programClassPool, libraryClassPool,
-        partialEvaluator);
+    Builder setEvaluateAllCodeResult =
+        setBranchUnitResult.setCallingInstructionBlockStack(new Stack<>()).setEvaluateAllCode(true);
+    Builder setExtraInstructionVisitorResult =
+        setEvaluateAllCodeResult.setExtraInstructionVisitor(
+            new DuplicateInitializerInvocationFixer());
+    Builder setPrettyPrintingResult =
+        setExtraInstructionVisitorResult
+            .setInvocationUnit(new LoadingInvocationUnit(new ParticularReferenceValueFactory()))
+            .setPrettyPrinting(1);
+    Builder stopAnalysisAfterNEvaluationsResult =
+        setPrettyPrintingResult
+            .setStateTracker(new JsonPrinter())
+            .stopAnalysisAfterNEvaluations(42);
+    PartialEvaluator partialEvaluator =
+        stopAnalysisAfterNEvaluationsResult
+            .setValueFactory(new ParticularReferenceValueFactory())
+            .build();
+    TypeArgumentFinder typeArgumentFinder =
+        new TypeArgumentFinder(programClassPool, libraryClassPool, partialEvaluator);
     LibraryClass clazz = mock(LibraryClass.class);
     FieldrefConstant refConstant = mock(FieldrefConstant.class);
     when(refConstant.getClassName(Mockito.<Clazz>any())).thenReturn("Class Name");
@@ -184,43 +355,50 @@ class TypeArgumentFinderDiffblueTest {
 
     // Assert
     verify(refConstant).getClassName(isA(Clazz.class));
-    assertArrayEquals(new String[]{"Class Name"}, typeArgumentFinder.typeArgumentClasses);
+    assertArrayEquals(new String[] {"Class Name"}, typeArgumentFinder.typeArgumentClasses);
   }
 
   /**
    * Test {@link TypeArgumentFinder#visitAnyRefConstant(Clazz, RefConstant)}.
+   *
    * <ul>
-   *   <li>Then calls {@link LibraryClass#getClassName(int)}.</li>
+   *   <li>Then calls {@link LibraryClass#getClassName(int)}.
    * </ul>
-   * <p>
-   * Method under test: {@link TypeArgumentFinder#visitAnyRefConstant(Clazz, RefConstant)}
+   *
+   * <p>Method under test: {@link TypeArgumentFinder#visitAnyRefConstant(Clazz, RefConstant)}
    */
   @Test
   @DisplayName("Test visitAnyRefConstant(Clazz, RefConstant); then calls getClassName(int)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.gson.TypeArgumentFinder.visitAnyRefConstant(proguard.classfile.Clazz, proguard.classfile.constant.RefConstant)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void TypeArgumentFinder.visitAnyRefConstant(Clazz, RefConstant)"})
   void testVisitAnyRefConstant_thenCallsGetClassName() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
     Builder createResult = Builder.create();
-    Builder setBranchTargetFinderResult = createResult.setBranchTargetFinder(new BranchTargetFinder());
+    Builder setBranchTargetFinderResult =
+        createResult.setBranchTargetFinder(new BranchTargetFinder());
     Builder setBranchUnitResult = setBranchTargetFinderResult.setBranchUnit(new BasicBranchUnit());
-    Builder setEvaluateAllCodeResult = setBranchUnitResult.setCallingInstructionBlockStack(new Stack<>())
-        .setEvaluateAllCode(true);
-    Builder setExtraInstructionVisitorResult = setEvaluateAllCodeResult
-        .setExtraInstructionVisitor(new DuplicateInitializerInvocationFixer());
-    Builder setPrettyPrintingResult = setExtraInstructionVisitorResult
-        .setInvocationUnit(new LoadingInvocationUnit(new ParticularReferenceValueFactory()))
-        .setPrettyPrinting(1);
-    Builder stopAnalysisAfterNEvaluationsResult = setPrettyPrintingResult.setStateTracker(new JsonPrinter())
-        .stopAnalysisAfterNEvaluations(42);
-    PartialEvaluator partialEvaluator = stopAnalysisAfterNEvaluationsResult
-        .setValueFactory(new ParticularReferenceValueFactory())
-        .build();
-    TypeArgumentFinder typeArgumentFinder = new TypeArgumentFinder(programClassPool, libraryClassPool,
-        partialEvaluator);
+    Builder setEvaluateAllCodeResult =
+        setBranchUnitResult.setCallingInstructionBlockStack(new Stack<>()).setEvaluateAllCode(true);
+    Builder setExtraInstructionVisitorResult =
+        setEvaluateAllCodeResult.setExtraInstructionVisitor(
+            new DuplicateInitializerInvocationFixer());
+    Builder setPrettyPrintingResult =
+        setExtraInstructionVisitorResult
+            .setInvocationUnit(new LoadingInvocationUnit(new ParticularReferenceValueFactory()))
+            .setPrettyPrinting(1);
+    Builder stopAnalysisAfterNEvaluationsResult =
+        setPrettyPrintingResult
+            .setStateTracker(new JsonPrinter())
+            .stopAnalysisAfterNEvaluations(42);
+    PartialEvaluator partialEvaluator =
+        stopAnalysisAfterNEvaluationsResult
+            .setValueFactory(new ParticularReferenceValueFactory())
+            .build();
+    TypeArgumentFinder typeArgumentFinder =
+        new TypeArgumentFinder(programClassPool, libraryClassPool, partialEvaluator);
     LibraryClass clazz = mock(LibraryClass.class);
     when(clazz.getClassName(anyInt())).thenReturn("Class Name");
 
@@ -229,40 +407,46 @@ class TypeArgumentFinderDiffblueTest {
 
     // Assert
     verify(clazz).getClassName(eq(0));
-    assertArrayEquals(new String[]{"Class Name"}, typeArgumentFinder.typeArgumentClasses);
+    assertArrayEquals(new String[] {"Class Name"}, typeArgumentFinder.typeArgumentClasses);
   }
 
   /**
    * Test {@link TypeArgumentFinder#visitClassConstant(Clazz, ClassConstant)}.
-   * <p>
-   * Method under test: {@link TypeArgumentFinder#visitClassConstant(Clazz, ClassConstant)}
+   *
+   * <p>Method under test: {@link TypeArgumentFinder#visitClassConstant(Clazz, ClassConstant)}
    */
   @Test
   @DisplayName("Test visitClassConstant(Clazz, ClassConstant)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.gson.TypeArgumentFinder.visitClassConstant(proguard.classfile.Clazz, proguard.classfile.constant.ClassConstant)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void TypeArgumentFinder.visitClassConstant(Clazz, ClassConstant)"})
   void testVisitClassConstant() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
     Builder createResult = Builder.create();
-    Builder setBranchTargetFinderResult = createResult.setBranchTargetFinder(new BranchTargetFinder());
+    Builder setBranchTargetFinderResult =
+        createResult.setBranchTargetFinder(new BranchTargetFinder());
     Builder setBranchUnitResult = setBranchTargetFinderResult.setBranchUnit(new BasicBranchUnit());
-    Builder setEvaluateAllCodeResult = setBranchUnitResult.setCallingInstructionBlockStack(new Stack<>())
-        .setEvaluateAllCode(true);
-    Builder setExtraInstructionVisitorResult = setEvaluateAllCodeResult
-        .setExtraInstructionVisitor(new DuplicateInitializerInvocationFixer());
-    Builder setPrettyPrintingResult = setExtraInstructionVisitorResult
-        .setInvocationUnit(new LoadingInvocationUnit(new ParticularReferenceValueFactory()))
-        .setPrettyPrinting(1);
-    Builder stopAnalysisAfterNEvaluationsResult = setPrettyPrintingResult.setStateTracker(new JsonPrinter())
-        .stopAnalysisAfterNEvaluations(42);
-    PartialEvaluator partialEvaluator = stopAnalysisAfterNEvaluationsResult
-        .setValueFactory(new ParticularReferenceValueFactory())
-        .build();
-    TypeArgumentFinder typeArgumentFinder = new TypeArgumentFinder(programClassPool, libraryClassPool,
-        partialEvaluator);
+    Builder setEvaluateAllCodeResult =
+        setBranchUnitResult.setCallingInstructionBlockStack(new Stack<>()).setEvaluateAllCode(true);
+    Builder setExtraInstructionVisitorResult =
+        setEvaluateAllCodeResult.setExtraInstructionVisitor(
+            new DuplicateInitializerInvocationFixer());
+    Builder setPrettyPrintingResult =
+        setExtraInstructionVisitorResult
+            .setInvocationUnit(new LoadingInvocationUnit(new ParticularReferenceValueFactory()))
+            .setPrettyPrinting(1);
+    Builder stopAnalysisAfterNEvaluationsResult =
+        setPrettyPrintingResult
+            .setStateTracker(new JsonPrinter())
+            .stopAnalysisAfterNEvaluations(42);
+    PartialEvaluator partialEvaluator =
+        stopAnalysisAfterNEvaluationsResult
+            .setValueFactory(new ParticularReferenceValueFactory())
+            .build();
+    TypeArgumentFinder typeArgumentFinder =
+        new TypeArgumentFinder(programClassPool, libraryClassPool, partialEvaluator);
     LibraryClass clazz = mock(LibraryClass.class);
     when(clazz.getString(anyInt())).thenReturn("String");
 
@@ -271,40 +455,46 @@ class TypeArgumentFinderDiffblueTest {
 
     // Assert
     verify(clazz).getString(eq(0));
-    assertArrayEquals(new String[]{"String"}, typeArgumentFinder.typeArgumentClasses);
+    assertArrayEquals(new String[] {"String"}, typeArgumentFinder.typeArgumentClasses);
   }
 
   /**
    * Test {@link TypeArgumentFinder#visitClassConstant(Clazz, ClassConstant)}.
-   * <p>
-   * Method under test: {@link TypeArgumentFinder#visitClassConstant(Clazz, ClassConstant)}
+   *
+   * <p>Method under test: {@link TypeArgumentFinder#visitClassConstant(Clazz, ClassConstant)}
    */
   @Test
   @DisplayName("Test visitClassConstant(Clazz, ClassConstant)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.gson.TypeArgumentFinder.visitClassConstant(proguard.classfile.Clazz, proguard.classfile.constant.ClassConstant)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void TypeArgumentFinder.visitClassConstant(Clazz, ClassConstant)"})
   void testVisitClassConstant2() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
     Builder createResult = Builder.create();
-    Builder setBranchTargetFinderResult = createResult.setBranchTargetFinder(new BranchTargetFinder());
+    Builder setBranchTargetFinderResult =
+        createResult.setBranchTargetFinder(new BranchTargetFinder());
     Builder setBranchUnitResult = setBranchTargetFinderResult.setBranchUnit(new BasicBranchUnit());
-    Builder setEvaluateAllCodeResult = setBranchUnitResult.setCallingInstructionBlockStack(new Stack<>())
-        .setEvaluateAllCode(true);
-    Builder setExtraInstructionVisitorResult = setEvaluateAllCodeResult
-        .setExtraInstructionVisitor(new DuplicateInitializerInvocationFixer());
-    Builder setPrettyPrintingResult = setExtraInstructionVisitorResult
-        .setInvocationUnit(new LoadingInvocationUnit(new ParticularReferenceValueFactory()))
-        .setPrettyPrinting(1);
-    Builder stopAnalysisAfterNEvaluationsResult = setPrettyPrintingResult.setStateTracker(new JsonPrinter())
-        .stopAnalysisAfterNEvaluations(42);
-    PartialEvaluator partialEvaluator = stopAnalysisAfterNEvaluationsResult
-        .setValueFactory(new ParticularReferenceValueFactory())
-        .build();
-    TypeArgumentFinder typeArgumentFinder = new TypeArgumentFinder(programClassPool, libraryClassPool,
-        partialEvaluator);
+    Builder setEvaluateAllCodeResult =
+        setBranchUnitResult.setCallingInstructionBlockStack(new Stack<>()).setEvaluateAllCode(true);
+    Builder setExtraInstructionVisitorResult =
+        setEvaluateAllCodeResult.setExtraInstructionVisitor(
+            new DuplicateInitializerInvocationFixer());
+    Builder setPrettyPrintingResult =
+        setExtraInstructionVisitorResult
+            .setInvocationUnit(new LoadingInvocationUnit(new ParticularReferenceValueFactory()))
+            .setPrettyPrinting(1);
+    Builder stopAnalysisAfterNEvaluationsResult =
+        setPrettyPrintingResult
+            .setStateTracker(new JsonPrinter())
+            .stopAnalysisAfterNEvaluations(42);
+    PartialEvaluator partialEvaluator =
+        stopAnalysisAfterNEvaluationsResult
+            .setValueFactory(new ParticularReferenceValueFactory())
+            .build();
+    TypeArgumentFinder typeArgumentFinder =
+        new TypeArgumentFinder(programClassPool, libraryClassPool, partialEvaluator);
     LibraryClass clazz = mock(LibraryClass.class);
     ClassConstant classConstant = mock(ClassConstant.class);
     when(classConstant.getName(Mockito.<Clazz>any())).thenReturn("Name");
@@ -314,6 +504,6 @@ class TypeArgumentFinderDiffblueTest {
 
     // Assert
     verify(classConstant).getName(isA(Clazz.class));
-    assertArrayEquals(new String[]{"Name"}, typeArgumentFinder.typeArgumentClasses);
+    assertArrayEquals(new String[] {"Name"}, typeArgumentFinder.typeArgumentClasses);
   }
 }

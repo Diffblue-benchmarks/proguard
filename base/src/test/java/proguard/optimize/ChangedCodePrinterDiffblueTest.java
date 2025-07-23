@@ -6,6 +6,7 @@ import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.io.UnsupportedEncodingException;
 import org.junit.jupiter.api.DisplayName;
@@ -50,28 +51,31 @@ import proguard.classfile.attribute.module.ModulePackagesAttribute;
 import proguard.classfile.attribute.preverification.StackMapAttribute;
 import proguard.classfile.attribute.preverification.StackMapTableAttribute;
 import proguard.classfile.attribute.visitor.AllAttributeVisitor;
-import proguard.classfile.attribute.visitor.AttributeVisitor;
 import proguard.fixer.kotlin.KotlinAnnotationCounter;
 import proguard.obfuscate.kotlin.KotlinSourceDebugExtensionAttributeObfuscator;
 
 class ChangedCodePrinterDiffblueTest {
   /**
    * Test {@link ChangedCodePrinter#visitUnknownAttribute(Clazz, UnknownAttribute)}.
+   *
    * <ul>
-   *   <li>Then calls {@link AttributeVisitor#visitUnknownAttribute(Clazz, UnknownAttribute)}.</li>
+   *   <li>Then calls {@link AllAttributeVisitor#visitUnknownAttribute(Clazz, UnknownAttribute)}.
    * </ul>
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitUnknownAttribute(Clazz, UnknownAttribute)}
+   *
+   * <p>Method under test: {@link ChangedCodePrinter#visitUnknownAttribute(Clazz, UnknownAttribute)}
    */
   @Test
-  @DisplayName("Test visitUnknownAttribute(Clazz, UnknownAttribute); then calls visitUnknownAttribute(Clazz, UnknownAttribute)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitUnknownAttribute(proguard.classfile.Clazz, proguard.classfile.attribute.UnknownAttribute)"})
+  @DisplayName(
+      "Test visitUnknownAttribute(Clazz, UnknownAttribute); then calls visitUnknownAttribute(Clazz, UnknownAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ChangedCodePrinter.visitUnknownAttribute(Clazz, UnknownAttribute)"})
   void testVisitUnknownAttribute_thenCallsVisitUnknownAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor).visitUnknownAttribute(Mockito.<Clazz>any(), Mockito.<UnknownAttribute>any());
+    doNothing()
+        .when(attributeVisitor)
+        .visitUnknownAttribute(Mockito.<Clazz>any(), Mockito.<UnknownAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
 
@@ -83,20 +87,25 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Test {@link ChangedCodePrinter#visitSourceDebugExtensionAttribute(Clazz, SourceDebugExtensionAttribute)}.
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitSourceDebugExtensionAttribute(Clazz, SourceDebugExtensionAttribute)}
+   * Test {@link ChangedCodePrinter#visitSourceDebugExtensionAttribute(Clazz,
+   * SourceDebugExtensionAttribute)}.
+   *
+   * <p>Method under test: {@link ChangedCodePrinter#visitSourceDebugExtensionAttribute(Clazz,
+   * SourceDebugExtensionAttribute)}
    */
   @Test
   @DisplayName("Test visitSourceDebugExtensionAttribute(Clazz, SourceDebugExtensionAttribute)")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitSourceDebugExtensionAttribute(proguard.classfile.Clazz, proguard.classfile.attribute.SourceDebugExtensionAttribute)"})
+    "void ChangedCodePrinter.visitSourceDebugExtensionAttribute(Clazz, SourceDebugExtensionAttribute)"
+  })
   void testVisitSourceDebugExtensionAttribute() {
     // Arrange
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(new KotlinAnnotationCounter());
     LibraryClass clazz = new LibraryClass();
-    SourceDebugExtensionAttribute sourceDebugExtensionAttribute = new SourceDebugExtensionAttribute();
+    SourceDebugExtensionAttribute sourceDebugExtensionAttribute =
+        new SourceDebugExtensionAttribute();
 
     // Act
     changedCodePrinter.visitSourceDebugExtensionAttribute(clazz, sourceDebugExtensionAttribute);
@@ -106,47 +115,61 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Test {@link ChangedCodePrinter#visitSourceDebugExtensionAttribute(Clazz, SourceDebugExtensionAttribute)}.
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitSourceDebugExtensionAttribute(Clazz, SourceDebugExtensionAttribute)}
+   * Test {@link ChangedCodePrinter#visitSourceDebugExtensionAttribute(Clazz,
+   * SourceDebugExtensionAttribute)}.
+   *
+   * <p>Method under test: {@link ChangedCodePrinter#visitSourceDebugExtensionAttribute(Clazz,
+   * SourceDebugExtensionAttribute)}
    */
   @Test
   @DisplayName("Test visitSourceDebugExtensionAttribute(Clazz, SourceDebugExtensionAttribute)")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitSourceDebugExtensionAttribute(proguard.classfile.Clazz, proguard.classfile.attribute.SourceDebugExtensionAttribute)"})
+    "void ChangedCodePrinter.visitSourceDebugExtensionAttribute(Clazz, SourceDebugExtensionAttribute)"
+  })
   void testVisitSourceDebugExtensionAttribute2() throws UnsupportedEncodingException {
     // Arrange
-    ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(new KotlinSourceDebugExtensionAttributeObfuscator());
+    ChangedCodePrinter changedCodePrinter =
+        new ChangedCodePrinter(new KotlinSourceDebugExtensionAttributeObfuscator());
     LibraryClass clazz = new LibraryClass();
-    SourceDebugExtensionAttribute sourceDebugExtensionAttribute = new SourceDebugExtensionAttribute();
+    SourceDebugExtensionAttribute sourceDebugExtensionAttribute =
+        new SourceDebugExtensionAttribute();
 
     // Act
     changedCodePrinter.visitSourceDebugExtensionAttribute(clazz, sourceDebugExtensionAttribute);
 
     // Assert
     assertEquals(45, sourceDebugExtensionAttribute.u4attributeLength);
-    assertArrayEquals("SMAP\n\nKotlin\n*S Kotlin\n*F\n+ 1 \n\n*L\n1#1,1:1\n*E".getBytes("UTF-8"),
+    assertArrayEquals(
+        "SMAP\n\nKotlin\n*S Kotlin\n*F\n+ 1 \n\n*L\n1#1,1:1\n*E".getBytes("UTF-8"),
         sourceDebugExtensionAttribute.info);
   }
 
   /**
    * Test {@link ChangedCodePrinter#visitSourceFileAttribute(Clazz, SourceFileAttribute)}.
+   *
    * <ul>
-   *   <li>Then calls {@link AttributeVisitor#visitSourceFileAttribute(Clazz, SourceFileAttribute)}.</li>
+   *   <li>Then calls {@link AllAttributeVisitor#visitSourceFileAttribute(Clazz,
+   *       SourceFileAttribute)}.
    * </ul>
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitSourceFileAttribute(Clazz, SourceFileAttribute)}
+   *
+   * <p>Method under test: {@link ChangedCodePrinter#visitSourceFileAttribute(Clazz,
+   * SourceFileAttribute)}
    */
   @Test
-  @DisplayName("Test visitSourceFileAttribute(Clazz, SourceFileAttribute); then calls visitSourceFileAttribute(Clazz, SourceFileAttribute)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitSourceFileAttribute(Clazz, SourceFileAttribute); then calls visitSourceFileAttribute(Clazz, SourceFileAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitSourceFileAttribute(proguard.classfile.Clazz, proguard.classfile.attribute.SourceFileAttribute)"})
+    "void ChangedCodePrinter.visitSourceFileAttribute(Clazz, SourceFileAttribute)"
+  })
   void testVisitSourceFileAttribute_thenCallsVisitSourceFileAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor)
+    doNothing()
+        .when(attributeVisitor)
         .visitSourceFileAttribute(Mockito.<Clazz>any(), Mockito.<SourceFileAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
@@ -155,26 +178,33 @@ class ChangedCodePrinterDiffblueTest {
     changedCodePrinter.visitSourceFileAttribute(clazz, new SourceFileAttribute(1, 1));
 
     // Assert
-    verify(attributeVisitor).visitSourceFileAttribute(isA(Clazz.class), isA(SourceFileAttribute.class));
+    verify(attributeVisitor)
+        .visitSourceFileAttribute(isA(Clazz.class), isA(SourceFileAttribute.class));
   }
 
   /**
    * Test {@link ChangedCodePrinter#visitSourceDirAttribute(Clazz, SourceDirAttribute)}.
+   *
    * <ul>
-   *   <li>Then calls {@link AttributeVisitor#visitSourceDirAttribute(Clazz, SourceDirAttribute)}.</li>
+   *   <li>Then calls {@link AllAttributeVisitor#visitSourceDirAttribute(Clazz,
+   *       SourceDirAttribute)}.
    * </ul>
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitSourceDirAttribute(Clazz, SourceDirAttribute)}
+   *
+   * <p>Method under test: {@link ChangedCodePrinter#visitSourceDirAttribute(Clazz,
+   * SourceDirAttribute)}
    */
   @Test
-  @DisplayName("Test visitSourceDirAttribute(Clazz, SourceDirAttribute); then calls visitSourceDirAttribute(Clazz, SourceDirAttribute)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitSourceDirAttribute(proguard.classfile.Clazz, proguard.classfile.attribute.SourceDirAttribute)"})
+  @DisplayName(
+      "Test visitSourceDirAttribute(Clazz, SourceDirAttribute); then calls visitSourceDirAttribute(Clazz, SourceDirAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ChangedCodePrinter.visitSourceDirAttribute(Clazz, SourceDirAttribute)"})
   void testVisitSourceDirAttribute_thenCallsVisitSourceDirAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor).visitSourceDirAttribute(Mockito.<Clazz>any(), Mockito.<SourceDirAttribute>any());
+    doNothing()
+        .when(attributeVisitor)
+        .visitSourceDirAttribute(Mockito.<Clazz>any(), Mockito.<SourceDirAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
 
@@ -182,26 +212,34 @@ class ChangedCodePrinterDiffblueTest {
     changedCodePrinter.visitSourceDirAttribute(clazz, new SourceDirAttribute(1, 1));
 
     // Assert
-    verify(attributeVisitor).visitSourceDirAttribute(isA(Clazz.class), isA(SourceDirAttribute.class));
+    verify(attributeVisitor)
+        .visitSourceDirAttribute(isA(Clazz.class), isA(SourceDirAttribute.class));
   }
 
   /**
    * Test {@link ChangedCodePrinter#visitInnerClassesAttribute(Clazz, InnerClassesAttribute)}.
+   *
    * <ul>
-   *   <li>Then calls {@link AttributeVisitor#visitInnerClassesAttribute(Clazz, InnerClassesAttribute)}.</li>
+   *   <li>Then calls {@link AllAttributeVisitor#visitInnerClassesAttribute(Clazz,
+   *       InnerClassesAttribute)}.
    * </ul>
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitInnerClassesAttribute(Clazz, InnerClassesAttribute)}
+   *
+   * <p>Method under test: {@link ChangedCodePrinter#visitInnerClassesAttribute(Clazz,
+   * InnerClassesAttribute)}
    */
   @Test
-  @DisplayName("Test visitInnerClassesAttribute(Clazz, InnerClassesAttribute); then calls visitInnerClassesAttribute(Clazz, InnerClassesAttribute)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitInnerClassesAttribute(Clazz, InnerClassesAttribute); then calls visitInnerClassesAttribute(Clazz, InnerClassesAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitInnerClassesAttribute(proguard.classfile.Clazz, proguard.classfile.attribute.InnerClassesAttribute)"})
+    "void ChangedCodePrinter.visitInnerClassesAttribute(Clazz, InnerClassesAttribute)"
+  })
   void testVisitInnerClassesAttribute_thenCallsVisitInnerClassesAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor)
+    doNothing()
+        .when(attributeVisitor)
         .visitInnerClassesAttribute(Mockito.<Clazz>any(), Mockito.<InnerClassesAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
@@ -210,27 +248,36 @@ class ChangedCodePrinterDiffblueTest {
     changedCodePrinter.visitInnerClassesAttribute(clazz, new InnerClassesAttribute());
 
     // Assert
-    verify(attributeVisitor).visitInnerClassesAttribute(isA(Clazz.class), isA(InnerClassesAttribute.class));
+    verify(attributeVisitor)
+        .visitInnerClassesAttribute(isA(Clazz.class), isA(InnerClassesAttribute.class));
   }
 
   /**
    * Test {@link ChangedCodePrinter#visitEnclosingMethodAttribute(Clazz, EnclosingMethodAttribute)}.
+   *
    * <ul>
-   *   <li>Then calls {@link AttributeVisitor#visitEnclosingMethodAttribute(Clazz, EnclosingMethodAttribute)}.</li>
+   *   <li>Then calls {@link AllAttributeVisitor#visitEnclosingMethodAttribute(Clazz,
+   *       EnclosingMethodAttribute)}.
    * </ul>
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitEnclosingMethodAttribute(Clazz, EnclosingMethodAttribute)}
+   *
+   * <p>Method under test: {@link ChangedCodePrinter#visitEnclosingMethodAttribute(Clazz,
+   * EnclosingMethodAttribute)}
    */
   @Test
-  @DisplayName("Test visitEnclosingMethodAttribute(Clazz, EnclosingMethodAttribute); then calls visitEnclosingMethodAttribute(Clazz, EnclosingMethodAttribute)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitEnclosingMethodAttribute(Clazz, EnclosingMethodAttribute); then calls visitEnclosingMethodAttribute(Clazz, EnclosingMethodAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitEnclosingMethodAttribute(proguard.classfile.Clazz, proguard.classfile.attribute.EnclosingMethodAttribute)"})
+    "void ChangedCodePrinter.visitEnclosingMethodAttribute(Clazz, EnclosingMethodAttribute)"
+  })
   void testVisitEnclosingMethodAttribute_thenCallsVisitEnclosingMethodAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor)
-        .visitEnclosingMethodAttribute(Mockito.<Clazz>any(), Mockito.<EnclosingMethodAttribute>any());
+    doNothing()
+        .when(attributeVisitor)
+        .visitEnclosingMethodAttribute(
+            Mockito.<Clazz>any(), Mockito.<EnclosingMethodAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
 
@@ -238,26 +285,32 @@ class ChangedCodePrinterDiffblueTest {
     changedCodePrinter.visitEnclosingMethodAttribute(clazz, new EnclosingMethodAttribute(1, 1, 1));
 
     // Assert
-    verify(attributeVisitor).visitEnclosingMethodAttribute(isA(Clazz.class), isA(EnclosingMethodAttribute.class));
+    verify(attributeVisitor)
+        .visitEnclosingMethodAttribute(isA(Clazz.class), isA(EnclosingMethodAttribute.class));
   }
 
   /**
    * Test {@link ChangedCodePrinter#visitNestHostAttribute(Clazz, NestHostAttribute)}.
+   *
    * <ul>
-   *   <li>Then calls {@link AttributeVisitor#visitNestHostAttribute(Clazz, NestHostAttribute)}.</li>
+   *   <li>Then calls {@link AllAttributeVisitor#visitNestHostAttribute(Clazz, NestHostAttribute)}.
    * </ul>
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitNestHostAttribute(Clazz, NestHostAttribute)}
+   *
+   * <p>Method under test: {@link ChangedCodePrinter#visitNestHostAttribute(Clazz,
+   * NestHostAttribute)}
    */
   @Test
-  @DisplayName("Test visitNestHostAttribute(Clazz, NestHostAttribute); then calls visitNestHostAttribute(Clazz, NestHostAttribute)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitNestHostAttribute(proguard.classfile.Clazz, proguard.classfile.attribute.NestHostAttribute)"})
+  @DisplayName(
+      "Test visitNestHostAttribute(Clazz, NestHostAttribute); then calls visitNestHostAttribute(Clazz, NestHostAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ChangedCodePrinter.visitNestHostAttribute(Clazz, NestHostAttribute)"})
   void testVisitNestHostAttribute_thenCallsVisitNestHostAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor).visitNestHostAttribute(Mockito.<Clazz>any(), Mockito.<NestHostAttribute>any());
+    doNothing()
+        .when(attributeVisitor)
+        .visitNestHostAttribute(Mockito.<Clazz>any(), Mockito.<NestHostAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
 
@@ -270,21 +323,28 @@ class ChangedCodePrinterDiffblueTest {
 
   /**
    * Test {@link ChangedCodePrinter#visitNestMembersAttribute(Clazz, NestMembersAttribute)}.
+   *
    * <ul>
-   *   <li>Then calls {@link AttributeVisitor#visitNestMembersAttribute(Clazz, NestMembersAttribute)}.</li>
+   *   <li>Then calls {@link AllAttributeVisitor#visitNestMembersAttribute(Clazz,
+   *       NestMembersAttribute)}.
    * </ul>
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitNestMembersAttribute(Clazz, NestMembersAttribute)}
+   *
+   * <p>Method under test: {@link ChangedCodePrinter#visitNestMembersAttribute(Clazz,
+   * NestMembersAttribute)}
    */
   @Test
-  @DisplayName("Test visitNestMembersAttribute(Clazz, NestMembersAttribute); then calls visitNestMembersAttribute(Clazz, NestMembersAttribute)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitNestMembersAttribute(Clazz, NestMembersAttribute); then calls visitNestMembersAttribute(Clazz, NestMembersAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitNestMembersAttribute(proguard.classfile.Clazz, proguard.classfile.attribute.NestMembersAttribute)"})
+    "void ChangedCodePrinter.visitNestMembersAttribute(Clazz, NestMembersAttribute)"
+  })
   void testVisitNestMembersAttribute_thenCallsVisitNestMembersAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor)
+    doNothing()
+        .when(attributeVisitor)
         .visitNestMembersAttribute(Mockito.<Clazz>any(), Mockito.<NestMembersAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
@@ -293,27 +353,37 @@ class ChangedCodePrinterDiffblueTest {
     changedCodePrinter.visitNestMembersAttribute(clazz, new NestMembersAttribute());
 
     // Assert
-    verify(attributeVisitor).visitNestMembersAttribute(isA(Clazz.class), isA(NestMembersAttribute.class));
+    verify(attributeVisitor)
+        .visitNestMembersAttribute(isA(Clazz.class), isA(NestMembersAttribute.class));
   }
 
   /**
-   * Test {@link ChangedCodePrinter#visitPermittedSubclassesAttribute(Clazz, PermittedSubclassesAttribute)}.
+   * Test {@link ChangedCodePrinter#visitPermittedSubclassesAttribute(Clazz,
+   * PermittedSubclassesAttribute)}.
+   *
    * <ul>
-   *   <li>Then calls {@link AttributeVisitor#visitPermittedSubclassesAttribute(Clazz, PermittedSubclassesAttribute)}.</li>
+   *   <li>Then calls {@link AllAttributeVisitor#visitPermittedSubclassesAttribute(Clazz,
+   *       PermittedSubclassesAttribute)}.
    * </ul>
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitPermittedSubclassesAttribute(Clazz, PermittedSubclassesAttribute)}
+   *
+   * <p>Method under test: {@link ChangedCodePrinter#visitPermittedSubclassesAttribute(Clazz,
+   * PermittedSubclassesAttribute)}
    */
   @Test
-  @DisplayName("Test visitPermittedSubclassesAttribute(Clazz, PermittedSubclassesAttribute); then calls visitPermittedSubclassesAttribute(Clazz, PermittedSubclassesAttribute)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitPermittedSubclassesAttribute(Clazz, PermittedSubclassesAttribute); then calls visitPermittedSubclassesAttribute(Clazz, PermittedSubclassesAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitPermittedSubclassesAttribute(proguard.classfile.Clazz, proguard.classfile.attribute.PermittedSubclassesAttribute)"})
+    "void ChangedCodePrinter.visitPermittedSubclassesAttribute(Clazz, PermittedSubclassesAttribute)"
+  })
   void testVisitPermittedSubclassesAttribute_thenCallsVisitPermittedSubclassesAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor)
-        .visitPermittedSubclassesAttribute(Mockito.<Clazz>any(), Mockito.<PermittedSubclassesAttribute>any());
+    doNothing()
+        .when(attributeVisitor)
+        .visitPermittedSubclassesAttribute(
+            Mockito.<Clazz>any(), Mockito.<PermittedSubclassesAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
 
@@ -321,27 +391,32 @@ class ChangedCodePrinterDiffblueTest {
     changedCodePrinter.visitPermittedSubclassesAttribute(clazz, new PermittedSubclassesAttribute());
 
     // Assert
-    verify(attributeVisitor).visitPermittedSubclassesAttribute(isA(Clazz.class),
-        isA(PermittedSubclassesAttribute.class));
+    verify(attributeVisitor)
+        .visitPermittedSubclassesAttribute(
+            isA(Clazz.class), isA(PermittedSubclassesAttribute.class));
   }
 
   /**
    * Test {@link ChangedCodePrinter#visitModuleAttribute(Clazz, ModuleAttribute)}.
+   *
    * <ul>
-   *   <li>Then calls {@link AttributeVisitor#visitModuleAttribute(Clazz, ModuleAttribute)}.</li>
+   *   <li>Then calls {@link AllAttributeVisitor#visitModuleAttribute(Clazz, ModuleAttribute)}.
    * </ul>
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitModuleAttribute(Clazz, ModuleAttribute)}
+   *
+   * <p>Method under test: {@link ChangedCodePrinter#visitModuleAttribute(Clazz, ModuleAttribute)}
    */
   @Test
-  @DisplayName("Test visitModuleAttribute(Clazz, ModuleAttribute); then calls visitModuleAttribute(Clazz, ModuleAttribute)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitModuleAttribute(proguard.classfile.Clazz, proguard.classfile.attribute.module.ModuleAttribute)"})
+  @DisplayName(
+      "Test visitModuleAttribute(Clazz, ModuleAttribute); then calls visitModuleAttribute(Clazz, ModuleAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ChangedCodePrinter.visitModuleAttribute(Clazz, ModuleAttribute)"})
   void testVisitModuleAttribute_thenCallsVisitModuleAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor).visitModuleAttribute(Mockito.<Clazz>any(), Mockito.<ModuleAttribute>any());
+    doNothing()
+        .when(attributeVisitor)
+        .visitModuleAttribute(Mockito.<Clazz>any(), Mockito.<ModuleAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
 
@@ -354,22 +429,30 @@ class ChangedCodePrinterDiffblueTest {
 
   /**
    * Test {@link ChangedCodePrinter#visitModuleMainClassAttribute(Clazz, ModuleMainClassAttribute)}.
+   *
    * <ul>
-   *   <li>Then calls {@link AttributeVisitor#visitModuleMainClassAttribute(Clazz, ModuleMainClassAttribute)}.</li>
+   *   <li>Then calls {@link AllAttributeVisitor#visitModuleMainClassAttribute(Clazz,
+   *       ModuleMainClassAttribute)}.
    * </ul>
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitModuleMainClassAttribute(Clazz, ModuleMainClassAttribute)}
+   *
+   * <p>Method under test: {@link ChangedCodePrinter#visitModuleMainClassAttribute(Clazz,
+   * ModuleMainClassAttribute)}
    */
   @Test
-  @DisplayName("Test visitModuleMainClassAttribute(Clazz, ModuleMainClassAttribute); then calls visitModuleMainClassAttribute(Clazz, ModuleMainClassAttribute)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitModuleMainClassAttribute(Clazz, ModuleMainClassAttribute); then calls visitModuleMainClassAttribute(Clazz, ModuleMainClassAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitModuleMainClassAttribute(proguard.classfile.Clazz, proguard.classfile.attribute.module.ModuleMainClassAttribute)"})
+    "void ChangedCodePrinter.visitModuleMainClassAttribute(Clazz, ModuleMainClassAttribute)"
+  })
   void testVisitModuleMainClassAttribute_thenCallsVisitModuleMainClassAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor)
-        .visitModuleMainClassAttribute(Mockito.<Clazz>any(), Mockito.<ModuleMainClassAttribute>any());
+    doNothing()
+        .when(attributeVisitor)
+        .visitModuleMainClassAttribute(
+            Mockito.<Clazz>any(), Mockito.<ModuleMainClassAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
 
@@ -377,26 +460,34 @@ class ChangedCodePrinterDiffblueTest {
     changedCodePrinter.visitModuleMainClassAttribute(clazz, new ModuleMainClassAttribute(1, 1));
 
     // Assert
-    verify(attributeVisitor).visitModuleMainClassAttribute(isA(Clazz.class), isA(ModuleMainClassAttribute.class));
+    verify(attributeVisitor)
+        .visitModuleMainClassAttribute(isA(Clazz.class), isA(ModuleMainClassAttribute.class));
   }
 
   /**
    * Test {@link ChangedCodePrinter#visitModulePackagesAttribute(Clazz, ModulePackagesAttribute)}.
+   *
    * <ul>
-   *   <li>Then calls {@link AttributeVisitor#visitModulePackagesAttribute(Clazz, ModulePackagesAttribute)}.</li>
+   *   <li>Then calls {@link AllAttributeVisitor#visitModulePackagesAttribute(Clazz,
+   *       ModulePackagesAttribute)}.
    * </ul>
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitModulePackagesAttribute(Clazz, ModulePackagesAttribute)}
+   *
+   * <p>Method under test: {@link ChangedCodePrinter#visitModulePackagesAttribute(Clazz,
+   * ModulePackagesAttribute)}
    */
   @Test
-  @DisplayName("Test visitModulePackagesAttribute(Clazz, ModulePackagesAttribute); then calls visitModulePackagesAttribute(Clazz, ModulePackagesAttribute)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitModulePackagesAttribute(Clazz, ModulePackagesAttribute); then calls visitModulePackagesAttribute(Clazz, ModulePackagesAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitModulePackagesAttribute(proguard.classfile.Clazz, proguard.classfile.attribute.module.ModulePackagesAttribute)"})
+    "void ChangedCodePrinter.visitModulePackagesAttribute(Clazz, ModulePackagesAttribute)"
+  })
   void testVisitModulePackagesAttribute_thenCallsVisitModulePackagesAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor)
+    doNothing()
+        .when(attributeVisitor)
         .visitModulePackagesAttribute(Mockito.<Clazz>any(), Mockito.<ModulePackagesAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
@@ -405,23 +496,30 @@ class ChangedCodePrinterDiffblueTest {
     changedCodePrinter.visitModulePackagesAttribute(clazz, new ModulePackagesAttribute());
 
     // Assert
-    verify(attributeVisitor).visitModulePackagesAttribute(isA(Clazz.class), isA(ModulePackagesAttribute.class));
+    verify(attributeVisitor)
+        .visitModulePackagesAttribute(isA(Clazz.class), isA(ModulePackagesAttribute.class));
   }
 
   /**
-   * Test {@link ChangedCodePrinter#visitDeprecatedAttribute(Clazz, DeprecatedAttribute)} with {@code clazz}, {@code deprecatedAttribute}.
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitDeprecatedAttribute(Clazz, DeprecatedAttribute)}
+   * Test {@link ChangedCodePrinter#visitDeprecatedAttribute(Clazz, DeprecatedAttribute)} with
+   * {@code clazz}, {@code deprecatedAttribute}.
+   *
+   * <p>Method under test: {@link ChangedCodePrinter#visitDeprecatedAttribute(Clazz,
+   * DeprecatedAttribute)}
    */
   @Test
-  @DisplayName("Test visitDeprecatedAttribute(Clazz, DeprecatedAttribute) with 'clazz', 'deprecatedAttribute'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitDeprecatedAttribute(Clazz, DeprecatedAttribute) with 'clazz', 'deprecatedAttribute'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitDeprecatedAttribute(proguard.classfile.Clazz, proguard.classfile.attribute.DeprecatedAttribute)"})
+    "void ChangedCodePrinter.visitDeprecatedAttribute(Clazz, DeprecatedAttribute)"
+  })
   void testVisitDeprecatedAttributeWithClazzDeprecatedAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor)
+    doNothing()
+        .when(attributeVisitor)
         .visitDeprecatedAttribute(Mockito.<Clazz>any(), Mockito.<DeprecatedAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
@@ -430,24 +528,32 @@ class ChangedCodePrinterDiffblueTest {
     changedCodePrinter.visitDeprecatedAttribute(clazz, new DeprecatedAttribute(1));
 
     // Assert
-    verify(attributeVisitor).visitDeprecatedAttribute(isA(Clazz.class), isA(DeprecatedAttribute.class));
+    verify(attributeVisitor)
+        .visitDeprecatedAttribute(isA(Clazz.class), isA(DeprecatedAttribute.class));
   }
 
   /**
-   * Test {@link ChangedCodePrinter#visitDeprecatedAttribute(Clazz, Field, DeprecatedAttribute)} with {@code clazz}, {@code field}, {@code deprecatedAttribute}.
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitDeprecatedAttribute(Clazz, Field, DeprecatedAttribute)}
+   * Test {@link ChangedCodePrinter#visitDeprecatedAttribute(Clazz, Field, DeprecatedAttribute)}
+   * with {@code clazz}, {@code field}, {@code deprecatedAttribute}.
+   *
+   * <p>Method under test: {@link ChangedCodePrinter#visitDeprecatedAttribute(Clazz, Field,
+   * DeprecatedAttribute)}
    */
   @Test
-  @DisplayName("Test visitDeprecatedAttribute(Clazz, Field, DeprecatedAttribute) with 'clazz', 'field', 'deprecatedAttribute'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitDeprecatedAttribute(Clazz, Field, DeprecatedAttribute) with 'clazz', 'field', 'deprecatedAttribute'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitDeprecatedAttribute(proguard.classfile.Clazz, proguard.classfile.Field, proguard.classfile.attribute.DeprecatedAttribute)"})
+    "void ChangedCodePrinter.visitDeprecatedAttribute(Clazz, Field, DeprecatedAttribute)"
+  })
   void testVisitDeprecatedAttributeWithClazzFieldDeprecatedAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor)
-        .visitDeprecatedAttribute(Mockito.<Clazz>any(), Mockito.<Field>any(), Mockito.<DeprecatedAttribute>any());
+    doNothing()
+        .when(attributeVisitor)
+        .visitDeprecatedAttribute(
+            Mockito.<Clazz>any(), Mockito.<Field>any(), Mockito.<DeprecatedAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
     LibraryField field = new LibraryField(1, "Name", "Descriptor");
@@ -456,25 +562,33 @@ class ChangedCodePrinterDiffblueTest {
     changedCodePrinter.visitDeprecatedAttribute(clazz, (Field) field, new DeprecatedAttribute(1));
 
     // Assert
-    verify(attributeVisitor).visitDeprecatedAttribute(isA(Clazz.class), isA(Field.class),
-        isA(DeprecatedAttribute.class));
+    verify(attributeVisitor)
+        .visitDeprecatedAttribute(
+            isA(Clazz.class), isA(Field.class), isA(DeprecatedAttribute.class));
   }
 
   /**
-   * Test {@link ChangedCodePrinter#visitDeprecatedAttribute(Clazz, Method, DeprecatedAttribute)} with {@code clazz}, {@code method}, {@code deprecatedAttribute}.
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitDeprecatedAttribute(Clazz, Method, DeprecatedAttribute)}
+   * Test {@link ChangedCodePrinter#visitDeprecatedAttribute(Clazz, Method, DeprecatedAttribute)}
+   * with {@code clazz}, {@code method}, {@code deprecatedAttribute}.
+   *
+   * <p>Method under test: {@link ChangedCodePrinter#visitDeprecatedAttribute(Clazz, Method,
+   * DeprecatedAttribute)}
    */
   @Test
-  @DisplayName("Test visitDeprecatedAttribute(Clazz, Method, DeprecatedAttribute) with 'clazz', 'method', 'deprecatedAttribute'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitDeprecatedAttribute(Clazz, Method, DeprecatedAttribute) with 'clazz', 'method', 'deprecatedAttribute'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitDeprecatedAttribute(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.DeprecatedAttribute)"})
+    "void ChangedCodePrinter.visitDeprecatedAttribute(Clazz, Method, DeprecatedAttribute)"
+  })
   void testVisitDeprecatedAttributeWithClazzMethodDeprecatedAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor)
-        .visitDeprecatedAttribute(Mockito.<Clazz>any(), Mockito.<Method>any(), Mockito.<DeprecatedAttribute>any());
+    doNothing()
+        .when(attributeVisitor)
+        .visitDeprecatedAttribute(
+            Mockito.<Clazz>any(), Mockito.<Method>any(), Mockito.<DeprecatedAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
@@ -483,25 +597,33 @@ class ChangedCodePrinterDiffblueTest {
     changedCodePrinter.visitDeprecatedAttribute(clazz, (Method) method, new DeprecatedAttribute(1));
 
     // Assert
-    verify(attributeVisitor).visitDeprecatedAttribute(isA(Clazz.class), isA(Method.class),
-        isA(DeprecatedAttribute.class));
+    verify(attributeVisitor)
+        .visitDeprecatedAttribute(
+            isA(Clazz.class), isA(Method.class), isA(DeprecatedAttribute.class));
   }
 
   /**
-   * Test {@link ChangedCodePrinter#visitSyntheticAttribute(Clazz, Field, SyntheticAttribute)} with {@code clazz}, {@code field}, {@code syntheticAttribute}.
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitSyntheticAttribute(Clazz, Field, SyntheticAttribute)}
+   * Test {@link ChangedCodePrinter#visitSyntheticAttribute(Clazz, Field, SyntheticAttribute)} with
+   * {@code clazz}, {@code field}, {@code syntheticAttribute}.
+   *
+   * <p>Method under test: {@link ChangedCodePrinter#visitSyntheticAttribute(Clazz, Field,
+   * SyntheticAttribute)}
    */
   @Test
-  @DisplayName("Test visitSyntheticAttribute(Clazz, Field, SyntheticAttribute) with 'clazz', 'field', 'syntheticAttribute'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitSyntheticAttribute(Clazz, Field, SyntheticAttribute) with 'clazz', 'field', 'syntheticAttribute'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitSyntheticAttribute(proguard.classfile.Clazz, proguard.classfile.Field, proguard.classfile.attribute.SyntheticAttribute)"})
+    "void ChangedCodePrinter.visitSyntheticAttribute(Clazz, Field, SyntheticAttribute)"
+  })
   void testVisitSyntheticAttributeWithClazzFieldSyntheticAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor)
-        .visitSyntheticAttribute(Mockito.<Clazz>any(), Mockito.<Field>any(), Mockito.<SyntheticAttribute>any());
+    doNothing()
+        .when(attributeVisitor)
+        .visitSyntheticAttribute(
+            Mockito.<Clazz>any(), Mockito.<Field>any(), Mockito.<SyntheticAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
     LibraryField field = new LibraryField(1, "Name", "Descriptor");
@@ -510,24 +632,32 @@ class ChangedCodePrinterDiffblueTest {
     changedCodePrinter.visitSyntheticAttribute(clazz, (Field) field, new SyntheticAttribute(1));
 
     // Assert
-    verify(attributeVisitor).visitSyntheticAttribute(isA(Clazz.class), isA(Field.class), isA(SyntheticAttribute.class));
+    verify(attributeVisitor)
+        .visitSyntheticAttribute(isA(Clazz.class), isA(Field.class), isA(SyntheticAttribute.class));
   }
 
   /**
-   * Test {@link ChangedCodePrinter#visitSyntheticAttribute(Clazz, Method, SyntheticAttribute)} with {@code clazz}, {@code method}, {@code syntheticAttribute}.
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitSyntheticAttribute(Clazz, Method, SyntheticAttribute)}
+   * Test {@link ChangedCodePrinter#visitSyntheticAttribute(Clazz, Method, SyntheticAttribute)} with
+   * {@code clazz}, {@code method}, {@code syntheticAttribute}.
+   *
+   * <p>Method under test: {@link ChangedCodePrinter#visitSyntheticAttribute(Clazz, Method,
+   * SyntheticAttribute)}
    */
   @Test
-  @DisplayName("Test visitSyntheticAttribute(Clazz, Method, SyntheticAttribute) with 'clazz', 'method', 'syntheticAttribute'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitSyntheticAttribute(Clazz, Method, SyntheticAttribute) with 'clazz', 'method', 'syntheticAttribute'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitSyntheticAttribute(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.SyntheticAttribute)"})
+    "void ChangedCodePrinter.visitSyntheticAttribute(Clazz, Method, SyntheticAttribute)"
+  })
   void testVisitSyntheticAttributeWithClazzMethodSyntheticAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor)
-        .visitSyntheticAttribute(Mockito.<Clazz>any(), Mockito.<Method>any(), Mockito.<SyntheticAttribute>any());
+    doNothing()
+        .when(attributeVisitor)
+        .visitSyntheticAttribute(
+            Mockito.<Clazz>any(), Mockito.<Method>any(), Mockito.<SyntheticAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
@@ -536,24 +666,30 @@ class ChangedCodePrinterDiffblueTest {
     changedCodePrinter.visitSyntheticAttribute(clazz, (Method) method, new SyntheticAttribute(1));
 
     // Assert
-    verify(attributeVisitor).visitSyntheticAttribute(isA(Clazz.class), isA(Method.class),
-        isA(SyntheticAttribute.class));
+    verify(attributeVisitor)
+        .visitSyntheticAttribute(
+            isA(Clazz.class), isA(Method.class), isA(SyntheticAttribute.class));
   }
 
   /**
-   * Test {@link ChangedCodePrinter#visitSyntheticAttribute(Clazz, SyntheticAttribute)} with {@code clazz}, {@code syntheticAttribute}.
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitSyntheticAttribute(Clazz, SyntheticAttribute)}
+   * Test {@link ChangedCodePrinter#visitSyntheticAttribute(Clazz, SyntheticAttribute)} with {@code
+   * clazz}, {@code syntheticAttribute}.
+   *
+   * <p>Method under test: {@link ChangedCodePrinter#visitSyntheticAttribute(Clazz,
+   * SyntheticAttribute)}
    */
   @Test
-  @DisplayName("Test visitSyntheticAttribute(Clazz, SyntheticAttribute) with 'clazz', 'syntheticAttribute'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitSyntheticAttribute(proguard.classfile.Clazz, proguard.classfile.attribute.SyntheticAttribute)"})
+  @DisplayName(
+      "Test visitSyntheticAttribute(Clazz, SyntheticAttribute) with 'clazz', 'syntheticAttribute'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ChangedCodePrinter.visitSyntheticAttribute(Clazz, SyntheticAttribute)"})
   void testVisitSyntheticAttributeWithClazzSyntheticAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor).visitSyntheticAttribute(Mockito.<Clazz>any(), Mockito.<SyntheticAttribute>any());
+    doNothing()
+        .when(attributeVisitor)
+        .visitSyntheticAttribute(Mockito.<Clazz>any(), Mockito.<SyntheticAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
 
@@ -561,24 +697,32 @@ class ChangedCodePrinterDiffblueTest {
     changedCodePrinter.visitSyntheticAttribute(clazz, new SyntheticAttribute(1));
 
     // Assert
-    verify(attributeVisitor).visitSyntheticAttribute(isA(Clazz.class), isA(SyntheticAttribute.class));
+    verify(attributeVisitor)
+        .visitSyntheticAttribute(isA(Clazz.class), isA(SyntheticAttribute.class));
   }
 
   /**
-   * Test {@link ChangedCodePrinter#visitSignatureAttribute(Clazz, Field, SignatureAttribute)} with {@code clazz}, {@code field}, {@code syntheticAttribute}.
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitSignatureAttribute(Clazz, Field, SignatureAttribute)}
+   * Test {@link ChangedCodePrinter#visitSignatureAttribute(Clazz, Field, SignatureAttribute)} with
+   * {@code clazz}, {@code field}, {@code syntheticAttribute}.
+   *
+   * <p>Method under test: {@link ChangedCodePrinter#visitSignatureAttribute(Clazz, Field,
+   * SignatureAttribute)}
    */
   @Test
-  @DisplayName("Test visitSignatureAttribute(Clazz, Field, SignatureAttribute) with 'clazz', 'field', 'syntheticAttribute'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitSignatureAttribute(Clazz, Field, SignatureAttribute) with 'clazz', 'field', 'syntheticAttribute'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitSignatureAttribute(proguard.classfile.Clazz, proguard.classfile.Field, proguard.classfile.attribute.SignatureAttribute)"})
+    "void ChangedCodePrinter.visitSignatureAttribute(Clazz, Field, SignatureAttribute)"
+  })
   void testVisitSignatureAttributeWithClazzFieldSyntheticAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor)
-        .visitSignatureAttribute(Mockito.<Clazz>any(), Mockito.<Field>any(), Mockito.<SignatureAttribute>any());
+    doNothing()
+        .when(attributeVisitor)
+        .visitSignatureAttribute(
+            Mockito.<Clazz>any(), Mockito.<Field>any(), Mockito.<SignatureAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
     LibraryField field = new LibraryField(1, "Name", "Descriptor");
@@ -587,50 +731,65 @@ class ChangedCodePrinterDiffblueTest {
     changedCodePrinter.visitSignatureAttribute(clazz, (Field) field, new SignatureAttribute(1, 1));
 
     // Assert
-    verify(attributeVisitor).visitSignatureAttribute(isA(Clazz.class), isA(Field.class), isA(SignatureAttribute.class));
+    verify(attributeVisitor)
+        .visitSignatureAttribute(isA(Clazz.class), isA(Field.class), isA(SignatureAttribute.class));
   }
 
   /**
-   * Test {@link ChangedCodePrinter#visitSignatureAttribute(Clazz, Method, SignatureAttribute)} with {@code clazz}, {@code method}, {@code syntheticAttribute}.
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitSignatureAttribute(Clazz, Method, SignatureAttribute)}
+   * Test {@link ChangedCodePrinter#visitSignatureAttribute(Clazz, Method, SignatureAttribute)} with
+   * {@code clazz}, {@code method}, {@code syntheticAttribute}.
+   *
+   * <p>Method under test: {@link ChangedCodePrinter#visitSignatureAttribute(Clazz, Method,
+   * SignatureAttribute)}
    */
   @Test
-  @DisplayName("Test visitSignatureAttribute(Clazz, Method, SignatureAttribute) with 'clazz', 'method', 'syntheticAttribute'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitSignatureAttribute(Clazz, Method, SignatureAttribute) with 'clazz', 'method', 'syntheticAttribute'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitSignatureAttribute(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.SignatureAttribute)"})
+    "void ChangedCodePrinter.visitSignatureAttribute(Clazz, Method, SignatureAttribute)"
+  })
   void testVisitSignatureAttributeWithClazzMethodSyntheticAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor)
-        .visitSignatureAttribute(Mockito.<Clazz>any(), Mockito.<Method>any(), Mockito.<SignatureAttribute>any());
+    doNothing()
+        .when(attributeVisitor)
+        .visitSignatureAttribute(
+            Mockito.<Clazz>any(), Mockito.<Method>any(), Mockito.<SignatureAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
 
     // Act
-    changedCodePrinter.visitSignatureAttribute(clazz, (Method) method, new SignatureAttribute(1, 1));
+    changedCodePrinter.visitSignatureAttribute(
+        clazz, (Method) method, new SignatureAttribute(1, 1));
 
     // Assert
-    verify(attributeVisitor).visitSignatureAttribute(isA(Clazz.class), isA(Method.class),
-        isA(SignatureAttribute.class));
+    verify(attributeVisitor)
+        .visitSignatureAttribute(
+            isA(Clazz.class), isA(Method.class), isA(SignatureAttribute.class));
   }
 
   /**
-   * Test {@link ChangedCodePrinter#visitSignatureAttribute(Clazz, SignatureAttribute)} with {@code clazz}, {@code syntheticAttribute}.
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitSignatureAttribute(Clazz, SignatureAttribute)}
+   * Test {@link ChangedCodePrinter#visitSignatureAttribute(Clazz, SignatureAttribute)} with {@code
+   * clazz}, {@code syntheticAttribute}.
+   *
+   * <p>Method under test: {@link ChangedCodePrinter#visitSignatureAttribute(Clazz,
+   * SignatureAttribute)}
    */
   @Test
-  @DisplayName("Test visitSignatureAttribute(Clazz, SignatureAttribute) with 'clazz', 'syntheticAttribute'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitSignatureAttribute(proguard.classfile.Clazz, proguard.classfile.attribute.SignatureAttribute)"})
+  @DisplayName(
+      "Test visitSignatureAttribute(Clazz, SignatureAttribute) with 'clazz', 'syntheticAttribute'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ChangedCodePrinter.visitSignatureAttribute(Clazz, SignatureAttribute)"})
   void testVisitSignatureAttributeWithClazzSyntheticAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor).visitSignatureAttribute(Mockito.<Clazz>any(), Mockito.<SignatureAttribute>any());
+    doNothing()
+        .when(attributeVisitor)
+        .visitSignatureAttribute(Mockito.<Clazz>any(), Mockito.<SignatureAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
 
@@ -638,27 +797,37 @@ class ChangedCodePrinterDiffblueTest {
     changedCodePrinter.visitSignatureAttribute(clazz, new SignatureAttribute(1, 1));
 
     // Assert
-    verify(attributeVisitor).visitSignatureAttribute(isA(Clazz.class), isA(SignatureAttribute.class));
+    verify(attributeVisitor)
+        .visitSignatureAttribute(isA(Clazz.class), isA(SignatureAttribute.class));
   }
 
   /**
-   * Test {@link ChangedCodePrinter#visitConstantValueAttribute(Clazz, Field, ConstantValueAttribute)}.
+   * Test {@link ChangedCodePrinter#visitConstantValueAttribute(Clazz, Field,
+   * ConstantValueAttribute)}.
+   *
    * <ul>
-   *   <li>Then calls {@link AttributeVisitor#visitConstantValueAttribute(Clazz, Field, ConstantValueAttribute)}.</li>
+   *   <li>Then calls {@link AllAttributeVisitor#visitConstantValueAttribute(Clazz, Field,
+   *       ConstantValueAttribute)}.
    * </ul>
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitConstantValueAttribute(Clazz, Field, ConstantValueAttribute)}
+   *
+   * <p>Method under test: {@link ChangedCodePrinter#visitConstantValueAttribute(Clazz, Field,
+   * ConstantValueAttribute)}
    */
   @Test
-  @DisplayName("Test visitConstantValueAttribute(Clazz, Field, ConstantValueAttribute); then calls visitConstantValueAttribute(Clazz, Field, ConstantValueAttribute)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitConstantValueAttribute(Clazz, Field, ConstantValueAttribute); then calls visitConstantValueAttribute(Clazz, Field, ConstantValueAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitConstantValueAttribute(proguard.classfile.Clazz, proguard.classfile.Field, proguard.classfile.attribute.ConstantValueAttribute)"})
+    "void ChangedCodePrinter.visitConstantValueAttribute(Clazz, Field, ConstantValueAttribute)"
+  })
   void testVisitConstantValueAttribute_thenCallsVisitConstantValueAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor)
-        .visitConstantValueAttribute(Mockito.<Clazz>any(), Mockito.<Field>any(), Mockito.<ConstantValueAttribute>any());
+    doNothing()
+        .when(attributeVisitor)
+        .visitConstantValueAttribute(
+            Mockito.<Clazz>any(), Mockito.<Field>any(), Mockito.<ConstantValueAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
     LibraryField field = new LibraryField(1, "Name", "Descriptor");
@@ -667,59 +836,78 @@ class ChangedCodePrinterDiffblueTest {
     changedCodePrinter.visitConstantValueAttribute(clazz, field, new ConstantValueAttribute(1, 1));
 
     // Assert
-    verify(attributeVisitor).visitConstantValueAttribute(isA(Clazz.class), isA(Field.class),
-        isA(ConstantValueAttribute.class));
+    verify(attributeVisitor)
+        .visitConstantValueAttribute(
+            isA(Clazz.class), isA(Field.class), isA(ConstantValueAttribute.class));
   }
 
   /**
-   * Test {@link ChangedCodePrinter#visitMethodParametersAttribute(Clazz, Method, MethodParametersAttribute)}.
+   * Test {@link ChangedCodePrinter#visitMethodParametersAttribute(Clazz, Method,
+   * MethodParametersAttribute)}.
+   *
    * <ul>
-   *   <li>Then calls {@link AttributeVisitor#visitMethodParametersAttribute(Clazz, Method, MethodParametersAttribute)}.</li>
+   *   <li>Then calls {@link AllAttributeVisitor#visitMethodParametersAttribute(Clazz, Method,
+   *       MethodParametersAttribute)}.
    * </ul>
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitMethodParametersAttribute(Clazz, Method, MethodParametersAttribute)}
+   *
+   * <p>Method under test: {@link ChangedCodePrinter#visitMethodParametersAttribute(Clazz, Method,
+   * MethodParametersAttribute)}
    */
   @Test
-  @DisplayName("Test visitMethodParametersAttribute(Clazz, Method, MethodParametersAttribute); then calls visitMethodParametersAttribute(Clazz, Method, MethodParametersAttribute)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitMethodParametersAttribute(Clazz, Method, MethodParametersAttribute); then calls visitMethodParametersAttribute(Clazz, Method, MethodParametersAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitMethodParametersAttribute(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.MethodParametersAttribute)"})
+    "void ChangedCodePrinter.visitMethodParametersAttribute(Clazz, Method, MethodParametersAttribute)"
+  })
   void testVisitMethodParametersAttribute_thenCallsVisitMethodParametersAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor)
-        .visitMethodParametersAttribute(Mockito.<Clazz>any(), Mockito.<Method>any(),
-            Mockito.<MethodParametersAttribute>any());
+    doNothing()
+        .when(attributeVisitor)
+        .visitMethodParametersAttribute(
+            Mockito.<Clazz>any(), Mockito.<Method>any(), Mockito.<MethodParametersAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
 
     // Act
-    changedCodePrinter.visitMethodParametersAttribute(clazz, method, new MethodParametersAttribute());
+    changedCodePrinter.visitMethodParametersAttribute(
+        clazz, method, new MethodParametersAttribute());
 
     // Assert
-    verify(attributeVisitor).visitMethodParametersAttribute(isA(Clazz.class), isA(Method.class),
-        isA(MethodParametersAttribute.class));
+    verify(attributeVisitor)
+        .visitMethodParametersAttribute(
+            isA(Clazz.class), isA(Method.class), isA(MethodParametersAttribute.class));
   }
 
   /**
    * Test {@link ChangedCodePrinter#visitExceptionsAttribute(Clazz, Method, ExceptionsAttribute)}.
+   *
    * <ul>
-   *   <li>Then calls {@link AttributeVisitor#visitExceptionsAttribute(Clazz, Method, ExceptionsAttribute)}.</li>
+   *   <li>Then calls {@link AllAttributeVisitor#visitExceptionsAttribute(Clazz, Method,
+   *       ExceptionsAttribute)}.
    * </ul>
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitExceptionsAttribute(Clazz, Method, ExceptionsAttribute)}
+   *
+   * <p>Method under test: {@link ChangedCodePrinter#visitExceptionsAttribute(Clazz, Method,
+   * ExceptionsAttribute)}
    */
   @Test
-  @DisplayName("Test visitExceptionsAttribute(Clazz, Method, ExceptionsAttribute); then calls visitExceptionsAttribute(Clazz, Method, ExceptionsAttribute)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitExceptionsAttribute(Clazz, Method, ExceptionsAttribute); then calls visitExceptionsAttribute(Clazz, Method, ExceptionsAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitExceptionsAttribute(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.ExceptionsAttribute)"})
+    "void ChangedCodePrinter.visitExceptionsAttribute(Clazz, Method, ExceptionsAttribute)"
+  })
   void testVisitExceptionsAttribute_thenCallsVisitExceptionsAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor)
-        .visitExceptionsAttribute(Mockito.<Clazz>any(), Mockito.<Method>any(), Mockito.<ExceptionsAttribute>any());
+    doNothing()
+        .when(attributeVisitor)
+        .visitExceptionsAttribute(
+            Mockito.<Clazz>any(), Mockito.<Method>any(), Mockito.<ExceptionsAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
@@ -728,28 +916,40 @@ class ChangedCodePrinterDiffblueTest {
     changedCodePrinter.visitExceptionsAttribute(clazz, method, new ExceptionsAttribute());
 
     // Assert
-    verify(attributeVisitor).visitExceptionsAttribute(isA(Clazz.class), isA(Method.class),
-        isA(ExceptionsAttribute.class));
+    verify(attributeVisitor)
+        .visitExceptionsAttribute(
+            isA(Clazz.class), isA(Method.class), isA(ExceptionsAttribute.class));
   }
 
   /**
-   * Test {@link ChangedCodePrinter#visitStackMapAttribute(Clazz, Method, CodeAttribute, StackMapAttribute)}.
+   * Test {@link ChangedCodePrinter#visitStackMapAttribute(Clazz, Method, CodeAttribute,
+   * StackMapAttribute)}.
+   *
    * <ul>
-   *   <li>Then calls {@link AttributeVisitor#visitStackMapAttribute(Clazz, Method, CodeAttribute, StackMapAttribute)}.</li>
+   *   <li>Then calls {@link AllAttributeVisitor#visitStackMapAttribute(Clazz, Method,
+   *       CodeAttribute, StackMapAttribute)}.
    * </ul>
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitStackMapAttribute(Clazz, Method, CodeAttribute, StackMapAttribute)}
+   *
+   * <p>Method under test: {@link ChangedCodePrinter#visitStackMapAttribute(Clazz, Method,
+   * CodeAttribute, StackMapAttribute)}
    */
   @Test
-  @DisplayName("Test visitStackMapAttribute(Clazz, Method, CodeAttribute, StackMapAttribute); then calls visitStackMapAttribute(Clazz, Method, CodeAttribute, StackMapAttribute)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitStackMapAttribute(Clazz, Method, CodeAttribute, StackMapAttribute); then calls visitStackMapAttribute(Clazz, Method, CodeAttribute, StackMapAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitStackMapAttribute(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.CodeAttribute, proguard.classfile.attribute.preverification.StackMapAttribute)"})
+    "void ChangedCodePrinter.visitStackMapAttribute(Clazz, Method, CodeAttribute, StackMapAttribute)"
+  })
   void testVisitStackMapAttribute_thenCallsVisitStackMapAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor)
-        .visitStackMapAttribute(Mockito.<Clazz>any(), Mockito.<Method>any(), Mockito.<CodeAttribute>any(),
+    doNothing()
+        .when(attributeVisitor)
+        .visitStackMapAttribute(
+            Mockito.<Clazz>any(),
+            Mockito.<Method>any(),
+            Mockito.<CodeAttribute>any(),
             Mockito.<StackMapAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
@@ -758,31 +958,47 @@ class ChangedCodePrinterDiffblueTest {
     CodeAttribute codeAttribute = new CodeAttribute(1);
 
     // Act
-    changedCodePrinter.visitStackMapAttribute(clazz, method, codeAttribute, new StackMapAttribute());
+    changedCodePrinter.visitStackMapAttribute(
+        clazz, method, codeAttribute, new StackMapAttribute());
 
     // Assert
-    verify(attributeVisitor).visitStackMapAttribute(isA(Clazz.class), isA(Method.class), isA(CodeAttribute.class),
-        isA(StackMapAttribute.class));
+    verify(attributeVisitor)
+        .visitStackMapAttribute(
+            isA(Clazz.class),
+            isA(Method.class),
+            isA(CodeAttribute.class),
+            isA(StackMapAttribute.class));
   }
 
   /**
-   * Test {@link ChangedCodePrinter#visitStackMapTableAttribute(Clazz, Method, CodeAttribute, StackMapTableAttribute)}.
+   * Test {@link ChangedCodePrinter#visitStackMapTableAttribute(Clazz, Method, CodeAttribute,
+   * StackMapTableAttribute)}.
+   *
    * <ul>
-   *   <li>Then calls {@link AttributeVisitor#visitStackMapTableAttribute(Clazz, Method, CodeAttribute, StackMapTableAttribute)}.</li>
+   *   <li>Then calls {@link AllAttributeVisitor#visitStackMapTableAttribute(Clazz, Method,
+   *       CodeAttribute, StackMapTableAttribute)}.
    * </ul>
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitStackMapTableAttribute(Clazz, Method, CodeAttribute, StackMapTableAttribute)}
+   *
+   * <p>Method under test: {@link ChangedCodePrinter#visitStackMapTableAttribute(Clazz, Method,
+   * CodeAttribute, StackMapTableAttribute)}
    */
   @Test
-  @DisplayName("Test visitStackMapTableAttribute(Clazz, Method, CodeAttribute, StackMapTableAttribute); then calls visitStackMapTableAttribute(Clazz, Method, CodeAttribute, StackMapTableAttribute)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitStackMapTableAttribute(Clazz, Method, CodeAttribute, StackMapTableAttribute); then calls visitStackMapTableAttribute(Clazz, Method, CodeAttribute, StackMapTableAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitStackMapTableAttribute(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.CodeAttribute, proguard.classfile.attribute.preverification.StackMapTableAttribute)"})
+    "void ChangedCodePrinter.visitStackMapTableAttribute(Clazz, Method, CodeAttribute, StackMapTableAttribute)"
+  })
   void testVisitStackMapTableAttribute_thenCallsVisitStackMapTableAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor)
-        .visitStackMapTableAttribute(Mockito.<Clazz>any(), Mockito.<Method>any(), Mockito.<CodeAttribute>any(),
+    doNothing()
+        .when(attributeVisitor)
+        .visitStackMapTableAttribute(
+            Mockito.<Clazz>any(),
+            Mockito.<Method>any(),
+            Mockito.<CodeAttribute>any(),
             Mockito.<StackMapTableAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
@@ -791,31 +1007,47 @@ class ChangedCodePrinterDiffblueTest {
     CodeAttribute codeAttribute = new CodeAttribute(1);
 
     // Act
-    changedCodePrinter.visitStackMapTableAttribute(clazz, method, codeAttribute, new StackMapTableAttribute());
+    changedCodePrinter.visitStackMapTableAttribute(
+        clazz, method, codeAttribute, new StackMapTableAttribute());
 
     // Assert
-    verify(attributeVisitor).visitStackMapTableAttribute(isA(Clazz.class), isA(Method.class), isA(CodeAttribute.class),
-        isA(StackMapTableAttribute.class));
+    verify(attributeVisitor)
+        .visitStackMapTableAttribute(
+            isA(Clazz.class),
+            isA(Method.class),
+            isA(CodeAttribute.class),
+            isA(StackMapTableAttribute.class));
   }
 
   /**
-   * Test {@link ChangedCodePrinter#visitLineNumberTableAttribute(Clazz, Method, CodeAttribute, LineNumberTableAttribute)}.
+   * Test {@link ChangedCodePrinter#visitLineNumberTableAttribute(Clazz, Method, CodeAttribute,
+   * LineNumberTableAttribute)}.
+   *
    * <ul>
-   *   <li>Then calls {@link AttributeVisitor#visitLineNumberTableAttribute(Clazz, Method, CodeAttribute, LineNumberTableAttribute)}.</li>
+   *   <li>Then calls {@link AllAttributeVisitor#visitLineNumberTableAttribute(Clazz, Method,
+   *       CodeAttribute, LineNumberTableAttribute)}.
    * </ul>
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitLineNumberTableAttribute(Clazz, Method, CodeAttribute, LineNumberTableAttribute)}
+   *
+   * <p>Method under test: {@link ChangedCodePrinter#visitLineNumberTableAttribute(Clazz, Method,
+   * CodeAttribute, LineNumberTableAttribute)}
    */
   @Test
-  @DisplayName("Test visitLineNumberTableAttribute(Clazz, Method, CodeAttribute, LineNumberTableAttribute); then calls visitLineNumberTableAttribute(Clazz, Method, CodeAttribute, LineNumberTableAttribute)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitLineNumberTableAttribute(Clazz, Method, CodeAttribute, LineNumberTableAttribute); then calls visitLineNumberTableAttribute(Clazz, Method, CodeAttribute, LineNumberTableAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitLineNumberTableAttribute(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.CodeAttribute, proguard.classfile.attribute.LineNumberTableAttribute)"})
+    "void ChangedCodePrinter.visitLineNumberTableAttribute(Clazz, Method, CodeAttribute, LineNumberTableAttribute)"
+  })
   void testVisitLineNumberTableAttribute_thenCallsVisitLineNumberTableAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor)
-        .visitLineNumberTableAttribute(Mockito.<Clazz>any(), Mockito.<Method>any(), Mockito.<CodeAttribute>any(),
+    doNothing()
+        .when(attributeVisitor)
+        .visitLineNumberTableAttribute(
+            Mockito.<Clazz>any(),
+            Mockito.<Method>any(),
+            Mockito.<CodeAttribute>any(),
             Mockito.<LineNumberTableAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
@@ -824,31 +1056,47 @@ class ChangedCodePrinterDiffblueTest {
     CodeAttribute codeAttribute = new CodeAttribute(1);
 
     // Act
-    changedCodePrinter.visitLineNumberTableAttribute(clazz, method, codeAttribute, new LineNumberTableAttribute());
+    changedCodePrinter.visitLineNumberTableAttribute(
+        clazz, method, codeAttribute, new LineNumberTableAttribute());
 
     // Assert
-    verify(attributeVisitor).visitLineNumberTableAttribute(isA(Clazz.class), isA(Method.class),
-        isA(CodeAttribute.class), isA(LineNumberTableAttribute.class));
+    verify(attributeVisitor)
+        .visitLineNumberTableAttribute(
+            isA(Clazz.class),
+            isA(Method.class),
+            isA(CodeAttribute.class),
+            isA(LineNumberTableAttribute.class));
   }
 
   /**
-   * Test {@link ChangedCodePrinter#visitLocalVariableTableAttribute(Clazz, Method, CodeAttribute, LocalVariableTableAttribute)}.
+   * Test {@link ChangedCodePrinter#visitLocalVariableTableAttribute(Clazz, Method, CodeAttribute,
+   * LocalVariableTableAttribute)}.
+   *
    * <ul>
-   *   <li>Then calls {@link AttributeVisitor#visitLocalVariableTableAttribute(Clazz, Method, CodeAttribute, LocalVariableTableAttribute)}.</li>
+   *   <li>Then calls {@link AllAttributeVisitor#visitLocalVariableTableAttribute(Clazz, Method,
+   *       CodeAttribute, LocalVariableTableAttribute)}.
    * </ul>
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitLocalVariableTableAttribute(Clazz, Method, CodeAttribute, LocalVariableTableAttribute)}
+   *
+   * <p>Method under test: {@link ChangedCodePrinter#visitLocalVariableTableAttribute(Clazz, Method,
+   * CodeAttribute, LocalVariableTableAttribute)}
    */
   @Test
-  @DisplayName("Test visitLocalVariableTableAttribute(Clazz, Method, CodeAttribute, LocalVariableTableAttribute); then calls visitLocalVariableTableAttribute(Clazz, Method, CodeAttribute, LocalVariableTableAttribute)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitLocalVariableTableAttribute(Clazz, Method, CodeAttribute, LocalVariableTableAttribute); then calls visitLocalVariableTableAttribute(Clazz, Method, CodeAttribute, LocalVariableTableAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitLocalVariableTableAttribute(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.CodeAttribute, proguard.classfile.attribute.LocalVariableTableAttribute)"})
+    "void ChangedCodePrinter.visitLocalVariableTableAttribute(Clazz, Method, CodeAttribute, LocalVariableTableAttribute)"
+  })
   void testVisitLocalVariableTableAttribute_thenCallsVisitLocalVariableTableAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor)
-        .visitLocalVariableTableAttribute(Mockito.<Clazz>any(), Mockito.<Method>any(), Mockito.<CodeAttribute>any(),
+    doNothing()
+        .when(attributeVisitor)
+        .visitLocalVariableTableAttribute(
+            Mockito.<Clazz>any(),
+            Mockito.<Method>any(),
+            Mockito.<CodeAttribute>any(),
             Mockito.<LocalVariableTableAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
@@ -857,29 +1105,42 @@ class ChangedCodePrinterDiffblueTest {
     CodeAttribute codeAttribute = new CodeAttribute(1);
 
     // Act
-    changedCodePrinter.visitLocalVariableTableAttribute(clazz, method, codeAttribute,
-        new LocalVariableTableAttribute());
+    changedCodePrinter.visitLocalVariableTableAttribute(
+        clazz, method, codeAttribute, new LocalVariableTableAttribute());
 
     // Assert
-    verify(attributeVisitor).visitLocalVariableTableAttribute(isA(Clazz.class), isA(Method.class),
-        isA(CodeAttribute.class), isA(LocalVariableTableAttribute.class));
+    verify(attributeVisitor)
+        .visitLocalVariableTableAttribute(
+            isA(Clazz.class),
+            isA(Method.class),
+            isA(CodeAttribute.class),
+            isA(LocalVariableTableAttribute.class));
   }
 
   /**
-   * Test {@link ChangedCodePrinter#visitLocalVariableTypeTableAttribute(Clazz, Method, CodeAttribute, LocalVariableTypeTableAttribute)}.
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitLocalVariableTypeTableAttribute(Clazz, Method, CodeAttribute, LocalVariableTypeTableAttribute)}
+   * Test {@link ChangedCodePrinter#visitLocalVariableTypeTableAttribute(Clazz, Method,
+   * CodeAttribute, LocalVariableTypeTableAttribute)}.
+   *
+   * <p>Method under test: {@link ChangedCodePrinter#visitLocalVariableTypeTableAttribute(Clazz,
+   * Method, CodeAttribute, LocalVariableTypeTableAttribute)}
    */
   @Test
-  @DisplayName("Test visitLocalVariableTypeTableAttribute(Clazz, Method, CodeAttribute, LocalVariableTypeTableAttribute)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitLocalVariableTypeTableAttribute(Clazz, Method, CodeAttribute, LocalVariableTypeTableAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitLocalVariableTypeTableAttribute(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.CodeAttribute, proguard.classfile.attribute.LocalVariableTypeTableAttribute)"})
+    "void ChangedCodePrinter.visitLocalVariableTypeTableAttribute(Clazz, Method, CodeAttribute, LocalVariableTypeTableAttribute)"
+  })
   void testVisitLocalVariableTypeTableAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor)
-        .visitLocalVariableTypeTableAttribute(Mockito.<Clazz>any(), Mockito.<Method>any(), Mockito.<CodeAttribute>any(),
+    doNothing()
+        .when(attributeVisitor)
+        .visitLocalVariableTypeTableAttribute(
+            Mockito.<Clazz>any(),
+            Mockito.<Method>any(),
+            Mockito.<CodeAttribute>any(),
             Mockito.<LocalVariableTypeTableAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
@@ -888,287 +1149,405 @@ class ChangedCodePrinterDiffblueTest {
     CodeAttribute codeAttribute = new CodeAttribute(1);
 
     // Act
-    changedCodePrinter.visitLocalVariableTypeTableAttribute(clazz, method, codeAttribute,
-        new LocalVariableTypeTableAttribute());
+    changedCodePrinter.visitLocalVariableTypeTableAttribute(
+        clazz, method, codeAttribute, new LocalVariableTypeTableAttribute());
 
     // Assert
-    verify(attributeVisitor).visitLocalVariableTypeTableAttribute(isA(Clazz.class), isA(Method.class),
-        isA(CodeAttribute.class), isA(LocalVariableTypeTableAttribute.class));
+    verify(attributeVisitor)
+        .visitLocalVariableTypeTableAttribute(
+            isA(Clazz.class),
+            isA(Method.class),
+            isA(CodeAttribute.class),
+            isA(LocalVariableTypeTableAttribute.class));
   }
 
   /**
-   * Test {@link ChangedCodePrinter#visitRuntimeVisibleAnnotationsAttribute(Clazz, Field, RuntimeVisibleAnnotationsAttribute)} with {@code clazz}, {@code field}, {@code runtimeVisibleAnnotationsAttribute}.
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitRuntimeVisibleAnnotationsAttribute(Clazz, Field, RuntimeVisibleAnnotationsAttribute)}
+   * Test {@link ChangedCodePrinter#visitRuntimeVisibleAnnotationsAttribute(Clazz, Field,
+   * RuntimeVisibleAnnotationsAttribute)} with {@code clazz}, {@code field}, {@code
+   * runtimeVisibleAnnotationsAttribute}.
+   *
+   * <p>Method under test: {@link ChangedCodePrinter#visitRuntimeVisibleAnnotationsAttribute(Clazz,
+   * Field, RuntimeVisibleAnnotationsAttribute)}
    */
   @Test
-  @DisplayName("Test visitRuntimeVisibleAnnotationsAttribute(Clazz, Field, RuntimeVisibleAnnotationsAttribute) with 'clazz', 'field', 'runtimeVisibleAnnotationsAttribute'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitRuntimeVisibleAnnotationsAttribute(Clazz, Field, RuntimeVisibleAnnotationsAttribute) with 'clazz', 'field', 'runtimeVisibleAnnotationsAttribute'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitRuntimeVisibleAnnotationsAttribute(proguard.classfile.Clazz, proguard.classfile.Field, proguard.classfile.attribute.annotation.RuntimeVisibleAnnotationsAttribute)"})
-  void testVisitRuntimeVisibleAnnotationsAttributeWithClazzFieldRuntimeVisibleAnnotationsAttribute() {
+    "void ChangedCodePrinter.visitRuntimeVisibleAnnotationsAttribute(Clazz, Field, RuntimeVisibleAnnotationsAttribute)"
+  })
+  void
+      testVisitRuntimeVisibleAnnotationsAttributeWithClazzFieldRuntimeVisibleAnnotationsAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor)
-        .visitRuntimeVisibleAnnotationsAttribute(Mockito.<Clazz>any(), Mockito.<Field>any(),
+    doNothing()
+        .when(attributeVisitor)
+        .visitRuntimeVisibleAnnotationsAttribute(
+            Mockito.<Clazz>any(),
+            Mockito.<Field>any(),
             Mockito.<RuntimeVisibleAnnotationsAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
     LibraryField field = new LibraryField(1, "Name", "Descriptor");
 
     // Act
-    changedCodePrinter.visitRuntimeVisibleAnnotationsAttribute(clazz, (Field) field,
-        new RuntimeVisibleAnnotationsAttribute());
+    changedCodePrinter.visitRuntimeVisibleAnnotationsAttribute(
+        clazz, (Field) field, new RuntimeVisibleAnnotationsAttribute());
 
     // Assert
-    verify(attributeVisitor).visitRuntimeVisibleAnnotationsAttribute(isA(Clazz.class), isA(Field.class),
-        isA(RuntimeVisibleAnnotationsAttribute.class));
+    verify(attributeVisitor)
+        .visitRuntimeVisibleAnnotationsAttribute(
+            isA(Clazz.class), isA(Field.class), isA(RuntimeVisibleAnnotationsAttribute.class));
   }
 
   /**
-   * Test {@link ChangedCodePrinter#visitRuntimeVisibleAnnotationsAttribute(Clazz, Method, RuntimeVisibleAnnotationsAttribute)} with {@code clazz}, {@code method}, {@code runtimeVisibleAnnotationsAttribute}.
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitRuntimeVisibleAnnotationsAttribute(Clazz, Method, RuntimeVisibleAnnotationsAttribute)}
+   * Test {@link ChangedCodePrinter#visitRuntimeVisibleAnnotationsAttribute(Clazz, Method,
+   * RuntimeVisibleAnnotationsAttribute)} with {@code clazz}, {@code method}, {@code
+   * runtimeVisibleAnnotationsAttribute}.
+   *
+   * <p>Method under test: {@link ChangedCodePrinter#visitRuntimeVisibleAnnotationsAttribute(Clazz,
+   * Method, RuntimeVisibleAnnotationsAttribute)}
    */
   @Test
-  @DisplayName("Test visitRuntimeVisibleAnnotationsAttribute(Clazz, Method, RuntimeVisibleAnnotationsAttribute) with 'clazz', 'method', 'runtimeVisibleAnnotationsAttribute'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitRuntimeVisibleAnnotationsAttribute(Clazz, Method, RuntimeVisibleAnnotationsAttribute) with 'clazz', 'method', 'runtimeVisibleAnnotationsAttribute'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitRuntimeVisibleAnnotationsAttribute(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.annotation.RuntimeVisibleAnnotationsAttribute)"})
-  void testVisitRuntimeVisibleAnnotationsAttributeWithClazzMethodRuntimeVisibleAnnotationsAttribute() {
+    "void ChangedCodePrinter.visitRuntimeVisibleAnnotationsAttribute(Clazz, Method, RuntimeVisibleAnnotationsAttribute)"
+  })
+  void
+      testVisitRuntimeVisibleAnnotationsAttributeWithClazzMethodRuntimeVisibleAnnotationsAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor)
-        .visitRuntimeVisibleAnnotationsAttribute(Mockito.<Clazz>any(), Mockito.<Method>any(),
+    doNothing()
+        .when(attributeVisitor)
+        .visitRuntimeVisibleAnnotationsAttribute(
+            Mockito.<Clazz>any(),
+            Mockito.<Method>any(),
             Mockito.<RuntimeVisibleAnnotationsAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
 
     // Act
-    changedCodePrinter.visitRuntimeVisibleAnnotationsAttribute(clazz, (Method) method,
-        new RuntimeVisibleAnnotationsAttribute());
+    changedCodePrinter.visitRuntimeVisibleAnnotationsAttribute(
+        clazz, (Method) method, new RuntimeVisibleAnnotationsAttribute());
 
     // Assert
-    verify(attributeVisitor).visitRuntimeVisibleAnnotationsAttribute(isA(Clazz.class), isA(Method.class),
-        isA(RuntimeVisibleAnnotationsAttribute.class));
+    verify(attributeVisitor)
+        .visitRuntimeVisibleAnnotationsAttribute(
+            isA(Clazz.class), isA(Method.class), isA(RuntimeVisibleAnnotationsAttribute.class));
   }
 
   /**
-   * Test {@link ChangedCodePrinter#visitRuntimeVisibleAnnotationsAttribute(Clazz, RuntimeVisibleAnnotationsAttribute)} with {@code clazz}, {@code runtimeVisibleAnnotationsAttribute}.
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitRuntimeVisibleAnnotationsAttribute(Clazz, RuntimeVisibleAnnotationsAttribute)}
+   * Test {@link ChangedCodePrinter#visitRuntimeVisibleAnnotationsAttribute(Clazz,
+   * RuntimeVisibleAnnotationsAttribute)} with {@code clazz}, {@code
+   * runtimeVisibleAnnotationsAttribute}.
+   *
+   * <p>Method under test: {@link ChangedCodePrinter#visitRuntimeVisibleAnnotationsAttribute(Clazz,
+   * RuntimeVisibleAnnotationsAttribute)}
    */
   @Test
-  @DisplayName("Test visitRuntimeVisibleAnnotationsAttribute(Clazz, RuntimeVisibleAnnotationsAttribute) with 'clazz', 'runtimeVisibleAnnotationsAttribute'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitRuntimeVisibleAnnotationsAttribute(Clazz, RuntimeVisibleAnnotationsAttribute) with 'clazz', 'runtimeVisibleAnnotationsAttribute'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitRuntimeVisibleAnnotationsAttribute(proguard.classfile.Clazz, proguard.classfile.attribute.annotation.RuntimeVisibleAnnotationsAttribute)"})
+    "void ChangedCodePrinter.visitRuntimeVisibleAnnotationsAttribute(Clazz, RuntimeVisibleAnnotationsAttribute)"
+  })
   void testVisitRuntimeVisibleAnnotationsAttributeWithClazzRuntimeVisibleAnnotationsAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor)
-        .visitRuntimeVisibleAnnotationsAttribute(Mockito.<Clazz>any(),
-            Mockito.<RuntimeVisibleAnnotationsAttribute>any());
+    doNothing()
+        .when(attributeVisitor)
+        .visitRuntimeVisibleAnnotationsAttribute(
+            Mockito.<Clazz>any(), Mockito.<RuntimeVisibleAnnotationsAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
 
     // Act
-    changedCodePrinter.visitRuntimeVisibleAnnotationsAttribute(clazz, new RuntimeVisibleAnnotationsAttribute());
+    changedCodePrinter.visitRuntimeVisibleAnnotationsAttribute(
+        clazz, new RuntimeVisibleAnnotationsAttribute());
 
     // Assert
-    verify(attributeVisitor).visitRuntimeVisibleAnnotationsAttribute(isA(Clazz.class),
-        isA(RuntimeVisibleAnnotationsAttribute.class));
+    verify(attributeVisitor)
+        .visitRuntimeVisibleAnnotationsAttribute(
+            isA(Clazz.class), isA(RuntimeVisibleAnnotationsAttribute.class));
   }
 
   /**
-   * Test {@link ChangedCodePrinter#visitRuntimeInvisibleAnnotationsAttribute(Clazz, Field, RuntimeInvisibleAnnotationsAttribute)} with {@code clazz}, {@code field}, {@code runtimeInvisibleAnnotationsAttribute}.
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitRuntimeInvisibleAnnotationsAttribute(Clazz, Field, RuntimeInvisibleAnnotationsAttribute)}
+   * Test {@link ChangedCodePrinter#visitRuntimeInvisibleAnnotationsAttribute(Clazz, Field,
+   * RuntimeInvisibleAnnotationsAttribute)} with {@code clazz}, {@code field}, {@code
+   * runtimeInvisibleAnnotationsAttribute}.
+   *
+   * <p>Method under test: {@link
+   * ChangedCodePrinter#visitRuntimeInvisibleAnnotationsAttribute(Clazz, Field,
+   * RuntimeInvisibleAnnotationsAttribute)}
    */
   @Test
-  @DisplayName("Test visitRuntimeInvisibleAnnotationsAttribute(Clazz, Field, RuntimeInvisibleAnnotationsAttribute) with 'clazz', 'field', 'runtimeInvisibleAnnotationsAttribute'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitRuntimeInvisibleAnnotationsAttribute(Clazz, Field, RuntimeInvisibleAnnotationsAttribute) with 'clazz', 'field', 'runtimeInvisibleAnnotationsAttribute'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitRuntimeInvisibleAnnotationsAttribute(proguard.classfile.Clazz, proguard.classfile.Field, proguard.classfile.attribute.annotation.RuntimeInvisibleAnnotationsAttribute)"})
-  void testVisitRuntimeInvisibleAnnotationsAttributeWithClazzFieldRuntimeInvisibleAnnotationsAttribute() {
+    "void ChangedCodePrinter.visitRuntimeInvisibleAnnotationsAttribute(Clazz, Field, RuntimeInvisibleAnnotationsAttribute)"
+  })
+  void
+      testVisitRuntimeInvisibleAnnotationsAttributeWithClazzFieldRuntimeInvisibleAnnotationsAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor)
-        .visitRuntimeInvisibleAnnotationsAttribute(Mockito.<Clazz>any(), Mockito.<Field>any(),
+    doNothing()
+        .when(attributeVisitor)
+        .visitRuntimeInvisibleAnnotationsAttribute(
+            Mockito.<Clazz>any(),
+            Mockito.<Field>any(),
             Mockito.<RuntimeInvisibleAnnotationsAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
     LibraryField field = new LibraryField(1, "Name", "Descriptor");
 
     // Act
-    changedCodePrinter.visitRuntimeInvisibleAnnotationsAttribute(clazz, (Field) field,
-        new RuntimeInvisibleAnnotationsAttribute());
+    changedCodePrinter.visitRuntimeInvisibleAnnotationsAttribute(
+        clazz, (Field) field, new RuntimeInvisibleAnnotationsAttribute());
 
     // Assert
-    verify(attributeVisitor).visitRuntimeInvisibleAnnotationsAttribute(isA(Clazz.class), isA(Field.class),
-        isA(RuntimeInvisibleAnnotationsAttribute.class));
+    verify(attributeVisitor)
+        .visitRuntimeInvisibleAnnotationsAttribute(
+            isA(Clazz.class), isA(Field.class), isA(RuntimeInvisibleAnnotationsAttribute.class));
   }
 
   /**
-   * Test {@link ChangedCodePrinter#visitRuntimeInvisibleAnnotationsAttribute(Clazz, Method, RuntimeInvisibleAnnotationsAttribute)} with {@code clazz}, {@code method}, {@code runtimeInvisibleAnnotationsAttribute}.
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitRuntimeInvisibleAnnotationsAttribute(Clazz, Method, RuntimeInvisibleAnnotationsAttribute)}
+   * Test {@link ChangedCodePrinter#visitRuntimeInvisibleAnnotationsAttribute(Clazz, Method,
+   * RuntimeInvisibleAnnotationsAttribute)} with {@code clazz}, {@code method}, {@code
+   * runtimeInvisibleAnnotationsAttribute}.
+   *
+   * <p>Method under test: {@link
+   * ChangedCodePrinter#visitRuntimeInvisibleAnnotationsAttribute(Clazz, Method,
+   * RuntimeInvisibleAnnotationsAttribute)}
    */
   @Test
-  @DisplayName("Test visitRuntimeInvisibleAnnotationsAttribute(Clazz, Method, RuntimeInvisibleAnnotationsAttribute) with 'clazz', 'method', 'runtimeInvisibleAnnotationsAttribute'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitRuntimeInvisibleAnnotationsAttribute(Clazz, Method, RuntimeInvisibleAnnotationsAttribute) with 'clazz', 'method', 'runtimeInvisibleAnnotationsAttribute'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitRuntimeInvisibleAnnotationsAttribute(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.annotation.RuntimeInvisibleAnnotationsAttribute)"})
-  void testVisitRuntimeInvisibleAnnotationsAttributeWithClazzMethodRuntimeInvisibleAnnotationsAttribute() {
+    "void ChangedCodePrinter.visitRuntimeInvisibleAnnotationsAttribute(Clazz, Method, RuntimeInvisibleAnnotationsAttribute)"
+  })
+  void
+      testVisitRuntimeInvisibleAnnotationsAttributeWithClazzMethodRuntimeInvisibleAnnotationsAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor)
-        .visitRuntimeInvisibleAnnotationsAttribute(Mockito.<Clazz>any(), Mockito.<Method>any(),
+    doNothing()
+        .when(attributeVisitor)
+        .visitRuntimeInvisibleAnnotationsAttribute(
+            Mockito.<Clazz>any(),
+            Mockito.<Method>any(),
             Mockito.<RuntimeInvisibleAnnotationsAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
 
     // Act
-    changedCodePrinter.visitRuntimeInvisibleAnnotationsAttribute(clazz, (Method) method,
-        new RuntimeInvisibleAnnotationsAttribute());
+    changedCodePrinter.visitRuntimeInvisibleAnnotationsAttribute(
+        clazz, (Method) method, new RuntimeInvisibleAnnotationsAttribute());
 
     // Assert
-    verify(attributeVisitor).visitRuntimeInvisibleAnnotationsAttribute(isA(Clazz.class), isA(Method.class),
-        isA(RuntimeInvisibleAnnotationsAttribute.class));
+    verify(attributeVisitor)
+        .visitRuntimeInvisibleAnnotationsAttribute(
+            isA(Clazz.class), isA(Method.class), isA(RuntimeInvisibleAnnotationsAttribute.class));
   }
 
   /**
-   * Test {@link ChangedCodePrinter#visitRuntimeInvisibleAnnotationsAttribute(Clazz, RuntimeInvisibleAnnotationsAttribute)} with {@code clazz}, {@code runtimeInvisibleAnnotationsAttribute}.
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitRuntimeInvisibleAnnotationsAttribute(Clazz, RuntimeInvisibleAnnotationsAttribute)}
+   * Test {@link ChangedCodePrinter#visitRuntimeInvisibleAnnotationsAttribute(Clazz,
+   * RuntimeInvisibleAnnotationsAttribute)} with {@code clazz}, {@code
+   * runtimeInvisibleAnnotationsAttribute}.
+   *
+   * <p>Method under test: {@link
+   * ChangedCodePrinter#visitRuntimeInvisibleAnnotationsAttribute(Clazz,
+   * RuntimeInvisibleAnnotationsAttribute)}
    */
   @Test
-  @DisplayName("Test visitRuntimeInvisibleAnnotationsAttribute(Clazz, RuntimeInvisibleAnnotationsAttribute) with 'clazz', 'runtimeInvisibleAnnotationsAttribute'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitRuntimeInvisibleAnnotationsAttribute(Clazz, RuntimeInvisibleAnnotationsAttribute) with 'clazz', 'runtimeInvisibleAnnotationsAttribute'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitRuntimeInvisibleAnnotationsAttribute(proguard.classfile.Clazz, proguard.classfile.attribute.annotation.RuntimeInvisibleAnnotationsAttribute)"})
-  void testVisitRuntimeInvisibleAnnotationsAttributeWithClazzRuntimeInvisibleAnnotationsAttribute() {
+    "void ChangedCodePrinter.visitRuntimeInvisibleAnnotationsAttribute(Clazz, RuntimeInvisibleAnnotationsAttribute)"
+  })
+  void
+      testVisitRuntimeInvisibleAnnotationsAttributeWithClazzRuntimeInvisibleAnnotationsAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor)
-        .visitRuntimeInvisibleAnnotationsAttribute(Mockito.<Clazz>any(),
-            Mockito.<RuntimeInvisibleAnnotationsAttribute>any());
+    doNothing()
+        .when(attributeVisitor)
+        .visitRuntimeInvisibleAnnotationsAttribute(
+            Mockito.<Clazz>any(), Mockito.<RuntimeInvisibleAnnotationsAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
 
     // Act
-    changedCodePrinter.visitRuntimeInvisibleAnnotationsAttribute(clazz, new RuntimeInvisibleAnnotationsAttribute());
+    changedCodePrinter.visitRuntimeInvisibleAnnotationsAttribute(
+        clazz, new RuntimeInvisibleAnnotationsAttribute());
 
     // Assert
-    verify(attributeVisitor).visitRuntimeInvisibleAnnotationsAttribute(isA(Clazz.class),
-        isA(RuntimeInvisibleAnnotationsAttribute.class));
+    verify(attributeVisitor)
+        .visitRuntimeInvisibleAnnotationsAttribute(
+            isA(Clazz.class), isA(RuntimeInvisibleAnnotationsAttribute.class));
   }
 
   /**
-   * Test {@link ChangedCodePrinter#visitRuntimeVisibleParameterAnnotationsAttribute(Clazz, Method, RuntimeVisibleParameterAnnotationsAttribute)}.
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitRuntimeVisibleParameterAnnotationsAttribute(Clazz, Method, RuntimeVisibleParameterAnnotationsAttribute)}
+   * Test {@link ChangedCodePrinter#visitRuntimeVisibleParameterAnnotationsAttribute(Clazz, Method,
+   * RuntimeVisibleParameterAnnotationsAttribute)}.
+   *
+   * <p>Method under test: {@link
+   * ChangedCodePrinter#visitRuntimeVisibleParameterAnnotationsAttribute(Clazz, Method,
+   * RuntimeVisibleParameterAnnotationsAttribute)}
    */
   @Test
-  @DisplayName("Test visitRuntimeVisibleParameterAnnotationsAttribute(Clazz, Method, RuntimeVisibleParameterAnnotationsAttribute)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitRuntimeVisibleParameterAnnotationsAttribute(Clazz, Method, RuntimeVisibleParameterAnnotationsAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitRuntimeVisibleParameterAnnotationsAttribute(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.annotation.RuntimeVisibleParameterAnnotationsAttribute)"})
+    "void ChangedCodePrinter.visitRuntimeVisibleParameterAnnotationsAttribute(Clazz, Method, RuntimeVisibleParameterAnnotationsAttribute)"
+  })
   void testVisitRuntimeVisibleParameterAnnotationsAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor)
-        .visitRuntimeVisibleParameterAnnotationsAttribute(Mockito.<Clazz>any(), Mockito.<Method>any(),
+    doNothing()
+        .when(attributeVisitor)
+        .visitRuntimeVisibleParameterAnnotationsAttribute(
+            Mockito.<Clazz>any(),
+            Mockito.<Method>any(),
             Mockito.<RuntimeVisibleParameterAnnotationsAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
 
     // Act
-    changedCodePrinter.visitRuntimeVisibleParameterAnnotationsAttribute(clazz, method,
-        new RuntimeVisibleParameterAnnotationsAttribute());
+    changedCodePrinter.visitRuntimeVisibleParameterAnnotationsAttribute(
+        clazz, method, new RuntimeVisibleParameterAnnotationsAttribute());
 
     // Assert
-    verify(attributeVisitor).visitRuntimeVisibleParameterAnnotationsAttribute(isA(Clazz.class), isA(Method.class),
-        isA(RuntimeVisibleParameterAnnotationsAttribute.class));
+    verify(attributeVisitor)
+        .visitRuntimeVisibleParameterAnnotationsAttribute(
+            isA(Clazz.class),
+            isA(Method.class),
+            isA(RuntimeVisibleParameterAnnotationsAttribute.class));
   }
 
   /**
-   * Test {@link ChangedCodePrinter#visitRuntimeInvisibleParameterAnnotationsAttribute(Clazz, Method, RuntimeInvisibleParameterAnnotationsAttribute)}.
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitRuntimeInvisibleParameterAnnotationsAttribute(Clazz, Method, RuntimeInvisibleParameterAnnotationsAttribute)}
+   * Test {@link ChangedCodePrinter#visitRuntimeInvisibleParameterAnnotationsAttribute(Clazz,
+   * Method, RuntimeInvisibleParameterAnnotationsAttribute)}.
+   *
+   * <p>Method under test: {@link
+   * ChangedCodePrinter#visitRuntimeInvisibleParameterAnnotationsAttribute(Clazz, Method,
+   * RuntimeInvisibleParameterAnnotationsAttribute)}
    */
   @Test
-  @DisplayName("Test visitRuntimeInvisibleParameterAnnotationsAttribute(Clazz, Method, RuntimeInvisibleParameterAnnotationsAttribute)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitRuntimeInvisibleParameterAnnotationsAttribute(Clazz, Method, RuntimeInvisibleParameterAnnotationsAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitRuntimeInvisibleParameterAnnotationsAttribute(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.annotation.RuntimeInvisibleParameterAnnotationsAttribute)"})
+    "void ChangedCodePrinter.visitRuntimeInvisibleParameterAnnotationsAttribute(Clazz, Method, RuntimeInvisibleParameterAnnotationsAttribute)"
+  })
   void testVisitRuntimeInvisibleParameterAnnotationsAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor)
-        .visitRuntimeInvisibleParameterAnnotationsAttribute(Mockito.<Clazz>any(), Mockito.<Method>any(),
+    doNothing()
+        .when(attributeVisitor)
+        .visitRuntimeInvisibleParameterAnnotationsAttribute(
+            Mockito.<Clazz>any(),
+            Mockito.<Method>any(),
             Mockito.<RuntimeInvisibleParameterAnnotationsAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
 
     // Act
-    changedCodePrinter.visitRuntimeInvisibleParameterAnnotationsAttribute(clazz, method,
-        new RuntimeInvisibleParameterAnnotationsAttribute());
+    changedCodePrinter.visitRuntimeInvisibleParameterAnnotationsAttribute(
+        clazz, method, new RuntimeInvisibleParameterAnnotationsAttribute());
 
     // Assert
-    verify(attributeVisitor).visitRuntimeInvisibleParameterAnnotationsAttribute(isA(Clazz.class), isA(Method.class),
-        isA(RuntimeInvisibleParameterAnnotationsAttribute.class));
+    verify(attributeVisitor)
+        .visitRuntimeInvisibleParameterAnnotationsAttribute(
+            isA(Clazz.class),
+            isA(Method.class),
+            isA(RuntimeInvisibleParameterAnnotationsAttribute.class));
   }
 
   /**
-   * Test {@link ChangedCodePrinter#visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, Field, RuntimeVisibleTypeAnnotationsAttribute)} with {@code clazz}, {@code field}, {@code runtimeVisibleTypeAnnotationsAttribute}.
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, Field, RuntimeVisibleTypeAnnotationsAttribute)}
+   * Test {@link ChangedCodePrinter#visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, Field,
+   * RuntimeVisibleTypeAnnotationsAttribute)} with {@code clazz}, {@code field}, {@code
+   * runtimeVisibleTypeAnnotationsAttribute}.
+   *
+   * <p>Method under test: {@link
+   * ChangedCodePrinter#visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, Field,
+   * RuntimeVisibleTypeAnnotationsAttribute)}
    */
   @Test
-  @DisplayName("Test visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, Field, RuntimeVisibleTypeAnnotationsAttribute) with 'clazz', 'field', 'runtimeVisibleTypeAnnotationsAttribute'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, Field, RuntimeVisibleTypeAnnotationsAttribute) with 'clazz', 'field', 'runtimeVisibleTypeAnnotationsAttribute'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitRuntimeVisibleTypeAnnotationsAttribute(proguard.classfile.Clazz, proguard.classfile.Field, proguard.classfile.attribute.annotation.RuntimeVisibleTypeAnnotationsAttribute)"})
-  void testVisitRuntimeVisibleTypeAnnotationsAttributeWithClazzFieldRuntimeVisibleTypeAnnotationsAttribute() {
+    "void ChangedCodePrinter.visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, Field, RuntimeVisibleTypeAnnotationsAttribute)"
+  })
+  void
+      testVisitRuntimeVisibleTypeAnnotationsAttributeWithClazzFieldRuntimeVisibleTypeAnnotationsAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor)
-        .visitRuntimeVisibleTypeAnnotationsAttribute(Mockito.<Clazz>any(), Mockito.<Field>any(),
+    doNothing()
+        .when(attributeVisitor)
+        .visitRuntimeVisibleTypeAnnotationsAttribute(
+            Mockito.<Clazz>any(),
+            Mockito.<Field>any(),
             Mockito.<RuntimeVisibleTypeAnnotationsAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
     LibraryField field = new LibraryField(1, "Name", "Descriptor");
 
     // Act
-    changedCodePrinter.visitRuntimeVisibleTypeAnnotationsAttribute(clazz, (Field) field,
-        new RuntimeVisibleTypeAnnotationsAttribute());
+    changedCodePrinter.visitRuntimeVisibleTypeAnnotationsAttribute(
+        clazz, (Field) field, new RuntimeVisibleTypeAnnotationsAttribute());
 
     // Assert
-    verify(attributeVisitor).visitRuntimeVisibleTypeAnnotationsAttribute(isA(Clazz.class), isA(Field.class),
-        isA(RuntimeVisibleTypeAnnotationsAttribute.class));
+    verify(attributeVisitor)
+        .visitRuntimeVisibleTypeAnnotationsAttribute(
+            isA(Clazz.class), isA(Field.class), isA(RuntimeVisibleTypeAnnotationsAttribute.class));
   }
 
   /**
-   * Test {@link ChangedCodePrinter#visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, Method, CodeAttribute, RuntimeVisibleTypeAnnotationsAttribute)} with {@code clazz}, {@code method}, {@code codeAttribute}, {@code runtimeVisibleTypeAnnotationsAttribute}.
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, Method, CodeAttribute, RuntimeVisibleTypeAnnotationsAttribute)}
+   * Test {@link ChangedCodePrinter#visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, Method,
+   * CodeAttribute, RuntimeVisibleTypeAnnotationsAttribute)} with {@code clazz}, {@code method},
+   * {@code codeAttribute}, {@code runtimeVisibleTypeAnnotationsAttribute}.
+   *
+   * <p>Method under test: {@link
+   * ChangedCodePrinter#visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, Method, CodeAttribute,
+   * RuntimeVisibleTypeAnnotationsAttribute)}
    */
   @Test
-  @DisplayName("Test visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, Method, CodeAttribute, RuntimeVisibleTypeAnnotationsAttribute) with 'clazz', 'method', 'codeAttribute', 'runtimeVisibleTypeAnnotationsAttribute'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, Method, CodeAttribute, RuntimeVisibleTypeAnnotationsAttribute) with 'clazz', 'method', 'codeAttribute', 'runtimeVisibleTypeAnnotationsAttribute'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitRuntimeVisibleTypeAnnotationsAttribute(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.CodeAttribute, proguard.classfile.attribute.annotation.RuntimeVisibleTypeAnnotationsAttribute)"})
-  void testVisitRuntimeVisibleTypeAnnotationsAttributeWithClazzMethodCodeAttributeRuntimeVisibleTypeAnnotationsAttribute() {
+    "void ChangedCodePrinter.visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, Method, CodeAttribute, RuntimeVisibleTypeAnnotationsAttribute)"
+  })
+  void
+      testVisitRuntimeVisibleTypeAnnotationsAttributeWithClazzMethodCodeAttributeRuntimeVisibleTypeAnnotationsAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor)
-        .visitRuntimeVisibleTypeAnnotationsAttribute(Mockito.<Clazz>any(), Mockito.<Method>any(),
-            Mockito.<CodeAttribute>any(), Mockito.<RuntimeVisibleTypeAnnotationsAttribute>any());
+    doNothing()
+        .when(attributeVisitor)
+        .visitRuntimeVisibleTypeAnnotationsAttribute(
+            Mockito.<Clazz>any(),
+            Mockito.<Method>any(),
+            Mockito.<CodeAttribute>any(),
+            Mockito.<RuntimeVisibleTypeAnnotationsAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
@@ -1176,115 +1555,168 @@ class ChangedCodePrinterDiffblueTest {
     CodeAttribute codeAttribute = new CodeAttribute(1);
 
     // Act
-    changedCodePrinter.visitRuntimeVisibleTypeAnnotationsAttribute(clazz, method, codeAttribute,
-        new RuntimeVisibleTypeAnnotationsAttribute());
+    changedCodePrinter.visitRuntimeVisibleTypeAnnotationsAttribute(
+        clazz, method, codeAttribute, new RuntimeVisibleTypeAnnotationsAttribute());
 
     // Assert
-    verify(attributeVisitor).visitRuntimeVisibleTypeAnnotationsAttribute(isA(Clazz.class), isA(Method.class),
-        isA(CodeAttribute.class), isA(RuntimeVisibleTypeAnnotationsAttribute.class));
+    verify(attributeVisitor)
+        .visitRuntimeVisibleTypeAnnotationsAttribute(
+            isA(Clazz.class),
+            isA(Method.class),
+            isA(CodeAttribute.class),
+            isA(RuntimeVisibleTypeAnnotationsAttribute.class));
   }
 
   /**
-   * Test {@link ChangedCodePrinter#visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, Method, RuntimeVisibleTypeAnnotationsAttribute)} with {@code clazz}, {@code method}, {@code runtimeVisibleTypeAnnotationsAttribute}.
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, Method, RuntimeVisibleTypeAnnotationsAttribute)}
+   * Test {@link ChangedCodePrinter#visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, Method,
+   * RuntimeVisibleTypeAnnotationsAttribute)} with {@code clazz}, {@code method}, {@code
+   * runtimeVisibleTypeAnnotationsAttribute}.
+   *
+   * <p>Method under test: {@link
+   * ChangedCodePrinter#visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, Method,
+   * RuntimeVisibleTypeAnnotationsAttribute)}
    */
   @Test
-  @DisplayName("Test visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, Method, RuntimeVisibleTypeAnnotationsAttribute) with 'clazz', 'method', 'runtimeVisibleTypeAnnotationsAttribute'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, Method, RuntimeVisibleTypeAnnotationsAttribute) with 'clazz', 'method', 'runtimeVisibleTypeAnnotationsAttribute'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitRuntimeVisibleTypeAnnotationsAttribute(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.annotation.RuntimeVisibleTypeAnnotationsAttribute)"})
-  void testVisitRuntimeVisibleTypeAnnotationsAttributeWithClazzMethodRuntimeVisibleTypeAnnotationsAttribute() {
+    "void ChangedCodePrinter.visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, Method, RuntimeVisibleTypeAnnotationsAttribute)"
+  })
+  void
+      testVisitRuntimeVisibleTypeAnnotationsAttributeWithClazzMethodRuntimeVisibleTypeAnnotationsAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor)
-        .visitRuntimeVisibleTypeAnnotationsAttribute(Mockito.<Clazz>any(), Mockito.<Method>any(),
+    doNothing()
+        .when(attributeVisitor)
+        .visitRuntimeVisibleTypeAnnotationsAttribute(
+            Mockito.<Clazz>any(),
+            Mockito.<Method>any(),
             Mockito.<RuntimeVisibleTypeAnnotationsAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
 
     // Act
-    changedCodePrinter.visitRuntimeVisibleTypeAnnotationsAttribute(clazz, (Method) method,
-        new RuntimeVisibleTypeAnnotationsAttribute());
+    changedCodePrinter.visitRuntimeVisibleTypeAnnotationsAttribute(
+        clazz, (Method) method, new RuntimeVisibleTypeAnnotationsAttribute());
 
     // Assert
-    verify(attributeVisitor).visitRuntimeVisibleTypeAnnotationsAttribute(isA(Clazz.class), isA(Method.class),
-        isA(RuntimeVisibleTypeAnnotationsAttribute.class));
+    verify(attributeVisitor)
+        .visitRuntimeVisibleTypeAnnotationsAttribute(
+            isA(Clazz.class), isA(Method.class), isA(RuntimeVisibleTypeAnnotationsAttribute.class));
   }
 
   /**
-   * Test {@link ChangedCodePrinter#visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, RuntimeVisibleTypeAnnotationsAttribute)} with {@code clazz}, {@code runtimeVisibleTypeAnnotationsAttribute}.
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, RuntimeVisibleTypeAnnotationsAttribute)}
+   * Test {@link ChangedCodePrinter#visitRuntimeVisibleTypeAnnotationsAttribute(Clazz,
+   * RuntimeVisibleTypeAnnotationsAttribute)} with {@code clazz}, {@code
+   * runtimeVisibleTypeAnnotationsAttribute}.
+   *
+   * <p>Method under test: {@link
+   * ChangedCodePrinter#visitRuntimeVisibleTypeAnnotationsAttribute(Clazz,
+   * RuntimeVisibleTypeAnnotationsAttribute)}
    */
   @Test
-  @DisplayName("Test visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, RuntimeVisibleTypeAnnotationsAttribute) with 'clazz', 'runtimeVisibleTypeAnnotationsAttribute'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, RuntimeVisibleTypeAnnotationsAttribute) with 'clazz', 'runtimeVisibleTypeAnnotationsAttribute'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitRuntimeVisibleTypeAnnotationsAttribute(proguard.classfile.Clazz, proguard.classfile.attribute.annotation.RuntimeVisibleTypeAnnotationsAttribute)"})
-  void testVisitRuntimeVisibleTypeAnnotationsAttributeWithClazzRuntimeVisibleTypeAnnotationsAttribute() {
+    "void ChangedCodePrinter.visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, RuntimeVisibleTypeAnnotationsAttribute)"
+  })
+  void
+      testVisitRuntimeVisibleTypeAnnotationsAttributeWithClazzRuntimeVisibleTypeAnnotationsAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor)
-        .visitRuntimeVisibleTypeAnnotationsAttribute(Mockito.<Clazz>any(),
-            Mockito.<RuntimeVisibleTypeAnnotationsAttribute>any());
+    doNothing()
+        .when(attributeVisitor)
+        .visitRuntimeVisibleTypeAnnotationsAttribute(
+            Mockito.<Clazz>any(), Mockito.<RuntimeVisibleTypeAnnotationsAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
 
     // Act
-    changedCodePrinter.visitRuntimeVisibleTypeAnnotationsAttribute(clazz, new RuntimeVisibleTypeAnnotationsAttribute());
+    changedCodePrinter.visitRuntimeVisibleTypeAnnotationsAttribute(
+        clazz, new RuntimeVisibleTypeAnnotationsAttribute());
 
     // Assert
-    verify(attributeVisitor).visitRuntimeVisibleTypeAnnotationsAttribute(isA(Clazz.class),
-        isA(RuntimeVisibleTypeAnnotationsAttribute.class));
+    verify(attributeVisitor)
+        .visitRuntimeVisibleTypeAnnotationsAttribute(
+            isA(Clazz.class), isA(RuntimeVisibleTypeAnnotationsAttribute.class));
   }
 
   /**
-   * Test {@link ChangedCodePrinter#visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, Field, RuntimeInvisibleTypeAnnotationsAttribute)} with {@code clazz}, {@code field}, {@code runtimeInvisibleTypeAnnotationsAttribute}.
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, Field, RuntimeInvisibleTypeAnnotationsAttribute)}
+   * Test {@link ChangedCodePrinter#visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, Field,
+   * RuntimeInvisibleTypeAnnotationsAttribute)} with {@code clazz}, {@code field}, {@code
+   * runtimeInvisibleTypeAnnotationsAttribute}.
+   *
+   * <p>Method under test: {@link
+   * ChangedCodePrinter#visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, Field,
+   * RuntimeInvisibleTypeAnnotationsAttribute)}
    */
   @Test
-  @DisplayName("Test visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, Field, RuntimeInvisibleTypeAnnotationsAttribute) with 'clazz', 'field', 'runtimeInvisibleTypeAnnotationsAttribute'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, Field, RuntimeInvisibleTypeAnnotationsAttribute) with 'clazz', 'field', 'runtimeInvisibleTypeAnnotationsAttribute'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitRuntimeInvisibleTypeAnnotationsAttribute(proguard.classfile.Clazz, proguard.classfile.Field, proguard.classfile.attribute.annotation.RuntimeInvisibleTypeAnnotationsAttribute)"})
-  void testVisitRuntimeInvisibleTypeAnnotationsAttributeWithClazzFieldRuntimeInvisibleTypeAnnotationsAttribute() {
+    "void ChangedCodePrinter.visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, Field, RuntimeInvisibleTypeAnnotationsAttribute)"
+  })
+  void
+      testVisitRuntimeInvisibleTypeAnnotationsAttributeWithClazzFieldRuntimeInvisibleTypeAnnotationsAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor)
-        .visitRuntimeInvisibleTypeAnnotationsAttribute(Mockito.<Clazz>any(), Mockito.<Field>any(),
+    doNothing()
+        .when(attributeVisitor)
+        .visitRuntimeInvisibleTypeAnnotationsAttribute(
+            Mockito.<Clazz>any(),
+            Mockito.<Field>any(),
             Mockito.<RuntimeInvisibleTypeAnnotationsAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
     LibraryField field = new LibraryField(1, "Name", "Descriptor");
 
     // Act
-    changedCodePrinter.visitRuntimeInvisibleTypeAnnotationsAttribute(clazz, (Field) field,
-        new RuntimeInvisibleTypeAnnotationsAttribute());
+    changedCodePrinter.visitRuntimeInvisibleTypeAnnotationsAttribute(
+        clazz, (Field) field, new RuntimeInvisibleTypeAnnotationsAttribute());
 
     // Assert
-    verify(attributeVisitor).visitRuntimeInvisibleTypeAnnotationsAttribute(isA(Clazz.class), isA(Field.class),
-        isA(RuntimeInvisibleTypeAnnotationsAttribute.class));
+    verify(attributeVisitor)
+        .visitRuntimeInvisibleTypeAnnotationsAttribute(
+            isA(Clazz.class),
+            isA(Field.class),
+            isA(RuntimeInvisibleTypeAnnotationsAttribute.class));
   }
 
   /**
-   * Test {@link ChangedCodePrinter#visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, Method, CodeAttribute, RuntimeInvisibleTypeAnnotationsAttribute)} with {@code clazz}, {@code method}, {@code codeAttribute}, {@code runtimeInvisibleTypeAnnotationsAttribute}.
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, Method, CodeAttribute, RuntimeInvisibleTypeAnnotationsAttribute)}
+   * Test {@link ChangedCodePrinter#visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, Method,
+   * CodeAttribute, RuntimeInvisibleTypeAnnotationsAttribute)} with {@code clazz}, {@code method},
+   * {@code codeAttribute}, {@code runtimeInvisibleTypeAnnotationsAttribute}.
+   *
+   * <p>Method under test: {@link
+   * ChangedCodePrinter#visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, Method, CodeAttribute,
+   * RuntimeInvisibleTypeAnnotationsAttribute)}
    */
   @Test
-  @DisplayName("Test visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, Method, CodeAttribute, RuntimeInvisibleTypeAnnotationsAttribute) with 'clazz', 'method', 'codeAttribute', 'runtimeInvisibleTypeAnnotationsAttribute'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, Method, CodeAttribute, RuntimeInvisibleTypeAnnotationsAttribute) with 'clazz', 'method', 'codeAttribute', 'runtimeInvisibleTypeAnnotationsAttribute'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitRuntimeInvisibleTypeAnnotationsAttribute(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.CodeAttribute, proguard.classfile.attribute.annotation.RuntimeInvisibleTypeAnnotationsAttribute)"})
-  void testVisitRuntimeInvisibleTypeAnnotationsAttributeWithClazzMethodCodeAttributeRuntimeInvisibleTypeAnnotationsAttribute() {
+    "void ChangedCodePrinter.visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, Method, CodeAttribute, RuntimeInvisibleTypeAnnotationsAttribute)"
+  })
+  void
+      testVisitRuntimeInvisibleTypeAnnotationsAttributeWithClazzMethodCodeAttributeRuntimeInvisibleTypeAnnotationsAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor)
-        .visitRuntimeInvisibleTypeAnnotationsAttribute(Mockito.<Clazz>any(), Mockito.<Method>any(),
-            Mockito.<CodeAttribute>any(), Mockito.<RuntimeInvisibleTypeAnnotationsAttribute>any());
+    doNothing()
+        .when(attributeVisitor)
+        .visitRuntimeInvisibleTypeAnnotationsAttribute(
+            Mockito.<Clazz>any(),
+            Mockito.<Method>any(),
+            Mockito.<CodeAttribute>any(),
+            Mockito.<RuntimeInvisibleTypeAnnotationsAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
@@ -1292,99 +1724,137 @@ class ChangedCodePrinterDiffblueTest {
     CodeAttribute codeAttribute = new CodeAttribute(1);
 
     // Act
-    changedCodePrinter.visitRuntimeInvisibleTypeAnnotationsAttribute(clazz, method, codeAttribute,
-        new RuntimeInvisibleTypeAnnotationsAttribute());
+    changedCodePrinter.visitRuntimeInvisibleTypeAnnotationsAttribute(
+        clazz, method, codeAttribute, new RuntimeInvisibleTypeAnnotationsAttribute());
 
     // Assert
-    verify(attributeVisitor).visitRuntimeInvisibleTypeAnnotationsAttribute(isA(Clazz.class), isA(Method.class),
-        isA(CodeAttribute.class), isA(RuntimeInvisibleTypeAnnotationsAttribute.class));
+    verify(attributeVisitor)
+        .visitRuntimeInvisibleTypeAnnotationsAttribute(
+            isA(Clazz.class),
+            isA(Method.class),
+            isA(CodeAttribute.class),
+            isA(RuntimeInvisibleTypeAnnotationsAttribute.class));
   }
 
   /**
-   * Test {@link ChangedCodePrinter#visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, Method, RuntimeInvisibleTypeAnnotationsAttribute)} with {@code clazz}, {@code method}, {@code runtimeInvisibleTypeAnnotationsAttribute}.
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, Method, RuntimeInvisibleTypeAnnotationsAttribute)}
+   * Test {@link ChangedCodePrinter#visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, Method,
+   * RuntimeInvisibleTypeAnnotationsAttribute)} with {@code clazz}, {@code method}, {@code
+   * runtimeInvisibleTypeAnnotationsAttribute}.
+   *
+   * <p>Method under test: {@link
+   * ChangedCodePrinter#visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, Method,
+   * RuntimeInvisibleTypeAnnotationsAttribute)}
    */
   @Test
-  @DisplayName("Test visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, Method, RuntimeInvisibleTypeAnnotationsAttribute) with 'clazz', 'method', 'runtimeInvisibleTypeAnnotationsAttribute'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, Method, RuntimeInvisibleTypeAnnotationsAttribute) with 'clazz', 'method', 'runtimeInvisibleTypeAnnotationsAttribute'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitRuntimeInvisibleTypeAnnotationsAttribute(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.annotation.RuntimeInvisibleTypeAnnotationsAttribute)"})
-  void testVisitRuntimeInvisibleTypeAnnotationsAttributeWithClazzMethodRuntimeInvisibleTypeAnnotationsAttribute() {
+    "void ChangedCodePrinter.visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, Method, RuntimeInvisibleTypeAnnotationsAttribute)"
+  })
+  void
+      testVisitRuntimeInvisibleTypeAnnotationsAttributeWithClazzMethodRuntimeInvisibleTypeAnnotationsAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor)
-        .visitRuntimeInvisibleTypeAnnotationsAttribute(Mockito.<Clazz>any(), Mockito.<Method>any(),
+    doNothing()
+        .when(attributeVisitor)
+        .visitRuntimeInvisibleTypeAnnotationsAttribute(
+            Mockito.<Clazz>any(),
+            Mockito.<Method>any(),
             Mockito.<RuntimeInvisibleTypeAnnotationsAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
 
     // Act
-    changedCodePrinter.visitRuntimeInvisibleTypeAnnotationsAttribute(clazz, (Method) method,
-        new RuntimeInvisibleTypeAnnotationsAttribute());
+    changedCodePrinter.visitRuntimeInvisibleTypeAnnotationsAttribute(
+        clazz, (Method) method, new RuntimeInvisibleTypeAnnotationsAttribute());
 
     // Assert
-    verify(attributeVisitor).visitRuntimeInvisibleTypeAnnotationsAttribute(isA(Clazz.class), isA(Method.class),
-        isA(RuntimeInvisibleTypeAnnotationsAttribute.class));
+    verify(attributeVisitor)
+        .visitRuntimeInvisibleTypeAnnotationsAttribute(
+            isA(Clazz.class),
+            isA(Method.class),
+            isA(RuntimeInvisibleTypeAnnotationsAttribute.class));
   }
 
   /**
-   * Test {@link ChangedCodePrinter#visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, RuntimeInvisibleTypeAnnotationsAttribute)} with {@code clazz}, {@code runtimeInvisibleTypeAnnotationsAttribute}.
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, RuntimeInvisibleTypeAnnotationsAttribute)}
+   * Test {@link ChangedCodePrinter#visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz,
+   * RuntimeInvisibleTypeAnnotationsAttribute)} with {@code clazz}, {@code
+   * runtimeInvisibleTypeAnnotationsAttribute}.
+   *
+   * <p>Method under test: {@link
+   * ChangedCodePrinter#visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz,
+   * RuntimeInvisibleTypeAnnotationsAttribute)}
    */
   @Test
-  @DisplayName("Test visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, RuntimeInvisibleTypeAnnotationsAttribute) with 'clazz', 'runtimeInvisibleTypeAnnotationsAttribute'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, RuntimeInvisibleTypeAnnotationsAttribute) with 'clazz', 'runtimeInvisibleTypeAnnotationsAttribute'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitRuntimeInvisibleTypeAnnotationsAttribute(proguard.classfile.Clazz, proguard.classfile.attribute.annotation.RuntimeInvisibleTypeAnnotationsAttribute)"})
-  void testVisitRuntimeInvisibleTypeAnnotationsAttributeWithClazzRuntimeInvisibleTypeAnnotationsAttribute() {
+    "void ChangedCodePrinter.visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, RuntimeInvisibleTypeAnnotationsAttribute)"
+  })
+  void
+      testVisitRuntimeInvisibleTypeAnnotationsAttributeWithClazzRuntimeInvisibleTypeAnnotationsAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor)
-        .visitRuntimeInvisibleTypeAnnotationsAttribute(Mockito.<Clazz>any(),
-            Mockito.<RuntimeInvisibleTypeAnnotationsAttribute>any());
+    doNothing()
+        .when(attributeVisitor)
+        .visitRuntimeInvisibleTypeAnnotationsAttribute(
+            Mockito.<Clazz>any(), Mockito.<RuntimeInvisibleTypeAnnotationsAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
 
     // Act
-    changedCodePrinter.visitRuntimeInvisibleTypeAnnotationsAttribute(clazz,
-        new RuntimeInvisibleTypeAnnotationsAttribute());
+    changedCodePrinter.visitRuntimeInvisibleTypeAnnotationsAttribute(
+        clazz, new RuntimeInvisibleTypeAnnotationsAttribute());
 
     // Assert
-    verify(attributeVisitor).visitRuntimeInvisibleTypeAnnotationsAttribute(isA(Clazz.class),
-        isA(RuntimeInvisibleTypeAnnotationsAttribute.class));
+    verify(attributeVisitor)
+        .visitRuntimeInvisibleTypeAnnotationsAttribute(
+            isA(Clazz.class), isA(RuntimeInvisibleTypeAnnotationsAttribute.class));
   }
 
   /**
-   * Test {@link ChangedCodePrinter#visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)}.
+   * Test {@link ChangedCodePrinter#visitAnnotationDefaultAttribute(Clazz, Method,
+   * AnnotationDefaultAttribute)}.
+   *
    * <ul>
-   *   <li>Then calls {@link AttributeVisitor#visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)}.</li>
+   *   <li>Then calls {@link AllAttributeVisitor#visitAnnotationDefaultAttribute(Clazz, Method,
+   *       AnnotationDefaultAttribute)}.
    * </ul>
-   * <p>
-   * Method under test: {@link ChangedCodePrinter#visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)}
+   *
+   * <p>Method under test: {@link ChangedCodePrinter#visitAnnotationDefaultAttribute(Clazz, Method,
+   * AnnotationDefaultAttribute)}
    */
   @Test
-  @DisplayName("Test visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute); then calls visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute); then calls visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.ChangedCodePrinter.visitAnnotationDefaultAttribute(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.annotation.AnnotationDefaultAttribute)"})
+    "void ChangedCodePrinter.visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)"
+  })
   void testVisitAnnotationDefaultAttribute_thenCallsVisitAnnotationDefaultAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor)
-        .visitAnnotationDefaultAttribute(Mockito.<Clazz>any(), Mockito.<Method>any(),
-            Mockito.<AnnotationDefaultAttribute>any());
+    doNothing()
+        .when(attributeVisitor)
+        .visitAnnotationDefaultAttribute(
+            Mockito.<Clazz>any(), Mockito.<Method>any(), Mockito.<AnnotationDefaultAttribute>any());
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
     LibraryClass clazz = new LibraryClass();
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
 
     // Act
-    changedCodePrinter.visitAnnotationDefaultAttribute(clazz, method, new AnnotationDefaultAttribute());
+    changedCodePrinter.visitAnnotationDefaultAttribute(
+        clazz, method, new AnnotationDefaultAttribute());
 
     // Assert
-    verify(attributeVisitor).visitAnnotationDefaultAttribute(isA(Clazz.class), isA(Method.class),
-        isA(AnnotationDefaultAttribute.class));
+    verify(attributeVisitor)
+        .visitAnnotationDefaultAttribute(
+            isA(Clazz.class), isA(Method.class), isA(AnnotationDefaultAttribute.class));
   }
 }

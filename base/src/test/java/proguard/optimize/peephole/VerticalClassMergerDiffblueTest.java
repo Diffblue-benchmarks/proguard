@@ -4,6 +4,7 @@ import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -16,18 +17,20 @@ import proguard.classfile.visitor.ClassVisitor;
 class VerticalClassMergerDiffblueTest {
   /**
    * Test {@link VerticalClassMerger#visitProgramClass(ProgramClass)}.
+   *
    * <ul>
-   *   <li>Given {@link LibraryClass} {@link LibraryClass#accept(ClassVisitor)} does nothing.</li>
-   *   <li>Then calls {@link LibraryClass#accept(ClassVisitor)}.</li>
+   *   <li>Given {@link LibraryClass} {@link LibraryClass#accept(ClassVisitor)} does nothing.
+   *   <li>Then calls {@link LibraryClass#accept(ClassVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link VerticalClassMerger#visitProgramClass(ProgramClass)}
+   *
+   * <p>Method under test: {@link VerticalClassMerger#visitProgramClass(ProgramClass)}
    */
   @Test
-  @DisplayName("Test visitProgramClass(ProgramClass); given LibraryClass accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.peephole.VerticalClassMerger.visitProgramClass(proguard.classfile.ProgramClass)"})
+  @DisplayName(
+      "Test visitProgramClass(ProgramClass); given LibraryClass accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void VerticalClassMerger.visitProgramClass(ProgramClass)"})
   void testVisitProgramClass_givenLibraryClassAcceptDoesNothing_thenCallsAccept() {
     // Arrange
     VerticalClassMerger verticalClassMerger = new VerticalClassMerger(true, true);
@@ -46,17 +49,18 @@ class VerticalClassMergerDiffblueTest {
 
   /**
    * Test {@link VerticalClassMerger#visitProgramClass(ProgramClass)}.
+   *
    * <ul>
-   *   <li>Then calls {@link ProgramClass#subclassesAccept(ClassVisitor)}.</li>
+   *   <li>Then calls {@link ProgramClass#subclassesAccept(ClassVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link VerticalClassMerger#visitProgramClass(ProgramClass)}
+   *
+   * <p>Method under test: {@link VerticalClassMerger#visitProgramClass(ProgramClass)}
    */
   @Test
   @DisplayName("Test visitProgramClass(ProgramClass); then calls subclassesAccept(ClassVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.peephole.VerticalClassMerger.visitProgramClass(proguard.classfile.ProgramClass)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void VerticalClassMerger.visitProgramClass(ProgramClass)"})
   void testVisitProgramClass_thenCallsSubclassesAccept() {
     // Arrange
     VerticalClassMerger verticalClassMerger = new VerticalClassMerger(true, true);

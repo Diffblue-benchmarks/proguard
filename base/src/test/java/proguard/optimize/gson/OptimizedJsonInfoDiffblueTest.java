@@ -2,6 +2,7 @@ package proguard.optimize.gson;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,22 +14,27 @@ import proguard.optimize.gson.OptimizedJsonInfo.ClassJsonInfo;
 class OptimizedJsonInfoDiffblueTest {
   /**
    * Test {@link OptimizedJsonInfo#assignIndices()}.
+   *
    * <ul>
-   *   <li>Then {@link OptimizedJsonInfo} (default constructor) {@link OptimizedJsonInfo#classIndices} size is one.</li>
+   *   <li>Then {@link OptimizedJsonInfo} (default constructor) {@link
+   *       OptimizedJsonInfo#classIndices} size is one.
    * </ul>
-   * <p>
-   * Method under test: {@link OptimizedJsonInfo#assignIndices()}
+   *
+   * <p>Method under test: {@link OptimizedJsonInfo#assignIndices()}
    */
   @Test
-  @DisplayName("Test assignIndices(); then OptimizedJsonInfo (default constructor) classIndices size is one")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.optimize.gson.OptimizedJsonInfo.assignIndices()"})
+  @DisplayName(
+      "Test assignIndices(); then OptimizedJsonInfo (default constructor) classIndices size is one")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void OptimizedJsonInfo.assignIndices()"})
   void testAssignIndices_thenOptimizedJsonInfoClassIndicesSizeIsOne() {
     // Arrange
     HashMap<String, Integer> stringIntegerMap = new HashMap<>();
     stringIntegerMap.put("foo", 1);
     OptimizedJsonInfo optimizedJsonInfo = new OptimizedJsonInfo();
     optimizedJsonInfo.classIndices = stringIntegerMap;
+    optimizedJsonInfo.jsonFieldIndices = new HashMap<>();
 
     // Act
     optimizedJsonInfo.assignIndices();
@@ -41,13 +47,14 @@ class OptimizedJsonInfoDiffblueTest {
 
   /**
    * Test ClassJsonInfo new {@link ClassJsonInfo} (default constructor).
-   * <p>
-   * Method under test: default or parameterless constructor of {@link ClassJsonInfo}
+   *
+   * <p>Method under test: default or parameterless constructor of {@link ClassJsonInfo}
    */
   @Test
   @DisplayName("Test ClassJsonInfo new ClassJsonInfo (default constructor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.optimize.gson.OptimizedJsonInfo$ClassJsonInfo.<init>()"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ClassJsonInfo.<init>()"})
   void testClassJsonInfoNewClassJsonInfo() {
     // Arrange and Act
     ClassJsonInfo actualClassJsonInfo = new ClassJsonInfo();
@@ -59,13 +66,14 @@ class OptimizedJsonInfoDiffblueTest {
 
   /**
    * Test new {@link OptimizedJsonInfo} (default constructor).
-   * <p>
-   * Method under test: default or parameterless constructor of {@link OptimizedJsonInfo}
+   *
+   * <p>Method under test: default or parameterless constructor of {@link OptimizedJsonInfo}
    */
   @Test
   @DisplayName("Test new OptimizedJsonInfo (default constructor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.optimize.gson.OptimizedJsonInfo.<init>()"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void OptimizedJsonInfo.<init>()"})
   void testNewOptimizedJsonInfo() {
     // Arrange and Act
     OptimizedJsonInfo actualOptimizedJsonInfo = new OptimizedJsonInfo();

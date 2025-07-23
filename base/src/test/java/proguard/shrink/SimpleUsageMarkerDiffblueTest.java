@@ -1,6 +1,7 @@
 package proguard.shrink;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -11,17 +12,19 @@ import proguard.util.Processable;
 class SimpleUsageMarkerDiffblueTest {
   /**
    * Test {@link SimpleUsageMarker#isPossiblyUsed(Processable)}.
+   *
    * <ul>
-   *   <li>When {@link LibraryClass#LibraryClass()}.</li>
-   *   <li>Then return {@code false}.</li>
+   *   <li>When {@link LibraryClass#LibraryClass()}.
+   *   <li>Then return {@code false}.
    * </ul>
-   * <p>
-   * Method under test: {@link SimpleUsageMarker#isPossiblyUsed(Processable)}
+   *
+   * <p>Method under test: {@link SimpleUsageMarker#isPossiblyUsed(Processable)}
    */
   @Test
   @DisplayName("Test isPossiblyUsed(Processable); when LibraryClass(); then return 'false'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.shrink.SimpleUsageMarker.isPossiblyUsed(proguard.util.Processable)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean SimpleUsageMarker.isPossiblyUsed(Processable)"})
   void testIsPossiblyUsed_whenLibraryClass_thenReturnFalse() {
     // Arrange
     SimpleUsageMarker simpleUsageMarker = new SimpleUsageMarker();
@@ -32,17 +35,19 @@ class SimpleUsageMarkerDiffblueTest {
 
   /**
    * Test {@link SimpleUsageMarker#isUsed(Processable)}.
+   *
    * <ul>
-   *   <li>When {@link LibraryClass#LibraryClass()}.</li>
-   *   <li>Then return {@code false}.</li>
+   *   <li>When {@link LibraryClass#LibraryClass()}.
+   *   <li>Then return {@code false}.
    * </ul>
-   * <p>
-   * Method under test: {@link SimpleUsageMarker#isUsed(Processable)}
+   *
+   * <p>Method under test: {@link SimpleUsageMarker#isUsed(Processable)}
    */
   @Test
   @DisplayName("Test isUsed(Processable); when LibraryClass(); then return 'false'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.shrink.SimpleUsageMarker.isUsed(proguard.util.Processable)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean SimpleUsageMarker.isUsed(Processable)"})
   void testIsUsed_whenLibraryClass_thenReturnFalse() {
     // Arrange
     SimpleUsageMarker simpleUsageMarker = new SimpleUsageMarker();

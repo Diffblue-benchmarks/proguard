@@ -4,6 +4,7 @@ import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -15,17 +16,18 @@ import proguard.classfile.visitor.MemberVisitor;
 class SimpleEnumArrayPropagatorDiffblueTest {
   /**
    * Test {@link SimpleEnumArrayPropagator#visitProgramClass(ProgramClass)}.
+   *
    * <ul>
-   *   <li>Then calls {@link ProgramClass#fieldsAccept(MemberVisitor)}.</li>
+   *   <li>Then calls {@link ProgramClass#fieldsAccept(MemberVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link SimpleEnumArrayPropagator#visitProgramClass(ProgramClass)}
+   *
+   * <p>Method under test: {@link SimpleEnumArrayPropagator#visitProgramClass(ProgramClass)}
    */
   @Test
   @DisplayName("Test visitProgramClass(ProgramClass); then calls fieldsAccept(MemberVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.evaluation.SimpleEnumArrayPropagator.visitProgramClass(proguard.classfile.ProgramClass)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void SimpleEnumArrayPropagator.visitProgramClass(ProgramClass)"})
   void testVisitProgramClass_thenCallsFieldsAccept() {
     // Arrange
     SimpleEnumArrayPropagator simpleEnumArrayPropagator = new SimpleEnumArrayPropagator();

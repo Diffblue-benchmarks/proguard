@@ -6,6 +6,7 @@ import static org.mockito.Mockito.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -16,24 +17,30 @@ import proguard.classfile.LibraryMethod;
 import proguard.classfile.Method;
 import proguard.classfile.ProgramClass;
 import proguard.classfile.ProgramMethod;
+import proguard.classfile.attribute.annotation.Annotation;
 import proguard.classfile.attribute.annotation.ParameterAnnotationsAttribute;
 import proguard.classfile.attribute.annotation.RuntimeInvisibleParameterAnnotationsAttribute;
 
 class DuplicateInitializerFixerDiffblueTest {
   /**
    * Test {@link DuplicateInitializerFixer#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   *
    * <ul>
-   *   <li>Given {@code String}.</li>
-   *   <li>Then calls {@link ProgramClass#getString(int)}.</li>
+   *   <li>Given {@code String}.
+   *   <li>Then calls {@link ProgramClass#getString(int)}.
    * </ul>
-   * <p>
-   * Method under test: {@link DuplicateInitializerFixer#visitProgramMethod(ProgramClass, ProgramMethod)}
+   *
+   * <p>Method under test: {@link DuplicateInitializerFixer#visitProgramMethod(ProgramClass,
+   * ProgramMethod)}
    */
   @Test
-  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); given 'String'; then calls getString(int)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitProgramMethod(ProgramClass, ProgramMethod); given 'String'; then calls getString(int)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.DuplicateInitializerFixer.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
+    "void DuplicateInitializerFixer.visitProgramMethod(ProgramClass, ProgramMethod)"
+  })
   void testVisitProgramMethod_givenString_thenCallsGetString() {
     // Arrange
     DuplicateInitializerFixer duplicateInitializerFixer = new DuplicateInitializerFixer();
@@ -48,28 +55,36 @@ class DuplicateInitializerFixerDiffblueTest {
   }
 
   /**
-   * Test {@link DuplicateInitializerFixer#visitAnyParameterAnnotationsAttribute(Clazz, Method, ParameterAnnotationsAttribute)}.
-   * <p>
-   * Method under test: {@link DuplicateInitializerFixer#visitAnyParameterAnnotationsAttribute(Clazz, Method, ParameterAnnotationsAttribute)}
+   * Test {@link DuplicateInitializerFixer#visitAnyParameterAnnotationsAttribute(Clazz, Method,
+   * ParameterAnnotationsAttribute)}.
+   *
+   * <p>Method under test: {@link
+   * DuplicateInitializerFixer#visitAnyParameterAnnotationsAttribute(Clazz, Method,
+   * ParameterAnnotationsAttribute)}
    */
   @Test
-  @DisplayName("Test visitAnyParameterAnnotationsAttribute(Clazz, Method, ParameterAnnotationsAttribute)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitAnyParameterAnnotationsAttribute(Clazz, Method, ParameterAnnotationsAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.DuplicateInitializerFixer.visitAnyParameterAnnotationsAttribute(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.annotation.ParameterAnnotationsAttribute)"})
+    "void DuplicateInitializerFixer.visitAnyParameterAnnotationsAttribute(Clazz, Method, ParameterAnnotationsAttribute)"
+  })
   void testVisitAnyParameterAnnotationsAttribute() {
     // Arrange
     DuplicateInitializerFixer duplicateInitializerFixer = new DuplicateInitializerFixer();
     LibraryClass clazz = new LibraryClass();
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
 
-    RuntimeInvisibleParameterAnnotationsAttribute parameterAnnotationsAttribute = new RuntimeInvisibleParameterAnnotationsAttribute();
-    parameterAnnotationsAttribute.u2parameterAnnotationsCount = new int[]{1, 0, 1, 0};
+    RuntimeInvisibleParameterAnnotationsAttribute parameterAnnotationsAttribute =
+        new RuntimeInvisibleParameterAnnotationsAttribute(
+            1, 3, new int[] {3, 1, 3, 1}, new Annotation[][] {new Annotation[] {new Annotation()}});
 
     // Act
-    duplicateInitializerFixer.visitAnyParameterAnnotationsAttribute(clazz, method, parameterAnnotationsAttribute);
+    duplicateInitializerFixer.visitAnyParameterAnnotationsAttribute(
+        clazz, method, parameterAnnotationsAttribute);
 
     // Assert
-    assertEquals(1, parameterAnnotationsAttribute.u1parametersCount);
+    assertEquals(4, parameterAnnotationsAttribute.u1parametersCount);
   }
 }

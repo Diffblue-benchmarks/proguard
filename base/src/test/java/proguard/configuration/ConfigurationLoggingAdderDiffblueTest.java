@@ -1,6 +1,7 @@
 package proguard.configuration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.io.IOException;
 import org.junit.jupiter.api.DisplayName;
@@ -14,13 +15,14 @@ import proguard.classfile.ProgramClass;
 class ConfigurationLoggingAdderDiffblueTest {
   /**
    * Test {@link ConfigurationLoggingAdder#execute(AppView)}.
-   * <p>
-   * Method under test: {@link ConfigurationLoggingAdder#execute(AppView)}
+   *
+   * <p>Method under test: {@link ConfigurationLoggingAdder#execute(AppView)}
    */
   @Test
   @DisplayName("Test execute(AppView)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.configuration.ConfigurationLoggingAdder.execute(proguard.AppView)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ConfigurationLoggingAdder.execute(AppView)"})
   void testExecute() throws IOException {
     // Arrange
     ConfigurationLoggingAdder configurationLoggingAdder = new ConfigurationLoggingAdder();
@@ -38,19 +40,21 @@ class ConfigurationLoggingAdderDiffblueTest {
 
   /**
    * Test {@link ConfigurationLoggingAdder#execute(AppView)}.
-   * <p>
-   * Method under test: {@link ConfigurationLoggingAdder#execute(AppView)}
+   *
+   * <p>Method under test: {@link ConfigurationLoggingAdder#execute(AppView)}
    */
   @Test
   @DisplayName("Test execute(AppView)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.configuration.ConfigurationLoggingAdder.execute(proguard.AppView)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ConfigurationLoggingAdder.execute(AppView)"})
   void testExecute2() throws IOException {
     // Arrange
     ConfigurationLoggingAdder configurationLoggingAdder = new ConfigurationLoggingAdder();
 
     ClassPool programClassPool = new ClassPool();
-    programClassPool.addClass("java/lang/Class", new LibraryClass(4, "java/lang/Class", "java/lang/Class"));
+    programClassPool.addClass(
+        "java/lang/Class", new LibraryClass(4, "java/lang/Class", "java/lang/Class"));
     AppView appView = new AppView(programClassPool, new ClassPool());
 
     // Act
@@ -62,13 +66,14 @@ class ConfigurationLoggingAdderDiffblueTest {
 
   /**
    * Test {@link ConfigurationLoggingAdder#execute(AppView)}.
-   * <p>
-   * Method under test: {@link ConfigurationLoggingAdder#execute(AppView)}
+   *
+   * <p>Method under test: {@link ConfigurationLoggingAdder#execute(AppView)}
    */
   @Test
   @DisplayName("Test execute(AppView)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.configuration.ConfigurationLoggingAdder.execute(proguard.AppView)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ConfigurationLoggingAdder.execute(AppView)"})
   void testExecute3() throws IOException {
     // Arrange
     ConfigurationLoggingAdder configurationLoggingAdder = new ConfigurationLoggingAdder();
@@ -89,18 +94,23 @@ class ConfigurationLoggingAdderDiffblueTest {
 
   /**
    * Test {@link ConfigurationLoggingAdder#execute(AppView)}.
+   *
    * <ul>
-   *   <li>Given {@link ProgramClass#ProgramClass()}.</li>
-   *   <li>When {@link ClassPool#ClassPool()} addClass {@code java/lang/Class} and {@link ProgramClass#ProgramClass()}.</li>
+   *   <li>Given {@link ProgramClass#ProgramClass()}.
+   *   <li>When {@link ClassPool#ClassPool()} addClass {@code java/lang/Class} and {@link
+   *       ProgramClass#ProgramClass()}.
    * </ul>
-   * <p>
-   * Method under test: {@link ConfigurationLoggingAdder#execute(AppView)}
+   *
+   * <p>Method under test: {@link ConfigurationLoggingAdder#execute(AppView)}
    */
   @Test
-  @DisplayName("Test execute(AppView); given ProgramClass(); when ClassPool() addClass 'java/lang/Class' and ProgramClass()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.configuration.ConfigurationLoggingAdder.execute(proguard.AppView)"})
-  void testExecute_givenProgramClass_whenClassPoolAddClassJavaLangClassAndProgramClass() throws IOException {
+  @DisplayName(
+      "Test execute(AppView); given ProgramClass(); when ClassPool() addClass 'java/lang/Class' and ProgramClass()")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ConfigurationLoggingAdder.execute(AppView)"})
+  void testExecute_givenProgramClass_whenClassPoolAddClassJavaLangClassAndProgramClass()
+      throws IOException {
     // Arrange
     ConfigurationLoggingAdder configurationLoggingAdder = new ConfigurationLoggingAdder();
 
@@ -117,17 +127,21 @@ class ConfigurationLoggingAdderDiffblueTest {
 
   /**
    * Test {@link ConfigurationLoggingAdder#execute(AppView)}.
+   *
    * <ul>
-   *   <li>Given {@link ProgramClass#ProgramClass()}.</li>
-   *   <li>When {@link ClassPool#ClassPool()} addClass {@code Name} and {@link ProgramClass#ProgramClass()}.</li>
+   *   <li>Given {@link ProgramClass#ProgramClass()}.
+   *   <li>When {@link ClassPool#ClassPool()} addClass {@code Name} and {@link
+   *       ProgramClass#ProgramClass()}.
    * </ul>
-   * <p>
-   * Method under test: {@link ConfigurationLoggingAdder#execute(AppView)}
+   *
+   * <p>Method under test: {@link ConfigurationLoggingAdder#execute(AppView)}
    */
   @Test
-  @DisplayName("Test execute(AppView); given ProgramClass(); when ClassPool() addClass 'Name' and ProgramClass()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.configuration.ConfigurationLoggingAdder.execute(proguard.AppView)"})
+  @DisplayName(
+      "Test execute(AppView); given ProgramClass(); when ClassPool() addClass 'Name' and ProgramClass()")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ConfigurationLoggingAdder.execute(AppView)"})
   void testExecute_givenProgramClass_whenClassPoolAddClassNameAndProgramClass() throws IOException {
     // Arrange
     ConfigurationLoggingAdder configurationLoggingAdder = new ConfigurationLoggingAdder();
@@ -145,17 +159,20 @@ class ConfigurationLoggingAdderDiffblueTest {
 
   /**
    * Test {@link ConfigurationLoggingAdder#execute(AppView)}.
+   *
    * <ul>
-   *   <li>When {@link AppView#AppView()}.</li>
-   *   <li>Then {@link AppView#AppView()} {@link AppView#programClassPool} size is three.</li>
+   *   <li>When {@link AppView#AppView()}.
+   *   <li>Then {@link AppView#AppView()} {@link AppView#programClassPool} size is three.
    * </ul>
-   * <p>
-   * Method under test: {@link ConfigurationLoggingAdder#execute(AppView)}
+   *
+   * <p>Method under test: {@link ConfigurationLoggingAdder#execute(AppView)}
    */
   @Test
-  @DisplayName("Test execute(AppView); when AppView(); then AppView() programClassPool size is three")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.configuration.ConfigurationLoggingAdder.execute(proguard.AppView)"})
+  @DisplayName(
+      "Test execute(AppView); when AppView(); then AppView() programClassPool size is three")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ConfigurationLoggingAdder.execute(AppView)"})
   void testExecute_whenAppView_thenAppViewProgramClassPoolSizeIsThree() throws IOException {
     // Arrange
     ConfigurationLoggingAdder configurationLoggingAdder = new ConfigurationLoggingAdder();
@@ -170,15 +187,18 @@ class ConfigurationLoggingAdderDiffblueTest {
 
   /**
    * Test new {@link ConfigurationLoggingAdder} (default constructor).
-   * <p>
-   * Method under test: default or parameterless constructor of {@link ConfigurationLoggingAdder}
+   *
+   * <p>Method under test: default or parameterless constructor of {@link ConfigurationLoggingAdder}
    */
   @Test
   @DisplayName("Test new ConfigurationLoggingAdder (default constructor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.configuration.ConfigurationLoggingAdder.<init>()"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ConfigurationLoggingAdder.<init>()"})
   void testNewConfigurationLoggingAdder() {
     // Arrange, Act and Assert
-    assertEquals("proguard.configuration.ConfigurationLoggingAdder", (new ConfigurationLoggingAdder()).getName());
+    assertEquals(
+        "proguard.configuration.ConfigurationLoggingAdder",
+        new ConfigurationLoggingAdder().getName());
   }
 }

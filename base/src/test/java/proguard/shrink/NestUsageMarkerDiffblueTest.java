@@ -1,6 +1,5 @@
 package proguard.shrink;
 
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.eq;
@@ -10,6 +9,7 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -29,17 +29,19 @@ import proguard.util.Processable;
 class NestUsageMarkerDiffblueTest {
   /**
    * Test {@link NestUsageMarker#visitNestHostAttribute(Clazz, NestHostAttribute)}.
+   *
    * <ul>
-   *   <li>Then calls {@link LibraryClass#constantPoolEntryAccept(int, ConstantVisitor)}.</li>
+   *   <li>Then calls {@link LibraryClass#constantPoolEntryAccept(int, ConstantVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link NestUsageMarker#visitNestHostAttribute(Clazz, NestHostAttribute)}
+   *
+   * <p>Method under test: {@link NestUsageMarker#visitNestHostAttribute(Clazz, NestHostAttribute)}
    */
   @Test
-  @DisplayName("Test visitNestHostAttribute(Clazz, NestHostAttribute); then calls constantPoolEntryAccept(int, ConstantVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.shrink.NestUsageMarker.visitNestHostAttribute(proguard.classfile.Clazz, proguard.classfile.attribute.NestHostAttribute)"})
+  @DisplayName(
+      "Test visitNestHostAttribute(Clazz, NestHostAttribute); then calls constantPoolEntryAccept(int, ConstantVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NestUsageMarker.visitNestHostAttribute(Clazz, NestHostAttribute)"})
   void testVisitNestHostAttribute_thenCallsConstantPoolEntryAccept() {
     // Arrange
     NestUsageMarker nestUsageMarker = new NestUsageMarker(new ClassUsageMarker());
@@ -55,74 +57,91 @@ class NestUsageMarkerDiffblueTest {
 
   /**
    * Test {@link NestUsageMarker#visitNestMembersAttribute(Clazz, NestMembersAttribute)}.
+   *
    * <ul>
-   *   <li>Then calls {@link NestMembersAttribute#memberClassConstantsAccept(Clazz, ConstantVisitor)}.</li>
+   *   <li>Then calls {@link NestMembersAttribute#memberClassConstantsAccept(Clazz,
+   *       ConstantVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link NestUsageMarker#visitNestMembersAttribute(Clazz, NestMembersAttribute)}
+   *
+   * <p>Method under test: {@link NestUsageMarker#visitNestMembersAttribute(Clazz,
+   * NestMembersAttribute)}
    */
   @Test
-  @DisplayName("Test visitNestMembersAttribute(Clazz, NestMembersAttribute); then calls memberClassConstantsAccept(Clazz, ConstantVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.shrink.NestUsageMarker.visitNestMembersAttribute(proguard.classfile.Clazz, proguard.classfile.attribute.NestMembersAttribute)"})
+  @DisplayName(
+      "Test visitNestMembersAttribute(Clazz, NestMembersAttribute); then calls memberClassConstantsAccept(Clazz, ConstantVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NestUsageMarker.visitNestMembersAttribute(Clazz, NestMembersAttribute)"})
   void testVisitNestMembersAttribute_thenCallsMemberClassConstantsAccept() {
     // Arrange
     NestUsageMarker nestUsageMarker = new NestUsageMarker(new ClassUsageMarker());
     LibraryClass clazz = new LibraryClass();
     NestMembersAttribute nestMembersAttribute = mock(NestMembersAttribute.class);
-    doNothing().when(nestMembersAttribute)
+    doNothing()
+        .when(nestMembersAttribute)
         .memberClassConstantsAccept(Mockito.<Clazz>any(), Mockito.<ConstantVisitor>any());
 
     // Act
     nestUsageMarker.visitNestMembersAttribute(clazz, nestMembersAttribute);
 
     // Assert
-    verify(nestMembersAttribute).memberClassConstantsAccept(isA(Clazz.class), isA(ConstantVisitor.class));
+    verify(nestMembersAttribute)
+        .memberClassConstantsAccept(isA(Clazz.class), isA(ConstantVisitor.class));
   }
 
   /**
-   * Test {@link NestUsageMarker#visitPermittedSubclassesAttribute(Clazz, PermittedSubclassesAttribute)}.
+   * Test {@link NestUsageMarker#visitPermittedSubclassesAttribute(Clazz,
+   * PermittedSubclassesAttribute)}.
+   *
    * <ul>
-   *   <li>Then calls {@link PermittedSubclassesAttribute#permittedSubclassConstantsAccept(Clazz, ConstantVisitor)}.</li>
+   *   <li>Then calls {@link PermittedSubclassesAttribute#permittedSubclassConstantsAccept(Clazz,
+   *       ConstantVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link NestUsageMarker#visitPermittedSubclassesAttribute(Clazz, PermittedSubclassesAttribute)}
+   *
+   * <p>Method under test: {@link NestUsageMarker#visitPermittedSubclassesAttribute(Clazz,
+   * PermittedSubclassesAttribute)}
    */
   @Test
-  @DisplayName("Test visitPermittedSubclassesAttribute(Clazz, PermittedSubclassesAttribute); then calls permittedSubclassConstantsAccept(Clazz, ConstantVisitor)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitPermittedSubclassesAttribute(Clazz, PermittedSubclassesAttribute); then calls permittedSubclassConstantsAccept(Clazz, ConstantVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.shrink.NestUsageMarker.visitPermittedSubclassesAttribute(proguard.classfile.Clazz, proguard.classfile.attribute.PermittedSubclassesAttribute)"})
+    "void NestUsageMarker.visitPermittedSubclassesAttribute(Clazz, PermittedSubclassesAttribute)"
+  })
   void testVisitPermittedSubclassesAttribute_thenCallsPermittedSubclassConstantsAccept() {
     // Arrange
     NestUsageMarker nestUsageMarker = new NestUsageMarker(new ClassUsageMarker());
     LibraryClass clazz = new LibraryClass();
-    PermittedSubclassesAttribute permittedSubclassesAttribute = mock(PermittedSubclassesAttribute.class);
-    doNothing().when(permittedSubclassesAttribute)
+    PermittedSubclassesAttribute permittedSubclassesAttribute =
+        mock(PermittedSubclassesAttribute.class);
+    doNothing()
+        .when(permittedSubclassesAttribute)
         .permittedSubclassConstantsAccept(Mockito.<Clazz>any(), Mockito.<ConstantVisitor>any());
 
     // Act
     nestUsageMarker.visitPermittedSubclassesAttribute(clazz, permittedSubclassesAttribute);
 
     // Assert
-    verify(permittedSubclassesAttribute).permittedSubclassConstantsAccept(isA(Clazz.class), isA(ConstantVisitor.class));
+    verify(permittedSubclassesAttribute)
+        .permittedSubclassConstantsAccept(isA(Clazz.class), isA(ConstantVisitor.class));
   }
 
   /**
    * Test {@link NestUsageMarker#visitClassConstant(Clazz, ClassConstant)}.
-   * <p>
-   * Method under test: {@link NestUsageMarker#visitClassConstant(Clazz, ClassConstant)}
+   *
+   * <p>Method under test: {@link NestUsageMarker#visitClassConstant(Clazz, ClassConstant)}
    */
   @Test
   @DisplayName("Test visitClassConstant(Clazz, ClassConstant)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.shrink.NestUsageMarker.visitClassConstant(proguard.classfile.Clazz, proguard.classfile.constant.ClassConstant)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NestUsageMarker.visitClassConstant(Clazz, ClassConstant)"})
   void testVisitClassConstant() {
     // Arrange
     ShortestUsageMarker usageMarker = new ShortestUsageMarker();
-    NestUsageMarker nestUsageMarker = new NestUsageMarker(new ShortestClassUsageMarker(usageMarker, "Just cause"));
+    NestUsageMarker nestUsageMarker =
+        new NestUsageMarker(new ShortestClassUsageMarker(usageMarker, "Just cause"));
     LibraryClass clazz = new LibraryClass();
     ClassConstant classConstant = new ClassConstant();
 
@@ -135,42 +154,20 @@ class NestUsageMarkerDiffblueTest {
   }
 
   /**
-   * Test {@link NestUsageMarker#visitClassConstant(Clazz, ClassConstant)}.
-   * <p>
-   * Method under test: {@link NestUsageMarker#visitClassConstant(Clazz, ClassConstant)}
-   */
-  @Test
-  @DisplayName("Test visitClassConstant(Clazz, ClassConstant)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.shrink.NestUsageMarker.visitClassConstant(proguard.classfile.Clazz, proguard.classfile.constant.ClassConstant)"})
-  void testVisitClassConstant2() {
-    // Arrange
-    NestUsageMarker nestUsageMarker = new NestUsageMarker(new ClassUsageMarker());
-    LibraryClass clazz = new LibraryClass();
-    ClassConstant classConstant = new ClassConstant(1, new ProgramClass());
-
-    // Act
-    nestUsageMarker.visitClassConstant(clazz, classConstant);
-
-    // Assert that nothing has changed
-    assertNull(classConstant.getProcessingInfo());
-  }
-
-  /**
    * Test {@link NestUsageMarker#visitUtf8Constant(Clazz, Utf8Constant)}.
-   * <p>
-   * Method under test: {@link NestUsageMarker#visitUtf8Constant(Clazz, Utf8Constant)}
+   *
+   * <p>Method under test: {@link NestUsageMarker#visitUtf8Constant(Clazz, Utf8Constant)}
    */
   @Test
   @DisplayName("Test visitUtf8Constant(Clazz, Utf8Constant)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.shrink.NestUsageMarker.visitUtf8Constant(proguard.classfile.Clazz, proguard.classfile.constant.Utf8Constant)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NestUsageMarker.visitUtf8Constant(Clazz, Utf8Constant)"})
   void testVisitUtf8Constant() {
     // Arrange
     ShortestUsageMarker usageMarker = new ShortestUsageMarker();
-    NestUsageMarker nestUsageMarker = new NestUsageMarker(new ShortestClassUsageMarker(usageMarker, "Just cause"));
+    NestUsageMarker nestUsageMarker =
+        new NestUsageMarker(new ShortestClassUsageMarker(usageMarker, "Just cause"));
     LibraryClass clazz = new LibraryClass();
     Utf8Constant utf8Constant = new Utf8Constant("String");
 
@@ -184,38 +181,47 @@ class NestUsageMarkerDiffblueTest {
 
   /**
    * Test {@link NestUsageMarker#visitAnyClass(Clazz)}.
+   *
    * <ul>
-   *   <li>When {@link LibraryClass#LibraryClass()}.</li>
-   *   <li>Then throw {@link UnsupportedOperationException}.</li>
+   *   <li>When {@link LibraryClass#LibraryClass()}.
+   *   <li>Then throw {@link UnsupportedOperationException}.
    * </ul>
-   * <p>
-   * Method under test: {@link NestUsageMarker#visitAnyClass(Clazz)}
+   *
+   * <p>Method under test: {@link NestUsageMarker#visitAnyClass(Clazz)}
    */
   @Test
-  @DisplayName("Test visitAnyClass(Clazz); when LibraryClass(); then throw UnsupportedOperationException")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.shrink.NestUsageMarker.visitAnyClass(proguard.classfile.Clazz)"})
+  @DisplayName(
+      "Test visitAnyClass(Clazz); when LibraryClass(); then throw UnsupportedOperationException")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NestUsageMarker.visitAnyClass(Clazz)"})
   void testVisitAnyClass_whenLibraryClass_thenThrowUnsupportedOperationException() {
     // Arrange
     NestUsageMarker nestUsageMarker = new NestUsageMarker(new ClassUsageMarker());
 
     // Act and Assert
-    assertThrows(UnsupportedOperationException.class, () -> nestUsageMarker.visitAnyClass(new LibraryClass()));
+    assertThrows(
+        UnsupportedOperationException.class,
+        () -> nestUsageMarker.visitAnyClass(new LibraryClass()));
   }
 
   /**
    * Test {@link NestUsageMarker#visitProgramClass(ProgramClass)}.
+   *
    * <ul>
-   *   <li>Given {@link ClassUsageMarker} {@link ClassUsageMarker#isUsed(Processable)} return {@code true}.</li>
-   *   <li>Then calls {@link ClassUsageMarker#isUsed(Processable)}.</li>
+   *   <li>Given {@link ClassUsageMarker} {@link ClassUsageMarker#isUsed(Processable)} return {@code
+   *       true}.
+   *   <li>Then calls {@link ClassUsageMarker#isUsed(Processable)}.
    * </ul>
-   * <p>
-   * Method under test: {@link NestUsageMarker#visitProgramClass(ProgramClass)}
+   *
+   * <p>Method under test: {@link NestUsageMarker#visitProgramClass(ProgramClass)}
    */
   @Test
-  @DisplayName("Test visitProgramClass(ProgramClass); given ClassUsageMarker isUsed(Processable) return 'true'; then calls isUsed(Processable)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.shrink.NestUsageMarker.visitProgramClass(proguard.classfile.ProgramClass)"})
+  @DisplayName(
+      "Test visitProgramClass(ProgramClass); given ClassUsageMarker isUsed(Processable) return 'true'; then calls isUsed(Processable)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NestUsageMarker.visitProgramClass(ProgramClass)"})
   void testVisitProgramClass_givenClassUsageMarkerIsUsedReturnTrue_thenCallsIsUsed() {
     // Arrange
     ClassUsageMarker classUsageMarker = mock(ClassUsageMarker.class);

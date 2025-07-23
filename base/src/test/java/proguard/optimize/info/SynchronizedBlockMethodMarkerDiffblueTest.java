@@ -6,6 +6,7 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -19,31 +20,39 @@ import proguard.classfile.instruction.SimpleInstruction;
 
 class SynchronizedBlockMethodMarkerDiffblueTest {
   /**
-   * Test {@link SynchronizedBlockMethodMarker#visitSimpleInstruction(Clazz, Method, CodeAttribute, int, SimpleInstruction)}.
+   * Test {@link SynchronizedBlockMethodMarker#visitSimpleInstruction(Clazz, Method, CodeAttribute,
+   * int, SimpleInstruction)}.
+   *
    * <ul>
-   *   <li>Then calls {@link ProgramMethodOptimizationInfo#setHasSynchronizedBlock()}.</li>
+   *   <li>Then calls {@link ProgramMethodOptimizationInfo#setHasSynchronizedBlock()}.
    * </ul>
-   * <p>
-   * Method under test: {@link SynchronizedBlockMethodMarker#visitSimpleInstruction(Clazz, Method, CodeAttribute, int, SimpleInstruction)}
+   *
+   * <p>Method under test: {@link SynchronizedBlockMethodMarker#visitSimpleInstruction(Clazz,
+   * Method, CodeAttribute, int, SimpleInstruction)}
    */
   @Test
-  @DisplayName("Test visitSimpleInstruction(Clazz, Method, CodeAttribute, int, SimpleInstruction); then calls setHasSynchronizedBlock()")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitSimpleInstruction(Clazz, Method, CodeAttribute, int, SimpleInstruction); then calls setHasSynchronizedBlock()")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.info.SynchronizedBlockMethodMarker.visitSimpleInstruction(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.CodeAttribute, int, proguard.classfile.instruction.SimpleInstruction)"})
+    "void SynchronizedBlockMethodMarker.visitSimpleInstruction(Clazz, Method, CodeAttribute, int, SimpleInstruction)"
+  })
   void testVisitSimpleInstruction_thenCallsSetHasSynchronizedBlock() {
     // Arrange
-    SynchronizedBlockMethodMarker synchronizedBlockMethodMarker = new SynchronizedBlockMethodMarker();
+    SynchronizedBlockMethodMarker synchronizedBlockMethodMarker =
+        new SynchronizedBlockMethodMarker();
     LibraryClass clazz = new LibraryClass();
-    ProgramMethodOptimizationInfo programMethodOptimizationInfo = mock(ProgramMethodOptimizationInfo.class);
+    ProgramMethodOptimizationInfo programMethodOptimizationInfo =
+        mock(ProgramMethodOptimizationInfo.class);
     doNothing().when(programMethodOptimizationInfo).setHasSynchronizedBlock();
     Method method = mock(Method.class);
     when(method.getProcessingInfo()).thenReturn(programMethodOptimizationInfo);
     CodeAttribute codeAttribute = new CodeAttribute(1);
 
     // Act
-    synchronizedBlockMethodMarker.visitSimpleInstruction(clazz, method, codeAttribute, 2,
-        new SimpleInstruction((byte) -62));
+    synchronizedBlockMethodMarker.visitSimpleInstruction(
+        clazz, method, codeAttribute, 2, new SimpleInstruction((byte) -62));
 
     // Assert
     verify(programMethodOptimizationInfo).setHasSynchronizedBlock();
@@ -52,18 +61,20 @@ class SynchronizedBlockMethodMarkerDiffblueTest {
 
   /**
    * Test {@link SynchronizedBlockMethodMarker#hasSynchronizedBlock(Method)}.
+   *
    * <ul>
-   *   <li>Given {@link MethodOptimizationInfo} (default constructor).</li>
-   *   <li>Then return {@code true}.</li>
+   *   <li>Given {@link MethodOptimizationInfo} (default constructor).
+   *   <li>Then return {@code true}.
    * </ul>
-   * <p>
-   * Method under test: {@link SynchronizedBlockMethodMarker#hasSynchronizedBlock(Method)}
+   *
+   * <p>Method under test: {@link SynchronizedBlockMethodMarker#hasSynchronizedBlock(Method)}
    */
   @Test
-  @DisplayName("Test hasSynchronizedBlock(Method); given MethodOptimizationInfo (default constructor); then return 'true'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "boolean proguard.optimize.info.SynchronizedBlockMethodMarker.hasSynchronizedBlock(proguard.classfile.Method)"})
+  @DisplayName(
+      "Test hasSynchronizedBlock(Method); given MethodOptimizationInfo (default constructor); then return 'true'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean SynchronizedBlockMethodMarker.hasSynchronizedBlock(Method)"})
   void testHasSynchronizedBlock_givenMethodOptimizationInfo_thenReturnTrue() {
     // Arrange
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");

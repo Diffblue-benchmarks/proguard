@@ -4,6 +4,7 @@ import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -18,26 +19,33 @@ import proguard.io.ExtraDataEntryNameMap;
 class StaticInterfaceMethodConverterDiffblueTest {
   /**
    * Test {@link StaticInterfaceMethodConverter#visitProgramClass(ProgramClass)}.
+   *
    * <ul>
-   *   <li>When {@link ProgramClass} {@link ProgramClass#accept(ClassVisitor)} does nothing.</li>
-   *   <li>Then calls {@link ProgramClass#accept(ClassVisitor)}.</li>
+   *   <li>When {@link ProgramClass} {@link ProgramClass#accept(ClassVisitor)} does nothing.
+   *   <li>Then calls {@link ProgramClass#accept(ClassVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link StaticInterfaceMethodConverter#visitProgramClass(ProgramClass)}
+   *
+   * <p>Method under test: {@link StaticInterfaceMethodConverter#visitProgramClass(ProgramClass)}
    */
   @Test
-  @DisplayName("Test visitProgramClass(ProgramClass); when ProgramClass accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.backport.StaticInterfaceMethodConverter.visitProgramClass(proguard.classfile.ProgramClass)"})
+  @DisplayName(
+      "Test visitProgramClass(ProgramClass); when ProgramClass accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void StaticInterfaceMethodConverter.visitProgramClass(ProgramClass)"})
   void testVisitProgramClass_whenProgramClassAcceptDoesNothing_thenCallsAccept() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
     ExtraDataEntryNameMap extraDataEntryNameMap = new ExtraDataEntryNameMap();
     ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
-    StaticInterfaceMethodConverter staticInterfaceMethodConverter = new StaticInterfaceMethodConverter(programClassPool,
-        libraryClassPool, extraDataEntryNameMap, modifiedClassVisitor, new KotlinAnnotationCounter());
+    StaticInterfaceMethodConverter staticInterfaceMethodConverter =
+        new StaticInterfaceMethodConverter(
+            programClassPool,
+            libraryClassPool,
+            extraDataEntryNameMap,
+            modifiedClassVisitor,
+            new KotlinAnnotationCounter());
     ProgramClass programClass = mock(ProgramClass.class);
     doNothing().when(programClass).accept(Mockito.<ClassVisitor>any());
 

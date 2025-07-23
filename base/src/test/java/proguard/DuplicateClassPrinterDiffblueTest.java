@@ -1,6 +1,7 @@
 package proguard;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -14,23 +15,28 @@ import proguard.classfile.util.WarningPrinter;
 class DuplicateClassPrinterDiffblueTest {
   /**
    * Test {@link DuplicateClassPrinter#visitAnyClass(Clazz)}.
+   *
    * <ul>
-   *   <li>When {@link LibraryClass#LibraryClass()}.</li>
-   *   <li>Then throw {@link UnsupportedOperationException}.</li>
+   *   <li>When {@link LibraryClass#LibraryClass()}.
+   *   <li>Then throw {@link UnsupportedOperationException}.
    * </ul>
-   * <p>
-   * Method under test: {@link DuplicateClassPrinter#visitAnyClass(Clazz)}
+   *
+   * <p>Method under test: {@link DuplicateClassPrinter#visitAnyClass(Clazz)}
    */
   @Test
-  @DisplayName("Test visitAnyClass(Clazz); when LibraryClass(); then throw UnsupportedOperationException")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.DuplicateClassPrinter.visitAnyClass(proguard.classfile.Clazz)"})
+  @DisplayName(
+      "Test visitAnyClass(Clazz); when LibraryClass(); then throw UnsupportedOperationException")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void DuplicateClassPrinter.visitAnyClass(Clazz)"})
   void testVisitAnyClass_whenLibraryClass_thenThrowUnsupportedOperationException() {
     // Arrange
-    DuplicateClassPrinter duplicateClassPrinter = new DuplicateClassPrinter(
-        new WarningPrinter(new PrintWriter(new StringWriter())));
+    DuplicateClassPrinter duplicateClassPrinter =
+        new DuplicateClassPrinter(new WarningPrinter(new PrintWriter(new StringWriter())));
 
     // Act and Assert
-    assertThrows(UnsupportedOperationException.class, () -> duplicateClassPrinter.visitAnyClass(new LibraryClass()));
+    assertThrows(
+        UnsupportedOperationException.class,
+        () -> duplicateClassPrinter.visitAnyClass(new LibraryClass()));
   }
 }

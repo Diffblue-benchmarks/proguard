@@ -1,157 +1,231 @@
 package proguard.optimize.info;
 
-import static org.mockito.ArgumentMatchers.isA;
-import static org.mockito.Mockito.doNothing;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import proguard.classfile.Clazz;
 import proguard.classfile.LibraryClass;
 import proguard.classfile.LibraryMethod;
 import proguard.classfile.Method;
 import proguard.classfile.attribute.CodeAttribute;
 import proguard.fixer.kotlin.KotlinAnnotationCounter;
+import proguard.obfuscate.AttributeShrinker;
 import proguard.optimize.KeepMarker;
-import proguard.util.SimpleProcessable;
 
 class OptimizationCodeAttributeFilterDiffblueTest {
   /**
    * Test {@link OptimizationCodeAttributeFilter#visitCodeAttribute(Clazz, Method, CodeAttribute)}.
-   * <ul>
-   *   <li>Given {@link CodeAttributeOptimizationInfo} (default constructor).</li>
-   * </ul>
-   * <p>
-   * Method under test: {@link OptimizationCodeAttributeFilter#visitCodeAttribute(Clazz, Method, CodeAttribute)}
+   *
+   * <p>Method under test: {@link OptimizationCodeAttributeFilter#visitCodeAttribute(Clazz, Method,
+   * CodeAttribute)}
    */
   @Test
-  @DisplayName("Test visitCodeAttribute(Clazz, Method, CodeAttribute); given CodeAttributeOptimizationInfo (default constructor)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName("Test visitCodeAttribute(Clazz, Method, CodeAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.info.OptimizationCodeAttributeFilter.visitCodeAttribute(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.CodeAttribute)"})
-  void testVisitCodeAttribute_givenCodeAttributeOptimizationInfo() {
+    "void OptimizationCodeAttributeFilter.visitCodeAttribute(Clazz, Method, CodeAttribute)"
+  })
+  void testVisitCodeAttribute() {
     // Arrange
     KotlinAnnotationCounter attributeVisitor = new KotlinAnnotationCounter();
-    OptimizationCodeAttributeFilter optimizationCodeAttributeFilter = new OptimizationCodeAttributeFilter(
-        attributeVisitor, new KotlinAnnotationCounter());
+    OptimizationCodeAttributeFilter optimizationCodeAttributeFilter =
+        new OptimizationCodeAttributeFilter(attributeVisitor, new KotlinAnnotationCounter());
     LibraryClass clazz = new LibraryClass();
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
 
-    CodeAttribute codeAttribute = mock(CodeAttribute.class);
-    when(codeAttribute.getProcessingInfo()).thenReturn(new CodeAttributeOptimizationInfo());
+    CodeAttribute codeAttribute = new CodeAttribute(1);
 
     // Act
     optimizationCodeAttributeFilter.visitCodeAttribute(clazz, method, codeAttribute);
 
-    // Assert
-    verify(codeAttribute).getProcessingInfo();
+    // Assert that nothing has changed
+    assertNull(codeAttribute.getProcessingInfo());
   }
 
   /**
    * Test {@link OptimizationCodeAttributeFilter#visitCodeAttribute(Clazz, Method, CodeAttribute)}.
-   * <ul>
-   *   <li>Given {@link CodeAttributeOptimizationInfo} {@link CodeAttributeOptimizationInfo#isKept()} return {@code false}.</li>
-   * </ul>
-   * <p>
-   * Method under test: {@link OptimizationCodeAttributeFilter#visitCodeAttribute(Clazz, Method, CodeAttribute)}
+   *
+   * <p>Method under test: {@link OptimizationCodeAttributeFilter#visitCodeAttribute(Clazz, Method,
+   * CodeAttribute)}
    */
   @Test
-  @DisplayName("Test visitCodeAttribute(Clazz, Method, CodeAttribute); given CodeAttributeOptimizationInfo isKept() return 'false'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName("Test visitCodeAttribute(Clazz, Method, CodeAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.info.OptimizationCodeAttributeFilter.visitCodeAttribute(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.CodeAttribute)"})
-  void testVisitCodeAttribute_givenCodeAttributeOptimizationInfoIsKeptReturnFalse() {
+    "void OptimizationCodeAttributeFilter.visitCodeAttribute(Clazz, Method, CodeAttribute)"
+  })
+  void testVisitCodeAttribute2() {
     // Arrange
     KotlinAnnotationCounter attributeVisitor = new KotlinAnnotationCounter();
-    OptimizationCodeAttributeFilter optimizationCodeAttributeFilter = new OptimizationCodeAttributeFilter(
-        attributeVisitor, new KotlinAnnotationCounter());
+    OptimizationCodeAttributeFilter optimizationCodeAttributeFilter =
+        new OptimizationCodeAttributeFilter(attributeVisitor, new KotlinAnnotationCounter());
     LibraryClass clazz = new LibraryClass();
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
 
-    CodeAttributeOptimizationInfo codeAttributeOptimizationInfo = mock(CodeAttributeOptimizationInfo.class);
+    CodeAttribute codeAttribute = new CodeAttribute(1);
+    CodeAttributeOptimizationInfo codeAttributeOptimizationInfo =
+        new CodeAttributeOptimizationInfo();
+    codeAttribute.setProcessingInfo(codeAttributeOptimizationInfo);
+
+    // Act
+    optimizationCodeAttributeFilter.visitCodeAttribute(clazz, method, codeAttribute);
+
+    // Assert that nothing has changed
+    Object processingInfo = codeAttribute.getProcessingInfo();
+    assertTrue(processingInfo instanceof CodeAttributeOptimizationInfo);
+    assertTrue(((CodeAttributeOptimizationInfo) processingInfo).isKept());
+    assertSame(codeAttributeOptimizationInfo, processingInfo);
+  }
+
+  /**
+   * Test {@link OptimizationCodeAttributeFilter#visitCodeAttribute(Clazz, Method, CodeAttribute)}.
+   *
+   * <p>Method under test: {@link OptimizationCodeAttributeFilter#visitCodeAttribute(Clazz, Method,
+   * CodeAttribute)}
+   */
+  @Test
+  @DisplayName("Test visitCodeAttribute(Clazz, Method, CodeAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void OptimizationCodeAttributeFilter.visitCodeAttribute(Clazz, Method, CodeAttribute)"
+  })
+  void testVisitCodeAttribute3() {
+    // Arrange
+    KotlinAnnotationCounter attributeVisitor = new KotlinAnnotationCounter();
+    OptimizationCodeAttributeFilter optimizationCodeAttributeFilter =
+        new OptimizationCodeAttributeFilter(attributeVisitor, new KotlinAnnotationCounter());
+    LibraryClass clazz = new LibraryClass();
+    LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
+
+    CodeAttributeOptimizationInfo codeAttributeOptimizationInfo =
+        mock(CodeAttributeOptimizationInfo.class);
     when(codeAttributeOptimizationInfo.isKept()).thenReturn(false);
-    CodeAttribute codeAttribute = mock(CodeAttribute.class);
-    when(codeAttribute.getProcessingInfo()).thenReturn(codeAttributeOptimizationInfo);
+
+    CodeAttribute codeAttribute = new CodeAttribute(1);
+    codeAttribute.setProcessingInfo(codeAttributeOptimizationInfo);
 
     // Act
     optimizationCodeAttributeFilter.visitCodeAttribute(clazz, method, codeAttribute);
 
     // Assert
     verify(codeAttributeOptimizationInfo).isKept();
-    verify(codeAttribute).getProcessingInfo();
   }
 
   /**
    * Test {@link OptimizationCodeAttributeFilter#visitCodeAttribute(Clazz, Method, CodeAttribute)}.
-   * <ul>
-   *   <li>Then calls {@link CodeAttributeOptimizationInfo#isKept()}.</li>
-   * </ul>
-   * <p>
-   * Method under test: {@link OptimizationCodeAttributeFilter#visitCodeAttribute(Clazz, Method, CodeAttribute)}
+   *
+   * <p>Method under test: {@link OptimizationCodeAttributeFilter#visitCodeAttribute(Clazz, Method,
+   * CodeAttribute)}
    */
   @Test
-  @DisplayName("Test visitCodeAttribute(Clazz, Method, CodeAttribute); then calls isKept()")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName("Test visitCodeAttribute(Clazz, Method, CodeAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.info.OptimizationCodeAttributeFilter.visitCodeAttribute(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.CodeAttribute)"})
-  void testVisitCodeAttribute_thenCallsIsKept() {
+    "void OptimizationCodeAttributeFilter.visitCodeAttribute(Clazz, Method, CodeAttribute)"
+  })
+  void testVisitCodeAttribute4() {
     // Arrange
-    KotlinAnnotationCounter attributeVisitor = new KotlinAnnotationCounter();
-    OptimizationCodeAttributeFilter optimizationCodeAttributeFilter = new OptimizationCodeAttributeFilter(
-        attributeVisitor, new KotlinAnnotationCounter());
+    OptimizationCodeAttributeFilter optimizationCodeAttributeFilter =
+        new OptimizationCodeAttributeFilter(null, new KotlinAnnotationCounter());
     LibraryClass clazz = new LibraryClass();
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
 
-    CodeAttributeOptimizationInfo codeAttributeOptimizationInfo = mock(CodeAttributeOptimizationInfo.class);
-    when(codeAttributeOptimizationInfo.isKept()).thenReturn(true);
-    CodeAttribute codeAttribute = mock(CodeAttribute.class);
-    when(codeAttribute.getProcessingInfo()).thenReturn(codeAttributeOptimizationInfo);
+    CodeAttributeOptimizationInfo codeAttributeOptimizationInfo =
+        mock(CodeAttributeOptimizationInfo.class);
+    when(codeAttributeOptimizationInfo.isKept()).thenReturn(false);
+
+    CodeAttribute codeAttribute = new CodeAttribute(1);
+    codeAttribute.setProcessingInfo(codeAttributeOptimizationInfo);
 
     // Act
     optimizationCodeAttributeFilter.visitCodeAttribute(clazz, method, codeAttribute);
 
     // Assert
     verify(codeAttributeOptimizationInfo).isKept();
-    verify(codeAttribute).getProcessingInfo();
   }
 
   /**
    * Test {@link OptimizationCodeAttributeFilter#visitCodeAttribute(Clazz, Method, CodeAttribute)}.
-   * <ul>
-   *   <li>Then calls {@link SimpleProcessable#setProcessingInfo(Object)}.</li>
-   * </ul>
-   * <p>
-   * Method under test: {@link OptimizationCodeAttributeFilter#visitCodeAttribute(Clazz, Method, CodeAttribute)}
+   *
+   * <p>Method under test: {@link OptimizationCodeAttributeFilter#visitCodeAttribute(Clazz, Method,
+   * CodeAttribute)}
    */
   @Test
-  @DisplayName("Test visitCodeAttribute(Clazz, Method, CodeAttribute); then calls setProcessingInfo(Object)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName("Test visitCodeAttribute(Clazz, Method, CodeAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.info.OptimizationCodeAttributeFilter.visitCodeAttribute(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.CodeAttribute)"})
-  void testVisitCodeAttribute_thenCallsSetProcessingInfo() {
+    "void OptimizationCodeAttributeFilter.visitCodeAttribute(Clazz, Method, CodeAttribute)"
+  })
+  void testVisitCodeAttribute5() {
     // Arrange
-    KotlinAnnotationCounter attributeVisitor = new KotlinAnnotationCounter();
-    OptimizationCodeAttributeFilter optimizationCodeAttributeFilter = new OptimizationCodeAttributeFilter(
-        attributeVisitor, new KeepMarker());
+    AttributeShrinker attributeVisitor = new AttributeShrinker();
+    OptimizationCodeAttributeFilter optimizationCodeAttributeFilter =
+        new OptimizationCodeAttributeFilter(attributeVisitor, new KotlinAnnotationCounter());
     LibraryClass clazz = new LibraryClass();
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
 
-    CodeAttributeOptimizationInfo codeAttributeOptimizationInfo = mock(CodeAttributeOptimizationInfo.class);
-    when(codeAttributeOptimizationInfo.isKept()).thenReturn(true);
-    CodeAttribute codeAttribute = mock(CodeAttribute.class);
-    doNothing().when(codeAttribute).setProcessingInfo(Mockito.<Object>any());
-    when(codeAttribute.getProcessingInfo()).thenReturn(codeAttributeOptimizationInfo);
+    CodeAttributeOptimizationInfo codeAttributeOptimizationInfo =
+        mock(CodeAttributeOptimizationInfo.class);
+    when(codeAttributeOptimizationInfo.isKept()).thenReturn(false);
+
+    CodeAttribute codeAttribute = new CodeAttribute(1);
+    codeAttribute.setProcessingInfo(codeAttributeOptimizationInfo);
 
     // Act
     optimizationCodeAttributeFilter.visitCodeAttribute(clazz, method, codeAttribute);
 
     // Assert
     verify(codeAttributeOptimizationInfo).isKept();
-    verify(codeAttribute).getProcessingInfo();
-    verify(codeAttribute).setProcessingInfo(isA(Object.class));
+  }
+
+  /**
+   * Test {@link OptimizationCodeAttributeFilter#visitCodeAttribute(Clazz, Method, CodeAttribute)}.
+   *
+   * <p>Method under test: {@link OptimizationCodeAttributeFilter#visitCodeAttribute(Clazz, Method,
+   * CodeAttribute)}
+   */
+  @Test
+  @DisplayName("Test visitCodeAttribute(Clazz, Method, CodeAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void OptimizationCodeAttributeFilter.visitCodeAttribute(Clazz, Method, CodeAttribute)"
+  })
+  void testVisitCodeAttribute6() {
+    // Arrange
+    KeepMarker attributeVisitor = new KeepMarker();
+    OptimizationCodeAttributeFilter optimizationCodeAttributeFilter =
+        new OptimizationCodeAttributeFilter(attributeVisitor, new KotlinAnnotationCounter());
+    LibraryClass clazz = new LibraryClass();
+    LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
+
+    CodeAttributeOptimizationInfo codeAttributeOptimizationInfo =
+        mock(CodeAttributeOptimizationInfo.class);
+    when(codeAttributeOptimizationInfo.isKept()).thenReturn(false);
+
+    CodeAttribute codeAttribute = new CodeAttribute(1);
+    codeAttribute.setProcessingInfo(codeAttributeOptimizationInfo);
+
+    // Act
+    optimizationCodeAttributeFilter.visitCodeAttribute(clazz, method, codeAttribute);
+
+    // Assert
+    verify(codeAttributeOptimizationInfo).isKept();
+    Object processingInfo = codeAttribute.getProcessingInfo();
+    assertTrue(processingInfo instanceof CodeAttributeOptimizationInfo);
+    assertTrue(((CodeAttributeOptimizationInfo) processingInfo).isKept());
   }
 }

@@ -4,6 +4,7 @@ import static org.mockito.Mockito.atLeast;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -15,26 +16,29 @@ import proguard.classfile.ProgramClass;
 import proguard.classfile.ProgramField;
 import proguard.classfile.ProgramMethod;
 import proguard.fixer.kotlin.KotlinAnnotationCounter;
-import proguard.util.SimpleProcessable;
 
 class MemberSpecialNameFilterDiffblueTest {
   /**
    * Test {@link MemberSpecialNameFilter#visitProgramField(ProgramClass, ProgramField)}.
+   *
    * <ul>
-   *   <li>Given {@code Processing Info}.</li>
-   *   <li>Then calls {@link SimpleProcessable#getProcessingInfo()}.</li>
+   *   <li>Given {@code Processing Info}.
+   *   <li>Then calls {@link ProgramField#getProcessingInfo()}.
    * </ul>
-   * <p>
-   * Method under test: {@link MemberSpecialNameFilter#visitProgramField(ProgramClass, ProgramField)}
+   *
+   * <p>Method under test: {@link MemberSpecialNameFilter#visitProgramField(ProgramClass,
+   * ProgramField)}
    */
   @Test
-  @DisplayName("Test visitProgramField(ProgramClass, ProgramField); given 'Processing Info'; then calls getProcessingInfo()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.MemberSpecialNameFilter.visitProgramField(proguard.classfile.ProgramClass, proguard.classfile.ProgramField)"})
+  @DisplayName(
+      "Test visitProgramField(ProgramClass, ProgramField); given 'Processing Info'; then calls getProcessingInfo()")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void MemberSpecialNameFilter.visitProgramField(ProgramClass, ProgramField)"})
   void testVisitProgramField_givenProcessingInfo_thenCallsGetProcessingInfo() {
     // Arrange
-    MemberSpecialNameFilter memberSpecialNameFilter = new MemberSpecialNameFilter(new KotlinAnnotationCounter());
+    MemberSpecialNameFilter memberSpecialNameFilter =
+        new MemberSpecialNameFilter(new KotlinAnnotationCounter());
     ProgramClass programClass = new ProgramClass();
     ProgramField programField = mock(ProgramField.class);
     when(programField.getProcessingInfo()).thenReturn("Processing Info");
@@ -48,21 +52,27 @@ class MemberSpecialNameFilterDiffblueTest {
 
   /**
    * Test {@link MemberSpecialNameFilter#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   *
    * <ul>
-   *   <li>Given {@code Processing Info}.</li>
-   *   <li>Then calls {@link SimpleProcessable#getProcessingInfo()}.</li>
+   *   <li>Given {@code Processing Info}.
+   *   <li>Then calls {@link ProgramMethod#getProcessingInfo()}.
    * </ul>
-   * <p>
-   * Method under test: {@link MemberSpecialNameFilter#visitProgramMethod(ProgramClass, ProgramMethod)}
+   *
+   * <p>Method under test: {@link MemberSpecialNameFilter#visitProgramMethod(ProgramClass,
+   * ProgramMethod)}
    */
   @Test
-  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); given 'Processing Info'; then calls getProcessingInfo()")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitProgramMethod(ProgramClass, ProgramMethod); given 'Processing Info'; then calls getProcessingInfo()")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.obfuscate.MemberSpecialNameFilter.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
+    "void MemberSpecialNameFilter.visitProgramMethod(ProgramClass, ProgramMethod)"
+  })
   void testVisitProgramMethod_givenProcessingInfo_thenCallsGetProcessingInfo() {
     // Arrange
-    MemberSpecialNameFilter memberSpecialNameFilter = new MemberSpecialNameFilter(new KotlinAnnotationCounter());
+    MemberSpecialNameFilter memberSpecialNameFilter =
+        new MemberSpecialNameFilter(new KotlinAnnotationCounter());
     ProgramClass programClass = new ProgramClass();
     ProgramMethod programMethod = mock(ProgramMethod.class);
     when(programMethod.getProcessingInfo()).thenReturn("Processing Info");
@@ -76,21 +86,25 @@ class MemberSpecialNameFilterDiffblueTest {
 
   /**
    * Test {@link MemberSpecialNameFilter#visitLibraryField(LibraryClass, LibraryField)}.
+   *
    * <ul>
-   *   <li>Given {@code Processing Info}.</li>
-   *   <li>Then calls {@link SimpleProcessable#getProcessingInfo()}.</li>
+   *   <li>Given {@code Processing Info}.
+   *   <li>Then calls {@link LibraryField#getProcessingInfo()}.
    * </ul>
-   * <p>
-   * Method under test: {@link MemberSpecialNameFilter#visitLibraryField(LibraryClass, LibraryField)}
+   *
+   * <p>Method under test: {@link MemberSpecialNameFilter#visitLibraryField(LibraryClass,
+   * LibraryField)}
    */
   @Test
-  @DisplayName("Test visitLibraryField(LibraryClass, LibraryField); given 'Processing Info'; then calls getProcessingInfo()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.MemberSpecialNameFilter.visitLibraryField(proguard.classfile.LibraryClass, proguard.classfile.LibraryField)"})
+  @DisplayName(
+      "Test visitLibraryField(LibraryClass, LibraryField); given 'Processing Info'; then calls getProcessingInfo()")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void MemberSpecialNameFilter.visitLibraryField(LibraryClass, LibraryField)"})
   void testVisitLibraryField_givenProcessingInfo_thenCallsGetProcessingInfo() {
     // Arrange
-    MemberSpecialNameFilter memberSpecialNameFilter = new MemberSpecialNameFilter(new KotlinAnnotationCounter());
+    MemberSpecialNameFilter memberSpecialNameFilter =
+        new MemberSpecialNameFilter(new KotlinAnnotationCounter());
     LibraryClass libraryClass = new LibraryClass();
     LibraryField libraryField = mock(LibraryField.class);
     when(libraryField.getProcessingInfo()).thenReturn("Processing Info");
@@ -104,21 +118,27 @@ class MemberSpecialNameFilterDiffblueTest {
 
   /**
    * Test {@link MemberSpecialNameFilter#visitLibraryMethod(LibraryClass, LibraryMethod)}.
+   *
    * <ul>
-   *   <li>Given {@code Processing Info}.</li>
-   *   <li>Then calls {@link SimpleProcessable#getProcessingInfo()}.</li>
+   *   <li>Given {@code Processing Info}.
+   *   <li>Then calls {@link LibraryMethod#getProcessingInfo()}.
    * </ul>
-   * <p>
-   * Method under test: {@link MemberSpecialNameFilter#visitLibraryMethod(LibraryClass, LibraryMethod)}
+   *
+   * <p>Method under test: {@link MemberSpecialNameFilter#visitLibraryMethod(LibraryClass,
+   * LibraryMethod)}
    */
   @Test
-  @DisplayName("Test visitLibraryMethod(LibraryClass, LibraryMethod); given 'Processing Info'; then calls getProcessingInfo()")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitLibraryMethod(LibraryClass, LibraryMethod); given 'Processing Info'; then calls getProcessingInfo()")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.obfuscate.MemberSpecialNameFilter.visitLibraryMethod(proguard.classfile.LibraryClass, proguard.classfile.LibraryMethod)"})
+    "void MemberSpecialNameFilter.visitLibraryMethod(LibraryClass, LibraryMethod)"
+  })
   void testVisitLibraryMethod_givenProcessingInfo_thenCallsGetProcessingInfo() {
     // Arrange
-    MemberSpecialNameFilter memberSpecialNameFilter = new MemberSpecialNameFilter(new KotlinAnnotationCounter());
+    MemberSpecialNameFilter memberSpecialNameFilter =
+        new MemberSpecialNameFilter(new KotlinAnnotationCounter());
     LibraryClass libraryClass = new LibraryClass();
     LibraryMethod libraryMethod = mock(LibraryMethod.class);
     when(libraryMethod.getProcessingInfo()).thenReturn("Processing Info");

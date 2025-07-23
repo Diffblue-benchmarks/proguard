@@ -3,11 +3,14 @@ package proguard.obfuscate.kotlin;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import proguard.classfile.ClassPool;
+import proguard.classfile.LibraryClass;
+import proguard.classfile.ProgramClass;
 import proguard.classfile.constant.ClassConstant;
 import proguard.classfile.constant.Constant;
 import proguard.classfile.constant.MethodrefConstant;
@@ -19,48 +22,163 @@ import proguard.classfile.instruction.Instruction;
 
 class KotlinIntrinsicsReplacementSequencesDiffblueTest {
   /**
-   * Test {@link KotlinIntrinsicsReplacementSequences#KotlinIntrinsicsReplacementSequences(ClassPool, ClassPool)}.
-   * <ul>
-   *   <li>Then return array length is sixty-eight.</li>
-   * </ul>
-   * <p>
-   * Method under test: {@link KotlinIntrinsicsReplacementSequences#KotlinIntrinsicsReplacementSequences(ClassPool, ClassPool)}
+   * Test {@link
+   * KotlinIntrinsicsReplacementSequences#KotlinIntrinsicsReplacementSequences(ClassPool,
+   * ClassPool)}.
+   *
+   * <p>Method under test: {@link
+   * KotlinIntrinsicsReplacementSequences#KotlinIntrinsicsReplacementSequences(ClassPool,
+   * ClassPool)}
    */
   @Test
-  @DisplayName("Test new KotlinIntrinsicsReplacementSequences(ClassPool, ClassPool); then return array length is sixty-eight")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.kotlin.KotlinIntrinsicsReplacementSequences.<init>(proguard.classfile.ClassPool, proguard.classfile.ClassPool)"})
-  void testNewKotlinIntrinsicsReplacementSequences_thenReturnArrayLengthIsSixtyEight() {
+  @DisplayName("Test new KotlinIntrinsicsReplacementSequences(ClassPool, ClassPool)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void KotlinIntrinsicsReplacementSequences.<init>(ClassPool, ClassPool)"})
+  void testNewKotlinIntrinsicsReplacementSequences() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
+    programClassPool.addClass(
+        "kotlin/jvm/internal/Intrinsics",
+        new LibraryClass(
+            Short.SIZE, "kotlin/jvm/internal/Intrinsics", "kotlin/jvm/internal/Intrinsics"));
 
-    // Act
-    KotlinIntrinsicsReplacementSequences actualKotlinIntrinsicsReplacementSequences = new KotlinIntrinsicsReplacementSequences(
-        programClassPool, new ClassPool());
-
-    // Assert
-    assertEquals(68, actualKotlinIntrinsicsReplacementSequences.getConstants().length);
-    assertEquals(Short.SIZE, actualKotlinIntrinsicsReplacementSequences.getSequences().length);
+    // Act and Assert
+    Constant[] constants =
+        new KotlinIntrinsicsReplacementSequences(programClassPool, new ClassPool()).getConstants();
+    assertTrue(constants[5] instanceof ClassConstant);
+    assertTrue(constants[1] instanceof Utf8Constant);
+    assertTrue(constants[10] instanceof Utf8Constant);
+    assertTrue(constants[13] instanceof Utf8Constant);
+    assertTrue(constants[15] instanceof Utf8Constant);
+    assertTrue(constants[18] instanceof Utf8Constant);
+    assertTrue(constants[2] instanceof Utf8Constant);
+    assertTrue(constants[21] instanceof Utf8Constant);
+    assertTrue(constants[24] instanceof Utf8Constant);
+    assertTrue(constants[4] instanceof Utf8Constant);
+    assertTrue(constants[45] instanceof Utf8Constant);
+    assertTrue(constants[48] instanceof Utf8Constant);
+    assertTrue(constants[53] instanceof Utf8Constant);
+    assertTrue(constants[58] instanceof Utf8Constant);
+    assertTrue(constants[63] instanceof Utf8Constant);
+    assertTrue(constants[7] instanceof Utf8Constant);
+    assertEquals(68, constants.length);
   }
 
   /**
-   * Test {@link KotlinIntrinsicsReplacementSequences#KotlinIntrinsicsReplacementSequences(ClassPool, ClassPool)}.
+   * Test {@link
+   * KotlinIntrinsicsReplacementSequences#KotlinIntrinsicsReplacementSequences(ClassPool,
+   * ClassPool)}.
+   *
    * <ul>
-   *   <li>Then return array length is sixty-eight.</li>
+   *   <li>Given {@link ProgramClass#ProgramClass()}.
    * </ul>
-   * <p>
-   * Method under test: {@link KotlinIntrinsicsReplacementSequences#KotlinIntrinsicsReplacementSequences(ClassPool, ClassPool)}
+   *
+   * <p>Method under test: {@link
+   * KotlinIntrinsicsReplacementSequences#KotlinIntrinsicsReplacementSequences(ClassPool,
+   * ClassPool)}
    */
   @Test
-  @DisplayName("Test new KotlinIntrinsicsReplacementSequences(ClassPool, ClassPool); then return array length is sixty-eight")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.kotlin.KotlinIntrinsicsReplacementSequences.<init>(proguard.classfile.ClassPool, proguard.classfile.ClassPool)"})
-  void testNewKotlinIntrinsicsReplacementSequences_thenReturnArrayLengthIsSixtyEight2() {
+  @DisplayName(
+      "Test new KotlinIntrinsicsReplacementSequences(ClassPool, ClassPool); given ProgramClass()")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void KotlinIntrinsicsReplacementSequences.<init>(ClassPool, ClassPool)"})
+  void testNewKotlinIntrinsicsReplacementSequences_givenProgramClass() {
+    // Arrange
+    ClassPool programClassPool = new ClassPool();
+    programClassPool.addClass("kotlin/jvm/internal/Intrinsics", new ProgramClass());
+
+    // Act and Assert
+    Constant[] constants =
+        new KotlinIntrinsicsReplacementSequences(programClassPool, new ClassPool()).getConstants();
+    assertTrue(constants[5] instanceof ClassConstant);
+    assertTrue(constants[1] instanceof Utf8Constant);
+    assertTrue(constants[10] instanceof Utf8Constant);
+    assertTrue(constants[13] instanceof Utf8Constant);
+    assertTrue(constants[15] instanceof Utf8Constant);
+    assertTrue(constants[18] instanceof Utf8Constant);
+    assertTrue(constants[2] instanceof Utf8Constant);
+    assertTrue(constants[21] instanceof Utf8Constant);
+    assertTrue(constants[24] instanceof Utf8Constant);
+    assertTrue(constants[4] instanceof Utf8Constant);
+    assertTrue(constants[45] instanceof Utf8Constant);
+    assertTrue(constants[48] instanceof Utf8Constant);
+    assertTrue(constants[53] instanceof Utf8Constant);
+    assertTrue(constants[58] instanceof Utf8Constant);
+    assertTrue(constants[63] instanceof Utf8Constant);
+    assertTrue(constants[7] instanceof Utf8Constant);
+    assertEquals(68, constants.length);
+  }
+
+  /**
+   * Test {@link
+   * KotlinIntrinsicsReplacementSequences#KotlinIntrinsicsReplacementSequences(ClassPool,
+   * ClassPool)}.
+   *
+   * <ul>
+   *   <li>Then second element return {@link Utf8Constant}.
+   * </ul>
+   *
+   * <p>Method under test: {@link
+   * KotlinIntrinsicsReplacementSequences#KotlinIntrinsicsReplacementSequences(ClassPool,
+   * ClassPool)}
+   */
+  @Test
+  @DisplayName(
+      "Test new KotlinIntrinsicsReplacementSequences(ClassPool, ClassPool); then second element return Utf8Constant")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void KotlinIntrinsicsReplacementSequences.<init>(ClassPool, ClassPool)"})
+  void testNewKotlinIntrinsicsReplacementSequences_thenSecondElementReturnUtf8Constant() {
+    // Arrange
+    ClassPool programClassPool = new ClassPool();
+
+    // Act and Assert
+    Constant[] constants =
+        new KotlinIntrinsicsReplacementSequences(programClassPool, new ClassPool()).getConstants();
+    assertTrue(constants[1] instanceof Utf8Constant);
+    assertTrue(constants[10] instanceof Utf8Constant);
+    assertTrue(constants[13] instanceof Utf8Constant);
+    assertTrue(constants[15] instanceof Utf8Constant);
+    assertTrue(constants[18] instanceof Utf8Constant);
+    assertTrue(constants[2] instanceof Utf8Constant);
+    assertTrue(constants[21] instanceof Utf8Constant);
+    assertTrue(constants[24] instanceof Utf8Constant);
+    assertTrue(constants[4] instanceof Utf8Constant);
+    assertTrue(constants[45] instanceof Utf8Constant);
+    assertTrue(constants[48] instanceof Utf8Constant);
+    assertTrue(constants[53] instanceof Utf8Constant);
+    assertTrue(constants[58] instanceof Utf8Constant);
+    assertTrue(constants[63] instanceof Utf8Constant);
+    assertTrue(constants[7] instanceof Utf8Constant);
+    assertEquals(68, constants.length);
+  }
+
+  /**
+   * Test {@link
+   * KotlinIntrinsicsReplacementSequences#KotlinIntrinsicsReplacementSequences(ClassPool,
+   * ClassPool)}.
+   *
+   * <ul>
+   *   <li>When {@code null}.
+   *   <li>Then return array length is {@link Short#SIZE}.
+   * </ul>
+   *
+   * <p>Method under test: {@link
+   * KotlinIntrinsicsReplacementSequences#KotlinIntrinsicsReplacementSequences(ClassPool,
+   * ClassPool)}
+   */
+  @Test
+  @DisplayName(
+      "Test new KotlinIntrinsicsReplacementSequences(ClassPool, ClassPool); when 'null'; then return array length is SIZE")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void KotlinIntrinsicsReplacementSequences.<init>(ClassPool, ClassPool)"})
+  void testNewKotlinIntrinsicsReplacementSequences_whenNull_thenReturnArrayLengthIsSize() {
     // Arrange and Act
-    KotlinIntrinsicsReplacementSequences actualKotlinIntrinsicsReplacementSequences = new KotlinIntrinsicsReplacementSequences(
-        null, new ClassPool());
+    KotlinIntrinsicsReplacementSequences actualKotlinIntrinsicsReplacementSequences =
+        new KotlinIntrinsicsReplacementSequences(null, new ClassPool());
 
     // Assert
     assertEquals(68, actualKotlinIntrinsicsReplacementSequences.getConstants().length);
@@ -69,8 +187,9 @@ class KotlinIntrinsicsReplacementSequencesDiffblueTest {
 
   /**
    * Test getters and setters.
-   * <p>
-   * Methods under test:
+   *
+   * <p>Methods under test:
+   *
    * <ul>
    *   <li>{@link KotlinIntrinsicsReplacementSequences#getConstants()}
    *   <li>{@link KotlinIntrinsicsReplacementSequences#getSequences()}
@@ -78,15 +197,17 @@ class KotlinIntrinsicsReplacementSequencesDiffblueTest {
    */
   @Test
   @DisplayName("Test getters and setters")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "proguard.classfile.constant.Constant[] proguard.obfuscate.kotlin.KotlinIntrinsicsReplacementSequences.getConstants()",
-      "proguard.classfile.instruction.Instruction[][][] proguard.obfuscate.kotlin.KotlinIntrinsicsReplacementSequences.getSequences()"})
+    "Constant[] KotlinIntrinsicsReplacementSequences.getConstants()",
+    "Instruction[][][] KotlinIntrinsicsReplacementSequences.getSequences()"
+  })
   void testGettersAndSetters() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
-    KotlinIntrinsicsReplacementSequences kotlinIntrinsicsReplacementSequences = new KotlinIntrinsicsReplacementSequences(
-        programClassPool, new ClassPool());
+    KotlinIntrinsicsReplacementSequences kotlinIntrinsicsReplacementSequences =
+        new KotlinIntrinsicsReplacementSequences(programClassPool, new ClassPool());
 
     // Act
     Constant[] actualConstants = kotlinIntrinsicsReplacementSequences.getConstants();
@@ -127,24 +248,40 @@ class KotlinIntrinsicsReplacementSequencesDiffblueTest {
     assertTrue(constant16 instanceof MethodrefConstant);
     Constant constant17 = actualConstants[9];
     assertTrue(constant17 instanceof MethodrefConstant);
-    assertTrue(actualConstants[11] instanceof NameAndTypeConstant);
-    assertTrue(actualConstants[19] instanceof NameAndTypeConstant);
-    assertTrue(actualConstants[22] instanceof NameAndTypeConstant);
-    assertTrue(actualConstants[3] instanceof NameAndTypeConstant);
-    assertTrue(actualConstants[43] instanceof NameAndTypeConstant);
-    assertTrue(actualConstants[46] instanceof NameAndTypeConstant);
-    assertTrue(actualConstants[49] instanceof NameAndTypeConstant);
-    assertTrue(actualConstants[51] instanceof NameAndTypeConstant);
-    assertTrue(actualConstants[54] instanceof NameAndTypeConstant);
-    assertTrue(actualConstants[56] instanceof NameAndTypeConstant);
-    assertTrue(actualConstants[59] instanceof NameAndTypeConstant);
-    assertTrue(actualConstants[61] instanceof NameAndTypeConstant);
-    assertTrue(actualConstants[66] instanceof NameAndTypeConstant);
-    assertTrue(actualConstants[8] instanceof NameAndTypeConstant);
-    assertTrue(actualConstants[Double.SIZE] instanceof NameAndTypeConstant);
-    assertTrue(actualConstants[Short.SIZE] instanceof NameAndTypeConstant);
-    Constant constant18 = actualConstants[14];
-    assertTrue(constant18 instanceof StringConstant);
+    Constant constant18 = actualConstants[11];
+    assertTrue(constant18 instanceof NameAndTypeConstant);
+    Constant constant19 = actualConstants[19];
+    assertTrue(constant19 instanceof NameAndTypeConstant);
+    Constant constant20 = actualConstants[22];
+    assertTrue(constant20 instanceof NameAndTypeConstant);
+    Constant constant21 = actualConstants[3];
+    assertTrue(constant21 instanceof NameAndTypeConstant);
+    Constant constant22 = actualConstants[43];
+    assertTrue(constant22 instanceof NameAndTypeConstant);
+    Constant constant23 = actualConstants[46];
+    assertTrue(constant23 instanceof NameAndTypeConstant);
+    Constant constant24 = actualConstants[49];
+    assertTrue(constant24 instanceof NameAndTypeConstant);
+    Constant constant25 = actualConstants[51];
+    assertTrue(constant25 instanceof NameAndTypeConstant);
+    Constant constant26 = actualConstants[54];
+    assertTrue(constant26 instanceof NameAndTypeConstant);
+    Constant constant27 = actualConstants[56];
+    assertTrue(constant27 instanceof NameAndTypeConstant);
+    Constant constant28 = actualConstants[59];
+    assertTrue(constant28 instanceof NameAndTypeConstant);
+    Constant constant29 = actualConstants[61];
+    assertTrue(constant29 instanceof NameAndTypeConstant);
+    Constant constant30 = actualConstants[66];
+    assertTrue(constant30 instanceof NameAndTypeConstant);
+    Constant constant31 = actualConstants[8];
+    assertTrue(constant31 instanceof NameAndTypeConstant);
+    Constant constant32 = actualConstants[Double.SIZE];
+    assertTrue(constant32 instanceof NameAndTypeConstant);
+    Constant constant33 = actualConstants[Short.SIZE];
+    assertTrue(constant33 instanceof NameAndTypeConstant);
+    Constant constant34 = actualConstants[14];
+    assertTrue(constant34 instanceof StringConstant);
     assertTrue(actualConstants[1] instanceof Utf8Constant);
     assertTrue(actualConstants[10] instanceof Utf8Constant);
     assertTrue(actualConstants[13] instanceof Utf8Constant);
@@ -323,9 +460,9 @@ class KotlinIntrinsicsReplacementSequencesDiffblueTest {
     assertNull(((MethodrefConstant) constant15).referencedClass);
     assertNull(((MethodrefConstant) constant16).referencedClass);
     assertNull(((MethodrefConstant) constant17).referencedClass);
-    assertNull(((StringConstant) constant18).javaLangStringClass);
-    assertNull(((StringConstant) constant18).referencedClass);
-    assertNull(((StringConstant) constant18).referencedMember);
+    assertNull(((StringConstant) constant34).javaLangStringClass);
+    assertNull(((StringConstant) constant34).referencedClass);
+    assertNull(((StringConstant) constant34).referencedMember);
     assertNull(((MethodrefConstant) constant2).referencedMethod);
     assertNull(((MethodrefConstant) constant3).referencedMethod);
     assertNull(((MethodrefConstant) constant4).referencedMethod);
@@ -343,7 +480,7 @@ class KotlinIntrinsicsReplacementSequencesDiffblueTest {
     assertNull(((MethodrefConstant) constant16).referencedMethod);
     assertNull(((MethodrefConstant) constant17).referencedMethod);
     assertNull(actualConstants[0]);
-    assertNull(((StringConstant) constant18).referencedResourceFile);
+    assertNull(((StringConstant) constant34).referencedResourceFile);
     assertEquals((byte) -72, ((ConstantInstruction) instruction2).opcode);
     assertEquals((byte) -72, ((ConstantInstruction) instruction3).opcode);
     assertEquals((byte) -72, ((ConstantInstruction) instruction4).opcode);
@@ -366,7 +503,7 @@ class KotlinIntrinsicsReplacementSequencesDiffblueTest {
     assertEquals((byte) -72, ((ConstantInstruction) instruction29).opcode);
     assertEquals((byte) -72, ((ConstantInstruction) instruction32).opcode);
     assertEquals((byte) -72, ((ConstantInstruction) instruction34).opcode);
-    assertEquals(0, ((StringConstant) constant18).referencedResourceId);
+    assertEquals(0, ((StringConstant) constant34).referencedResourceId);
     assertEquals(0, ((ConstantInstruction) instruction).constant);
     assertEquals(0, ((ConstantInstruction) instruction2).constant);
     assertEquals(0, ((ConstantInstruction) instruction3).constant);
@@ -398,12 +535,17 @@ class KotlinIntrinsicsReplacementSequencesDiffblueTest {
     assertEquals(1, instructionArray18.length);
     assertEquals(1, instructionArray21.length);
     assertEquals(1, instructionArray24.length);
+    assertEquals(1, ((NameAndTypeConstant) constant21).u2nameIndex);
+    assertEquals(1, ((NameAndTypeConstant) constant31).u2nameIndex);
+    assertEquals(10, ((NameAndTypeConstant) constant18).u2nameIndex);
     assertEquals(1073741824, ((ConstantInstruction) instruction).constantIndex);
     assertEquals(1073741825, ((ConstantInstruction) instruction28).constantIndex);
     assertEquals(12, ((ConstantInstruction) instruction4).constantIndex);
-    assertEquals(13, ((StringConstant) constant18).u2stringIndex);
+    assertEquals(13, ((StringConstant) constant34).u2stringIndex);
     assertEquals(14, ((ConstantInstruction) instruction5).constantIndex);
+    assertEquals(15, ((NameAndTypeConstant) constant33).u2nameIndex);
     assertEquals(17, ((ConstantInstruction) instruction18).constantIndex);
+    assertEquals(18, ((NameAndTypeConstant) constant19).u2nameIndex);
     assertEquals((byte) 18, ((ConstantInstruction) instruction).opcode);
     assertEquals((byte) 18, ((ConstantInstruction) instruction5).opcode);
     assertEquals((byte) 18, ((ConstantInstruction) instruction28).opcode);
@@ -445,7 +587,13 @@ class KotlinIntrinsicsReplacementSequencesDiffblueTest {
     assertEquals(2, instructionArray40.length);
     assertEquals(2, instructionArray43.length);
     assertEquals(2, instructionArray46.length);
+    assertEquals(2, ((NameAndTypeConstant) constant18).u2descriptorIndex);
+    assertEquals(2, ((NameAndTypeConstant) constant19).u2descriptorIndex);
+    assertEquals(2, ((NameAndTypeConstant) constant20).u2descriptorIndex);
+    assertEquals(2, ((NameAndTypeConstant) constant21).u2descriptorIndex);
+    assertEquals(2, ((NameAndTypeConstant) constant33).u2descriptorIndex);
     assertEquals(20, ((ConstantInstruction) instruction20).constantIndex);
+    assertEquals(21, ((NameAndTypeConstant) constant20).u2nameIndex);
     assertEquals(23, ((ConstantInstruction) instruction22).constantIndex);
     assertEquals(26, ((ConstantInstruction) instruction24).constantIndex);
     assertEquals(29, ((ConstantInstruction) instruction26).constantIndex);
@@ -454,21 +602,42 @@ class KotlinIntrinsicsReplacementSequencesDiffblueTest {
     assertEquals(3, instructionArray44.length);
     assertEquals(3, instructionArray45.length);
     assertEquals(34, ((ConstantInstruction) instruction32).constantIndex);
+    assertEquals(36, ((NameAndTypeConstant) constant22).u2descriptorIndex);
+    assertEquals(36, ((NameAndTypeConstant) constant24).u2descriptorIndex);
+    assertEquals(36, ((NameAndTypeConstant) constant26).u2descriptorIndex);
+    assertEquals(36, ((NameAndTypeConstant) constant28).u2descriptorIndex);
+    assertEquals(36, ((NameAndTypeConstant) constant32).u2descriptorIndex);
     assertEquals(38, ((ConstantInstruction) instruction34).constantIndex);
     assertEquals(4, ((ClassConstant) constant).u2nameIndex);
     assertEquals(41, ((ConstantInstruction) instruction6).constantIndex);
+    assertEquals(42, ((NameAndTypeConstant) constant22).u2nameIndex);
+    assertEquals(42, ((NameAndTypeConstant) constant23).u2nameIndex);
     assertEquals(44, ((ConstantInstruction) instruction8).constantIndex);
+    assertEquals(45, ((NameAndTypeConstant) constant23).u2descriptorIndex);
+    assertEquals(45, ((NameAndTypeConstant) constant25).u2descriptorIndex);
+    assertEquals(45, ((NameAndTypeConstant) constant27).u2descriptorIndex);
+    assertEquals(45, ((NameAndTypeConstant) constant29).u2descriptorIndex);
+    assertEquals(45, ((NameAndTypeConstant) constant30).u2descriptorIndex);
     assertEquals(47, ((ConstantInstruction) instruction9).constantIndex);
+    assertEquals(48, ((NameAndTypeConstant) constant24).u2nameIndex);
+    assertEquals(48, ((NameAndTypeConstant) constant25).u2nameIndex);
     assertEquals(50, ((ConstantInstruction) instruction10).constantIndex);
     assertEquals(52, ((ConstantInstruction) instruction11).constantIndex);
+    assertEquals(53, ((NameAndTypeConstant) constant26).u2nameIndex);
+    assertEquals(53, ((NameAndTypeConstant) constant27).u2nameIndex);
     assertEquals(55, ((ConstantInstruction) instruction12).constantIndex);
     assertEquals(57, ((ConstantInstruction) instruction13).constantIndex);
+    assertEquals(58, ((NameAndTypeConstant) constant28).u2nameIndex);
+    assertEquals(58, ((NameAndTypeConstant) constant29).u2nameIndex);
     assertEquals(6, ((ConstantInstruction) instruction2).constantIndex);
     assertEquals(60, ((ConstantInstruction) instruction14).constantIndex);
     assertEquals(62, ((ConstantInstruction) instruction15).constantIndex);
+    assertEquals(63, ((NameAndTypeConstant) constant30).u2nameIndex);
+    assertEquals(63, ((NameAndTypeConstant) constant32).u2nameIndex);
     assertEquals(65, ((ConstantInstruction) instruction16).constantIndex);
     assertEquals(67, ((ConstantInstruction) instruction17).constantIndex);
     assertEquals(68, actualConstants.length);
+    assertEquals(7, ((NameAndTypeConstant) constant31).u2descriptorIndex);
     assertEquals(9, ((ConstantInstruction) instruction3).constantIndex);
     assertEquals(Integer.SIZE, ((ConstantInstruction) instruction29).constantIndex);
     assertEquals(Short.SIZE, actualSequences.length);

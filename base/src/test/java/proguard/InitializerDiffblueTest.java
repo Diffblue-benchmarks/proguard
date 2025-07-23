@@ -1,6 +1,7 @@
 package proguard;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.net.MalformedURLException;
 import java.nio.file.Paths;
@@ -12,13 +13,14 @@ import org.junit.jupiter.api.Test;
 class InitializerDiffblueTest {
   /**
    * Test {@link Initializer#Initializer(Configuration)}.
-   * <p>
-   * Method under test: {@link Initializer#Initializer(Configuration)}
+   *
+   * <p>Method under test: {@link Initializer#Initializer(Configuration)}
    */
   @Test
   @DisplayName("Test new Initializer(Configuration)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.Initializer.<init>(proguard.Configuration)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void Initializer.<init>(Configuration)"})
   void testNewInitializer() throws MalformedURLException {
     // Arrange
     Configuration configuration = new Configuration();
@@ -35,9 +37,8 @@ class InitializerDiffblueTest {
     configuration.assumeNoSideEffects = new ArrayList<>();
     configuration.assumeValues = new ArrayList<>();
     configuration.backport = true;
-    configuration.classObfuscationDictionary = Paths.get(System.getProperty("java.io.tmpdir"), "test.txt")
-        .toUri()
-        .toURL();
+    configuration.classObfuscationDictionary =
+        Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toUri().toURL();
     configuration.dontCompress = new ArrayList<>();
     configuration.dontProcessKotlinMetadata = true;
     configuration.dump = Configuration.STD_OUT;
@@ -62,15 +63,15 @@ class InitializerDiffblueTest {
     configuration.newSourceFileAttribute = "New Source File Attribute";
     configuration.note = new ArrayList<>();
     configuration.obfuscate = true;
-    configuration.obfuscationDictionary = Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toUri().toURL();
+    configuration.obfuscationDictionary =
+        Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toUri().toURL();
     configuration.optimizationPasses = 1;
     configuration.optimizations = new ArrayList<>();
     configuration.optimize = true;
     configuration.optimizeConservatively = true;
     configuration.overloadAggressively = true;
-    configuration.packageObfuscationDictionary = Paths.get(System.getProperty("java.io.tmpdir"), "test.txt")
-        .toUri()
-        .toURL();
+    configuration.packageObfuscationDictionary =
+        Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toUri().toURL();
     configuration.preverify = true;
     configuration.printConfiguration = Configuration.STD_OUT;
     configuration.printMapping = Configuration.STD_OUT;
@@ -90,6 +91,6 @@ class InitializerDiffblueTest {
     configuration.zipAlign = 1;
 
     // Act and Assert
-    assertEquals("proguard.Initializer", (new Initializer(configuration)).getName());
+    assertEquals("proguard.Initializer", new Initializer(configuration).getName());
   }
 }

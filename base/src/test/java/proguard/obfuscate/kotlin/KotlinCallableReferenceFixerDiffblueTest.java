@@ -3,13 +3,18 @@ package proguard.obfuscate.kotlin;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.io.UnsupportedEncodingException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import proguard.classfile.ClassPool;
+import proguard.classfile.Clazz;
+import proguard.classfile.LibraryClass;
+import proguard.classfile.ProgramClass;
 import proguard.classfile.constant.ClassConstant;
 import proguard.classfile.constant.Constant;
 import proguard.classfile.constant.MethodrefConstant;
@@ -26,8 +31,9 @@ import proguard.obfuscate.kotlin.KotlinCallableReferenceFixer.OwnerReplacementSe
 class KotlinCallableReferenceFixerDiffblueTest {
   /**
    * Test NameAndSignatureReplacementSequences getters and setters.
-   * <p>
-   * Methods under test:
+   *
+   * <p>Methods under test:
+   *
    * <ul>
    *   <li>{@link NameAndSignatureReplacementSequences#getConstants()}
    *   <li>{@link NameAndSignatureReplacementSequences#getSequences()}
@@ -35,15 +41,18 @@ class KotlinCallableReferenceFixerDiffblueTest {
    */
   @Test
   @DisplayName("Test NameAndSignatureReplacementSequences getters and setters")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "proguard.classfile.constant.Constant[] proguard.obfuscate.kotlin.KotlinCallableReferenceFixer$NameAndSignatureReplacementSequences.getConstants()",
-      "proguard.classfile.instruction.Instruction[][][] proguard.obfuscate.kotlin.KotlinCallableReferenceFixer$NameAndSignatureReplacementSequences.getSequences()"})
+    "Constant[] NameAndSignatureReplacementSequences.getConstants()",
+    "Instruction[][][] NameAndSignatureReplacementSequences.getSequences()"
+  })
   void testNameAndSignatureReplacementSequencesGettersAndSetters() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
-    NameAndSignatureReplacementSequences nameAndSignatureReplacementSequences = new NameAndSignatureReplacementSequences(
-        "Name", "Signature", programClassPool, new ClassPool());
+    NameAndSignatureReplacementSequences nameAndSignatureReplacementSequences =
+        new NameAndSignatureReplacementSequences(
+            "Name", "Signature", programClassPool, new ClassPool());
 
     // Act
     Constant[] actualConstants = nameAndSignatureReplacementSequences.getConstants();
@@ -141,23 +150,31 @@ class KotlinCallableReferenceFixerDiffblueTest {
   }
 
   /**
-   * Test NameAndSignatureReplacementSequences {@link NameAndSignatureReplacementSequences#NameAndSignatureReplacementSequences(String, String, ClassPool, ClassPool)}.
-   * <p>
-   * Method under test: {@link NameAndSignatureReplacementSequences#NameAndSignatureReplacementSequences(String, String, ClassPool, ClassPool)}
+   * Test NameAndSignatureReplacementSequences {@link
+   * NameAndSignatureReplacementSequences#NameAndSignatureReplacementSequences(String, String,
+   * ClassPool, ClassPool)}.
+   *
+   * <p>Method under test: {@link
+   * NameAndSignatureReplacementSequences#NameAndSignatureReplacementSequences(String, String,
+   * ClassPool, ClassPool)}
    */
   @Test
-  @DisplayName("Test NameAndSignatureReplacementSequences new NameAndSignatureReplacementSequences(String, String, ClassPool, ClassPool)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test NameAndSignatureReplacementSequences new NameAndSignatureReplacementSequences(String, String, ClassPool, ClassPool)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.obfuscate.kotlin.KotlinCallableReferenceFixer$NameAndSignatureReplacementSequences.<init>(java.lang.String, java.lang.String, proguard.classfile.ClassPool, proguard.classfile.ClassPool)"})
+    "void NameAndSignatureReplacementSequences.<init>(String, String, ClassPool, ClassPool)"
+  })
   void testNameAndSignatureReplacementSequencesNewNameAndSignatureReplacementSequences()
       throws UnsupportedEncodingException {
     // Arrange
     ClassPool programClassPool = new ClassPool();
 
     // Act
-    NameAndSignatureReplacementSequences actualNameAndSignatureReplacementSequences = new NameAndSignatureReplacementSequences(
-        "Name", "Signature", programClassPool, new ClassPool());
+    NameAndSignatureReplacementSequences actualNameAndSignatureReplacementSequences =
+        new NameAndSignatureReplacementSequences(
+            "Name", "Signature", programClassPool, new ClassPool());
 
     // Assert
     Constant[] constants = actualNameAndSignatureReplacementSequences.getConstants();
@@ -182,20 +199,27 @@ class KotlinCallableReferenceFixerDiffblueTest {
   }
 
   /**
-   * Test NameAndSignatureReplacementSequences {@link NameAndSignatureReplacementSequences#NameAndSignatureReplacementSequences(String, String, ClassPool, ClassPool)}.
-   * <p>
-   * Method under test: {@link NameAndSignatureReplacementSequences#NameAndSignatureReplacementSequences(String, String, ClassPool, ClassPool)}
+   * Test NameAndSignatureReplacementSequences {@link
+   * NameAndSignatureReplacementSequences#NameAndSignatureReplacementSequences(String, String,
+   * ClassPool, ClassPool)}.
+   *
+   * <p>Method under test: {@link
+   * NameAndSignatureReplacementSequences#NameAndSignatureReplacementSequences(String, String,
+   * ClassPool, ClassPool)}
    */
   @Test
-  @DisplayName("Test NameAndSignatureReplacementSequences new NameAndSignatureReplacementSequences(String, String, ClassPool, ClassPool)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test NameAndSignatureReplacementSequences new NameAndSignatureReplacementSequences(String, String, ClassPool, ClassPool)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.obfuscate.kotlin.KotlinCallableReferenceFixer$NameAndSignatureReplacementSequences.<init>(java.lang.String, java.lang.String, proguard.classfile.ClassPool, proguard.classfile.ClassPool)"})
+    "void NameAndSignatureReplacementSequences.<init>(String, String, ClassPool, ClassPool)"
+  })
   void testNameAndSignatureReplacementSequencesNewNameAndSignatureReplacementSequences2()
       throws UnsupportedEncodingException {
     // Arrange and Act
-    NameAndSignatureReplacementSequences actualNameAndSignatureReplacementSequences = new NameAndSignatureReplacementSequences(
-        "Name", "Signature", null, new ClassPool());
+    NameAndSignatureReplacementSequences actualNameAndSignatureReplacementSequences =
+        new NameAndSignatureReplacementSequences("Name", "Signature", null, new ClassPool());
 
     // Assert
     Constant[] constants = actualNameAndSignatureReplacementSequences.getConstants();
@@ -221,8 +245,9 @@ class KotlinCallableReferenceFixerDiffblueTest {
 
   /**
    * Test NameOrSignatureReplacementSequences getters and setters.
-   * <p>
-   * Methods under test:
+   *
+   * <p>Methods under test:
+   *
    * <ul>
    *   <li>{@link NameOrSignatureReplacementSequences#getConstants()}
    *   <li>{@link NameOrSignatureReplacementSequences#getSequences()}
@@ -230,15 +255,17 @@ class KotlinCallableReferenceFixerDiffblueTest {
    */
   @Test
   @DisplayName("Test NameOrSignatureReplacementSequences getters and setters")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "proguard.classfile.constant.Constant[] proguard.obfuscate.kotlin.KotlinCallableReferenceFixer$NameOrSignatureReplacementSequences.getConstants()",
-      "proguard.classfile.instruction.Instruction[][][] proguard.obfuscate.kotlin.KotlinCallableReferenceFixer$NameOrSignatureReplacementSequences.getSequences()"})
+    "Constant[] NameOrSignatureReplacementSequences.getConstants()",
+    "Instruction[][][] NameOrSignatureReplacementSequences.getSequences()"
+  })
   void testNameOrSignatureReplacementSequencesGettersAndSetters() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
-    NameOrSignatureReplacementSequences nameOrSignatureReplacementSequences = new NameOrSignatureReplacementSequences(
-        "Name", programClassPool, new ClassPool());
+    NameOrSignatureReplacementSequences nameOrSignatureReplacementSequences =
+        new NameOrSignatureReplacementSequences("Name", programClassPool, new ClassPool());
 
     // Act
     Constant[] actualConstants = nameOrSignatureReplacementSequences.getConstants();
@@ -281,22 +308,29 @@ class KotlinCallableReferenceFixerDiffblueTest {
   }
 
   /**
-   * Test NameOrSignatureReplacementSequences {@link NameOrSignatureReplacementSequences#NameOrSignatureReplacementSequences(String, ClassPool, ClassPool)}.
-   * <p>
-   * Method under test: {@link NameOrSignatureReplacementSequences#NameOrSignatureReplacementSequences(String, ClassPool, ClassPool)}
+   * Test NameOrSignatureReplacementSequences {@link
+   * NameOrSignatureReplacementSequences#NameOrSignatureReplacementSequences(String, ClassPool,
+   * ClassPool)}.
+   *
+   * <p>Method under test: {@link
+   * NameOrSignatureReplacementSequences#NameOrSignatureReplacementSequences(String, ClassPool,
+   * ClassPool)}
    */
   @Test
-  @DisplayName("Test NameOrSignatureReplacementSequences new NameOrSignatureReplacementSequences(String, ClassPool, ClassPool)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test NameOrSignatureReplacementSequences new NameOrSignatureReplacementSequences(String, ClassPool, ClassPool)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.obfuscate.kotlin.KotlinCallableReferenceFixer$NameOrSignatureReplacementSequences.<init>(java.lang.String, proguard.classfile.ClassPool, proguard.classfile.ClassPool)"})
+    "void NameOrSignatureReplacementSequences.<init>(String, ClassPool, ClassPool)"
+  })
   void testNameOrSignatureReplacementSequencesNewNameOrSignatureReplacementSequences() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
 
     // Act
-    NameOrSignatureReplacementSequences actualNameOrSignatureReplacementSequences = new NameOrSignatureReplacementSequences(
-        "Name", programClassPool, new ClassPool());
+    NameOrSignatureReplacementSequences actualNameOrSignatureReplacementSequences =
+        new NameOrSignatureReplacementSequences("Name", programClassPool, new ClassPool());
 
     // Assert
     Constant[] constants = actualNameOrSignatureReplacementSequences.getConstants();
@@ -310,19 +344,26 @@ class KotlinCallableReferenceFixerDiffblueTest {
   }
 
   /**
-   * Test NameOrSignatureReplacementSequences {@link NameOrSignatureReplacementSequences#NameOrSignatureReplacementSequences(String, ClassPool, ClassPool)}.
-   * <p>
-   * Method under test: {@link NameOrSignatureReplacementSequences#NameOrSignatureReplacementSequences(String, ClassPool, ClassPool)}
+   * Test NameOrSignatureReplacementSequences {@link
+   * NameOrSignatureReplacementSequences#NameOrSignatureReplacementSequences(String, ClassPool,
+   * ClassPool)}.
+   *
+   * <p>Method under test: {@link
+   * NameOrSignatureReplacementSequences#NameOrSignatureReplacementSequences(String, ClassPool,
+   * ClassPool)}
    */
   @Test
-  @DisplayName("Test NameOrSignatureReplacementSequences new NameOrSignatureReplacementSequences(String, ClassPool, ClassPool)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test NameOrSignatureReplacementSequences new NameOrSignatureReplacementSequences(String, ClassPool, ClassPool)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.obfuscate.kotlin.KotlinCallableReferenceFixer$NameOrSignatureReplacementSequences.<init>(java.lang.String, proguard.classfile.ClassPool, proguard.classfile.ClassPool)"})
+    "void NameOrSignatureReplacementSequences.<init>(String, ClassPool, ClassPool)"
+  })
   void testNameOrSignatureReplacementSequencesNewNameOrSignatureReplacementSequences2() {
     // Arrange and Act
-    NameOrSignatureReplacementSequences actualNameOrSignatureReplacementSequences = new NameOrSignatureReplacementSequences(
-        "Name", null, new ClassPool());
+    NameOrSignatureReplacementSequences actualNameOrSignatureReplacementSequences =
+        new NameOrSignatureReplacementSequences("Name", null, new ClassPool());
 
     // Assert
     Constant[] constants = actualNameOrSignatureReplacementSequences.getConstants();
@@ -337,8 +378,9 @@ class KotlinCallableReferenceFixerDiffblueTest {
 
   /**
    * Test OwnerReplacementSequences getters and setters.
-   * <p>
-   * Methods under test:
+   *
+   * <p>Methods under test:
+   *
    * <ul>
    *   <li>{@link OwnerReplacementSequences#getConstants()}
    *   <li>{@link OwnerReplacementSequences#getSequences()}
@@ -346,15 +388,17 @@ class KotlinCallableReferenceFixerDiffblueTest {
    */
   @Test
   @DisplayName("Test OwnerReplacementSequences getters and setters")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "proguard.classfile.constant.Constant[] proguard.obfuscate.kotlin.KotlinCallableReferenceFixer$OwnerReplacementSequences.getConstants()",
-      "proguard.classfile.instruction.Instruction[][][] proguard.obfuscate.kotlin.KotlinCallableReferenceFixer$OwnerReplacementSequences.getSequences()"})
+    "Constant[] OwnerReplacementSequences.getConstants()",
+    "Instruction[][][] OwnerReplacementSequences.getSequences()"
+  })
   void testOwnerReplacementSequencesGettersAndSetters() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
-    OwnerReplacementSequences ownerReplacementSequences = new OwnerReplacementSequences("Name", programClassPool,
-        new ClassPool());
+    OwnerReplacementSequences ownerReplacementSequences =
+        new OwnerReplacementSequences("Name", programClassPool, new ClassPool());
 
     // Act
     Constant[] actualConstants = ownerReplacementSequences.getConstants();
@@ -365,9 +409,10 @@ class KotlinCallableReferenceFixerDiffblueTest {
     assertTrue(constant instanceof ClassConstant);
     Constant constant2 = actualConstants[6];
     assertTrue(constant2 instanceof MethodrefConstant);
-    assertTrue(actualConstants[3] instanceof NameAndTypeConstant);
-    Constant constant3 = actualConstants[8];
-    assertTrue(constant3 instanceof StringConstant);
+    Constant constant3 = actualConstants[3];
+    assertTrue(constant3 instanceof NameAndTypeConstant);
+    Constant constant4 = actualConstants[8];
+    assertTrue(constant4 instanceof StringConstant);
     assertTrue(actualConstants[1] instanceof Utf8Constant);
     assertTrue(actualConstants[2] instanceof Utf8Constant);
     assertTrue(actualConstants[4] instanceof Utf8Constant);
@@ -388,51 +433,93 @@ class KotlinCallableReferenceFixerDiffblueTest {
     assertNull(((ClassConstant) constant).javaLangClassClass);
     assertNull(((ClassConstant) constant).referencedClass);
     assertNull(((MethodrefConstant) constant2).referencedClass);
-    assertNull(((StringConstant) constant3).javaLangStringClass);
-    assertNull(((StringConstant) constant3).referencedClass);
-    assertNull(((StringConstant) constant3).referencedMember);
+    assertNull(((StringConstant) constant4).javaLangStringClass);
+    assertNull(((StringConstant) constant4).referencedClass);
+    assertNull(((StringConstant) constant4).referencedMember);
     assertNull(((MethodrefConstant) constant2).referencedMethod);
     assertNull(actualConstants[0]);
-    assertNull(((StringConstant) constant3).referencedResourceFile);
+    assertNull(((StringConstant) constant4).referencedResourceFile);
     assertEquals((byte) -72, ((ConstantInstruction) instruction3).opcode);
-    assertEquals(0, ((StringConstant) constant3).referencedResourceId);
+    assertEquals(0, ((StringConstant) constant4).referencedResourceId);
     assertEquals(0, ((ConstantInstruction) instruction).constant);
     assertEquals(0, ((ConstantInstruction) instruction2).constant);
     assertEquals(0, ((ConstantInstruction) instruction3).constant);
     assertEquals(0, ((ConstantInstruction) instruction4).constant);
     assertEquals(1, actualSequences.length);
+    assertEquals(1, ((NameAndTypeConstant) constant3).u2nameIndex);
     assertEquals(1073741824, ((ConstantInstruction) instruction).constantIndex);
     assertEquals(1073741825, ((ConstantInstruction) instruction2).constantIndex);
     assertEquals((byte) 18, ((ConstantInstruction) instruction).opcode);
     assertEquals((byte) 18, ((ConstantInstruction) instruction2).opcode);
     assertEquals((byte) 18, ((ConstantInstruction) instruction4).opcode);
     assertEquals(2, instructionArray.length);
+    assertEquals(2, ((NameAndTypeConstant) constant3).u2descriptorIndex);
     assertEquals(3, instructionArray2.length);
     assertEquals(3, instructionArray3.length);
     assertEquals(4, ((ClassConstant) constant).u2nameIndex);
     assertEquals(6, ((ConstantInstruction) instruction3).constantIndex);
-    assertEquals(7, ((StringConstant) constant3).u2stringIndex);
+    assertEquals(7, ((StringConstant) constant4).u2stringIndex);
     assertEquals(8, ((ConstantInstruction) instruction4).constantIndex);
     assertEquals(9, actualConstants.length);
   }
 
   /**
-   * Test OwnerReplacementSequences {@link OwnerReplacementSequences#OwnerReplacementSequences(String, ClassPool, ClassPool)}.
-   * <p>
-   * Method under test: {@link OwnerReplacementSequences#OwnerReplacementSequences(String, ClassPool, ClassPool)}
+   * Test OwnerReplacementSequences {@link
+   * OwnerReplacementSequences#OwnerReplacementSequences(String, ClassPool, ClassPool)}.
+   *
+   * <p>Method under test: {@link OwnerReplacementSequences#OwnerReplacementSequences(String,
+   * ClassPool, ClassPool)}
    */
   @Test
-  @DisplayName("Test OwnerReplacementSequences new OwnerReplacementSequences(String, ClassPool, ClassPool)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.kotlin.KotlinCallableReferenceFixer$OwnerReplacementSequences.<init>(java.lang.String, proguard.classfile.ClassPool, proguard.classfile.ClassPool)"})
-  void testOwnerReplacementSequencesNewOwnerReplacementSequences() throws UnsupportedEncodingException {
+  @DisplayName(
+      "Test OwnerReplacementSequences new OwnerReplacementSequences(String, ClassPool, ClassPool)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void OwnerReplacementSequences.<init>(String, ClassPool, ClassPool)"})
+  void testOwnerReplacementSequencesNewOwnerReplacementSequences()
+      throws UnsupportedEncodingException {
     // Arrange
     ClassPool programClassPool = new ClassPool();
 
-    // Act
-    OwnerReplacementSequences actualOwnerReplacementSequences = new OwnerReplacementSequences("Name", programClassPool,
-        new ClassPool());
+    // Act and Assert
+    Constant[] constants =
+        new OwnerReplacementSequences("Name", programClassPool, new ClassPool()).getConstants();
+    Constant constant = constants[5];
+    assertTrue(constant instanceof ClassConstant);
+    Constant constant2 = constants[1];
+    assertTrue(constant2 instanceof Utf8Constant);
+    Constant constant3 = constants[4];
+    assertTrue(constant3 instanceof Utf8Constant);
+    Constant constant4 = constants[7];
+    assertTrue(constant4 instanceof Utf8Constant);
+    assertNull(((ClassConstant) constant).referencedClass);
+    assertEquals(9, constants.length);
+    byte[] expectedBytes = "Name".getBytes("UTF-8");
+    assertArrayEquals(expectedBytes, ((Utf8Constant) constant4).getBytes());
+    byte[] expectedBytes2 = "getOrCreateKotlinPackage".getBytes("UTF-8");
+    assertArrayEquals(expectedBytes2, ((Utf8Constant) constant2).getBytes());
+    byte[] expectedBytes3 = "kotlin/jvm/internal/Reflection".getBytes("UTF-8");
+    assertArrayEquals(expectedBytes3, ((Utf8Constant) constant3).getBytes());
+  }
+
+  /**
+   * Test OwnerReplacementSequences {@link
+   * OwnerReplacementSequences#OwnerReplacementSequences(String, ClassPool, ClassPool)}.
+   *
+   * <p>Method under test: {@link OwnerReplacementSequences#OwnerReplacementSequences(String,
+   * ClassPool, ClassPool)}
+   */
+  @Test
+  @DisplayName(
+      "Test OwnerReplacementSequences new OwnerReplacementSequences(String, ClassPool, ClassPool)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void OwnerReplacementSequences.<init>(String, ClassPool, ClassPool)"})
+  void testOwnerReplacementSequencesNewOwnerReplacementSequences2()
+      throws UnsupportedEncodingException {
+    // Arrange and Act
+    OwnerReplacementSequences actualOwnerReplacementSequences =
+        new OwnerReplacementSequences("Name", null, new ClassPool());
 
     // Assert
     Constant[] constants = actualOwnerReplacementSequences.getConstants();
@@ -460,42 +547,238 @@ class KotlinCallableReferenceFixerDiffblueTest {
   }
 
   /**
-   * Test OwnerReplacementSequences {@link OwnerReplacementSequences#OwnerReplacementSequences(String, ClassPool, ClassPool)}.
-   * <p>
-   * Method under test: {@link OwnerReplacementSequences#OwnerReplacementSequences(String, ClassPool, ClassPool)}
+   * Test OwnerReplacementSequences {@link
+   * OwnerReplacementSequences#OwnerReplacementSequences(String, ClassPool, ClassPool)}.
+   *
+   * <p>Method under test: {@link OwnerReplacementSequences#OwnerReplacementSequences(String,
+   * ClassPool, ClassPool)}
    */
   @Test
-  @DisplayName("Test OwnerReplacementSequences new OwnerReplacementSequences(String, ClassPool, ClassPool)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.kotlin.KotlinCallableReferenceFixer$OwnerReplacementSequences.<init>(java.lang.String, proguard.classfile.ClassPool, proguard.classfile.ClassPool)"})
-  void testOwnerReplacementSequencesNewOwnerReplacementSequences2() throws UnsupportedEncodingException {
-    // Arrange and Act
-    OwnerReplacementSequences actualOwnerReplacementSequences = new OwnerReplacementSequences("Name", null,
-        new ClassPool());
+  @DisplayName(
+      "Test OwnerReplacementSequences new OwnerReplacementSequences(String, ClassPool, ClassPool)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void OwnerReplacementSequences.<init>(String, ClassPool, ClassPool)"})
+  void testOwnerReplacementSequencesNewOwnerReplacementSequences3()
+      throws UnsupportedEncodingException {
+    // Arrange
+    ClassPool programClassPool = new ClassPool();
+    LibraryClass clazz =
+        new LibraryClass(1, "kotlin/jvm/internal/Reflection", "kotlin/jvm/internal/Reflection");
 
-    // Assert
-    Constant[] constants = actualOwnerReplacementSequences.getConstants();
-    Constant constant = constants[1];
-    assertTrue(constant instanceof Utf8Constant);
-    Constant constant2 = constants[4];
+    programClassPool.addClass("kotlin/jvm/internal/Reflection", clazz);
+
+    // Act and Assert
+    Constant[] constants =
+        new OwnerReplacementSequences("Name", programClassPool, new ClassPool()).getConstants();
+    Constant constant = constants[5];
+    Clazz clazz2 = ((ClassConstant) constant).referencedClass;
+    assertTrue(clazz2 instanceof LibraryClass);
+    assertTrue(constant instanceof ClassConstant);
+    Constant constant2 = constants[1];
     assertTrue(constant2 instanceof Utf8Constant);
-    Constant constant3 = constants[7];
+    Constant constant3 = constants[4];
     assertTrue(constant3 instanceof Utf8Constant);
-    Instruction[][][] sequences = actualOwnerReplacementSequences.getSequences();
-    Instruction[][] instructionArray = sequences[0];
-    Instruction[] instructionArray2 = instructionArray[1];
-    assertTrue(instructionArray2[0] instanceof ConstantInstruction);
-    assertTrue(instructionArray2[2] instanceof ConstantInstruction);
-    assertEquals(1, sequences.length);
-    assertEquals(2, instructionArray.length);
-    assertEquals(3, instructionArray2.length);
+    Constant constant4 = constants[7];
+    assertTrue(constant4 instanceof Utf8Constant);
     assertEquals(9, constants.length);
+    assertSame(clazz, clazz2);
     byte[] expectedBytes = "Name".getBytes("UTF-8");
-    assertArrayEquals(expectedBytes, ((Utf8Constant) constant3).getBytes());
+    assertArrayEquals(expectedBytes, ((Utf8Constant) constant4).getBytes());
     byte[] expectedBytes2 = "getOrCreateKotlinPackage".getBytes("UTF-8");
-    assertArrayEquals(expectedBytes2, ((Utf8Constant) constant).getBytes());
+    assertArrayEquals(expectedBytes2, ((Utf8Constant) constant2).getBytes());
     byte[] expectedBytes3 = "kotlin/jvm/internal/Reflection".getBytes("UTF-8");
-    assertArrayEquals(expectedBytes3, ((Utf8Constant) constant2).getBytes());
+    assertArrayEquals(expectedBytes3, ((Utf8Constant) constant3).getBytes());
+  }
+
+  /**
+   * Test OwnerReplacementSequences {@link
+   * OwnerReplacementSequences#OwnerReplacementSequences(String, ClassPool, ClassPool)}.
+   *
+   * <p>Method under test: {@link OwnerReplacementSequences#OwnerReplacementSequences(String,
+   * ClassPool, ClassPool)}
+   */
+  @Test
+  @DisplayName(
+      "Test OwnerReplacementSequences new OwnerReplacementSequences(String, ClassPool, ClassPool)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void OwnerReplacementSequences.<init>(String, ClassPool, ClassPool)"})
+  void testOwnerReplacementSequencesNewOwnerReplacementSequences4()
+      throws UnsupportedEncodingException {
+    // Arrange
+    ClassPool programClassPool = new ClassPool();
+    ProgramClass clazz = new ProgramClass();
+    programClassPool.addClass("kotlin/jvm/internal/Reflection", clazz);
+
+    // Act and Assert
+    Constant[] constants =
+        new OwnerReplacementSequences("Name", programClassPool, new ClassPool()).getConstants();
+    Constant constant = constants[5];
+    assertTrue(constant instanceof ClassConstant);
+    Constant constant2 = constants[1];
+    assertTrue(constant2 instanceof Utf8Constant);
+    Constant constant3 = constants[4];
+    assertTrue(constant3 instanceof Utf8Constant);
+    Constant constant4 = constants[7];
+    assertTrue(constant4 instanceof Utf8Constant);
+    assertEquals(9, constants.length);
+    assertSame(clazz, ((ClassConstant) constant).referencedClass);
+    byte[] expectedBytes = "Name".getBytes("UTF-8");
+    assertArrayEquals(expectedBytes, ((Utf8Constant) constant4).getBytes());
+    byte[] expectedBytes2 = "getOrCreateKotlinPackage".getBytes("UTF-8");
+    assertArrayEquals(expectedBytes2, ((Utf8Constant) constant2).getBytes());
+    byte[] expectedBytes3 = "kotlin/jvm/internal/Reflection".getBytes("UTF-8");
+    assertArrayEquals(expectedBytes3, ((Utf8Constant) constant3).getBytes());
+  }
+
+  /**
+   * Test OwnerReplacementSequences {@link
+   * OwnerReplacementSequences#OwnerReplacementSequences(String, ClassPool, ClassPool)}.
+   *
+   * <p>Method under test: {@link OwnerReplacementSequences#OwnerReplacementSequences(String,
+   * ClassPool, ClassPool)}
+   */
+  @Test
+  @DisplayName(
+      "Test OwnerReplacementSequences new OwnerReplacementSequences(String, ClassPool, ClassPool)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void OwnerReplacementSequences.<init>(String, ClassPool, ClassPool)"})
+  void testOwnerReplacementSequencesNewOwnerReplacementSequences5()
+      throws UnsupportedEncodingException {
+    // Arrange
+    ClassPool programClassPool = new ClassPool();
+    ClassConstant classConstant = new ClassConstant();
+    ProgramClass clazz =
+        new ProgramClass(1, 3, new Constant[] {classConstant, new ClassConstant()}, 1, 1, 1);
+
+    programClassPool.addClass("kotlin/jvm/internal/Reflection", clazz);
+
+    // Act and Assert
+    Constant[] constants =
+        new OwnerReplacementSequences("Name", programClassPool, new ClassPool()).getConstants();
+    Constant constant = constants[5];
+    assertTrue(constant instanceof ClassConstant);
+    Constant constant2 = constants[1];
+    assertTrue(constant2 instanceof Utf8Constant);
+    Constant constant3 = constants[4];
+    assertTrue(constant3 instanceof Utf8Constant);
+    Constant constant4 = constants[7];
+    assertTrue(constant4 instanceof Utf8Constant);
+    assertEquals(9, constants.length);
+    assertSame(clazz, ((ClassConstant) constant).referencedClass);
+    byte[] expectedBytes = "Name".getBytes("UTF-8");
+    assertArrayEquals(expectedBytes, ((Utf8Constant) constant4).getBytes());
+    byte[] expectedBytes2 = "getOrCreateKotlinPackage".getBytes("UTF-8");
+    assertArrayEquals(expectedBytes2, ((Utf8Constant) constant2).getBytes());
+    byte[] expectedBytes3 = "kotlin/jvm/internal/Reflection".getBytes("UTF-8");
+    assertArrayEquals(expectedBytes3, ((Utf8Constant) constant3).getBytes());
+  }
+
+  /**
+   * Test OwnerReplacementSequences {@link
+   * OwnerReplacementSequences#OwnerReplacementSequences(String, ClassPool, ClassPool)}.
+   *
+   * <p>Method under test: {@link OwnerReplacementSequences#OwnerReplacementSequences(String,
+   * ClassPool, ClassPool)}
+   */
+  @Test
+  @DisplayName(
+      "Test OwnerReplacementSequences new OwnerReplacementSequences(String, ClassPool, ClassPool)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void OwnerReplacementSequences.<init>(String, ClassPool, ClassPool)"})
+  void testOwnerReplacementSequencesNewOwnerReplacementSequences6()
+      throws UnsupportedEncodingException {
+    // Arrange
+    ClassPool programClassPool = new ClassPool();
+    ClassConstant classConstant = new ClassConstant();
+    ProgramClass clazz =
+        new ProgramClass(
+            1,
+            3,
+            new Constant[] {
+              classConstant,
+              new ClassConstant(
+                  1,
+                  new LibraryClass(
+                      1, "kotlin/jvm/internal/Reflection", "kotlin/jvm/internal/Reflection"))
+            },
+            1,
+            1,
+            1);
+
+    programClassPool.addClass("kotlin/jvm/internal/Reflection", clazz);
+
+    // Act and Assert
+    Constant[] constants =
+        new OwnerReplacementSequences("Name", programClassPool, new ClassPool()).getConstants();
+    Constant constant = constants[5];
+    assertTrue(constant instanceof ClassConstant);
+    Constant constant2 = constants[1];
+    assertTrue(constant2 instanceof Utf8Constant);
+    Constant constant3 = constants[4];
+    assertTrue(constant3 instanceof Utf8Constant);
+    Constant constant4 = constants[7];
+    assertTrue(constant4 instanceof Utf8Constant);
+    assertEquals(9, constants.length);
+    assertSame(clazz, ((ClassConstant) constant).referencedClass);
+    byte[] expectedBytes = "Name".getBytes("UTF-8");
+    assertArrayEquals(expectedBytes, ((Utf8Constant) constant4).getBytes());
+    byte[] expectedBytes2 = "getOrCreateKotlinPackage".getBytes("UTF-8");
+    assertArrayEquals(expectedBytes2, ((Utf8Constant) constant2).getBytes());
+    byte[] expectedBytes3 = "kotlin/jvm/internal/Reflection".getBytes("UTF-8");
+    assertArrayEquals(expectedBytes3, ((Utf8Constant) constant3).getBytes());
+  }
+
+  /**
+   * Test OwnerReplacementSequences {@link
+   * OwnerReplacementSequences#OwnerReplacementSequences(String, ClassPool, ClassPool)}.
+   *
+   * <p>Method under test: {@link OwnerReplacementSequences#OwnerReplacementSequences(String,
+   * ClassPool, ClassPool)}
+   */
+  @Test
+  @DisplayName(
+      "Test OwnerReplacementSequences new OwnerReplacementSequences(String, ClassPool, ClassPool)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void OwnerReplacementSequences.<init>(String, ClassPool, ClassPool)"})
+  void testOwnerReplacementSequencesNewOwnerReplacementSequences7()
+      throws UnsupportedEncodingException {
+    // Arrange
+    ClassPool programClassPool = new ClassPool();
+    ClassConstant classConstant = new ClassConstant();
+    ProgramClass clazz =
+        new ProgramClass(
+            1,
+            3,
+            new Constant[] {classConstant, new ClassConstant(1, new ProgramClass())},
+            1,
+            1,
+            1);
+
+    programClassPool.addClass("kotlin/jvm/internal/Reflection", clazz);
+
+    // Act and Assert
+    Constant[] constants =
+        new OwnerReplacementSequences("Name", programClassPool, new ClassPool()).getConstants();
+    Constant constant = constants[5];
+    assertTrue(constant instanceof ClassConstant);
+    Constant constant2 = constants[1];
+    assertTrue(constant2 instanceof Utf8Constant);
+    Constant constant3 = constants[4];
+    assertTrue(constant3 instanceof Utf8Constant);
+    Constant constant4 = constants[7];
+    assertTrue(constant4 instanceof Utf8Constant);
+    assertEquals(9, constants.length);
+    assertSame(clazz, ((ClassConstant) constant).referencedClass);
+    byte[] expectedBytes = "Name".getBytes("UTF-8");
+    assertArrayEquals(expectedBytes, ((Utf8Constant) constant4).getBytes());
+    byte[] expectedBytes2 = "getOrCreateKotlinPackage".getBytes("UTF-8");
+    assertArrayEquals(expectedBytes2, ((Utf8Constant) constant2).getBytes());
+    byte[] expectedBytes3 = "kotlin/jvm/internal/Reflection".getBytes("UTF-8");
+    assertArrayEquals(expectedBytes3, ((Utf8Constant) constant3).getBytes());
   }
 }

@@ -1,6 +1,7 @@
 package proguard.util.kotlin.asserter;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.net.MalformedURLException;
 import java.nio.file.Paths;
@@ -14,13 +15,14 @@ import proguard.Configuration;
 class KotlinMetadataVerifierDiffblueTest {
   /**
    * Test {@link KotlinMetadataVerifier#KotlinMetadataVerifier(Configuration)}.
-   * <p>
-   * Method under test: {@link KotlinMetadataVerifier#KotlinMetadataVerifier(Configuration)}
+   *
+   * <p>Method under test: {@link KotlinMetadataVerifier#KotlinMetadataVerifier(Configuration)}
    */
   @Test
   @DisplayName("Test new KotlinMetadataVerifier(Configuration)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.util.kotlin.asserter.KotlinMetadataVerifier.<init>(proguard.Configuration)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void KotlinMetadataVerifier.<init>(Configuration)"})
   void testNewKotlinMetadataVerifier() throws MalformedURLException {
     // Arrange
     Configuration configuration = new Configuration();
@@ -37,9 +39,8 @@ class KotlinMetadataVerifierDiffblueTest {
     configuration.assumeNoSideEffects = new ArrayList<>();
     configuration.assumeValues = new ArrayList<>();
     configuration.backport = true;
-    configuration.classObfuscationDictionary = Paths.get(System.getProperty("java.io.tmpdir"), "test.txt")
-        .toUri()
-        .toURL();
+    configuration.classObfuscationDictionary =
+        Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toUri().toURL();
     configuration.dontCompress = new ArrayList<>();
     configuration.dontProcessKotlinMetadata = true;
     configuration.dump = Configuration.STD_OUT;
@@ -64,15 +65,15 @@ class KotlinMetadataVerifierDiffblueTest {
     configuration.newSourceFileAttribute = "New Source File Attribute";
     configuration.note = new ArrayList<>();
     configuration.obfuscate = true;
-    configuration.obfuscationDictionary = Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toUri().toURL();
+    configuration.obfuscationDictionary =
+        Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toUri().toURL();
     configuration.optimizationPasses = 1;
     configuration.optimizations = new ArrayList<>();
     configuration.optimize = true;
     configuration.optimizeConservatively = true;
     configuration.overloadAggressively = true;
-    configuration.packageObfuscationDictionary = Paths.get(System.getProperty("java.io.tmpdir"), "test.txt")
-        .toUri()
-        .toURL();
+    configuration.packageObfuscationDictionary =
+        Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toUri().toURL();
     configuration.preverify = true;
     configuration.printConfiguration = Configuration.STD_OUT;
     configuration.printMapping = Configuration.STD_OUT;
@@ -92,7 +93,8 @@ class KotlinMetadataVerifierDiffblueTest {
     configuration.zipAlign = 1;
 
     // Act and Assert
-    assertEquals("proguard.util.kotlin.asserter.KotlinMetadataVerifier",
-        (new KotlinMetadataVerifier(configuration)).getName());
+    assertEquals(
+        "proguard.util.kotlin.asserter.KotlinMetadataVerifier",
+        new KotlinMetadataVerifier(configuration).getName());
   }
 }

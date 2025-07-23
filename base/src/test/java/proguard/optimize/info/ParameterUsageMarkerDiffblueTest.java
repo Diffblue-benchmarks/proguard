@@ -12,6 +12,7 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -24,17 +25,19 @@ import proguard.classfile.Method;
 class ParameterUsageMarkerDiffblueTest {
   /**
    * Test {@link ParameterUsageMarker#visitLibraryMethod(LibraryClass, LibraryMethod)}.
+   *
    * <ul>
-   *   <li>Given {@code false}.</li>
+   *   <li>Given {@code false}.
    * </ul>
-   * <p>
-   * Method under test: {@link ParameterUsageMarker#visitLibraryMethod(LibraryClass, LibraryMethod)}
+   *
+   * <p>Method under test: {@link ParameterUsageMarker#visitLibraryMethod(LibraryClass,
+   * LibraryMethod)}
    */
   @Test
   @DisplayName("Test visitLibraryMethod(LibraryClass, LibraryMethod); given 'false'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.ParameterUsageMarker.visitLibraryMethod(proguard.classfile.LibraryClass, proguard.classfile.LibraryMethod)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ParameterUsageMarker.visitLibraryMethod(LibraryClass, LibraryMethod)"})
   void testVisitLibraryMethod_givenFalse() {
     // Arrange
     ParameterUsageMarker parameterUsageMarker = new ParameterUsageMarker();
@@ -42,7 +45,8 @@ class ParameterUsageMarkerDiffblueTest {
     when(libraryClass.mayHaveImplementations(Mockito.<Method>any())).thenReturn(false);
 
     // Act
-    parameterUsageMarker.visitLibraryMethod(libraryClass, mock(LibraryMethod.class));
+    parameterUsageMarker.visitLibraryMethod(
+        libraryClass, new LibraryMethod(1, "Name", "Descriptor"));
 
     // Assert
     verify(libraryClass).mayHaveImplementations(isA(Method.class));
@@ -50,26 +54,32 @@ class ParameterUsageMarkerDiffblueTest {
 
   /**
    * Test {@link ParameterUsageMarker#visitLibraryMethod(LibraryClass, LibraryMethod)}.
+   *
    * <ul>
-   *   <li>Then calls {@link ProgramMethodOptimizationInfo#updateUsedParameters(long)}.</li>
+   *   <li>Given {@code true}.
+   *   <li>Then calls {@link ProgramMethodOptimizationInfo#updateUsedParameters(long)}.
    * </ul>
-   * <p>
-   * Method under test: {@link ParameterUsageMarker#visitLibraryMethod(LibraryClass, LibraryMethod)}
+   *
+   * <p>Method under test: {@link ParameterUsageMarker#visitLibraryMethod(LibraryClass,
+   * LibraryMethod)}
    */
   @Test
-  @DisplayName("Test visitLibraryMethod(LibraryClass, LibraryMethod); then calls updateUsedParameters(long)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.ParameterUsageMarker.visitLibraryMethod(proguard.classfile.LibraryClass, proguard.classfile.LibraryMethod)"})
-  void testVisitLibraryMethod_thenCallsUpdateUsedParameters() {
+  @DisplayName(
+      "Test visitLibraryMethod(LibraryClass, LibraryMethod); given 'true'; then calls updateUsedParameters(long)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ParameterUsageMarker.visitLibraryMethod(LibraryClass, LibraryMethod)"})
+  void testVisitLibraryMethod_givenTrue_thenCallsUpdateUsedParameters() {
     // Arrange
     ParameterUsageMarker parameterUsageMarker = new ParameterUsageMarker();
     LibraryClass libraryClass = mock(LibraryClass.class);
     when(libraryClass.mayHaveImplementations(Mockito.<Method>any())).thenReturn(true);
-    ProgramMethodOptimizationInfo programMethodOptimizationInfo = mock(ProgramMethodOptimizationInfo.class);
+    ProgramMethodOptimizationInfo programMethodOptimizationInfo =
+        mock(ProgramMethodOptimizationInfo.class);
     doNothing().when(programMethodOptimizationInfo).updateUsedParameters(anyLong());
-    LibraryMethod libraryMethod = mock(LibraryMethod.class);
-    when(libraryMethod.getProcessingInfo()).thenReturn(programMethodOptimizationInfo);
+
+    LibraryMethod libraryMethod = new LibraryMethod(1, "Name", "Descriptor");
+    libraryMethod.setProcessingInfo(programMethodOptimizationInfo);
 
     // Act
     parameterUsageMarker.visitLibraryMethod(libraryClass, libraryMethod);
@@ -77,22 +87,24 @@ class ParameterUsageMarkerDiffblueTest {
     // Assert
     verify(libraryClass).mayHaveImplementations(isA(Method.class));
     verify(programMethodOptimizationInfo).updateUsedParameters(eq(-1L));
-    verify(libraryMethod, atLeast(1)).getProcessingInfo();
   }
 
   /**
    * Test {@link ParameterUsageMarker#getParameterSize(Method)}.
+   *
    * <ul>
-   *   <li>Given {@link MethodOptimizationInfo} (default constructor).</li>
-   *   <li>Then return zero.</li>
+   *   <li>Given {@link MethodOptimizationInfo} (default constructor).
+   *   <li>Then return zero.
    * </ul>
-   * <p>
-   * Method under test: {@link ParameterUsageMarker#getParameterSize(Method)}
+   *
+   * <p>Method under test: {@link ParameterUsageMarker#getParameterSize(Method)}
    */
   @Test
-  @DisplayName("Test getParameterSize(Method); given MethodOptimizationInfo (default constructor); then return zero")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"int proguard.optimize.info.ParameterUsageMarker.getParameterSize(proguard.classfile.Method)"})
+  @DisplayName(
+      "Test getParameterSize(Method); given MethodOptimizationInfo (default constructor); then return zero")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"int ParameterUsageMarker.getParameterSize(Method)"})
   void testGetParameterSize_givenMethodOptimizationInfo_thenReturnZero() {
     // Arrange
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
@@ -104,20 +116,22 @@ class ParameterUsageMarkerDiffblueTest {
 
   /**
    * Test {@link ParameterUsageMarker#markParameterUsed(Method, int)}.
+   *
    * <ul>
-   *   <li>Then calls {@link ProgramMethodOptimizationInfo#setParameterUsed(int)}.</li>
+   *   <li>Then calls {@link ProgramMethodOptimizationInfo#setParameterUsed(int)}.
    * </ul>
-   * <p>
-   * Method under test: {@link ParameterUsageMarker#markParameterUsed(Method, int)}
+   *
+   * <p>Method under test: {@link ParameterUsageMarker#markParameterUsed(Method, int)}
    */
   @Test
   @DisplayName("Test markParameterUsed(Method, int); then calls setParameterUsed(int)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.ParameterUsageMarker.markParameterUsed(proguard.classfile.Method, int)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ParameterUsageMarker.markParameterUsed(Method, int)"})
   void testMarkParameterUsed_thenCallsSetParameterUsed() {
     // Arrange
-    ProgramMethodOptimizationInfo programMethodOptimizationInfo = mock(ProgramMethodOptimizationInfo.class);
+    ProgramMethodOptimizationInfo programMethodOptimizationInfo =
+        mock(ProgramMethodOptimizationInfo.class);
     doNothing().when(programMethodOptimizationInfo).setParameterUsed(anyInt());
     Method method = mock(Method.class);
     when(method.getProcessingInfo()).thenReturn(programMethodOptimizationInfo);
@@ -132,18 +146,20 @@ class ParameterUsageMarkerDiffblueTest {
 
   /**
    * Test {@link ParameterUsageMarker#hasUnusedParameters(Method)}.
+   *
    * <ul>
-   *   <li>Given {@link MethodOptimizationInfo} (default constructor).</li>
-   *   <li>Then return {@code false}.</li>
+   *   <li>Given {@link MethodOptimizationInfo} (default constructor).
+   *   <li>Then return {@code false}.
    * </ul>
-   * <p>
-   * Method under test: {@link ParameterUsageMarker#hasUnusedParameters(Method)}
+   *
+   * <p>Method under test: {@link ParameterUsageMarker#hasUnusedParameters(Method)}
    */
   @Test
-  @DisplayName("Test hasUnusedParameters(Method); given MethodOptimizationInfo (default constructor); then return 'false'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "boolean proguard.optimize.info.ParameterUsageMarker.hasUnusedParameters(proguard.classfile.Method)"})
+  @DisplayName(
+      "Test hasUnusedParameters(Method); given MethodOptimizationInfo (default constructor); then return 'false'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean ParameterUsageMarker.hasUnusedParameters(Method)"})
   void testHasUnusedParameters_givenMethodOptimizationInfo_thenReturnFalse() {
     // Arrange
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
@@ -155,18 +171,20 @@ class ParameterUsageMarkerDiffblueTest {
 
   /**
    * Test {@link ParameterUsageMarker#isParameterUsed(Method, int)}.
+   *
    * <ul>
-   *   <li>Given {@link MethodOptimizationInfo} (default constructor).</li>
-   *   <li>Then return {@code true}.</li>
+   *   <li>Given {@link MethodOptimizationInfo} (default constructor).
+   *   <li>Then return {@code true}.
    * </ul>
-   * <p>
-   * Method under test: {@link ParameterUsageMarker#isParameterUsed(Method, int)}
+   *
+   * <p>Method under test: {@link ParameterUsageMarker#isParameterUsed(Method, int)}
    */
   @Test
-  @DisplayName("Test isParameterUsed(Method, int); given MethodOptimizationInfo (default constructor); then return 'true'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "boolean proguard.optimize.info.ParameterUsageMarker.isParameterUsed(proguard.classfile.Method, int)"})
+  @DisplayName(
+      "Test isParameterUsed(Method, int); given MethodOptimizationInfo (default constructor); then return 'true'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean ParameterUsageMarker.isParameterUsed(Method, int)"})
   void testIsParameterUsed_givenMethodOptimizationInfo_thenReturnTrue() {
     // Arrange
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
@@ -178,17 +196,20 @@ class ParameterUsageMarkerDiffblueTest {
 
   /**
    * Test {@link ParameterUsageMarker#getUsedParameters(Method)}.
+   *
    * <ul>
-   *   <li>Given {@link MethodOptimizationInfo} (default constructor).</li>
-   *   <li>Then return minus one.</li>
+   *   <li>Given {@link MethodOptimizationInfo} (default constructor).
+   *   <li>Then return minus one.
    * </ul>
-   * <p>
-   * Method under test: {@link ParameterUsageMarker#getUsedParameters(Method)}
+   *
+   * <p>Method under test: {@link ParameterUsageMarker#getUsedParameters(Method)}
    */
   @Test
-  @DisplayName("Test getUsedParameters(Method); given MethodOptimizationInfo (default constructor); then return minus one")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"long proguard.optimize.info.ParameterUsageMarker.getUsedParameters(proguard.classfile.Method)"})
+  @DisplayName(
+      "Test getUsedParameters(Method); given MethodOptimizationInfo (default constructor); then return minus one")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"long ParameterUsageMarker.getUsedParameters(Method)"})
   void testGetUsedParameters_givenMethodOptimizationInfo_thenReturnMinusOne() {
     // Arrange
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");

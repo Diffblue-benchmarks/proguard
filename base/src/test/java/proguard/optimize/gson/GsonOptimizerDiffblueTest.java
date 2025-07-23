@@ -7,6 +7,7 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -26,13 +27,14 @@ import proguard.classfile.visitor.ClassVisitor;
 class GsonOptimizerDiffblueTest {
   /**
    * Test {@link GsonOptimizer#GsonOptimizer(Configuration)}.
-   * <p>
-   * Method under test: {@link GsonOptimizer#GsonOptimizer(Configuration)}
+   *
+   * <p>Method under test: {@link GsonOptimizer#GsonOptimizer(Configuration)}
    */
   @Test
   @DisplayName("Test new GsonOptimizer(Configuration)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.optimize.gson.GsonOptimizer.<init>(proguard.Configuration)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void GsonOptimizer.<init>(Configuration)"})
   void testNewGsonOptimizer() throws MalformedURLException {
     // Arrange
     Configuration configuration = new Configuration();
@@ -49,9 +51,8 @@ class GsonOptimizerDiffblueTest {
     configuration.assumeNoSideEffects = new ArrayList<>();
     configuration.assumeValues = new ArrayList<>();
     configuration.backport = true;
-    configuration.classObfuscationDictionary = Paths.get(System.getProperty("java.io.tmpdir"), "test.txt")
-        .toUri()
-        .toURL();
+    configuration.classObfuscationDictionary =
+        Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toUri().toURL();
     configuration.dontCompress = new ArrayList<>();
     configuration.dontProcessKotlinMetadata = true;
     configuration.dump = Configuration.STD_OUT;
@@ -76,15 +77,15 @@ class GsonOptimizerDiffblueTest {
     configuration.newSourceFileAttribute = "New Source File Attribute";
     configuration.note = new ArrayList<>();
     configuration.obfuscate = true;
-    configuration.obfuscationDictionary = Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toUri().toURL();
+    configuration.obfuscationDictionary =
+        Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toUri().toURL();
     configuration.optimizationPasses = 1;
     configuration.optimizations = new ArrayList<>();
     configuration.optimize = true;
     configuration.optimizeConservatively = true;
     configuration.overloadAggressively = true;
-    configuration.packageObfuscationDictionary = Paths.get(System.getProperty("java.io.tmpdir"), "test.txt")
-        .toUri()
-        .toURL();
+    configuration.packageObfuscationDictionary =
+        Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toUri().toURL();
     configuration.preverify = true;
     configuration.printConfiguration = Configuration.STD_OUT;
     configuration.printMapping = Configuration.STD_OUT;
@@ -104,22 +105,26 @@ class GsonOptimizerDiffblueTest {
     configuration.zipAlign = 1;
 
     // Act and Assert
-    assertEquals("proguard.optimize.gson.GsonOptimizer", (new GsonOptimizer(configuration)).getName());
+    assertEquals(
+        "proguard.optimize.gson.GsonOptimizer", new GsonOptimizer(configuration).getName());
   }
 
   /**
    * Test {@link GsonOptimizer#execute(AppView)}.
+   *
    * <ul>
-   *   <li>Given {@link LibraryClass#LibraryClass()}.</li>
-   *   <li>Then calls {@link ClassPool#classesAccept(ClassVisitor)}.</li>
+   *   <li>Given {@link LibraryClass#LibraryClass()}.
+   *   <li>Then calls {@link ClassPool#classesAccept(ClassVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link GsonOptimizer#execute(AppView)}
+   *
+   * <p>Method under test: {@link GsonOptimizer#execute(AppView)}
    */
   @Test
-  @DisplayName("Test execute(AppView); given LibraryClass(); then calls classesAccept(ClassVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.optimize.gson.GsonOptimizer.execute(proguard.AppView)"})
+  @DisplayName(
+      "Test execute(AppView); given LibraryClass(); then calls classesAccept(ClassVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void GsonOptimizer.execute(AppView)"})
   void testExecute_givenLibraryClass_thenCallsClassesAccept() throws IOException {
     // Arrange
     GsonOptimizer gsonOptimizer = new GsonOptimizer(mock(Configuration.class));

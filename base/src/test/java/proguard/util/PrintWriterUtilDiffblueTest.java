@@ -1,6 +1,7 @@
 package proguard.util;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.io.File;
 import java.nio.file.Paths;
@@ -12,38 +13,47 @@ import proguard.Configuration;
 class PrintWriterUtilDiffblueTest {
   /**
    * Test {@link PrintWriterUtil#fileName(File)}.
+   *
    * <ul>
-   *   <li>Then return Property is {@code java.io.tmpdir} is array of {@link String} with {@code test.txt} toString.</li>
+   *   <li>Then return Property is {@code java.io.tmpdir} is array of {@link String} with {@code
+   *       test.txt} toString.
    * </ul>
-   * <p>
-   * Method under test: {@link PrintWriterUtil#fileName(File)}
+   *
+   * <p>Method under test: {@link PrintWriterUtil#fileName(File)}
    */
   @Test
-  @DisplayName("Test fileName(File); then return Property is 'java.io.tmpdir' is array of String with 'test.txt' toString")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"java.lang.String proguard.util.PrintWriterUtil.fileName(java.io.File)"})
+  @DisplayName(
+      "Test fileName(File); then return Property is 'java.io.tmpdir' is array of String with 'test.txt' toString")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"String PrintWriterUtil.fileName(File)"})
   void testFileName_thenReturnPropertyIsJavaIoTmpdirIsArrayOfStringWithTestTxtToString() {
     // Arrange and Act
-    String actualFileNameResult = PrintWriterUtil
-        .fileName(Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toFile());
+    String actualFileNameResult =
+        PrintWriterUtil.fileName(
+            Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toFile());
 
     // Assert
-    assertEquals(Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toString(), actualFileNameResult);
+    assertEquals(
+        Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toString(),
+        actualFileNameResult);
   }
 
   /**
    * Test {@link PrintWriterUtil#fileName(File)}.
+   *
    * <ul>
-   *   <li>When {@link Configuration#STD_OUT}.</li>
-   *   <li>Then return {@code standard output}.</li>
+   *   <li>When {@link Configuration#STD_OUT}.
+   *   <li>Then return {@code standard output}.
    * </ul>
-   * <p>
-   * Method under test: {@link PrintWriterUtil#fileName(File)}
+   *
+   * <p>Method under test: {@link PrintWriterUtil#fileName(File)}
    */
   @Test
   @DisplayName("Test fileName(File); when STD_OUT; then return 'standard output'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"java.lang.String proguard.util.PrintWriterUtil.fileName(java.io.File)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"String PrintWriterUtil.fileName(File)"})
   void testFileName_whenStd_out_thenReturnStandardOutput() {
     // Arrange, Act and Assert
     assertEquals("standard output", PrintWriterUtil.fileName(Configuration.STD_OUT));

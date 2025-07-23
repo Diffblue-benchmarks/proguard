@@ -5,6 +5,7 @@ import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -28,17 +29,20 @@ import proguard.classfile.visitor.MemberVisitor;
 class LineNumberLinearizerDiffblueTest {
   /**
    * Test {@link LineNumberLinearizer#execute(AppView)}.
+   *
    * <ul>
-   *   <li>Given {@link LibraryClass} {@link LibraryClass#accept(ClassVisitor)} does nothing.</li>
-   *   <li>Then calls {@link LibraryClass#accept(ClassVisitor)}.</li>
+   *   <li>Given {@link LibraryClass} {@link LibraryClass#accept(ClassVisitor)} does nothing.
+   *   <li>Then calls {@link LibraryClass#accept(ClassVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link LineNumberLinearizer#execute(AppView)}
+   *
+   * <p>Method under test: {@link LineNumberLinearizer#execute(AppView)}
    */
   @Test
-  @DisplayName("Test execute(AppView); given LibraryClass accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.optimize.peephole.LineNumberLinearizer.execute(proguard.AppView)"})
+  @DisplayName(
+      "Test execute(AppView); given LibraryClass accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void LineNumberLinearizer.execute(AppView)"})
   void testExecute_givenLibraryClassAcceptDoesNothing_thenCallsAccept() {
     // Arrange
     LineNumberLinearizer lineNumberLinearizer = new LineNumberLinearizer();
@@ -57,17 +61,20 @@ class LineNumberLinearizerDiffblueTest {
 
   /**
    * Test {@link LineNumberLinearizer#execute(AppView)}.
+   *
    * <ul>
-   *   <li>When {@link ClassPool} {@link ClassPool#classesAccept(ClassVisitor)} does nothing.</li>
-   *   <li>Then calls {@link ClassPool#classesAccept(ClassVisitor)}.</li>
+   *   <li>When {@link ClassPool} {@link ClassPool#classesAccept(ClassVisitor)} does nothing.
+   *   <li>Then calls {@link ClassPool#classesAccept(ClassVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link LineNumberLinearizer#execute(AppView)}
+   *
+   * <p>Method under test: {@link LineNumberLinearizer#execute(AppView)}
    */
   @Test
-  @DisplayName("Test execute(AppView); when ClassPool classesAccept(ClassVisitor) does nothing; then calls classesAccept(ClassVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.optimize.peephole.LineNumberLinearizer.execute(proguard.AppView)"})
+  @DisplayName(
+      "Test execute(AppView); when ClassPool classesAccept(ClassVisitor) does nothing; then calls classesAccept(ClassVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void LineNumberLinearizer.execute(AppView)"})
   void testExecute_whenClassPoolClassesAcceptDoesNothing_thenCallsClassesAccept() {
     // Arrange
     LineNumberLinearizer lineNumberLinearizer = new LineNumberLinearizer();
@@ -83,17 +90,18 @@ class LineNumberLinearizerDiffblueTest {
 
   /**
    * Test {@link LineNumberLinearizer#visitProgramClass(ProgramClass)}.
+   *
    * <ul>
-   *   <li>Then calls {@link ProgramClass#methodsAccept(MemberVisitor)}.</li>
+   *   <li>Then calls {@link ProgramClass#methodsAccept(MemberVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link LineNumberLinearizer#visitProgramClass(ProgramClass)}
+   *
+   * <p>Method under test: {@link LineNumberLinearizer#visitProgramClass(ProgramClass)}
    */
   @Test
   @DisplayName("Test visitProgramClass(ProgramClass); then calls methodsAccept(MemberVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.peephole.LineNumberLinearizer.visitProgramClass(proguard.classfile.ProgramClass)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void LineNumberLinearizer.visitProgramClass(ProgramClass)"})
   void testVisitProgramClass_thenCallsMethodsAccept() {
     // Arrange
     LineNumberLinearizer lineNumberLinearizer = new LineNumberLinearizer();
@@ -108,18 +116,25 @@ class LineNumberLinearizerDiffblueTest {
   }
 
   /**
-   * Test {@link LineNumberLinearizer#visitLineNumberTableAttribute(Clazz, Method, CodeAttribute, LineNumberTableAttribute)}.
+   * Test {@link LineNumberLinearizer#visitLineNumberTableAttribute(Clazz, Method, CodeAttribute,
+   * LineNumberTableAttribute)}.
+   *
    * <ul>
-   *   <li>Then calls {@link LineNumberTableAttribute#lineNumbersAccept(Clazz, Method, CodeAttribute, LineNumberInfoVisitor)}.</li>
+   *   <li>Then calls {@link LineNumberTableAttribute#lineNumbersAccept(Clazz, Method,
+   *       CodeAttribute, LineNumberInfoVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link LineNumberLinearizer#visitLineNumberTableAttribute(Clazz, Method, CodeAttribute, LineNumberTableAttribute)}
+   *
+   * <p>Method under test: {@link LineNumberLinearizer#visitLineNumberTableAttribute(Clazz, Method,
+   * CodeAttribute, LineNumberTableAttribute)}
    */
   @Test
-  @DisplayName("Test visitLineNumberTableAttribute(Clazz, Method, CodeAttribute, LineNumberTableAttribute); then calls lineNumbersAccept(Clazz, Method, CodeAttribute, LineNumberInfoVisitor)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitLineNumberTableAttribute(Clazz, Method, CodeAttribute, LineNumberTableAttribute); then calls lineNumbersAccept(Clazz, Method, CodeAttribute, LineNumberInfoVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.peephole.LineNumberLinearizer.visitLineNumberTableAttribute(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.CodeAttribute, proguard.classfile.attribute.LineNumberTableAttribute)"})
+    "void LineNumberLinearizer.visitLineNumberTableAttribute(Clazz, Method, CodeAttribute, LineNumberTableAttribute)"
+  })
   void testVisitLineNumberTableAttribute_thenCallsLineNumbersAccept() {
     // Arrange
     LineNumberLinearizer lineNumberLinearizer = new LineNumberLinearizer();
@@ -128,22 +143,32 @@ class LineNumberLinearizerDiffblueTest {
 
     CodeAttribute codeAttribute = new CodeAttribute(1);
     LineNumberTableAttribute lineNumberTableAttribute = mock(LineNumberTableAttribute.class);
-    doNothing().when(lineNumberTableAttribute)
-        .lineNumbersAccept(Mockito.<Clazz>any(), Mockito.<Method>any(), Mockito.<CodeAttribute>any(),
+    doNothing()
+        .when(lineNumberTableAttribute)
+        .lineNumbersAccept(
+            Mockito.<Clazz>any(),
+            Mockito.<Method>any(),
+            Mockito.<CodeAttribute>any(),
             Mockito.<LineNumberInfoVisitor>any());
 
     // Act
-    lineNumberLinearizer.visitLineNumberTableAttribute(clazz, method, codeAttribute, lineNumberTableAttribute);
+    lineNumberLinearizer.visitLineNumberTableAttribute(
+        clazz, method, codeAttribute, lineNumberTableAttribute);
 
     // Assert
-    verify(lineNumberTableAttribute).lineNumbersAccept(isA(Clazz.class), isA(Method.class), isA(CodeAttribute.class),
-        isA(LineNumberInfoVisitor.class));
+    verify(lineNumberTableAttribute)
+        .lineNumbersAccept(
+            isA(Clazz.class),
+            isA(Method.class),
+            isA(CodeAttribute.class),
+            isA(LineNumberInfoVisitor.class));
   }
 
   /**
    * Test getters and setters.
-   * <p>
-   * Methods under test:
+   *
+   * <p>Methods under test:
+   *
    * <ul>
    *   <li>default or parameterless constructor of {@link LineNumberLinearizer}
    *   <li>{@link LineNumberLinearizer#visitAnyAttribute(Clazz, Attribute)}
@@ -152,10 +177,13 @@ class LineNumberLinearizerDiffblueTest {
    */
   @Test
   @DisplayName("Test getters and setters")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.optimize.peephole.LineNumberLinearizer.<init>()",
-      "void proguard.optimize.peephole.LineNumberLinearizer.visitAnyAttribute(proguard.classfile.Clazz, proguard.classfile.attribute.Attribute)",
-      "void proguard.optimize.peephole.LineNumberLinearizer.visitAnyClass(proguard.classfile.Clazz)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void LineNumberLinearizer.<init>()",
+    "void LineNumberLinearizer.visitAnyAttribute(Clazz, Attribute)",
+    "void LineNumberLinearizer.visitAnyClass(Clazz)"
+  })
   void testGettersAndSetters() {
     // Arrange and Act
     LineNumberLinearizer actualLineNumberLinearizer = new LineNumberLinearizer();
@@ -164,6 +192,7 @@ class LineNumberLinearizerDiffblueTest {
     actualLineNumberLinearizer.visitAnyClass(new LibraryClass());
 
     // Assert
-    assertEquals("proguard.optimize.peephole.LineNumberLinearizer", actualLineNumberLinearizer.getName());
+    assertEquals(
+        "proguard.optimize.peephole.LineNumberLinearizer", actualLineNumberLinearizer.getName());
   }
 }

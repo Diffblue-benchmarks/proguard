@@ -1,6 +1,7 @@
 package proguard.optimize.peephole;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -10,25 +11,28 @@ import proguard.classfile.ClassPool;
 class InstructionSequenceConstantsDiffblueTest {
   /**
    * Test {@link InstructionSequenceConstants#InstructionSequenceConstants(ClassPool, ClassPool)}.
+   *
    * <ul>
-   *   <li>When {@link ClassPool#ClassPool()}.</li>
-   *   <li>Then return array length is ten.</li>
+   *   <li>When {@link ClassPool#ClassPool()}.
+   *   <li>Then return array length is ten.
    * </ul>
-   * <p>
-   * Method under test: {@link InstructionSequenceConstants#InstructionSequenceConstants(ClassPool, ClassPool)}
+   *
+   * <p>Method under test: {@link
+   * InstructionSequenceConstants#InstructionSequenceConstants(ClassPool, ClassPool)}
    */
   @Test
-  @DisplayName("Test new InstructionSequenceConstants(ClassPool, ClassPool); when ClassPool(); then return array length is ten")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.peephole.InstructionSequenceConstants.<init>(proguard.classfile.ClassPool, proguard.classfile.ClassPool)"})
+  @DisplayName(
+      "Test new InstructionSequenceConstants(ClassPool, ClassPool); when ClassPool(); then return array length is ten")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void InstructionSequenceConstants.<init>(ClassPool, ClassPool)"})
   void testNewInstructionSequenceConstants_whenClassPool_thenReturnArrayLengthIsTen() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
 
     // Act
-    InstructionSequenceConstants actualInstructionSequenceConstants = new InstructionSequenceConstants(programClassPool,
-        new ClassPool());
+    InstructionSequenceConstants actualInstructionSequenceConstants =
+        new InstructionSequenceConstants(programClassPool, new ClassPool());
 
     // Assert
     assertEquals(10, actualInstructionSequenceConstants.MATH_ANDROID_SEQUENCES.length);
@@ -45,22 +49,25 @@ class InstructionSequenceConstantsDiffblueTest {
 
   /**
    * Test {@link InstructionSequenceConstants#InstructionSequenceConstants(ClassPool, ClassPool)}.
+   *
    * <ul>
-   *   <li>When {@code null}.</li>
-   *   <li>Then return array length is ten.</li>
+   *   <li>When {@code null}.
+   *   <li>Then return array length is ten.
    * </ul>
-   * <p>
-   * Method under test: {@link InstructionSequenceConstants#InstructionSequenceConstants(ClassPool, ClassPool)}
+   *
+   * <p>Method under test: {@link
+   * InstructionSequenceConstants#InstructionSequenceConstants(ClassPool, ClassPool)}
    */
   @Test
-  @DisplayName("Test new InstructionSequenceConstants(ClassPool, ClassPool); when 'null'; then return array length is ten")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.peephole.InstructionSequenceConstants.<init>(proguard.classfile.ClassPool, proguard.classfile.ClassPool)"})
+  @DisplayName(
+      "Test new InstructionSequenceConstants(ClassPool, ClassPool); when 'null'; then return array length is ten")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void InstructionSequenceConstants.<init>(ClassPool, ClassPool)"})
   void testNewInstructionSequenceConstants_whenNull_thenReturnArrayLengthIsTen() {
     // Arrange and Act
-    InstructionSequenceConstants actualInstructionSequenceConstants = new InstructionSequenceConstants(null,
-        new ClassPool());
+    InstructionSequenceConstants actualInstructionSequenceConstants =
+        new InstructionSequenceConstants(null, new ClassPool());
 
     // Assert
     assertEquals(10, actualInstructionSequenceConstants.MATH_ANDROID_SEQUENCES.length);

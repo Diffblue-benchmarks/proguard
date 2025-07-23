@@ -2,6 +2,7 @@ package proguard.optimize.gson;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import com.google.gson.Gson;
 import com.google.gson.internal.bind.ObjectTypeAdapter;
@@ -13,63 +14,94 @@ import org.junit.jupiter.api.Test;
 
 class _GsonUtilDiffblueTest {
   /**
-   * Test {@link _GsonUtil#getTypeAdapter(Gson, Class, Object)} with {@code gson}, {@code declaredType}, {@code value}.
-   * <ul>
-   *   <li>Then return toJson {@code Value} is {@code "Value"}.</li>
-   * </ul>
-   * <p>
-   * Method under test: {@link _GsonUtil#getTypeAdapter(Gson, Class, Object)}
+   * Test {@link _GsonUtil#getTypeAdapter(Gson, Class, Object)} with {@code gson}, {@code
+   * declaredType}, {@code value}.
+   *
+   * <p>Method under test: {@link _GsonUtil#getTypeAdapter(Gson, Class, Object)}
    */
   @Test
-  @DisplayName("Test getTypeAdapter(Gson, Class, Object) with 'gson', 'declaredType', 'value'; then return toJson 'Value' is '\"Value\"'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "com.google.gson.TypeAdapter proguard.optimize.gson._GsonUtil.getTypeAdapter(com.google.gson.Gson, java.lang.Class, java.lang.Object)"})
+  @DisplayName("Test getTypeAdapter(Gson, Class, Object) with 'gson', 'declaredType', 'value'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"com.google.gson.TypeAdapter _GsonUtil.getTypeAdapter(Gson, Class, Object)"})
+  void testGetTypeAdapterWithGsonDeclaredTypeValue() {
+    // Arrange
+    Gson gson = new Gson();
+    Class<Entry> declaredType = Entry.class;
+
+    // Act and Assert
+    assertEquals("{}", _GsonUtil.getTypeAdapter(gson, declaredType, null).toJson("Value"));
+  }
+
+  /**
+   * Test {@link _GsonUtil#getTypeAdapter(Gson, Class, Object)} with {@code gson}, {@code
+   * declaredType}, {@code value}.
+   *
+   * <ul>
+   *   <li>Then return toJson {@code Value} is {@code "Value"}.
+   * </ul>
+   *
+   * <p>Method under test: {@link _GsonUtil#getTypeAdapter(Gson, Class, Object)}
+   */
+  @Test
+  @DisplayName(
+      "Test getTypeAdapter(Gson, Class, Object) with 'gson', 'declaredType', 'value'; then return toJson 'Value' is '\"Value\"'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"com.google.gson.TypeAdapter _GsonUtil.getTypeAdapter(Gson, Class, Object)"})
   void testGetTypeAdapterWithGsonDeclaredTypeValue_thenReturnToJsonValueIsValue() {
     // Arrange
     Gson gson = new Gson();
     Class<Object> declaredType = Object.class;
 
     // Act and Assert
-    assertEquals("\"Value\"", _GsonUtil.getTypeAdapter(gson, declaredType, "Value").toJson("Value"));
+    assertEquals(
+        "\"Value\"", _GsonUtil.getTypeAdapter(gson, declaredType, "Value").toJson("Value"));
   }
 
   /**
-   * Test {@link _GsonUtil#getTypeAdapter(Gson, Class, Object)} with {@code gson}, {@code declaredType}, {@code value}.
+   * Test {@link _GsonUtil#getTypeAdapter(Gson, Class, Object)} with {@code gson}, {@code
+   * declaredType}, {@code value}.
+   *
    * <ul>
-   *   <li>When {@code Map$Entry}.</li>
+   *   <li>Then return toJson {@code Value} is {@code "Value"}.
    * </ul>
-   * <p>
-   * Method under test: {@link _GsonUtil#getTypeAdapter(Gson, Class, Object)}
+   *
+   * <p>Method under test: {@link _GsonUtil#getTypeAdapter(Gson, Class, Object)}
    */
   @Test
-  @DisplayName("Test getTypeAdapter(Gson, Class, Object) with 'gson', 'declaredType', 'value'; when 'java.util.Map$Entry'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "com.google.gson.TypeAdapter proguard.optimize.gson._GsonUtil.getTypeAdapter(com.google.gson.Gson, java.lang.Class, java.lang.Object)"})
-  void testGetTypeAdapterWithGsonDeclaredTypeValue_whenJavaUtilMapEntry() {
+  @DisplayName(
+      "Test getTypeAdapter(Gson, Class, Object) with 'gson', 'declaredType', 'value'; then return toJson 'Value' is '\"Value\"'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"com.google.gson.TypeAdapter _GsonUtil.getTypeAdapter(Gson, Class, Object)"})
+  void testGetTypeAdapterWithGsonDeclaredTypeValue_thenReturnToJsonValueIsValue2() {
     // Arrange
     Gson gson = new Gson();
     Class<Entry> declaredType = Entry.class;
 
     // Act and Assert
-    assertEquals("\"Value\"", _GsonUtil.getTypeAdapter(gson, declaredType, "Value").toJson("Value"));
+    assertEquals(
+        "\"Value\"", _GsonUtil.getTypeAdapter(gson, declaredType, "Value").toJson("Value"));
   }
 
   /**
-   * Test {@link _GsonUtil#getTypeAdapter(Gson, Class, Object)} with {@code gson}, {@code declaredType}, {@code value}.
+   * Test {@link _GsonUtil#getTypeAdapter(Gson, Class, Object)} with {@code gson}, {@code
+   * declaredType}, {@code value}.
+   *
    * <ul>
-   *   <li>When {@code null}.</li>
-   *   <li>Then return {@link ObjectTypeAdapter}.</li>
+   *   <li>When {@code null}.
+   *   <li>Then return {@link ObjectTypeAdapter}.
    * </ul>
-   * <p>
-   * Method under test: {@link _GsonUtil#getTypeAdapter(Gson, Class, Object)}
+   *
+   * <p>Method under test: {@link _GsonUtil#getTypeAdapter(Gson, Class, Object)}
    */
   @Test
-  @DisplayName("Test getTypeAdapter(Gson, Class, Object) with 'gson', 'declaredType', 'value'; when 'null'; then return ObjectTypeAdapter")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "com.google.gson.TypeAdapter proguard.optimize.gson._GsonUtil.getTypeAdapter(com.google.gson.Gson, java.lang.Class, java.lang.Object)"})
+  @DisplayName(
+      "Test getTypeAdapter(Gson, Class, Object) with 'gson', 'declaredType', 'value'; when 'null'; then return ObjectTypeAdapter")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"com.google.gson.TypeAdapter _GsonUtil.getTypeAdapter(Gson, Class, Object)"})
   void testGetTypeAdapterWithGsonDeclaredTypeValue_whenNull_thenReturnObjectTypeAdapter() {
     // Arrange
     Gson gson = new Gson();

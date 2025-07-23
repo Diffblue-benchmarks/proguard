@@ -6,6 +6,7 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -20,47 +21,60 @@ import proguard.classfile.constant.Constant;
 class InjectedClassFilterDiffblueTest {
   /**
    * Test {@link InjectedClassFilter#visitAnyClass(Clazz)}.
+   *
    * <ul>
-   *   <li>When {@link LibraryClass#LibraryClass()}.</li>
-   *   <li>Then throw {@link UnsupportedOperationException}.</li>
+   *   <li>When {@link LibraryClass#LibraryClass()}.
+   *   <li>Then throw {@link UnsupportedOperationException}.
    * </ul>
-   * <p>
-   * Method under test: {@link InjectedClassFilter#visitAnyClass(Clazz)}
+   *
+   * <p>Method under test: {@link InjectedClassFilter#visitAnyClass(Clazz)}
    */
   @Test
-  @DisplayName("Test visitAnyClass(Clazz); when LibraryClass(); then throw UnsupportedOperationException")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.classfile.visitor.InjectedClassFilter.visitAnyClass(proguard.classfile.Clazz)"})
+  @DisplayName(
+      "Test visitAnyClass(Clazz); when LibraryClass(); then throw UnsupportedOperationException")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void InjectedClassFilter.visitAnyClass(Clazz)"})
   void testVisitAnyClass_whenLibraryClass_thenThrowUnsupportedOperationException() {
     // Arrange
-    InjectedClassFilter injectedClassFilter = new InjectedClassFilter(mock(ClassVisitor.class),
-        mock(ClassVisitor.class));
+    InjectedClassFilter injectedClassFilter =
+        new InjectedClassFilter(mock(ClassVisitor.class), mock(ClassVisitor.class));
 
     // Act and Assert
-    assertThrows(UnsupportedOperationException.class, () -> injectedClassFilter.visitAnyClass(new LibraryClass()));
+    assertThrows(
+        UnsupportedOperationException.class,
+        () -> injectedClassFilter.visitAnyClass(new LibraryClass()));
   }
 
   /**
    * Test {@link InjectedClassFilter#visitProgramClass(ProgramClass)}.
-   * <p>
-   * Method under test: {@link InjectedClassFilter#visitProgramClass(ProgramClass)}
+   *
+   * <p>Method under test: {@link InjectedClassFilter#visitProgramClass(ProgramClass)}
    */
   @Test
   @DisplayName("Test visitProgramClass(ProgramClass)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.classfile.visitor.InjectedClassFilter.visitProgramClass(proguard.classfile.ProgramClass)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void InjectedClassFilter.visitProgramClass(ProgramClass)"})
   void testVisitProgramClass() {
     // Arrange
     ClassVisitor injectedClassVisitor = mock(ClassVisitor.class);
     doNothing().when(injectedClassVisitor).visitProgramClass(Mockito.<ProgramClass>any());
-    ClassVisitor otherClassVisitor = mock(ClassVisitor.class);
-    doNothing().when(otherClassVisitor).visitProgramClass(Mockito.<ProgramClass>any());
-    InjectedClassFilter injectedClassFilter = new InjectedClassFilter(injectedClassVisitor, otherClassVisitor);
+    InjectedClassFilter injectedClassFilter =
+        new InjectedClassFilter(injectedClassVisitor, mock(ClassVisitor.class));
 
     // Act
-    injectedClassFilter.visitProgramClass(new ProgramClass(512, 3, new Constant[]{new ClassConstant()}, 512, 512, 512,
-        "Feature Name", 512, "Processing Info"));
+    injectedClassFilter.visitProgramClass(
+        new ProgramClass(
+            512,
+            3,
+            new Constant[] {new ClassConstant()},
+            512,
+            512,
+            512,
+            "Feature Name",
+            512,
+            "Processing Info"));
 
     // Assert
     verify(injectedClassVisitor).visitProgramClass(isA(ProgramClass.class));
@@ -68,51 +82,24 @@ class InjectedClassFilterDiffblueTest {
 
   /**
    * Test {@link InjectedClassFilter#visitProgramClass(ProgramClass)}.
+   *
    * <ul>
-   *   <li>Then throw {@link UnsupportedOperationException}.</li>
+   *   <li>Then calls {@link ClassVisitor#visitProgramClass(ProgramClass)}.
    * </ul>
-   * <p>
-   * Method under test: {@link InjectedClassFilter#visitProgramClass(ProgramClass)}
+   *
+   * <p>Method under test: {@link InjectedClassFilter#visitProgramClass(ProgramClass)}
    */
   @Test
-  @DisplayName("Test visitProgramClass(ProgramClass); then throw UnsupportedOperationException")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.classfile.visitor.InjectedClassFilter.visitProgramClass(proguard.classfile.ProgramClass)"})
-  void testVisitProgramClass_thenThrowUnsupportedOperationException() {
-    // Arrange
-    ClassVisitor injectedClassVisitor = mock(ClassVisitor.class);
-    doThrow(new UnsupportedOperationException("foo")).when(injectedClassVisitor)
-        .visitProgramClass(Mockito.<ProgramClass>any());
-    ClassVisitor otherClassVisitor = mock(ClassVisitor.class);
-    doNothing().when(otherClassVisitor).visitProgramClass(Mockito.<ProgramClass>any());
-    InjectedClassFilter injectedClassFilter = new InjectedClassFilter(injectedClassVisitor, otherClassVisitor);
-
-    // Act and Assert
-    assertThrows(UnsupportedOperationException.class, () -> injectedClassFilter.visitProgramClass(new ProgramClass(512,
-        3, new Constant[]{new ClassConstant()}, 512, 512, 512, "Feature Name", 512, "Processing Info")));
-    verify(injectedClassVisitor).visitProgramClass(isA(ProgramClass.class));
-  }
-
-  /**
-   * Test {@link InjectedClassFilter#visitProgramClass(ProgramClass)}.
-   * <ul>
-   *   <li>When {@link ProgramClass#ProgramClass()}.</li>
-   *   <li>Then calls {@link ClassVisitor#visitProgramClass(ProgramClass)}.</li>
-   * </ul>
-   * <p>
-   * Method under test: {@link InjectedClassFilter#visitProgramClass(ProgramClass)}
-   */
-  @Test
-  @DisplayName("Test visitProgramClass(ProgramClass); when ProgramClass(); then calls visitProgramClass(ProgramClass)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.classfile.visitor.InjectedClassFilter.visitProgramClass(proguard.classfile.ProgramClass)"})
-  void testVisitProgramClass_whenProgramClass_thenCallsVisitProgramClass() {
+  @DisplayName("Test visitProgramClass(ProgramClass); then calls visitProgramClass(ProgramClass)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void InjectedClassFilter.visitProgramClass(ProgramClass)"})
+  void testVisitProgramClass_thenCallsVisitProgramClass() {
     // Arrange
     ClassVisitor otherClassVisitor = mock(ClassVisitor.class);
     doNothing().when(otherClassVisitor).visitProgramClass(Mockito.<ProgramClass>any());
-    InjectedClassFilter injectedClassFilter = new InjectedClassFilter(mock(ClassVisitor.class), otherClassVisitor);
+    InjectedClassFilter injectedClassFilter =
+        new InjectedClassFilter(mock(ClassVisitor.class), otherClassVisitor);
 
     // Act
     injectedClassFilter.visitProgramClass(new ProgramClass());
@@ -122,23 +109,57 @@ class InjectedClassFilterDiffblueTest {
   }
 
   /**
-   * Test {@link InjectedClassFilter#visitLibraryClass(LibraryClass)}.
+   * Test {@link InjectedClassFilter#visitProgramClass(ProgramClass)}.
+   *
    * <ul>
-   *   <li>Given {@link ClassVisitor} {@link ClassVisitor#visitLibraryClass(LibraryClass)} does nothing.</li>
+   *   <li>Then throw {@link UnsupportedOperationException}.
    * </ul>
-   * <p>
-   * Method under test: {@link InjectedClassFilter#visitLibraryClass(LibraryClass)}
+   *
+   * <p>Method under test: {@link InjectedClassFilter#visitProgramClass(ProgramClass)}
    */
   @Test
-  @DisplayName("Test visitLibraryClass(LibraryClass); given ClassVisitor visitLibraryClass(LibraryClass) does nothing")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.classfile.visitor.InjectedClassFilter.visitLibraryClass(proguard.classfile.LibraryClass)"})
+  @DisplayName("Test visitProgramClass(ProgramClass); then throw UnsupportedOperationException")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void InjectedClassFilter.visitProgramClass(ProgramClass)"})
+  void testVisitProgramClass_thenThrowUnsupportedOperationException() {
+    // Arrange
+    ClassVisitor otherClassVisitor = mock(ClassVisitor.class);
+    doThrow(new UnsupportedOperationException("foo"))
+        .when(otherClassVisitor)
+        .visitProgramClass(Mockito.<ProgramClass>any());
+    InjectedClassFilter injectedClassFilter =
+        new InjectedClassFilter(mock(ClassVisitor.class), otherClassVisitor);
+
+    // Act and Assert
+    assertThrows(
+        UnsupportedOperationException.class,
+        () -> injectedClassFilter.visitProgramClass(new ProgramClass()));
+    verify(otherClassVisitor).visitProgramClass(isA(ProgramClass.class));
+  }
+
+  /**
+   * Test {@link InjectedClassFilter#visitLibraryClass(LibraryClass)}.
+   *
+   * <ul>
+   *   <li>Given {@link ClassVisitor} {@link ClassVisitor#visitLibraryClass(LibraryClass)} does
+   *       nothing.
+   * </ul>
+   *
+   * <p>Method under test: {@link InjectedClassFilter#visitLibraryClass(LibraryClass)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitLibraryClass(LibraryClass); given ClassVisitor visitLibraryClass(LibraryClass) does nothing")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void InjectedClassFilter.visitLibraryClass(LibraryClass)"})
   void testVisitLibraryClass_givenClassVisitorVisitLibraryClassDoesNothing() {
     // Arrange
     ClassVisitor otherClassVisitor = mock(ClassVisitor.class);
     doNothing().when(otherClassVisitor).visitLibraryClass(Mockito.<LibraryClass>any());
-    InjectedClassFilter injectedClassFilter = new InjectedClassFilter(mock(ClassVisitor.class), otherClassVisitor);
+    InjectedClassFilter injectedClassFilter =
+        new InjectedClassFilter(mock(ClassVisitor.class), otherClassVisitor);
 
     // Act
     injectedClassFilter.visitLibraryClass(new LibraryClass());
@@ -149,26 +170,31 @@ class InjectedClassFilterDiffblueTest {
 
   /**
    * Test {@link InjectedClassFilter#visitLibraryClass(LibraryClass)}.
+   *
    * <ul>
-   *   <li>Then throw {@link UnsupportedOperationException}.</li>
+   *   <li>Then throw {@link UnsupportedOperationException}.
    * </ul>
-   * <p>
-   * Method under test: {@link InjectedClassFilter#visitLibraryClass(LibraryClass)}
+   *
+   * <p>Method under test: {@link InjectedClassFilter#visitLibraryClass(LibraryClass)}
    */
   @Test
   @DisplayName("Test visitLibraryClass(LibraryClass); then throw UnsupportedOperationException")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.classfile.visitor.InjectedClassFilter.visitLibraryClass(proguard.classfile.LibraryClass)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void InjectedClassFilter.visitLibraryClass(LibraryClass)"})
   void testVisitLibraryClass_thenThrowUnsupportedOperationException() {
     // Arrange
     ClassVisitor otherClassVisitor = mock(ClassVisitor.class);
-    doThrow(new UnsupportedOperationException("foo")).when(otherClassVisitor)
+    doThrow(new UnsupportedOperationException("foo"))
+        .when(otherClassVisitor)
         .visitLibraryClass(Mockito.<LibraryClass>any());
-    InjectedClassFilter injectedClassFilter = new InjectedClassFilter(mock(ClassVisitor.class), otherClassVisitor);
+    InjectedClassFilter injectedClassFilter =
+        new InjectedClassFilter(mock(ClassVisitor.class), otherClassVisitor);
 
     // Act and Assert
-    assertThrows(UnsupportedOperationException.class, () -> injectedClassFilter.visitLibraryClass(new LibraryClass()));
+    assertThrows(
+        UnsupportedOperationException.class,
+        () -> injectedClassFilter.visitLibraryClass(new LibraryClass()));
     verify(otherClassVisitor).visitLibraryClass(isA(LibraryClass.class));
   }
 }

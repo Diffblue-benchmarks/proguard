@@ -3,6 +3,7 @@ package proguard.io;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.util.Set;
 import org.junit.jupiter.api.DisplayName;
@@ -14,13 +15,14 @@ import proguard.classfile.LibraryClass;
 class ExtraDataEntryNameMapDiffblueTest {
   /**
    * Test {@link ExtraDataEntryNameMap#clearExtraClasses()}.
-   * <p>
-   * Method under test: {@link ExtraDataEntryNameMap#clearExtraClasses()}
+   *
+   * <p>Method under test: {@link ExtraDataEntryNameMap#clearExtraClasses()}
    */
   @Test
   @DisplayName("Test clearExtraClasses()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.io.ExtraDataEntryNameMap.clearExtraClasses()"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ExtraDataEntryNameMap.clearExtraClasses()"})
   void testClearExtraClasses() {
     // Arrange
     ExtraDataEntryNameMap extraDataEntryNameMap = new ExtraDataEntryNameMap();
@@ -38,16 +40,20 @@ class ExtraDataEntryNameMapDiffblueTest {
 
   /**
    * Test {@link ExtraDataEntryNameMap#clearExtraClasses()}.
+   *
    * <ul>
-   *   <li>Then {@link ExtraDataEntryNameMap} (default constructor) DefaultExtraDataEntryNames is {@code null}.</li>
+   *   <li>Then {@link ExtraDataEntryNameMap} (default constructor) DefaultExtraDataEntryNames is
+   *       {@code null}.
    * </ul>
-   * <p>
-   * Method under test: {@link ExtraDataEntryNameMap#clearExtraClasses()}
+   *
+   * <p>Method under test: {@link ExtraDataEntryNameMap#clearExtraClasses()}
    */
   @Test
-  @DisplayName("Test clearExtraClasses(); then ExtraDataEntryNameMap (default constructor) DefaultExtraDataEntryNames is 'null'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.io.ExtraDataEntryNameMap.clearExtraClasses()"})
+  @DisplayName(
+      "Test clearExtraClasses(); then ExtraDataEntryNameMap (default constructor) DefaultExtraDataEntryNames is 'null'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ExtraDataEntryNameMap.clearExtraClasses()"})
   void testClearExtraClasses_thenExtraDataEntryNameMapDefaultExtraDataEntryNamesIsNull() {
     // Arrange
     ExtraDataEntryNameMap extraDataEntryNameMap = new ExtraDataEntryNameMap();
@@ -61,13 +67,14 @@ class ExtraDataEntryNameMapDiffblueTest {
 
   /**
    * Test {@link ExtraDataEntryNameMap#addExtraDataEntry(String)} with {@code extraDataEntryName}.
-   * <p>
-   * Method under test: {@link ExtraDataEntryNameMap#addExtraDataEntry(String)}
+   *
+   * <p>Method under test: {@link ExtraDataEntryNameMap#addExtraDataEntry(String)}
    */
   @Test
   @DisplayName("Test addExtraDataEntry(String) with 'extraDataEntryName'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.io.ExtraDataEntryNameMap.addExtraDataEntry(java.lang.String)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ExtraDataEntryNameMap.addExtraDataEntry(String)"})
   void testAddExtraDataEntryWithExtraDataEntryName() {
     // Arrange
     ExtraDataEntryNameMap extraDataEntryNameMap = new ExtraDataEntryNameMap();
@@ -88,16 +95,19 @@ class ExtraDataEntryNameMapDiffblueTest {
 
   /**
    * Test {@link ExtraDataEntryNameMap#addExtraDataEntry(String)} with {@code extraDataEntryName}.
+   *
    * <ul>
-   *   <li>Given {@link ExtraDataEntryNameMap} (default constructor).</li>
+   *   <li>Given {@link ExtraDataEntryNameMap} (default constructor).
    * </ul>
-   * <p>
-   * Method under test: {@link ExtraDataEntryNameMap#addExtraDataEntry(String)}
+   *
+   * <p>Method under test: {@link ExtraDataEntryNameMap#addExtraDataEntry(String)}
    */
   @Test
-  @DisplayName("Test addExtraDataEntry(String) with 'extraDataEntryName'; given ExtraDataEntryNameMap (default constructor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.io.ExtraDataEntryNameMap.addExtraDataEntry(java.lang.String)"})
+  @DisplayName(
+      "Test addExtraDataEntry(String) with 'extraDataEntryName'; given ExtraDataEntryNameMap (default constructor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ExtraDataEntryNameMap.addExtraDataEntry(String)"})
   void testAddExtraDataEntryWithExtraDataEntryName_givenExtraDataEntryNameMap() {
     // Arrange
     ExtraDataEntryNameMap extraDataEntryNameMap = new ExtraDataEntryNameMap();
@@ -116,14 +126,17 @@ class ExtraDataEntryNameMapDiffblueTest {
   }
 
   /**
-   * Test {@link ExtraDataEntryNameMap#addExtraDataEntry(String, String)} with {@code keyDataEntryName}, {@code extraDataEntryName}.
-   * <p>
-   * Method under test: {@link ExtraDataEntryNameMap#addExtraDataEntry(String, String)}
+   * Test {@link ExtraDataEntryNameMap#addExtraDataEntry(String, String)} with {@code
+   * keyDataEntryName}, {@code extraDataEntryName}.
+   *
+   * <p>Method under test: {@link ExtraDataEntryNameMap#addExtraDataEntry(String, String)}
    */
   @Test
-  @DisplayName("Test addExtraDataEntry(String, String) with 'keyDataEntryName', 'extraDataEntryName'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.io.ExtraDataEntryNameMap.addExtraDataEntry(java.lang.String, java.lang.String)"})
+  @DisplayName(
+      "Test addExtraDataEntry(String, String) with 'keyDataEntryName', 'extraDataEntryName'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ExtraDataEntryNameMap.addExtraDataEntry(String, String)"})
   void testAddExtraDataEntryWithKeyDataEntryNameExtraDataEntryName() {
     // Arrange
     ExtraDataEntryNameMap extraDataEntryNameMap = new ExtraDataEntryNameMap();
@@ -141,14 +154,17 @@ class ExtraDataEntryNameMapDiffblueTest {
   }
 
   /**
-   * Test {@link ExtraDataEntryNameMap#addExtraDataEntry(String, String)} with {@code keyDataEntryName}, {@code extraDataEntryName}.
-   * <p>
-   * Method under test: {@link ExtraDataEntryNameMap#addExtraDataEntry(String, String)}
+   * Test {@link ExtraDataEntryNameMap#addExtraDataEntry(String, String)} with {@code
+   * keyDataEntryName}, {@code extraDataEntryName}.
+   *
+   * <p>Method under test: {@link ExtraDataEntryNameMap#addExtraDataEntry(String, String)}
    */
   @Test
-  @DisplayName("Test addExtraDataEntry(String, String) with 'keyDataEntryName', 'extraDataEntryName'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.io.ExtraDataEntryNameMap.addExtraDataEntry(java.lang.String, java.lang.String)"})
+  @DisplayName(
+      "Test addExtraDataEntry(String, String) with 'keyDataEntryName', 'extraDataEntryName'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ExtraDataEntryNameMap.addExtraDataEntry(String, String)"})
   void testAddExtraDataEntryWithKeyDataEntryNameExtraDataEntryName2() {
     // Arrange
     ExtraDataEntryNameMap extraDataEntryNameMap = new ExtraDataEntryNameMap();
@@ -168,14 +184,14 @@ class ExtraDataEntryNameMapDiffblueTest {
 
   /**
    * Test {@link ExtraDataEntryNameMap#addExtraDataEntryToClass(String, String)}.
-   * <p>
-   * Method under test: {@link ExtraDataEntryNameMap#addExtraDataEntryToClass(String, String)}
+   *
+   * <p>Method under test: {@link ExtraDataEntryNameMap#addExtraDataEntryToClass(String, String)}
    */
   @Test
   @DisplayName("Test addExtraDataEntryToClass(String, String)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.io.ExtraDataEntryNameMap.addExtraDataEntryToClass(java.lang.String, java.lang.String)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ExtraDataEntryNameMap.addExtraDataEntryToClass(String, String)"})
   void testAddExtraDataEntryToClass() {
     // Arrange
     ExtraDataEntryNameMap extraDataEntryNameMap = new ExtraDataEntryNameMap();
@@ -194,14 +210,14 @@ class ExtraDataEntryNameMapDiffblueTest {
 
   /**
    * Test {@link ExtraDataEntryNameMap#addExtraDataEntryToClass(String, String)}.
-   * <p>
-   * Method under test: {@link ExtraDataEntryNameMap#addExtraDataEntryToClass(String, String)}
+   *
+   * <p>Method under test: {@link ExtraDataEntryNameMap#addExtraDataEntryToClass(String, String)}
    */
   @Test
   @DisplayName("Test addExtraDataEntryToClass(String, String)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.io.ExtraDataEntryNameMap.addExtraDataEntryToClass(java.lang.String, java.lang.String)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ExtraDataEntryNameMap.addExtraDataEntryToClass(String, String)"})
   void testAddExtraDataEntryToClass2() {
     // Arrange
     ExtraDataEntryNameMap extraDataEntryNameMap = new ExtraDataEntryNameMap();
@@ -222,16 +238,20 @@ class ExtraDataEntryNameMapDiffblueTest {
 
   /**
    * Test {@link ExtraDataEntryNameMap#addExtraClass(String)}.
+   *
    * <ul>
-   *   <li>Then {@link ExtraDataEntryNameMap} (default constructor) AllExtraDataEntryNames size is one.</li>
+   *   <li>Then {@link ExtraDataEntryNameMap} (default constructor) AllExtraDataEntryNames size is
+   *       one.
    * </ul>
-   * <p>
-   * Method under test: {@link ExtraDataEntryNameMap#addExtraClass(String)}
+   *
+   * <p>Method under test: {@link ExtraDataEntryNameMap#addExtraClass(String)}
    */
   @Test
-  @DisplayName("Test addExtraClass(String); then ExtraDataEntryNameMap (default constructor) AllExtraDataEntryNames size is one")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.io.ExtraDataEntryNameMap.addExtraClass(java.lang.String)"})
+  @DisplayName(
+      "Test addExtraClass(String); then ExtraDataEntryNameMap (default constructor) AllExtraDataEntryNames size is one")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ExtraDataEntryNameMap.addExtraClass(String)"})
   void testAddExtraClass_thenExtraDataEntryNameMapAllExtraDataEntryNamesSizeIsOne() {
     // Arrange
     ExtraDataEntryNameMap extraDataEntryNameMap = new ExtraDataEntryNameMap();
@@ -251,16 +271,20 @@ class ExtraDataEntryNameMapDiffblueTest {
 
   /**
    * Test {@link ExtraDataEntryNameMap#addExtraClass(String)}.
+   *
    * <ul>
-   *   <li>Then {@link ExtraDataEntryNameMap} (default constructor) AllExtraDataEntryNames size is two.</li>
+   *   <li>Then {@link ExtraDataEntryNameMap} (default constructor) AllExtraDataEntryNames size is
+   *       two.
    * </ul>
-   * <p>
-   * Method under test: {@link ExtraDataEntryNameMap#addExtraClass(String)}
+   *
+   * <p>Method under test: {@link ExtraDataEntryNameMap#addExtraClass(String)}
    */
   @Test
-  @DisplayName("Test addExtraClass(String); then ExtraDataEntryNameMap (default constructor) AllExtraDataEntryNames size is two")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.io.ExtraDataEntryNameMap.addExtraClass(java.lang.String)"})
+  @DisplayName(
+      "Test addExtraClass(String); then ExtraDataEntryNameMap (default constructor) AllExtraDataEntryNames size is two")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ExtraDataEntryNameMap.addExtraClass(String)"})
   void testAddExtraClass_thenExtraDataEntryNameMapAllExtraDataEntryNamesSizeIsTwo() {
     // Arrange
     ExtraDataEntryNameMap extraDataEntryNameMap = new ExtraDataEntryNameMap();
@@ -281,15 +305,16 @@ class ExtraDataEntryNameMapDiffblueTest {
   }
 
   /**
-   * Test {@link ExtraDataEntryNameMap#addExtraClassToClass(Clazz, Class)} with {@code Clazz}, {@code Class}.
-   * <p>
-   * Method under test: {@link ExtraDataEntryNameMap#addExtraClassToClass(Clazz, Class)}
+   * Test {@link ExtraDataEntryNameMap#addExtraClassToClass(Clazz, Class)} with {@code Clazz},
+   * {@code Class}.
+   *
+   * <p>Method under test: {@link ExtraDataEntryNameMap#addExtraClassToClass(Clazz, Class)}
    */
   @Test
   @DisplayName("Test addExtraClassToClass(Clazz, Class) with 'Clazz', 'Class'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.io.ExtraDataEntryNameMap.addExtraClassToClass(proguard.classfile.Clazz, java.lang.Class)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ExtraDataEntryNameMap.addExtraClassToClass(Clazz, Class)"})
   void testAddExtraClassToClassWithClazzClass() {
     // Arrange
     ExtraDataEntryNameMap extraDataEntryNameMap = new ExtraDataEntryNameMap();
@@ -309,15 +334,16 @@ class ExtraDataEntryNameMapDiffblueTest {
   }
 
   /**
-   * Test {@link ExtraDataEntryNameMap#addExtraClassToClass(Clazz, Class)} with {@code Clazz}, {@code Class}.
-   * <p>
-   * Method under test: {@link ExtraDataEntryNameMap#addExtraClassToClass(Clazz, Class)}
+   * Test {@link ExtraDataEntryNameMap#addExtraClassToClass(Clazz, Class)} with {@code Clazz},
+   * {@code Class}.
+   *
+   * <p>Method under test: {@link ExtraDataEntryNameMap#addExtraClassToClass(Clazz, Class)}
    */
   @Test
   @DisplayName("Test addExtraClassToClass(Clazz, Class) with 'Clazz', 'Class'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.io.ExtraDataEntryNameMap.addExtraClassToClass(proguard.classfile.Clazz, java.lang.Class)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ExtraDataEntryNameMap.addExtraClassToClass(Clazz, Class)"})
   void testAddExtraClassToClassWithClazzClass2() {
     // Arrange
     ExtraDataEntryNameMap extraDataEntryNameMap = new ExtraDataEntryNameMap();
@@ -340,15 +366,16 @@ class ExtraDataEntryNameMapDiffblueTest {
   }
 
   /**
-   * Test {@link ExtraDataEntryNameMap#addExtraClassToClass(Clazz, Clazz)} with {@code Clazz}, {@code Clazz}.
-   * <p>
-   * Method under test: {@link ExtraDataEntryNameMap#addExtraClassToClass(Clazz, Clazz)}
+   * Test {@link ExtraDataEntryNameMap#addExtraClassToClass(Clazz, Clazz)} with {@code Clazz},
+   * {@code Clazz}.
+   *
+   * <p>Method under test: {@link ExtraDataEntryNameMap#addExtraClassToClass(Clazz, Clazz)}
    */
   @Test
   @DisplayName("Test addExtraClassToClass(Clazz, Clazz) with 'Clazz', 'Clazz'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.io.ExtraDataEntryNameMap.addExtraClassToClass(proguard.classfile.Clazz, proguard.classfile.Clazz)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ExtraDataEntryNameMap.addExtraClassToClass(Clazz, Clazz)"})
   void testAddExtraClassToClassWithClazzClazz() {
     // Arrange
     ExtraDataEntryNameMap extraDataEntryNameMap = new ExtraDataEntryNameMap();
@@ -365,15 +392,16 @@ class ExtraDataEntryNameMapDiffblueTest {
   }
 
   /**
-   * Test {@link ExtraDataEntryNameMap#addExtraClassToClass(Clazz, Clazz)} with {@code Clazz}, {@code Clazz}.
-   * <p>
-   * Method under test: {@link ExtraDataEntryNameMap#addExtraClassToClass(Clazz, Clazz)}
+   * Test {@link ExtraDataEntryNameMap#addExtraClassToClass(Clazz, Clazz)} with {@code Clazz},
+   * {@code Clazz}.
+   *
+   * <p>Method under test: {@link ExtraDataEntryNameMap#addExtraClassToClass(Clazz, Clazz)}
    */
   @Test
   @DisplayName("Test addExtraClassToClass(Clazz, Clazz) with 'Clazz', 'Clazz'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.io.ExtraDataEntryNameMap.addExtraClassToClass(proguard.classfile.Clazz, proguard.classfile.Clazz)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ExtraDataEntryNameMap.addExtraClassToClass(Clazz, Clazz)"})
   void testAddExtraClassToClassWithClazzClazz2() {
     // Arrange
     ExtraDataEntryNameMap extraDataEntryNameMap = new ExtraDataEntryNameMap();
@@ -392,15 +420,16 @@ class ExtraDataEntryNameMapDiffblueTest {
   }
 
   /**
-   * Test {@link ExtraDataEntryNameMap#addExtraClassToClass(Clazz, String)} with {@code Clazz}, {@code String}.
-   * <p>
-   * Method under test: {@link ExtraDataEntryNameMap#addExtraClassToClass(Clazz, String)}
+   * Test {@link ExtraDataEntryNameMap#addExtraClassToClass(Clazz, String)} with {@code Clazz},
+   * {@code String}.
+   *
+   * <p>Method under test: {@link ExtraDataEntryNameMap#addExtraClassToClass(Clazz, String)}
    */
   @Test
   @DisplayName("Test addExtraClassToClass(Clazz, String) with 'Clazz', 'String'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.io.ExtraDataEntryNameMap.addExtraClassToClass(proguard.classfile.Clazz, java.lang.String)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ExtraDataEntryNameMap.addExtraClassToClass(Clazz, String)"})
   void testAddExtraClassToClassWithClazzString() {
     // Arrange
     ExtraDataEntryNameMap extraDataEntryNameMap = new ExtraDataEntryNameMap();
@@ -418,15 +447,16 @@ class ExtraDataEntryNameMapDiffblueTest {
   }
 
   /**
-   * Test {@link ExtraDataEntryNameMap#addExtraClassToClass(Clazz, String)} with {@code Clazz}, {@code String}.
-   * <p>
-   * Method under test: {@link ExtraDataEntryNameMap#addExtraClassToClass(Clazz, String)}
+   * Test {@link ExtraDataEntryNameMap#addExtraClassToClass(Clazz, String)} with {@code Clazz},
+   * {@code String}.
+   *
+   * <p>Method under test: {@link ExtraDataEntryNameMap#addExtraClassToClass(Clazz, String)}
    */
   @Test
   @DisplayName("Test addExtraClassToClass(Clazz, String) with 'Clazz', 'String'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.io.ExtraDataEntryNameMap.addExtraClassToClass(proguard.classfile.Clazz, java.lang.String)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ExtraDataEntryNameMap.addExtraClassToClass(Clazz, String)"})
   void testAddExtraClassToClassWithClazzString2() {
     // Arrange
     ExtraDataEntryNameMap extraDataEntryNameMap = new ExtraDataEntryNameMap();
@@ -447,14 +477,16 @@ class ExtraDataEntryNameMapDiffblueTest {
   }
 
   /**
-   * Test {@link ExtraDataEntryNameMap#addExtraClassToClass(String, Class)} with {@code String}, {@code Class}.
-   * <p>
-   * Method under test: {@link ExtraDataEntryNameMap#addExtraClassToClass(String, Class)}
+   * Test {@link ExtraDataEntryNameMap#addExtraClassToClass(String, Class)} with {@code String},
+   * {@code Class}.
+   *
+   * <p>Method under test: {@link ExtraDataEntryNameMap#addExtraClassToClass(String, Class)}
    */
   @Test
   @DisplayName("Test addExtraClassToClass(String, Class) with 'String', 'Class'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.io.ExtraDataEntryNameMap.addExtraClassToClass(java.lang.String, java.lang.Class)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ExtraDataEntryNameMap.addExtraClassToClass(String, Class)"})
   void testAddExtraClassToClassWithStringClass() {
     // Arrange
     ExtraDataEntryNameMap extraDataEntryNameMap = new ExtraDataEntryNameMap();
@@ -473,14 +505,16 @@ class ExtraDataEntryNameMapDiffblueTest {
   }
 
   /**
-   * Test {@link ExtraDataEntryNameMap#addExtraClassToClass(String, Class)} with {@code String}, {@code Class}.
-   * <p>
-   * Method under test: {@link ExtraDataEntryNameMap#addExtraClassToClass(String, Class)}
+   * Test {@link ExtraDataEntryNameMap#addExtraClassToClass(String, Class)} with {@code String},
+   * {@code Class}.
+   *
+   * <p>Method under test: {@link ExtraDataEntryNameMap#addExtraClassToClass(String, Class)}
    */
   @Test
   @DisplayName("Test addExtraClassToClass(String, Class) with 'String', 'Class'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.io.ExtraDataEntryNameMap.addExtraClassToClass(java.lang.String, java.lang.Class)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ExtraDataEntryNameMap.addExtraClassToClass(String, Class)"})
   void testAddExtraClassToClassWithStringClass2() {
     // Arrange
     ExtraDataEntryNameMap extraDataEntryNameMap = new ExtraDataEntryNameMap();
@@ -501,14 +535,16 @@ class ExtraDataEntryNameMapDiffblueTest {
   }
 
   /**
-   * Test {@link ExtraDataEntryNameMap#addExtraClassToClass(String, String)} with {@code String}, {@code String}.
-   * <p>
-   * Method under test: {@link ExtraDataEntryNameMap#addExtraClassToClass(String, String)}
+   * Test {@link ExtraDataEntryNameMap#addExtraClassToClass(String, String)} with {@code String},
+   * {@code String}.
+   *
+   * <p>Method under test: {@link ExtraDataEntryNameMap#addExtraClassToClass(String, String)}
    */
   @Test
   @DisplayName("Test addExtraClassToClass(String, String) with 'String', 'String'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.io.ExtraDataEntryNameMap.addExtraClassToClass(java.lang.String, java.lang.String)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ExtraDataEntryNameMap.addExtraClassToClass(String, String)"})
   void testAddExtraClassToClassWithStringString() {
     // Arrange
     ExtraDataEntryNameMap extraDataEntryNameMap = new ExtraDataEntryNameMap();
@@ -526,14 +562,16 @@ class ExtraDataEntryNameMapDiffblueTest {
   }
 
   /**
-   * Test {@link ExtraDataEntryNameMap#addExtraClassToClass(String, String)} with {@code String}, {@code String}.
-   * <p>
-   * Method under test: {@link ExtraDataEntryNameMap#addExtraClassToClass(String, String)}
+   * Test {@link ExtraDataEntryNameMap#addExtraClassToClass(String, String)} with {@code String},
+   * {@code String}.
+   *
+   * <p>Method under test: {@link ExtraDataEntryNameMap#addExtraClassToClass(String, String)}
    */
   @Test
   @DisplayName("Test addExtraClassToClass(String, String) with 'String', 'String'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.io.ExtraDataEntryNameMap.addExtraClassToClass(java.lang.String, java.lang.String)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ExtraDataEntryNameMap.addExtraClassToClass(String, String)"})
   void testAddExtraClassToClassWithStringString2() {
     // Arrange
     ExtraDataEntryNameMap extraDataEntryNameMap = new ExtraDataEntryNameMap();
@@ -554,83 +592,90 @@ class ExtraDataEntryNameMapDiffblueTest {
 
   /**
    * Test {@link ExtraDataEntryNameMap#getKeyDataEntryNames()}.
-   * <p>
-   * Method under test: {@link ExtraDataEntryNameMap#getKeyDataEntryNames()}
+   *
+   * <p>Method under test: {@link ExtraDataEntryNameMap#getKeyDataEntryNames()}
    */
   @Test
   @DisplayName("Test getKeyDataEntryNames()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"java.util.Set proguard.io.ExtraDataEntryNameMap.getKeyDataEntryNames()"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"Set ExtraDataEntryNameMap.getKeyDataEntryNames()"})
   void testGetKeyDataEntryNames() {
     // Arrange, Act and Assert
-    assertTrue((new ExtraDataEntryNameMap()).getKeyDataEntryNames().isEmpty());
+    assertTrue(new ExtraDataEntryNameMap().getKeyDataEntryNames().isEmpty());
   }
 
   /**
    * Test {@link ExtraDataEntryNameMap#getAllExtraDataEntryNames()}.
-   * <p>
-   * Method under test: {@link ExtraDataEntryNameMap#getAllExtraDataEntryNames()}
+   *
+   * <p>Method under test: {@link ExtraDataEntryNameMap#getAllExtraDataEntryNames()}
    */
   @Test
   @DisplayName("Test getAllExtraDataEntryNames()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"java.util.Set proguard.io.ExtraDataEntryNameMap.getAllExtraDataEntryNames()"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"Set ExtraDataEntryNameMap.getAllExtraDataEntryNames()"})
   void testGetAllExtraDataEntryNames() {
     // Arrange, Act and Assert
-    assertTrue((new ExtraDataEntryNameMap()).getAllExtraDataEntryNames().isEmpty());
+    assertTrue(new ExtraDataEntryNameMap().getAllExtraDataEntryNames().isEmpty());
   }
 
   /**
    * Test {@link ExtraDataEntryNameMap#getDefaultExtraDataEntryNames()}.
-   * <p>
-   * Method under test: {@link ExtraDataEntryNameMap#getDefaultExtraDataEntryNames()}
+   *
+   * <p>Method under test: {@link ExtraDataEntryNameMap#getDefaultExtraDataEntryNames()}
    */
   @Test
   @DisplayName("Test getDefaultExtraDataEntryNames()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"java.util.Set proguard.io.ExtraDataEntryNameMap.getDefaultExtraDataEntryNames()"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"Set ExtraDataEntryNameMap.getDefaultExtraDataEntryNames()"})
   void testGetDefaultExtraDataEntryNames() {
     // Arrange, Act and Assert
-    assertNull((new ExtraDataEntryNameMap()).getDefaultExtraDataEntryNames());
+    assertNull(new ExtraDataEntryNameMap().getDefaultExtraDataEntryNames());
   }
 
   /**
    * Test {@link ExtraDataEntryNameMap#getExtraDataEntryNames(String)}.
-   * <p>
-   * Method under test: {@link ExtraDataEntryNameMap#getExtraDataEntryNames(String)}
+   *
+   * <p>Method under test: {@link ExtraDataEntryNameMap#getExtraDataEntryNames(String)}
    */
   @Test
   @DisplayName("Test getExtraDataEntryNames(String)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"java.util.Set proguard.io.ExtraDataEntryNameMap.getExtraDataEntryNames(java.lang.String)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"Set ExtraDataEntryNameMap.getExtraDataEntryNames(String)"})
   void testGetExtraDataEntryNames() {
     // Arrange, Act and Assert
-    assertNull((new ExtraDataEntryNameMap()).getExtraDataEntryNames("Key Data Entry Name"));
+    assertNull(new ExtraDataEntryNameMap().getExtraDataEntryNames("Key Data Entry Name"));
   }
 
   /**
    * Test {@link ExtraDataEntryNameMap#getClassDataEntryName(String)} with {@code String}.
-   * <p>
-   * Method under test: {@link ExtraDataEntryNameMap#getClassDataEntryName(String)}
+   *
+   * <p>Method under test: {@link ExtraDataEntryNameMap#getClassDataEntryName(String)}
    */
   @Test
   @DisplayName("Test getClassDataEntryName(String) with 'String'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"java.lang.String proguard.io.ExtraDataEntryNameMap.getClassDataEntryName(java.lang.String)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"String ExtraDataEntryNameMap.getClassDataEntryName(String)"})
   void testGetClassDataEntryNameWithString() {
     // Arrange, Act and Assert
-    assertEquals("Class Name.class", (new ExtraDataEntryNameMap()).getClassDataEntryName("Class Name"));
+    assertEquals(
+        "Class Name.class", new ExtraDataEntryNameMap().getClassDataEntryName("Class Name"));
   }
 
   /**
    * Test new {@link ExtraDataEntryNameMap} (default constructor).
-   * <p>
-   * Method under test: default or parameterless constructor of {@link ExtraDataEntryNameMap}
+   *
+   * <p>Method under test: default or parameterless constructor of {@link ExtraDataEntryNameMap}
    */
   @Test
   @DisplayName("Test new ExtraDataEntryNameMap (default constructor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.io.ExtraDataEntryNameMap.<init>()"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ExtraDataEntryNameMap.<init>()"})
   void testNewExtraDataEntryNameMap() {
     // Arrange and Act
     ExtraDataEntryNameMap actualExtraDataEntryNameMap = new ExtraDataEntryNameMap();

@@ -8,6 +8,7 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,17 +24,19 @@ import proguard.util.Processable;
 class KotlinModuleShrinkerDiffblueTest {
   /**
    * Test {@link KotlinModuleShrinker#visitKotlinModule(KotlinModule)}.
+   *
    * <ul>
-   *   <li>Then calls {@link KotlinModule#modulePackagesAccept(KotlinModulePackageVisitor)}.</li>
+   *   <li>Then calls {@link KotlinModule#modulePackagesAccept(KotlinModulePackageVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link KotlinModuleShrinker#visitKotlinModule(KotlinModule)}
+   *
+   * <p>Method under test: {@link KotlinModuleShrinker#visitKotlinModule(KotlinModule)}
    */
   @Test
-  @DisplayName("Test visitKotlinModule(KotlinModule); then calls modulePackagesAccept(KotlinModulePackageVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.shrink.KotlinModuleShrinker.visitKotlinModule(proguard.resources.kotlinmodule.KotlinModule)"})
+  @DisplayName(
+      "Test visitKotlinModule(KotlinModule); then calls modulePackagesAccept(KotlinModulePackageVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void KotlinModuleShrinker.visitKotlinModule(KotlinModule)"})
   void testVisitKotlinModule_thenCallsModulePackagesAccept() {
     // Arrange
     KotlinModuleShrinker kotlinModuleShrinker = new KotlinModuleShrinker(new SimpleUsageMarker());
@@ -49,19 +52,23 @@ class KotlinModuleShrinkerDiffblueTest {
 
   /**
    * Test {@link KotlinModuleShrinker#visitKotlinModulePackage(KotlinModule, KotlinModulePackage)}.
-   * <p>
-   * Method under test: {@link KotlinModuleShrinker#visitKotlinModulePackage(KotlinModule, KotlinModulePackage)}
+   *
+   * <p>Method under test: {@link KotlinModuleShrinker#visitKotlinModulePackage(KotlinModule,
+   * KotlinModulePackage)}
    */
   @Test
   @DisplayName("Test visitKotlinModulePackage(KotlinModule, KotlinModulePackage)")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.shrink.KotlinModuleShrinker.visitKotlinModulePackage(proguard.resources.kotlinmodule.KotlinModule, proguard.resources.kotlinmodule.KotlinModulePackage)"})
+    "void KotlinModuleShrinker.visitKotlinModulePackage(KotlinModule, KotlinModulePackage)"
+  })
   void testVisitKotlinModulePackage() {
     // Arrange
     KotlinModuleShrinker kotlinModuleShrinker = new KotlinModuleShrinker(new SimpleUsageMarker());
     ArrayList<String> fileFacadeNames = new ArrayList<>();
-    KotlinModulePackage kotlinModulePart = new KotlinModulePackage("Fq Name", fileFacadeNames, new HashMap<>());
+    KotlinModulePackage kotlinModulePart =
+        new KotlinModulePackage("Fq Name", fileFacadeNames, new HashMap<>());
 
     // Act
     kotlinModuleShrinker.visitKotlinModulePackage(null, kotlinModulePart);
@@ -73,14 +80,17 @@ class KotlinModuleShrinkerDiffblueTest {
 
   /**
    * Test {@link KotlinModuleShrinker#visitKotlinModulePackage(KotlinModule, KotlinModulePackage)}.
-   * <p>
-   * Method under test: {@link KotlinModuleShrinker#visitKotlinModulePackage(KotlinModule, KotlinModulePackage)}
+   *
+   * <p>Method under test: {@link KotlinModuleShrinker#visitKotlinModulePackage(KotlinModule,
+   * KotlinModulePackage)}
    */
   @Test
   @DisplayName("Test visitKotlinModulePackage(KotlinModule, KotlinModulePackage)")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.shrink.KotlinModuleShrinker.visitKotlinModulePackage(proguard.resources.kotlinmodule.KotlinModule, proguard.resources.kotlinmodule.KotlinModulePackage)"})
+    "void KotlinModuleShrinker.visitKotlinModulePackage(KotlinModule, KotlinModulePackage)"
+  })
   void testVisitKotlinModulePackage2() {
     // Arrange
     SimpleUsageMarker usageMarker = mock(SimpleUsageMarker.class);
@@ -89,7 +99,8 @@ class KotlinModuleShrinkerDiffblueTest {
 
     ArrayList<String> fileFacadeNames = new ArrayList<>();
     fileFacadeNames.add("42");
-    KotlinModulePackage kotlinModulePart = new KotlinModulePackage("Fq Name", fileFacadeNames, new HashMap<>());
+    KotlinModulePackage kotlinModulePart =
+        new KotlinModulePackage("Fq Name", fileFacadeNames, new HashMap<>());
 
     // Act
     kotlinModuleShrinker.visitKotlinModulePackage(null, kotlinModulePart);
@@ -102,17 +113,23 @@ class KotlinModuleShrinkerDiffblueTest {
 
   /**
    * Test {@link KotlinModuleShrinker#visitKotlinModulePackage(KotlinModule, KotlinModulePackage)}.
+   *
    * <ul>
-   *   <li>Given {@link SimpleUsageMarker} {@link SimpleUsageMarker#isUsed(Processable)} return {@code false}.</li>
+   *   <li>Given {@link SimpleUsageMarker} {@link SimpleUsageMarker#isUsed(Processable)} return
+   *       {@code false}.
    * </ul>
-   * <p>
-   * Method under test: {@link KotlinModuleShrinker#visitKotlinModulePackage(KotlinModule, KotlinModulePackage)}
+   *
+   * <p>Method under test: {@link KotlinModuleShrinker#visitKotlinModulePackage(KotlinModule,
+   * KotlinModulePackage)}
    */
   @Test
-  @DisplayName("Test visitKotlinModulePackage(KotlinModule, KotlinModulePackage); given SimpleUsageMarker isUsed(Processable) return 'false'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitKotlinModulePackage(KotlinModule, KotlinModulePackage); given SimpleUsageMarker isUsed(Processable) return 'false'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.shrink.KotlinModuleShrinker.visitKotlinModulePackage(proguard.resources.kotlinmodule.KotlinModule, proguard.resources.kotlinmodule.KotlinModulePackage)"})
+    "void KotlinModuleShrinker.visitKotlinModulePackage(KotlinModule, KotlinModulePackage)"
+  })
   void testVisitKotlinModulePackage_givenSimpleUsageMarkerIsUsedReturnFalse() {
     // Arrange
     SimpleUsageMarker usageMarker = mock(SimpleUsageMarker.class);
@@ -121,7 +138,8 @@ class KotlinModuleShrinkerDiffblueTest {
 
     ArrayList<String> fileFacadeNames = new ArrayList<>();
     fileFacadeNames.add("42");
-    KotlinModulePackage kotlinModulePart = new KotlinModulePackage("Fq Name", fileFacadeNames, new HashMap<>());
+    KotlinModulePackage kotlinModulePart =
+        new KotlinModulePackage("Fq Name", fileFacadeNames, new HashMap<>());
 
     // Act
     kotlinModuleShrinker.visitKotlinModulePackage(null, kotlinModulePart);

@@ -7,6 +7,7 @@ import static org.mockito.Mockito.atLeast;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -18,28 +19,32 @@ import org.mockito.Mockito;
 import proguard.classfile.Clazz;
 import proguard.classfile.ProgramClass;
 import proguard.classfile.ProgramField;
-import proguard.classfile.ProgramMember;
 import proguard.classfile.ProgramMethod;
 import proguard.classfile.util.WarningPrinter;
 
 class MemberNameConflictFixerDiffblueTest {
   /**
    * Test {@link MemberNameConflictFixer#visitProgramField(ProgramClass, ProgramField)}.
-   * <p>
-   * Method under test: {@link MemberNameConflictFixer#visitProgramField(ProgramClass, ProgramField)}
+   *
+   * <p>Method under test: {@link MemberNameConflictFixer#visitProgramField(ProgramClass,
+   * ProgramField)}
    */
   @Test
   @DisplayName("Test visitProgramField(ProgramClass, ProgramField)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.MemberNameConflictFixer.visitProgramField(proguard.classfile.ProgramClass, proguard.classfile.ProgramField)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void MemberNameConflictFixer.visitProgramField(ProgramClass, ProgramField)"})
   void testVisitProgramField() {
     // Arrange
     HashMap<Object, Object> descriptorMap = new HashMap<>();
     WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
     NumericNameFactory nameFactory = new NumericNameFactory();
-    MemberNameConflictFixer memberNameConflictFixer = new MemberNameConflictFixer(false, descriptorMap, warningPrinter,
-        new MemberObfuscator(true, nameFactory, new HashMap<>()));
+    MemberNameConflictFixer memberNameConflictFixer =
+        new MemberNameConflictFixer(
+            false,
+            descriptorMap,
+            warningPrinter,
+            new MemberObfuscator(true, nameFactory, new HashMap<>()));
     ProgramClass programClass = mock(ProgramClass.class);
     when(programClass.getString(anyInt())).thenReturn("String");
 
@@ -52,25 +57,32 @@ class MemberNameConflictFixerDiffblueTest {
 
   /**
    * Test {@link MemberNameConflictFixer#visitProgramField(ProgramClass, ProgramField)}.
+   *
    * <ul>
-   *   <li>Given {@code Processing Info}.</li>
-   *   <li>Then calls {@link ProgramMember#getDescriptor(Clazz)}.</li>
+   *   <li>Given {@code Processing Info}.
+   *   <li>Then calls {@link ProgramField#getDescriptor(Clazz)}.
    * </ul>
-   * <p>
-   * Method under test: {@link MemberNameConflictFixer#visitProgramField(ProgramClass, ProgramField)}
+   *
+   * <p>Method under test: {@link MemberNameConflictFixer#visitProgramField(ProgramClass,
+   * ProgramField)}
    */
   @Test
-  @DisplayName("Test visitProgramField(ProgramClass, ProgramField); given 'Processing Info'; then calls getDescriptor(Clazz)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.MemberNameConflictFixer.visitProgramField(proguard.classfile.ProgramClass, proguard.classfile.ProgramField)"})
+  @DisplayName(
+      "Test visitProgramField(ProgramClass, ProgramField); given 'Processing Info'; then calls getDescriptor(Clazz)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void MemberNameConflictFixer.visitProgramField(ProgramClass, ProgramField)"})
   void testVisitProgramField_givenProcessingInfo_thenCallsGetDescriptor() {
     // Arrange
     HashMap<Object, Object> descriptorMap = new HashMap<>();
     WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
     NumericNameFactory nameFactory = new NumericNameFactory();
-    MemberNameConflictFixer memberNameConflictFixer = new MemberNameConflictFixer(true, descriptorMap, warningPrinter,
-        new MemberObfuscator(true, nameFactory, new HashMap<>()));
+    MemberNameConflictFixer memberNameConflictFixer =
+        new MemberNameConflictFixer(
+            true,
+            descriptorMap,
+            warningPrinter,
+            new MemberObfuscator(true, nameFactory, new HashMap<>()));
     ProgramClass programClass = mock(ProgramClass.class);
     ProgramField programField = mock(ProgramField.class);
     when(programField.getProcessingInfo()).thenReturn("Processing Info");
@@ -88,25 +100,32 @@ class MemberNameConflictFixerDiffblueTest {
 
   /**
    * Test {@link MemberNameConflictFixer#visitProgramField(ProgramClass, ProgramField)}.
+   *
    * <ul>
-   *   <li>Given {@code String}.</li>
-   *   <li>Then calls {@link ProgramClass#getString(int)}.</li>
+   *   <li>Given {@code String}.
+   *   <li>Then calls {@link ProgramClass#getString(int)}.
    * </ul>
-   * <p>
-   * Method under test: {@link MemberNameConflictFixer#visitProgramField(ProgramClass, ProgramField)}
+   *
+   * <p>Method under test: {@link MemberNameConflictFixer#visitProgramField(ProgramClass,
+   * ProgramField)}
    */
   @Test
-  @DisplayName("Test visitProgramField(ProgramClass, ProgramField); given 'String'; then calls getString(int)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.MemberNameConflictFixer.visitProgramField(proguard.classfile.ProgramClass, proguard.classfile.ProgramField)"})
+  @DisplayName(
+      "Test visitProgramField(ProgramClass, ProgramField); given 'String'; then calls getString(int)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void MemberNameConflictFixer.visitProgramField(ProgramClass, ProgramField)"})
   void testVisitProgramField_givenString_thenCallsGetString() {
     // Arrange
     HashMap<Object, Object> descriptorMap = new HashMap<>();
     WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
     NumericNameFactory nameFactory = new NumericNameFactory();
-    MemberNameConflictFixer memberNameConflictFixer = new MemberNameConflictFixer(true, descriptorMap, warningPrinter,
-        new MemberObfuscator(true, nameFactory, new HashMap<>()));
+    MemberNameConflictFixer memberNameConflictFixer =
+        new MemberNameConflictFixer(
+            true,
+            descriptorMap,
+            warningPrinter,
+            new MemberObfuscator(true, nameFactory, new HashMap<>()));
     ProgramClass programClass = mock(ProgramClass.class);
     when(programClass.getString(anyInt())).thenReturn("String");
 
@@ -119,21 +138,28 @@ class MemberNameConflictFixerDiffblueTest {
 
   /**
    * Test {@link MemberNameConflictFixer#visitProgramMethod(ProgramClass, ProgramMethod)}.
-   * <p>
-   * Method under test: {@link MemberNameConflictFixer#visitProgramMethod(ProgramClass, ProgramMethod)}
+   *
+   * <p>Method under test: {@link MemberNameConflictFixer#visitProgramMethod(ProgramClass,
+   * ProgramMethod)}
    */
   @Test
   @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod)")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.obfuscate.MemberNameConflictFixer.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
+    "void MemberNameConflictFixer.visitProgramMethod(ProgramClass, ProgramMethod)"
+  })
   void testVisitProgramMethod() {
     // Arrange
     HashMap<Object, Object> descriptorMap = new HashMap<>();
     WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
     NumericNameFactory nameFactory = new NumericNameFactory();
-    MemberNameConflictFixer memberNameConflictFixer = new MemberNameConflictFixer(false, descriptorMap, warningPrinter,
-        new MemberObfuscator(true, nameFactory, new HashMap<>()));
+    MemberNameConflictFixer memberNameConflictFixer =
+        new MemberNameConflictFixer(
+            false,
+            descriptorMap,
+            warningPrinter,
+            new MemberObfuscator(true, nameFactory, new HashMap<>()));
     ProgramClass programClass = mock(ProgramClass.class);
     when(programClass.getString(anyInt())).thenReturn("String");
 
@@ -146,25 +172,34 @@ class MemberNameConflictFixerDiffblueTest {
 
   /**
    * Test {@link MemberNameConflictFixer#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   *
    * <ul>
-   *   <li>Given {@code Processing Info}.</li>
-   *   <li>Then calls {@link ProgramMember#getDescriptor(Clazz)}.</li>
+   *   <li>Given {@code Processing Info}.
+   *   <li>Then calls {@link ProgramMethod#getDescriptor(Clazz)}.
    * </ul>
-   * <p>
-   * Method under test: {@link MemberNameConflictFixer#visitProgramMethod(ProgramClass, ProgramMethod)}
+   *
+   * <p>Method under test: {@link MemberNameConflictFixer#visitProgramMethod(ProgramClass,
+   * ProgramMethod)}
    */
   @Test
-  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); given 'Processing Info'; then calls getDescriptor(Clazz)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitProgramMethod(ProgramClass, ProgramMethod); given 'Processing Info'; then calls getDescriptor(Clazz)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.obfuscate.MemberNameConflictFixer.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
+    "void MemberNameConflictFixer.visitProgramMethod(ProgramClass, ProgramMethod)"
+  })
   void testVisitProgramMethod_givenProcessingInfo_thenCallsGetDescriptor() {
     // Arrange
     HashMap<Object, Object> descriptorMap = new HashMap<>();
     WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
     NumericNameFactory nameFactory = new NumericNameFactory();
-    MemberNameConflictFixer memberNameConflictFixer = new MemberNameConflictFixer(true, descriptorMap, warningPrinter,
-        new MemberObfuscator(true, nameFactory, new HashMap<>()));
+    MemberNameConflictFixer memberNameConflictFixer =
+        new MemberNameConflictFixer(
+            true,
+            descriptorMap,
+            warningPrinter,
+            new MemberObfuscator(true, nameFactory, new HashMap<>()));
     ProgramClass programClass = mock(ProgramClass.class);
     ProgramMethod programMethod = mock(ProgramMethod.class);
     when(programMethod.getProcessingInfo()).thenReturn("Processing Info");
@@ -182,25 +217,34 @@ class MemberNameConflictFixerDiffblueTest {
 
   /**
    * Test {@link MemberNameConflictFixer#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   *
    * <ul>
-   *   <li>Given {@code String}.</li>
-   *   <li>Then calls {@link ProgramClass#getString(int)}.</li>
+   *   <li>Given {@code String}.
+   *   <li>Then calls {@link ProgramClass#getString(int)}.
    * </ul>
-   * <p>
-   * Method under test: {@link MemberNameConflictFixer#visitProgramMethod(ProgramClass, ProgramMethod)}
+   *
+   * <p>Method under test: {@link MemberNameConflictFixer#visitProgramMethod(ProgramClass,
+   * ProgramMethod)}
    */
   @Test
-  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); given 'String'; then calls getString(int)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitProgramMethod(ProgramClass, ProgramMethod); given 'String'; then calls getString(int)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.obfuscate.MemberNameConflictFixer.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
+    "void MemberNameConflictFixer.visitProgramMethod(ProgramClass, ProgramMethod)"
+  })
   void testVisitProgramMethod_givenString_thenCallsGetString() {
     // Arrange
     HashMap<Object, Object> descriptorMap = new HashMap<>();
     WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
     NumericNameFactory nameFactory = new NumericNameFactory();
-    MemberNameConflictFixer memberNameConflictFixer = new MemberNameConflictFixer(true, descriptorMap, warningPrinter,
-        new MemberObfuscator(true, nameFactory, new HashMap<>()));
+    MemberNameConflictFixer memberNameConflictFixer =
+        new MemberNameConflictFixer(
+            true,
+            descriptorMap,
+            warningPrinter,
+            new MemberObfuscator(true, nameFactory, new HashMap<>()));
     ProgramClass programClass = mock(ProgramClass.class);
     when(programClass.getString(anyInt())).thenReturn("String");
 

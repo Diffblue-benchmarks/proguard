@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -18,25 +19,33 @@ import proguard.optimize.DuplicateInitializerInvocationFixer;
 
 class ShortMethodInlinerDiffblueTest {
   /**
-   * Test {@link ShortMethodInliner#ShortMethodInliner(boolean, boolean, boolean, InstructionVisitor)}.
+   * Test {@link ShortMethodInliner#ShortMethodInliner(boolean, boolean, boolean,
+   * InstructionVisitor)}.
+   *
    * <ul>
-   *   <li>Then return {@link MethodInliner#maxResultingCodeLength} is {@code 2000}.</li>
+   *   <li>Then return {@link MethodInliner#maxResultingCodeLength} is {@code 2000}.
    * </ul>
-   * <p>
-   * Method under test: {@link ShortMethodInliner#ShortMethodInliner(boolean, boolean, boolean, InstructionVisitor)}
+   *
+   * <p>Method under test: {@link ShortMethodInliner#ShortMethodInliner(boolean, boolean, boolean,
+   * InstructionVisitor)}
    */
   @Test
-  @DisplayName("Test new ShortMethodInliner(boolean, boolean, boolean, InstructionVisitor); then return maxResultingCodeLength is '2000'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test new ShortMethodInliner(boolean, boolean, boolean, InstructionVisitor); then return maxResultingCodeLength is '2000'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.peephole.ShortMethodInliner.<init>(boolean, boolean, boolean, proguard.classfile.instruction.visitor.InstructionVisitor)"})
+    "void ShortMethodInliner.<init>(boolean, boolean, boolean, InstructionVisitor)"
+  })
   void testNewShortMethodInliner_thenReturnMaxResultingCodeLengthIs2000() {
     // Arrange and Act
-    ShortMethodInliner actualShortMethodInliner = new ShortMethodInliner(true, true, true,
-        new DuplicateInitializerInvocationFixer());
+    ShortMethodInliner actualShortMethodInliner =
+        new ShortMethodInliner(true, true, true, new DuplicateInitializerInvocationFixer());
 
     // Assert
-    assertTrue(actualShortMethodInliner.extraInlinedInvocationVisitor instanceof DuplicateInitializerInvocationFixer);
+    assertTrue(
+        actualShortMethodInliner.extraInlinedInvocationVisitor
+            instanceof DuplicateInitializerInvocationFixer);
     assertEquals(2000, actualShortMethodInliner.maxResultingCodeLength);
     assertTrue(actualShortMethodInliner.allowAccessModification);
     assertTrue(actualShortMethodInliner.android);
@@ -46,17 +55,20 @@ class ShortMethodInlinerDiffblueTest {
 
   /**
    * Test {@link ShortMethodInliner#ShortMethodInliner(boolean, boolean, boolean)}.
+   *
    * <ul>
-   *   <li>When {@code false}.</li>
-   *   <li>Then return {@link MethodInliner#maxResultingCodeLength} is {@code 7000}.</li>
+   *   <li>When {@code false}.
+   *   <li>Then return {@link MethodInliner#maxResultingCodeLength} is {@code 7000}.
    * </ul>
-   * <p>
-   * Method under test: {@link ShortMethodInliner#ShortMethodInliner(boolean, boolean, boolean)}
+   *
+   * <p>Method under test: {@link ShortMethodInliner#ShortMethodInliner(boolean, boolean, boolean)}
    */
   @Test
-  @DisplayName("Test new ShortMethodInliner(boolean, boolean, boolean); when 'false'; then return maxResultingCodeLength is '7000'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.optimize.peephole.ShortMethodInliner.<init>(boolean, boolean, boolean)"})
+  @DisplayName(
+      "Test new ShortMethodInliner(boolean, boolean, boolean); when 'false'; then return maxResultingCodeLength is '7000'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ShortMethodInliner.<init>(boolean, boolean, boolean)"})
   void testNewShortMethodInliner_whenFalse_thenReturnMaxResultingCodeLengthIs7000() {
     // Arrange and Act
     ShortMethodInliner actualShortMethodInliner = new ShortMethodInliner(false, true, true);
@@ -71,26 +83,34 @@ class ShortMethodInlinerDiffblueTest {
   }
 
   /**
-   * Test {@link ShortMethodInliner#ShortMethodInliner(boolean, boolean, boolean, InstructionVisitor)}.
+   * Test {@link ShortMethodInliner#ShortMethodInliner(boolean, boolean, boolean,
+   * InstructionVisitor)}.
+   *
    * <ul>
-   *   <li>When {@code false}.</li>
-   *   <li>Then return {@link MethodInliner#maxResultingCodeLength} is {@code 7000}.</li>
+   *   <li>When {@code false}.
+   *   <li>Then return {@link MethodInliner#maxResultingCodeLength} is {@code 7000}.
    * </ul>
-   * <p>
-   * Method under test: {@link ShortMethodInliner#ShortMethodInliner(boolean, boolean, boolean, InstructionVisitor)}
+   *
+   * <p>Method under test: {@link ShortMethodInliner#ShortMethodInliner(boolean, boolean, boolean,
+   * InstructionVisitor)}
    */
   @Test
-  @DisplayName("Test new ShortMethodInliner(boolean, boolean, boolean, InstructionVisitor); when 'false'; then return maxResultingCodeLength is '7000'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test new ShortMethodInliner(boolean, boolean, boolean, InstructionVisitor); when 'false'; then return maxResultingCodeLength is '7000'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.peephole.ShortMethodInliner.<init>(boolean, boolean, boolean, proguard.classfile.instruction.visitor.InstructionVisitor)"})
+    "void ShortMethodInliner.<init>(boolean, boolean, boolean, InstructionVisitor)"
+  })
   void testNewShortMethodInliner_whenFalse_thenReturnMaxResultingCodeLengthIs70002() {
     // Arrange and Act
-    ShortMethodInliner actualShortMethodInliner = new ShortMethodInliner(false, true, true,
-        new DuplicateInitializerInvocationFixer());
+    ShortMethodInliner actualShortMethodInliner =
+        new ShortMethodInliner(false, true, true, new DuplicateInitializerInvocationFixer());
 
     // Assert
-    assertTrue(actualShortMethodInliner.extraInlinedInvocationVisitor instanceof DuplicateInitializerInvocationFixer);
+    assertTrue(
+        actualShortMethodInliner.extraInlinedInvocationVisitor
+            instanceof DuplicateInitializerInvocationFixer);
     assertEquals(7000, actualShortMethodInliner.maxResultingCodeLength);
     assertFalse(actualShortMethodInliner.microEdition);
     assertTrue(actualShortMethodInliner.allowAccessModification);
@@ -100,17 +120,20 @@ class ShortMethodInlinerDiffblueTest {
 
   /**
    * Test {@link ShortMethodInliner#ShortMethodInliner(boolean, boolean, boolean)}.
+   *
    * <ul>
-   *   <li>When {@code true}.</li>
-   *   <li>Then return {@link MethodInliner#maxResultingCodeLength} is {@code 2000}.</li>
+   *   <li>When {@code true}.
+   *   <li>Then return {@link MethodInliner#maxResultingCodeLength} is {@code 2000}.
    * </ul>
-   * <p>
-   * Method under test: {@link ShortMethodInliner#ShortMethodInliner(boolean, boolean, boolean)}
+   *
+   * <p>Method under test: {@link ShortMethodInliner#ShortMethodInliner(boolean, boolean, boolean)}
    */
   @Test
-  @DisplayName("Test new ShortMethodInliner(boolean, boolean, boolean); when 'true'; then return maxResultingCodeLength is '2000'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.optimize.peephole.ShortMethodInliner.<init>(boolean, boolean, boolean)"})
+  @DisplayName(
+      "Test new ShortMethodInliner(boolean, boolean, boolean); when 'true'; then return maxResultingCodeLength is '2000'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ShortMethodInliner.<init>(boolean, boolean, boolean)"})
   void testNewShortMethodInliner_whenTrue_thenReturnMaxResultingCodeLengthIs2000() {
     // Arrange and Act
     ShortMethodInliner actualShortMethodInliner = new ShortMethodInliner(true, true, true);
@@ -126,38 +149,78 @@ class ShortMethodInlinerDiffblueTest {
 
   /**
    * Test {@link ShortMethodInliner#shouldInline(Clazz, Method, CodeAttribute)}.
-   * <p>
-   * Method under test: {@link ShortMethodInliner#shouldInline(Clazz, Method, CodeAttribute)}
+   *
+   * <ul>
+   *   <li>Given {@link MethodInliner#MAXIMUM_INLINED_CODE_LENGTH_android}.
+   *   <li>Then return {@code false}.
+   * </ul>
+   *
+   * <p>Method under test: {@link ShortMethodInliner#shouldInline(Clazz, Method, CodeAttribute)}
    */
   @Test
-  @DisplayName("Test shouldInline(Clazz, Method, CodeAttribute)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "boolean proguard.optimize.peephole.ShortMethodInliner.shouldInline(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.CodeAttribute)"})
-  void testShouldInline() {
+  @DisplayName(
+      "Test shouldInline(Clazz, Method, CodeAttribute); given MAXIMUM_INLINED_CODE_LENGTH_android; then return 'false'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean ShortMethodInliner.shouldInline(Clazz, Method, CodeAttribute)"})
+  void testShouldInline_givenMAXIMUM_INLINED_CODE_LENGTH_android_thenReturnFalse() {
     // Arrange
     ShortMethodInliner shortMethodInliner = new ShortMethodInliner(true, false, true);
     LibraryClass clazz = new LibraryClass();
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
 
+    CodeAttribute codeAttribute = new CodeAttribute(1);
+    codeAttribute.u4codeLength = MethodInliner.MAXIMUM_INLINED_CODE_LENGTH_android;
+
     // Act and Assert
-    assertTrue(shortMethodInliner.shouldInline(clazz, method, new CodeAttribute(1)));
+    assertFalse(shortMethodInliner.shouldInline(clazz, method, codeAttribute));
   }
 
   /**
    * Test {@link ShortMethodInliner#shouldInline(Clazz, Method, CodeAttribute)}.
+   *
    * <ul>
-   *   <li>Then return {@code true}.</li>
+   *   <li>Given {@link MethodInliner#MAXIMUM_INLINED_CODE_LENGTH_JVM}.
    * </ul>
-   * <p>
-   * Method under test: {@link ShortMethodInliner#shouldInline(Clazz, Method, CodeAttribute)}
+   *
+   * <p>Method under test: {@link ShortMethodInliner#shouldInline(Clazz, Method, CodeAttribute)}
    */
   @Test
-  @DisplayName("Test shouldInline(Clazz, Method, CodeAttribute); then return 'true'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "boolean proguard.optimize.peephole.ShortMethodInliner.shouldInline(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.CodeAttribute)"})
-  void testShouldInline_thenReturnTrue() {
+  @DisplayName(
+      "Test shouldInline(Clazz, Method, CodeAttribute); given MAXIMUM_INLINED_CODE_LENGTH_JVM")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean ShortMethodInliner.shouldInline(Clazz, Method, CodeAttribute)"})
+  void testShouldInline_givenMaximum_inlined_code_length_jvm() {
+    // Arrange
+    ShortMethodInliner shortMethodInliner = new ShortMethodInliner(true, false, true);
+    LibraryClass clazz = new LibraryClass();
+    LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
+
+    CodeAttribute codeAttribute = new CodeAttribute(1);
+    codeAttribute.u4codeLength = MethodInliner.MAXIMUM_INLINED_CODE_LENGTH_JVM;
+
+    // Act and Assert
+    assertTrue(shortMethodInliner.shouldInline(clazz, method, codeAttribute));
+  }
+
+  /**
+   * Test {@link ShortMethodInliner#shouldInline(Clazz, Method, CodeAttribute)}.
+   *
+   * <ul>
+   *   <li>When {@link CodeAttribute#CodeAttribute(int)} with u2attributeNameIndex is one.
+   *   <li>Then return {@code true}.
+   * </ul>
+   *
+   * <p>Method under test: {@link ShortMethodInliner#shouldInline(Clazz, Method, CodeAttribute)}
+   */
+  @Test
+  @DisplayName(
+      "Test shouldInline(Clazz, Method, CodeAttribute); when CodeAttribute(int) with u2attributeNameIndex is one; then return 'true'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean ShortMethodInliner.shouldInline(Clazz, Method, CodeAttribute)"})
+  void testShouldInline_whenCodeAttributeWithU2attributeNameIndexIsOne_thenReturnTrue() {
     // Arrange
     ShortMethodInliner shortMethodInliner = new ShortMethodInliner(true, true, true);
     LibraryClass clazz = new LibraryClass();

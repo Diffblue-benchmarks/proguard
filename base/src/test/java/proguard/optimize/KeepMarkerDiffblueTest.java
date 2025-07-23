@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -28,16 +29,19 @@ import proguard.optimize.info.ProgramFieldOptimizationInfo;
 class KeepMarkerDiffblueTest {
   /**
    * Test {@link KeepMarker#visitAnyClass(Clazz)}.
+   *
    * <ul>
-   *   <li>Then {@link LibraryClass#LibraryClass()} ProcessingInfo {@link ClassOptimizationInfo}.</li>
+   *   <li>Then {@link LibraryClass#LibraryClass()} ProcessingInfo {@link ClassOptimizationInfo}.
    * </ul>
-   * <p>
-   * Method under test: {@link KeepMarker#visitAnyClass(Clazz)}
+   *
+   * <p>Method under test: {@link KeepMarker#visitAnyClass(Clazz)}
    */
   @Test
-  @DisplayName("Test visitAnyClass(Clazz); then LibraryClass() ProcessingInfo ClassOptimizationInfo")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.optimize.KeepMarker.visitAnyClass(proguard.classfile.Clazz)"})
+  @DisplayName(
+      "Test visitAnyClass(Clazz); then LibraryClass() ProcessingInfo ClassOptimizationInfo")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void KeepMarker.visitAnyClass(Clazz)"})
   void testVisitAnyClass_thenLibraryClassProcessingInfoClassOptimizationInfo() {
     // Arrange
     KeepMarker keepMarker = new KeepMarker();
@@ -64,17 +68,19 @@ class KeepMarkerDiffblueTest {
 
   /**
    * Test {@link KeepMarker#visitProgramField(ProgramClass, ProgramField)}.
+   *
    * <ul>
-   *   <li>Then {@link ProgramField#ProgramField()} ProcessingInfo {@link FieldOptimizationInfo}.</li>
+   *   <li>Then {@link ProgramField#ProgramField()} ProcessingInfo {@link FieldOptimizationInfo}.
    * </ul>
-   * <p>
-   * Method under test: {@link KeepMarker#visitProgramField(ProgramClass, ProgramField)}
+   *
+   * <p>Method under test: {@link KeepMarker#visitProgramField(ProgramClass, ProgramField)}
    */
   @Test
-  @DisplayName("Test visitProgramField(ProgramClass, ProgramField); then ProgramField() ProcessingInfo FieldOptimizationInfo")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.KeepMarker.visitProgramField(proguard.classfile.ProgramClass, proguard.classfile.ProgramField)"})
+  @DisplayName(
+      "Test visitProgramField(ProgramClass, ProgramField); then ProgramField() ProcessingInfo FieldOptimizationInfo")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void KeepMarker.visitProgramField(ProgramClass, ProgramField)"})
   void testVisitProgramField_thenProgramFieldProcessingInfoFieldOptimizationInfo() {
     // Arrange
     KeepMarker keepMarker = new KeepMarker();
@@ -96,17 +102,18 @@ class KeepMarkerDiffblueTest {
 
   /**
    * Test {@link KeepMarker#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   *
    * <ul>
-   *   <li>Given {@code Processing Info}.</li>
+   *   <li>Given {@code Processing Info}.
    * </ul>
-   * <p>
-   * Method under test: {@link KeepMarker#visitProgramMethod(ProgramClass, ProgramMethod)}
+   *
+   * <p>Method under test: {@link KeepMarker#visitProgramMethod(ProgramClass, ProgramMethod)}
    */
   @Test
   @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); given 'Processing Info'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.KeepMarker.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void KeepMarker.visitProgramMethod(ProgramClass, ProgramMethod)"})
   void testVisitProgramMethod_givenProcessingInfo() {
     // Arrange
     KeepMarker keepMarker = new KeepMarker();
@@ -141,17 +148,18 @@ class KeepMarkerDiffblueTest {
 
   /**
    * Test {@link KeepMarker#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   *
    * <ul>
-   *   <li>When {@link ProgramMethod#ProgramMethod()}.</li>
+   *   <li>When {@link ProgramMethod#ProgramMethod()}.
    * </ul>
-   * <p>
-   * Method under test: {@link KeepMarker#visitProgramMethod(ProgramClass, ProgramMethod)}
+   *
+   * <p>Method under test: {@link KeepMarker#visitProgramMethod(ProgramClass, ProgramMethod)}
    */
   @Test
   @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); when ProgramMethod()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.KeepMarker.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void KeepMarker.visitProgramMethod(ProgramClass, ProgramMethod)"})
   void testVisitProgramMethod_whenProgramMethod() {
     // Arrange
     KeepMarker keepMarker = new KeepMarker();
@@ -184,14 +192,14 @@ class KeepMarkerDiffblueTest {
 
   /**
    * Test {@link KeepMarker#visitLibraryField(LibraryClass, LibraryField)}.
-   * <p>
-   * Method under test: {@link KeepMarker#visitLibraryField(LibraryClass, LibraryField)}
+   *
+   * <p>Method under test: {@link KeepMarker#visitLibraryField(LibraryClass, LibraryField)}
    */
   @Test
   @DisplayName("Test visitLibraryField(LibraryClass, LibraryField)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.KeepMarker.visitLibraryField(proguard.classfile.LibraryClass, proguard.classfile.LibraryField)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void KeepMarker.visitLibraryField(LibraryClass, LibraryField)"})
   void testVisitLibraryField() {
     // Arrange
     KeepMarker keepMarker = new KeepMarker();
@@ -213,14 +221,14 @@ class KeepMarkerDiffblueTest {
 
   /**
    * Test {@link KeepMarker#visitLibraryMethod(LibraryClass, LibraryMethod)}.
-   * <p>
-   * Method under test: {@link KeepMarker#visitLibraryMethod(LibraryClass, LibraryMethod)}
+   *
+   * <p>Method under test: {@link KeepMarker#visitLibraryMethod(LibraryClass, LibraryMethod)}
    */
   @Test
   @DisplayName("Test visitLibraryMethod(LibraryClass, LibraryMethod)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.KeepMarker.visitLibraryMethod(proguard.classfile.LibraryClass, proguard.classfile.LibraryMethod)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void KeepMarker.visitLibraryMethod(LibraryClass, LibraryMethod)"})
   void testVisitLibraryMethod() {
     // Arrange
     KeepMarker keepMarker = new KeepMarker();
@@ -253,17 +261,18 @@ class KeepMarkerDiffblueTest {
 
   /**
    * Test {@link KeepMarker#visitLibraryMethod(LibraryClass, LibraryMethod)}.
+   *
    * <ul>
-   *   <li>Given {@code Processing Info}.</li>
+   *   <li>Given {@code Processing Info}.
    * </ul>
-   * <p>
-   * Method under test: {@link KeepMarker#visitLibraryMethod(LibraryClass, LibraryMethod)}
+   *
+   * <p>Method under test: {@link KeepMarker#visitLibraryMethod(LibraryClass, LibraryMethod)}
    */
   @Test
   @DisplayName("Test visitLibraryMethod(LibraryClass, LibraryMethod); given 'Processing Info'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.KeepMarker.visitLibraryMethod(proguard.classfile.LibraryClass, proguard.classfile.LibraryMethod)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void KeepMarker.visitLibraryMethod(LibraryClass, LibraryMethod)"})
   void testVisitLibraryMethod_givenProcessingInfo() {
     // Arrange
     KeepMarker keepMarker = new KeepMarker();
@@ -298,14 +307,14 @@ class KeepMarkerDiffblueTest {
 
   /**
    * Test {@link KeepMarker#visitCodeAttribute(Clazz, Method, CodeAttribute)}.
-   * <p>
-   * Method under test: {@link KeepMarker#visitCodeAttribute(Clazz, Method, CodeAttribute)}
+   *
+   * <p>Method under test: {@link KeepMarker#visitCodeAttribute(Clazz, Method, CodeAttribute)}
    */
   @Test
   @DisplayName("Test visitCodeAttribute(Clazz, Method, CodeAttribute)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.KeepMarker.visitCodeAttribute(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.CodeAttribute)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void KeepMarker.visitCodeAttribute(Clazz, Method, CodeAttribute)"})
   void testVisitCodeAttribute() {
     // Arrange
     KeepMarker keepMarker = new KeepMarker();
@@ -325,20 +334,23 @@ class KeepMarkerDiffblueTest {
 
   /**
    * Test {@link KeepMarker#isKept(Clazz)} with {@code clazz}.
+   *
    * <ul>
-   *   <li>Given {@link ClassOptimizationInfo} (default constructor).</li>
-   *   <li>Then return {@code true}.</li>
+   *   <li>Given {@link ClassOptimizationInfo} (default constructor).
+   *   <li>Then return {@code true}.
    * </ul>
-   * <p>
-   * Method under test: {@link KeepMarker#isKept(Clazz)}
+   *
+   * <p>Method under test: {@link KeepMarker#isKept(Clazz)}
    */
   @Test
-  @DisplayName("Test isKept(Clazz) with 'clazz'; given ClassOptimizationInfo (default constructor); then return 'true'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.optimize.KeepMarker.isKept(proguard.classfile.Clazz)"})
+  @DisplayName(
+      "Test isKept(Clazz) with 'clazz'; given ClassOptimizationInfo (default constructor); then return 'true'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean KeepMarker.isKept(Clazz)"})
   void testIsKeptWithClazz_givenClassOptimizationInfo_thenReturnTrue() {
     // Arrange
-    LibraryClass clazz = new LibraryClass();
+    LibraryClass clazz = new LibraryClass(1, "This Class Name", "Super Class Name");
     clazz.setProcessingInfo(new ClassOptimizationInfo());
 
     // Act and Assert
@@ -347,19 +359,22 @@ class KeepMarkerDiffblueTest {
 
   /**
    * Test {@link KeepMarker#isKept(Clazz)} with {@code clazz}.
+   *
    * <ul>
-   *   <li>Given {@link ProgramClassOptimizationInfo} (default constructor).</li>
+   *   <li>Given {@link ProgramClassOptimizationInfo} (default constructor).
    * </ul>
-   * <p>
-   * Method under test: {@link KeepMarker#isKept(Clazz)}
+   *
+   * <p>Method under test: {@link KeepMarker#isKept(Clazz)}
    */
   @Test
-  @DisplayName("Test isKept(Clazz) with 'clazz'; given ProgramClassOptimizationInfo (default constructor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.optimize.KeepMarker.isKept(proguard.classfile.Clazz)"})
+  @DisplayName(
+      "Test isKept(Clazz) with 'clazz'; given ProgramClassOptimizationInfo (default constructor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean KeepMarker.isKept(Clazz)"})
   void testIsKeptWithClazz_givenProgramClassOptimizationInfo() {
     // Arrange
-    LibraryClass clazz = new LibraryClass();
+    LibraryClass clazz = new LibraryClass(1, "This Class Name", "Super Class Name");
     clazz.setProcessingInfo(new ProgramClassOptimizationInfo());
 
     // Act and Assert
@@ -368,17 +383,19 @@ class KeepMarkerDiffblueTest {
 
   /**
    * Test {@link KeepMarker#isKept(Clazz)} with {@code clazz}.
+   *
    * <ul>
-   *   <li>When {@link LibraryClass#LibraryClass()}.</li>
-   *   <li>Then return {@code false}.</li>
+   *   <li>When {@link LibraryClass#LibraryClass()}.
+   *   <li>Then return {@code false}.
    * </ul>
-   * <p>
-   * Method under test: {@link KeepMarker#isKept(Clazz)}
+   *
+   * <p>Method under test: {@link KeepMarker#isKept(Clazz)}
    */
   @Test
   @DisplayName("Test isKept(Clazz) with 'clazz'; when LibraryClass(); then return 'false'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.optimize.KeepMarker.isKept(proguard.classfile.Clazz)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean KeepMarker.isKept(Clazz)"})
   void testIsKeptWithClazz_whenLibraryClass_thenReturnFalse() {
     // Arrange, Act and Assert
     assertFalse(KeepMarker.isKept(new LibraryClass()));
@@ -386,17 +403,20 @@ class KeepMarkerDiffblueTest {
 
   /**
    * Test {@link KeepMarker#isKept(CodeAttribute)} with {@code codeAttribute}.
+   *
    * <ul>
-   *   <li>Given {@link CodeAttributeOptimizationInfo} (default constructor).</li>
-   *   <li>Then return {@code true}.</li>
+   *   <li>Given {@link CodeAttributeOptimizationInfo} (default constructor).
+   *   <li>Then return {@code true}.
    * </ul>
-   * <p>
-   * Method under test: {@link KeepMarker#isKept(CodeAttribute)}
+   *
+   * <p>Method under test: {@link KeepMarker#isKept(CodeAttribute)}
    */
   @Test
-  @DisplayName("Test isKept(CodeAttribute) with 'codeAttribute'; given CodeAttributeOptimizationInfo (default constructor); then return 'true'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.optimize.KeepMarker.isKept(proguard.classfile.attribute.CodeAttribute)"})
+  @DisplayName(
+      "Test isKept(CodeAttribute) with 'codeAttribute'; given CodeAttributeOptimizationInfo (default constructor); then return 'true'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean KeepMarker.isKept(CodeAttribute)"})
   void testIsKeptWithCodeAttribute_givenCodeAttributeOptimizationInfo_thenReturnTrue() {
     // Arrange
     CodeAttribute codeAttribute = new CodeAttribute(1);
@@ -408,16 +428,18 @@ class KeepMarkerDiffblueTest {
 
   /**
    * Test {@link KeepMarker#isKept(CodeAttribute)} with {@code codeAttribute}.
+   *
    * <ul>
-   *   <li>Then return {@code false}.</li>
+   *   <li>Then return {@code false}.
    * </ul>
-   * <p>
-   * Method under test: {@link KeepMarker#isKept(CodeAttribute)}
+   *
+   * <p>Method under test: {@link KeepMarker#isKept(CodeAttribute)}
    */
   @Test
   @DisplayName("Test isKept(CodeAttribute) with 'codeAttribute'; then return 'false'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.optimize.KeepMarker.isKept(proguard.classfile.attribute.CodeAttribute)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean KeepMarker.isKept(CodeAttribute)"})
   void testIsKeptWithCodeAttribute_thenReturnFalse() {
     // Arrange, Act and Assert
     assertFalse(KeepMarker.isKept(new CodeAttribute(1)));
@@ -425,17 +447,20 @@ class KeepMarkerDiffblueTest {
 
   /**
    * Test {@link KeepMarker#isKept(Field)} with {@code field}.
+   *
    * <ul>
-   *   <li>Given {@link FieldOptimizationInfo} (default constructor).</li>
-   *   <li>Then return {@code true}.</li>
+   *   <li>Given {@link FieldOptimizationInfo} (default constructor).
+   *   <li>Then return {@code true}.
    * </ul>
-   * <p>
-   * Method under test: {@link KeepMarker#isKept(Field)}
+   *
+   * <p>Method under test: {@link KeepMarker#isKept(Field)}
    */
   @Test
-  @DisplayName("Test isKept(Field) with 'field'; given FieldOptimizationInfo (default constructor); then return 'true'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.optimize.KeepMarker.isKept(proguard.classfile.Field)"})
+  @DisplayName(
+      "Test isKept(Field) with 'field'; given FieldOptimizationInfo (default constructor); then return 'true'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean KeepMarker.isKept(Field)"})
   void testIsKeptWithField_givenFieldOptimizationInfo_thenReturnTrue() {
     // Arrange
     LibraryField field = new LibraryField(1, "Name", "Descriptor");
@@ -447,21 +472,26 @@ class KeepMarkerDiffblueTest {
 
   /**
    * Test {@link KeepMarker#isKept(Field)} with {@code field}.
+   *
    * <ul>
-   *   <li>Given {@link LibraryField#LibraryField(int, String, String)} with u2accessFlags is one and {@code Name} and {@code Descriptor}.</li>
+   *   <li>Given {@link LibraryField#LibraryField(int, String, String)} with u2accessFlags is one
+   *       and {@code Name} and {@code Descriptor}.
    * </ul>
-   * <p>
-   * Method under test: {@link KeepMarker#isKept(Field)}
+   *
+   * <p>Method under test: {@link KeepMarker#isKept(Field)}
    */
   @Test
-  @DisplayName("Test isKept(Field) with 'field'; given LibraryField(int, String, String) with u2accessFlags is one and 'Name' and 'Descriptor'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.optimize.KeepMarker.isKept(proguard.classfile.Field)"})
+  @DisplayName(
+      "Test isKept(Field) with 'field'; given LibraryField(int, String, String) with u2accessFlags is one and 'Name' and 'Descriptor'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean KeepMarker.isKept(Field)"})
   void testIsKeptWithField_givenLibraryFieldWithU2accessFlagsIsOneAndNameAndDescriptor() {
     // Arrange
     LibraryField field = new LibraryField(1, "Name", "Descriptor");
     LibraryClass clazz = new LibraryClass();
-    field.setProcessingInfo(new ProgramFieldOptimizationInfo(clazz, new LibraryField(1, "Name", "Descriptor"), true));
+    field.setProcessingInfo(
+        new ProgramFieldOptimizationInfo(clazz, new LibraryField(1, "Name", "Descriptor"), true));
 
     // Act and Assert
     assertFalse(KeepMarker.isKept(field));
@@ -469,16 +499,20 @@ class KeepMarkerDiffblueTest {
 
   /**
    * Test {@link KeepMarker#isKept(Field)} with {@code field}.
+   *
    * <ul>
-   *   <li>When {@link LibraryField#LibraryField(int, String, String)} with u2accessFlags is one and {@code Name} and {@code Descriptor}.</li>
+   *   <li>When {@link LibraryField#LibraryField(int, String, String)} with u2accessFlags is one and
+   *       {@code Name} and {@code Descriptor}.
    * </ul>
-   * <p>
-   * Method under test: {@link KeepMarker#isKept(Field)}
+   *
+   * <p>Method under test: {@link KeepMarker#isKept(Field)}
    */
   @Test
-  @DisplayName("Test isKept(Field) with 'field'; when LibraryField(int, String, String) with u2accessFlags is one and 'Name' and 'Descriptor'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.optimize.KeepMarker.isKept(proguard.classfile.Field)"})
+  @DisplayName(
+      "Test isKept(Field) with 'field'; when LibraryField(int, String, String) with u2accessFlags is one and 'Name' and 'Descriptor'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean KeepMarker.isKept(Field)"})
   void testIsKeptWithField_whenLibraryFieldWithU2accessFlagsIsOneAndNameAndDescriptor() {
     // Arrange, Act and Assert
     assertFalse(KeepMarker.isKept(new LibraryField(1, "Name", "Descriptor")));
@@ -486,17 +520,20 @@ class KeepMarkerDiffblueTest {
 
   /**
    * Test {@link KeepMarker#isKept(Method)} with {@code method}.
+   *
    * <ul>
-   *   <li>Given {@link MethodOptimizationInfo} (default constructor).</li>
-   *   <li>Then return {@code true}.</li>
+   *   <li>Given {@link MethodOptimizationInfo} (default constructor).
+   *   <li>Then return {@code true}.
    * </ul>
-   * <p>
-   * Method under test: {@link KeepMarker#isKept(Method)}
+   *
+   * <p>Method under test: {@link KeepMarker#isKept(Method)}
    */
   @Test
-  @DisplayName("Test isKept(Method) with 'method'; given MethodOptimizationInfo (default constructor); then return 'true'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.optimize.KeepMarker.isKept(proguard.classfile.Method)"})
+  @DisplayName(
+      "Test isKept(Method) with 'method'; given MethodOptimizationInfo (default constructor); then return 'true'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean KeepMarker.isKept(Method)"})
   void testIsKeptWithMethod_givenMethodOptimizationInfo_thenReturnTrue() {
     // Arrange
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
@@ -508,16 +545,18 @@ class KeepMarkerDiffblueTest {
 
   /**
    * Test {@link KeepMarker#isKept(Method)} with {@code method}.
+   *
    * <ul>
-   *   <li>Then return {@code false}.</li>
+   *   <li>Then return {@code false}.
    * </ul>
-   * <p>
-   * Method under test: {@link KeepMarker#isKept(Method)}
+   *
+   * <p>Method under test: {@link KeepMarker#isKept(Method)}
    */
   @Test
   @DisplayName("Test isKept(Method) with 'method'; then return 'false'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.optimize.KeepMarker.isKept(proguard.classfile.Method)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean KeepMarker.isKept(Method)"})
   void testIsKeptWithMethod_thenReturnFalse() {
     // Arrange, Act and Assert
     assertFalse(KeepMarker.isKept(new LibraryMethod(1, "Name", "Descriptor")));

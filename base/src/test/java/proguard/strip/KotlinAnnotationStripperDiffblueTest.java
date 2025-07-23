@@ -5,6 +5,7 @@ import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.net.MalformedURLException;
 import java.nio.file.Paths;
@@ -23,13 +24,14 @@ import proguard.classfile.visitor.ClassVisitor;
 class KotlinAnnotationStripperDiffblueTest {
   /**
    * Test {@link KotlinAnnotationStripper#KotlinAnnotationStripper(Configuration)}.
-   * <p>
-   * Method under test: {@link KotlinAnnotationStripper#KotlinAnnotationStripper(Configuration)}
+   *
+   * <p>Method under test: {@link KotlinAnnotationStripper#KotlinAnnotationStripper(Configuration)}
    */
   @Test
   @DisplayName("Test new KotlinAnnotationStripper(Configuration)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.strip.KotlinAnnotationStripper.<init>(proguard.Configuration)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void KotlinAnnotationStripper.<init>(Configuration)"})
   void testNewKotlinAnnotationStripper() throws MalformedURLException {
     // Arrange
     Configuration configuration = new Configuration();
@@ -46,9 +48,8 @@ class KotlinAnnotationStripperDiffblueTest {
     configuration.assumeNoSideEffects = new ArrayList<>();
     configuration.assumeValues = new ArrayList<>();
     configuration.backport = true;
-    configuration.classObfuscationDictionary = Paths.get(System.getProperty("java.io.tmpdir"), "test.txt")
-        .toUri()
-        .toURL();
+    configuration.classObfuscationDictionary =
+        Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toUri().toURL();
     configuration.dontCompress = new ArrayList<>();
     configuration.dontProcessKotlinMetadata = true;
     configuration.dump = Configuration.STD_OUT;
@@ -73,15 +74,15 @@ class KotlinAnnotationStripperDiffblueTest {
     configuration.newSourceFileAttribute = "New Source File Attribute";
     configuration.note = new ArrayList<>();
     configuration.obfuscate = true;
-    configuration.obfuscationDictionary = Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toUri().toURL();
+    configuration.obfuscationDictionary =
+        Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toUri().toURL();
     configuration.optimizationPasses = 1;
     configuration.optimizations = new ArrayList<>();
     configuration.optimize = true;
     configuration.optimizeConservatively = true;
     configuration.overloadAggressively = true;
-    configuration.packageObfuscationDictionary = Paths.get(System.getProperty("java.io.tmpdir"), "test.txt")
-        .toUri()
-        .toURL();
+    configuration.packageObfuscationDictionary =
+        Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toUri().toURL();
     configuration.preverify = true;
     configuration.printConfiguration = Configuration.STD_OUT;
     configuration.printMapping = Configuration.STD_OUT;
@@ -101,21 +102,25 @@ class KotlinAnnotationStripperDiffblueTest {
     configuration.zipAlign = 1;
 
     // Act and Assert
-    assertEquals("proguard.strip.KotlinAnnotationStripper", (new KotlinAnnotationStripper(configuration)).getName());
+    assertEquals(
+        "proguard.strip.KotlinAnnotationStripper",
+        new KotlinAnnotationStripper(configuration).getName());
   }
 
   /**
    * Test {@link KotlinAnnotationStripper#execute(AppView)}.
-   * <p>
-   * Method under test: {@link KotlinAnnotationStripper#execute(AppView)}
+   *
+   * <p>Method under test: {@link KotlinAnnotationStripper#execute(AppView)}
    */
   @Test
   @DisplayName("Test execute(AppView)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.strip.KotlinAnnotationStripper.execute(proguard.AppView)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void KotlinAnnotationStripper.execute(AppView)"})
   void testExecute() {
     // Arrange
-    KotlinAnnotationStripper kotlinAnnotationStripper = new KotlinAnnotationStripper(mock(Configuration.class));
+    KotlinAnnotationStripper kotlinAnnotationStripper =
+        new KotlinAnnotationStripper(mock(Configuration.class));
     ClassPool programClassPool = mock(ClassPool.class);
     doNothing().when(programClassPool).classesAccept(Mockito.<ClassVisitor>any());
     ClassPool libraryClassPool = mock(ClassPool.class);
@@ -131,24 +136,28 @@ class KotlinAnnotationStripperDiffblueTest {
 
   /**
    * Test {@link KotlinAnnotationStripper#execute(AppView)}.
+   *
    * <ul>
-   *   <li>Given {@link LibraryClass#LibraryClass()}.</li>
+   *   <li>Given {@link LibraryClass#LibraryClass()}.
    * </ul>
-   * <p>
-   * Method under test: {@link KotlinAnnotationStripper#execute(AppView)}
+   *
+   * <p>Method under test: {@link KotlinAnnotationStripper#execute(AppView)}
    */
   @Test
   @DisplayName("Test execute(AppView); given LibraryClass()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.strip.KotlinAnnotationStripper.execute(proguard.AppView)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void KotlinAnnotationStripper.execute(AppView)"})
   void testExecute_givenLibraryClass() {
     // Arrange
-    KotlinAnnotationStripper kotlinAnnotationStripper = new KotlinAnnotationStripper(mock(Configuration.class));
+    KotlinAnnotationStripper kotlinAnnotationStripper =
+        new KotlinAnnotationStripper(mock(Configuration.class));
     ClassPool programClassPool = mock(ClassPool.class);
     doNothing().when(programClassPool).classesAccept(Mockito.<ClassVisitor>any());
 
     ClassPool libraryClassPool = new ClassPool();
-    libraryClassPool.addClass("Removing @kotlin.Metadata annotation where not kept...", new LibraryClass());
+    libraryClassPool.addClass(
+        "Removing @kotlin.Metadata annotation where not kept...", new LibraryClass());
 
     // Act
     kotlinAnnotationStripper.execute(new AppView(programClassPool, libraryClassPool));
@@ -159,20 +168,24 @@ class KotlinAnnotationStripperDiffblueTest {
 
   /**
    * Test {@link KotlinAnnotationStripper#execute(AppView)}.
+   *
    * <ul>
-   *   <li>Given {@link LibraryClass} {@link LibraryClass#accept(ClassVisitor)} does nothing.</li>
-   *   <li>Then calls {@link LibraryClass#accept(ClassVisitor)}.</li>
+   *   <li>Given {@link LibraryClass} {@link LibraryClass#accept(ClassVisitor)} does nothing.
+   *   <li>Then calls {@link LibraryClass#accept(ClassVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link KotlinAnnotationStripper#execute(AppView)}
+   *
+   * <p>Method under test: {@link KotlinAnnotationStripper#execute(AppView)}
    */
   @Test
-  @DisplayName("Test execute(AppView); given LibraryClass accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.strip.KotlinAnnotationStripper.execute(proguard.AppView)"})
+  @DisplayName(
+      "Test execute(AppView); given LibraryClass accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void KotlinAnnotationStripper.execute(AppView)"})
   void testExecute_givenLibraryClassAcceptDoesNothing_thenCallsAccept() {
     // Arrange
-    KotlinAnnotationStripper kotlinAnnotationStripper = new KotlinAnnotationStripper(mock(Configuration.class));
+    KotlinAnnotationStripper kotlinAnnotationStripper =
+        new KotlinAnnotationStripper(mock(Configuration.class));
     ClassPool programClassPool = mock(ClassPool.class);
     doNothing().when(programClassPool).classesAccept(Mockito.<ClassVisitor>any());
     LibraryClass clazz = mock(LibraryClass.class);
@@ -191,19 +204,22 @@ class KotlinAnnotationStripperDiffblueTest {
 
   /**
    * Test {@link KotlinAnnotationStripper#execute(AppView)}.
+   *
    * <ul>
-   *   <li>Then calls {@link ClassPool#classesAccept(ClassVisitor)}.</li>
+   *   <li>Then calls {@link ClassPool#classesAccept(ClassVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link KotlinAnnotationStripper#execute(AppView)}
+   *
+   * <p>Method under test: {@link KotlinAnnotationStripper#execute(AppView)}
    */
   @Test
   @DisplayName("Test execute(AppView); then calls classesAccept(ClassVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.strip.KotlinAnnotationStripper.execute(proguard.AppView)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void KotlinAnnotationStripper.execute(AppView)"})
   void testExecute_thenCallsClassesAccept() {
     // Arrange
-    KotlinAnnotationStripper kotlinAnnotationStripper = new KotlinAnnotationStripper(mock(Configuration.class));
+    KotlinAnnotationStripper kotlinAnnotationStripper =
+        new KotlinAnnotationStripper(mock(Configuration.class));
     ClassPool programClassPool = mock(ClassPool.class);
     doNothing().when(programClassPool).classesAccept(Mockito.<ClassVisitor>any());
 

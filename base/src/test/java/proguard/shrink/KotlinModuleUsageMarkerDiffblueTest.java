@@ -6,6 +6,7 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,20 +22,23 @@ import proguard.util.Processable;
 class KotlinModuleUsageMarkerDiffblueTest {
   /**
    * Test {@link KotlinModuleUsageMarker#visitKotlinModule(KotlinModule)}.
+   *
    * <ul>
-   *   <li>Then calls {@link KotlinModule#modulePackagesAccept(KotlinModulePackageVisitor)}.</li>
+   *   <li>Then calls {@link KotlinModule#modulePackagesAccept(KotlinModulePackageVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link KotlinModuleUsageMarker#visitKotlinModule(KotlinModule)}
+   *
+   * <p>Method under test: {@link KotlinModuleUsageMarker#visitKotlinModule(KotlinModule)}
    */
   @Test
-  @DisplayName("Test visitKotlinModule(KotlinModule); then calls modulePackagesAccept(KotlinModulePackageVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.shrink.KotlinModuleUsageMarker.visitKotlinModule(proguard.resources.kotlinmodule.KotlinModule)"})
+  @DisplayName(
+      "Test visitKotlinModule(KotlinModule); then calls modulePackagesAccept(KotlinModulePackageVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void KotlinModuleUsageMarker.visitKotlinModule(KotlinModule)"})
   void testVisitKotlinModule_thenCallsModulePackagesAccept() {
     // Arrange
-    KotlinModuleUsageMarker kotlinModuleUsageMarker = new KotlinModuleUsageMarker(new SimpleUsageMarker());
+    KotlinModuleUsageMarker kotlinModuleUsageMarker =
+        new KotlinModuleUsageMarker(new SimpleUsageMarker());
     KotlinModule kotlinModule = mock(KotlinModule.class);
     doNothing().when(kotlinModule).modulePackagesAccept(Mockito.<KotlinModulePackageVisitor>any());
 
@@ -46,18 +50,24 @@ class KotlinModuleUsageMarkerDiffblueTest {
   }
 
   /**
-   * Test {@link KotlinModuleUsageMarker#visitKotlinModulePackage(KotlinModule, KotlinModulePackage)}.
+   * Test {@link KotlinModuleUsageMarker#visitKotlinModulePackage(KotlinModule,
+   * KotlinModulePackage)}.
+   *
    * <ul>
-   *   <li>Then calls {@link ShortestUsageMarker#isUsed(Processable)}.</li>
+   *   <li>Then calls {@link ShortestUsageMarker#isUsed(Processable)}.
    * </ul>
-   * <p>
-   * Method under test: {@link KotlinModuleUsageMarker#visitKotlinModulePackage(KotlinModule, KotlinModulePackage)}
+   *
+   * <p>Method under test: {@link KotlinModuleUsageMarker#visitKotlinModulePackage(KotlinModule,
+   * KotlinModulePackage)}
    */
   @Test
-  @DisplayName("Test visitKotlinModulePackage(KotlinModule, KotlinModulePackage); then calls isUsed(Processable)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitKotlinModulePackage(KotlinModule, KotlinModulePackage); then calls isUsed(Processable)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.shrink.KotlinModuleUsageMarker.visitKotlinModulePackage(proguard.resources.kotlinmodule.KotlinModule, proguard.resources.kotlinmodule.KotlinModulePackage)"})
+    "void KotlinModuleUsageMarker.visitKotlinModulePackage(KotlinModule, KotlinModulePackage)"
+  })
   void testVisitKotlinModulePackage_thenCallsIsUsed() {
     // Arrange
     ShortestUsageMarker usageMarker = mock(ShortestUsageMarker.class);
@@ -68,8 +78,8 @@ class KotlinModuleUsageMarkerDiffblueTest {
     fileFacadeNames.add("42");
 
     // Act
-    kotlinModuleUsageMarker.visitKotlinModulePackage(null,
-        new KotlinModulePackage("Fq Name", fileFacadeNames, new HashMap<>()));
+    kotlinModuleUsageMarker.visitKotlinModulePackage(
+        null, new KotlinModulePackage("Fq Name", fileFacadeNames, new HashMap<>()));
 
     // Assert
     verify(usageMarker).isUsed((Processable) isNull());

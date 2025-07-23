@@ -8,6 +8,7 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -25,17 +26,20 @@ import proguard.classfile.visitor.ClassVisitor;
 class ParameterEscapedMarkerDiffblueTest {
   /**
    * Test {@link ParameterEscapedMarker#visitClassPool(ClassPool)}.
+   *
    * <ul>
-   *   <li>When {@link ClassPool} {@link ClassPool#classesAccept(ClassVisitor)} does nothing.</li>
-   *   <li>Then calls {@link ClassPool#classesAccept(ClassVisitor)}.</li>
+   *   <li>When {@link ClassPool} {@link ClassPool#classesAccept(ClassVisitor)} does nothing.
+   *   <li>Then calls {@link ClassPool#classesAccept(ClassVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link ParameterEscapedMarker#visitClassPool(ClassPool)}
+   *
+   * <p>Method under test: {@link ParameterEscapedMarker#visitClassPool(ClassPool)}
    */
   @Test
-  @DisplayName("Test visitClassPool(ClassPool); when ClassPool classesAccept(ClassVisitor) does nothing; then calls classesAccept(ClassVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.optimize.info.ParameterEscapedMarker.visitClassPool(proguard.classfile.ClassPool)"})
+  @DisplayName(
+      "Test visitClassPool(ClassPool); when ClassPool classesAccept(ClassVisitor) does nothing; then calls classesAccept(ClassVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ParameterEscapedMarker.visitClassPool(ClassPool)"})
   void testVisitClassPool_whenClassPoolClassesAcceptDoesNothing_thenCallsClassesAccept() {
     // Arrange
     ParameterEscapedMarker parameterEscapedMarker = new ParameterEscapedMarker();
@@ -51,17 +55,22 @@ class ParameterEscapedMarkerDiffblueTest {
 
   /**
    * Test {@link ParameterEscapedMarker#visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant)}.
+   *
    * <ul>
-   *   <li>Given {@link MethodOptimizationInfo} (default constructor).</li>
+   *   <li>Given {@link MethodOptimizationInfo} (default constructor).
    * </ul>
-   * <p>
-   * Method under test: {@link ParameterEscapedMarker#visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant)}
+   *
+   * <p>Method under test: {@link ParameterEscapedMarker#visitAnyMethodrefConstant(Clazz,
+   * AnyMethodrefConstant)}
    */
   @Test
-  @DisplayName("Test visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant); given MethodOptimizationInfo (default constructor)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant); given MethodOptimizationInfo (default constructor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.info.ParameterEscapedMarker.visitAnyMethodrefConstant(proguard.classfile.Clazz, proguard.classfile.constant.AnyMethodrefConstant)"})
+    "void ParameterEscapedMarker.visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant)"
+  })
   void testVisitAnyMethodrefConstant_givenMethodOptimizationInfo() {
     // Arrange
     ParameterEscapedMarker parameterEscapedMarker = new ParameterEscapedMarker();
@@ -70,8 +79,8 @@ class ParameterEscapedMarkerDiffblueTest {
     when(referencedMethod.getProcessingInfo()).thenReturn(new MethodOptimizationInfo());
 
     // Act
-    parameterEscapedMarker.visitAnyMethodrefConstant(clazz,
-        new InterfaceMethodrefConstant(1, 1, new LibraryClass(), referencedMethod));
+    parameterEscapedMarker.visitAnyMethodrefConstant(
+        clazz, new InterfaceMethodrefConstant(1, 1, new LibraryClass(), referencedMethod));
 
     // Assert
     verify(referencedMethod, atLeast(1)).getProcessingInfo();
@@ -79,27 +88,33 @@ class ParameterEscapedMarkerDiffblueTest {
 
   /**
    * Test {@link ParameterEscapedMarker#visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant)}.
+   *
    * <ul>
-   *   <li>Given {@link ProgramMethodOptimizationInfo}.</li>
+   *   <li>Given {@link ProgramMethodOptimizationInfo}.
    * </ul>
-   * <p>
-   * Method under test: {@link ParameterEscapedMarker#visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant)}
+   *
+   * <p>Method under test: {@link ParameterEscapedMarker#visitAnyMethodrefConstant(Clazz,
+   * AnyMethodrefConstant)}
    */
   @Test
-  @DisplayName("Test visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant); given ProgramMethodOptimizationInfo")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant); given ProgramMethodOptimizationInfo")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.info.ParameterEscapedMarker.visitAnyMethodrefConstant(proguard.classfile.Clazz, proguard.classfile.constant.AnyMethodrefConstant)"})
+    "void ParameterEscapedMarker.visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant)"
+  })
   void testVisitAnyMethodrefConstant_givenProgramMethodOptimizationInfo() {
     // Arrange
     ParameterEscapedMarker parameterEscapedMarker = new ParameterEscapedMarker();
     LibraryClass clazz = new LibraryClass();
     Method referencedMethod = mock(Method.class);
-    when(referencedMethod.getProcessingInfo()).thenReturn(mock(ProgramMethodOptimizationInfo.class));
+    when(referencedMethod.getProcessingInfo())
+        .thenReturn(mock(ProgramMethodOptimizationInfo.class));
 
     // Act
-    parameterEscapedMarker.visitAnyMethodrefConstant(clazz,
-        new InterfaceMethodrefConstant(1, 1, new LibraryClass(), referencedMethod));
+    parameterEscapedMarker.visitAnyMethodrefConstant(
+        clazz, new InterfaceMethodrefConstant(1, 1, new LibraryClass(), referencedMethod));
 
     // Assert
     verify(referencedMethod, atLeast(1)).getProcessingInfo();
@@ -107,18 +122,20 @@ class ParameterEscapedMarkerDiffblueTest {
 
   /**
    * Test {@link ParameterEscapedMarker#hasParameterEscaped(Method, int)}.
+   *
    * <ul>
-   *   <li>Given {@link MethodOptimizationInfo} (default constructor).</li>
-   *   <li>Then return {@code true}.</li>
+   *   <li>Given {@link MethodOptimizationInfo} (default constructor).
+   *   <li>Then return {@code true}.
    * </ul>
-   * <p>
-   * Method under test: {@link ParameterEscapedMarker#hasParameterEscaped(Method, int)}
+   *
+   * <p>Method under test: {@link ParameterEscapedMarker#hasParameterEscaped(Method, int)}
    */
   @Test
-  @DisplayName("Test hasParameterEscaped(Method, int); given MethodOptimizationInfo (default constructor); then return 'true'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "boolean proguard.optimize.info.ParameterEscapedMarker.hasParameterEscaped(proguard.classfile.Method, int)"})
+  @DisplayName(
+      "Test hasParameterEscaped(Method, int); given MethodOptimizationInfo (default constructor); then return 'true'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean ParameterEscapedMarker.hasParameterEscaped(Method, int)"})
   void testHasParameterEscaped_givenMethodOptimizationInfo_thenReturnTrue() {
     // Arrange
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
@@ -130,18 +147,20 @@ class ParameterEscapedMarkerDiffblueTest {
 
   /**
    * Test {@link ParameterEscapedMarker#getEscapedParameters(Method)}.
+   *
    * <ul>
-   *   <li>Given {@link MethodOptimizationInfo} (default constructor).</li>
-   *   <li>Then return minus one.</li>
+   *   <li>Given {@link MethodOptimizationInfo} (default constructor).
+   *   <li>Then return minus one.
    * </ul>
-   * <p>
-   * Method under test: {@link ParameterEscapedMarker#getEscapedParameters(Method)}
+   *
+   * <p>Method under test: {@link ParameterEscapedMarker#getEscapedParameters(Method)}
    */
   @Test
-  @DisplayName("Test getEscapedParameters(Method); given MethodOptimizationInfo (default constructor); then return minus one")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "long proguard.optimize.info.ParameterEscapedMarker.getEscapedParameters(proguard.classfile.Method)"})
+  @DisplayName(
+      "Test getEscapedParameters(Method); given MethodOptimizationInfo (default constructor); then return minus one")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"long ParameterEscapedMarker.getEscapedParameters(Method)"})
   void testGetEscapedParameters_givenMethodOptimizationInfo_thenReturnMinusOne() {
     // Arrange
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");

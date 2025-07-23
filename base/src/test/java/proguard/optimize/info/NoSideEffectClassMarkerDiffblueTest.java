@@ -2,6 +2,7 @@ package proguard.optimize.info;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -12,21 +13,19 @@ import proguard.classfile.LibraryClass;
 class NoSideEffectClassMarkerDiffblueTest {
   /**
    * Test {@link NoSideEffectClassMarker#visitAnyClass(Clazz)}.
-   * <ul>
-   *   <li>Then {@link LibraryClass#LibraryClass()} ProcessingInfo {@link ClassOptimizationInfo}.</li>
-   * </ul>
-   * <p>
-   * Method under test: {@link NoSideEffectClassMarker#visitAnyClass(Clazz)}
+   *
+   * <p>Method under test: {@link NoSideEffectClassMarker#visitAnyClass(Clazz)}
    */
   @Test
-  @DisplayName("Test visitAnyClass(Clazz); then LibraryClass() ProcessingInfo ClassOptimizationInfo")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.optimize.info.NoSideEffectClassMarker.visitAnyClass(proguard.classfile.Clazz)"})
-  void testVisitAnyClass_thenLibraryClassProcessingInfoClassOptimizationInfo() {
+  @DisplayName("Test visitAnyClass(Clazz)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NoSideEffectClassMarker.visitAnyClass(Clazz)"})
+  void testVisitAnyClass() {
     // Arrange
     NoSideEffectClassMarker noSideEffectClassMarker = new NoSideEffectClassMarker();
 
-    LibraryClass clazz = new LibraryClass();
+    LibraryClass clazz = new LibraryClass(1, "This Class Name", "Super Class Name");
     clazz.setProcessingInfo(new ClassOptimizationInfo());
 
     // Act
@@ -43,21 +42,23 @@ class NoSideEffectClassMarkerDiffblueTest {
 
   /**
    * Test {@link NoSideEffectClassMarker#hasNoSideEffects(Clazz)}.
+   *
    * <ul>
-   *   <li>Given {@link ClassOptimizationInfo} (default constructor).</li>
-   *   <li>Then return {@code false}.</li>
+   *   <li>Given {@link ClassOptimizationInfo} (default constructor).
+   *   <li>Then return {@code false}.
    * </ul>
-   * <p>
-   * Method under test: {@link NoSideEffectClassMarker#hasNoSideEffects(Clazz)}
+   *
+   * <p>Method under test: {@link NoSideEffectClassMarker#hasNoSideEffects(Clazz)}
    */
   @Test
-  @DisplayName("Test hasNoSideEffects(Clazz); given ClassOptimizationInfo (default constructor); then return 'false'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "boolean proguard.optimize.info.NoSideEffectClassMarker.hasNoSideEffects(proguard.classfile.Clazz)"})
+  @DisplayName(
+      "Test hasNoSideEffects(Clazz); given ClassOptimizationInfo (default constructor); then return 'false'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean NoSideEffectClassMarker.hasNoSideEffects(Clazz)"})
   void testHasNoSideEffects_givenClassOptimizationInfo_thenReturnFalse() {
     // Arrange
-    LibraryClass clazz = new LibraryClass();
+    LibraryClass clazz = new LibraryClass(1, "This Class Name", "Super Class Name");
     clazz.setProcessingInfo(new ClassOptimizationInfo());
 
     // Act and Assert

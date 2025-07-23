@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -30,28 +31,34 @@ import proguard.evaluation.value.Value;
 
 class ParameterTracingInvocationUnitDiffblueTest {
   /**
-   * Test {@link ParameterTracingInvocationUnit#ParameterTracingInvocationUnit(SimplifiedInvocationUnit)}.
-   * <p>
-   * Method under test: {@link ParameterTracingInvocationUnit#ParameterTracingInvocationUnit(SimplifiedInvocationUnit)}
+   * Test {@link
+   * ParameterTracingInvocationUnit#ParameterTracingInvocationUnit(SimplifiedInvocationUnit)}.
+   *
+   * <p>Method under test: {@link
+   * ParameterTracingInvocationUnit#ParameterTracingInvocationUnit(SimplifiedInvocationUnit)}
    */
   @Test
   @DisplayName("Test new ParameterTracingInvocationUnit(SimplifiedInvocationUnit)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.evaluation.ParameterTracingInvocationUnit.<init>(proguard.evaluation.SimplifiedInvocationUnit)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ParameterTracingInvocationUnit.<init>(SimplifiedInvocationUnit)"})
   void testNewParameterTracingInvocationUnit() {
     // Arrange
-    LoadingInvocationUnit invocationUnit = new LoadingInvocationUnit(new ParticularReferenceValueFactory());
+    LoadingInvocationUnit invocationUnit =
+        new LoadingInvocationUnit(new ParticularReferenceValueFactory());
 
     // Act
-    ParameterTracingInvocationUnit actualParameterTracingInvocationUnit = new ParameterTracingInvocationUnit(
-        invocationUnit);
+    ParameterTracingInvocationUnit actualParameterTracingInvocationUnit =
+        new ParameterTracingInvocationUnit(invocationUnit);
 
     // Assert
     assertTrue(invocationUnit.getExceptionValue(null, null) instanceof IdentifiedReferenceValue);
     Value exceptionValue = actualParameterTracingInvocationUnit.getExceptionValue(null, null);
-    assertTrue(((TracedReferenceValue) exceptionValue).getReferenceValue() instanceof IdentifiedReferenceValue);
-    assertTrue(((TracedReferenceValue) exceptionValue).getTraceValue() instanceof InstructionOffsetValue);
+    assertTrue(
+        ((TracedReferenceValue) exceptionValue).getReferenceValue()
+            instanceof IdentifiedReferenceValue);
+    assertTrue(
+        ((TracedReferenceValue) exceptionValue).getTraceValue() instanceof InstructionOffsetValue);
     assertTrue(exceptionValue instanceof TracedReferenceValue);
     assertEquals("Ljava/lang/Throwable;", ((TracedReferenceValue) exceptionValue).getType());
     assertNull(((TracedReferenceValue) exceptionValue).getReferencedClass());
@@ -63,19 +70,24 @@ class ParameterTracingInvocationUnitDiffblueTest {
   }
 
   /**
-   * Test {@link ParameterTracingInvocationUnit#setMethodParameterValue(Clazz, AnyMethodrefConstant, int, Value)}.
-   * <p>
-   * Method under test: {@link ParameterTracingInvocationUnit#setMethodParameterValue(Clazz, AnyMethodrefConstant, int, Value)}
+   * Test {@link ParameterTracingInvocationUnit#setMethodParameterValue(Clazz, AnyMethodrefConstant,
+   * int, Value)}.
+   *
+   * <p>Method under test: {@link ParameterTracingInvocationUnit#setMethodParameterValue(Clazz,
+   * AnyMethodrefConstant, int, Value)}
    */
   @Test
   @DisplayName("Test setMethodParameterValue(Clazz, AnyMethodrefConstant, int, Value)")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.evaluation.ParameterTracingInvocationUnit.setMethodParameterValue(proguard.classfile.Clazz, proguard.classfile.constant.AnyMethodrefConstant, int, proguard.evaluation.value.Value)"})
+    "void ParameterTracingInvocationUnit.setMethodParameterValue(Clazz, AnyMethodrefConstant, int, Value)"
+  })
   void testSetMethodParameterValue() {
     // Arrange
-    ParameterTracingInvocationUnit parameterTracingInvocationUnit = new ParameterTracingInvocationUnit(
-        new LoadingInvocationUnit(new ParticularReferenceValueFactory()));
+    ParameterTracingInvocationUnit parameterTracingInvocationUnit =
+        new ParameterTracingInvocationUnit(
+            new LoadingInvocationUnit(new ParticularReferenceValueFactory()));
     LibraryClass clazz = new LibraryClass();
     InterfaceMethodrefConstant refConstant = new InterfaceMethodrefConstant();
 
@@ -84,24 +96,32 @@ class ParameterTracingInvocationUnitDiffblueTest {
 
     // Assert
     Value exceptionValue = parameterTracingInvocationUnit.getExceptionValue(null, null);
-    assertTrue(((TracedReferenceValue) exceptionValue).getReferenceValue() instanceof IdentifiedReferenceValue);
+    assertTrue(
+        ((TracedReferenceValue) exceptionValue).getReferenceValue()
+            instanceof IdentifiedReferenceValue);
     assertTrue(exceptionValue instanceof TracedReferenceValue);
   }
 
   /**
-   * Test {@link ParameterTracingInvocationUnit#setMethodParameterValue(Clazz, AnyMethodrefConstant, int, Value)}.
-   * <p>
-   * Method under test: {@link ParameterTracingInvocationUnit#setMethodParameterValue(Clazz, AnyMethodrefConstant, int, Value)}
+   * Test {@link ParameterTracingInvocationUnit#setMethodParameterValue(Clazz, AnyMethodrefConstant,
+   * int, Value)}.
+   *
+   * <p>Method under test: {@link ParameterTracingInvocationUnit#setMethodParameterValue(Clazz,
+   * AnyMethodrefConstant, int, Value)}
    */
   @Test
   @DisplayName("Test setMethodParameterValue(Clazz, AnyMethodrefConstant, int, Value)")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.evaluation.ParameterTracingInvocationUnit.setMethodParameterValue(proguard.classfile.Clazz, proguard.classfile.constant.AnyMethodrefConstant, int, proguard.evaluation.value.Value)"})
+    "void ParameterTracingInvocationUnit.setMethodParameterValue(Clazz, AnyMethodrefConstant, int, Value)"
+  })
   void testSetMethodParameterValue2() {
     // Arrange
-    ParameterTracingInvocationUnit parameterTracingInvocationUnit = new ParameterTracingInvocationUnit(
-        new ReferenceTracingInvocationUnit(new LoadingInvocationUnit(new ParticularReferenceValueFactory())));
+    ParameterTracingInvocationUnit parameterTracingInvocationUnit =
+        new ParameterTracingInvocationUnit(
+            new ReferenceTracingInvocationUnit(
+                new LoadingInvocationUnit(new ParticularReferenceValueFactory())));
     LibraryClass clazz = new LibraryClass();
     InterfaceMethodrefConstant refConstant = new InterfaceMethodrefConstant();
 
@@ -110,24 +130,32 @@ class ParameterTracingInvocationUnitDiffblueTest {
 
     // Assert
     Value exceptionValue = parameterTracingInvocationUnit.getExceptionValue(null, null);
-    assertTrue(((TracedReferenceValue) exceptionValue).getReferenceValue() instanceof IdentifiedReferenceValue);
+    assertTrue(
+        ((TracedReferenceValue) exceptionValue).getReferenceValue()
+            instanceof IdentifiedReferenceValue);
     assertTrue(exceptionValue instanceof TracedReferenceValue);
   }
 
   /**
-   * Test {@link ParameterTracingInvocationUnit#setMethodParameterValue(Clazz, AnyMethodrefConstant, int, Value)}.
-   * <p>
-   * Method under test: {@link ParameterTracingInvocationUnit#setMethodParameterValue(Clazz, AnyMethodrefConstant, int, Value)}
+   * Test {@link ParameterTracingInvocationUnit#setMethodParameterValue(Clazz, AnyMethodrefConstant,
+   * int, Value)}.
+   *
+   * <p>Method under test: {@link ParameterTracingInvocationUnit#setMethodParameterValue(Clazz,
+   * AnyMethodrefConstant, int, Value)}
    */
   @Test
   @DisplayName("Test setMethodParameterValue(Clazz, AnyMethodrefConstant, int, Value)")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.evaluation.ParameterTracingInvocationUnit.setMethodParameterValue(proguard.classfile.Clazz, proguard.classfile.constant.AnyMethodrefConstant, int, proguard.evaluation.value.Value)"})
+    "void ParameterTracingInvocationUnit.setMethodParameterValue(Clazz, AnyMethodrefConstant, int, Value)"
+  })
   void testSetMethodParameterValue3() {
     // Arrange
-    ParameterTracingInvocationUnit parameterTracingInvocationUnit = new ParameterTracingInvocationUnit(
-        new ParameterTracingInvocationUnit(new LoadingInvocationUnit(new ParticularReferenceValueFactory())));
+    ParameterTracingInvocationUnit parameterTracingInvocationUnit =
+        new ParameterTracingInvocationUnit(
+            new ParameterTracingInvocationUnit(
+                new LoadingInvocationUnit(new ParticularReferenceValueFactory())));
     LibraryClass clazz = new LibraryClass();
     InterfaceMethodrefConstant refConstant = new InterfaceMethodrefConstant();
 
@@ -136,24 +164,31 @@ class ParameterTracingInvocationUnitDiffblueTest {
 
     // Assert
     Value exceptionValue = parameterTracingInvocationUnit.getExceptionValue(null, null);
-    assertTrue(((TracedReferenceValue) exceptionValue).getReferenceValue() instanceof IdentifiedReferenceValue);
+    assertTrue(
+        ((TracedReferenceValue) exceptionValue).getReferenceValue()
+            instanceof IdentifiedReferenceValue);
     assertTrue(exceptionValue instanceof TracedReferenceValue);
   }
 
   /**
-   * Test {@link ParameterTracingInvocationUnit#setMethodParameterValue(Clazz, AnyMethodrefConstant, int, Value)}.
-   * <p>
-   * Method under test: {@link ParameterTracingInvocationUnit#setMethodParameterValue(Clazz, AnyMethodrefConstant, int, Value)}
+   * Test {@link ParameterTracingInvocationUnit#setMethodParameterValue(Clazz, AnyMethodrefConstant,
+   * int, Value)}.
+   *
+   * <p>Method under test: {@link ParameterTracingInvocationUnit#setMethodParameterValue(Clazz,
+   * AnyMethodrefConstant, int, Value)}
    */
   @Test
   @DisplayName("Test setMethodParameterValue(Clazz, AnyMethodrefConstant, int, Value)")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.evaluation.ParameterTracingInvocationUnit.setMethodParameterValue(proguard.classfile.Clazz, proguard.classfile.constant.AnyMethodrefConstant, int, proguard.evaluation.value.Value)"})
+    "void ParameterTracingInvocationUnit.setMethodParameterValue(Clazz, AnyMethodrefConstant, int, Value)"
+  })
   void testSetMethodParameterValue4() {
     // Arrange
-    ParameterTracingInvocationUnit parameterTracingInvocationUnit = new ParameterTracingInvocationUnit(
-        new StoringInvocationUnit(new ParticularReferenceValueFactory()));
+    ParameterTracingInvocationUnit parameterTracingInvocationUnit =
+        new ParameterTracingInvocationUnit(
+            new StoringInvocationUnit(new ParticularReferenceValueFactory()));
     LibraryClass clazz = new LibraryClass();
     InterfaceMethodrefConstant refConstant = new InterfaceMethodrefConstant();
 
@@ -162,32 +197,42 @@ class ParameterTracingInvocationUnitDiffblueTest {
 
     // Assert
     Value exceptionValue = parameterTracingInvocationUnit.getExceptionValue(null, null);
-    assertTrue(((TracedReferenceValue) exceptionValue).getReferenceValue() instanceof IdentifiedReferenceValue);
+    assertTrue(
+        ((TracedReferenceValue) exceptionValue).getReferenceValue()
+            instanceof IdentifiedReferenceValue);
     assertTrue(exceptionValue instanceof TracedReferenceValue);
   }
 
   /**
-   * Test {@link ParameterTracingInvocationUnit#getMethodReturnValue(Clazz, AnyMethodrefConstant, String)} with {@code clazz}, {@code refConstant}, {@code type}.
-   * <p>
-   * Method under test: {@link ParameterTracingInvocationUnit#getMethodReturnValue(Clazz, AnyMethodrefConstant, String)}
+   * Test {@link ParameterTracingInvocationUnit#getMethodReturnValue(Clazz, AnyMethodrefConstant,
+   * String)} with {@code clazz}, {@code refConstant}, {@code type}.
+   *
+   * <p>Method under test: {@link ParameterTracingInvocationUnit#getMethodReturnValue(Clazz,
+   * AnyMethodrefConstant, String)}
    */
   @Test
-  @DisplayName("Test getMethodReturnValue(Clazz, AnyMethodrefConstant, String) with 'clazz', 'refConstant', 'type'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test getMethodReturnValue(Clazz, AnyMethodrefConstant, String) with 'clazz', 'refConstant', 'type'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "proguard.evaluation.value.Value proguard.optimize.evaluation.ParameterTracingInvocationUnit.getMethodReturnValue(proguard.classfile.Clazz, proguard.classfile.constant.AnyMethodrefConstant, java.lang.String)"})
+    "Value ParameterTracingInvocationUnit.getMethodReturnValue(Clazz, AnyMethodrefConstant, String)"
+  })
   void testGetMethodReturnValueWithClazzRefConstantType() {
     // Arrange
-    ParameterTracingInvocationUnit parameterTracingInvocationUnit = new ParameterTracingInvocationUnit(
-        new LoadingInvocationUnit(new ParticularReferenceValueFactory()));
+    ParameterTracingInvocationUnit parameterTracingInvocationUnit =
+        new ParameterTracingInvocationUnit(
+            new LoadingInvocationUnit(new ParticularReferenceValueFactory()));
     LibraryClass clazz = new LibraryClass();
 
     // Act
-    Value actualMethodReturnValue = parameterTracingInvocationUnit.getMethodReturnValue(clazz,
-        new InterfaceMethodrefConstant(), "Type");
+    Value actualMethodReturnValue =
+        parameterTracingInvocationUnit.getMethodReturnValue(
+            clazz, new InterfaceMethodrefConstant(), "Type");
 
     // Assert
-    ReferenceValue referenceValue = ((TracedReferenceValue) actualMethodReturnValue).getReferenceValue();
+    ReferenceValue referenceValue =
+        ((TracedReferenceValue) actualMethodReturnValue).getReferenceValue();
     assertTrue(referenceValue instanceof IdentifiedReferenceValue);
     assertTrue(actualMethodReturnValue instanceof TracedReferenceValue);
     assertEquals("Type", referenceValue.getType());
@@ -200,55 +245,71 @@ class ParameterTracingInvocationUnitDiffblueTest {
   }
 
   /**
-   * Test {@link ParameterTracingInvocationUnit#getMethodReturnValue(Clazz, AnyMethodrefConstant, String)} with {@code clazz}, {@code refConstant}, {@code type}.
-   * <p>
-   * Method under test: {@link ParameterTracingInvocationUnit#getMethodReturnValue(Clazz, AnyMethodrefConstant, String)}
+   * Test {@link ParameterTracingInvocationUnit#getMethodReturnValue(Clazz, AnyMethodrefConstant,
+   * String)} with {@code clazz}, {@code refConstant}, {@code type}.
+   *
+   * <p>Method under test: {@link ParameterTracingInvocationUnit#getMethodReturnValue(Clazz,
+   * AnyMethodrefConstant, String)}
    */
   @Test
-  @DisplayName("Test getMethodReturnValue(Clazz, AnyMethodrefConstant, String) with 'clazz', 'refConstant', 'type'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test getMethodReturnValue(Clazz, AnyMethodrefConstant, String) with 'clazz', 'refConstant', 'type'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "proguard.evaluation.value.Value proguard.optimize.evaluation.ParameterTracingInvocationUnit.getMethodReturnValue(proguard.classfile.Clazz, proguard.classfile.constant.AnyMethodrefConstant, java.lang.String)"})
+    "Value ParameterTracingInvocationUnit.getMethodReturnValue(Clazz, AnyMethodrefConstant, String)"
+  })
   void testGetMethodReturnValueWithClazzRefConstantType2() {
     // Arrange
     BasicValueFactory valueFactory = new BasicValueFactory();
-    ParameterTracingInvocationUnit parameterTracingInvocationUnit = new ParameterTracingInvocationUnit(
-        new LoadingInvocationUnit(valueFactory));
+    ParameterTracingInvocationUnit parameterTracingInvocationUnit =
+        new ParameterTracingInvocationUnit(new LoadingInvocationUnit(valueFactory));
     LibraryClass clazz = new LibraryClass();
 
     // Act
-    Value actualMethodReturnValue = parameterTracingInvocationUnit.getMethodReturnValue(clazz,
-        new InterfaceMethodrefConstant(), "Type");
+    Value actualMethodReturnValue =
+        parameterTracingInvocationUnit.getMethodReturnValue(
+            clazz, new InterfaceMethodrefConstant(), "Type");
 
     // Assert
     assertTrue(actualMethodReturnValue instanceof TracedReferenceValue);
     assertEquals("Ljava/lang/Object;", ((TracedReferenceValue) actualMethodReturnValue).getType());
     ReferenceValue expectedReferenceValue = valueFactory.REFERENCE_VALUE;
-    assertSame(expectedReferenceValue, ((TracedReferenceValue) actualMethodReturnValue).getReferenceValue());
+    assertSame(
+        expectedReferenceValue,
+        ((TracedReferenceValue) actualMethodReturnValue).getReferenceValue());
   }
 
   /**
-   * Test {@link ParameterTracingInvocationUnit#getMethodReturnValue(Clazz, AnyMethodrefConstant, String)} with {@code clazz}, {@code refConstant}, {@code type}.
-   * <p>
-   * Method under test: {@link ParameterTracingInvocationUnit#getMethodReturnValue(Clazz, AnyMethodrefConstant, String)}
+   * Test {@link ParameterTracingInvocationUnit#getMethodReturnValue(Clazz, AnyMethodrefConstant,
+   * String)} with {@code clazz}, {@code refConstant}, {@code type}.
+   *
+   * <p>Method under test: {@link ParameterTracingInvocationUnit#getMethodReturnValue(Clazz,
+   * AnyMethodrefConstant, String)}
    */
   @Test
-  @DisplayName("Test getMethodReturnValue(Clazz, AnyMethodrefConstant, String) with 'clazz', 'refConstant', 'type'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test getMethodReturnValue(Clazz, AnyMethodrefConstant, String) with 'clazz', 'refConstant', 'type'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "proguard.evaluation.value.Value proguard.optimize.evaluation.ParameterTracingInvocationUnit.getMethodReturnValue(proguard.classfile.Clazz, proguard.classfile.constant.AnyMethodrefConstant, java.lang.String)"})
+    "Value ParameterTracingInvocationUnit.getMethodReturnValue(Clazz, AnyMethodrefConstant, String)"
+  })
   void testGetMethodReturnValueWithClazzRefConstantType3() {
     // Arrange
-    ParameterTracingInvocationUnit parameterTracingInvocationUnit = new ParameterTracingInvocationUnit(
-        new LoadingInvocationUnit(new MultiTypedReferenceValueFactory()));
+    ParameterTracingInvocationUnit parameterTracingInvocationUnit =
+        new ParameterTracingInvocationUnit(
+            new LoadingInvocationUnit(new MultiTypedReferenceValueFactory()));
     LibraryClass clazz = new LibraryClass();
 
     // Act
-    Value actualMethodReturnValue = parameterTracingInvocationUnit.getMethodReturnValue(clazz,
-        new InterfaceMethodrefConstant(), "Type");
+    Value actualMethodReturnValue =
+        parameterTracingInvocationUnit.getMethodReturnValue(
+            clazz, new InterfaceMethodrefConstant(), "Type");
 
     // Assert
-    ReferenceValue referenceValue = ((TracedReferenceValue) actualMethodReturnValue).getReferenceValue();
+    ReferenceValue referenceValue =
+        ((TracedReferenceValue) actualMethodReturnValue).getReferenceValue();
     assertTrue(referenceValue instanceof MultiTypedReferenceValue);
     assertTrue(actualMethodReturnValue instanceof TracedReferenceValue);
     assertEquals("Type", referenceValue.getType());
@@ -259,28 +320,37 @@ class ParameterTracingInvocationUnitDiffblueTest {
   }
 
   /**
-   * Test {@link ParameterTracingInvocationUnit#getMethodReturnValue(Clazz, AnyMethodrefConstant, String)} with {@code clazz}, {@code refConstant}, {@code type}.
-   * <p>
-   * Method under test: {@link ParameterTracingInvocationUnit#getMethodReturnValue(Clazz, AnyMethodrefConstant, String)}
+   * Test {@link ParameterTracingInvocationUnit#getMethodReturnValue(Clazz, AnyMethodrefConstant,
+   * String)} with {@code clazz}, {@code refConstant}, {@code type}.
+   *
+   * <p>Method under test: {@link ParameterTracingInvocationUnit#getMethodReturnValue(Clazz,
+   * AnyMethodrefConstant, String)}
    */
   @Test
-  @DisplayName("Test getMethodReturnValue(Clazz, AnyMethodrefConstant, String) with 'clazz', 'refConstant', 'type'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test getMethodReturnValue(Clazz, AnyMethodrefConstant, String) with 'clazz', 'refConstant', 'type'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "proguard.evaluation.value.Value proguard.optimize.evaluation.ParameterTracingInvocationUnit.getMethodReturnValue(proguard.classfile.Clazz, proguard.classfile.constant.AnyMethodrefConstant, java.lang.String)"})
+    "Value ParameterTracingInvocationUnit.getMethodReturnValue(Clazz, AnyMethodrefConstant, String)"
+  })
   void testGetMethodReturnValueWithClazzRefConstantType4() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
-    ParameterTracingInvocationUnit parameterTracingInvocationUnit = new ParameterTracingInvocationUnit(
-        new LoadingInvocationUnit(new MultiTypedReferenceValueFactory(true, programClassPool, new ClassPool())));
+    ParameterTracingInvocationUnit parameterTracingInvocationUnit =
+        new ParameterTracingInvocationUnit(
+            new LoadingInvocationUnit(
+                new MultiTypedReferenceValueFactory(true, programClassPool, new ClassPool())));
     LibraryClass clazz = new LibraryClass();
 
     // Act
-    Value actualMethodReturnValue = parameterTracingInvocationUnit.getMethodReturnValue(clazz,
-        new InterfaceMethodrefConstant(), "Type");
+    Value actualMethodReturnValue =
+        parameterTracingInvocationUnit.getMethodReturnValue(
+            clazz, new InterfaceMethodrefConstant(), "Type");
 
     // Assert
-    ReferenceValue referenceValue = ((TracedReferenceValue) actualMethodReturnValue).getReferenceValue();
+    ReferenceValue referenceValue =
+        ((TracedReferenceValue) actualMethodReturnValue).getReferenceValue();
     assertTrue(referenceValue instanceof MultiTypedReferenceValue);
     assertTrue(actualMethodReturnValue instanceof TracedReferenceValue);
     assertEquals("Type", referenceValue.getType());
@@ -291,27 +361,36 @@ class ParameterTracingInvocationUnitDiffblueTest {
   }
 
   /**
-   * Test {@link ParameterTracingInvocationUnit#getMethodReturnValue(Clazz, AnyMethodrefConstant, String)} with {@code clazz}, {@code refConstant}, {@code type}.
-   * <p>
-   * Method under test: {@link ParameterTracingInvocationUnit#getMethodReturnValue(Clazz, AnyMethodrefConstant, String)}
+   * Test {@link ParameterTracingInvocationUnit#getMethodReturnValue(Clazz, AnyMethodrefConstant,
+   * String)} with {@code clazz}, {@code refConstant}, {@code type}.
+   *
+   * <p>Method under test: {@link ParameterTracingInvocationUnit#getMethodReturnValue(Clazz,
+   * AnyMethodrefConstant, String)}
    */
   @Test
-  @DisplayName("Test getMethodReturnValue(Clazz, AnyMethodrefConstant, String) with 'clazz', 'refConstant', 'type'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test getMethodReturnValue(Clazz, AnyMethodrefConstant, String) with 'clazz', 'refConstant', 'type'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "proguard.evaluation.value.Value proguard.optimize.evaluation.ParameterTracingInvocationUnit.getMethodReturnValue(proguard.classfile.Clazz, proguard.classfile.constant.AnyMethodrefConstant, java.lang.String)"})
+    "Value ParameterTracingInvocationUnit.getMethodReturnValue(Clazz, AnyMethodrefConstant, String)"
+  })
   void testGetMethodReturnValueWithClazzRefConstantType5() {
     // Arrange
-    ParameterTracingInvocationUnit parameterTracingInvocationUnit = new ParameterTracingInvocationUnit(
-        new ReferenceTracingInvocationUnit(new LoadingInvocationUnit(new ParticularReferenceValueFactory())));
+    ParameterTracingInvocationUnit parameterTracingInvocationUnit =
+        new ParameterTracingInvocationUnit(
+            new ReferenceTracingInvocationUnit(
+                new LoadingInvocationUnit(new ParticularReferenceValueFactory())));
     LibraryClass clazz = new LibraryClass();
 
     // Act
-    Value actualMethodReturnValue = parameterTracingInvocationUnit.getMethodReturnValue(clazz,
-        new InterfaceMethodrefConstant(), "Type");
+    Value actualMethodReturnValue =
+        parameterTracingInvocationUnit.getMethodReturnValue(
+            clazz, new InterfaceMethodrefConstant(), "Type");
 
     // Assert
-    ReferenceValue referenceValue = ((TracedReferenceValue) actualMethodReturnValue).getReferenceValue();
+    ReferenceValue referenceValue =
+        ((TracedReferenceValue) actualMethodReturnValue).getReferenceValue();
     assertTrue(referenceValue instanceof IdentifiedReferenceValue);
     assertTrue(actualMethodReturnValue instanceof TracedReferenceValue);
     assertEquals("Type", referenceValue.getType());
@@ -324,27 +403,36 @@ class ParameterTracingInvocationUnitDiffblueTest {
   }
 
   /**
-   * Test {@link ParameterTracingInvocationUnit#getMethodReturnValue(Clazz, AnyMethodrefConstant, String)} with {@code clazz}, {@code refConstant}, {@code type}.
-   * <p>
-   * Method under test: {@link ParameterTracingInvocationUnit#getMethodReturnValue(Clazz, AnyMethodrefConstant, String)}
+   * Test {@link ParameterTracingInvocationUnit#getMethodReturnValue(Clazz, AnyMethodrefConstant,
+   * String)} with {@code clazz}, {@code refConstant}, {@code type}.
+   *
+   * <p>Method under test: {@link ParameterTracingInvocationUnit#getMethodReturnValue(Clazz,
+   * AnyMethodrefConstant, String)}
    */
   @Test
-  @DisplayName("Test getMethodReturnValue(Clazz, AnyMethodrefConstant, String) with 'clazz', 'refConstant', 'type'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test getMethodReturnValue(Clazz, AnyMethodrefConstant, String) with 'clazz', 'refConstant', 'type'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "proguard.evaluation.value.Value proguard.optimize.evaluation.ParameterTracingInvocationUnit.getMethodReturnValue(proguard.classfile.Clazz, proguard.classfile.constant.AnyMethodrefConstant, java.lang.String)"})
+    "Value ParameterTracingInvocationUnit.getMethodReturnValue(Clazz, AnyMethodrefConstant, String)"
+  })
   void testGetMethodReturnValueWithClazzRefConstantType6() {
     // Arrange
-    ParameterTracingInvocationUnit parameterTracingInvocationUnit = new ParameterTracingInvocationUnit(
-        new ParameterTracingInvocationUnit(new LoadingInvocationUnit(new ParticularReferenceValueFactory())));
+    ParameterTracingInvocationUnit parameterTracingInvocationUnit =
+        new ParameterTracingInvocationUnit(
+            new ParameterTracingInvocationUnit(
+                new LoadingInvocationUnit(new ParticularReferenceValueFactory())));
     LibraryClass clazz = new LibraryClass();
 
     // Act
-    Value actualMethodReturnValue = parameterTracingInvocationUnit.getMethodReturnValue(clazz,
-        new InterfaceMethodrefConstant(), "Type");
+    Value actualMethodReturnValue =
+        parameterTracingInvocationUnit.getMethodReturnValue(
+            clazz, new InterfaceMethodrefConstant(), "Type");
 
     // Assert
-    ReferenceValue referenceValue = ((TracedReferenceValue) actualMethodReturnValue).getReferenceValue();
+    ReferenceValue referenceValue =
+        ((TracedReferenceValue) actualMethodReturnValue).getReferenceValue();
     assertTrue(referenceValue instanceof IdentifiedReferenceValue);
     assertTrue(actualMethodReturnValue instanceof TracedReferenceValue);
     assertEquals("Type", referenceValue.getType());
@@ -357,30 +445,38 @@ class ParameterTracingInvocationUnitDiffblueTest {
   }
 
   /**
-   * Test {@link ParameterTracingInvocationUnit#getMethodReturnValue(Clazz, AnyMethodrefConstant, String)} with {@code clazz}, {@code refConstant}, {@code type}.
-   * <p>
-   * Method under test: {@link ParameterTracingInvocationUnit#getMethodReturnValue(Clazz, AnyMethodrefConstant, String)}
+   * Test {@link ParameterTracingInvocationUnit#getMethodReturnValue(Clazz, AnyMethodrefConstant,
+   * String)} with {@code clazz}, {@code refConstant}, {@code type}.
+   *
+   * <p>Method under test: {@link ParameterTracingInvocationUnit#getMethodReturnValue(Clazz,
+   * AnyMethodrefConstant, String)}
    */
   @Test
-  @DisplayName("Test getMethodReturnValue(Clazz, AnyMethodrefConstant, String) with 'clazz', 'refConstant', 'type'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test getMethodReturnValue(Clazz, AnyMethodrefConstant, String) with 'clazz', 'refConstant', 'type'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "proguard.evaluation.value.Value proguard.optimize.evaluation.ParameterTracingInvocationUnit.getMethodReturnValue(proguard.classfile.Clazz, proguard.classfile.constant.AnyMethodrefConstant, java.lang.String)"})
+    "Value ParameterTracingInvocationUnit.getMethodReturnValue(Clazz, AnyMethodrefConstant, String)"
+  })
   void testGetMethodReturnValueWithClazzRefConstantType7() {
     // Arrange
     PrimitiveTypedReferenceValueFactory valueFactory = new PrimitiveTypedReferenceValueFactory();
-    ParameterTracingInvocationUnit parameterTracingInvocationUnit = new ParameterTracingInvocationUnit(
-        new LoadingInvocationUnit(valueFactory));
+    ParameterTracingInvocationUnit parameterTracingInvocationUnit =
+        new ParameterTracingInvocationUnit(new LoadingInvocationUnit(valueFactory));
     LibraryClass clazz = new LibraryClass();
 
     // Act
-    Value actualMethodReturnValue = parameterTracingInvocationUnit.getMethodReturnValue(clazz,
-        new InterfaceMethodrefConstant(), "Type");
+    Value actualMethodReturnValue =
+        parameterTracingInvocationUnit.getMethodReturnValue(
+            clazz, new InterfaceMethodrefConstant(), "Type");
 
     // Assert
     assertTrue(actualMethodReturnValue instanceof TracedReferenceValue);
     assertEquals("Ljava/lang/Object;", ((TracedReferenceValue) actualMethodReturnValue).getType());
     ReferenceValue expectedReferenceValue = valueFactory.REFERENCE_VALUE;
-    assertSame(expectedReferenceValue, ((TracedReferenceValue) actualMethodReturnValue).getReferenceValue());
+    assertSame(
+        expectedReferenceValue,
+        ((TracedReferenceValue) actualMethodReturnValue).getReferenceValue());
   }
 }

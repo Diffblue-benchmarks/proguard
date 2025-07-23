@@ -7,6 +7,7 @@ import static org.mockito.Mockito.atLeast;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -28,41 +29,63 @@ import proguard.classfile.visitor.ClassVisitor;
 
 class GsonSerializationInvocationFinderDiffblueTest {
   /**
-   * Test {@link GsonSerializationInvocationFinder#visitAnyInstruction(Clazz, Method, CodeAttribute, int, Instruction)}.
+   * Test {@link GsonSerializationInvocationFinder#visitAnyInstruction(Clazz, Method, CodeAttribute,
+   * int, Instruction)}.
+   *
    * <ul>
-   *   <li>When {@link BranchInstruction} {@link BranchInstruction#accept(Clazz, Method, CodeAttribute, int, InstructionVisitor)} does nothing.</li>
-   *   <li>Then calls {@link BranchInstruction#accept(Clazz, Method, CodeAttribute, int, InstructionVisitor)}.</li>
+   *   <li>When {@link BranchInstruction} {@link BranchInstruction#accept(Clazz, Method,
+   *       CodeAttribute, int, InstructionVisitor)} does nothing.
+   *   <li>Then calls {@link BranchInstruction#accept(Clazz, Method, CodeAttribute, int,
+   *       InstructionVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link GsonSerializationInvocationFinder#visitAnyInstruction(Clazz, Method, CodeAttribute, int, Instruction)}
+   *
+   * <p>Method under test: {@link GsonSerializationInvocationFinder#visitAnyInstruction(Clazz,
+   * Method, CodeAttribute, int, Instruction)}
    */
   @Test
-  @DisplayName("Test visitAnyInstruction(Clazz, Method, CodeAttribute, int, Instruction); when BranchInstruction accept(Clazz, Method, CodeAttribute, int, InstructionVisitor) does nothing; then calls accept(Clazz, Method, CodeAttribute, int, InstructionVisitor)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitAnyInstruction(Clazz, Method, CodeAttribute, int, Instruction); when BranchInstruction accept(Clazz, Method, CodeAttribute, int, InstructionVisitor) does nothing; then calls accept(Clazz, Method, CodeAttribute, int, InstructionVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.gson.GsonSerializationInvocationFinder.visitAnyInstruction(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.CodeAttribute, int, proguard.classfile.instruction.Instruction)"})
+    "void GsonSerializationInvocationFinder.visitAnyInstruction(Clazz, Method, CodeAttribute, int, Instruction)"
+  })
   void testVisitAnyInstruction_whenBranchInstructionAcceptDoesNothing_thenCallsAccept() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
     ClassVisitor domainClassVisitor = mock(ClassVisitor.class);
-    GsonSerializationInvocationFinder gsonSerializationInvocationFinder = new GsonSerializationInvocationFinder(
-        programClassPool, libraryClassPool, domainClassVisitor,
-        new WarningPrinter(new PrintWriter(new StringWriter())));
+    GsonSerializationInvocationFinder gsonSerializationInvocationFinder =
+        new GsonSerializationInvocationFinder(
+            programClassPool,
+            libraryClassPool,
+            domainClassVisitor,
+            new WarningPrinter(new PrintWriter(new StringWriter())));
     LibraryClass clazz = new LibraryClass();
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
 
     CodeAttribute codeAttribute = new CodeAttribute(1);
     BranchInstruction instruction = mock(BranchInstruction.class);
-    doNothing().when(instruction)
-        .accept(Mockito.<Clazz>any(), Mockito.<Method>any(), Mockito.<CodeAttribute>any(), anyInt(),
+    doNothing()
+        .when(instruction)
+        .accept(
+            Mockito.<Clazz>any(),
+            Mockito.<Method>any(),
+            Mockito.<CodeAttribute>any(),
+            anyInt(),
             Mockito.<InstructionVisitor>any());
 
     // Act
-    gsonSerializationInvocationFinder.visitAnyInstruction(clazz, method, codeAttribute, 2, instruction);
+    gsonSerializationInvocationFinder.visitAnyInstruction(
+        clazz, method, codeAttribute, 2, instruction);
 
     // Assert
-    verify(instruction, atLeast(1)).accept(isA(Clazz.class), isA(Method.class), isA(CodeAttribute.class), eq(2),
-        Mockito.<InstructionVisitor>any());
+    verify(instruction, atLeast(1))
+        .accept(
+            isA(Clazz.class),
+            isA(Method.class),
+            isA(CodeAttribute.class),
+            eq(2),
+            Mockito.<InstructionVisitor>any());
   }
 }

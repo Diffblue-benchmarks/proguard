@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.io.File;
 import java.util.ArrayList;
@@ -16,11 +17,13 @@ import org.junit.jupiter.api.Test;
 class ClassPathEntryDiffblueTest {
   /**
    * Test getters and setters.
+   *
    * <ul>
-   *   <li>When {@code Feature Name}.</li>
+   *   <li>When {@code Feature Name}.
    * </ul>
-   * <p>
-   * Methods under test:
+   *
+   * <p>Methods under test:
+   *
    * <ul>
    *   <li>{@link ClassPathEntry#ClassPathEntry(File, boolean, String)}
    *   <li>{@link ClassPathEntry#setFeatureName(String)}
@@ -41,17 +44,26 @@ class ClassPathEntryDiffblueTest {
    */
   @Test
   @DisplayName("Test getters and setters; when 'Feature Name'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.ClassPathEntry.<init>(java.io.File, boolean)",
-      "void proguard.ClassPathEntry.<init>(java.io.File, boolean, java.lang.String)",
-      "java.util.List proguard.ClassPathEntry.getAabFilter()", "java.util.List proguard.ClassPathEntry.getAarFilter()",
-      "java.util.List proguard.ClassPathEntry.getApkFilter()", "java.util.List proguard.ClassPathEntry.getEarFilter()",
-      "java.lang.String proguard.ClassPathEntry.getFeatureName()", "java.io.File proguard.ClassPathEntry.getFile()",
-      "java.util.List proguard.ClassPathEntry.getFilter()", "java.util.List proguard.ClassPathEntry.getJarFilter()",
-      "java.util.List proguard.ClassPathEntry.getJmodFilter()", "java.util.List proguard.ClassPathEntry.getWarFilter()",
-      "java.util.List proguard.ClassPathEntry.getZipFilter()", "boolean proguard.ClassPathEntry.isOutput()",
-      "void proguard.ClassPathEntry.setFeatureName(java.lang.String)",
-      "void proguard.ClassPathEntry.setOutput(boolean)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void ClassPathEntry.<init>(File, boolean)",
+    "void ClassPathEntry.<init>(File, boolean, String)",
+    "List ClassPathEntry.getAabFilter()",
+    "List ClassPathEntry.getAarFilter()",
+    "List ClassPathEntry.getApkFilter()",
+    "List ClassPathEntry.getEarFilter()",
+    "String ClassPathEntry.getFeatureName()",
+    "File ClassPathEntry.getFile()",
+    "List ClassPathEntry.getFilter()",
+    "List ClassPathEntry.getJarFilter()",
+    "List ClassPathEntry.getJmodFilter()",
+    "List ClassPathEntry.getWarFilter()",
+    "List ClassPathEntry.getZipFilter()",
+    "boolean ClassPathEntry.isOutput()",
+    "void ClassPathEntry.setFeatureName(String)",
+    "void ClassPathEntry.setOutput(boolean)"
+  })
   void testGettersAndSetters_whenFeatureName() {
     // Arrange
     File file = Configuration.STD_OUT;
@@ -89,11 +101,13 @@ class ClassPathEntryDiffblueTest {
 
   /**
    * Test getters and setters.
+   *
    * <ul>
-   *   <li>When {@link Configuration#STD_OUT}.</li>
+   *   <li>When {@link Configuration#STD_OUT}.
    * </ul>
-   * <p>
-   * Methods under test:
+   *
+   * <p>Methods under test:
+   *
    * <ul>
    *   <li>{@link ClassPathEntry#ClassPathEntry(File, boolean)}
    *   <li>{@link ClassPathEntry#setFeatureName(String)}
@@ -114,17 +128,26 @@ class ClassPathEntryDiffblueTest {
    */
   @Test
   @DisplayName("Test getters and setters; when STD_OUT")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.ClassPathEntry.<init>(java.io.File, boolean)",
-      "void proguard.ClassPathEntry.<init>(java.io.File, boolean, java.lang.String)",
-      "java.util.List proguard.ClassPathEntry.getAabFilter()", "java.util.List proguard.ClassPathEntry.getAarFilter()",
-      "java.util.List proguard.ClassPathEntry.getApkFilter()", "java.util.List proguard.ClassPathEntry.getEarFilter()",
-      "java.lang.String proguard.ClassPathEntry.getFeatureName()", "java.io.File proguard.ClassPathEntry.getFile()",
-      "java.util.List proguard.ClassPathEntry.getFilter()", "java.util.List proguard.ClassPathEntry.getJarFilter()",
-      "java.util.List proguard.ClassPathEntry.getJmodFilter()", "java.util.List proguard.ClassPathEntry.getWarFilter()",
-      "java.util.List proguard.ClassPathEntry.getZipFilter()", "boolean proguard.ClassPathEntry.isOutput()",
-      "void proguard.ClassPathEntry.setFeatureName(java.lang.String)",
-      "void proguard.ClassPathEntry.setOutput(boolean)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void ClassPathEntry.<init>(File, boolean)",
+    "void ClassPathEntry.<init>(File, boolean, String)",
+    "List ClassPathEntry.getAabFilter()",
+    "List ClassPathEntry.getAarFilter()",
+    "List ClassPathEntry.getApkFilter()",
+    "List ClassPathEntry.getEarFilter()",
+    "String ClassPathEntry.getFeatureName()",
+    "File ClassPathEntry.getFile()",
+    "List ClassPathEntry.getFilter()",
+    "List ClassPathEntry.getJarFilter()",
+    "List ClassPathEntry.getJmodFilter()",
+    "List ClassPathEntry.getWarFilter()",
+    "List ClassPathEntry.getZipFilter()",
+    "boolean ClassPathEntry.isOutput()",
+    "void ClassPathEntry.setFeatureName(String)",
+    "void ClassPathEntry.setOutput(boolean)"
+  })
   void testGettersAndSetters_whenStd_out() {
     // Arrange
     File file = Configuration.STD_OUT;
@@ -162,210 +185,252 @@ class ClassPathEntryDiffblueTest {
 
   /**
    * Test {@link ClassPathEntry#getName()}.
+   *
    * <ul>
-   *   <li>Then return Property is {@code user.dir}.</li>
+   *   <li>Then return Property is {@code user.dir}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#getName()}
+   *
+   * <p>Method under test: {@link ClassPathEntry#getName()}
    */
   @Test
   @DisplayName("Test getName(); then return Property is 'user.dir'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"java.lang.String proguard.ClassPathEntry.getName()"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"String ClassPathEntry.getName()"})
   void testGetName_thenReturnPropertyIsUserDir() {
     // Arrange, Act and Assert
-    assertEquals(System.getProperty("user.dir"), (new ClassPathEntry(Configuration.STD_OUT, true)).getName());
+    assertEquals(
+        System.getProperty("user.dir"), new ClassPathEntry(Configuration.STD_OUT, true).getName());
   }
 
   /**
    * Test {@link ClassPathEntry#isDex()}.
+   *
    * <ul>
-   *   <li>Given {@link ClassPathEntry#ClassPathEntry(File, boolean)} with file is {@link Configuration#STD_OUT} and isOutput is {@code true}.</li>
-   *   <li>Then return {@code false}.</li>
+   *   <li>Given {@link ClassPathEntry#ClassPathEntry(File, boolean)} with file is {@link
+   *       Configuration#STD_OUT} and isOutput is {@code true}.
+   *   <li>Then return {@code false}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#isDex()}
+   *
+   * <p>Method under test: {@link ClassPathEntry#isDex()}
    */
   @Test
-  @DisplayName("Test isDex(); given ClassPathEntry(File, boolean) with file is STD_OUT and isOutput is 'true'; then return 'false'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.ClassPathEntry.isDex()"})
+  @DisplayName(
+      "Test isDex(); given ClassPathEntry(File, boolean) with file is STD_OUT and isOutput is 'true'; then return 'false'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean ClassPathEntry.isDex()"})
   void testIsDex_givenClassPathEntryWithFileIsStd_outAndIsOutputIsTrue_thenReturnFalse() {
     // Arrange, Act and Assert
-    assertFalse((new ClassPathEntry(Configuration.STD_OUT, true)).isDex());
+    assertFalse(new ClassPathEntry(Configuration.STD_OUT, true).isDex());
   }
 
   /**
    * Test {@link ClassPathEntry#isApk()}.
+   *
    * <ul>
-   *   <li>Given {@link ClassPathEntry#ClassPathEntry(File, boolean)} with file is {@link Configuration#STD_OUT} and isOutput is {@code true}.</li>
-   *   <li>Then return {@code false}.</li>
+   *   <li>Given {@link ClassPathEntry#ClassPathEntry(File, boolean)} with file is {@link
+   *       Configuration#STD_OUT} and isOutput is {@code true}.
+   *   <li>Then return {@code false}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#isApk()}
+   *
+   * <p>Method under test: {@link ClassPathEntry#isApk()}
    */
   @Test
-  @DisplayName("Test isApk(); given ClassPathEntry(File, boolean) with file is STD_OUT and isOutput is 'true'; then return 'false'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.ClassPathEntry.isApk()"})
+  @DisplayName(
+      "Test isApk(); given ClassPathEntry(File, boolean) with file is STD_OUT and isOutput is 'true'; then return 'false'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean ClassPathEntry.isApk()"})
   void testIsApk_givenClassPathEntryWithFileIsStd_outAndIsOutputIsTrue_thenReturnFalse() {
     // Arrange, Act and Assert
-    assertFalse((new ClassPathEntry(Configuration.STD_OUT, true)).isApk());
+    assertFalse(new ClassPathEntry(Configuration.STD_OUT, true).isApk());
   }
 
   /**
    * Test {@link ClassPathEntry#isAab()}.
+   *
    * <ul>
-   *   <li>Given {@link ClassPathEntry#ClassPathEntry(File, boolean)} with file is {@link Configuration#STD_OUT} and isOutput is {@code true}.</li>
-   *   <li>Then return {@code false}.</li>
+   *   <li>Given {@link ClassPathEntry#ClassPathEntry(File, boolean)} with file is {@link
+   *       Configuration#STD_OUT} and isOutput is {@code true}.
+   *   <li>Then return {@code false}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#isAab()}
+   *
+   * <p>Method under test: {@link ClassPathEntry#isAab()}
    */
   @Test
-  @DisplayName("Test isAab(); given ClassPathEntry(File, boolean) with file is STD_OUT and isOutput is 'true'; then return 'false'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.ClassPathEntry.isAab()"})
+  @DisplayName(
+      "Test isAab(); given ClassPathEntry(File, boolean) with file is STD_OUT and isOutput is 'true'; then return 'false'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean ClassPathEntry.isAab()"})
   void testIsAab_givenClassPathEntryWithFileIsStd_outAndIsOutputIsTrue_thenReturnFalse() {
     // Arrange, Act and Assert
-    assertFalse((new ClassPathEntry(Configuration.STD_OUT, true)).isAab());
+    assertFalse(new ClassPathEntry(Configuration.STD_OUT, true).isAab());
   }
 
   /**
    * Test {@link ClassPathEntry#isJar()}.
+   *
    * <ul>
-   *   <li>Given {@link ClassPathEntry#ClassPathEntry(File, boolean)} with file is {@link Configuration#STD_OUT} and isOutput is {@code true}.</li>
-   *   <li>Then return {@code false}.</li>
+   *   <li>Given {@link ClassPathEntry#ClassPathEntry(File, boolean)} with file is {@link
+   *       Configuration#STD_OUT} and isOutput is {@code true}.
+   *   <li>Then return {@code false}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#isJar()}
+   *
+   * <p>Method under test: {@link ClassPathEntry#isJar()}
    */
   @Test
-  @DisplayName("Test isJar(); given ClassPathEntry(File, boolean) with file is STD_OUT and isOutput is 'true'; then return 'false'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.ClassPathEntry.isJar()"})
+  @DisplayName(
+      "Test isJar(); given ClassPathEntry(File, boolean) with file is STD_OUT and isOutput is 'true'; then return 'false'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean ClassPathEntry.isJar()"})
   void testIsJar_givenClassPathEntryWithFileIsStd_outAndIsOutputIsTrue_thenReturnFalse() {
     // Arrange, Act and Assert
-    assertFalse((new ClassPathEntry(Configuration.STD_OUT, true)).isJar());
+    assertFalse(new ClassPathEntry(Configuration.STD_OUT, true).isJar());
   }
 
   /**
    * Test {@link ClassPathEntry#isAar()}.
+   *
    * <ul>
-   *   <li>Given {@link ClassPathEntry#ClassPathEntry(File, boolean)} with file is {@link Configuration#STD_OUT} and isOutput is {@code true}.</li>
-   *   <li>Then return {@code false}.</li>
+   *   <li>Given {@link ClassPathEntry#ClassPathEntry(File, boolean)} with file is {@link
+   *       Configuration#STD_OUT} and isOutput is {@code true}.
+   *   <li>Then return {@code false}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#isAar()}
+   *
+   * <p>Method under test: {@link ClassPathEntry#isAar()}
    */
   @Test
-  @DisplayName("Test isAar(); given ClassPathEntry(File, boolean) with file is STD_OUT and isOutput is 'true'; then return 'false'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.ClassPathEntry.isAar()"})
+  @DisplayName(
+      "Test isAar(); given ClassPathEntry(File, boolean) with file is STD_OUT and isOutput is 'true'; then return 'false'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean ClassPathEntry.isAar()"})
   void testIsAar_givenClassPathEntryWithFileIsStd_outAndIsOutputIsTrue_thenReturnFalse() {
     // Arrange, Act and Assert
-    assertFalse((new ClassPathEntry(Configuration.STD_OUT, true)).isAar());
+    assertFalse(new ClassPathEntry(Configuration.STD_OUT, true).isAar());
   }
 
   /**
    * Test {@link ClassPathEntry#isWar()}.
+   *
    * <ul>
-   *   <li>Given {@link ClassPathEntry#ClassPathEntry(File, boolean)} with file is {@link Configuration#STD_OUT} and isOutput is {@code true}.</li>
-   *   <li>Then return {@code false}.</li>
+   *   <li>Given {@link ClassPathEntry#ClassPathEntry(File, boolean)} with file is {@link
+   *       Configuration#STD_OUT} and isOutput is {@code true}.
+   *   <li>Then return {@code false}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#isWar()}
+   *
+   * <p>Method under test: {@link ClassPathEntry#isWar()}
    */
   @Test
-  @DisplayName("Test isWar(); given ClassPathEntry(File, boolean) with file is STD_OUT and isOutput is 'true'; then return 'false'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.ClassPathEntry.isWar()"})
+  @DisplayName(
+      "Test isWar(); given ClassPathEntry(File, boolean) with file is STD_OUT and isOutput is 'true'; then return 'false'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean ClassPathEntry.isWar()"})
   void testIsWar_givenClassPathEntryWithFileIsStd_outAndIsOutputIsTrue_thenReturnFalse() {
     // Arrange, Act and Assert
-    assertFalse((new ClassPathEntry(Configuration.STD_OUT, true)).isWar());
+    assertFalse(new ClassPathEntry(Configuration.STD_OUT, true).isWar());
   }
 
   /**
    * Test {@link ClassPathEntry#isEar()}.
+   *
    * <ul>
-   *   <li>Given {@link ClassPathEntry#ClassPathEntry(File, boolean)} with file is {@link Configuration#STD_OUT} and isOutput is {@code true}.</li>
-   *   <li>Then return {@code false}.</li>
+   *   <li>Given {@link ClassPathEntry#ClassPathEntry(File, boolean)} with file is {@link
+   *       Configuration#STD_OUT} and isOutput is {@code true}.
+   *   <li>Then return {@code false}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#isEar()}
+   *
+   * <p>Method under test: {@link ClassPathEntry#isEar()}
    */
   @Test
-  @DisplayName("Test isEar(); given ClassPathEntry(File, boolean) with file is STD_OUT and isOutput is 'true'; then return 'false'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.ClassPathEntry.isEar()"})
+  @DisplayName(
+      "Test isEar(); given ClassPathEntry(File, boolean) with file is STD_OUT and isOutput is 'true'; then return 'false'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean ClassPathEntry.isEar()"})
   void testIsEar_givenClassPathEntryWithFileIsStd_outAndIsOutputIsTrue_thenReturnFalse() {
     // Arrange, Act and Assert
-    assertFalse((new ClassPathEntry(Configuration.STD_OUT, true)).isEar());
+    assertFalse(new ClassPathEntry(Configuration.STD_OUT, true).isEar());
   }
 
   /**
    * Test {@link ClassPathEntry#isJmod()}.
+   *
    * <ul>
-   *   <li>Given {@link ClassPathEntry#ClassPathEntry(File, boolean)} with file is {@link Configuration#STD_OUT} and isOutput is {@code true}.</li>
-   *   <li>Then return {@code false}.</li>
+   *   <li>Given {@link ClassPathEntry#ClassPathEntry(File, boolean)} with file is {@link
+   *       Configuration#STD_OUT} and isOutput is {@code true}.
+   *   <li>Then return {@code false}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#isJmod()}
+   *
+   * <p>Method under test: {@link ClassPathEntry#isJmod()}
    */
   @Test
-  @DisplayName("Test isJmod(); given ClassPathEntry(File, boolean) with file is STD_OUT and isOutput is 'true'; then return 'false'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.ClassPathEntry.isJmod()"})
+  @DisplayName(
+      "Test isJmod(); given ClassPathEntry(File, boolean) with file is STD_OUT and isOutput is 'true'; then return 'false'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean ClassPathEntry.isJmod()"})
   void testIsJmod_givenClassPathEntryWithFileIsStd_outAndIsOutputIsTrue_thenReturnFalse() {
     // Arrange, Act and Assert
-    assertFalse((new ClassPathEntry(Configuration.STD_OUT, true)).isJmod());
+    assertFalse(new ClassPathEntry(Configuration.STD_OUT, true).isJmod());
   }
 
   /**
    * Test {@link ClassPathEntry#isZip()}.
+   *
    * <ul>
-   *   <li>Given {@link ClassPathEntry#ClassPathEntry(File, boolean)} with file is {@link Configuration#STD_OUT} and isOutput is {@code true}.</li>
-   *   <li>Then return {@code false}.</li>
+   *   <li>Given {@link ClassPathEntry#ClassPathEntry(File, boolean)} with file is {@link
+   *       Configuration#STD_OUT} and isOutput is {@code true}.
+   *   <li>Then return {@code false}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#isZip()}
+   *
+   * <p>Method under test: {@link ClassPathEntry#isZip()}
    */
   @Test
-  @DisplayName("Test isZip(); given ClassPathEntry(File, boolean) with file is STD_OUT and isOutput is 'true'; then return 'false'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.ClassPathEntry.isZip()"})
+  @DisplayName(
+      "Test isZip(); given ClassPathEntry(File, boolean) with file is STD_OUT and isOutput is 'true'; then return 'false'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean ClassPathEntry.isZip()"})
   void testIsZip_givenClassPathEntryWithFileIsStd_outAndIsOutputIsTrue_thenReturnFalse() {
     // Arrange, Act and Assert
-    assertFalse((new ClassPathEntry(Configuration.STD_OUT, true)).isZip());
+    assertFalse(new ClassPathEntry(Configuration.STD_OUT, true).isZip());
   }
 
   /**
    * Test {@link ClassPathEntry#isFiltered()}.
-   * <p>
-   * Method under test: {@link ClassPathEntry#isFiltered()}
+   *
+   * <p>Method under test: {@link ClassPathEntry#isFiltered()}
    */
   @Test
   @DisplayName("Test isFiltered()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.ClassPathEntry.isFiltered()"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean ClassPathEntry.isFiltered()"})
   void testIsFiltered() {
     // Arrange, Act and Assert
-    assertFalse((new ClassPathEntry(Configuration.STD_OUT, true)).isFiltered());
+    assertFalse(new ClassPathEntry(Configuration.STD_OUT, true).isFiltered());
   }
 
   /**
    * Test {@link ClassPathEntry#setFilter(List)}.
+   *
    * <ul>
-   *   <li>Given {@code 42}.</li>
-   *   <li>When {@link ArrayList#ArrayList()} add {@code 42}.</li>
+   *   <li>Given {@code 42}.
+   *   <li>When {@link ArrayList#ArrayList()} add {@code 42}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#setFilter(List)}
+   *
+   * <p>Method under test: {@link ClassPathEntry#setFilter(List)}
    */
   @Test
   @DisplayName("Test setFilter(List); given '42'; when ArrayList() add '42'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.ClassPathEntry.setFilter(java.util.List)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ClassPathEntry.setFilter(List)"})
   void testSetFilter_given42_whenArrayListAdd42() {
     // Arrange
     ClassPathEntry classPathEntry = new ClassPathEntry(Configuration.STD_OUT, true);
@@ -384,16 +449,20 @@ class ClassPathEntryDiffblueTest {
 
   /**
    * Test {@link ClassPathEntry#setFilter(List)}.
+   *
    * <ul>
-   *   <li>Then {@link ClassPathEntry#ClassPathEntry(File, boolean)} with file is {@link Configuration#STD_OUT} and isOutput is {@code true} Filtered.</li>
+   *   <li>Then {@link ClassPathEntry#ClassPathEntry(File, boolean)} with file is {@link
+   *       Configuration#STD_OUT} and isOutput is {@code true} Filtered.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#setFilter(List)}
+   *
+   * <p>Method under test: {@link ClassPathEntry#setFilter(List)}
    */
   @Test
-  @DisplayName("Test setFilter(List); then ClassPathEntry(File, boolean) with file is STD_OUT and isOutput is 'true' Filtered")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.ClassPathEntry.setFilter(java.util.List)"})
+  @DisplayName(
+      "Test setFilter(List); then ClassPathEntry(File, boolean) with file is STD_OUT and isOutput is 'true' Filtered")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ClassPathEntry.setFilter(List)"})
   void testSetFilter_thenClassPathEntryWithFileIsStd_outAndIsOutputIsTrueFiltered() {
     // Arrange
     ClassPathEntry classPathEntry = new ClassPathEntry(Configuration.STD_OUT, true);
@@ -411,16 +480,18 @@ class ClassPathEntryDiffblueTest {
 
   /**
    * Test {@link ClassPathEntry#setFilter(List)}.
+   *
    * <ul>
-   *   <li>When {@link ArrayList#ArrayList()}.</li>
+   *   <li>When {@link ArrayList#ArrayList()}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#setFilter(List)}
+   *
+   * <p>Method under test: {@link ClassPathEntry#setFilter(List)}
    */
   @Test
   @DisplayName("Test setFilter(List); when ArrayList()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.ClassPathEntry.setFilter(java.util.List)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ClassPathEntry.setFilter(List)"})
   void testSetFilter_whenArrayList() {
     // Arrange
     ClassPathEntry classPathEntry = new ClassPathEntry(Configuration.STD_OUT, true);
@@ -434,16 +505,18 @@ class ClassPathEntryDiffblueTest {
 
   /**
    * Test {@link ClassPathEntry#setFilter(List)}.
+   *
    * <ul>
-   *   <li>When {@code null}.</li>
+   *   <li>When {@code null}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#setFilter(List)}
+   *
+   * <p>Method under test: {@link ClassPathEntry#setFilter(List)}
    */
   @Test
   @DisplayName("Test setFilter(List); when 'null'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.ClassPathEntry.setFilter(java.util.List)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ClassPathEntry.setFilter(List)"})
   void testSetFilter_whenNull() {
     // Arrange
     ClassPathEntry classPathEntry = new ClassPathEntry(Configuration.STD_OUT, true);
@@ -457,17 +530,19 @@ class ClassPathEntryDiffblueTest {
 
   /**
    * Test {@link ClassPathEntry#setApkFilter(List)}.
+   *
    * <ul>
-   *   <li>Given {@code 42}.</li>
-   *   <li>When {@link ArrayList#ArrayList()} add {@code 42}.</li>
+   *   <li>Given {@code 42}.
+   *   <li>When {@link ArrayList#ArrayList()} add {@code 42}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#setApkFilter(List)}
+   *
+   * <p>Method under test: {@link ClassPathEntry#setApkFilter(List)}
    */
   @Test
   @DisplayName("Test setApkFilter(List); given '42'; when ArrayList() add '42'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.ClassPathEntry.setApkFilter(java.util.List)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ClassPathEntry.setApkFilter(List)"})
   void testSetApkFilter_given42_whenArrayListAdd42() {
     // Arrange
     ClassPathEntry classPathEntry = new ClassPathEntry(Configuration.STD_OUT, true);
@@ -486,16 +561,20 @@ class ClassPathEntryDiffblueTest {
 
   /**
    * Test {@link ClassPathEntry#setApkFilter(List)}.
+   *
    * <ul>
-   *   <li>Then {@link ClassPathEntry#ClassPathEntry(File, boolean)} with file is {@link Configuration#STD_OUT} and isOutput is {@code true} Filtered.</li>
+   *   <li>Then {@link ClassPathEntry#ClassPathEntry(File, boolean)} with file is {@link
+   *       Configuration#STD_OUT} and isOutput is {@code true} Filtered.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#setApkFilter(List)}
+   *
+   * <p>Method under test: {@link ClassPathEntry#setApkFilter(List)}
    */
   @Test
-  @DisplayName("Test setApkFilter(List); then ClassPathEntry(File, boolean) with file is STD_OUT and isOutput is 'true' Filtered")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.ClassPathEntry.setApkFilter(java.util.List)"})
+  @DisplayName(
+      "Test setApkFilter(List); then ClassPathEntry(File, boolean) with file is STD_OUT and isOutput is 'true' Filtered")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ClassPathEntry.setApkFilter(List)"})
   void testSetApkFilter_thenClassPathEntryWithFileIsStd_outAndIsOutputIsTrueFiltered() {
     // Arrange
     ClassPathEntry classPathEntry = new ClassPathEntry(Configuration.STD_OUT, true);
@@ -513,16 +592,18 @@ class ClassPathEntryDiffblueTest {
 
   /**
    * Test {@link ClassPathEntry#setApkFilter(List)}.
+   *
    * <ul>
-   *   <li>When {@link ArrayList#ArrayList()}.</li>
+   *   <li>When {@link ArrayList#ArrayList()}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#setApkFilter(List)}
+   *
+   * <p>Method under test: {@link ClassPathEntry#setApkFilter(List)}
    */
   @Test
   @DisplayName("Test setApkFilter(List); when ArrayList()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.ClassPathEntry.setApkFilter(java.util.List)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ClassPathEntry.setApkFilter(List)"})
   void testSetApkFilter_whenArrayList() {
     // Arrange
     ClassPathEntry classPathEntry = new ClassPathEntry(Configuration.STD_OUT, true);
@@ -536,16 +617,18 @@ class ClassPathEntryDiffblueTest {
 
   /**
    * Test {@link ClassPathEntry#setApkFilter(List)}.
+   *
    * <ul>
-   *   <li>When {@code null}.</li>
+   *   <li>When {@code null}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#setApkFilter(List)}
+   *
+   * <p>Method under test: {@link ClassPathEntry#setApkFilter(List)}
    */
   @Test
   @DisplayName("Test setApkFilter(List); when 'null'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.ClassPathEntry.setApkFilter(java.util.List)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ClassPathEntry.setApkFilter(List)"})
   void testSetApkFilter_whenNull() {
     // Arrange
     ClassPathEntry classPathEntry = new ClassPathEntry(Configuration.STD_OUT, true);
@@ -559,17 +642,19 @@ class ClassPathEntryDiffblueTest {
 
   /**
    * Test {@link ClassPathEntry#setAabFilter(List)}.
+   *
    * <ul>
-   *   <li>Given {@code 42}.</li>
-   *   <li>When {@link ArrayList#ArrayList()} add {@code 42}.</li>
+   *   <li>Given {@code 42}.
+   *   <li>When {@link ArrayList#ArrayList()} add {@code 42}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#setAabFilter(List)}
+   *
+   * <p>Method under test: {@link ClassPathEntry#setAabFilter(List)}
    */
   @Test
   @DisplayName("Test setAabFilter(List); given '42'; when ArrayList() add '42'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.ClassPathEntry.setAabFilter(java.util.List)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ClassPathEntry.setAabFilter(List)"})
   void testSetAabFilter_given42_whenArrayListAdd42() {
     // Arrange
     ClassPathEntry classPathEntry = new ClassPathEntry(Configuration.STD_OUT, true);
@@ -588,16 +673,20 @@ class ClassPathEntryDiffblueTest {
 
   /**
    * Test {@link ClassPathEntry#setAabFilter(List)}.
+   *
    * <ul>
-   *   <li>Then {@link ClassPathEntry#ClassPathEntry(File, boolean)} with file is {@link Configuration#STD_OUT} and isOutput is {@code true} Filtered.</li>
+   *   <li>Then {@link ClassPathEntry#ClassPathEntry(File, boolean)} with file is {@link
+   *       Configuration#STD_OUT} and isOutput is {@code true} Filtered.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#setAabFilter(List)}
+   *
+   * <p>Method under test: {@link ClassPathEntry#setAabFilter(List)}
    */
   @Test
-  @DisplayName("Test setAabFilter(List); then ClassPathEntry(File, boolean) with file is STD_OUT and isOutput is 'true' Filtered")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.ClassPathEntry.setAabFilter(java.util.List)"})
+  @DisplayName(
+      "Test setAabFilter(List); then ClassPathEntry(File, boolean) with file is STD_OUT and isOutput is 'true' Filtered")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ClassPathEntry.setAabFilter(List)"})
   void testSetAabFilter_thenClassPathEntryWithFileIsStd_outAndIsOutputIsTrueFiltered() {
     // Arrange
     ClassPathEntry classPathEntry = new ClassPathEntry(Configuration.STD_OUT, true);
@@ -615,16 +704,18 @@ class ClassPathEntryDiffblueTest {
 
   /**
    * Test {@link ClassPathEntry#setAabFilter(List)}.
+   *
    * <ul>
-   *   <li>When {@link ArrayList#ArrayList()}.</li>
+   *   <li>When {@link ArrayList#ArrayList()}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#setAabFilter(List)}
+   *
+   * <p>Method under test: {@link ClassPathEntry#setAabFilter(List)}
    */
   @Test
   @DisplayName("Test setAabFilter(List); when ArrayList()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.ClassPathEntry.setAabFilter(java.util.List)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ClassPathEntry.setAabFilter(List)"})
   void testSetAabFilter_whenArrayList() {
     // Arrange
     ClassPathEntry classPathEntry = new ClassPathEntry(Configuration.STD_OUT, true);
@@ -638,16 +729,18 @@ class ClassPathEntryDiffblueTest {
 
   /**
    * Test {@link ClassPathEntry#setAabFilter(List)}.
+   *
    * <ul>
-   *   <li>When {@code null}.</li>
+   *   <li>When {@code null}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#setAabFilter(List)}
+   *
+   * <p>Method under test: {@link ClassPathEntry#setAabFilter(List)}
    */
   @Test
   @DisplayName("Test setAabFilter(List); when 'null'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.ClassPathEntry.setAabFilter(java.util.List)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ClassPathEntry.setAabFilter(List)"})
   void testSetAabFilter_whenNull() {
     // Arrange
     ClassPathEntry classPathEntry = new ClassPathEntry(Configuration.STD_OUT, true);
@@ -661,17 +754,19 @@ class ClassPathEntryDiffblueTest {
 
   /**
    * Test {@link ClassPathEntry#setJarFilter(List)}.
+   *
    * <ul>
-   *   <li>Given {@code 42}.</li>
-   *   <li>When {@link ArrayList#ArrayList()} add {@code 42}.</li>
+   *   <li>Given {@code 42}.
+   *   <li>When {@link ArrayList#ArrayList()} add {@code 42}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#setJarFilter(List)}
+   *
+   * <p>Method under test: {@link ClassPathEntry#setJarFilter(List)}
    */
   @Test
   @DisplayName("Test setJarFilter(List); given '42'; when ArrayList() add '42'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.ClassPathEntry.setJarFilter(java.util.List)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ClassPathEntry.setJarFilter(List)"})
   void testSetJarFilter_given42_whenArrayListAdd42() {
     // Arrange
     ClassPathEntry classPathEntry = new ClassPathEntry(Configuration.STD_OUT, true);
@@ -690,16 +785,20 @@ class ClassPathEntryDiffblueTest {
 
   /**
    * Test {@link ClassPathEntry#setJarFilter(List)}.
+   *
    * <ul>
-   *   <li>Then {@link ClassPathEntry#ClassPathEntry(File, boolean)} with file is {@link Configuration#STD_OUT} and isOutput is {@code true} Filtered.</li>
+   *   <li>Then {@link ClassPathEntry#ClassPathEntry(File, boolean)} with file is {@link
+   *       Configuration#STD_OUT} and isOutput is {@code true} Filtered.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#setJarFilter(List)}
+   *
+   * <p>Method under test: {@link ClassPathEntry#setJarFilter(List)}
    */
   @Test
-  @DisplayName("Test setJarFilter(List); then ClassPathEntry(File, boolean) with file is STD_OUT and isOutput is 'true' Filtered")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.ClassPathEntry.setJarFilter(java.util.List)"})
+  @DisplayName(
+      "Test setJarFilter(List); then ClassPathEntry(File, boolean) with file is STD_OUT and isOutput is 'true' Filtered")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ClassPathEntry.setJarFilter(List)"})
   void testSetJarFilter_thenClassPathEntryWithFileIsStd_outAndIsOutputIsTrueFiltered() {
     // Arrange
     ClassPathEntry classPathEntry = new ClassPathEntry(Configuration.STD_OUT, true);
@@ -717,16 +816,18 @@ class ClassPathEntryDiffblueTest {
 
   /**
    * Test {@link ClassPathEntry#setJarFilter(List)}.
+   *
    * <ul>
-   *   <li>When {@link ArrayList#ArrayList()}.</li>
+   *   <li>When {@link ArrayList#ArrayList()}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#setJarFilter(List)}
+   *
+   * <p>Method under test: {@link ClassPathEntry#setJarFilter(List)}
    */
   @Test
   @DisplayName("Test setJarFilter(List); when ArrayList()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.ClassPathEntry.setJarFilter(java.util.List)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ClassPathEntry.setJarFilter(List)"})
   void testSetJarFilter_whenArrayList() {
     // Arrange
     ClassPathEntry classPathEntry = new ClassPathEntry(Configuration.STD_OUT, true);
@@ -740,16 +841,18 @@ class ClassPathEntryDiffblueTest {
 
   /**
    * Test {@link ClassPathEntry#setJarFilter(List)}.
+   *
    * <ul>
-   *   <li>When {@code null}.</li>
+   *   <li>When {@code null}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#setJarFilter(List)}
+   *
+   * <p>Method under test: {@link ClassPathEntry#setJarFilter(List)}
    */
   @Test
   @DisplayName("Test setJarFilter(List); when 'null'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.ClassPathEntry.setJarFilter(java.util.List)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ClassPathEntry.setJarFilter(List)"})
   void testSetJarFilter_whenNull() {
     // Arrange
     ClassPathEntry classPathEntry = new ClassPathEntry(Configuration.STD_OUT, true);
@@ -763,17 +866,19 @@ class ClassPathEntryDiffblueTest {
 
   /**
    * Test {@link ClassPathEntry#setAarFilter(List)}.
+   *
    * <ul>
-   *   <li>Given {@code 42}.</li>
-   *   <li>When {@link ArrayList#ArrayList()} add {@code 42}.</li>
+   *   <li>Given {@code 42}.
+   *   <li>When {@link ArrayList#ArrayList()} add {@code 42}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#setAarFilter(List)}
+   *
+   * <p>Method under test: {@link ClassPathEntry#setAarFilter(List)}
    */
   @Test
   @DisplayName("Test setAarFilter(List); given '42'; when ArrayList() add '42'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.ClassPathEntry.setAarFilter(java.util.List)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ClassPathEntry.setAarFilter(List)"})
   void testSetAarFilter_given42_whenArrayListAdd42() {
     // Arrange
     ClassPathEntry classPathEntry = new ClassPathEntry(Configuration.STD_OUT, true);
@@ -792,16 +897,20 @@ class ClassPathEntryDiffblueTest {
 
   /**
    * Test {@link ClassPathEntry#setAarFilter(List)}.
+   *
    * <ul>
-   *   <li>Then {@link ClassPathEntry#ClassPathEntry(File, boolean)} with file is {@link Configuration#STD_OUT} and isOutput is {@code true} Filtered.</li>
+   *   <li>Then {@link ClassPathEntry#ClassPathEntry(File, boolean)} with file is {@link
+   *       Configuration#STD_OUT} and isOutput is {@code true} Filtered.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#setAarFilter(List)}
+   *
+   * <p>Method under test: {@link ClassPathEntry#setAarFilter(List)}
    */
   @Test
-  @DisplayName("Test setAarFilter(List); then ClassPathEntry(File, boolean) with file is STD_OUT and isOutput is 'true' Filtered")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.ClassPathEntry.setAarFilter(java.util.List)"})
+  @DisplayName(
+      "Test setAarFilter(List); then ClassPathEntry(File, boolean) with file is STD_OUT and isOutput is 'true' Filtered")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ClassPathEntry.setAarFilter(List)"})
   void testSetAarFilter_thenClassPathEntryWithFileIsStd_outAndIsOutputIsTrueFiltered() {
     // Arrange
     ClassPathEntry classPathEntry = new ClassPathEntry(Configuration.STD_OUT, true);
@@ -819,16 +928,18 @@ class ClassPathEntryDiffblueTest {
 
   /**
    * Test {@link ClassPathEntry#setAarFilter(List)}.
+   *
    * <ul>
-   *   <li>When {@link ArrayList#ArrayList()}.</li>
+   *   <li>When {@link ArrayList#ArrayList()}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#setAarFilter(List)}
+   *
+   * <p>Method under test: {@link ClassPathEntry#setAarFilter(List)}
    */
   @Test
   @DisplayName("Test setAarFilter(List); when ArrayList()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.ClassPathEntry.setAarFilter(java.util.List)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ClassPathEntry.setAarFilter(List)"})
   void testSetAarFilter_whenArrayList() {
     // Arrange
     ClassPathEntry classPathEntry = new ClassPathEntry(Configuration.STD_OUT, true);
@@ -842,16 +953,18 @@ class ClassPathEntryDiffblueTest {
 
   /**
    * Test {@link ClassPathEntry#setAarFilter(List)}.
+   *
    * <ul>
-   *   <li>When {@code null}.</li>
+   *   <li>When {@code null}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#setAarFilter(List)}
+   *
+   * <p>Method under test: {@link ClassPathEntry#setAarFilter(List)}
    */
   @Test
   @DisplayName("Test setAarFilter(List); when 'null'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.ClassPathEntry.setAarFilter(java.util.List)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ClassPathEntry.setAarFilter(List)"})
   void testSetAarFilter_whenNull() {
     // Arrange
     ClassPathEntry classPathEntry = new ClassPathEntry(Configuration.STD_OUT, true);
@@ -865,17 +978,19 @@ class ClassPathEntryDiffblueTest {
 
   /**
    * Test {@link ClassPathEntry#setWarFilter(List)}.
+   *
    * <ul>
-   *   <li>Given {@code 42}.</li>
-   *   <li>When {@link ArrayList#ArrayList()} add {@code 42}.</li>
+   *   <li>Given {@code 42}.
+   *   <li>When {@link ArrayList#ArrayList()} add {@code 42}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#setWarFilter(List)}
+   *
+   * <p>Method under test: {@link ClassPathEntry#setWarFilter(List)}
    */
   @Test
   @DisplayName("Test setWarFilter(List); given '42'; when ArrayList() add '42'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.ClassPathEntry.setWarFilter(java.util.List)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ClassPathEntry.setWarFilter(List)"})
   void testSetWarFilter_given42_whenArrayListAdd42() {
     // Arrange
     ClassPathEntry classPathEntry = new ClassPathEntry(Configuration.STD_OUT, true);
@@ -894,16 +1009,20 @@ class ClassPathEntryDiffblueTest {
 
   /**
    * Test {@link ClassPathEntry#setWarFilter(List)}.
+   *
    * <ul>
-   *   <li>Then {@link ClassPathEntry#ClassPathEntry(File, boolean)} with file is {@link Configuration#STD_OUT} and isOutput is {@code true} Filtered.</li>
+   *   <li>Then {@link ClassPathEntry#ClassPathEntry(File, boolean)} with file is {@link
+   *       Configuration#STD_OUT} and isOutput is {@code true} Filtered.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#setWarFilter(List)}
+   *
+   * <p>Method under test: {@link ClassPathEntry#setWarFilter(List)}
    */
   @Test
-  @DisplayName("Test setWarFilter(List); then ClassPathEntry(File, boolean) with file is STD_OUT and isOutput is 'true' Filtered")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.ClassPathEntry.setWarFilter(java.util.List)"})
+  @DisplayName(
+      "Test setWarFilter(List); then ClassPathEntry(File, boolean) with file is STD_OUT and isOutput is 'true' Filtered")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ClassPathEntry.setWarFilter(List)"})
   void testSetWarFilter_thenClassPathEntryWithFileIsStd_outAndIsOutputIsTrueFiltered() {
     // Arrange
     ClassPathEntry classPathEntry = new ClassPathEntry(Configuration.STD_OUT, true);
@@ -921,16 +1040,18 @@ class ClassPathEntryDiffblueTest {
 
   /**
    * Test {@link ClassPathEntry#setWarFilter(List)}.
+   *
    * <ul>
-   *   <li>When {@link ArrayList#ArrayList()}.</li>
+   *   <li>When {@link ArrayList#ArrayList()}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#setWarFilter(List)}
+   *
+   * <p>Method under test: {@link ClassPathEntry#setWarFilter(List)}
    */
   @Test
   @DisplayName("Test setWarFilter(List); when ArrayList()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.ClassPathEntry.setWarFilter(java.util.List)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ClassPathEntry.setWarFilter(List)"})
   void testSetWarFilter_whenArrayList() {
     // Arrange
     ClassPathEntry classPathEntry = new ClassPathEntry(Configuration.STD_OUT, true);
@@ -944,16 +1065,18 @@ class ClassPathEntryDiffblueTest {
 
   /**
    * Test {@link ClassPathEntry#setWarFilter(List)}.
+   *
    * <ul>
-   *   <li>When {@code null}.</li>
+   *   <li>When {@code null}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#setWarFilter(List)}
+   *
+   * <p>Method under test: {@link ClassPathEntry#setWarFilter(List)}
    */
   @Test
   @DisplayName("Test setWarFilter(List); when 'null'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.ClassPathEntry.setWarFilter(java.util.List)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ClassPathEntry.setWarFilter(List)"})
   void testSetWarFilter_whenNull() {
     // Arrange
     ClassPathEntry classPathEntry = new ClassPathEntry(Configuration.STD_OUT, true);
@@ -967,17 +1090,19 @@ class ClassPathEntryDiffblueTest {
 
   /**
    * Test {@link ClassPathEntry#setEarFilter(List)}.
+   *
    * <ul>
-   *   <li>Given {@code 42}.</li>
-   *   <li>When {@link ArrayList#ArrayList()} add {@code 42}.</li>
+   *   <li>Given {@code 42}.
+   *   <li>When {@link ArrayList#ArrayList()} add {@code 42}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#setEarFilter(List)}
+   *
+   * <p>Method under test: {@link ClassPathEntry#setEarFilter(List)}
    */
   @Test
   @DisplayName("Test setEarFilter(List); given '42'; when ArrayList() add '42'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.ClassPathEntry.setEarFilter(java.util.List)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ClassPathEntry.setEarFilter(List)"})
   void testSetEarFilter_given42_whenArrayListAdd42() {
     // Arrange
     ClassPathEntry classPathEntry = new ClassPathEntry(Configuration.STD_OUT, true);
@@ -996,16 +1121,20 @@ class ClassPathEntryDiffblueTest {
 
   /**
    * Test {@link ClassPathEntry#setEarFilter(List)}.
+   *
    * <ul>
-   *   <li>Then {@link ClassPathEntry#ClassPathEntry(File, boolean)} with file is {@link Configuration#STD_OUT} and isOutput is {@code true} Filtered.</li>
+   *   <li>Then {@link ClassPathEntry#ClassPathEntry(File, boolean)} with file is {@link
+   *       Configuration#STD_OUT} and isOutput is {@code true} Filtered.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#setEarFilter(List)}
+   *
+   * <p>Method under test: {@link ClassPathEntry#setEarFilter(List)}
    */
   @Test
-  @DisplayName("Test setEarFilter(List); then ClassPathEntry(File, boolean) with file is STD_OUT and isOutput is 'true' Filtered")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.ClassPathEntry.setEarFilter(java.util.List)"})
+  @DisplayName(
+      "Test setEarFilter(List); then ClassPathEntry(File, boolean) with file is STD_OUT and isOutput is 'true' Filtered")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ClassPathEntry.setEarFilter(List)"})
   void testSetEarFilter_thenClassPathEntryWithFileIsStd_outAndIsOutputIsTrueFiltered() {
     // Arrange
     ClassPathEntry classPathEntry = new ClassPathEntry(Configuration.STD_OUT, true);
@@ -1023,16 +1152,18 @@ class ClassPathEntryDiffblueTest {
 
   /**
    * Test {@link ClassPathEntry#setEarFilter(List)}.
+   *
    * <ul>
-   *   <li>When {@link ArrayList#ArrayList()}.</li>
+   *   <li>When {@link ArrayList#ArrayList()}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#setEarFilter(List)}
+   *
+   * <p>Method under test: {@link ClassPathEntry#setEarFilter(List)}
    */
   @Test
   @DisplayName("Test setEarFilter(List); when ArrayList()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.ClassPathEntry.setEarFilter(java.util.List)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ClassPathEntry.setEarFilter(List)"})
   void testSetEarFilter_whenArrayList() {
     // Arrange
     ClassPathEntry classPathEntry = new ClassPathEntry(Configuration.STD_OUT, true);
@@ -1046,16 +1177,18 @@ class ClassPathEntryDiffblueTest {
 
   /**
    * Test {@link ClassPathEntry#setEarFilter(List)}.
+   *
    * <ul>
-   *   <li>When {@code null}.</li>
+   *   <li>When {@code null}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#setEarFilter(List)}
+   *
+   * <p>Method under test: {@link ClassPathEntry#setEarFilter(List)}
    */
   @Test
   @DisplayName("Test setEarFilter(List); when 'null'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.ClassPathEntry.setEarFilter(java.util.List)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ClassPathEntry.setEarFilter(List)"})
   void testSetEarFilter_whenNull() {
     // Arrange
     ClassPathEntry classPathEntry = new ClassPathEntry(Configuration.STD_OUT, true);
@@ -1069,17 +1202,19 @@ class ClassPathEntryDiffblueTest {
 
   /**
    * Test {@link ClassPathEntry#setJmodFilter(List)}.
+   *
    * <ul>
-   *   <li>Given {@code 42}.</li>
-   *   <li>When {@link ArrayList#ArrayList()} add {@code 42}.</li>
+   *   <li>Given {@code 42}.
+   *   <li>When {@link ArrayList#ArrayList()} add {@code 42}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#setJmodFilter(List)}
+   *
+   * <p>Method under test: {@link ClassPathEntry#setJmodFilter(List)}
    */
   @Test
   @DisplayName("Test setJmodFilter(List); given '42'; when ArrayList() add '42'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.ClassPathEntry.setJmodFilter(java.util.List)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ClassPathEntry.setJmodFilter(List)"})
   void testSetJmodFilter_given42_whenArrayListAdd42() {
     // Arrange
     ClassPathEntry classPathEntry = new ClassPathEntry(Configuration.STD_OUT, true);
@@ -1098,16 +1233,20 @@ class ClassPathEntryDiffblueTest {
 
   /**
    * Test {@link ClassPathEntry#setJmodFilter(List)}.
+   *
    * <ul>
-   *   <li>Then {@link ClassPathEntry#ClassPathEntry(File, boolean)} with file is {@link Configuration#STD_OUT} and isOutput is {@code true} Filtered.</li>
+   *   <li>Then {@link ClassPathEntry#ClassPathEntry(File, boolean)} with file is {@link
+   *       Configuration#STD_OUT} and isOutput is {@code true} Filtered.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#setJmodFilter(List)}
+   *
+   * <p>Method under test: {@link ClassPathEntry#setJmodFilter(List)}
    */
   @Test
-  @DisplayName("Test setJmodFilter(List); then ClassPathEntry(File, boolean) with file is STD_OUT and isOutput is 'true' Filtered")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.ClassPathEntry.setJmodFilter(java.util.List)"})
+  @DisplayName(
+      "Test setJmodFilter(List); then ClassPathEntry(File, boolean) with file is STD_OUT and isOutput is 'true' Filtered")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ClassPathEntry.setJmodFilter(List)"})
   void testSetJmodFilter_thenClassPathEntryWithFileIsStd_outAndIsOutputIsTrueFiltered() {
     // Arrange
     ClassPathEntry classPathEntry = new ClassPathEntry(Configuration.STD_OUT, true);
@@ -1125,16 +1264,18 @@ class ClassPathEntryDiffblueTest {
 
   /**
    * Test {@link ClassPathEntry#setJmodFilter(List)}.
+   *
    * <ul>
-   *   <li>When {@link ArrayList#ArrayList()}.</li>
+   *   <li>When {@link ArrayList#ArrayList()}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#setJmodFilter(List)}
+   *
+   * <p>Method under test: {@link ClassPathEntry#setJmodFilter(List)}
    */
   @Test
   @DisplayName("Test setJmodFilter(List); when ArrayList()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.ClassPathEntry.setJmodFilter(java.util.List)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ClassPathEntry.setJmodFilter(List)"})
   void testSetJmodFilter_whenArrayList() {
     // Arrange
     ClassPathEntry classPathEntry = new ClassPathEntry(Configuration.STD_OUT, true);
@@ -1148,16 +1289,18 @@ class ClassPathEntryDiffblueTest {
 
   /**
    * Test {@link ClassPathEntry#setJmodFilter(List)}.
+   *
    * <ul>
-   *   <li>When {@code null}.</li>
+   *   <li>When {@code null}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#setJmodFilter(List)}
+   *
+   * <p>Method under test: {@link ClassPathEntry#setJmodFilter(List)}
    */
   @Test
   @DisplayName("Test setJmodFilter(List); when 'null'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.ClassPathEntry.setJmodFilter(java.util.List)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ClassPathEntry.setJmodFilter(List)"})
   void testSetJmodFilter_whenNull() {
     // Arrange
     ClassPathEntry classPathEntry = new ClassPathEntry(Configuration.STD_OUT, true);
@@ -1171,17 +1314,19 @@ class ClassPathEntryDiffblueTest {
 
   /**
    * Test {@link ClassPathEntry#setZipFilter(List)}.
+   *
    * <ul>
-   *   <li>Given {@code 42}.</li>
-   *   <li>When {@link ArrayList#ArrayList()} add {@code 42}.</li>
+   *   <li>Given {@code 42}.
+   *   <li>When {@link ArrayList#ArrayList()} add {@code 42}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#setZipFilter(List)}
+   *
+   * <p>Method under test: {@link ClassPathEntry#setZipFilter(List)}
    */
   @Test
   @DisplayName("Test setZipFilter(List); given '42'; when ArrayList() add '42'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.ClassPathEntry.setZipFilter(java.util.List)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ClassPathEntry.setZipFilter(List)"})
   void testSetZipFilter_given42_whenArrayListAdd42() {
     // Arrange
     ClassPathEntry classPathEntry = new ClassPathEntry(Configuration.STD_OUT, true);
@@ -1200,16 +1345,20 @@ class ClassPathEntryDiffblueTest {
 
   /**
    * Test {@link ClassPathEntry#setZipFilter(List)}.
+   *
    * <ul>
-   *   <li>Then {@link ClassPathEntry#ClassPathEntry(File, boolean)} with file is {@link Configuration#STD_OUT} and isOutput is {@code true} Filtered.</li>
+   *   <li>Then {@link ClassPathEntry#ClassPathEntry(File, boolean)} with file is {@link
+   *       Configuration#STD_OUT} and isOutput is {@code true} Filtered.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#setZipFilter(List)}
+   *
+   * <p>Method under test: {@link ClassPathEntry#setZipFilter(List)}
    */
   @Test
-  @DisplayName("Test setZipFilter(List); then ClassPathEntry(File, boolean) with file is STD_OUT and isOutput is 'true' Filtered")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.ClassPathEntry.setZipFilter(java.util.List)"})
+  @DisplayName(
+      "Test setZipFilter(List); then ClassPathEntry(File, boolean) with file is STD_OUT and isOutput is 'true' Filtered")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ClassPathEntry.setZipFilter(List)"})
   void testSetZipFilter_thenClassPathEntryWithFileIsStd_outAndIsOutputIsTrueFiltered() {
     // Arrange
     ClassPathEntry classPathEntry = new ClassPathEntry(Configuration.STD_OUT, true);
@@ -1227,16 +1376,18 @@ class ClassPathEntryDiffblueTest {
 
   /**
    * Test {@link ClassPathEntry#setZipFilter(List)}.
+   *
    * <ul>
-   *   <li>When {@link ArrayList#ArrayList()}.</li>
+   *   <li>When {@link ArrayList#ArrayList()}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#setZipFilter(List)}
+   *
+   * <p>Method under test: {@link ClassPathEntry#setZipFilter(List)}
    */
   @Test
   @DisplayName("Test setZipFilter(List); when ArrayList()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.ClassPathEntry.setZipFilter(java.util.List)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ClassPathEntry.setZipFilter(List)"})
   void testSetZipFilter_whenArrayList() {
     // Arrange
     ClassPathEntry classPathEntry = new ClassPathEntry(Configuration.STD_OUT, true);
@@ -1250,16 +1401,18 @@ class ClassPathEntryDiffblueTest {
 
   /**
    * Test {@link ClassPathEntry#setZipFilter(List)}.
+   *
    * <ul>
-   *   <li>When {@code null}.</li>
+   *   <li>When {@code null}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#setZipFilter(List)}
+   *
+   * <p>Method under test: {@link ClassPathEntry#setZipFilter(List)}
    */
   @Test
   @DisplayName("Test setZipFilter(List); when 'null'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.ClassPathEntry.setZipFilter(java.util.List)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ClassPathEntry.setZipFilter(List)"})
   void testSetZipFilter_whenNull() {
     // Arrange
     ClassPathEntry classPathEntry = new ClassPathEntry(Configuration.STD_OUT, true);
@@ -1273,13 +1426,14 @@ class ClassPathEntryDiffblueTest {
 
   /**
    * Test {@link ClassPathEntry#toString()}.
-   * <p>
-   * Method under test: {@link ClassPathEntry#toString()}
+   *
+   * <p>Method under test: {@link ClassPathEntry#toString()}
    */
   @Test
   @DisplayName("Test toString()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"java.lang.String proguard.ClassPathEntry.toString()"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"String ClassPathEntry.toString()"})
   void testToString() {
     // Arrange
     ArrayList<String> filter = new ArrayList<>();
@@ -1292,18 +1446,20 @@ class ClassPathEntryDiffblueTest {
     String actualToStringResult = classPathEntry.toString();
 
     // Assert
-    assertEquals(String.join("", System.getProperty("user.dir"), "(;;;;;;;;'(')"), actualToStringResult);
+    assertEquals(
+        String.join("", System.getProperty("user.dir"), "(;;;;;;;;'(')"), actualToStringResult);
   }
 
   /**
    * Test {@link ClassPathEntry#toString()}.
-   * <p>
-   * Method under test: {@link ClassPathEntry#toString()}
+   *
+   * <p>Method under test: {@link ClassPathEntry#toString()}
    */
   @Test
   @DisplayName("Test toString()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"java.lang.String proguard.ClassPathEntry.toString()"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"String ClassPathEntry.toString()"})
   void testToString2() {
     // Arrange
     ArrayList<String> filter = new ArrayList<>();
@@ -1316,18 +1472,20 @@ class ClassPathEntryDiffblueTest {
     String actualToStringResult = classPathEntry.toString();
 
     // Assert
-    assertEquals(String.join("", System.getProperty("user.dir"), "(;;;;;;;;')')"), actualToStringResult);
+    assertEquals(
+        String.join("", System.getProperty("user.dir"), "(;;;;;;;;')')"), actualToStringResult);
   }
 
   /**
    * Test {@link ClassPathEntry#toString()}.
-   * <p>
-   * Method under test: {@link ClassPathEntry#toString()}
+   *
+   * <p>Method under test: {@link ClassPathEntry#toString()}
    */
   @Test
   @DisplayName("Test toString()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"java.lang.String proguard.ClassPathEntry.toString()"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"String ClassPathEntry.toString()"})
   void testToString3() {
     // Arrange
     ArrayList<String> filter = new ArrayList<>();
@@ -1340,21 +1498,25 @@ class ClassPathEntryDiffblueTest {
     String actualToStringResult = classPathEntry.toString();
 
     // Assert
-    assertEquals(String.join("", System.getProperty("user.dir"), "(;;;;;;;;'')"), actualToStringResult);
+    assertEquals(
+        String.join("", System.getProperty("user.dir"), "(;;;;;;;;'')"), actualToStringResult);
   }
 
   /**
    * Test {@link ClassPathEntry#toString()}.
+   *
    * <ul>
-   *   <li>Then return join empty string and Property is {@code user.dir} and {@code (;;;;;;;;foo)}.</li>
+   *   <li>Then return join empty string and Property is {@code user.dir} and {@code (;;;;;;;;foo)}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#toString()}
+   *
+   * <p>Method under test: {@link ClassPathEntry#toString()}
    */
   @Test
-  @DisplayName("Test toString(); then return join empty string and Property is 'user.dir' and '(;;;;;;;;foo)'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"java.lang.String proguard.ClassPathEntry.toString()"})
+  @DisplayName(
+      "Test toString(); then return join empty string and Property is 'user.dir' and '(;;;;;;;;foo)'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"String ClassPathEntry.toString()"})
   void testToString_thenReturnJoinEmptyStringAndPropertyIsUserDirAndFoo() {
     // Arrange
     ArrayList<String> filter = new ArrayList<>();
@@ -1367,21 +1529,26 @@ class ClassPathEntryDiffblueTest {
     String actualToStringResult = classPathEntry.toString();
 
     // Assert
-    assertEquals(String.join("", System.getProperty("user.dir"), "(;;;;;;;;foo)"), actualToStringResult);
+    assertEquals(
+        String.join("", System.getProperty("user.dir"), "(;;;;;;;;foo)"), actualToStringResult);
   }
 
   /**
    * Test {@link ClassPathEntry#toString()}.
+   *
    * <ul>
-   *   <li>Then return join empty string and Property is {@code user.dir} and {@code (;;;;;;;;';',foo)}.</li>
+   *   <li>Then return join empty string and Property is {@code user.dir} and {@code
+   *       (;;;;;;;;';',foo)}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#toString()}
+   *
+   * <p>Method under test: {@link ClassPathEntry#toString()}
    */
   @Test
-  @DisplayName("Test toString(); then return join empty string and Property is 'user.dir' and '(;;;;;;;;';',foo)'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"java.lang.String proguard.ClassPathEntry.toString()"})
+  @DisplayName(
+      "Test toString(); then return join empty string and Property is 'user.dir' and '(;;;;;;;;';',foo)'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"String ClassPathEntry.toString()"})
   void testToString_thenReturnJoinEmptyStringAndPropertyIsUserDirAndFoo2() {
     // Arrange
     ArrayList<String> filter = new ArrayList<>();
@@ -1395,21 +1562,25 @@ class ClassPathEntryDiffblueTest {
     String actualToStringResult = classPathEntry.toString();
 
     // Assert
-    assertEquals(String.join("", System.getProperty("user.dir"), "(;;;;;;;;';',foo)"), actualToStringResult);
+    assertEquals(
+        String.join("", System.getProperty("user.dir"), "(;;;;;;;;';',foo)"), actualToStringResult);
   }
 
   /**
    * Test {@link ClassPathEntry#toString()}.
+   *
    * <ul>
-   *   <li>Then return join empty string and Property is {@code user.dir} and {@code (;;foo;;;;;;)}.</li>
+   *   <li>Then return join empty string and Property is {@code user.dir} and {@code (;;foo;;;;;;)}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#toString()}
+   *
+   * <p>Method under test: {@link ClassPathEntry#toString()}
    */
   @Test
-  @DisplayName("Test toString(); then return join empty string and Property is 'user.dir' and '(;;foo;;;;;;)'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"java.lang.String proguard.ClassPathEntry.toString()"})
+  @DisplayName(
+      "Test toString(); then return join empty string and Property is 'user.dir' and '(;;foo;;;;;;)'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"String ClassPathEntry.toString()"})
   void testToString_thenReturnJoinEmptyStringAndPropertyIsUserDirAndFoo3() {
     // Arrange
     ArrayList<String> filter = new ArrayList<>();
@@ -1422,21 +1593,25 @@ class ClassPathEntryDiffblueTest {
     String actualToStringResult = classPathEntry.toString();
 
     // Assert
-    assertEquals(String.join("", System.getProperty("user.dir"), "(;;foo;;;;;;)"), actualToStringResult);
+    assertEquals(
+        String.join("", System.getProperty("user.dir"), "(;;foo;;;;;;)"), actualToStringResult);
   }
 
   /**
    * Test {@link ClassPathEntry#toString()}.
+   *
    * <ul>
-   *   <li>Then return join empty string and Property is {@code user.dir} and {@code (;foo;;;;;;;)}.</li>
+   *   <li>Then return join empty string and Property is {@code user.dir} and {@code (;foo;;;;;;;)}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#toString()}
+   *
+   * <p>Method under test: {@link ClassPathEntry#toString()}
    */
   @Test
-  @DisplayName("Test toString(); then return join empty string and Property is 'user.dir' and '(;foo;;;;;;;)'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"java.lang.String proguard.ClassPathEntry.toString()"})
+  @DisplayName(
+      "Test toString(); then return join empty string and Property is 'user.dir' and '(;foo;;;;;;;)'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"String ClassPathEntry.toString()"})
   void testToString_thenReturnJoinEmptyStringAndPropertyIsUserDirAndFoo4() {
     // Arrange
     ArrayList<String> filter = new ArrayList<>();
@@ -1449,21 +1624,25 @@ class ClassPathEntryDiffblueTest {
     String actualToStringResult = classPathEntry.toString();
 
     // Assert
-    assertEquals(String.join("", System.getProperty("user.dir"), "(;foo;;;;;;;)"), actualToStringResult);
+    assertEquals(
+        String.join("", System.getProperty("user.dir"), "(;foo;;;;;;;)"), actualToStringResult);
   }
 
   /**
    * Test {@link ClassPathEntry#toString()}.
+   *
    * <ul>
-   *   <li>Then return join empty string and Property is {@code user.dir} and {@code (;;;;;;;foo;)}.</li>
+   *   <li>Then return join empty string and Property is {@code user.dir} and {@code (;;;;;;;foo;)}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#toString()}
+   *
+   * <p>Method under test: {@link ClassPathEntry#toString()}
    */
   @Test
-  @DisplayName("Test toString(); then return join empty string and Property is 'user.dir' and '(;;;;;;;foo;)'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"java.lang.String proguard.ClassPathEntry.toString()"})
+  @DisplayName(
+      "Test toString(); then return join empty string and Property is 'user.dir' and '(;;;;;;;foo;)'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"String ClassPathEntry.toString()"})
   void testToString_thenReturnJoinEmptyStringAndPropertyIsUserDirAndFoo5() {
     // Arrange
     ArrayList<String> filter = new ArrayList<>();
@@ -1476,21 +1655,25 @@ class ClassPathEntryDiffblueTest {
     String actualToStringResult = classPathEntry.toString();
 
     // Assert
-    assertEquals(String.join("", System.getProperty("user.dir"), "(;;;;;;;foo;)"), actualToStringResult);
+    assertEquals(
+        String.join("", System.getProperty("user.dir"), "(;;;;;;;foo;)"), actualToStringResult);
   }
 
   /**
    * Test {@link ClassPathEntry#toString()}.
+   *
    * <ul>
-   *   <li>Then return join empty string and Property is {@code user.dir} and {@code (foo;;;;;;;;)}.</li>
+   *   <li>Then return join empty string and Property is {@code user.dir} and {@code (foo;;;;;;;;)}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#toString()}
+   *
+   * <p>Method under test: {@link ClassPathEntry#toString()}
    */
   @Test
-  @DisplayName("Test toString(); then return join empty string and Property is 'user.dir' and '(foo;;;;;;;;)'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"java.lang.String proguard.ClassPathEntry.toString()"})
+  @DisplayName(
+      "Test toString(); then return join empty string and Property is 'user.dir' and '(foo;;;;;;;;)'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"String ClassPathEntry.toString()"})
   void testToString_thenReturnJoinEmptyStringAndPropertyIsUserDirAndFoo6() {
     // Arrange
     ArrayList<String> filter = new ArrayList<>();
@@ -1503,21 +1686,25 @@ class ClassPathEntryDiffblueTest {
     String actualToStringResult = classPathEntry.toString();
 
     // Assert
-    assertEquals(String.join("", System.getProperty("user.dir"), "(foo;;;;;;;;)"), actualToStringResult);
+    assertEquals(
+        String.join("", System.getProperty("user.dir"), "(foo;;;;;;;;)"), actualToStringResult);
   }
 
   /**
    * Test {@link ClassPathEntry#toString()}.
+   *
    * <ul>
-   *   <li>Then return join empty string and Property is {@code user.dir} and {@code (;;;;;;foo;;)}.</li>
+   *   <li>Then return join empty string and Property is {@code user.dir} and {@code (;;;;;;foo;;)}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#toString()}
+   *
+   * <p>Method under test: {@link ClassPathEntry#toString()}
    */
   @Test
-  @DisplayName("Test toString(); then return join empty string and Property is 'user.dir' and '(;;;;;;foo;;)'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"java.lang.String proguard.ClassPathEntry.toString()"})
+  @DisplayName(
+      "Test toString(); then return join empty string and Property is 'user.dir' and '(;;;;;;foo;;)'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"String ClassPathEntry.toString()"})
   void testToString_thenReturnJoinEmptyStringAndPropertyIsUserDirAndFoo7() {
     // Arrange
     ArrayList<String> filter = new ArrayList<>();
@@ -1530,21 +1717,25 @@ class ClassPathEntryDiffblueTest {
     String actualToStringResult = classPathEntry.toString();
 
     // Assert
-    assertEquals(String.join("", System.getProperty("user.dir"), "(;;;;;;foo;;)"), actualToStringResult);
+    assertEquals(
+        String.join("", System.getProperty("user.dir"), "(;;;;;;foo;;)"), actualToStringResult);
   }
 
   /**
    * Test {@link ClassPathEntry#toString()}.
+   *
    * <ul>
-   *   <li>Then return join empty string and Property is {@code user.dir} and {@code (;;;;;foo;;;)}.</li>
+   *   <li>Then return join empty string and Property is {@code user.dir} and {@code (;;;;;foo;;;)}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#toString()}
+   *
+   * <p>Method under test: {@link ClassPathEntry#toString()}
    */
   @Test
-  @DisplayName("Test toString(); then return join empty string and Property is 'user.dir' and '(;;;;;foo;;;)'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"java.lang.String proguard.ClassPathEntry.toString()"})
+  @DisplayName(
+      "Test toString(); then return join empty string and Property is 'user.dir' and '(;;;;;foo;;;)'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"String ClassPathEntry.toString()"})
   void testToString_thenReturnJoinEmptyStringAndPropertyIsUserDirAndFoo8() {
     // Arrange
     ArrayList<String> filter = new ArrayList<>();
@@ -1557,23 +1748,58 @@ class ClassPathEntryDiffblueTest {
     String actualToStringResult = classPathEntry.toString();
 
     // Assert
-    assertEquals(String.join("", System.getProperty("user.dir"), "(;;;;;foo;;;)"), actualToStringResult);
+    assertEquals(
+        String.join("", System.getProperty("user.dir"), "(;;;;;foo;;;)"), actualToStringResult);
   }
 
   /**
    * Test {@link ClassPathEntry#toString()}.
+   *
    * <ul>
-   *   <li>Then return Property is {@code user.dir}.</li>
+   *   <li>Then return join empty string and Property is {@code user.dir} and {@code (;;;;foo;;;;)}.
    * </ul>
-   * <p>
-   * Method under test: {@link ClassPathEntry#toString()}
+   *
+   * <p>Method under test: {@link ClassPathEntry#toString()}
+   */
+  @Test
+  @DisplayName(
+      "Test toString(); then return join empty string and Property is 'user.dir' and '(;;;;foo;;;;)'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"String ClassPathEntry.toString()"})
+  void testToString_thenReturnJoinEmptyStringAndPropertyIsUserDirAndFoo9() {
+    // Arrange
+    ArrayList<String> filter = new ArrayList<>();
+    filter.add("foo");
+
+    ClassPathEntry classPathEntry = new ClassPathEntry(Configuration.STD_OUT, true);
+    classPathEntry.setJmodFilter(filter);
+
+    // Act
+    String actualToStringResult = classPathEntry.toString();
+
+    // Assert
+    assertEquals(
+        String.join("", System.getProperty("user.dir"), "(;;;;foo;;;;)"), actualToStringResult);
+  }
+
+  /**
+   * Test {@link ClassPathEntry#toString()}.
+   *
+   * <ul>
+   *   <li>Then return Property is {@code user.dir}.
+   * </ul>
+   *
+   * <p>Method under test: {@link ClassPathEntry#toString()}
    */
   @Test
   @DisplayName("Test toString(); then return Property is 'user.dir'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"java.lang.String proguard.ClassPathEntry.toString()"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"String ClassPathEntry.toString()"})
   void testToString_thenReturnPropertyIsUserDir() {
     // Arrange, Act and Assert
-    assertEquals(System.getProperty("user.dir"), (new ClassPathEntry(Configuration.STD_OUT, true)).toString());
+    assertEquals(
+        System.getProperty("user.dir"), new ClassPathEntry(Configuration.STD_OUT, true).toString());
   }
 }

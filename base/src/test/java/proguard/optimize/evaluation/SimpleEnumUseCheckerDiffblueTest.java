@@ -2,13 +2,13 @@ package proguard.optimize.evaluation;
 
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.ArgumentMatchers.isA;
-import static org.mockito.Mockito.anyBoolean;
 import static org.mockito.Mockito.anyInt;
 import static org.mockito.Mockito.atLeast;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -16,10 +16,10 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.Clazz;
 import proguard.classfile.LibraryClass;
+import proguard.classfile.LibraryField;
 import proguard.classfile.LibraryMethod;
 import proguard.classfile.Method;
 import proguard.classfile.ProgramClass;
-import proguard.classfile.ProgramMember;
 import proguard.classfile.ProgramMethod;
 import proguard.classfile.attribute.BootstrapMethodInfo;
 import proguard.classfile.attribute.BootstrapMethodsAttribute;
@@ -39,22 +39,25 @@ import proguard.classfile.visitor.ClassVisitor;
 import proguard.classfile.visitor.MemberVisitor;
 import proguard.optimize.info.ClassOptimizationInfo;
 import proguard.optimize.info.ProgramClassOptimizationInfo;
+import proguard.resources.file.ResourceFile;
 
 class SimpleEnumUseCheckerDiffblueTest {
   /**
    * Test {@link SimpleEnumUseChecker#visitProgramClass(ProgramClass)}.
+   *
    * <ul>
-   *   <li>Given {@code 8192}.</li>
-   *   <li>When {@link ProgramClass} {@link ProgramClass#getAccessFlags()} return {@code 8192}.</li>
+   *   <li>Given {@code 8192}.
+   *   <li>When {@link ProgramClass} {@link ProgramClass#getAccessFlags()} return {@code 8192}.
    * </ul>
-   * <p>
-   * Method under test: {@link SimpleEnumUseChecker#visitProgramClass(ProgramClass)}
+   *
+   * <p>Method under test: {@link SimpleEnumUseChecker#visitProgramClass(ProgramClass)}
    */
   @Test
-  @DisplayName("Test visitProgramClass(ProgramClass); given '8192'; when ProgramClass getAccessFlags() return '8192'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.evaluation.SimpleEnumUseChecker.visitProgramClass(proguard.classfile.ProgramClass)"})
+  @DisplayName(
+      "Test visitProgramClass(ProgramClass); given '8192'; when ProgramClass getAccessFlags() return '8192'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void SimpleEnumUseChecker.visitProgramClass(ProgramClass)"})
   void testVisitProgramClass_given8192_whenProgramClassGetAccessFlagsReturn8192() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
@@ -74,17 +77,19 @@ class SimpleEnumUseCheckerDiffblueTest {
 
   /**
    * Test {@link SimpleEnumUseChecker#visitProgramClass(ProgramClass)}.
+   *
    * <ul>
-   *   <li>When {@link ProgramClass} {@link ProgramClass#getAccessFlags()} return one.</li>
+   *   <li>When {@link ProgramClass} {@link ProgramClass#getAccessFlags()} return one.
    * </ul>
-   * <p>
-   * Method under test: {@link SimpleEnumUseChecker#visitProgramClass(ProgramClass)}
+   *
+   * <p>Method under test: {@link SimpleEnumUseChecker#visitProgramClass(ProgramClass)}
    */
   @Test
-  @DisplayName("Test visitProgramClass(ProgramClass); when ProgramClass getAccessFlags() return one")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.evaluation.SimpleEnumUseChecker.visitProgramClass(proguard.classfile.ProgramClass)"})
+  @DisplayName(
+      "Test visitProgramClass(ProgramClass); when ProgramClass getAccessFlags() return one")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void SimpleEnumUseChecker.visitProgramClass(ProgramClass)"})
   void testVisitProgramClass_whenProgramClassGetAccessFlagsReturnOne() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
@@ -103,44 +108,97 @@ class SimpleEnumUseCheckerDiffblueTest {
   }
 
   /**
-   * Test {@link SimpleEnumUseChecker#visitBootstrapMethodsAttribute(Clazz, BootstrapMethodsAttribute)}.
+   * Test {@link SimpleEnumUseChecker#visitBootstrapMethodsAttribute(Clazz,
+   * BootstrapMethodsAttribute)}.
+   *
    * <ul>
-   *   <li>Then calls {@link BootstrapMethodsAttribute#bootstrapMethodEntriesAccept(Clazz, BootstrapMethodInfoVisitor)}.</li>
+   *   <li>Then calls {@link BootstrapMethodsAttribute#bootstrapMethodEntriesAccept(Clazz,
+   *       BootstrapMethodInfoVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link SimpleEnumUseChecker#visitBootstrapMethodsAttribute(Clazz, BootstrapMethodsAttribute)}
+   *
+   * <p>Method under test: {@link SimpleEnumUseChecker#visitBootstrapMethodsAttribute(Clazz,
+   * BootstrapMethodsAttribute)}
    */
   @Test
-  @DisplayName("Test visitBootstrapMethodsAttribute(Clazz, BootstrapMethodsAttribute); then calls bootstrapMethodEntriesAccept(Clazz, BootstrapMethodInfoVisitor)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitBootstrapMethodsAttribute(Clazz, BootstrapMethodsAttribute); then calls bootstrapMethodEntriesAccept(Clazz, BootstrapMethodInfoVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.evaluation.SimpleEnumUseChecker.visitBootstrapMethodsAttribute(proguard.classfile.Clazz, proguard.classfile.attribute.BootstrapMethodsAttribute)"})
+    "void SimpleEnumUseChecker.visitBootstrapMethodsAttribute(Clazz, BootstrapMethodsAttribute)"
+  })
   void testVisitBootstrapMethodsAttribute_thenCallsBootstrapMethodEntriesAccept() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
     LibraryClass clazz = new LibraryClass();
     BootstrapMethodsAttribute bootstrapMethodsAttribute = mock(BootstrapMethodsAttribute.class);
-    doNothing().when(bootstrapMethodsAttribute)
-        .bootstrapMethodEntriesAccept(Mockito.<Clazz>any(), Mockito.<BootstrapMethodInfoVisitor>any());
+    doNothing()
+        .when(bootstrapMethodsAttribute)
+        .bootstrapMethodEntriesAccept(
+            Mockito.<Clazz>any(), Mockito.<BootstrapMethodInfoVisitor>any());
 
     // Act
     simpleEnumUseChecker.visitBootstrapMethodsAttribute(clazz, bootstrapMethodsAttribute);
 
     // Assert
-    verify(bootstrapMethodsAttribute).bootstrapMethodEntriesAccept(isA(Clazz.class),
-        isA(BootstrapMethodInfoVisitor.class));
+    verify(bootstrapMethodsAttribute)
+        .bootstrapMethodEntriesAccept(isA(Clazz.class), isA(BootstrapMethodInfoVisitor.class));
+  }
+
+  /**
+   * Test {@link SimpleEnumUseChecker#visitBootstrapMethodsAttribute(Clazz,
+   * BootstrapMethodsAttribute)}.
+   *
+   * <ul>
+   *   <li>Then calls {@link BootstrapMethodInfo#methodArgumentsAccept(Clazz, ConstantVisitor)}.
+   * </ul>
+   *
+   * <p>Method under test: {@link SimpleEnumUseChecker#visitBootstrapMethodsAttribute(Clazz,
+   * BootstrapMethodsAttribute)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitBootstrapMethodsAttribute(Clazz, BootstrapMethodsAttribute); then calls methodArgumentsAccept(Clazz, ConstantVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void SimpleEnumUseChecker.visitBootstrapMethodsAttribute(Clazz, BootstrapMethodsAttribute)"
+  })
+  void testVisitBootstrapMethodsAttribute_thenCallsMethodArgumentsAccept() {
+    // Arrange
+    SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
+    LibraryClass clazz = new LibraryClass();
+    BootstrapMethodInfo bootstrapMethodInfo = mock(BootstrapMethodInfo.class);
+    doNothing()
+        .when(bootstrapMethodInfo)
+        .methodArgumentsAccept(Mockito.<Clazz>any(), Mockito.<ConstantVisitor>any());
+    doNothing()
+        .when(bootstrapMethodInfo)
+        .methodHandleAccept(Mockito.<Clazz>any(), Mockito.<ConstantVisitor>any());
+
+    // Act
+    simpleEnumUseChecker.visitBootstrapMethodsAttribute(
+        clazz,
+        new BootstrapMethodsAttribute(1, 1, new BootstrapMethodInfo[] {bootstrapMethodInfo}));
+
+    // Assert
+    verify(bootstrapMethodInfo).methodArgumentsAccept(isA(Clazz.class), isA(ConstantVisitor.class));
+    verify(bootstrapMethodInfo).methodHandleAccept(isA(Clazz.class), isA(ConstantVisitor.class));
   }
 
   /**
    * Test {@link SimpleEnumUseChecker#visitBootstrapMethodInfo(Clazz, BootstrapMethodInfo)}.
-   * <p>
-   * Method under test: {@link SimpleEnumUseChecker#visitBootstrapMethodInfo(Clazz, BootstrapMethodInfo)}
+   *
+   * <p>Method under test: {@link SimpleEnumUseChecker#visitBootstrapMethodInfo(Clazz,
+   * BootstrapMethodInfo)}
    */
   @Test
   @DisplayName("Test visitBootstrapMethodInfo(Clazz, BootstrapMethodInfo)")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.evaluation.SimpleEnumUseChecker.visitBootstrapMethodInfo(proguard.classfile.Clazz, proguard.classfile.attribute.BootstrapMethodInfo)"})
+    "void SimpleEnumUseChecker.visitBootstrapMethodInfo(Clazz, BootstrapMethodInfo)"
+  })
   void testVisitBootstrapMethodInfo() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
@@ -148,7 +206,8 @@ class SimpleEnumUseCheckerDiffblueTest {
     doNothing().when(clazz).constantPoolEntryAccept(anyInt(), Mockito.<ConstantVisitor>any());
 
     // Act
-    simpleEnumUseChecker.visitBootstrapMethodInfo(clazz, new BootstrapMethodInfo(1, 3, new int[]{1, 0, 1, 0}));
+    simpleEnumUseChecker.visitBootstrapMethodInfo(
+        clazz, new BootstrapMethodInfo(1, 3, new int[] {1, 0, 1, 0}));
 
     // Assert
     verify(clazz, atLeast(1)).constantPoolEntryAccept(anyInt(), isA(ConstantVisitor.class));
@@ -156,17 +215,22 @@ class SimpleEnumUseCheckerDiffblueTest {
 
   /**
    * Test {@link SimpleEnumUseChecker#visitBootstrapMethodInfo(Clazz, BootstrapMethodInfo)}.
+   *
    * <ul>
-   *   <li>Then calls {@link LibraryClass#constantPoolEntryAccept(int, ConstantVisitor)}.</li>
+   *   <li>Then calls {@link LibraryClass#constantPoolEntryAccept(int, ConstantVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link SimpleEnumUseChecker#visitBootstrapMethodInfo(Clazz, BootstrapMethodInfo)}
+   *
+   * <p>Method under test: {@link SimpleEnumUseChecker#visitBootstrapMethodInfo(Clazz,
+   * BootstrapMethodInfo)}
    */
   @Test
-  @DisplayName("Test visitBootstrapMethodInfo(Clazz, BootstrapMethodInfo); then calls constantPoolEntryAccept(int, ConstantVisitor)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitBootstrapMethodInfo(Clazz, BootstrapMethodInfo); then calls constantPoolEntryAccept(int, ConstantVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.evaluation.SimpleEnumUseChecker.visitBootstrapMethodInfo(proguard.classfile.Clazz, proguard.classfile.attribute.BootstrapMethodInfo)"})
+    "void SimpleEnumUseChecker.visitBootstrapMethodInfo(Clazz, BootstrapMethodInfo)"
+  })
   void testVisitBootstrapMethodInfo_thenCallsConstantPoolEntryAccept() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
@@ -182,25 +246,34 @@ class SimpleEnumUseCheckerDiffblueTest {
 
   /**
    * Test {@link SimpleEnumUseChecker#visitBootstrapMethodInfo(Clazz, BootstrapMethodInfo)}.
+   *
    * <ul>
-   *   <li>When {@link LibraryClass}.</li>
-   *   <li>Then calls {@link BootstrapMethodInfo#methodArgumentsAccept(Clazz, ConstantVisitor)}.</li>
+   *   <li>When {@link LibraryClass}.
+   *   <li>Then calls {@link BootstrapMethodInfo#methodArgumentsAccept(Clazz, ConstantVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link SimpleEnumUseChecker#visitBootstrapMethodInfo(Clazz, BootstrapMethodInfo)}
+   *
+   * <p>Method under test: {@link SimpleEnumUseChecker#visitBootstrapMethodInfo(Clazz,
+   * BootstrapMethodInfo)}
    */
   @Test
-  @DisplayName("Test visitBootstrapMethodInfo(Clazz, BootstrapMethodInfo); when LibraryClass; then calls methodArgumentsAccept(Clazz, ConstantVisitor)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitBootstrapMethodInfo(Clazz, BootstrapMethodInfo); when LibraryClass; then calls methodArgumentsAccept(Clazz, ConstantVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.evaluation.SimpleEnumUseChecker.visitBootstrapMethodInfo(proguard.classfile.Clazz, proguard.classfile.attribute.BootstrapMethodInfo)"})
+    "void SimpleEnumUseChecker.visitBootstrapMethodInfo(Clazz, BootstrapMethodInfo)"
+  })
   void testVisitBootstrapMethodInfo_whenLibraryClass_thenCallsMethodArgumentsAccept() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
     LibraryClass clazz = mock(LibraryClass.class);
     BootstrapMethodInfo bootstrapMethodInfo = mock(BootstrapMethodInfo.class);
-    doNothing().when(bootstrapMethodInfo).methodArgumentsAccept(Mockito.<Clazz>any(), Mockito.<ConstantVisitor>any());
-    doNothing().when(bootstrapMethodInfo).methodHandleAccept(Mockito.<Clazz>any(), Mockito.<ConstantVisitor>any());
+    doNothing()
+        .when(bootstrapMethodInfo)
+        .methodArgumentsAccept(Mockito.<Clazz>any(), Mockito.<ConstantVisitor>any());
+    doNothing()
+        .when(bootstrapMethodInfo)
+        .methodHandleAccept(Mockito.<Clazz>any(), Mockito.<ConstantVisitor>any());
 
     // Act
     simpleEnumUseChecker.visitBootstrapMethodInfo(clazz, bootstrapMethodInfo);
@@ -212,25 +285,28 @@ class SimpleEnumUseCheckerDiffblueTest {
 
   /**
    * Test {@link SimpleEnumUseChecker#visitStringConstant(Clazz, StringConstant)}.
+   *
    * <ul>
-   *   <li>Given {@link LibraryClass} {@link LibraryClass#accept(ClassVisitor)} does nothing.</li>
-   *   <li>Then calls {@link LibraryClass#accept(ClassVisitor)}.</li>
+   *   <li>Given {@link LibraryClass} {@link LibraryClass#accept(ClassVisitor)} does nothing.
+   *   <li>Then calls {@link LibraryClass#accept(ClassVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link SimpleEnumUseChecker#visitStringConstant(Clazz, StringConstant)}
+   *
+   * <p>Method under test: {@link SimpleEnumUseChecker#visitStringConstant(Clazz, StringConstant)}
    */
   @Test
-  @DisplayName("Test visitStringConstant(Clazz, StringConstant); given LibraryClass accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.evaluation.SimpleEnumUseChecker.visitStringConstant(proguard.classfile.Clazz, proguard.classfile.constant.StringConstant)"})
+  @DisplayName(
+      "Test visitStringConstant(Clazz, StringConstant); given LibraryClass accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void SimpleEnumUseChecker.visitStringConstant(Clazz, StringConstant)"})
   void testVisitStringConstant_givenLibraryClassAcceptDoesNothing_thenCallsAccept() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
     LibraryClass clazz = new LibraryClass();
     LibraryClass libraryClass = mock(LibraryClass.class);
     doNothing().when(libraryClass).accept(Mockito.<ClassVisitor>any());
-    StringConstant stringConstant = new StringConstant();
+    StringConstant stringConstant = new StringConstant(1, new ResourceFile("foo.txt", 3L));
+
     stringConstant.referencedClass = libraryClass;
     stringConstant.referencedMember = null;
 
@@ -243,17 +319,19 @@ class SimpleEnumUseCheckerDiffblueTest {
 
   /**
    * Test {@link SimpleEnumUseChecker#visitStringConstant(Clazz, StringConstant)}.
+   *
    * <ul>
-   *   <li>Then calls {@link StringConstant#referencedClassAccept(ClassVisitor)}.</li>
+   *   <li>Then calls {@link StringConstant#referencedClassAccept(ClassVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link SimpleEnumUseChecker#visitStringConstant(Clazz, StringConstant)}
+   *
+   * <p>Method under test: {@link SimpleEnumUseChecker#visitStringConstant(Clazz, StringConstant)}
    */
   @Test
-  @DisplayName("Test visitStringConstant(Clazz, StringConstant); then calls referencedClassAccept(ClassVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.evaluation.SimpleEnumUseChecker.visitStringConstant(proguard.classfile.Clazz, proguard.classfile.constant.StringConstant)"})
+  @DisplayName(
+      "Test visitStringConstant(Clazz, StringConstant); then calls referencedClassAccept(ClassVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void SimpleEnumUseChecker.visitStringConstant(Clazz, StringConstant)"})
   void testVisitStringConstant_thenCallsReferencedClassAccept() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
@@ -269,51 +347,23 @@ class SimpleEnumUseCheckerDiffblueTest {
   }
 
   /**
-   * Test {@link SimpleEnumUseChecker#visitStringConstant(Clazz, StringConstant)}.
-   * <ul>
-   *   <li>Then calls {@link ProgramClassOptimizationInfo#setSimpleEnum(boolean)}.</li>
-   * </ul>
-   * <p>
-   * Method under test: {@link SimpleEnumUseChecker#visitStringConstant(Clazz, StringConstant)}
-   */
-  @Test
-  @DisplayName("Test visitStringConstant(Clazz, StringConstant); then calls setSimpleEnum(boolean)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.evaluation.SimpleEnumUseChecker.visitStringConstant(proguard.classfile.Clazz, proguard.classfile.constant.StringConstant)"})
-  void testVisitStringConstant_thenCallsSetSimpleEnum() {
-    // Arrange
-    SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
-    LibraryClass clazz = new LibraryClass();
-    ProgramClassOptimizationInfo programClassOptimizationInfo = mock(ProgramClassOptimizationInfo.class);
-    doNothing().when(programClassOptimizationInfo).setSimpleEnum(anyBoolean());
-
-    ProgramClass programClass = new ProgramClass();
-    programClass.setProcessingInfo(programClassOptimizationInfo);
-    StringConstant stringConstant = new StringConstant();
-    stringConstant.referencedClass = programClass;
-    stringConstant.referencedMember = null;
-
-    // Act
-    simpleEnumUseChecker.visitStringConstant(clazz, stringConstant);
-
-    // Assert
-    verify(programClassOptimizationInfo).setSimpleEnum(eq(false));
-  }
-
-  /**
    * Test {@link SimpleEnumUseChecker#visitMethodHandleConstant(Clazz, MethodHandleConstant)}.
+   *
    * <ul>
-   *   <li>Then calls {@link LibraryClass#constantPoolEntryAccept(int, ConstantVisitor)}.</li>
+   *   <li>Then calls {@link LibraryClass#constantPoolEntryAccept(int, ConstantVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link SimpleEnumUseChecker#visitMethodHandleConstant(Clazz, MethodHandleConstant)}
+   *
+   * <p>Method under test: {@link SimpleEnumUseChecker#visitMethodHandleConstant(Clazz,
+   * MethodHandleConstant)}
    */
   @Test
-  @DisplayName("Test visitMethodHandleConstant(Clazz, MethodHandleConstant); then calls constantPoolEntryAccept(int, ConstantVisitor)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitMethodHandleConstant(Clazz, MethodHandleConstant); then calls constantPoolEntryAccept(int, ConstantVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.evaluation.SimpleEnumUseChecker.visitMethodHandleConstant(proguard.classfile.Clazz, proguard.classfile.constant.MethodHandleConstant)"})
+    "void SimpleEnumUseChecker.visitMethodHandleConstant(Clazz, MethodHandleConstant)"
+  })
   void testVisitMethodHandleConstant_thenCallsConstantPoolEntryAccept() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
@@ -329,24 +379,31 @@ class SimpleEnumUseCheckerDiffblueTest {
 
   /**
    * Test {@link SimpleEnumUseChecker#visitMethodHandleConstant(Clazz, MethodHandleConstant)}.
+   *
    * <ul>
-   *   <li>When {@link LibraryClass}.</li>
-   *   <li>Then calls {@link MethodHandleConstant#referenceAccept(Clazz, ConstantVisitor)}.</li>
+   *   <li>When {@link LibraryClass}.
+   *   <li>Then calls {@link MethodHandleConstant#referenceAccept(Clazz, ConstantVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link SimpleEnumUseChecker#visitMethodHandleConstant(Clazz, MethodHandleConstant)}
+   *
+   * <p>Method under test: {@link SimpleEnumUseChecker#visitMethodHandleConstant(Clazz,
+   * MethodHandleConstant)}
    */
   @Test
-  @DisplayName("Test visitMethodHandleConstant(Clazz, MethodHandleConstant); when LibraryClass; then calls referenceAccept(Clazz, ConstantVisitor)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitMethodHandleConstant(Clazz, MethodHandleConstant); when LibraryClass; then calls referenceAccept(Clazz, ConstantVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.evaluation.SimpleEnumUseChecker.visitMethodHandleConstant(proguard.classfile.Clazz, proguard.classfile.constant.MethodHandleConstant)"})
+    "void SimpleEnumUseChecker.visitMethodHandleConstant(Clazz, MethodHandleConstant)"
+  })
   void testVisitMethodHandleConstant_whenLibraryClass_thenCallsReferenceAccept() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
     LibraryClass clazz = mock(LibraryClass.class);
     MethodHandleConstant methodHandleConstant = mock(MethodHandleConstant.class);
-    doNothing().when(methodHandleConstant).referenceAccept(Mockito.<Clazz>any(), Mockito.<ConstantVisitor>any());
+    doNothing()
+        .when(methodHandleConstant)
+        .referenceAccept(Mockito.<Clazz>any(), Mockito.<ConstantVisitor>any());
 
     // Act
     simpleEnumUseChecker.visitMethodHandleConstant(clazz, methodHandleConstant);
@@ -357,47 +414,22 @@ class SimpleEnumUseCheckerDiffblueTest {
 
   /**
    * Test {@link SimpleEnumUseChecker#visitMethodTypeConstant(Clazz, MethodTypeConstant)}.
+   *
    * <ul>
-   *   <li>Given {@link LibraryClass} {@link LibraryClass#accept(ClassVisitor)} does nothing.</li>
-   *   <li>Then calls {@link LibraryClass#accept(ClassVisitor)}.</li>
+   *   <li>Then calls {@link MethodTypeConstant#referencedClassesAccept(ClassVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link SimpleEnumUseChecker#visitMethodTypeConstant(Clazz, MethodTypeConstant)}
+   *
+   * <p>Method under test: {@link SimpleEnumUseChecker#visitMethodTypeConstant(Clazz,
+   * MethodTypeConstant)}
    */
   @Test
-  @DisplayName("Test visitMethodTypeConstant(Clazz, MethodTypeConstant); given LibraryClass accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitMethodTypeConstant(Clazz, MethodTypeConstant); then calls referencedClassesAccept(ClassVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.evaluation.SimpleEnumUseChecker.visitMethodTypeConstant(proguard.classfile.Clazz, proguard.classfile.constant.MethodTypeConstant)"})
-  void testVisitMethodTypeConstant_givenLibraryClassAcceptDoesNothing_thenCallsAccept() {
-    // Arrange
-    SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
-    LibraryClass clazz = new LibraryClass();
-    LibraryClass libraryClass = mock(LibraryClass.class);
-    doNothing().when(libraryClass).accept(Mockito.<ClassVisitor>any());
-    MethodTypeConstant methodTypeConstant = new MethodTypeConstant();
-    methodTypeConstant.referencedClasses = new Clazz[]{libraryClass};
-
-    // Act
-    simpleEnumUseChecker.visitMethodTypeConstant(clazz, methodTypeConstant);
-
-    // Assert
-    verify(libraryClass).accept(isA(ClassVisitor.class));
-  }
-
-  /**
-   * Test {@link SimpleEnumUseChecker#visitMethodTypeConstant(Clazz, MethodTypeConstant)}.
-   * <ul>
-   *   <li>Then calls {@link MethodTypeConstant#referencedClassesAccept(ClassVisitor)}.</li>
-   * </ul>
-   * <p>
-   * Method under test: {@link SimpleEnumUseChecker#visitMethodTypeConstant(Clazz, MethodTypeConstant)}
-   */
-  @Test
-  @DisplayName("Test visitMethodTypeConstant(Clazz, MethodTypeConstant); then calls referencedClassesAccept(ClassVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.evaluation.SimpleEnumUseChecker.visitMethodTypeConstant(proguard.classfile.Clazz, proguard.classfile.constant.MethodTypeConstant)"})
+    "void SimpleEnumUseChecker.visitMethodTypeConstant(Clazz, MethodTypeConstant)"
+  })
   void testVisitMethodTypeConstant_thenCallsReferencedClassesAccept() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
@@ -413,30 +445,34 @@ class SimpleEnumUseCheckerDiffblueTest {
   }
 
   /**
-   * Test {@link SimpleEnumUseChecker#visitAnyRefConstant(Clazz, RefConstant)}.
+   * Test {@link SimpleEnumUseChecker#visitMethodTypeConstant(Clazz, MethodTypeConstant)}.
+   *
    * <ul>
-   *   <li>Given {@link LibraryClass} {@link LibraryClass#accept(ClassVisitor)} does nothing.</li>
-   *   <li>Then calls {@link LibraryClass#accept(ClassVisitor)}.</li>
+   *   <li>When {@link LibraryClass} {@link LibraryClass#accept(ClassVisitor)} does nothing.
+   *   <li>Then calls {@link LibraryClass#accept(ClassVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link SimpleEnumUseChecker#visitAnyRefConstant(Clazz, RefConstant)}
+   *
+   * <p>Method under test: {@link SimpleEnumUseChecker#visitMethodTypeConstant(Clazz,
+   * MethodTypeConstant)}
    */
   @Test
-  @DisplayName("Test visitAnyRefConstant(Clazz, RefConstant); given LibraryClass accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitMethodTypeConstant(Clazz, MethodTypeConstant); when LibraryClass accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.evaluation.SimpleEnumUseChecker.visitAnyRefConstant(proguard.classfile.Clazz, proguard.classfile.constant.RefConstant)"})
-  void testVisitAnyRefConstant_givenLibraryClassAcceptDoesNothing_thenCallsAccept() {
+    "void SimpleEnumUseChecker.visitMethodTypeConstant(Clazz, MethodTypeConstant)"
+  })
+  void testVisitMethodTypeConstant_whenLibraryClassAcceptDoesNothing_thenCallsAccept() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
     LibraryClass clazz = new LibraryClass();
     LibraryClass libraryClass = mock(LibraryClass.class);
     doNothing().when(libraryClass).accept(Mockito.<ClassVisitor>any());
-    FieldrefConstant refConstant = new FieldrefConstant();
-    refConstant.referencedClass = libraryClass;
 
     // Act
-    simpleEnumUseChecker.visitAnyRefConstant(clazz, refConstant);
+    simpleEnumUseChecker.visitMethodTypeConstant(
+        clazz, new MethodTypeConstant(1, new Clazz[] {libraryClass}));
 
     // Assert
     verify(libraryClass).accept(isA(ClassVisitor.class));
@@ -444,17 +480,19 @@ class SimpleEnumUseCheckerDiffblueTest {
 
   /**
    * Test {@link SimpleEnumUseChecker#visitAnyRefConstant(Clazz, RefConstant)}.
+   *
    * <ul>
-   *   <li>Then calls {@link RefConstant#referencedClassAccept(ClassVisitor)}.</li>
+   *   <li>Then calls {@link FieldrefConstant#referencedClassAccept(ClassVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link SimpleEnumUseChecker#visitAnyRefConstant(Clazz, RefConstant)}
+   *
+   * <p>Method under test: {@link SimpleEnumUseChecker#visitAnyRefConstant(Clazz, RefConstant)}
    */
   @Test
-  @DisplayName("Test visitAnyRefConstant(Clazz, RefConstant); then calls referencedClassAccept(ClassVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.evaluation.SimpleEnumUseChecker.visitAnyRefConstant(proguard.classfile.Clazz, proguard.classfile.constant.RefConstant)"})
+  @DisplayName(
+      "Test visitAnyRefConstant(Clazz, RefConstant); then calls referencedClassAccept(ClassVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void SimpleEnumUseChecker.visitAnyRefConstant(Clazz, RefConstant)"})
   void testVisitAnyRefConstant_thenCallsReferencedClassAccept() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
@@ -470,48 +508,52 @@ class SimpleEnumUseCheckerDiffblueTest {
   }
 
   /**
-   * Test {@link SimpleEnumUseChecker#visitClassConstant(Clazz, ClassConstant)}.
+   * Test {@link SimpleEnumUseChecker#visitAnyRefConstant(Clazz, RefConstant)}.
+   *
    * <ul>
-   *   <li>Given {@link LibraryClass} {@link LibraryClass#accept(ClassVisitor)} does nothing.</li>
-   *   <li>Then calls {@link LibraryClass#accept(ClassVisitor)}.</li>
+   *   <li>When {@link LibraryClass} {@link LibraryClass#accept(ClassVisitor)} does nothing.
+   *   <li>Then calls {@link LibraryClass#accept(ClassVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link SimpleEnumUseChecker#visitClassConstant(Clazz, ClassConstant)}
+   *
+   * <p>Method under test: {@link SimpleEnumUseChecker#visitAnyRefConstant(Clazz, RefConstant)}
    */
   @Test
-  @DisplayName("Test visitClassConstant(Clazz, ClassConstant); given LibraryClass accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.evaluation.SimpleEnumUseChecker.visitClassConstant(proguard.classfile.Clazz, proguard.classfile.constant.ClassConstant)"})
-  void testVisitClassConstant_givenLibraryClassAcceptDoesNothing_thenCallsAccept() {
+  @DisplayName(
+      "Test visitAnyRefConstant(Clazz, RefConstant); when LibraryClass accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void SimpleEnumUseChecker.visitAnyRefConstant(Clazz, RefConstant)"})
+  void testVisitAnyRefConstant_whenLibraryClassAcceptDoesNothing_thenCallsAccept() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
     LibraryClass clazz = new LibraryClass();
-    LibraryClass libraryClass = mock(LibraryClass.class);
-    doNothing().when(libraryClass).accept(Mockito.<ClassVisitor>any());
-    ClassConstant classConstant = new ClassConstant();
-    classConstant.referencedClass = libraryClass;
+    LibraryClass referencedClass = mock(LibraryClass.class);
+    doNothing().when(referencedClass).accept(Mockito.<ClassVisitor>any());
 
     // Act
-    simpleEnumUseChecker.visitClassConstant(clazz, classConstant);
+    simpleEnumUseChecker.visitAnyRefConstant(
+        clazz,
+        new FieldrefConstant(1, 1, referencedClass, new LibraryField(1, "Name", "Descriptor")));
 
     // Assert
-    verify(libraryClass).accept(isA(ClassVisitor.class));
+    verify(referencedClass).accept(isA(ClassVisitor.class));
   }
 
   /**
    * Test {@link SimpleEnumUseChecker#visitClassConstant(Clazz, ClassConstant)}.
+   *
    * <ul>
-   *   <li>Then calls {@link ClassConstant#referencedClassAccept(ClassVisitor)}.</li>
+   *   <li>Then calls {@link ClassConstant#referencedClassAccept(ClassVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link SimpleEnumUseChecker#visitClassConstant(Clazz, ClassConstant)}
+   *
+   * <p>Method under test: {@link SimpleEnumUseChecker#visitClassConstant(Clazz, ClassConstant)}
    */
   @Test
-  @DisplayName("Test visitClassConstant(Clazz, ClassConstant); then calls referencedClassAccept(ClassVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.evaluation.SimpleEnumUseChecker.visitClassConstant(proguard.classfile.Clazz, proguard.classfile.constant.ClassConstant)"})
+  @DisplayName(
+      "Test visitClassConstant(Clazz, ClassConstant); then calls referencedClassAccept(ClassVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void SimpleEnumUseChecker.visitClassConstant(Clazz, ClassConstant)"})
   void testVisitClassConstant_thenCallsReferencedClassAccept() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
@@ -527,20 +569,55 @@ class SimpleEnumUseCheckerDiffblueTest {
   }
 
   /**
-   * Test {@link SimpleEnumUseChecker#visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction)}.
+   * Test {@link SimpleEnumUseChecker#visitClassConstant(Clazz, ClassConstant)}.
+   *
    * <ul>
-   *   <li>Given {@link LibraryClass#LibraryClass()}.</li>
-   *   <li>Then calls {@link ProgramClass#addSubClass(Clazz)}.</li>
+   *   <li>When {@link Clazz} {@link Clazz#accept(ClassVisitor)} does nothing.
+   *   <li>Then calls {@link Clazz#accept(ClassVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link SimpleEnumUseChecker#visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction)}
+   *
+   * <p>Method under test: {@link SimpleEnumUseChecker#visitClassConstant(Clazz, ClassConstant)}
    */
   @Test
-  @DisplayName("Test visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction); given LibraryClass(); then calls addSubClass(Clazz)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitClassConstant(Clazz, ClassConstant); when Clazz accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void SimpleEnumUseChecker.visitClassConstant(Clazz, ClassConstant)"})
+  void testVisitClassConstant_whenClazzAcceptDoesNothing_thenCallsAccept() {
+    // Arrange
+    SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
+    LibraryClass clazz = new LibraryClass();
+    Clazz referencedClass = mock(Clazz.class);
+    doNothing().when(referencedClass).accept(Mockito.<ClassVisitor>any());
+
+    // Act
+    simpleEnumUseChecker.visitClassConstant(clazz, new ClassConstant(1, referencedClass));
+
+    // Assert
+    verify(referencedClass).accept(isA(ClassVisitor.class));
+  }
+
+  /**
+   * Test {@link SimpleEnumUseChecker#visitConstantInstruction(Clazz, Method, CodeAttribute, int,
+   * ConstantInstruction)}.
+   *
+   * <ul>
+   *   <li>Then calls {@link ProgramClass#addSubClass(Clazz)}.
+   * </ul>
+   *
+   * <p>Method under test: {@link SimpleEnumUseChecker#visitConstantInstruction(Clazz, Method,
+   * CodeAttribute, int, ConstantInstruction)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction); then calls addSubClass(Clazz)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.evaluation.SimpleEnumUseChecker.visitConstantInstruction(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.CodeAttribute, int, proguard.classfile.instruction.ConstantInstruction)"})
-  void testVisitConstantInstruction_givenLibraryClass_thenCallsAddSubClass() {
+    "void SimpleEnumUseChecker.visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction)"
+  })
+  void testVisitConstantInstruction_thenCallsAddSubClass() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
     ProgramClass clazz = mock(ProgramClass.class);
@@ -550,12 +627,10 @@ class SimpleEnumUseCheckerDiffblueTest {
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
 
     CodeAttribute codeAttribute = new CodeAttribute(1);
-    ConstantInstruction constantInstruction = new ConstantInstruction((byte) 'A', 1);
-
-    constantInstruction.opcode = (byte) -77;
 
     // Act
-    simpleEnumUseChecker.visitConstantInstruction(clazz, method, codeAttribute, 2, constantInstruction);
+    simpleEnumUseChecker.visitConstantInstruction(
+        clazz, method, codeAttribute, 2, new ConstantInstruction((byte) -77, 1));
 
     // Assert
     verify(clazz).addSubClass(isA(Clazz.class));
@@ -563,20 +638,25 @@ class SimpleEnumUseCheckerDiffblueTest {
   }
 
   /**
-   * Test {@link SimpleEnumUseChecker#visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction)}.
+   * Test {@link SimpleEnumUseChecker#visitConstantInstruction(Clazz, Method, CodeAttribute, int,
+   * ConstantInstruction)}.
+   *
    * <ul>
-   *   <li>Given {@link LibraryClass#LibraryClass()}.</li>
-   *   <li>Then calls {@link ProgramClass#addSubClass(Clazz)}.</li>
+   *   <li>Then calls {@link ProgramClass#addSubClass(Clazz)}.
    * </ul>
-   * <p>
-   * Method under test: {@link SimpleEnumUseChecker#visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction)}
+   *
+   * <p>Method under test: {@link SimpleEnumUseChecker#visitConstantInstruction(Clazz, Method,
+   * CodeAttribute, int, ConstantInstruction)}
    */
   @Test
-  @DisplayName("Test visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction); given LibraryClass(); then calls addSubClass(Clazz)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction); then calls addSubClass(Clazz)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.evaluation.SimpleEnumUseChecker.visitConstantInstruction(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.CodeAttribute, int, proguard.classfile.instruction.ConstantInstruction)"})
-  void testVisitConstantInstruction_givenLibraryClass_thenCallsAddSubClass2() {
+    "void SimpleEnumUseChecker.visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction)"
+  })
+  void testVisitConstantInstruction_thenCallsAddSubClass2() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
     ProgramClass clazz = mock(ProgramClass.class);
@@ -586,12 +666,10 @@ class SimpleEnumUseCheckerDiffblueTest {
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
 
     CodeAttribute codeAttribute = new CodeAttribute(1);
-    ConstantInstruction constantInstruction = new ConstantInstruction((byte) 'A', 1);
-
-    constantInstruction.opcode = (byte) -73;
 
     // Act
-    simpleEnumUseChecker.visitConstantInstruction(clazz, method, codeAttribute, 2, constantInstruction);
+    simpleEnumUseChecker.visitConstantInstruction(
+        clazz, method, codeAttribute, 2, new ConstantInstruction((byte) -73, 1));
 
     // Assert
     verify(clazz).addSubClass(isA(Clazz.class));
@@ -600,22 +678,32 @@ class SimpleEnumUseCheckerDiffblueTest {
 
   /**
    * Test {@link SimpleEnumUseChecker#visitProgramMethod(ProgramClass, ProgramMethod)}.
-   * <p>
-   * Method under test: {@link SimpleEnumUseChecker#visitProgramMethod(ProgramClass, ProgramMethod)}
+   *
+   * <p>Method under test: {@link SimpleEnumUseChecker#visitProgramMethod(ProgramClass,
+   * ProgramMethod)}
    */
   @Test
   @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.evaluation.SimpleEnumUseChecker.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void SimpleEnumUseChecker.visitProgramMethod(ProgramClass, ProgramMethod)"})
   void testVisitProgramMethod() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
     Constant constant = mock(Constant.class);
     doNothing().when(constant).addProcessingFlags((int[]) Mockito.any());
     constant.addProcessingFlags(2, 1, 2, 1);
-    ProgramClass programClass = new ProgramClass(1, 3, new Constant[]{constant}, 1, 1, 1, "Feature Name", 1,
-        new ClassOptimizationInfo());
+    ProgramClass programClass =
+        new ProgramClass(
+            1,
+            3,
+            new Constant[] {constant},
+            1,
+            1,
+            1,
+            "Feature Name",
+            1,
+            new ClassOptimizationInfo());
 
     // Act
     simpleEnumUseChecker.visitProgramMethod(programClass, new ProgramMethod());
@@ -626,22 +714,32 @@ class SimpleEnumUseCheckerDiffblueTest {
 
   /**
    * Test {@link SimpleEnumUseChecker#visitProgramMethod(ProgramClass, ProgramMethod)}.
-   * <p>
-   * Method under test: {@link SimpleEnumUseChecker#visitProgramMethod(ProgramClass, ProgramMethod)}
+   *
+   * <p>Method under test: {@link SimpleEnumUseChecker#visitProgramMethod(ProgramClass,
+   * ProgramMethod)}
    */
   @Test
   @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.evaluation.SimpleEnumUseChecker.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void SimpleEnumUseChecker.visitProgramMethod(ProgramClass, ProgramMethod)"})
   void testVisitProgramMethod2() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
     Constant constant = mock(Constant.class);
     doNothing().when(constant).addProcessingFlags((int[]) Mockito.any());
     constant.addProcessingFlags(2, 1, 2, 1);
-    ProgramClass programClass = new ProgramClass(1, 3, new Constant[]{constant}, 1, 1, 1, "Feature Name", 1,
-        new ProgramClassOptimizationInfo());
+    ProgramClass programClass =
+        new ProgramClass(
+            1,
+            3,
+            new Constant[] {constant},
+            1,
+            1,
+            1,
+            "Feature Name",
+            1,
+            new ProgramClassOptimizationInfo());
 
     // Act
     simpleEnumUseChecker.visitProgramMethod(programClass, new ProgramMethod());
@@ -652,18 +750,56 @@ class SimpleEnumUseCheckerDiffblueTest {
 
   /**
    * Test {@link SimpleEnumUseChecker#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   *
    * <ul>
-   *   <li>Given {@code String}.</li>
-   *   <li>When {@link ProgramClass} {@link ProgramClass#getString(int)} return {@code String}.</li>
+   *   <li>Given {@code false}.
    * </ul>
-   * <p>
-   * Method under test: {@link SimpleEnumUseChecker#visitProgramMethod(ProgramClass, ProgramMethod)}
+   *
+   * <p>Method under test: {@link SimpleEnumUseChecker#visitProgramMethod(ProgramClass,
+   * ProgramMethod)}
    */
   @Test
-  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); given 'String'; when ProgramClass getString(int) return 'String'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.evaluation.SimpleEnumUseChecker.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
+  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); given 'false'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void SimpleEnumUseChecker.visitProgramMethod(ProgramClass, ProgramMethod)"})
+  void testVisitProgramMethod_givenFalse() {
+    // Arrange
+    SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
+    Constant constant = mock(Constant.class);
+    doNothing().when(constant).addProcessingFlags((int[]) Mockito.any());
+    constant.addProcessingFlags(2, 1, 2, 1);
+    ClassOptimizationInfo classOptimizationInfo = mock(ClassOptimizationInfo.class);
+    when(classOptimizationInfo.isSimpleEnum()).thenReturn(false);
+    ProgramClass programClass =
+        new ProgramClass(
+            1, 3, new Constant[] {constant}, 1, 1, 1, "Feature Name", 1, classOptimizationInfo);
+
+    // Act
+    simpleEnumUseChecker.visitProgramMethod(programClass, new ProgramMethod());
+
+    // Assert
+    verify(classOptimizationInfo).isSimpleEnum();
+    verify(constant).addProcessingFlags((int[]) Mockito.any());
+  }
+
+  /**
+   * Test {@link SimpleEnumUseChecker#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   *
+   * <ul>
+   *   <li>Given {@code String}.
+   *   <li>When {@link ProgramClass} {@link ProgramClass#getString(int)} return {@code String}.
+   * </ul>
+   *
+   * <p>Method under test: {@link SimpleEnumUseChecker#visitProgramMethod(ProgramClass,
+   * ProgramMethod)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitProgramMethod(ProgramClass, ProgramMethod); given 'String'; when ProgramClass getString(int) return 'String'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void SimpleEnumUseChecker.visitProgramMethod(ProgramClass, ProgramMethod)"})
   void testVisitProgramMethod_givenString_whenProgramClassGetStringReturnString() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
@@ -684,18 +820,21 @@ class SimpleEnumUseCheckerDiffblueTest {
 
   /**
    * Test {@link SimpleEnumUseChecker#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   *
    * <ul>
-   *   <li>When {@link ProgramClass} {@link ProgramClass#getString(int)} return {@code valueOf}.</li>
-   *   <li>Then calls {@link ProgramClass#getName()}.</li>
+   *   <li>When {@link ProgramClass} {@link ProgramClass#getString(int)} return {@code valueOf}.
+   *   <li>Then calls {@link ProgramClass#getName()}.
    * </ul>
-   * <p>
-   * Method under test: {@link SimpleEnumUseChecker#visitProgramMethod(ProgramClass, ProgramMethod)}
+   *
+   * <p>Method under test: {@link SimpleEnumUseChecker#visitProgramMethod(ProgramClass,
+   * ProgramMethod)}
    */
   @Test
-  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); when ProgramClass getString(int) return 'valueOf'; then calls getName()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.evaluation.SimpleEnumUseChecker.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
+  @DisplayName(
+      "Test visitProgramMethod(ProgramClass, ProgramMethod); when ProgramClass getString(int) return 'valueOf'; then calls getName()")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void SimpleEnumUseChecker.visitProgramMethod(ProgramClass, ProgramMethod)"})
   void testVisitProgramMethod_whenProgramClassGetStringReturnValueOf_thenCallsGetName() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
@@ -718,18 +857,21 @@ class SimpleEnumUseCheckerDiffblueTest {
 
   /**
    * Test {@link SimpleEnumUseChecker#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   *
    * <ul>
-   *   <li>When {@link ProgramMethod} {@link ProgramMember#getName(Clazz)} return {@code Name}.</li>
-   *   <li>Then calls {@link ProgramMember#getDescriptor(Clazz)}.</li>
+   *   <li>When {@link ProgramMethod} {@link ProgramMethod#getName(Clazz)} return {@code Name}.
+   *   <li>Then calls {@link ProgramMethod#getDescriptor(Clazz)}.
    * </ul>
-   * <p>
-   * Method under test: {@link SimpleEnumUseChecker#visitProgramMethod(ProgramClass, ProgramMethod)}
+   *
+   * <p>Method under test: {@link SimpleEnumUseChecker#visitProgramMethod(ProgramClass,
+   * ProgramMethod)}
    */
   @Test
-  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); when ProgramMethod getName(Clazz) return 'Name'; then calls getDescriptor(Clazz)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.evaluation.SimpleEnumUseChecker.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
+  @DisplayName(
+      "Test visitProgramMethod(ProgramClass, ProgramMethod); when ProgramMethod getName(Clazz) return 'Name'; then calls getDescriptor(Clazz)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void SimpleEnumUseChecker.visitProgramMethod(ProgramClass, ProgramMethod)"})
   void testVisitProgramMethod_whenProgramMethodGetNameReturnName_thenCallsGetDescriptor() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
@@ -753,18 +895,21 @@ class SimpleEnumUseCheckerDiffblueTest {
 
   /**
    * Test {@link SimpleEnumUseChecker#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   *
    * <ul>
-   *   <li>When {@link ProgramMethod} {@link ProgramMember#getName(Clazz)} return {@code valueOf}.</li>
-   *   <li>Then calls {@link ProgramClass#getName()}.</li>
+   *   <li>When {@link ProgramMethod} {@link ProgramMethod#getName(Clazz)} return {@code valueOf}.
+   *   <li>Then calls {@link ProgramClass#getName()}.
    * </ul>
-   * <p>
-   * Method under test: {@link SimpleEnumUseChecker#visitProgramMethod(ProgramClass, ProgramMethod)}
+   *
+   * <p>Method under test: {@link SimpleEnumUseChecker#visitProgramMethod(ProgramClass,
+   * ProgramMethod)}
    */
   @Test
-  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); when ProgramMethod getName(Clazz) return 'valueOf'; then calls getName()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.evaluation.SimpleEnumUseChecker.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
+  @DisplayName(
+      "Test visitProgramMethod(ProgramClass, ProgramMethod); when ProgramMethod getName(Clazz) return 'valueOf'; then calls getName()")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void SimpleEnumUseChecker.visitProgramMethod(ProgramClass, ProgramMethod)"})
   void testVisitProgramMethod_whenProgramMethodGetNameReturnValueOf_thenCallsGetName() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();

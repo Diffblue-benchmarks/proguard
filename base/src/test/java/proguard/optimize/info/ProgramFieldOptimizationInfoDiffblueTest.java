@@ -5,6 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.atLeast;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -16,34 +21,45 @@ import proguard.classfile.LibraryField;
 import proguard.classfile.attribute.Attribute;
 import proguard.classfile.attribute.BootstrapMethodsAttribute;
 import proguard.classfile.attribute.ConstantValueAttribute;
+import proguard.evaluation.ParticularReferenceValueFactory;
+import proguard.evaluation.value.ArrayReferenceValue;
 import proguard.evaluation.value.CompositeDoubleValue;
+import proguard.evaluation.value.IdentifiedArrayReferenceValue;
+import proguard.evaluation.value.IdentifiedReferenceValue;
+import proguard.evaluation.value.MultiTypedReferenceValue;
 import proguard.evaluation.value.ParticularDoubleValue;
 import proguard.evaluation.value.ParticularFloatValue;
+import proguard.evaluation.value.ParticularReferenceValue;
 import proguard.evaluation.value.ReferenceValue;
 import proguard.evaluation.value.TopValue;
+import proguard.evaluation.value.TracedReferenceValue;
+import proguard.evaluation.value.TypedReferenceValue;
 import proguard.evaluation.value.UnknownDoubleValue;
+import proguard.evaluation.value.UnknownIntegerValue;
 import proguard.evaluation.value.UnknownReferenceValue;
 import proguard.evaluation.value.Value;
+import proguard.evaluation.value.object.AnalyzedObject;
 import proguard.testutils.cpa.NamedField;
 
 class ProgramFieldOptimizationInfoDiffblueTest {
   /**
    * Test {@link ProgramFieldOptimizationInfo#ProgramFieldOptimizationInfo(Clazz, Field, boolean)}.
-   * <p>
-   * Method under test: {@link ProgramFieldOptimizationInfo#ProgramFieldOptimizationInfo(Clazz, Field, boolean)}
+   *
+   * <p>Method under test: {@link ProgramFieldOptimizationInfo#ProgramFieldOptimizationInfo(Clazz,
+   * Field, boolean)}
    */
   @Test
   @DisplayName("Test new ProgramFieldOptimizationInfo(Clazz, Field, boolean)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.ProgramFieldOptimizationInfo.<init>(proguard.classfile.Clazz, proguard.classfile.Field, boolean)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ProgramFieldOptimizationInfo.<init>(Clazz, Field, boolean)"})
   void testNewProgramFieldOptimizationInfo() {
     // Arrange
     LibraryClass clazz = new LibraryClass();
 
     // Act
-    ProgramFieldOptimizationInfo actualProgramFieldOptimizationInfo = new ProgramFieldOptimizationInfo(clazz,
-        new LibraryField(1, "Name", "Descriptor"), true);
+    ProgramFieldOptimizationInfo actualProgramFieldOptimizationInfo =
+        new ProgramFieldOptimizationInfo(clazz, new LibraryField(1, "Name", "Descriptor"), true);
 
     // Assert
     Value value = actualProgramFieldOptimizationInfo.getValue();
@@ -58,21 +74,22 @@ class ProgramFieldOptimizationInfoDiffblueTest {
 
   /**
    * Test {@link ProgramFieldOptimizationInfo#ProgramFieldOptimizationInfo(Clazz, Field, boolean)}.
-   * <p>
-   * Method under test: {@link ProgramFieldOptimizationInfo#ProgramFieldOptimizationInfo(Clazz, Field, boolean)}
+   *
+   * <p>Method under test: {@link ProgramFieldOptimizationInfo#ProgramFieldOptimizationInfo(Clazz,
+   * Field, boolean)}
    */
   @Test
   @DisplayName("Test new ProgramFieldOptimizationInfo(Clazz, Field, boolean)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.ProgramFieldOptimizationInfo.<init>(proguard.classfile.Clazz, proguard.classfile.Field, boolean)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ProgramFieldOptimizationInfo.<init>(Clazz, Field, boolean)"})
   void testNewProgramFieldOptimizationInfo2() {
     // Arrange
     LibraryClass clazz = new LibraryClass();
 
     // Act
-    ProgramFieldOptimizationInfo actualProgramFieldOptimizationInfo = new ProgramFieldOptimizationInfo(clazz,
-        new LibraryField(8, "Name", "Descriptor"), true);
+    ProgramFieldOptimizationInfo actualProgramFieldOptimizationInfo =
+        new ProgramFieldOptimizationInfo(clazz, new LibraryField(8, "Name", "Descriptor"), true);
 
     // Assert
     Value value = actualProgramFieldOptimizationInfo.getValue();
@@ -87,24 +104,27 @@ class ProgramFieldOptimizationInfoDiffblueTest {
 
   /**
    * Test {@link ProgramFieldOptimizationInfo#ProgramFieldOptimizationInfo(Clazz, Field, boolean)}.
+   *
    * <ul>
-   *   <li>Then return Read.</li>
+   *   <li>Then return Read.
    * </ul>
-   * <p>
-   * Method under test: {@link ProgramFieldOptimizationInfo#ProgramFieldOptimizationInfo(Clazz, Field, boolean)}
+   *
+   * <p>Method under test: {@link ProgramFieldOptimizationInfo#ProgramFieldOptimizationInfo(Clazz,
+   * Field, boolean)}
    */
   @Test
   @DisplayName("Test new ProgramFieldOptimizationInfo(Clazz, Field, boolean); then return Read")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.ProgramFieldOptimizationInfo.<init>(proguard.classfile.Clazz, proguard.classfile.Field, boolean)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ProgramFieldOptimizationInfo.<init>(Clazz, Field, boolean)"})
   void testNewProgramFieldOptimizationInfo_thenReturnRead() {
     // Arrange
     LibraryClass clazz = new LibraryClass();
 
     // Act
-    ProgramFieldOptimizationInfo actualProgramFieldOptimizationInfo = new ProgramFieldOptimizationInfo(clazz,
-        new LibraryField(Double.SIZE, "Name", "Descriptor"), true);
+    ProgramFieldOptimizationInfo actualProgramFieldOptimizationInfo =
+        new ProgramFieldOptimizationInfo(
+            clazz, new LibraryField(Double.SIZE, "Name", "Descriptor"), true);
 
     // Assert
     Value value = actualProgramFieldOptimizationInfo.getValue();
@@ -118,25 +138,31 @@ class ProgramFieldOptimizationInfoDiffblueTest {
   }
 
   /**
-   * Test {@link ProgramFieldOptimizationInfo#ProgramFieldOptimizationInfo(ProgramFieldOptimizationInfo)}.
+   * Test {@link
+   * ProgramFieldOptimizationInfo#ProgramFieldOptimizationInfo(ProgramFieldOptimizationInfo)}.
+   *
    * <ul>
-   *   <li>Then Value return {@link ParticularDoubleValue}.</li>
+   *   <li>Then Value return {@link ParticularDoubleValue}.
    * </ul>
-   * <p>
-   * Method under test: {@link ProgramFieldOptimizationInfo#ProgramFieldOptimizationInfo(ProgramFieldOptimizationInfo)}
+   *
+   * <p>Method under test: {@link
+   * ProgramFieldOptimizationInfo#ProgramFieldOptimizationInfo(ProgramFieldOptimizationInfo)}
    */
   @Test
-  @DisplayName("Test new ProgramFieldOptimizationInfo(ProgramFieldOptimizationInfo); then Value return ParticularDoubleValue")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.ProgramFieldOptimizationInfo.<init>(proguard.optimize.info.ProgramFieldOptimizationInfo)"})
+  @DisplayName(
+      "Test new ProgramFieldOptimizationInfo(ProgramFieldOptimizationInfo); then Value return ParticularDoubleValue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ProgramFieldOptimizationInfo.<init>(ProgramFieldOptimizationInfo)"})
   void testNewProgramFieldOptimizationInfo_thenValueReturnParticularDoubleValue() {
     // Arrange
     LibraryClass clazz = new LibraryClass();
 
     // Act
-    ProgramFieldOptimizationInfo actualProgramFieldOptimizationInfo = new ProgramFieldOptimizationInfo(
-        new ProgramFieldOptimizationInfo(clazz, new LibraryField(1, "Name", "Descriptor"), true));
+    ProgramFieldOptimizationInfo actualProgramFieldOptimizationInfo =
+        new ProgramFieldOptimizationInfo(
+            new ProgramFieldOptimizationInfo(
+                clazz, new LibraryField(1, "Name", "Descriptor"), true));
 
     // Assert
     Value value = actualProgramFieldOptimizationInfo.getValue();
@@ -154,24 +180,29 @@ class ProgramFieldOptimizationInfoDiffblueTest {
 
   /**
    * Test {@link ProgramFieldOptimizationInfo#ProgramFieldOptimizationInfo(Clazz, Field, boolean)}.
+   *
    * <ul>
-   *   <li>Then Value return {@link ParticularFloatValue}.</li>
+   *   <li>Then Value return {@link ParticularFloatValue}.
    * </ul>
-   * <p>
-   * Method under test: {@link ProgramFieldOptimizationInfo#ProgramFieldOptimizationInfo(Clazz, Field, boolean)}
+   *
+   * <p>Method under test: {@link ProgramFieldOptimizationInfo#ProgramFieldOptimizationInfo(Clazz,
+   * Field, boolean)}
    */
   @Test
-  @DisplayName("Test new ProgramFieldOptimizationInfo(Clazz, Field, boolean); then Value return ParticularFloatValue")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.ProgramFieldOptimizationInfo.<init>(proguard.classfile.Clazz, proguard.classfile.Field, boolean)"})
+  @DisplayName(
+      "Test new ProgramFieldOptimizationInfo(Clazz, Field, boolean); then Value return ParticularFloatValue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ProgramFieldOptimizationInfo.<init>(Clazz, Field, boolean)"})
   void testNewProgramFieldOptimizationInfo_thenValueReturnParticularFloatValue() {
     // Arrange
     LibraryClass clazz = new LibraryClass();
 
     // Act and Assert
-    Value value = (new ProgramFieldOptimizationInfo(clazz, new NamedField("Field Name", "Field Descriptor"), true))
-        .getValue();
+    Value value =
+        new ProgramFieldOptimizationInfo(
+                clazz, new NamedField("Field Name", "Field Descriptor"), true)
+            .getValue();
     assertTrue(value instanceof ParticularFloatValue);
     assertEquals(0.0f, ((ParticularFloatValue) value).value());
     assertFalse(value.isCategory2());
@@ -181,25 +212,28 @@ class ProgramFieldOptimizationInfoDiffblueTest {
 
   /**
    * Test {@link ProgramFieldOptimizationInfo#ProgramFieldOptimizationInfo(Clazz, Field, boolean)}.
+   *
    * <ul>
-   *   <li>When {@code false}.</li>
-   *   <li>Then return not Read.</li>
+   *   <li>When {@code false}.
+   *   <li>Then return not Read.
    * </ul>
-   * <p>
-   * Method under test: {@link ProgramFieldOptimizationInfo#ProgramFieldOptimizationInfo(Clazz, Field, boolean)}
+   *
+   * <p>Method under test: {@link ProgramFieldOptimizationInfo#ProgramFieldOptimizationInfo(Clazz,
+   * Field, boolean)}
    */
   @Test
-  @DisplayName("Test new ProgramFieldOptimizationInfo(Clazz, Field, boolean); when 'false'; then return not Read")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.ProgramFieldOptimizationInfo.<init>(proguard.classfile.Clazz, proguard.classfile.Field, boolean)"})
+  @DisplayName(
+      "Test new ProgramFieldOptimizationInfo(Clazz, Field, boolean); when 'false'; then return not Read")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ProgramFieldOptimizationInfo.<init>(Clazz, Field, boolean)"})
   void testNewProgramFieldOptimizationInfo_whenFalse_thenReturnNotRead() {
     // Arrange
     LibraryClass clazz = new LibraryClass();
 
     // Act
-    ProgramFieldOptimizationInfo actualProgramFieldOptimizationInfo = new ProgramFieldOptimizationInfo(clazz,
-        new LibraryField(1, "Name", "Descriptor"), false);
+    ProgramFieldOptimizationInfo actualProgramFieldOptimizationInfo =
+        new ProgramFieldOptimizationInfo(clazz, new LibraryField(1, "Name", "Descriptor"), false);
 
     // Assert
     Value value = actualProgramFieldOptimizationInfo.getValue();
@@ -214,8 +248,9 @@ class ProgramFieldOptimizationInfoDiffblueTest {
 
   /**
    * Test getters and setters.
-   * <p>
-   * Methods under test:
+   *
+   * <p>Methods under test:
+   *
    * <ul>
    *   <li>{@link ProgramFieldOptimizationInfo#visitAnyAttribute(Clazz, Attribute)}
    *   <li>{@link ProgramFieldOptimizationInfo#setCanNotBeMadePrivate()}
@@ -230,21 +265,24 @@ class ProgramFieldOptimizationInfoDiffblueTest {
    */
   @Test
   @DisplayName("Test getters and setters")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.optimize.info.ProgramFieldOptimizationInfo.canBeMadePrivate()",
-      "proguard.evaluation.value.ReferenceValue proguard.optimize.info.ProgramFieldOptimizationInfo.getReferencedClass()",
-      "boolean proguard.optimize.info.ProgramFieldOptimizationInfo.isKept()",
-      "boolean proguard.optimize.info.ProgramFieldOptimizationInfo.isRead()",
-      "boolean proguard.optimize.info.ProgramFieldOptimizationInfo.isWritten()",
-      "void proguard.optimize.info.ProgramFieldOptimizationInfo.setCanNotBeMadePrivate()",
-      "void proguard.optimize.info.ProgramFieldOptimizationInfo.setRead()",
-      "void proguard.optimize.info.ProgramFieldOptimizationInfo.setWritten()",
-      "void proguard.optimize.info.ProgramFieldOptimizationInfo.visitAnyAttribute(proguard.classfile.Clazz, proguard.classfile.attribute.Attribute)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "boolean ProgramFieldOptimizationInfo.canBeMadePrivate()",
+    "ReferenceValue ProgramFieldOptimizationInfo.getReferencedClass()",
+    "boolean ProgramFieldOptimizationInfo.isKept()",
+    "boolean ProgramFieldOptimizationInfo.isRead()",
+    "boolean ProgramFieldOptimizationInfo.isWritten()",
+    "void ProgramFieldOptimizationInfo.setCanNotBeMadePrivate()",
+    "void ProgramFieldOptimizationInfo.setRead()",
+    "void ProgramFieldOptimizationInfo.setWritten()",
+    "void ProgramFieldOptimizationInfo.visitAnyAttribute(Clazz, Attribute)"
+  })
   void testGettersAndSetters() {
     // Arrange
     LibraryClass clazz = new LibraryClass();
-    ProgramFieldOptimizationInfo programFieldOptimizationInfo = new ProgramFieldOptimizationInfo(clazz,
-        new LibraryField(1, "Name", "Descriptor"), true);
+    ProgramFieldOptimizationInfo programFieldOptimizationInfo =
+        new ProgramFieldOptimizationInfo(clazz, new LibraryField(1, "Name", "Descriptor"), true);
     LibraryClass clazz2 = new LibraryClass();
 
     // Act
@@ -267,19 +305,20 @@ class ProgramFieldOptimizationInfoDiffblueTest {
 
   /**
    * Test {@link ProgramFieldOptimizationInfo#generalizeReferencedClass(ReferenceValue)}.
-   * <p>
-   * Method under test: {@link ProgramFieldOptimizationInfo#generalizeReferencedClass(ReferenceValue)}
+   *
+   * <p>Method under test: {@link
+   * ProgramFieldOptimizationInfo#generalizeReferencedClass(ReferenceValue)}
    */
   @Test
   @DisplayName("Test generalizeReferencedClass(ReferenceValue)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.ProgramFieldOptimizationInfo.generalizeReferencedClass(proguard.evaluation.value.ReferenceValue)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ProgramFieldOptimizationInfo.generalizeReferencedClass(ReferenceValue)"})
   void testGeneralizeReferencedClass() {
     // Arrange
     LibraryClass clazz = new LibraryClass();
-    ProgramFieldOptimizationInfo programFieldOptimizationInfo = new ProgramFieldOptimizationInfo(clazz,
-        new LibraryField(1, "Name", "Descriptor"), true);
+    ProgramFieldOptimizationInfo programFieldOptimizationInfo =
+        new ProgramFieldOptimizationInfo(clazz, new LibraryField(1, "Name", "Descriptor"), true);
     UnknownReferenceValue referencedClass = new UnknownReferenceValue();
 
     // Act
@@ -290,20 +329,322 @@ class ProgramFieldOptimizationInfoDiffblueTest {
   }
 
   /**
+   * Test {@link ProgramFieldOptimizationInfo#generalizeReferencedClass(ReferenceValue)}.
+   *
+   * <p>Method under test: {@link
+   * ProgramFieldOptimizationInfo#generalizeReferencedClass(ReferenceValue)}
+   */
+  @Test
+  @DisplayName("Test generalizeReferencedClass(ReferenceValue)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ProgramFieldOptimizationInfo.generalizeReferencedClass(ReferenceValue)"})
+  void testGeneralizeReferencedClass2() {
+    // Arrange
+    LibraryClass clazz = new LibraryClass();
+
+    ProgramFieldOptimizationInfo programFieldOptimizationInfo =
+        new ProgramFieldOptimizationInfo(
+            new ProgramFieldOptimizationInfo(
+                clazz, new LibraryField(1, "Name", "Descriptor"), true));
+    UnknownReferenceValue referencedClass = new UnknownReferenceValue();
+    programFieldOptimizationInfo.generalizeReferencedClass(referencedClass);
+
+    // Act
+    programFieldOptimizationInfo.generalizeReferencedClass(new UnknownReferenceValue());
+
+    // Assert that nothing has changed
+    ReferenceValue referencedClass2 = programFieldOptimizationInfo.getReferencedClass();
+    assertTrue(referencedClass2 instanceof UnknownReferenceValue);
+    assertSame(referencedClass, referencedClass2);
+  }
+
+  /**
+   * Test {@link ProgramFieldOptimizationInfo#generalizeReferencedClass(ReferenceValue)}.
+   *
+   * <p>Method under test: {@link
+   * ProgramFieldOptimizationInfo#generalizeReferencedClass(ReferenceValue)}
+   */
+  @Test
+  @DisplayName("Test generalizeReferencedClass(ReferenceValue)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ProgramFieldOptimizationInfo.generalizeReferencedClass(ReferenceValue)"})
+  void testGeneralizeReferencedClass3() {
+    // Arrange
+    LibraryClass clazz = new LibraryClass();
+
+    ProgramFieldOptimizationInfo programFieldOptimizationInfo =
+        new ProgramFieldOptimizationInfo(
+            new ProgramFieldOptimizationInfo(
+                clazz, new LibraryField(1, "Name", "Descriptor"), true));
+    LibraryClass referencedClass = new LibraryClass();
+    programFieldOptimizationInfo.generalizeReferencedClass(
+        new ArrayReferenceValue("Type", referencedClass, true, new UnknownIntegerValue()));
+    UnknownReferenceValue referencedClass2 = new UnknownReferenceValue();
+
+    // Act
+    programFieldOptimizationInfo.generalizeReferencedClass(referencedClass2);
+
+    // Assert
+    assertSame(referencedClass2, programFieldOptimizationInfo.getReferencedClass());
+  }
+
+  /**
+   * Test {@link ProgramFieldOptimizationInfo#generalizeReferencedClass(ReferenceValue)}.
+   *
+   * <p>Method under test: {@link
+   * ProgramFieldOptimizationInfo#generalizeReferencedClass(ReferenceValue)}
+   */
+  @Test
+  @DisplayName("Test generalizeReferencedClass(ReferenceValue)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ProgramFieldOptimizationInfo.generalizeReferencedClass(ReferenceValue)"})
+  void testGeneralizeReferencedClass4() {
+    // Arrange
+    LibraryClass clazz = new LibraryClass();
+
+    ProgramFieldOptimizationInfo programFieldOptimizationInfo =
+        new ProgramFieldOptimizationInfo(
+            new ProgramFieldOptimizationInfo(
+                clazz, new LibraryField(1, "Name", "Descriptor"), true));
+    LibraryClass referencedClass = new LibraryClass();
+    UnknownIntegerValue arrayLength = new UnknownIntegerValue();
+    programFieldOptimizationInfo.generalizeReferencedClass(
+        new IdentifiedArrayReferenceValue(
+            "Type", referencedClass, true, arrayLength, new ParticularReferenceValueFactory(), 1));
+    UnknownReferenceValue referencedClass2 = new UnknownReferenceValue();
+
+    // Act
+    programFieldOptimizationInfo.generalizeReferencedClass(referencedClass2);
+
+    // Assert
+    assertSame(referencedClass2, programFieldOptimizationInfo.getReferencedClass());
+  }
+
+  /**
+   * Test {@link ProgramFieldOptimizationInfo#generalizeReferencedClass(ReferenceValue)}.
+   *
+   * <p>Method under test: {@link
+   * ProgramFieldOptimizationInfo#generalizeReferencedClass(ReferenceValue)}
+   */
+  @Test
+  @DisplayName("Test generalizeReferencedClass(ReferenceValue)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ProgramFieldOptimizationInfo.generalizeReferencedClass(ReferenceValue)"})
+  void testGeneralizeReferencedClass5() {
+    // Arrange
+    LibraryClass clazz = new LibraryClass();
+
+    ProgramFieldOptimizationInfo programFieldOptimizationInfo =
+        new ProgramFieldOptimizationInfo(
+            new ProgramFieldOptimizationInfo(
+                clazz, new LibraryField(1, "Name", "Descriptor"), true));
+    LibraryClass referencedClass = new LibraryClass();
+    programFieldOptimizationInfo.generalizeReferencedClass(
+        new IdentifiedReferenceValue(
+            "Type", referencedClass, true, true, new ParticularReferenceValueFactory(), "Id"));
+    UnknownReferenceValue referencedClass2 = new UnknownReferenceValue();
+
+    // Act
+    programFieldOptimizationInfo.generalizeReferencedClass(referencedClass2);
+
+    // Assert
+    assertSame(referencedClass2, programFieldOptimizationInfo.getReferencedClass());
+  }
+
+  /**
+   * Test {@link ProgramFieldOptimizationInfo#generalizeReferencedClass(ReferenceValue)}.
+   *
+   * <p>Method under test: {@link
+   * ProgramFieldOptimizationInfo#generalizeReferencedClass(ReferenceValue)}
+   */
+  @Test
+  @DisplayName("Test generalizeReferencedClass(ReferenceValue)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ProgramFieldOptimizationInfo.generalizeReferencedClass(ReferenceValue)"})
+  void testGeneralizeReferencedClass6() {
+    // Arrange
+    LibraryClass clazz = new LibraryClass();
+
+    ProgramFieldOptimizationInfo programFieldOptimizationInfo =
+        new ProgramFieldOptimizationInfo(
+            new ProgramFieldOptimizationInfo(
+                clazz, new LibraryField(1, "Name", "Descriptor"), true));
+    MultiTypedReferenceValue referencedClass =
+        new MultiTypedReferenceValue(
+            new TypedReferenceValue("Type", new LibraryClass(), true, true), true);
+
+    programFieldOptimizationInfo.generalizeReferencedClass(referencedClass);
+
+    // Act
+    programFieldOptimizationInfo.generalizeReferencedClass(new UnknownReferenceValue());
+
+    // Assert
+    ReferenceValue referencedClass2 = programFieldOptimizationInfo.getReferencedClass();
+    assertTrue(referencedClass2 instanceof MultiTypedReferenceValue);
+    assertEquals(referencedClass, referencedClass2);
+  }
+
+  /**
+   * Test {@link ProgramFieldOptimizationInfo#generalizeReferencedClass(ReferenceValue)}.
+   *
+   * <p>Method under test: {@link
+   * ProgramFieldOptimizationInfo#generalizeReferencedClass(ReferenceValue)}
+   */
+  @Test
+  @DisplayName("Test generalizeReferencedClass(ReferenceValue)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ProgramFieldOptimizationInfo.generalizeReferencedClass(ReferenceValue)"})
+  void testGeneralizeReferencedClass7() {
+    // Arrange
+    LibraryClass clazz = new LibraryClass();
+
+    ProgramFieldOptimizationInfo programFieldOptimizationInfo =
+        new ProgramFieldOptimizationInfo(
+            new ProgramFieldOptimizationInfo(
+                clazz, new LibraryField(1, "Name", "Descriptor"), true));
+    UnknownReferenceValue referenceValue = new UnknownReferenceValue();
+    programFieldOptimizationInfo.generalizeReferencedClass(
+        new TracedReferenceValue(referenceValue, new TopValue()));
+    UnknownReferenceValue referencedClass = new UnknownReferenceValue();
+
+    // Act
+    programFieldOptimizationInfo.generalizeReferencedClass(referencedClass);
+
+    // Assert
+    ReferenceValue referencedClass2 = programFieldOptimizationInfo.getReferencedClass();
+    assertTrue(referencedClass2 instanceof TracedReferenceValue);
+    assertSame(referencedClass, ((TracedReferenceValue) referencedClass2).getReferenceValue());
+  }
+
+  /**
+   * Test {@link ProgramFieldOptimizationInfo#generalizeReferencedClass(ReferenceValue)}.
+   *
+   * <p>Method under test: {@link
+   * ProgramFieldOptimizationInfo#generalizeReferencedClass(ReferenceValue)}
+   */
+  @Test
+  @DisplayName("Test generalizeReferencedClass(ReferenceValue)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ProgramFieldOptimizationInfo.generalizeReferencedClass(ReferenceValue)"})
+  void testGeneralizeReferencedClass8() {
+    // Arrange
+    LibraryClass clazz = new LibraryClass();
+
+    ProgramFieldOptimizationInfo programFieldOptimizationInfo =
+        new ProgramFieldOptimizationInfo(
+            new ProgramFieldOptimizationInfo(
+                clazz, new LibraryField(1, "Name", "Descriptor"), true));
+    programFieldOptimizationInfo.generalizeReferencedClass(
+        new TypedReferenceValue("Type", new LibraryClass(), true, true));
+    UnknownReferenceValue referencedClass = new UnknownReferenceValue();
+
+    // Act
+    programFieldOptimizationInfo.generalizeReferencedClass(referencedClass);
+
+    // Assert
+    assertSame(referencedClass, programFieldOptimizationInfo.getReferencedClass());
+  }
+
+  /**
+   * Test {@link ProgramFieldOptimizationInfo#generalizeReferencedClass(ReferenceValue)}.
+   *
+   * <p>Method under test: {@link
+   * ProgramFieldOptimizationInfo#generalizeReferencedClass(ReferenceValue)}
+   */
+  @Test
+  @DisplayName("Test generalizeReferencedClass(ReferenceValue)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ProgramFieldOptimizationInfo.generalizeReferencedClass(ReferenceValue)"})
+  void testGeneralizeReferencedClass9() {
+    // Arrange
+    LibraryClass clazz = new LibraryClass();
+
+    ProgramFieldOptimizationInfo programFieldOptimizationInfo =
+        new ProgramFieldOptimizationInfo(
+            new ProgramFieldOptimizationInfo(
+                clazz, new LibraryField(1, "Name", "Descriptor"), true));
+    MultiTypedReferenceValue referenceValue =
+        new MultiTypedReferenceValue(
+            new TypedReferenceValue("Type", new LibraryClass(), true, true), true);
+
+    programFieldOptimizationInfo.generalizeReferencedClass(
+        new TracedReferenceValue(referenceValue, new TopValue()));
+
+    // Act
+    programFieldOptimizationInfo.generalizeReferencedClass(new UnknownReferenceValue());
+
+    // Assert
+    ReferenceValue referencedClass = programFieldOptimizationInfo.getReferencedClass();
+    ReferenceValue referenceValue2 = ((TracedReferenceValue) referencedClass).getReferenceValue();
+    assertTrue(referenceValue2 instanceof MultiTypedReferenceValue);
+    assertTrue(referencedClass instanceof TracedReferenceValue);
+    assertEquals(referenceValue, referenceValue2);
+  }
+
+  /**
+   * Test {@link ProgramFieldOptimizationInfo#generalizeReferencedClass(ReferenceValue)}.
+   *
+   * <ul>
+   *   <li>Then calls {@link AnalyzedObject#getType()}.
+   * </ul>
+   *
+   * <p>Method under test: {@link
+   * ProgramFieldOptimizationInfo#generalizeReferencedClass(ReferenceValue)}
+   */
+  @Test
+  @DisplayName("Test generalizeReferencedClass(ReferenceValue); then calls getType()")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ProgramFieldOptimizationInfo.generalizeReferencedClass(ReferenceValue)"})
+  void testGeneralizeReferencedClass_thenCallsGetType() {
+    // Arrange
+    AnalyzedObject value = mock(AnalyzedObject.class);
+    when(value.getType()).thenReturn("Type");
+    LibraryClass referencedClass = new LibraryClass();
+    ParticularReferenceValue referencedClass2 =
+        new ParticularReferenceValue(
+            referencedClass, new ParticularReferenceValueFactory(), "Reference ID", value);
+
+    LibraryClass clazz = new LibraryClass();
+
+    ProgramFieldOptimizationInfo programFieldOptimizationInfo =
+        new ProgramFieldOptimizationInfo(
+            new ProgramFieldOptimizationInfo(
+                clazz, new LibraryField(1, "Name", "Descriptor"), true));
+    programFieldOptimizationInfo.generalizeReferencedClass(referencedClass2);
+    UnknownReferenceValue referencedClass3 = new UnknownReferenceValue();
+
+    // Act
+    programFieldOptimizationInfo.generalizeReferencedClass(referencedClass3);
+
+    // Assert
+    verify(value, atLeast(1)).getType();
+    assertSame(referencedClass3, programFieldOptimizationInfo.getReferencedClass());
+  }
+
+  /**
    * Test {@link ProgramFieldOptimizationInfo#resetValue(Clazz, Field)}.
-   * <p>
-   * Method under test: {@link ProgramFieldOptimizationInfo#resetValue(Clazz, Field)}
+   *
+   * <p>Method under test: {@link ProgramFieldOptimizationInfo#resetValue(Clazz, Field)}
    */
   @Test
   @DisplayName("Test resetValue(Clazz, Field)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.ProgramFieldOptimizationInfo.resetValue(proguard.classfile.Clazz, proguard.classfile.Field)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ProgramFieldOptimizationInfo.resetValue(Clazz, Field)"})
   void testResetValue() {
     // Arrange
     LibraryClass clazz = new LibraryClass();
-    ProgramFieldOptimizationInfo programFieldOptimizationInfo = new ProgramFieldOptimizationInfo(clazz,
-        new LibraryField(1, "Name", "Descriptor"), true);
+    ProgramFieldOptimizationInfo programFieldOptimizationInfo =
+        new ProgramFieldOptimizationInfo(clazz, new LibraryField(1, "Name", "Descriptor"), true);
     LibraryClass clazz2 = new LibraryClass();
 
     // Act
@@ -315,19 +656,19 @@ class ProgramFieldOptimizationInfoDiffblueTest {
 
   /**
    * Test {@link ProgramFieldOptimizationInfo#resetValue(Clazz, Field)}.
-   * <p>
-   * Method under test: {@link ProgramFieldOptimizationInfo#resetValue(Clazz, Field)}
+   *
+   * <p>Method under test: {@link ProgramFieldOptimizationInfo#resetValue(Clazz, Field)}
    */
   @Test
   @DisplayName("Test resetValue(Clazz, Field)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.ProgramFieldOptimizationInfo.resetValue(proguard.classfile.Clazz, proguard.classfile.Field)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ProgramFieldOptimizationInfo.resetValue(Clazz, Field)"})
   void testResetValue2() {
     // Arrange
     LibraryClass clazz = new LibraryClass();
-    ProgramFieldOptimizationInfo programFieldOptimizationInfo = new ProgramFieldOptimizationInfo(clazz,
-        new LibraryField(1, "Name", "Descriptor"), false);
+    ProgramFieldOptimizationInfo programFieldOptimizationInfo =
+        new ProgramFieldOptimizationInfo(clazz, new LibraryField(1, "Name", "Descriptor"), false);
     LibraryClass clazz2 = new LibraryClass();
 
     // Act
@@ -339,23 +680,24 @@ class ProgramFieldOptimizationInfoDiffblueTest {
 
   /**
    * Test {@link ProgramFieldOptimizationInfo#resetValue(Clazz, Field)}.
-   * <p>
-   * Method under test: {@link ProgramFieldOptimizationInfo#resetValue(Clazz, Field)}
+   *
+   * <p>Method under test: {@link ProgramFieldOptimizationInfo#resetValue(Clazz, Field)}
    */
   @Test
   @DisplayName("Test resetValue(Clazz, Field)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.ProgramFieldOptimizationInfo.resetValue(proguard.classfile.Clazz, proguard.classfile.Field)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ProgramFieldOptimizationInfo.resetValue(Clazz, Field)"})
   void testResetValue3() {
     // Arrange
     LibraryClass clazz = new LibraryClass();
-    ProgramFieldOptimizationInfo programFieldOptimizationInfo = new ProgramFieldOptimizationInfo(clazz,
-        new LibraryField(1, "Name", "Descriptor"), true);
+    ProgramFieldOptimizationInfo programFieldOptimizationInfo =
+        new ProgramFieldOptimizationInfo(clazz, new LibraryField(1, "Name", "Descriptor"), true);
     LibraryClass clazz2 = new LibraryClass();
 
     // Act
-    programFieldOptimizationInfo.resetValue(clazz2, new NamedField("Field Name", "Field Descriptor"));
+    programFieldOptimizationInfo.resetValue(
+        clazz2, new NamedField("Field Name", "Field Descriptor"));
 
     // Assert
     Value value = programFieldOptimizationInfo.getValue();
@@ -368,22 +710,25 @@ class ProgramFieldOptimizationInfoDiffblueTest {
 
   /**
    * Test {@link ProgramFieldOptimizationInfo#resetValue(Clazz, Field)}.
+   *
    * <ul>
-   *   <li>When {@link LibraryField#LibraryField(int, String, String)} with u2accessFlags is eight and {@code Name} and {@code Descriptor}.</li>
+   *   <li>When {@link LibraryField#LibraryField(int, String, String)} with u2accessFlags is eight
+   *       and {@code Name} and {@code Descriptor}.
    * </ul>
-   * <p>
-   * Method under test: {@link ProgramFieldOptimizationInfo#resetValue(Clazz, Field)}
+   *
+   * <p>Method under test: {@link ProgramFieldOptimizationInfo#resetValue(Clazz, Field)}
    */
   @Test
-  @DisplayName("Test resetValue(Clazz, Field); when LibraryField(int, String, String) with u2accessFlags is eight and 'Name' and 'Descriptor'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.ProgramFieldOptimizationInfo.resetValue(proguard.classfile.Clazz, proguard.classfile.Field)"})
+  @DisplayName(
+      "Test resetValue(Clazz, Field); when LibraryField(int, String, String) with u2accessFlags is eight and 'Name' and 'Descriptor'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ProgramFieldOptimizationInfo.resetValue(Clazz, Field)"})
   void testResetValue_whenLibraryFieldWithU2accessFlagsIsEightAndNameAndDescriptor() {
     // Arrange
     LibraryClass clazz = new LibraryClass();
-    ProgramFieldOptimizationInfo programFieldOptimizationInfo = new ProgramFieldOptimizationInfo(clazz,
-        new LibraryField(1, "Name", "Descriptor"), true);
+    ProgramFieldOptimizationInfo programFieldOptimizationInfo =
+        new ProgramFieldOptimizationInfo(clazz, new LibraryField(1, "Name", "Descriptor"), true);
     LibraryClass clazz2 = new LibraryClass();
 
     // Act
@@ -395,24 +740,24 @@ class ProgramFieldOptimizationInfoDiffblueTest {
 
   /**
    * Test {@link ProgramFieldOptimizationInfo#generalizeValue(Value)}.
-   * <p>
-   * Method under test: {@link ProgramFieldOptimizationInfo#generalizeValue(Value)}
+   *
+   * <p>Method under test: {@link ProgramFieldOptimizationInfo#generalizeValue(Value)}
    */
   @Test
   @DisplayName("Test generalizeValue(Value)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.ProgramFieldOptimizationInfo.generalizeValue(proguard.evaluation.value.Value)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ProgramFieldOptimizationInfo.generalizeValue(Value)"})
   void testGeneralizeValue() {
     // Arrange
     LibraryClass clazz = new LibraryClass();
-    ProgramFieldOptimizationInfo programFieldOptimizationInfo = new ProgramFieldOptimizationInfo(clazz,
-        new LibraryField(1, "Name", "Descriptor"), true);
+    ProgramFieldOptimizationInfo programFieldOptimizationInfo =
+        new ProgramFieldOptimizationInfo(clazz, new LibraryField(1, "Name", "Descriptor"), true);
     UnknownDoubleValue doubleValue1 = new UnknownDoubleValue();
 
     // Act
-    programFieldOptimizationInfo
-        .generalizeValue(new CompositeDoubleValue(doubleValue1, (byte) 'A', new UnknownDoubleValue()));
+    programFieldOptimizationInfo.generalizeValue(
+        new CompositeDoubleValue(doubleValue1, (byte) 'A', new UnknownDoubleValue()));
 
     // Assert
     Value value = programFieldOptimizationInfo.getValue();
@@ -422,24 +767,25 @@ class ProgramFieldOptimizationInfoDiffblueTest {
 
   /**
    * Test {@link ProgramFieldOptimizationInfo#generalizeValue(Value)}.
-   * <p>
-   * Method under test: {@link ProgramFieldOptimizationInfo#generalizeValue(Value)}
+   *
+   * <p>Method under test: {@link ProgramFieldOptimizationInfo#generalizeValue(Value)}
    */
   @Test
   @DisplayName("Test generalizeValue(Value)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.ProgramFieldOptimizationInfo.generalizeValue(proguard.evaluation.value.Value)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ProgramFieldOptimizationInfo.generalizeValue(Value)"})
   void testGeneralizeValue2() {
     // Arrange
     LibraryClass clazz = new LibraryClass();
 
-    ProgramFieldOptimizationInfo programFieldOptimizationInfo = new ProgramFieldOptimizationInfo(clazz,
-        new LibraryField(1, "Name", "Descriptor"), true);
+    ProgramFieldOptimizationInfo programFieldOptimizationInfo =
+        new ProgramFieldOptimizationInfo(clazz, new LibraryField(1, "Name", "Descriptor"), true);
     LibraryClass clazz2 = new LibraryClass();
     LibraryField field = new LibraryField(1, "Name", "Descriptor");
 
-    programFieldOptimizationInfo.visitConstantValueAttribute(clazz2, field, new ConstantValueAttribute(1, 1));
+    programFieldOptimizationInfo.visitConstantValueAttribute(
+        clazz2, field, new ConstantValueAttribute(1, 1));
     TopValue value = new TopValue();
 
     // Act
@@ -450,40 +796,49 @@ class ProgramFieldOptimizationInfoDiffblueTest {
   }
 
   /**
-   * Test {@link ProgramFieldOptimizationInfo#visitConstantValueAttribute(Clazz, Field, ConstantValueAttribute)}.
-   * <p>
-   * Method under test: {@link ProgramFieldOptimizationInfo#visitConstantValueAttribute(Clazz, Field, ConstantValueAttribute)}
+   * Test {@link ProgramFieldOptimizationInfo#visitConstantValueAttribute(Clazz, Field,
+   * ConstantValueAttribute)}.
+   *
+   * <p>Method under test: {@link ProgramFieldOptimizationInfo#visitConstantValueAttribute(Clazz,
+   * Field, ConstantValueAttribute)}
    */
   @Test
   @DisplayName("Test visitConstantValueAttribute(Clazz, Field, ConstantValueAttribute)")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.info.ProgramFieldOptimizationInfo.visitConstantValueAttribute(proguard.classfile.Clazz, proguard.classfile.Field, proguard.classfile.attribute.ConstantValueAttribute)"})
+    "void ProgramFieldOptimizationInfo.visitConstantValueAttribute(Clazz, Field, ConstantValueAttribute)"
+  })
   void testVisitConstantValueAttribute() {
     // Arrange
     LibraryClass clazz = new LibraryClass();
-    ProgramFieldOptimizationInfo programFieldOptimizationInfo = new ProgramFieldOptimizationInfo(clazz,
-        new LibraryField(1, "Name", "Descriptor"), true);
+    ProgramFieldOptimizationInfo programFieldOptimizationInfo =
+        new ProgramFieldOptimizationInfo(clazz, new LibraryField(1, "Name", "Descriptor"), true);
     LibraryClass clazz2 = new LibraryClass();
     LibraryField field = new LibraryField(1, "Name", "Descriptor");
 
     // Act
-    programFieldOptimizationInfo.visitConstantValueAttribute(clazz2, field, new ConstantValueAttribute(1, 1));
+    programFieldOptimizationInfo.visitConstantValueAttribute(
+        clazz2, field, new ConstantValueAttribute(1, 1));
 
     // Assert
     assertNull(programFieldOptimizationInfo.getValue());
   }
 
   /**
-   * Test {@link ProgramFieldOptimizationInfo#setProgramFieldOptimizationInfo(Clazz, Field, boolean)}.
-   * <p>
-   * Method under test: {@link ProgramFieldOptimizationInfo#setProgramFieldOptimizationInfo(Clazz, Field, boolean)}
+   * Test {@link ProgramFieldOptimizationInfo#setProgramFieldOptimizationInfo(Clazz, Field,
+   * boolean)}.
+   *
+   * <p>Method under test: {@link
+   * ProgramFieldOptimizationInfo#setProgramFieldOptimizationInfo(Clazz, Field, boolean)}
    */
   @Test
   @DisplayName("Test setProgramFieldOptimizationInfo(Clazz, Field, boolean)")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.info.ProgramFieldOptimizationInfo.setProgramFieldOptimizationInfo(proguard.classfile.Clazz, proguard.classfile.Field, boolean)"})
+    "void ProgramFieldOptimizationInfo.setProgramFieldOptimizationInfo(Clazz, Field, boolean)"
+  })
   void testSetProgramFieldOptimizationInfo() {
     // Arrange
     LibraryClass clazz = new LibraryClass();
@@ -506,15 +861,19 @@ class ProgramFieldOptimizationInfoDiffblueTest {
   }
 
   /**
-   * Test {@link ProgramFieldOptimizationInfo#setProgramFieldOptimizationInfo(Clazz, Field, boolean)}.
-   * <p>
-   * Method under test: {@link ProgramFieldOptimizationInfo#setProgramFieldOptimizationInfo(Clazz, Field, boolean)}
+   * Test {@link ProgramFieldOptimizationInfo#setProgramFieldOptimizationInfo(Clazz, Field,
+   * boolean)}.
+   *
+   * <p>Method under test: {@link
+   * ProgramFieldOptimizationInfo#setProgramFieldOptimizationInfo(Clazz, Field, boolean)}
    */
   @Test
   @DisplayName("Test setProgramFieldOptimizationInfo(Clazz, Field, boolean)")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.info.ProgramFieldOptimizationInfo.setProgramFieldOptimizationInfo(proguard.classfile.Clazz, proguard.classfile.Field, boolean)"})
+    "void ProgramFieldOptimizationInfo.setProgramFieldOptimizationInfo(Clazz, Field, boolean)"
+  })
   void testSetProgramFieldOptimizationInfo2() {
     // Arrange
     LibraryClass clazz = new LibraryClass();
@@ -537,15 +896,19 @@ class ProgramFieldOptimizationInfoDiffblueTest {
   }
 
   /**
-   * Test {@link ProgramFieldOptimizationInfo#setProgramFieldOptimizationInfo(Clazz, Field, boolean)}.
-   * <p>
-   * Method under test: {@link ProgramFieldOptimizationInfo#setProgramFieldOptimizationInfo(Clazz, Field, boolean)}
+   * Test {@link ProgramFieldOptimizationInfo#setProgramFieldOptimizationInfo(Clazz, Field,
+   * boolean)}.
+   *
+   * <p>Method under test: {@link
+   * ProgramFieldOptimizationInfo#setProgramFieldOptimizationInfo(Clazz, Field, boolean)}
    */
   @Test
   @DisplayName("Test setProgramFieldOptimizationInfo(Clazz, Field, boolean)")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.info.ProgramFieldOptimizationInfo.setProgramFieldOptimizationInfo(proguard.classfile.Clazz, proguard.classfile.Field, boolean)"})
+    "void ProgramFieldOptimizationInfo.setProgramFieldOptimizationInfo(Clazz, Field, boolean)"
+  })
   void testSetProgramFieldOptimizationInfo3() {
     // Arrange
     LibraryClass clazz = new LibraryClass();
@@ -568,15 +931,19 @@ class ProgramFieldOptimizationInfoDiffblueTest {
   }
 
   /**
-   * Test {@link ProgramFieldOptimizationInfo#setProgramFieldOptimizationInfo(Clazz, Field, boolean)}.
-   * <p>
-   * Method under test: {@link ProgramFieldOptimizationInfo#setProgramFieldOptimizationInfo(Clazz, Field, boolean)}
+   * Test {@link ProgramFieldOptimizationInfo#setProgramFieldOptimizationInfo(Clazz, Field,
+   * boolean)}.
+   *
+   * <p>Method under test: {@link
+   * ProgramFieldOptimizationInfo#setProgramFieldOptimizationInfo(Clazz, Field, boolean)}
    */
   @Test
   @DisplayName("Test setProgramFieldOptimizationInfo(Clazz, Field, boolean)")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.info.ProgramFieldOptimizationInfo.setProgramFieldOptimizationInfo(proguard.classfile.Clazz, proguard.classfile.Field, boolean)"})
+    "void ProgramFieldOptimizationInfo.setProgramFieldOptimizationInfo(Clazz, Field, boolean)"
+  })
   void testSetProgramFieldOptimizationInfo4() {
     // Arrange
     LibraryClass clazz = new LibraryClass();
@@ -597,18 +964,23 @@ class ProgramFieldOptimizationInfoDiffblueTest {
   }
 
   /**
-   * Test {@link ProgramFieldOptimizationInfo#setProgramFieldOptimizationInfo(Clazz, Field, boolean)}.
+   * Test {@link ProgramFieldOptimizationInfo#setProgramFieldOptimizationInfo(Clazz, Field,
+   * boolean)}.
+   *
    * <ul>
-   *   <li>When {@code false}.</li>
+   *   <li>When {@code false}.
    * </ul>
-   * <p>
-   * Method under test: {@link ProgramFieldOptimizationInfo#setProgramFieldOptimizationInfo(Clazz, Field, boolean)}
+   *
+   * <p>Method under test: {@link
+   * ProgramFieldOptimizationInfo#setProgramFieldOptimizationInfo(Clazz, Field, boolean)}
    */
   @Test
   @DisplayName("Test setProgramFieldOptimizationInfo(Clazz, Field, boolean); when 'false'")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.info.ProgramFieldOptimizationInfo.setProgramFieldOptimizationInfo(proguard.classfile.Clazz, proguard.classfile.Field, boolean)"})
+    "void ProgramFieldOptimizationInfo.setProgramFieldOptimizationInfo(Clazz, Field, boolean)"
+  })
   void testSetProgramFieldOptimizationInfo_whenFalse() {
     // Arrange
     LibraryClass clazz = new LibraryClass();
@@ -632,19 +1004,25 @@ class ProgramFieldOptimizationInfoDiffblueTest {
 
   /**
    * Test {@link ProgramFieldOptimizationInfo#getProgramFieldOptimizationInfo(Field)}.
+   *
    * <ul>
-   *   <li>Then return {@code null}.</li>
+   *   <li>Then return {@code null}.
    * </ul>
-   * <p>
-   * Method under test: {@link ProgramFieldOptimizationInfo#getProgramFieldOptimizationInfo(Field)}
+   *
+   * <p>Method under test: {@link
+   * ProgramFieldOptimizationInfo#getProgramFieldOptimizationInfo(Field)}
    */
   @Test
   @DisplayName("Test getProgramFieldOptimizationInfo(Field); then return 'null'")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "proguard.optimize.info.ProgramFieldOptimizationInfo proguard.optimize.info.ProgramFieldOptimizationInfo.getProgramFieldOptimizationInfo(proguard.classfile.Field)"})
+    "ProgramFieldOptimizationInfo ProgramFieldOptimizationInfo.getProgramFieldOptimizationInfo(Field)"
+  })
   void testGetProgramFieldOptimizationInfo_thenReturnNull() {
     // Arrange, Act and Assert
-    assertNull(ProgramFieldOptimizationInfo.getProgramFieldOptimizationInfo(new LibraryField(1, "Name", "Descriptor")));
+    assertNull(
+        ProgramFieldOptimizationInfo.getProgramFieldOptimizationInfo(
+            new LibraryField(1, "Name", "Descriptor")));
   }
 }

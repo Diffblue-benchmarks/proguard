@@ -9,6 +9,7 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -17,7 +18,6 @@ import org.mockito.Mockito;
 import proguard.classfile.Clazz;
 import proguard.classfile.LibraryClass;
 import proguard.classfile.LibraryField;
-import proguard.classfile.LibraryMember;
 import proguard.classfile.LibraryMethod;
 import proguard.classfile.Member;
 import proguard.classfile.Method;
@@ -40,31 +40,71 @@ import proguard.classfile.constant.visitor.ConstantVisitor;
 import proguard.classfile.instruction.ConstantInstruction;
 import proguard.classfile.visitor.ClassVisitor;
 import proguard.classfile.visitor.MemberVisitor;
+import proguard.resources.file.ResourceFile;
 
 class AccessMethodMarkerDiffblueTest {
   /**
    * Test {@link AccessMethodMarker#visitStringConstant(Clazz, StringConstant)}.
+   *
    * <ul>
-   *   <li>Given {@link LibraryClass} {@link LibraryClass#accept(ClassVisitor)} does nothing.</li>
-   *   <li>Then calls {@link LibraryClass#accept(ClassVisitor)}.</li>
+   *   <li>Given {@code 42}.
+   *   <li>Then calls {@link LibraryField#accept(Clazz, MemberVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link AccessMethodMarker#visitStringConstant(Clazz, StringConstant)}
+   *
+   * <p>Method under test: {@link AccessMethodMarker#visitStringConstant(Clazz, StringConstant)}
    */
   @Test
-  @DisplayName("Test visitStringConstant(Clazz, StringConstant); given LibraryClass accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.AccessMethodMarker.visitStringConstant(proguard.classfile.Clazz, proguard.classfile.constant.StringConstant)"})
-  void testVisitStringConstant_givenLibraryClassAcceptDoesNothing_thenCallsAccept() {
+  @DisplayName(
+      "Test visitStringConstant(Clazz, StringConstant); given '42'; then calls accept(Clazz, MemberVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AccessMethodMarker.visitStringConstant(Clazz, StringConstant)"})
+  void testVisitStringConstant_given42_thenCallsAccept() {
+    // Arrange
+    AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
+    LibraryClass clazz = new LibraryClass();
+    ResourceFile referencedResourceFile = mock(ResourceFile.class);
+    doNothing().when(referencedResourceFile).addExtraFeatureName(Mockito.<String>any());
+    referencedResourceFile.addExtraFeatureName("42");
+    LibraryField libraryField = mock(LibraryField.class);
+    doNothing().when(libraryField).accept(Mockito.<Clazz>any(), Mockito.<MemberVisitor>any());
+    StringConstant stringConstant = new StringConstant(1, referencedResourceFile);
+
+    stringConstant.referencedClass = new ProgramClass();
+    stringConstant.referencedMember = libraryField;
+
+    // Act
+    accessMethodMarker.visitStringConstant(clazz, stringConstant);
+
+    // Assert
+    verify(libraryField).accept(isA(Clazz.class), isA(MemberVisitor.class));
+    verify(referencedResourceFile).addExtraFeatureName(eq("42"));
+  }
+
+  /**
+   * Test {@link AccessMethodMarker#visitStringConstant(Clazz, StringConstant)}.
+   *
+   * <ul>
+   *   <li>Then calls {@link LibraryClass#accept(ClassVisitor)}.
+   * </ul>
+   *
+   * <p>Method under test: {@link AccessMethodMarker#visitStringConstant(Clazz, StringConstant)}
+   */
+  @Test
+  @DisplayName("Test visitStringConstant(Clazz, StringConstant); then calls accept(ClassVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AccessMethodMarker.visitStringConstant(Clazz, StringConstant)"})
+  void testVisitStringConstant_thenCallsAccept() {
     // Arrange
     AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
     LibraryClass clazz = new LibraryClass();
     LibraryClass libraryClass = mock(LibraryClass.class);
     doNothing().when(libraryClass).accept(Mockito.<ClassVisitor>any());
-    StringConstant stringConstant = new StringConstant();
-    stringConstant.referencedMember = null;
+    StringConstant stringConstant = new StringConstant(1, new ResourceFile("foo.txt", 3L));
+
     stringConstant.referencedClass = libraryClass;
+    stringConstant.referencedMember = null;
 
     // Act
     accessMethodMarker.visitStringConstant(clazz, stringConstant);
@@ -75,65 +115,38 @@ class AccessMethodMarkerDiffblueTest {
 
   /**
    * Test {@link AccessMethodMarker#visitStringConstant(Clazz, StringConstant)}.
+   *
    * <ul>
-   *   <li>Given {@link LibraryField} {@link LibraryMember#accept(Clazz, MemberVisitor)} does nothing.</li>
-   *   <li>Then calls {@link LibraryMember#accept(Clazz, MemberVisitor)}.</li>
+   *   <li>Then calls {@link Clazz#constantPoolEntryAccept(int, ConstantVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link AccessMethodMarker#visitStringConstant(Clazz, StringConstant)}
+   *
+   * <p>Method under test: {@link AccessMethodMarker#visitStringConstant(Clazz, StringConstant)}
    */
   @Test
-  @DisplayName("Test visitStringConstant(Clazz, StringConstant); given LibraryField accept(Clazz, MemberVisitor) does nothing; then calls accept(Clazz, MemberVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.AccessMethodMarker.visitStringConstant(proguard.classfile.Clazz, proguard.classfile.constant.StringConstant)"})
-  void testVisitStringConstant_givenLibraryFieldAcceptDoesNothing_thenCallsAccept() {
-    // Arrange
-    AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
-    LibraryClass clazz = new LibraryClass();
-    LibraryField libraryField = mock(LibraryField.class);
-    doNothing().when(libraryField).accept(Mockito.<Clazz>any(), Mockito.<MemberVisitor>any());
-    StringConstant stringConstant = new StringConstant();
-    stringConstant.referencedMember = libraryField;
-    stringConstant.referencedClass = mock(LibraryClass.class);
-
-    // Act
-    accessMethodMarker.visitStringConstant(clazz, stringConstant);
-
-    // Assert
-    verify(libraryField).accept(isA(Clazz.class), isA(MemberVisitor.class));
-  }
-
-  /**
-   * Test {@link AccessMethodMarker#visitStringConstant(Clazz, StringConstant)}.
-   * <ul>
-   *   <li>Then calls {@link Clazz#constantPoolEntryAccept(int, ConstantVisitor)}.</li>
-   * </ul>
-   * <p>
-   * Method under test: {@link AccessMethodMarker#visitStringConstant(Clazz, StringConstant)}
-   */
-  @Test
-  @DisplayName("Test visitStringConstant(Clazz, StringConstant); then calls constantPoolEntryAccept(int, ConstantVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.AccessMethodMarker.visitStringConstant(proguard.classfile.Clazz, proguard.classfile.constant.StringConstant)"})
+  @DisplayName(
+      "Test visitStringConstant(Clazz, StringConstant); then calls constantPoolEntryAccept(int, ConstantVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AccessMethodMarker.visitStringConstant(Clazz, StringConstant)"})
   void testVisitStringConstant_thenCallsConstantPoolEntryAccept() {
     // Arrange
     Clazz clazz = mock(Clazz.class);
     doNothing().when(clazz).constantPoolEntryAccept(anyInt(), Mockito.<ConstantVisitor>any());
-    ProgramMethodOptimizationInfo programMethodOptimizationInfo = mock(ProgramMethodOptimizationInfo.class);
+    ProgramMethodOptimizationInfo programMethodOptimizationInfo =
+        mock(ProgramMethodOptimizationInfo.class);
     doNothing().when(programMethodOptimizationInfo).setAccessesPackageCode();
     Method method = mock(Method.class);
     when(method.getProcessingInfo()).thenReturn(programMethodOptimizationInfo);
 
     AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
     CodeAttribute codeAttribute = new CodeAttribute(1);
-    accessMethodMarker.visitConstantInstruction(clazz, method, codeAttribute, 2,
-        new ConstantInstruction((byte) 'A', 1));
+    accessMethodMarker.visitConstantInstruction(
+        clazz, method, codeAttribute, 2, new ConstantInstruction((byte) 'A', 1));
     LibraryClass clazz2 = new LibraryClass();
-    StringConstant stringConstant = new StringConstant();
-    stringConstant.referencedMember = new LibraryField();
+    StringConstant stringConstant = new StringConstant(1, new ResourceFile("foo.txt", 3L));
+
     stringConstant.referencedClass = mock(LibraryClass.class);
+    stringConstant.referencedMember = new LibraryField();
 
     // Act
     accessMethodMarker.visitStringConstant(clazz2, stringConstant);
@@ -146,17 +159,19 @@ class AccessMethodMarkerDiffblueTest {
 
   /**
    * Test {@link AccessMethodMarker#visitStringConstant(Clazz, StringConstant)}.
+   *
    * <ul>
-   *   <li>Then calls {@link StringConstant#referencedClassAccept(ClassVisitor)}.</li>
+   *   <li>Then calls {@link StringConstant#referencedClassAccept(ClassVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link AccessMethodMarker#visitStringConstant(Clazz, StringConstant)}
+   *
+   * <p>Method under test: {@link AccessMethodMarker#visitStringConstant(Clazz, StringConstant)}
    */
   @Test
-  @DisplayName("Test visitStringConstant(Clazz, StringConstant); then calls referencedClassAccept(ClassVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.AccessMethodMarker.visitStringConstant(proguard.classfile.Clazz, proguard.classfile.constant.StringConstant)"})
+  @DisplayName(
+      "Test visitStringConstant(Clazz, StringConstant); then calls referencedClassAccept(ClassVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AccessMethodMarker.visitStringConstant(Clazz, StringConstant)"})
   void testVisitStringConstant_thenCallsReferencedClassAccept() {
     // Arrange
     AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
@@ -175,73 +190,91 @@ class AccessMethodMarkerDiffblueTest {
 
   /**
    * Test {@link AccessMethodMarker#visitDynamicConstant(Clazz, DynamicConstant)}.
+   *
    * <ul>
-   *   <li>Then calls {@link DynamicConstant#bootstrapMethodHandleAccept(Clazz, ConstantVisitor)}.</li>
+   *   <li>Then calls {@link DynamicConstant#bootstrapMethodHandleAccept(Clazz, ConstantVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link AccessMethodMarker#visitDynamicConstant(Clazz, DynamicConstant)}
+   *
+   * <p>Method under test: {@link AccessMethodMarker#visitDynamicConstant(Clazz, DynamicConstant)}
    */
   @Test
-  @DisplayName("Test visitDynamicConstant(Clazz, DynamicConstant); then calls bootstrapMethodHandleAccept(Clazz, ConstantVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.AccessMethodMarker.visitDynamicConstant(proguard.classfile.Clazz, proguard.classfile.constant.DynamicConstant)"})
+  @DisplayName(
+      "Test visitDynamicConstant(Clazz, DynamicConstant); then calls bootstrapMethodHandleAccept(Clazz, ConstantVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AccessMethodMarker.visitDynamicConstant(Clazz, DynamicConstant)"})
   void testVisitDynamicConstant_thenCallsBootstrapMethodHandleAccept() {
     // Arrange
     AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
     LibraryClass clazz = new LibraryClass();
     DynamicConstant dynamicConstant = mock(DynamicConstant.class);
-    doNothing().when(dynamicConstant).bootstrapMethodHandleAccept(Mockito.<Clazz>any(), Mockito.<ConstantVisitor>any());
+    doNothing()
+        .when(dynamicConstant)
+        .bootstrapMethodHandleAccept(Mockito.<Clazz>any(), Mockito.<ConstantVisitor>any());
 
     // Act
     accessMethodMarker.visitDynamicConstant(clazz, dynamicConstant);
 
     // Assert
-    verify(dynamicConstant).bootstrapMethodHandleAccept(isA(Clazz.class), isA(ConstantVisitor.class));
+    verify(dynamicConstant)
+        .bootstrapMethodHandleAccept(isA(Clazz.class), isA(ConstantVisitor.class));
   }
 
   /**
    * Test {@link AccessMethodMarker#visitInvokeDynamicConstant(Clazz, InvokeDynamicConstant)}.
+   *
    * <ul>
-   *   <li>Then calls {@link InvokeDynamicConstant#bootstrapMethodHandleAccept(Clazz, ConstantVisitor)}.</li>
+   *   <li>Then calls {@link InvokeDynamicConstant#bootstrapMethodHandleAccept(Clazz,
+   *       ConstantVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link AccessMethodMarker#visitInvokeDynamicConstant(Clazz, InvokeDynamicConstant)}
+   *
+   * <p>Method under test: {@link AccessMethodMarker#visitInvokeDynamicConstant(Clazz,
+   * InvokeDynamicConstant)}
    */
   @Test
-  @DisplayName("Test visitInvokeDynamicConstant(Clazz, InvokeDynamicConstant); then calls bootstrapMethodHandleAccept(Clazz, ConstantVisitor)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitInvokeDynamicConstant(Clazz, InvokeDynamicConstant); then calls bootstrapMethodHandleAccept(Clazz, ConstantVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.info.AccessMethodMarker.visitInvokeDynamicConstant(proguard.classfile.Clazz, proguard.classfile.constant.InvokeDynamicConstant)"})
+    "void AccessMethodMarker.visitInvokeDynamicConstant(Clazz, InvokeDynamicConstant)"
+  })
   void testVisitInvokeDynamicConstant_thenCallsBootstrapMethodHandleAccept() {
     // Arrange
     AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
     LibraryClass clazz = new LibraryClass();
     InvokeDynamicConstant invokeDynamicConstant = mock(InvokeDynamicConstant.class);
-    doNothing().when(invokeDynamicConstant)
+    doNothing()
+        .when(invokeDynamicConstant)
         .bootstrapMethodHandleAccept(Mockito.<Clazz>any(), Mockito.<ConstantVisitor>any());
 
     // Act
     accessMethodMarker.visitInvokeDynamicConstant(clazz, invokeDynamicConstant);
 
     // Assert
-    verify(invokeDynamicConstant).bootstrapMethodHandleAccept(isA(Clazz.class), isA(ConstantVisitor.class));
+    verify(invokeDynamicConstant)
+        .bootstrapMethodHandleAccept(isA(Clazz.class), isA(ConstantVisitor.class));
   }
 
   /**
    * Test {@link AccessMethodMarker#visitMethodHandleConstant(Clazz, MethodHandleConstant)}.
+   *
    * <ul>
-   *   <li>When {@link LibraryClass} {@link LibraryClass#accept(ClassVisitor)} does nothing.</li>
-   *   <li>Then calls {@link LibraryClass#accept(ClassVisitor)}.</li>
+   *   <li>When {@link LibraryClass} {@link LibraryClass#accept(ClassVisitor)} does nothing.
+   *   <li>Then calls {@link LibraryClass#accept(ClassVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link AccessMethodMarker#visitMethodHandleConstant(Clazz, MethodHandleConstant)}
+   *
+   * <p>Method under test: {@link AccessMethodMarker#visitMethodHandleConstant(Clazz,
+   * MethodHandleConstant)}
    */
   @Test
-  @DisplayName("Test visitMethodHandleConstant(Clazz, MethodHandleConstant); when LibraryClass accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitMethodHandleConstant(Clazz, MethodHandleConstant); when LibraryClass accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.info.AccessMethodMarker.visitMethodHandleConstant(proguard.classfile.Clazz, proguard.classfile.constant.MethodHandleConstant)"})
+    "void AccessMethodMarker.visitMethodHandleConstant(Clazz, MethodHandleConstant)"
+  })
   void testVisitMethodHandleConstant_whenLibraryClassAcceptDoesNothing_thenCallsAccept() {
     // Arrange
     AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
@@ -249,7 +282,8 @@ class AccessMethodMarkerDiffblueTest {
     doNothing().when(referencedClass).accept(Mockito.<ClassVisitor>any());
     ClassConstant classConstant = new ClassConstant(1, referencedClass);
 
-    ProgramClass clazz = new ProgramClass(1, 3, new Constant[]{new ClassConstant(), classConstant}, 1, 1, 1);
+    ProgramClass clazz =
+        new ProgramClass(1, 3, new Constant[] {new ClassConstant(), classConstant}, 1, 1, 1);
 
     // Act
     accessMethodMarker.visitMethodHandleConstant(clazz, new MethodHandleConstant(1, 1));
@@ -260,19 +294,27 @@ class AccessMethodMarkerDiffblueTest {
 
   /**
    * Test {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}.
-   * <p>
-   * Method under test: {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}
+   *
+   * <p>Method under test: {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}
    */
   @Test
   @DisplayName("Test visitAnyRefConstant(Clazz, RefConstant)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.AccessMethodMarker.visitAnyRefConstant(proguard.classfile.Clazz, proguard.classfile.constant.RefConstant)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AccessMethodMarker.visitAnyRefConstant(Clazz, RefConstant)"})
   void testVisitAnyRefConstant() {
     // Arrange
     AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
-    ProgramClass clazz = new ProgramClass(1, 3,
-        new Constant[]{new ClassConstant(1, new LibraryClass(1, "This Class Name", "Super Class Name"))}, 1, 1, 1);
+    ProgramClass clazz =
+        new ProgramClass(
+            1,
+            3,
+            new Constant[] {
+              new ClassConstant(1, new LibraryClass(1, "This Class Name", "Super Class Name"))
+            },
+            1,
+            1,
+            1);
 
     FieldrefConstant refConstant = mock(FieldrefConstant.class);
     doNothing().when(refConstant).referencedMemberAccept(Mockito.<MemberVisitor>any());
@@ -288,18 +330,18 @@ class AccessMethodMarkerDiffblueTest {
 
   /**
    * Test {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}.
-   * <p>
-   * Method under test: {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}
+   *
+   * <p>Method under test: {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}
    */
   @Test
   @DisplayName("Test visitAnyRefConstant(Clazz, RefConstant)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.AccessMethodMarker.visitAnyRefConstant(proguard.classfile.Clazz, proguard.classfile.constant.RefConstant)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AccessMethodMarker.visitAnyRefConstant(Clazz, RefConstant)"})
   void testVisitAnyRefConstant2() {
     // Arrange
     AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
-    ProgramClass clazz = new ProgramClass(1, 3, new Constant[]{new DynamicConstant()}, 1, 1, 1);
+    ProgramClass clazz = new ProgramClass(1, 3, new Constant[] {new DynamicConstant()}, 1, 1, 1);
 
     FieldrefConstant refConstant = mock(FieldrefConstant.class);
     doNothing().when(refConstant).referencedMemberAccept(Mockito.<MemberVisitor>any());
@@ -315,18 +357,18 @@ class AccessMethodMarkerDiffblueTest {
 
   /**
    * Test {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}.
-   * <p>
-   * Method under test: {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}
+   *
+   * <p>Method under test: {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}
    */
   @Test
   @DisplayName("Test visitAnyRefConstant(Clazz, RefConstant)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.AccessMethodMarker.visitAnyRefConstant(proguard.classfile.Clazz, proguard.classfile.constant.RefConstant)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AccessMethodMarker.visitAnyRefConstant(Clazz, RefConstant)"})
   void testVisitAnyRefConstant3() {
     // Arrange
     AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
-    ProgramClass clazz = new ProgramClass(1, 3, new Constant[]{new IntegerConstant(42)}, 1, 1, 1);
+    ProgramClass clazz = new ProgramClass(1, 3, new Constant[] {new IntegerConstant(42)}, 1, 1, 1);
 
     FieldrefConstant refConstant = mock(FieldrefConstant.class);
     doNothing().when(refConstant).referencedMemberAccept(Mockito.<MemberVisitor>any());
@@ -342,18 +384,19 @@ class AccessMethodMarkerDiffblueTest {
 
   /**
    * Test {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}.
-   * <p>
-   * Method under test: {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}
+   *
+   * <p>Method under test: {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}
    */
   @Test
   @DisplayName("Test visitAnyRefConstant(Clazz, RefConstant)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.AccessMethodMarker.visitAnyRefConstant(proguard.classfile.Clazz, proguard.classfile.constant.RefConstant)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AccessMethodMarker.visitAnyRefConstant(Clazz, RefConstant)"})
   void testVisitAnyRefConstant4() {
     // Arrange
     AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
-    ProgramClass clazz = new ProgramClass(1, 3, new Constant[]{new InvokeDynamicConstant()}, 1, 1, 1);
+    ProgramClass clazz =
+        new ProgramClass(1, 3, new Constant[] {new InvokeDynamicConstant()}, 1, 1, 1);
 
     FieldrefConstant refConstant = mock(FieldrefConstant.class);
     doNothing().when(refConstant).referencedMemberAccept(Mockito.<MemberVisitor>any());
@@ -369,18 +412,18 @@ class AccessMethodMarkerDiffblueTest {
 
   /**
    * Test {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}.
-   * <p>
-   * Method under test: {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}
+   *
+   * <p>Method under test: {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}
    */
   @Test
   @DisplayName("Test visitAnyRefConstant(Clazz, RefConstant)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.AccessMethodMarker.visitAnyRefConstant(proguard.classfile.Clazz, proguard.classfile.constant.RefConstant)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AccessMethodMarker.visitAnyRefConstant(Clazz, RefConstant)"})
   void testVisitAnyRefConstant5() {
     // Arrange
     AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
-    ProgramClass clazz = new ProgramClass(1, 3, new Constant[]{new MethodTypeConstant()}, 1, 1, 1);
+    ProgramClass clazz = new ProgramClass(1, 3, new Constant[] {new MethodTypeConstant()}, 1, 1, 1);
 
     FieldrefConstant refConstant = mock(FieldrefConstant.class);
     doNothing().when(refConstant).referencedMemberAccept(Mockito.<MemberVisitor>any());
@@ -396,21 +439,25 @@ class AccessMethodMarkerDiffblueTest {
 
   /**
    * Test {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}.
+   *
    * <ul>
-   *   <li>When array of {@link Constant} with {@link DoubleConstant#DoubleConstant(double)} with value is ten.</li>
+   *   <li>When array of {@link Constant} with {@link DoubleConstant#DoubleConstant(double)} with
+   *       value is ten.
    * </ul>
-   * <p>
-   * Method under test: {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}
+   *
+   * <p>Method under test: {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}
    */
   @Test
-  @DisplayName("Test visitAnyRefConstant(Clazz, RefConstant); when array of Constant with DoubleConstant(double) with value is ten")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.AccessMethodMarker.visitAnyRefConstant(proguard.classfile.Clazz, proguard.classfile.constant.RefConstant)"})
+  @DisplayName(
+      "Test visitAnyRefConstant(Clazz, RefConstant); when array of Constant with DoubleConstant(double) with value is ten")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AccessMethodMarker.visitAnyRefConstant(Clazz, RefConstant)"})
   void testVisitAnyRefConstant_whenArrayOfConstantWithDoubleConstantWithValueIsTen() {
     // Arrange
     AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
-    ProgramClass clazz = new ProgramClass(1, 3, new Constant[]{new DoubleConstant(10.0d)}, 1, 1, 1);
+    ProgramClass clazz =
+        new ProgramClass(1, 3, new Constant[] {new DoubleConstant(10.0d)}, 1, 1, 1);
 
     FieldrefConstant refConstant = mock(FieldrefConstant.class);
     doNothing().when(refConstant).referencedMemberAccept(Mockito.<MemberVisitor>any());
@@ -426,21 +473,24 @@ class AccessMethodMarkerDiffblueTest {
 
   /**
    * Test {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}.
+   *
    * <ul>
-   *   <li>When array of {@link Constant} with {@link FloatConstant#FloatConstant(float)} with value is ten.</li>
+   *   <li>When array of {@link Constant} with {@link FloatConstant#FloatConstant(float)} with value
+   *       is ten.
    * </ul>
-   * <p>
-   * Method under test: {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}
+   *
+   * <p>Method under test: {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}
    */
   @Test
-  @DisplayName("Test visitAnyRefConstant(Clazz, RefConstant); when array of Constant with FloatConstant(float) with value is ten")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.AccessMethodMarker.visitAnyRefConstant(proguard.classfile.Clazz, proguard.classfile.constant.RefConstant)"})
+  @DisplayName(
+      "Test visitAnyRefConstant(Clazz, RefConstant); when array of Constant with FloatConstant(float) with value is ten")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AccessMethodMarker.visitAnyRefConstant(Clazz, RefConstant)"})
   void testVisitAnyRefConstant_whenArrayOfConstantWithFloatConstantWithValueIsTen() {
     // Arrange
     AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
-    ProgramClass clazz = new ProgramClass(1, 3, new Constant[]{new FloatConstant(10.0f)}, 1, 1, 1);
+    ProgramClass clazz = new ProgramClass(1, 3, new Constant[] {new FloatConstant(10.0f)}, 1, 1, 1);
 
     FieldrefConstant refConstant = mock(FieldrefConstant.class);
     doNothing().when(refConstant).referencedMemberAccept(Mockito.<MemberVisitor>any());
@@ -456,21 +506,24 @@ class AccessMethodMarkerDiffblueTest {
 
   /**
    * Test {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}.
+   *
    * <ul>
-   *   <li>When array of {@link Constant} with {@link LongConstant#LongConstant(long)} with value is forty-two.</li>
+   *   <li>When array of {@link Constant} with {@link LongConstant#LongConstant(long)} with value is
+   *       forty-two.
    * </ul>
-   * <p>
-   * Method under test: {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}
+   *
+   * <p>Method under test: {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}
    */
   @Test
-  @DisplayName("Test visitAnyRefConstant(Clazz, RefConstant); when array of Constant with LongConstant(long) with value is forty-two")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.AccessMethodMarker.visitAnyRefConstant(proguard.classfile.Clazz, proguard.classfile.constant.RefConstant)"})
+  @DisplayName(
+      "Test visitAnyRefConstant(Clazz, RefConstant); when array of Constant with LongConstant(long) with value is forty-two")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AccessMethodMarker.visitAnyRefConstant(Clazz, RefConstant)"})
   void testVisitAnyRefConstant_whenArrayOfConstantWithLongConstantWithValueIsFortyTwo() {
     // Arrange
     AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
-    ProgramClass clazz = new ProgramClass(1, 3, new Constant[]{new LongConstant(42L)}, 1, 1, 1);
+    ProgramClass clazz = new ProgramClass(1, 3, new Constant[] {new LongConstant(42L)}, 1, 1, 1);
 
     FieldrefConstant refConstant = mock(FieldrefConstant.class);
     doNothing().when(refConstant).referencedMemberAccept(Mockito.<MemberVisitor>any());
@@ -486,24 +539,27 @@ class AccessMethodMarkerDiffblueTest {
 
   /**
    * Test {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}.
+   *
    * <ul>
-   *   <li>When {@link LibraryClass} {@link LibraryClass#accept(ClassVisitor)} does nothing.</li>
-   *   <li>Then calls {@link LibraryClass#accept(ClassVisitor)}.</li>
+   *   <li>When {@link LibraryClass} {@link LibraryClass#accept(ClassVisitor)} does nothing.
+   *   <li>Then calls {@link LibraryClass#accept(ClassVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}
+   *
+   * <p>Method under test: {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}
    */
   @Test
-  @DisplayName("Test visitAnyRefConstant(Clazz, RefConstant); when LibraryClass accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.AccessMethodMarker.visitAnyRefConstant(proguard.classfile.Clazz, proguard.classfile.constant.RefConstant)"})
+  @DisplayName(
+      "Test visitAnyRefConstant(Clazz, RefConstant); when LibraryClass accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AccessMethodMarker.visitAnyRefConstant(Clazz, RefConstant)"})
   void testVisitAnyRefConstant_whenLibraryClassAcceptDoesNothing_thenCallsAccept() {
     // Arrange
     AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
     LibraryClass referencedClass = mock(LibraryClass.class);
     doNothing().when(referencedClass).accept(Mockito.<ClassVisitor>any());
-    ProgramClass clazz = new ProgramClass(1, 3, new Constant[]{new ClassConstant(1, referencedClass)}, 1, 1, 1);
+    ProgramClass clazz =
+        new ProgramClass(1, 3, new Constant[] {new ClassConstant(1, referencedClass)}, 1, 1, 1);
 
     FieldrefConstant refConstant = mock(FieldrefConstant.class);
     doNothing().when(refConstant).referencedMemberAccept(Mockito.<MemberVisitor>any());
@@ -520,18 +576,20 @@ class AccessMethodMarkerDiffblueTest {
 
   /**
    * Test {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}.
+   *
    * <ul>
-   *   <li>When {@link LibraryClass#LibraryClass()}.</li>
-   *   <li>Then calls {@link FieldrefConstant#referencedMemberAccept(MemberVisitor)}.</li>
+   *   <li>When {@link LibraryClass#LibraryClass()}.
+   *   <li>Then calls {@link FieldrefConstant#referencedMemberAccept(MemberVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}
+   *
+   * <p>Method under test: {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}
    */
   @Test
-  @DisplayName("Test visitAnyRefConstant(Clazz, RefConstant); when LibraryClass(); then calls referencedMemberAccept(MemberVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.AccessMethodMarker.visitAnyRefConstant(proguard.classfile.Clazz, proguard.classfile.constant.RefConstant)"})
+  @DisplayName(
+      "Test visitAnyRefConstant(Clazz, RefConstant); when LibraryClass(); then calls referencedMemberAccept(MemberVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AccessMethodMarker.visitAnyRefConstant(Clazz, RefConstant)"})
   void testVisitAnyRefConstant_whenLibraryClass_thenCallsReferencedMemberAccept() {
     // Arrange
     AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
@@ -550,66 +608,37 @@ class AccessMethodMarkerDiffblueTest {
 
   /**
    * Test {@link AccessMethodMarker#visitClassConstant(Clazz, ClassConstant)}.
+   *
    * <ul>
-   *   <li>Given {@link LibraryClass} {@link LibraryClass#accept(ClassVisitor)} does nothing.</li>
-   *   <li>Then calls {@link LibraryClass#accept(ClassVisitor)}.</li>
+   *   <li>Then calls {@link Clazz#constantPoolEntryAccept(int, ConstantVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link AccessMethodMarker#visitClassConstant(Clazz, ClassConstant)}
+   *
+   * <p>Method under test: {@link AccessMethodMarker#visitClassConstant(Clazz, ClassConstant)}
    */
   @Test
-  @DisplayName("Test visitClassConstant(Clazz, ClassConstant); given LibraryClass accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.AccessMethodMarker.visitClassConstant(proguard.classfile.Clazz, proguard.classfile.constant.ClassConstant)"})
-  void testVisitClassConstant_givenLibraryClassAcceptDoesNothing_thenCallsAccept() {
-    // Arrange
-    AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
-    LibraryClass clazz = new LibraryClass();
-    LibraryClass libraryClass = mock(LibraryClass.class);
-    doNothing().when(libraryClass).accept(Mockito.<ClassVisitor>any());
-    ClassConstant classConstant = new ClassConstant();
-    classConstant.referencedClass = libraryClass;
-
-    // Act
-    accessMethodMarker.visitClassConstant(clazz, classConstant);
-
-    // Assert
-    verify(libraryClass).accept(isA(ClassVisitor.class));
-  }
-
-  /**
-   * Test {@link AccessMethodMarker#visitClassConstant(Clazz, ClassConstant)}.
-   * <ul>
-   *   <li>Then calls {@link Clazz#constantPoolEntryAccept(int, ConstantVisitor)}.</li>
-   * </ul>
-   * <p>
-   * Method under test: {@link AccessMethodMarker#visitClassConstant(Clazz, ClassConstant)}
-   */
-  @Test
-  @DisplayName("Test visitClassConstant(Clazz, ClassConstant); then calls constantPoolEntryAccept(int, ConstantVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.AccessMethodMarker.visitClassConstant(proguard.classfile.Clazz, proguard.classfile.constant.ClassConstant)"})
+  @DisplayName(
+      "Test visitClassConstant(Clazz, ClassConstant); then calls constantPoolEntryAccept(int, ConstantVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AccessMethodMarker.visitClassConstant(Clazz, ClassConstant)"})
   void testVisitClassConstant_thenCallsConstantPoolEntryAccept() {
     // Arrange
     Clazz clazz = mock(Clazz.class);
     doNothing().when(clazz).constantPoolEntryAccept(anyInt(), Mockito.<ConstantVisitor>any());
-    ProgramMethodOptimizationInfo programMethodOptimizationInfo = mock(ProgramMethodOptimizationInfo.class);
+    ProgramMethodOptimizationInfo programMethodOptimizationInfo =
+        mock(ProgramMethodOptimizationInfo.class);
     doNothing().when(programMethodOptimizationInfo).setAccessesPackageCode();
     Method method = mock(Method.class);
     when(method.getProcessingInfo()).thenReturn(programMethodOptimizationInfo);
 
     AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
     CodeAttribute codeAttribute = new CodeAttribute(1);
-    accessMethodMarker.visitConstantInstruction(clazz, method, codeAttribute, 2,
-        new ConstantInstruction((byte) 'A', 1));
+    accessMethodMarker.visitConstantInstruction(
+        clazz, method, codeAttribute, 2, new ConstantInstruction((byte) 'A', 1));
     LibraryClass clazz2 = new LibraryClass();
-    ClassConstant classConstant = new ClassConstant();
-    classConstant.referencedClass = new LibraryClass();
 
     // Act
-    accessMethodMarker.visitClassConstant(clazz2, classConstant);
+    accessMethodMarker.visitClassConstant(clazz2, new ClassConstant(1, new LibraryClass()));
 
     // Assert
     verify(clazz).constantPoolEntryAccept(eq(1), isA(ConstantVisitor.class));
@@ -619,17 +648,19 @@ class AccessMethodMarkerDiffblueTest {
 
   /**
    * Test {@link AccessMethodMarker#visitClassConstant(Clazz, ClassConstant)}.
+   *
    * <ul>
-   *   <li>Then calls {@link ClassConstant#referencedClassAccept(ClassVisitor)}.</li>
+   *   <li>Then calls {@link ClassConstant#referencedClassAccept(ClassVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link AccessMethodMarker#visitClassConstant(Clazz, ClassConstant)}
+   *
+   * <p>Method under test: {@link AccessMethodMarker#visitClassConstant(Clazz, ClassConstant)}
    */
   @Test
-  @DisplayName("Test visitClassConstant(Clazz, ClassConstant); then calls referencedClassAccept(ClassVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.AccessMethodMarker.visitClassConstant(proguard.classfile.Clazz, proguard.classfile.constant.ClassConstant)"})
+  @DisplayName(
+      "Test visitClassConstant(Clazz, ClassConstant); then calls referencedClassAccept(ClassVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AccessMethodMarker.visitClassConstant(Clazz, ClassConstant)"})
   void testVisitClassConstant_thenCallsReferencedClassAccept() {
     // Arrange
     AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
@@ -645,30 +676,64 @@ class AccessMethodMarkerDiffblueTest {
   }
 
   /**
-   * Test {@link AccessMethodMarker#visitAnyClass(Clazz)}.
+   * Test {@link AccessMethodMarker#visitClassConstant(Clazz, ClassConstant)}.
+   *
    * <ul>
-   *   <li>Then calls {@link Clazz#constantPoolEntryAccept(int, ConstantVisitor)}.</li>
+   *   <li>When {@link LibraryClass} {@link LibraryClass#accept(ClassVisitor)} does nothing.
+   *   <li>Then calls {@link LibraryClass#accept(ClassVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link AccessMethodMarker#visitAnyClass(Clazz)}
+   *
+   * <p>Method under test: {@link AccessMethodMarker#visitClassConstant(Clazz, ClassConstant)}
    */
   @Test
-  @DisplayName("Test visitAnyClass(Clazz); then calls constantPoolEntryAccept(int, ConstantVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.optimize.info.AccessMethodMarker.visitAnyClass(proguard.classfile.Clazz)"})
+  @DisplayName(
+      "Test visitClassConstant(Clazz, ClassConstant); when LibraryClass accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AccessMethodMarker.visitClassConstant(Clazz, ClassConstant)"})
+  void testVisitClassConstant_whenLibraryClassAcceptDoesNothing_thenCallsAccept() {
+    // Arrange
+    AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
+    LibraryClass clazz = new LibraryClass();
+    LibraryClass referencedClass = mock(LibraryClass.class);
+    doNothing().when(referencedClass).accept(Mockito.<ClassVisitor>any());
+
+    // Act
+    accessMethodMarker.visitClassConstant(clazz, new ClassConstant(1, referencedClass));
+
+    // Assert
+    verify(referencedClass).accept(isA(ClassVisitor.class));
+  }
+
+  /**
+   * Test {@link AccessMethodMarker#visitAnyClass(Clazz)}.
+   *
+   * <ul>
+   *   <li>Then calls {@link Clazz#constantPoolEntryAccept(int, ConstantVisitor)}.
+   * </ul>
+   *
+   * <p>Method under test: {@link AccessMethodMarker#visitAnyClass(Clazz)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitAnyClass(Clazz); then calls constantPoolEntryAccept(int, ConstantVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AccessMethodMarker.visitAnyClass(Clazz)"})
   void testVisitAnyClass_thenCallsConstantPoolEntryAccept() {
     // Arrange
     Clazz clazz = mock(Clazz.class);
     doNothing().when(clazz).constantPoolEntryAccept(anyInt(), Mockito.<ConstantVisitor>any());
-    ProgramMethodOptimizationInfo programMethodOptimizationInfo = mock(ProgramMethodOptimizationInfo.class);
+    ProgramMethodOptimizationInfo programMethodOptimizationInfo =
+        mock(ProgramMethodOptimizationInfo.class);
     doNothing().when(programMethodOptimizationInfo).setAccessesPackageCode();
     Method method = mock(Method.class);
     when(method.getProcessingInfo()).thenReturn(programMethodOptimizationInfo);
 
     AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
     CodeAttribute codeAttribute = new CodeAttribute(1);
-    accessMethodMarker.visitConstantInstruction(clazz, method, codeAttribute, 2,
-        new ConstantInstruction((byte) 'A', 1));
+    accessMethodMarker.visitConstantInstruction(
+        clazz, method, codeAttribute, 2, new ConstantInstruction((byte) 'A', 1));
 
     // Act
     accessMethodMarker.visitAnyClass(new LibraryClass());
@@ -681,30 +746,32 @@ class AccessMethodMarkerDiffblueTest {
 
   /**
    * Test {@link AccessMethodMarker#visitAnyMember(Clazz, Member)}.
+   *
    * <ul>
-   *   <li>Then calls {@link ProgramMethodOptimizationInfo#setAccessesPackageCode()}.</li>
+   *   <li>Then calls {@link ProgramMethodOptimizationInfo#setAccessesPackageCode()}.
    * </ul>
-   * <p>
-   * Method under test: {@link AccessMethodMarker#visitAnyMember(Clazz, Member)}
+   *
+   * <p>Method under test: {@link AccessMethodMarker#visitAnyMember(Clazz, Member)}
    */
   @Test
   @DisplayName("Test visitAnyMember(Clazz, Member); then calls setAccessesPackageCode()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.AccessMethodMarker.visitAnyMember(proguard.classfile.Clazz, proguard.classfile.Member)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AccessMethodMarker.visitAnyMember(Clazz, Member)"})
   void testVisitAnyMember_thenCallsSetAccessesPackageCode() {
     // Arrange
     Clazz clazz = mock(Clazz.class);
     doNothing().when(clazz).constantPoolEntryAccept(anyInt(), Mockito.<ConstantVisitor>any());
-    ProgramMethodOptimizationInfo programMethodOptimizationInfo = mock(ProgramMethodOptimizationInfo.class);
+    ProgramMethodOptimizationInfo programMethodOptimizationInfo =
+        mock(ProgramMethodOptimizationInfo.class);
     doNothing().when(programMethodOptimizationInfo).setAccessesPackageCode();
     Method method = mock(Method.class);
     when(method.getProcessingInfo()).thenReturn(programMethodOptimizationInfo);
 
     AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
     CodeAttribute codeAttribute = new CodeAttribute(1);
-    accessMethodMarker.visitConstantInstruction(clazz, method, codeAttribute, 2,
-        new ConstantInstruction((byte) 'A', 1));
+    accessMethodMarker.visitConstantInstruction(
+        clazz, method, codeAttribute, 2, new ConstantInstruction((byte) 'A', 1));
     LibraryClass clazz2 = new LibraryClass();
 
     // Act
@@ -718,30 +785,32 @@ class AccessMethodMarkerDiffblueTest {
 
   /**
    * Test {@link AccessMethodMarker#visitAnyMember(Clazz, Member)}.
+   *
    * <ul>
-   *   <li>Then calls {@link ProgramMethodOptimizationInfo#setAccessesPrivateCode()}.</li>
+   *   <li>Then calls {@link ProgramMethodOptimizationInfo#setAccessesPrivateCode()}.
    * </ul>
-   * <p>
-   * Method under test: {@link AccessMethodMarker#visitAnyMember(Clazz, Member)}
+   *
+   * <p>Method under test: {@link AccessMethodMarker#visitAnyMember(Clazz, Member)}
    */
   @Test
   @DisplayName("Test visitAnyMember(Clazz, Member); then calls setAccessesPrivateCode()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.AccessMethodMarker.visitAnyMember(proguard.classfile.Clazz, proguard.classfile.Member)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AccessMethodMarker.visitAnyMember(Clazz, Member)"})
   void testVisitAnyMember_thenCallsSetAccessesPrivateCode() {
     // Arrange
     Clazz clazz = mock(Clazz.class);
     doNothing().when(clazz).constantPoolEntryAccept(anyInt(), Mockito.<ConstantVisitor>any());
-    ProgramMethodOptimizationInfo programMethodOptimizationInfo = mock(ProgramMethodOptimizationInfo.class);
+    ProgramMethodOptimizationInfo programMethodOptimizationInfo =
+        mock(ProgramMethodOptimizationInfo.class);
     doNothing().when(programMethodOptimizationInfo).setAccessesPrivateCode();
     Method method = mock(Method.class);
     when(method.getProcessingInfo()).thenReturn(programMethodOptimizationInfo);
 
     AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
     CodeAttribute codeAttribute = new CodeAttribute(1);
-    accessMethodMarker.visitConstantInstruction(clazz, method, codeAttribute, 2,
-        new ConstantInstruction((byte) 'A', 1));
+    accessMethodMarker.visitConstantInstruction(
+        clazz, method, codeAttribute, 2, new ConstantInstruction((byte) 'A', 1));
     LibraryClass clazz2 = new LibraryClass();
 
     // Act
@@ -755,30 +824,32 @@ class AccessMethodMarkerDiffblueTest {
 
   /**
    * Test {@link AccessMethodMarker#visitAnyMember(Clazz, Member)}.
+   *
    * <ul>
-   *   <li>Then calls {@link ProgramMethodOptimizationInfo#setAccessesProtectedCode()}.</li>
+   *   <li>Then calls {@link ProgramMethodOptimizationInfo#setAccessesProtectedCode()}.
    * </ul>
-   * <p>
-   * Method under test: {@link AccessMethodMarker#visitAnyMember(Clazz, Member)}
+   *
+   * <p>Method under test: {@link AccessMethodMarker#visitAnyMember(Clazz, Member)}
    */
   @Test
   @DisplayName("Test visitAnyMember(Clazz, Member); then calls setAccessesProtectedCode()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.AccessMethodMarker.visitAnyMember(proguard.classfile.Clazz, proguard.classfile.Member)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AccessMethodMarker.visitAnyMember(Clazz, Member)"})
   void testVisitAnyMember_thenCallsSetAccessesProtectedCode() {
     // Arrange
     Clazz clazz = mock(Clazz.class);
     doNothing().when(clazz).constantPoolEntryAccept(anyInt(), Mockito.<ConstantVisitor>any());
-    ProgramMethodOptimizationInfo programMethodOptimizationInfo = mock(ProgramMethodOptimizationInfo.class);
+    ProgramMethodOptimizationInfo programMethodOptimizationInfo =
+        mock(ProgramMethodOptimizationInfo.class);
     doNothing().when(programMethodOptimizationInfo).setAccessesProtectedCode();
     Method method = mock(Method.class);
     when(method.getProcessingInfo()).thenReturn(programMethodOptimizationInfo);
 
     AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
     CodeAttribute codeAttribute = new CodeAttribute(1);
-    accessMethodMarker.visitConstantInstruction(clazz, method, codeAttribute, 2,
-        new ConstantInstruction((byte) 'A', 1));
+    accessMethodMarker.visitConstantInstruction(
+        clazz, method, codeAttribute, 2, new ConstantInstruction((byte) 'A', 1));
     LibraryClass clazz2 = new LibraryClass();
 
     // Act
@@ -792,18 +863,20 @@ class AccessMethodMarkerDiffblueTest {
 
   /**
    * Test {@link AccessMethodMarker#accessesPrivateCode(Method)}.
+   *
    * <ul>
-   *   <li>Given {@link MethodOptimizationInfo} (default constructor).</li>
-   *   <li>Then return {@code true}.</li>
+   *   <li>Given {@link MethodOptimizationInfo} (default constructor).
+   *   <li>Then return {@code true}.
    * </ul>
-   * <p>
-   * Method under test: {@link AccessMethodMarker#accessesPrivateCode(Method)}
+   *
+   * <p>Method under test: {@link AccessMethodMarker#accessesPrivateCode(Method)}
    */
   @Test
-  @DisplayName("Test accessesPrivateCode(Method); given MethodOptimizationInfo (default constructor); then return 'true'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "boolean proguard.optimize.info.AccessMethodMarker.accessesPrivateCode(proguard.classfile.Method)"})
+  @DisplayName(
+      "Test accessesPrivateCode(Method); given MethodOptimizationInfo (default constructor); then return 'true'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean AccessMethodMarker.accessesPrivateCode(Method)"})
   void testAccessesPrivateCode_givenMethodOptimizationInfo_thenReturnTrue() {
     // Arrange
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
@@ -815,18 +888,20 @@ class AccessMethodMarkerDiffblueTest {
 
   /**
    * Test {@link AccessMethodMarker#accessesPackageCode(Method)}.
+   *
    * <ul>
-   *   <li>Given {@link MethodOptimizationInfo} (default constructor).</li>
-   *   <li>Then return {@code true}.</li>
+   *   <li>Given {@link MethodOptimizationInfo} (default constructor).
+   *   <li>Then return {@code true}.
    * </ul>
-   * <p>
-   * Method under test: {@link AccessMethodMarker#accessesPackageCode(Method)}
+   *
+   * <p>Method under test: {@link AccessMethodMarker#accessesPackageCode(Method)}
    */
   @Test
-  @DisplayName("Test accessesPackageCode(Method); given MethodOptimizationInfo (default constructor); then return 'true'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "boolean proguard.optimize.info.AccessMethodMarker.accessesPackageCode(proguard.classfile.Method)"})
+  @DisplayName(
+      "Test accessesPackageCode(Method); given MethodOptimizationInfo (default constructor); then return 'true'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean AccessMethodMarker.accessesPackageCode(Method)"})
   void testAccessesPackageCode_givenMethodOptimizationInfo_thenReturnTrue() {
     // Arrange
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
@@ -838,18 +913,20 @@ class AccessMethodMarkerDiffblueTest {
 
   /**
    * Test {@link AccessMethodMarker#accessesProtectedCode(Method)}.
+   *
    * <ul>
-   *   <li>Given {@link MethodOptimizationInfo} (default constructor).</li>
-   *   <li>Then return {@code true}.</li>
+   *   <li>Given {@link MethodOptimizationInfo} (default constructor).
+   *   <li>Then return {@code true}.
    * </ul>
-   * <p>
-   * Method under test: {@link AccessMethodMarker#accessesProtectedCode(Method)}
+   *
+   * <p>Method under test: {@link AccessMethodMarker#accessesProtectedCode(Method)}
    */
   @Test
-  @DisplayName("Test accessesProtectedCode(Method); given MethodOptimizationInfo (default constructor); then return 'true'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "boolean proguard.optimize.info.AccessMethodMarker.accessesProtectedCode(proguard.classfile.Method)"})
+  @DisplayName(
+      "Test accessesProtectedCode(Method); given MethodOptimizationInfo (default constructor); then return 'true'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean AccessMethodMarker.accessesProtectedCode(Method)"})
   void testAccessesProtectedCode_givenMethodOptimizationInfo_thenReturnTrue() {
     // Arrange
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");

@@ -8,6 +8,7 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -23,17 +24,18 @@ import proguard.classfile.visitor.MemberVisitor;
 class WrapperClassMarkerDiffblueTest {
   /**
    * Test {@link WrapperClassMarker#visitProgramClass(ProgramClass)}.
+   *
    * <ul>
-   *   <li>Then calls {@link ProgramClass#fieldsAccept(MemberVisitor)}.</li>
+   *   <li>Then calls {@link ProgramClass#fieldsAccept(MemberVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link WrapperClassMarker#visitProgramClass(ProgramClass)}
+   *
+   * <p>Method under test: {@link WrapperClassMarker#visitProgramClass(ProgramClass)}
    */
   @Test
   @DisplayName("Test visitProgramClass(ProgramClass); then calls fieldsAccept(MemberVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.WrapperClassMarker.visitProgramClass(proguard.classfile.ProgramClass)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void WrapperClassMarker.visitProgramClass(ProgramClass)"})
   void testVisitProgramClass_thenCallsFieldsAccept() {
     // Arrange
     WrapperClassMarker wrapperClassMarker = new WrapperClassMarker();
@@ -49,17 +51,18 @@ class WrapperClassMarkerDiffblueTest {
 
   /**
    * Test {@link WrapperClassMarker#visitProgramField(ProgramClass, ProgramField)}.
+   *
    * <ul>
-   *   <li>Given empty string.</li>
+   *   <li>Given empty string.
    * </ul>
-   * <p>
-   * Method under test: {@link WrapperClassMarker#visitProgramField(ProgramClass, ProgramField)}
+   *
+   * <p>Method under test: {@link WrapperClassMarker#visitProgramField(ProgramClass, ProgramField)}
    */
   @Test
   @DisplayName("Test visitProgramField(ProgramClass, ProgramField); given empty string")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.WrapperClassMarker.visitProgramField(proguard.classfile.ProgramClass, proguard.classfile.ProgramField)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void WrapperClassMarker.visitProgramField(ProgramClass, ProgramField)"})
   void testVisitProgramField_givenEmptyString() {
     // Arrange
     WrapperClassMarker wrapperClassMarker = new WrapperClassMarker();
@@ -75,18 +78,20 @@ class WrapperClassMarkerDiffblueTest {
 
   /**
    * Test {@link WrapperClassMarker#visitProgramField(ProgramClass, ProgramField)}.
+   *
    * <ul>
-   *   <li>Given {@code String}.</li>
-   *   <li>Then calls {@link ProgramClass#getString(int)}.</li>
+   *   <li>Given {@code String}.
+   *   <li>Then calls {@link ProgramClass#getString(int)}.
    * </ul>
-   * <p>
-   * Method under test: {@link WrapperClassMarker#visitProgramField(ProgramClass, ProgramField)}
+   *
+   * <p>Method under test: {@link WrapperClassMarker#visitProgramField(ProgramClass, ProgramField)}
    */
   @Test
-  @DisplayName("Test visitProgramField(ProgramClass, ProgramField); given 'String'; then calls getString(int)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.WrapperClassMarker.visitProgramField(proguard.classfile.ProgramClass, proguard.classfile.ProgramField)"})
+  @DisplayName(
+      "Test visitProgramField(ProgramClass, ProgramField); given 'String'; then calls getString(int)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void WrapperClassMarker.visitProgramField(ProgramClass, ProgramField)"})
   void testVisitProgramField_givenString_thenCallsGetString() {
     // Arrange
     WrapperClassMarker wrapperClassMarker = new WrapperClassMarker();
@@ -102,18 +107,21 @@ class WrapperClassMarkerDiffblueTest {
 
   /**
    * Test {@link WrapperClassMarker#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   *
    * <ul>
-   *   <li>Given {@code String}.</li>
-   *   <li>Then calls {@link ProgramClass#getString(int)}.</li>
+   *   <li>Given {@code String}.
+   *   <li>Then calls {@link ProgramClass#getString(int)}.
    * </ul>
-   * <p>
-   * Method under test: {@link WrapperClassMarker#visitProgramMethod(ProgramClass, ProgramMethod)}
+   *
+   * <p>Method under test: {@link WrapperClassMarker#visitProgramMethod(ProgramClass,
+   * ProgramMethod)}
    */
   @Test
-  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); given 'String'; then calls getString(int)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.WrapperClassMarker.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
+  @DisplayName(
+      "Test visitProgramMethod(ProgramClass, ProgramMethod); given 'String'; then calls getString(int)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void WrapperClassMarker.visitProgramMethod(ProgramClass, ProgramMethod)"})
   void testVisitProgramMethod_givenString_thenCallsGetString() {
     // Arrange
     WrapperClassMarker wrapperClassMarker = new WrapperClassMarker();
@@ -129,20 +137,21 @@ class WrapperClassMarkerDiffblueTest {
 
   /**
    * Test {@link WrapperClassMarker#getWrappedClass(Clazz)}.
+   *
    * <ul>
-   *   <li>Given {@link ClassOptimizationInfo} (default constructor).</li>
+   *   <li>Given {@link ClassOptimizationInfo} (default constructor).
    * </ul>
-   * <p>
-   * Method under test: {@link WrapperClassMarker#getWrappedClass(Clazz)}
+   *
+   * <p>Method under test: {@link WrapperClassMarker#getWrappedClass(Clazz)}
    */
   @Test
   @DisplayName("Test getWrappedClass(Clazz); given ClassOptimizationInfo (default constructor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "proguard.classfile.Clazz proguard.optimize.info.WrapperClassMarker.getWrappedClass(proguard.classfile.Clazz)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"Clazz WrapperClassMarker.getWrappedClass(Clazz)"})
   void testGetWrappedClass_givenClassOptimizationInfo() {
     // Arrange
-    LibraryClass clazz = new LibraryClass();
+    LibraryClass clazz = new LibraryClass(1, "This Class Name", "Super Class Name");
     clazz.setProcessingInfo(new ClassOptimizationInfo());
 
     // Act and Assert
@@ -151,20 +160,22 @@ class WrapperClassMarkerDiffblueTest {
 
   /**
    * Test {@link WrapperClassMarker#getWrappedClass(Clazz)}.
+   *
    * <ul>
-   *   <li>Given {@link ProgramClassOptimizationInfo} (default constructor).</li>
+   *   <li>Given {@link ProgramClassOptimizationInfo} (default constructor).
    * </ul>
-   * <p>
-   * Method under test: {@link WrapperClassMarker#getWrappedClass(Clazz)}
+   *
+   * <p>Method under test: {@link WrapperClassMarker#getWrappedClass(Clazz)}
    */
   @Test
-  @DisplayName("Test getWrappedClass(Clazz); given ProgramClassOptimizationInfo (default constructor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "proguard.classfile.Clazz proguard.optimize.info.WrapperClassMarker.getWrappedClass(proguard.classfile.Clazz)"})
+  @DisplayName(
+      "Test getWrappedClass(Clazz); given ProgramClassOptimizationInfo (default constructor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"Clazz WrapperClassMarker.getWrappedClass(Clazz)"})
   void testGetWrappedClass_givenProgramClassOptimizationInfo() {
     // Arrange
-    LibraryClass clazz = new LibraryClass();
+    LibraryClass clazz = new LibraryClass(1, "This Class Name", "Super Class Name");
     clazz.setProcessingInfo(new ProgramClassOptimizationInfo());
 
     // Act and Assert

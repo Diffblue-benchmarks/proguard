@@ -6,6 +6,7 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -19,20 +20,26 @@ import proguard.classfile.ProgramMethod;
 class NoEscapingParametersMethodMarkerDiffblueTest {
   /**
    * Test {@link NoEscapingParametersMethodMarker#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   *
    * <ul>
-   *   <li>Given {@link MethodOptimizationInfo} (default constructor).</li>
+   *   <li>Given {@link MethodOptimizationInfo} (default constructor).
    * </ul>
-   * <p>
-   * Method under test: {@link NoEscapingParametersMethodMarker#visitProgramMethod(ProgramClass, ProgramMethod)}
+   *
+   * <p>Method under test: {@link NoEscapingParametersMethodMarker#visitProgramMethod(ProgramClass,
+   * ProgramMethod)}
    */
   @Test
-  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); given MethodOptimizationInfo (default constructor)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitProgramMethod(ProgramClass, ProgramMethod); given MethodOptimizationInfo (default constructor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.info.NoEscapingParametersMethodMarker.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
+    "void NoEscapingParametersMethodMarker.visitProgramMethod(ProgramClass, ProgramMethod)"
+  })
   void testVisitProgramMethod_givenMethodOptimizationInfo() {
     // Arrange
-    NoEscapingParametersMethodMarker noEscapingParametersMethodMarker = new NoEscapingParametersMethodMarker();
+    NoEscapingParametersMethodMarker noEscapingParametersMethodMarker =
+        new NoEscapingParametersMethodMarker();
     ProgramClass programClass = new ProgramClass();
     ProgramMethod programMethod = mock(ProgramMethod.class);
     when(programMethod.getProcessingInfo()).thenReturn(new MethodOptimizationInfo());
@@ -46,20 +53,26 @@ class NoEscapingParametersMethodMarkerDiffblueTest {
 
   /**
    * Test {@link NoEscapingParametersMethodMarker#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   *
    * <ul>
-   *   <li>Then calls {@link MethodOptimizationInfo#setNoEscapingParameters()}.</li>
+   *   <li>Then calls {@link MethodOptimizationInfo#setNoEscapingParameters()}.
    * </ul>
-   * <p>
-   * Method under test: {@link NoEscapingParametersMethodMarker#visitProgramMethod(ProgramClass, ProgramMethod)}
+   *
+   * <p>Method under test: {@link NoEscapingParametersMethodMarker#visitProgramMethod(ProgramClass,
+   * ProgramMethod)}
    */
   @Test
-  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); then calls setNoEscapingParameters()")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitProgramMethod(ProgramClass, ProgramMethod); then calls setNoEscapingParameters()")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.info.NoEscapingParametersMethodMarker.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
+    "void NoEscapingParametersMethodMarker.visitProgramMethod(ProgramClass, ProgramMethod)"
+  })
   void testVisitProgramMethod_thenCallsSetNoEscapingParameters() {
     // Arrange
-    NoEscapingParametersMethodMarker noEscapingParametersMethodMarker = new NoEscapingParametersMethodMarker();
+    NoEscapingParametersMethodMarker noEscapingParametersMethodMarker =
+        new NoEscapingParametersMethodMarker();
     ProgramClass programClass = new ProgramClass();
     MethodOptimizationInfo methodOptimizationInfo = mock(MethodOptimizationInfo.class);
     doNothing().when(methodOptimizationInfo).setNoEscapingParameters();
@@ -76,20 +89,26 @@ class NoEscapingParametersMethodMarkerDiffblueTest {
 
   /**
    * Test {@link NoEscapingParametersMethodMarker#visitLibraryMethod(LibraryClass, LibraryMethod)}.
+   *
    * <ul>
-   *   <li>Given {@link MethodOptimizationInfo} (default constructor).</li>
+   *   <li>Given {@link MethodOptimizationInfo} (default constructor).
    * </ul>
-   * <p>
-   * Method under test: {@link NoEscapingParametersMethodMarker#visitLibraryMethod(LibraryClass, LibraryMethod)}
+   *
+   * <p>Method under test: {@link NoEscapingParametersMethodMarker#visitLibraryMethod(LibraryClass,
+   * LibraryMethod)}
    */
   @Test
-  @DisplayName("Test visitLibraryMethod(LibraryClass, LibraryMethod); given MethodOptimizationInfo (default constructor)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitLibraryMethod(LibraryClass, LibraryMethod); given MethodOptimizationInfo (default constructor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.info.NoEscapingParametersMethodMarker.visitLibraryMethod(proguard.classfile.LibraryClass, proguard.classfile.LibraryMethod)"})
+    "void NoEscapingParametersMethodMarker.visitLibraryMethod(LibraryClass, LibraryMethod)"
+  })
   void testVisitLibraryMethod_givenMethodOptimizationInfo() {
     // Arrange
-    NoEscapingParametersMethodMarker noEscapingParametersMethodMarker = new NoEscapingParametersMethodMarker();
+    NoEscapingParametersMethodMarker noEscapingParametersMethodMarker =
+        new NoEscapingParametersMethodMarker();
     LibraryClass libraryClass = new LibraryClass();
     LibraryMethod libraryMethod = mock(LibraryMethod.class);
     when(libraryMethod.getProcessingInfo()).thenReturn(new MethodOptimizationInfo());
@@ -103,20 +122,26 @@ class NoEscapingParametersMethodMarkerDiffblueTest {
 
   /**
    * Test {@link NoEscapingParametersMethodMarker#visitLibraryMethod(LibraryClass, LibraryMethod)}.
+   *
    * <ul>
-   *   <li>Then calls {@link MethodOptimizationInfo#setNoEscapingParameters()}.</li>
+   *   <li>Then calls {@link MethodOptimizationInfo#setNoEscapingParameters()}.
    * </ul>
-   * <p>
-   * Method under test: {@link NoEscapingParametersMethodMarker#visitLibraryMethod(LibraryClass, LibraryMethod)}
+   *
+   * <p>Method under test: {@link NoEscapingParametersMethodMarker#visitLibraryMethod(LibraryClass,
+   * LibraryMethod)}
    */
   @Test
-  @DisplayName("Test visitLibraryMethod(LibraryClass, LibraryMethod); then calls setNoEscapingParameters()")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitLibraryMethod(LibraryClass, LibraryMethod); then calls setNoEscapingParameters()")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.info.NoEscapingParametersMethodMarker.visitLibraryMethod(proguard.classfile.LibraryClass, proguard.classfile.LibraryMethod)"})
+    "void NoEscapingParametersMethodMarker.visitLibraryMethod(LibraryClass, LibraryMethod)"
+  })
   void testVisitLibraryMethod_thenCallsSetNoEscapingParameters() {
     // Arrange
-    NoEscapingParametersMethodMarker noEscapingParametersMethodMarker = new NoEscapingParametersMethodMarker();
+    NoEscapingParametersMethodMarker noEscapingParametersMethodMarker =
+        new NoEscapingParametersMethodMarker();
     LibraryClass libraryClass = new LibraryClass();
     MethodOptimizationInfo methodOptimizationInfo = mock(MethodOptimizationInfo.class);
     doNothing().when(methodOptimizationInfo).setNoEscapingParameters();
@@ -133,18 +158,20 @@ class NoEscapingParametersMethodMarkerDiffblueTest {
 
   /**
    * Test {@link NoEscapingParametersMethodMarker#hasNoParameterEscaping(Method)}.
+   *
    * <ul>
-   *   <li>Given {@link MethodOptimizationInfo} (default constructor).</li>
-   *   <li>Then return {@code false}.</li>
+   *   <li>Given {@link MethodOptimizationInfo} (default constructor).
+   *   <li>Then return {@code false}.
    * </ul>
-   * <p>
-   * Method under test: {@link NoEscapingParametersMethodMarker#hasNoParameterEscaping(Method)}
+   *
+   * <p>Method under test: {@link NoEscapingParametersMethodMarker#hasNoParameterEscaping(Method)}
    */
   @Test
-  @DisplayName("Test hasNoParameterEscaping(Method); given MethodOptimizationInfo (default constructor); then return 'false'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "boolean proguard.optimize.info.NoEscapingParametersMethodMarker.hasNoParameterEscaping(proguard.classfile.Method)"})
+  @DisplayName(
+      "Test hasNoParameterEscaping(Method); given MethodOptimizationInfo (default constructor); then return 'false'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean NoEscapingParametersMethodMarker.hasNoParameterEscaping(Method)"})
   void testHasNoParameterEscaping_givenMethodOptimizationInfo_thenReturnFalse() {
     // Arrange
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");

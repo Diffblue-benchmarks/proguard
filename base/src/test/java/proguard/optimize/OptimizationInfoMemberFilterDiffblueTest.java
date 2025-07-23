@@ -7,6 +7,7 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -17,7 +18,6 @@ import proguard.classfile.LibraryClass;
 import proguard.classfile.LibraryField;
 import proguard.classfile.ProgramClass;
 import proguard.classfile.ProgramField;
-import proguard.classfile.ProgramMember;
 import proguard.classfile.ProgramMethod;
 import proguard.classfile.visitor.MemberVisitor;
 import proguard.fixer.kotlin.KotlinAnnotationCounter;
@@ -25,32 +25,38 @@ import proguard.obfuscate.MemberNameCleaner;
 import proguard.optimize.info.MethodOptimizationInfo;
 import proguard.optimize.info.ProgramFieldOptimizationInfo;
 import proguard.optimize.info.ProgramMethodOptimizationInfo;
-import proguard.util.SimpleProcessable;
 
 class OptimizationInfoMemberFilterDiffblueTest {
   /**
    * Test {@link OptimizationInfoMemberFilter#visitProgramField(ProgramClass, ProgramField)}.
+   *
    * <ul>
-   *   <li>Then calls {@link SimpleProcessable#setProcessingInfo(Object)}.</li>
+   *   <li>Then calls {@link ProgramField#setProcessingInfo(Object)}.
    * </ul>
-   * <p>
-   * Method under test: {@link OptimizationInfoMemberFilter#visitProgramField(ProgramClass, ProgramField)}
+   *
+   * <p>Method under test: {@link OptimizationInfoMemberFilter#visitProgramField(ProgramClass,
+   * ProgramField)}
    */
   @Test
-  @DisplayName("Test visitProgramField(ProgramClass, ProgramField); then calls setProcessingInfo(Object)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitProgramField(ProgramClass, ProgramField); then calls setProcessingInfo(Object)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.OptimizationInfoMemberFilter.visitProgramField(proguard.classfile.ProgramClass, proguard.classfile.ProgramField)"})
+    "void OptimizationInfoMemberFilter.visitProgramField(ProgramClass, ProgramField)"
+  })
   void testVisitProgramField_thenCallsSetProcessingInfo() {
     // Arrange
-    OptimizationInfoMemberFilter optimizationInfoMemberFilter = new OptimizationInfoMemberFilter(
-        new MemberNameCleaner(), mock(MemberVisitor.class));
+    OptimizationInfoMemberFilter optimizationInfoMemberFilter =
+        new OptimizationInfoMemberFilter(new MemberNameCleaner(), mock(MemberVisitor.class));
     ProgramClass programClass = new ProgramClass();
     ProgramField programField = mock(ProgramField.class);
     doNothing().when(programField).setProcessingInfo(Mockito.<Object>any());
     LibraryClass clazz = new LibraryClass();
     when(programField.getProcessingInfo())
-        .thenReturn(new ProgramFieldOptimizationInfo(clazz, new LibraryField(1, "Name", "Descriptor"), true));
+        .thenReturn(
+            new ProgramFieldOptimizationInfo(
+                clazz, new LibraryField(1, "Name", "Descriptor"), true));
 
     // Act
     optimizationInfoMemberFilter.visitProgramField(programClass, programField);
@@ -62,23 +68,30 @@ class OptimizationInfoMemberFilterDiffblueTest {
 
   /**
    * Test {@link OptimizationInfoMemberFilter#visitProgramField(ProgramClass, ProgramField)}.
+   *
    * <ul>
-   *   <li>Then calls {@link MemberVisitor#visitProgramField(ProgramClass, ProgramField)}.</li>
+   *   <li>Then calls {@link MemberVisitor#visitProgramField(ProgramClass, ProgramField)}.
    * </ul>
-   * <p>
-   * Method under test: {@link OptimizationInfoMemberFilter#visitProgramField(ProgramClass, ProgramField)}
+   *
+   * <p>Method under test: {@link OptimizationInfoMemberFilter#visitProgramField(ProgramClass,
+   * ProgramField)}
    */
   @Test
-  @DisplayName("Test visitProgramField(ProgramClass, ProgramField); then calls visitProgramField(ProgramClass, ProgramField)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitProgramField(ProgramClass, ProgramField); then calls visitProgramField(ProgramClass, ProgramField)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.OptimizationInfoMemberFilter.visitProgramField(proguard.classfile.ProgramClass, proguard.classfile.ProgramField)"})
+    "void OptimizationInfoMemberFilter.visitProgramField(ProgramClass, ProgramField)"
+  })
   void testVisitProgramField_thenCallsVisitProgramField() {
     // Arrange
     MemberVisitor otherMemberVisitor = mock(MemberVisitor.class);
-    doNothing().when(otherMemberVisitor).visitProgramField(Mockito.<ProgramClass>any(), Mockito.<ProgramField>any());
-    OptimizationInfoMemberFilter optimizationInfoMemberFilter = new OptimizationInfoMemberFilter(
-        new KotlinAnnotationCounter(), otherMemberVisitor);
+    doNothing()
+        .when(otherMemberVisitor)
+        .visitProgramField(Mockito.<ProgramClass>any(), Mockito.<ProgramField>any());
+    OptimizationInfoMemberFilter optimizationInfoMemberFilter =
+        new OptimizationInfoMemberFilter(new KotlinAnnotationCounter(), otherMemberVisitor);
     ProgramClass programClass = new ProgramClass();
 
     // Act
@@ -90,28 +103,35 @@ class OptimizationInfoMemberFilterDiffblueTest {
 
   /**
    * Test {@link OptimizationInfoMemberFilter#visitProgramField(ProgramClass, ProgramField)}.
+   *
    * <ul>
-   *   <li>When {@link ProgramField} {@link ProgramMember#accept(Clazz, MemberVisitor)} does nothing.</li>
-   *   <li>Then calls {@link ProgramMember#accept(Clazz, MemberVisitor)}.</li>
+   *   <li>When {@link ProgramField} {@link ProgramField#accept(Clazz, MemberVisitor)} does nothing.
+   *   <li>Then calls {@link ProgramField#accept(Clazz, MemberVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link OptimizationInfoMemberFilter#visitProgramField(ProgramClass, ProgramField)}
+   *
+   * <p>Method under test: {@link OptimizationInfoMemberFilter#visitProgramField(ProgramClass,
+   * ProgramField)}
    */
   @Test
-  @DisplayName("Test visitProgramField(ProgramClass, ProgramField); when ProgramField accept(Clazz, MemberVisitor) does nothing; then calls accept(Clazz, MemberVisitor)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitProgramField(ProgramClass, ProgramField); when ProgramField accept(Clazz, MemberVisitor) does nothing; then calls accept(Clazz, MemberVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.OptimizationInfoMemberFilter.visitProgramField(proguard.classfile.ProgramClass, proguard.classfile.ProgramField)"})
+    "void OptimizationInfoMemberFilter.visitProgramField(ProgramClass, ProgramField)"
+  })
   void testVisitProgramField_whenProgramFieldAcceptDoesNothing_thenCallsAccept() {
     // Arrange
-    OptimizationInfoMemberFilter optimizationInfoMemberFilter = new OptimizationInfoMemberFilter(
-        new KotlinAnnotationCounter(), mock(MemberVisitor.class));
+    OptimizationInfoMemberFilter optimizationInfoMemberFilter =
+        new OptimizationInfoMemberFilter(new KotlinAnnotationCounter(), mock(MemberVisitor.class));
     ProgramClass programClass = new ProgramClass();
     ProgramField programField = mock(ProgramField.class);
     doNothing().when(programField).accept(Mockito.<Clazz>any(), Mockito.<MemberVisitor>any());
     LibraryClass clazz = new LibraryClass();
     when(programField.getProcessingInfo())
-        .thenReturn(new ProgramFieldOptimizationInfo(clazz, new LibraryField(1, "Name", "Descriptor"), true));
+        .thenReturn(
+            new ProgramFieldOptimizationInfo(
+                clazz, new LibraryField(1, "Name", "Descriptor"), true));
 
     // Act
     optimizationInfoMemberFilter.visitProgramField(programClass, programField);
@@ -123,23 +143,30 @@ class OptimizationInfoMemberFilterDiffblueTest {
 
   /**
    * Test {@link OptimizationInfoMemberFilter#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   *
    * <ul>
-   *   <li>Given {@link MethodOptimizationInfo} (default constructor).</li>
+   *   <li>Given {@link MethodOptimizationInfo} (default constructor).
    * </ul>
-   * <p>
-   * Method under test: {@link OptimizationInfoMemberFilter#visitProgramMethod(ProgramClass, ProgramMethod)}
+   *
+   * <p>Method under test: {@link OptimizationInfoMemberFilter#visitProgramMethod(ProgramClass,
+   * ProgramMethod)}
    */
   @Test
-  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); given MethodOptimizationInfo (default constructor)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitProgramMethod(ProgramClass, ProgramMethod); given MethodOptimizationInfo (default constructor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.OptimizationInfoMemberFilter.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
+    "void OptimizationInfoMemberFilter.visitProgramMethod(ProgramClass, ProgramMethod)"
+  })
   void testVisitProgramMethod_givenMethodOptimizationInfo() {
     // Arrange
     MemberVisitor otherMemberVisitor = mock(MemberVisitor.class);
-    doNothing().when(otherMemberVisitor).visitProgramMethod(Mockito.<ProgramClass>any(), Mockito.<ProgramMethod>any());
-    OptimizationInfoMemberFilter optimizationInfoMemberFilter = new OptimizationInfoMemberFilter(
-        new KotlinAnnotationCounter(), otherMemberVisitor);
+    doNothing()
+        .when(otherMemberVisitor)
+        .visitProgramMethod(Mockito.<ProgramClass>any(), Mockito.<ProgramMethod>any());
+    OptimizationInfoMemberFilter optimizationInfoMemberFilter =
+        new OptimizationInfoMemberFilter(new KotlinAnnotationCounter(), otherMemberVisitor);
     ProgramClass programClass = new ProgramClass();
     ProgramMethod programMethod = mock(ProgramMethod.class);
     when(programMethod.getProcessingInfo()).thenReturn(new MethodOptimizationInfo());
@@ -148,27 +175,33 @@ class OptimizationInfoMemberFilterDiffblueTest {
     optimizationInfoMemberFilter.visitProgramMethod(programClass, programMethod);
 
     // Assert
-    verify(otherMemberVisitor).visitProgramMethod(isA(ProgramClass.class), isA(ProgramMethod.class));
+    verify(otherMemberVisitor)
+        .visitProgramMethod(isA(ProgramClass.class), isA(ProgramMethod.class));
     verify(programMethod, atLeast(1)).getProcessingInfo();
   }
 
   /**
    * Test {@link OptimizationInfoMemberFilter#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   *
    * <ul>
-   *   <li>Then calls {@link SimpleProcessable#setProcessingInfo(Object)}.</li>
+   *   <li>Then calls {@link ProgramMethod#setProcessingInfo(Object)}.
    * </ul>
-   * <p>
-   * Method under test: {@link OptimizationInfoMemberFilter#visitProgramMethod(ProgramClass, ProgramMethod)}
+   *
+   * <p>Method under test: {@link OptimizationInfoMemberFilter#visitProgramMethod(ProgramClass,
+   * ProgramMethod)}
    */
   @Test
-  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); then calls setProcessingInfo(Object)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitProgramMethod(ProgramClass, ProgramMethod); then calls setProcessingInfo(Object)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.OptimizationInfoMemberFilter.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
+    "void OptimizationInfoMemberFilter.visitProgramMethod(ProgramClass, ProgramMethod)"
+  })
   void testVisitProgramMethod_thenCallsSetProcessingInfo() {
     // Arrange
-    OptimizationInfoMemberFilter optimizationInfoMemberFilter = new OptimizationInfoMemberFilter(
-        new MemberNameCleaner(), mock(MemberVisitor.class));
+    OptimizationInfoMemberFilter optimizationInfoMemberFilter =
+        new OptimizationInfoMemberFilter(new MemberNameCleaner(), mock(MemberVisitor.class));
     ProgramClass programClass = new ProgramClass();
     ProgramMethod programMethod = mock(ProgramMethod.class);
     doNothing().when(programMethod).setProcessingInfo(Mockito.<Object>any());
@@ -184,50 +217,64 @@ class OptimizationInfoMemberFilterDiffblueTest {
 
   /**
    * Test {@link OptimizationInfoMemberFilter#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   *
    * <ul>
-   *   <li>Then calls {@link MemberVisitor#visitProgramMethod(ProgramClass, ProgramMethod)}.</li>
+   *   <li>Then calls {@link MemberVisitor#visitProgramMethod(ProgramClass, ProgramMethod)}.
    * </ul>
-   * <p>
-   * Method under test: {@link OptimizationInfoMemberFilter#visitProgramMethod(ProgramClass, ProgramMethod)}
+   *
+   * <p>Method under test: {@link OptimizationInfoMemberFilter#visitProgramMethod(ProgramClass,
+   * ProgramMethod)}
    */
   @Test
-  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); then calls visitProgramMethod(ProgramClass, ProgramMethod)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitProgramMethod(ProgramClass, ProgramMethod); then calls visitProgramMethod(ProgramClass, ProgramMethod)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.OptimizationInfoMemberFilter.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
+    "void OptimizationInfoMemberFilter.visitProgramMethod(ProgramClass, ProgramMethod)"
+  })
   void testVisitProgramMethod_thenCallsVisitProgramMethod() {
     // Arrange
     MemberVisitor otherMemberVisitor = mock(MemberVisitor.class);
-    doNothing().when(otherMemberVisitor).visitProgramMethod(Mockito.<ProgramClass>any(), Mockito.<ProgramMethod>any());
-    OptimizationInfoMemberFilter optimizationInfoMemberFilter = new OptimizationInfoMemberFilter(
-        new KotlinAnnotationCounter(), otherMemberVisitor);
+    doNothing()
+        .when(otherMemberVisitor)
+        .visitProgramMethod(Mockito.<ProgramClass>any(), Mockito.<ProgramMethod>any());
+    OptimizationInfoMemberFilter optimizationInfoMemberFilter =
+        new OptimizationInfoMemberFilter(new KotlinAnnotationCounter(), otherMemberVisitor);
     ProgramClass programClass = new ProgramClass();
 
     // Act
     optimizationInfoMemberFilter.visitProgramMethod(programClass, new ProgramMethod());
 
     // Assert
-    verify(otherMemberVisitor).visitProgramMethod(isA(ProgramClass.class), isA(ProgramMethod.class));
+    verify(otherMemberVisitor)
+        .visitProgramMethod(isA(ProgramClass.class), isA(ProgramMethod.class));
   }
 
   /**
    * Test {@link OptimizationInfoMemberFilter#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   *
    * <ul>
-   *   <li>When {@link ProgramMethod} {@link ProgramMember#accept(Clazz, MemberVisitor)} does nothing.</li>
-   *   <li>Then calls {@link ProgramMember#accept(Clazz, MemberVisitor)}.</li>
+   *   <li>When {@link ProgramMethod} {@link ProgramMethod#accept(Clazz, MemberVisitor)} does
+   *       nothing.
+   *   <li>Then calls {@link ProgramMethod#accept(Clazz, MemberVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link OptimizationInfoMemberFilter#visitProgramMethod(ProgramClass, ProgramMethod)}
+   *
+   * <p>Method under test: {@link OptimizationInfoMemberFilter#visitProgramMethod(ProgramClass,
+   * ProgramMethod)}
    */
   @Test
-  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); when ProgramMethod accept(Clazz, MemberVisitor) does nothing; then calls accept(Clazz, MemberVisitor)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitProgramMethod(ProgramClass, ProgramMethod); when ProgramMethod accept(Clazz, MemberVisitor) does nothing; then calls accept(Clazz, MemberVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.OptimizationInfoMemberFilter.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
+    "void OptimizationInfoMemberFilter.visitProgramMethod(ProgramClass, ProgramMethod)"
+  })
   void testVisitProgramMethod_whenProgramMethodAcceptDoesNothing_thenCallsAccept() {
     // Arrange
-    OptimizationInfoMemberFilter optimizationInfoMemberFilter = new OptimizationInfoMemberFilter(
-        new KotlinAnnotationCounter(), mock(MemberVisitor.class));
+    OptimizationInfoMemberFilter optimizationInfoMemberFilter =
+        new OptimizationInfoMemberFilter(new KotlinAnnotationCounter(), mock(MemberVisitor.class));
     ProgramClass programClass = new ProgramClass();
     ProgramMethod programMethod = mock(ProgramMethod.class);
     doNothing().when(programMethod).accept(Mockito.<Clazz>any(), Mockito.<MemberVisitor>any());

@@ -6,6 +6,7 @@ import static org.mockito.Mockito.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -20,18 +21,23 @@ import proguard.classfile.constant.InterfaceMethodrefConstant;
 class SuperInvocationMarkerDiffblueTest {
   /**
    * Test {@link SuperInvocationMarker#visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant)}.
+   *
    * <ul>
-   *   <li>Given {@code <init>}.</li>
-   *   <li>When {@link LibraryClass} {@link LibraryClass#getName(int)} return {@code <init>}.</li>
+   *   <li>Given {@code <init>}.
+   *   <li>When {@link LibraryClass} {@link LibraryClass#getName(int)} return {@code <init>}.
    * </ul>
-   * <p>
-   * Method under test: {@link SuperInvocationMarker#visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant)}
+   *
+   * <p>Method under test: {@link SuperInvocationMarker#visitAnyMethodrefConstant(Clazz,
+   * AnyMethodrefConstant)}
    */
   @Test
-  @DisplayName("Test visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant); given '<init>'; when LibraryClass getName(int) return '<init>'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant); given '<init>'; when LibraryClass getName(int) return '<init>'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.info.SuperInvocationMarker.visitAnyMethodrefConstant(proguard.classfile.Clazz, proguard.classfile.constant.AnyMethodrefConstant)"})
+    "void SuperInvocationMarker.visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant)"
+  })
   void testVisitAnyMethodrefConstant_givenInit_whenLibraryClassGetNameReturnInit() {
     // Arrange
     SuperInvocationMarker superInvocationMarker = new SuperInvocationMarker();
@@ -47,18 +53,23 @@ class SuperInvocationMarkerDiffblueTest {
 
   /**
    * Test {@link SuperInvocationMarker#visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant)}.
+   *
    * <ul>
-   *   <li>Given {@code Name}.</li>
-   *   <li>Then calls {@link LibraryClass#getName(int)}.</li>
+   *   <li>Given {@code Name}.
+   *   <li>Then calls {@link LibraryClass#getName(int)}.
    * </ul>
-   * <p>
-   * Method under test: {@link SuperInvocationMarker#visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant)}
+   *
+   * <p>Method under test: {@link SuperInvocationMarker#visitAnyMethodrefConstant(Clazz,
+   * AnyMethodrefConstant)}
    */
   @Test
-  @DisplayName("Test visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant); given 'Name'; then calls getName(int)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant); given 'Name'; then calls getName(int)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.info.SuperInvocationMarker.visitAnyMethodrefConstant(proguard.classfile.Clazz, proguard.classfile.constant.AnyMethodrefConstant)"})
+    "void SuperInvocationMarker.visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant)"
+  })
   void testVisitAnyMethodrefConstant_givenName_thenCallsGetName() {
     // Arrange
     SuperInvocationMarker superInvocationMarker = new SuperInvocationMarker();
@@ -74,18 +85,20 @@ class SuperInvocationMarkerDiffblueTest {
 
   /**
    * Test {@link SuperInvocationMarker#invokesSuperMethods(Method)}.
+   *
    * <ul>
-   *   <li>Given {@link MethodOptimizationInfo} (default constructor).</li>
-   *   <li>Then return {@code true}.</li>
+   *   <li>Given {@link MethodOptimizationInfo} (default constructor).
+   *   <li>Then return {@code true}.
    * </ul>
-   * <p>
-   * Method under test: {@link SuperInvocationMarker#invokesSuperMethods(Method)}
+   *
+   * <p>Method under test: {@link SuperInvocationMarker#invokesSuperMethods(Method)}
    */
   @Test
-  @DisplayName("Test invokesSuperMethods(Method); given MethodOptimizationInfo (default constructor); then return 'true'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "boolean proguard.optimize.info.SuperInvocationMarker.invokesSuperMethods(proguard.classfile.Method)"})
+  @DisplayName(
+      "Test invokesSuperMethods(Method); given MethodOptimizationInfo (default constructor); then return 'true'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean SuperInvocationMarker.invokesSuperMethods(Method)"})
   void testInvokesSuperMethods_givenMethodOptimizationInfo_thenReturnTrue() {
     // Arrange
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");

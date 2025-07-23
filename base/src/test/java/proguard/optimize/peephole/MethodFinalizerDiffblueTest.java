@@ -1,6 +1,7 @@
 package proguard.optimize.peephole;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -8,6 +9,8 @@ import org.junit.jupiter.api.Test;
 import proguard.classfile.LibraryClass;
 import proguard.classfile.ProgramClass;
 import proguard.classfile.ProgramMethod;
+import proguard.classfile.constant.ClassConstant;
+import proguard.classfile.constant.Constant;
 import proguard.fixer.kotlin.KotlinAnnotationCounter;
 import proguard.obfuscate.ClassRenamer;
 import proguard.obfuscate.MemberNameCleaner;
@@ -16,14 +19,14 @@ import proguard.testutils.cpa.NamedMember;
 class MethodFinalizerDiffblueTest {
   /**
    * Test {@link MethodFinalizer#visitProgramMethod(ProgramClass, ProgramMethod)}.
-   * <p>
-   * Method under test: {@link MethodFinalizer#visitProgramMethod(ProgramClass, ProgramMethod)}
+   *
+   * <p>Method under test: {@link MethodFinalizer#visitProgramMethod(ProgramClass, ProgramMethod)}
    */
   @Test
   @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.peephole.MethodFinalizer.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void MethodFinalizer.visitProgramMethod(ProgramClass, ProgramMethod)"})
   void testVisitProgramMethod() {
     // Arrange
     MethodFinalizer methodFinalizer = new MethodFinalizer();
@@ -39,14 +42,14 @@ class MethodFinalizerDiffblueTest {
 
   /**
    * Test {@link MethodFinalizer#visitProgramMethod(ProgramClass, ProgramMethod)}.
-   * <p>
-   * Method under test: {@link MethodFinalizer#visitProgramMethod(ProgramClass, ProgramMethod)}
+   *
+   * <p>Method under test: {@link MethodFinalizer#visitProgramMethod(ProgramClass, ProgramMethod)}
    */
   @Test
   @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.peephole.MethodFinalizer.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void MethodFinalizer.visitProgramMethod(ProgramClass, ProgramMethod)"})
   void testVisitProgramMethod2() {
     // Arrange
     MethodFinalizer methodFinalizer = new MethodFinalizer(new KotlinAnnotationCounter());
@@ -62,14 +65,14 @@ class MethodFinalizerDiffblueTest {
 
   /**
    * Test {@link MethodFinalizer#visitProgramMethod(ProgramClass, ProgramMethod)}.
-   * <p>
-   * Method under test: {@link MethodFinalizer#visitProgramMethod(ProgramClass, ProgramMethod)}
+   *
+   * <p>Method under test: {@link MethodFinalizer#visitProgramMethod(ProgramClass, ProgramMethod)}
    */
   @Test
   @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.peephole.MethodFinalizer.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void MethodFinalizer.visitProgramMethod(ProgramClass, ProgramMethod)"})
   void testVisitProgramMethod3() {
     // Arrange
     MethodFinalizer methodFinalizer = new MethodFinalizer();
@@ -85,14 +88,14 @@ class MethodFinalizerDiffblueTest {
 
   /**
    * Test {@link MethodFinalizer#visitProgramMethod(ProgramClass, ProgramMethod)}.
-   * <p>
-   * Method under test: {@link MethodFinalizer#visitProgramMethod(ProgramClass, ProgramMethod)}
+   *
+   * <p>Method under test: {@link MethodFinalizer#visitProgramMethod(ProgramClass, ProgramMethod)}
    */
   @Test
   @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.peephole.MethodFinalizer.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void MethodFinalizer.visitProgramMethod(ProgramClass, ProgramMethod)"})
   void testVisitProgramMethod4() {
     // Arrange
     MethodFinalizer methodFinalizer = new MethodFinalizer(new MemberNameCleaner());
@@ -108,14 +111,14 @@ class MethodFinalizerDiffblueTest {
 
   /**
    * Test {@link MethodFinalizer#visitProgramMethod(ProgramClass, ProgramMethod)}.
-   * <p>
-   * Method under test: {@link MethodFinalizer#visitProgramMethod(ProgramClass, ProgramMethod)}
+   *
+   * <p>Method under test: {@link MethodFinalizer#visitProgramMethod(ProgramClass, ProgramMethod)}
    */
   @Test
   @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.peephole.MethodFinalizer.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void MethodFinalizer.visitProgramMethod(ProgramClass, ProgramMethod)"})
   void testVisitProgramMethod5() {
     // Arrange
     MethodFinalizer methodFinalizer = new MethodFinalizer();
@@ -133,21 +136,54 @@ class MethodFinalizerDiffblueTest {
 
   /**
    * Test {@link MethodFinalizer#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   *
    * <ul>
-   *   <li>Given {@link MethodFinalizer#MethodFinalizer(MemberVisitor)} with extraMemberVisitor is {@link ClassRenamer#ClassRenamer()}.</li>
+   *   <li>Given {@link MethodFinalizer#MethodFinalizer(MemberVisitor)} with extraMemberVisitor is
+   *       {@link ClassRenamer#ClassRenamer()}.
    * </ul>
-   * <p>
-   * Method under test: {@link MethodFinalizer#visitProgramMethod(ProgramClass, ProgramMethod)}
+   *
+   * <p>Method under test: {@link MethodFinalizer#visitProgramMethod(ProgramClass, ProgramMethod)}
    */
   @Test
-  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); given MethodFinalizer(MemberVisitor) with extraMemberVisitor is ClassRenamer()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.peephole.MethodFinalizer.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
+  @DisplayName(
+      "Test visitProgramMethod(ProgramClass, ProgramMethod); given MethodFinalizer(MemberVisitor) with extraMemberVisitor is ClassRenamer()")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void MethodFinalizer.visitProgramMethod(ProgramClass, ProgramMethod)"})
   void testVisitProgramMethod_givenMethodFinalizerWithExtraMemberVisitorIsClassRenamer() {
     // Arrange
     MethodFinalizer methodFinalizer = new MethodFinalizer(new ClassRenamer());
     ProgramClass programClass = new ProgramClass();
+    NamedMember programMethod = new NamedMember("Member Name", "Descriptor");
+
+    // Act
+    methodFinalizer.visitProgramMethod(programClass, programMethod);
+
+    // Assert
+    assertEquals(Short.SIZE, programMethod.getAccessFlags());
+  }
+
+  /**
+   * Test {@link MethodFinalizer#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   *
+   * <ul>
+   *   <li>Given zero.
+   * </ul>
+   *
+   * <p>Method under test: {@link MethodFinalizer#visitProgramMethod(ProgramClass, ProgramMethod)}
+   */
+  @Test
+  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); given zero")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void MethodFinalizer.visitProgramMethod(ProgramClass, ProgramMethod)"})
+  void testVisitProgramMethod_givenZero() {
+    // Arrange
+    MethodFinalizer methodFinalizer = new MethodFinalizer();
+    ProgramClass programClass =
+        new ProgramClass(1050, 3, new Constant[] {new ClassConstant()}, 1050, 1050, 1050);
+
+    programClass.subClassCount = 0;
     NamedMember programMethod = new NamedMember("Member Name", "Descriptor");
 
     // Act

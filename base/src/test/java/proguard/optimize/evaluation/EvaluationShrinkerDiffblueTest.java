@@ -1,6 +1,7 @@
 package proguard.optimize.evaluation;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -14,15 +15,19 @@ import proguard.classfile.attribute.ExceptionInfo;
 
 class EvaluationShrinkerDiffblueTest {
   /**
-   * Test {@link EvaluationShrinker#visitExceptionInfo(Clazz, Method, CodeAttribute, ExceptionInfo)}.
-   * <p>
-   * Method under test: {@link EvaluationShrinker#visitExceptionInfo(Clazz, Method, CodeAttribute, ExceptionInfo)}
+   * Test {@link EvaluationShrinker#visitExceptionInfo(Clazz, Method, CodeAttribute,
+   * ExceptionInfo)}.
+   *
+   * <p>Method under test: {@link EvaluationShrinker#visitExceptionInfo(Clazz, Method,
+   * CodeAttribute, ExceptionInfo)}
    */
   @Test
   @DisplayName("Test visitExceptionInfo(Clazz, Method, CodeAttribute, ExceptionInfo)")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.evaluation.EvaluationShrinker.visitExceptionInfo(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.CodeAttribute, proguard.classfile.attribute.ExceptionInfo)"})
+    "void EvaluationShrinker.visitExceptionInfo(Clazz, Method, CodeAttribute, ExceptionInfo)"
+  })
   void testVisitExceptionInfo() {
     // Arrange
     EvaluationShrinker evaluationShrinker = new EvaluationShrinker();

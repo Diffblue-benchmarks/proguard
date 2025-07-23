@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -15,20 +16,57 @@ import proguard.classfile.constant.Constant;
 class ProgramClassOptimizationInfoSetterDiffblueTest {
   /**
    * Test {@link ProgramClassOptimizationInfoSetter#visitProgramClass(ProgramClass)}.
-   * <p>
-   * Method under test: {@link ProgramClassOptimizationInfoSetter#visitProgramClass(ProgramClass)}
+   *
+   * <p>Method under test: {@link
+   * ProgramClassOptimizationInfoSetter#visitProgramClass(ProgramClass)}
    */
   @Test
   @DisplayName("Test visitProgramClass(ProgramClass)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.ProgramClassOptimizationInfoSetter.visitProgramClass(proguard.classfile.ProgramClass)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ProgramClassOptimizationInfoSetter.visitProgramClass(ProgramClass)"})
   void testVisitProgramClass() {
     // Arrange
-    ProgramClassOptimizationInfoSetter programClassOptimizationInfoSetter = new ProgramClassOptimizationInfoSetter(
-        true);
-    ProgramClass programClass = new ProgramClass(1, 3, new Constant[]{new ClassConstant()}, 1, 1, 1, "Feature Name", 1,
-        "Processing Info");
+    ProgramClassOptimizationInfoSetter programClassOptimizationInfoSetter =
+        new ProgramClassOptimizationInfoSetter(false);
+
+    ProgramClass programClass =
+        new ProgramClass(1, 3, new Constant[] {new ClassConstant()}, 1, 1, 1);
+    programClass.setProcessingInfo("Program Class");
+
+    // Act
+    programClassOptimizationInfoSetter.visitProgramClass(programClass);
+
+    // Assert that nothing has changed
+    assertEquals("Program Class", programClass.getProcessingInfo());
+  }
+
+  /**
+   * Test {@link ProgramClassOptimizationInfoSetter#visitProgramClass(ProgramClass)}.
+   *
+   * <p>Method under test: {@link
+   * ProgramClassOptimizationInfoSetter#visitProgramClass(ProgramClass)}
+   */
+  @Test
+  @DisplayName("Test visitProgramClass(ProgramClass)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ProgramClassOptimizationInfoSetter.visitProgramClass(ProgramClass)"})
+  void testVisitProgramClass2() {
+    // Arrange
+    ProgramClassOptimizationInfoSetter programClassOptimizationInfoSetter =
+        new ProgramClassOptimizationInfoSetter(true);
+    ProgramClass programClass =
+        new ProgramClass(
+            1,
+            3,
+            new Constant[] {new ClassConstant()},
+            1,
+            1,
+            1,
+            "Feature Name",
+            1,
+            "Processing Info");
 
     // Act
     programClassOptimizationInfoSetter.visitProgramClass(programClass);
@@ -55,45 +93,25 @@ class ProgramClassOptimizationInfoSetterDiffblueTest {
 
   /**
    * Test {@link ProgramClassOptimizationInfoSetter#visitProgramClass(ProgramClass)}.
-   * <p>
-   * Method under test: {@link ProgramClassOptimizationInfoSetter#visitProgramClass(ProgramClass)}
-   */
-  @Test
-  @DisplayName("Test visitProgramClass(ProgramClass)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.ProgramClassOptimizationInfoSetter.visitProgramClass(proguard.classfile.ProgramClass)"})
-  void testVisitProgramClass2() {
-    // Arrange
-    ProgramClassOptimizationInfoSetter programClassOptimizationInfoSetter = new ProgramClassOptimizationInfoSetter(
-        false);
-    ProgramClass programClass = new ProgramClass(1, 3, new Constant[]{new ClassConstant()}, 1, 1, 1, "Feature Name", 1,
-        "Processing Info");
-
-    // Act
-    programClassOptimizationInfoSetter.visitProgramClass(programClass);
-
-    // Assert that nothing has changed
-    assertEquals("Processing Info", programClass.getProcessingInfo());
-  }
-
-  /**
-   * Test {@link ProgramClassOptimizationInfoSetter#visitProgramClass(ProgramClass)}.
+   *
    * <ul>
-   *   <li>Then {@link ProgramClass#ProgramClass()} ProcessingInfo {@link ProgramClassOptimizationInfo}.</li>
+   *   <li>Then {@link ProgramClass#ProgramClass()} ProcessingInfo {@link
+   *       ProgramClassOptimizationInfo}.
    * </ul>
-   * <p>
-   * Method under test: {@link ProgramClassOptimizationInfoSetter#visitProgramClass(ProgramClass)}
+   *
+   * <p>Method under test: {@link
+   * ProgramClassOptimizationInfoSetter#visitProgramClass(ProgramClass)}
    */
   @Test
-  @DisplayName("Test visitProgramClass(ProgramClass); then ProgramClass() ProcessingInfo ProgramClassOptimizationInfo")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.ProgramClassOptimizationInfoSetter.visitProgramClass(proguard.classfile.ProgramClass)"})
+  @DisplayName(
+      "Test visitProgramClass(ProgramClass); then ProgramClass() ProcessingInfo ProgramClassOptimizationInfo")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ProgramClassOptimizationInfoSetter.visitProgramClass(ProgramClass)"})
   void testVisitProgramClass_thenProgramClassProcessingInfoProgramClassOptimizationInfo() {
     // Arrange
-    ProgramClassOptimizationInfoSetter programClassOptimizationInfoSetter = new ProgramClassOptimizationInfoSetter(
-        true);
+    ProgramClassOptimizationInfoSetter programClassOptimizationInfoSetter =
+        new ProgramClassOptimizationInfoSetter(true);
     ProgramClass programClass = new ProgramClass();
 
     // Act

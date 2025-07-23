@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -19,13 +20,14 @@ import proguard.evaluation.value.Value;
 class MethodOptimizationInfoDiffblueTest {
   /**
    * Test {@link MethodOptimizationInfo#setNoSideEffects()}.
-   * <p>
-   * Method under test: {@link MethodOptimizationInfo#setNoSideEffects()}
+   *
+   * <p>Method under test: {@link MethodOptimizationInfo#setNoSideEffects()}
    */
   @Test
   @DisplayName("Test setNoSideEffects()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.optimize.info.MethodOptimizationInfo.setNoSideEffects()"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void MethodOptimizationInfo.setNoSideEffects()"})
   void testSetNoSideEffects() {
     // Arrange
     MethodOptimizationInfo methodOptimizationInfo = new MethodOptimizationInfo();
@@ -44,13 +46,14 @@ class MethodOptimizationInfoDiffblueTest {
 
   /**
    * Test {@link MethodOptimizationInfo#setNoExternalSideEffects()}.
-   * <p>
-   * Method under test: {@link MethodOptimizationInfo#setNoExternalSideEffects()}
+   *
+   * <p>Method under test: {@link MethodOptimizationInfo#setNoExternalSideEffects()}
    */
   @Test
   @DisplayName("Test setNoExternalSideEffects()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.optimize.info.MethodOptimizationInfo.setNoExternalSideEffects()"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void MethodOptimizationInfo.setNoExternalSideEffects()"})
   void testSetNoExternalSideEffects() {
     // Arrange
     MethodOptimizationInfo methodOptimizationInfo = new MethodOptimizationInfo();
@@ -67,323 +70,344 @@ class MethodOptimizationInfoDiffblueTest {
 
   /**
    * Test {@link MethodOptimizationInfo#hasSideEffects()}.
-   * <p>
-   * Method under test: {@link MethodOptimizationInfo#hasSideEffects()}
+   *
+   * <p>Method under test: {@link MethodOptimizationInfo#hasSideEffects()}
    */
   @Test
   @DisplayName("Test hasSideEffects()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.optimize.info.MethodOptimizationInfo.hasSideEffects()"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean MethodOptimizationInfo.hasSideEffects()"})
   void testHasSideEffects() {
     // Arrange, Act and Assert
-    assertTrue((new MethodOptimizationInfo()).hasSideEffects());
+    assertTrue(new MethodOptimizationInfo().hasSideEffects());
   }
 
   /**
    * Test {@link MethodOptimizationInfo#canBeMadePrivate()}.
-   * <p>
-   * Method under test: {@link MethodOptimizationInfo#canBeMadePrivate()}
+   *
+   * <p>Method under test: {@link MethodOptimizationInfo#canBeMadePrivate()}
    */
   @Test
   @DisplayName("Test canBeMadePrivate()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.optimize.info.MethodOptimizationInfo.canBeMadePrivate()"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean MethodOptimizationInfo.canBeMadePrivate()"})
   void testCanBeMadePrivate() {
     // Arrange, Act and Assert
-    assertFalse((new MethodOptimizationInfo()).canBeMadePrivate());
+    assertFalse(new MethodOptimizationInfo().canBeMadePrivate());
   }
 
   /**
    * Test {@link MethodOptimizationInfo#catchesExceptions()}.
-   * <p>
-   * Method under test: {@link MethodOptimizationInfo#catchesExceptions()}
+   *
+   * <p>Method under test: {@link MethodOptimizationInfo#catchesExceptions()}
    */
   @Test
   @DisplayName("Test catchesExceptions()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.optimize.info.MethodOptimizationInfo.catchesExceptions()"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean MethodOptimizationInfo.catchesExceptions()"})
   void testCatchesExceptions() {
     // Arrange, Act and Assert
-    assertTrue((new MethodOptimizationInfo()).catchesExceptions());
+    assertTrue(new MethodOptimizationInfo().catchesExceptions());
   }
 
   /**
    * Test {@link MethodOptimizationInfo#branchesBackward()}.
-   * <p>
-   * Method under test: {@link MethodOptimizationInfo#branchesBackward()}
+   *
+   * <p>Method under test: {@link MethodOptimizationInfo#branchesBackward()}
    */
   @Test
   @DisplayName("Test branchesBackward()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.optimize.info.MethodOptimizationInfo.branchesBackward()"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean MethodOptimizationInfo.branchesBackward()"})
   void testBranchesBackward() {
     // Arrange, Act and Assert
-    assertTrue((new MethodOptimizationInfo()).branchesBackward());
+    assertTrue(new MethodOptimizationInfo().branchesBackward());
   }
 
   /**
    * Test {@link MethodOptimizationInfo#invokesSuperMethods()}.
-   * <p>
-   * Method under test: {@link MethodOptimizationInfo#invokesSuperMethods()}
+   *
+   * <p>Method under test: {@link MethodOptimizationInfo#invokesSuperMethods()}
    */
   @Test
   @DisplayName("Test invokesSuperMethods()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.optimize.info.MethodOptimizationInfo.invokesSuperMethods()"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean MethodOptimizationInfo.invokesSuperMethods()"})
   void testInvokesSuperMethods() {
     // Arrange, Act and Assert
-    assertTrue((new MethodOptimizationInfo()).invokesSuperMethods());
+    assertTrue(new MethodOptimizationInfo().invokesSuperMethods());
   }
 
   /**
    * Test {@link MethodOptimizationInfo#invokesDynamically()}.
-   * <p>
-   * Method under test: {@link MethodOptimizationInfo#invokesDynamically()}
+   *
+   * <p>Method under test: {@link MethodOptimizationInfo#invokesDynamically()}
    */
   @Test
   @DisplayName("Test invokesDynamically()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.optimize.info.MethodOptimizationInfo.invokesDynamically()"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean MethodOptimizationInfo.invokesDynamically()"})
   void testInvokesDynamically() {
     // Arrange, Act and Assert
-    assertTrue((new MethodOptimizationInfo()).invokesDynamically());
+    assertTrue(new MethodOptimizationInfo().invokesDynamically());
   }
 
   /**
    * Test {@link MethodOptimizationInfo#accessesPrivateCode()}.
-   * <p>
-   * Method under test: {@link MethodOptimizationInfo#accessesPrivateCode()}
+   *
+   * <p>Method under test: {@link MethodOptimizationInfo#accessesPrivateCode()}
    */
   @Test
   @DisplayName("Test accessesPrivateCode()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.optimize.info.MethodOptimizationInfo.accessesPrivateCode()"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean MethodOptimizationInfo.accessesPrivateCode()"})
   void testAccessesPrivateCode() {
     // Arrange, Act and Assert
-    assertTrue((new MethodOptimizationInfo()).accessesPrivateCode());
+    assertTrue(new MethodOptimizationInfo().accessesPrivateCode());
   }
 
   /**
    * Test {@link MethodOptimizationInfo#accessesPackageCode()}.
-   * <p>
-   * Method under test: {@link MethodOptimizationInfo#accessesPackageCode()}
+   *
+   * <p>Method under test: {@link MethodOptimizationInfo#accessesPackageCode()}
    */
   @Test
   @DisplayName("Test accessesPackageCode()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.optimize.info.MethodOptimizationInfo.accessesPackageCode()"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean MethodOptimizationInfo.accessesPackageCode()"})
   void testAccessesPackageCode() {
     // Arrange, Act and Assert
-    assertTrue((new MethodOptimizationInfo()).accessesPackageCode());
+    assertTrue(new MethodOptimizationInfo().accessesPackageCode());
   }
 
   /**
    * Test {@link MethodOptimizationInfo#accessesProtectedCode()}.
-   * <p>
-   * Method under test: {@link MethodOptimizationInfo#accessesProtectedCode()}
+   *
+   * <p>Method under test: {@link MethodOptimizationInfo#accessesProtectedCode()}
    */
   @Test
   @DisplayName("Test accessesProtectedCode()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.optimize.info.MethodOptimizationInfo.accessesProtectedCode()"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean MethodOptimizationInfo.accessesProtectedCode()"})
   void testAccessesProtectedCode() {
     // Arrange, Act and Assert
-    assertTrue((new MethodOptimizationInfo()).accessesProtectedCode());
+    assertTrue(new MethodOptimizationInfo().accessesProtectedCode());
   }
 
   /**
    * Test {@link MethodOptimizationInfo#assignsFinalField()}.
-   * <p>
-   * Method under test: {@link MethodOptimizationInfo#assignsFinalField()}
+   *
+   * <p>Method under test: {@link MethodOptimizationInfo#assignsFinalField()}
    */
   @Test
   @DisplayName("Test assignsFinalField()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.optimize.info.MethodOptimizationInfo.assignsFinalField()"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean MethodOptimizationInfo.assignsFinalField()"})
   void testAssignsFinalField() {
     // Arrange, Act and Assert
-    assertTrue((new MethodOptimizationInfo()).assignsFinalField());
+    assertTrue(new MethodOptimizationInfo().assignsFinalField());
   }
 
   /**
    * Test {@link MethodOptimizationInfo#returnsWithNonEmptyStack()}.
-   * <p>
-   * Method under test: {@link MethodOptimizationInfo#returnsWithNonEmptyStack()}
+   *
+   * <p>Method under test: {@link MethodOptimizationInfo#returnsWithNonEmptyStack()}
    */
   @Test
   @DisplayName("Test returnsWithNonEmptyStack()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.optimize.info.MethodOptimizationInfo.returnsWithNonEmptyStack()"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean MethodOptimizationInfo.returnsWithNonEmptyStack()"})
   void testReturnsWithNonEmptyStack() {
     // Arrange, Act and Assert
-    assertFalse((new MethodOptimizationInfo()).returnsWithNonEmptyStack());
+    assertFalse(new MethodOptimizationInfo().returnsWithNonEmptyStack());
   }
 
   /**
    * Test {@link MethodOptimizationInfo#isParameterUsed(int)}.
-   * <p>
-   * Method under test: {@link MethodOptimizationInfo#isParameterUsed(int)}
+   *
+   * <p>Method under test: {@link MethodOptimizationInfo#isParameterUsed(int)}
    */
   @Test
   @DisplayName("Test isParameterUsed(int)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.optimize.info.MethodOptimizationInfo.isParameterUsed(int)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean MethodOptimizationInfo.isParameterUsed(int)"})
   void testIsParameterUsed() {
     // Arrange, Act and Assert
-    assertTrue((new MethodOptimizationInfo()).isParameterUsed(1));
+    assertTrue(new MethodOptimizationInfo().isParameterUsed(1));
   }
 
   /**
    * Test {@link MethodOptimizationInfo#hasParameterEscaped(int)}.
-   * <p>
-   * Method under test: {@link MethodOptimizationInfo#hasParameterEscaped(int)}
+   *
+   * <p>Method under test: {@link MethodOptimizationInfo#hasParameterEscaped(int)}
    */
   @Test
   @DisplayName("Test hasParameterEscaped(int)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.optimize.info.MethodOptimizationInfo.hasParameterEscaped(int)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean MethodOptimizationInfo.hasParameterEscaped(int)"})
   void testHasParameterEscaped() {
     // Arrange, Act and Assert
-    assertTrue((new MethodOptimizationInfo()).hasParameterEscaped(1));
+    assertTrue(new MethodOptimizationInfo().hasParameterEscaped(1));
   }
 
   /**
    * Test {@link MethodOptimizationInfo#isParameterEscaping(int)}.
-   * <p>
-   * Method under test: {@link MethodOptimizationInfo#isParameterEscaping(int)}
+   *
+   * <p>Method under test: {@link MethodOptimizationInfo#isParameterEscaping(int)}
    */
   @Test
   @DisplayName("Test isParameterEscaping(int)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.optimize.info.MethodOptimizationInfo.isParameterEscaping(int)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean MethodOptimizationInfo.isParameterEscaping(int)"})
   void testIsParameterEscaping() {
     // Arrange, Act and Assert
-    assertTrue((new MethodOptimizationInfo()).isParameterEscaping(1));
+    assertTrue(new MethodOptimizationInfo().isParameterEscaping(1));
   }
 
   /**
    * Test {@link MethodOptimizationInfo#getEscapingParameters()}.
-   * <p>
-   * Method under test: {@link MethodOptimizationInfo#getEscapingParameters()}
+   *
+   * <p>Method under test: {@link MethodOptimizationInfo#getEscapingParameters()}
    */
   @Test
   @DisplayName("Test getEscapingParameters()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"long proguard.optimize.info.MethodOptimizationInfo.getEscapingParameters()"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"long MethodOptimizationInfo.getEscapingParameters()"})
   void testGetEscapingParameters() {
     // Arrange, Act and Assert
-    assertEquals(-1L, (new MethodOptimizationInfo()).getEscapingParameters());
+    assertEquals(-1L, new MethodOptimizationInfo().getEscapingParameters());
   }
 
   /**
    * Test {@link MethodOptimizationInfo#isParameterModified(int)}.
-   * <p>
-   * Method under test: {@link MethodOptimizationInfo#isParameterModified(int)}
+   *
+   * <p>Method under test: {@link MethodOptimizationInfo#isParameterModified(int)}
    */
   @Test
   @DisplayName("Test isParameterModified(int)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.optimize.info.MethodOptimizationInfo.isParameterModified(int)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean MethodOptimizationInfo.isParameterModified(int)"})
   void testIsParameterModified() {
     // Arrange, Act and Assert
-    assertTrue((new MethodOptimizationInfo()).isParameterModified(1));
+    assertTrue(new MethodOptimizationInfo().isParameterModified(1));
   }
 
   /**
    * Test {@link MethodOptimizationInfo#getModifiedParameters()}.
-   * <p>
-   * Method under test: {@link MethodOptimizationInfo#getModifiedParameters()}
+   *
+   * <p>Method under test: {@link MethodOptimizationInfo#getModifiedParameters()}
    */
   @Test
   @DisplayName("Test getModifiedParameters()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"long proguard.optimize.info.MethodOptimizationInfo.getModifiedParameters()"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"long MethodOptimizationInfo.getModifiedParameters()"})
   void testGetModifiedParameters() {
     // Arrange, Act and Assert
-    assertEquals(-1L, (new MethodOptimizationInfo()).getModifiedParameters());
+    assertEquals(-1L, new MethodOptimizationInfo().getModifiedParameters());
   }
 
   /**
    * Test {@link MethodOptimizationInfo#modifiesAnything()}.
-   * <p>
-   * Method under test: {@link MethodOptimizationInfo#modifiesAnything()}
+   *
+   * <p>Method under test: {@link MethodOptimizationInfo#modifiesAnything()}
    */
   @Test
   @DisplayName("Test modifiesAnything()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.optimize.info.MethodOptimizationInfo.modifiesAnything()"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean MethodOptimizationInfo.modifiesAnything()"})
   void testModifiesAnything() {
     // Arrange, Act and Assert
-    assertTrue((new MethodOptimizationInfo()).modifiesAnything());
+    assertTrue(new MethodOptimizationInfo().modifiesAnything());
   }
 
   /**
    * Test {@link MethodOptimizationInfo#getParameterValue(int)}.
-   * <p>
-   * Method under test: {@link MethodOptimizationInfo#getParameterValue(int)}
+   *
+   * <p>Method under test: {@link MethodOptimizationInfo#getParameterValue(int)}
    */
   @Test
   @DisplayName("Test getParameterValue(int)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "proguard.evaluation.value.Value proguard.optimize.info.MethodOptimizationInfo.getParameterValue(int)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"Value MethodOptimizationInfo.getParameterValue(int)"})
   void testGetParameterValue() {
     // Arrange, Act and Assert
-    assertNull((new MethodOptimizationInfo()).getParameterValue(1));
+    assertNull(new MethodOptimizationInfo().getParameterValue(1));
   }
 
   /**
    * Test {@link MethodOptimizationInfo#returnsParameter(int)}.
-   * <p>
-   * Method under test: {@link MethodOptimizationInfo#returnsParameter(int)}
+   *
+   * <p>Method under test: {@link MethodOptimizationInfo#returnsParameter(int)}
    */
   @Test
   @DisplayName("Test returnsParameter(int)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.optimize.info.MethodOptimizationInfo.returnsParameter(int)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean MethodOptimizationInfo.returnsParameter(int)"})
   void testReturnsParameter() {
     // Arrange, Act and Assert
-    assertTrue((new MethodOptimizationInfo()).returnsParameter(1));
+    assertTrue(new MethodOptimizationInfo().returnsParameter(1));
   }
 
   /**
    * Test {@link MethodOptimizationInfo#returnsNewInstances()}.
-   * <p>
-   * Method under test: {@link MethodOptimizationInfo#returnsNewInstances()}
+   *
+   * <p>Method under test: {@link MethodOptimizationInfo#returnsNewInstances()}
    */
   @Test
   @DisplayName("Test returnsNewInstances()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.optimize.info.MethodOptimizationInfo.returnsNewInstances()"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean MethodOptimizationInfo.returnsNewInstances()"})
   void testReturnsNewInstances() {
     // Arrange, Act and Assert
-    assertTrue((new MethodOptimizationInfo()).returnsNewInstances());
+    assertTrue(new MethodOptimizationInfo().returnsNewInstances());
   }
 
   /**
    * Test {@link MethodOptimizationInfo#returnsExternalValues()}.
-   * <p>
-   * Method under test: {@link MethodOptimizationInfo#returnsExternalValues()}
+   *
+   * <p>Method under test: {@link MethodOptimizationInfo#returnsExternalValues()}
    */
   @Test
   @DisplayName("Test returnsExternalValues()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.optimize.info.MethodOptimizationInfo.returnsExternalValues()"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean MethodOptimizationInfo.returnsExternalValues()"})
   void testReturnsExternalValues() {
     // Arrange, Act and Assert
-    assertTrue((new MethodOptimizationInfo()).returnsExternalValues());
+    assertTrue(new MethodOptimizationInfo().returnsExternalValues());
   }
 
   /**
    * Test {@link MethodOptimizationInfo#setMethodOptimizationInfo(Clazz, Method)}.
-   * <p>
-   * Method under test: {@link MethodOptimizationInfo#setMethodOptimizationInfo(Clazz, Method)}
+   *
+   * <p>Method under test: {@link MethodOptimizationInfo#setMethodOptimizationInfo(Clazz, Method)}
    */
   @Test
   @DisplayName("Test setMethodOptimizationInfo(Clazz, Method)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.MethodOptimizationInfo.setMethodOptimizationInfo(proguard.classfile.Clazz, proguard.classfile.Method)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void MethodOptimizationInfo.setMethodOptimizationInfo(Clazz, Method)"})
   void testSetMethodOptimizationInfo() {
     // Arrange
     LibraryClass clazz = new LibraryClass();
@@ -415,17 +439,18 @@ class MethodOptimizationInfoDiffblueTest {
 
   /**
    * Test {@link MethodOptimizationInfo#setMethodOptimizationInfo(Clazz, Method)}.
+   *
    * <ul>
-   *   <li>Given {@code Processing Info}.</li>
+   *   <li>Given {@code Processing Info}.
    * </ul>
-   * <p>
-   * Method under test: {@link MethodOptimizationInfo#setMethodOptimizationInfo(Clazz, Method)}
+   *
+   * <p>Method under test: {@link MethodOptimizationInfo#setMethodOptimizationInfo(Clazz, Method)}
    */
   @Test
   @DisplayName("Test setMethodOptimizationInfo(Clazz, Method); given 'Processing Info'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.MethodOptimizationInfo.setMethodOptimizationInfo(proguard.classfile.Clazz, proguard.classfile.Method)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void MethodOptimizationInfo.setMethodOptimizationInfo(Clazz, Method)"})
   void testSetMethodOptimizationInfo_givenProcessingInfo() {
     // Arrange
     LibraryClass clazz = new LibraryClass();
@@ -459,42 +484,51 @@ class MethodOptimizationInfoDiffblueTest {
 
   /**
    * Test {@link MethodOptimizationInfo#getMethodOptimizationInfo(Method)}.
+   *
    * <ul>
-   *   <li>Then return {@code null}.</li>
+   *   <li>Then return {@code null}.
    * </ul>
-   * <p>
-   * Method under test: {@link MethodOptimizationInfo#getMethodOptimizationInfo(Method)}
+   *
+   * <p>Method under test: {@link MethodOptimizationInfo#getMethodOptimizationInfo(Method)}
    */
   @Test
   @DisplayName("Test getMethodOptimizationInfo(Method); then return 'null'")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "proguard.optimize.info.MethodOptimizationInfo proguard.optimize.info.MethodOptimizationInfo.getMethodOptimizationInfo(proguard.classfile.Method)"})
+    "MethodOptimizationInfo MethodOptimizationInfo.getMethodOptimizationInfo(Method)"
+  })
   void testGetMethodOptimizationInfo_thenReturnNull() {
     // Arrange, Act and Assert
-    assertNull(MethodOptimizationInfo.getMethodOptimizationInfo(new LibraryMethod(1, "Name", "Descriptor")));
+    assertNull(
+        MethodOptimizationInfo.getMethodOptimizationInfo(
+            new LibraryMethod(1, "Name", "Descriptor")));
   }
 
   /**
    * Test {@link MethodOptimizationInfo#getMethodOptimizationInfo(Method)}.
+   *
    * <ul>
-   *   <li>Then return ReturnValue is {@code null}.</li>
+   *   <li>Then return ReturnValue is {@code null}.
    * </ul>
-   * <p>
-   * Method under test: {@link MethodOptimizationInfo#getMethodOptimizationInfo(Method)}
+   *
+   * <p>Method under test: {@link MethodOptimizationInfo#getMethodOptimizationInfo(Method)}
    */
   @Test
   @DisplayName("Test getMethodOptimizationInfo(Method); then return ReturnValue is 'null'")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "proguard.optimize.info.MethodOptimizationInfo proguard.optimize.info.MethodOptimizationInfo.getMethodOptimizationInfo(proguard.classfile.Method)"})
+    "MethodOptimizationInfo MethodOptimizationInfo.getMethodOptimizationInfo(Method)"
+  })
   void testGetMethodOptimizationInfo_thenReturnReturnValueIsNull() {
     // Arrange
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
     method.setProcessingInfo(new MethodOptimizationInfo());
 
     // Act
-    MethodOptimizationInfo actualMethodOptimizationInfo = MethodOptimizationInfo.getMethodOptimizationInfo(method);
+    MethodOptimizationInfo actualMethodOptimizationInfo =
+        MethodOptimizationInfo.getMethodOptimizationInfo(method);
 
     // Assert
     assertNull(actualMethodOptimizationInfo.getReturnValue());
@@ -517,8 +551,9 @@ class MethodOptimizationInfoDiffblueTest {
 
   /**
    * Test getters and setters.
-   * <p>
-   * Methods under test:
+   *
+   * <p>Methods under test:
+   *
    * <ul>
    *   <li>default or parameterless constructor of {@link MethodOptimizationInfo}
    *   <li>{@link MethodOptimizationInfo#setReturnValue(Value)}
@@ -541,24 +576,27 @@ class MethodOptimizationInfoDiffblueTest {
    */
   @Test
   @DisplayName("Test getters and setters")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.optimize.info.MethodOptimizationInfo.<init>()",
-      "long proguard.optimize.info.MethodOptimizationInfo.getEscapedParameters()",
-      "int proguard.optimize.info.MethodOptimizationInfo.getInvocationCount()",
-      "int proguard.optimize.info.MethodOptimizationInfo.getParameterSize()",
-      "proguard.evaluation.value.Value proguard.optimize.info.MethodOptimizationInfo.getReturnValue()",
-      "long proguard.optimize.info.MethodOptimizationInfo.getReturnedParameters()",
-      "long proguard.optimize.info.MethodOptimizationInfo.getUsedParameters()",
-      "boolean proguard.optimize.info.MethodOptimizationInfo.hasNoEscapingParameters()",
-      "boolean proguard.optimize.info.MethodOptimizationInfo.hasNoExternalReturnValues()",
-      "boolean proguard.optimize.info.MethodOptimizationInfo.hasNoExternalSideEffects()",
-      "boolean proguard.optimize.info.MethodOptimizationInfo.hasNoSideEffects()",
-      "boolean proguard.optimize.info.MethodOptimizationInfo.hasSynchronizedBlock()",
-      "boolean proguard.optimize.info.MethodOptimizationInfo.hasUnusedParameters()",
-      "boolean proguard.optimize.info.MethodOptimizationInfo.isKept()",
-      "void proguard.optimize.info.MethodOptimizationInfo.setNoEscapingParameters()",
-      "void proguard.optimize.info.MethodOptimizationInfo.setNoExternalReturnValues()",
-      "void proguard.optimize.info.MethodOptimizationInfo.setReturnValue(proguard.evaluation.value.Value)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void MethodOptimizationInfo.<init>()",
+    "long MethodOptimizationInfo.getEscapedParameters()",
+    "int MethodOptimizationInfo.getInvocationCount()",
+    "int MethodOptimizationInfo.getParameterSize()",
+    "Value MethodOptimizationInfo.getReturnValue()",
+    "long MethodOptimizationInfo.getReturnedParameters()",
+    "long MethodOptimizationInfo.getUsedParameters()",
+    "boolean MethodOptimizationInfo.hasNoEscapingParameters()",
+    "boolean MethodOptimizationInfo.hasNoExternalReturnValues()",
+    "boolean MethodOptimizationInfo.hasNoExternalSideEffects()",
+    "boolean MethodOptimizationInfo.hasNoSideEffects()",
+    "boolean MethodOptimizationInfo.hasSynchronizedBlock()",
+    "boolean MethodOptimizationInfo.hasUnusedParameters()",
+    "boolean MethodOptimizationInfo.isKept()",
+    "void MethodOptimizationInfo.setNoEscapingParameters()",
+    "void MethodOptimizationInfo.setNoExternalReturnValues()",
+    "void MethodOptimizationInfo.setReturnValue(Value)"
+  })
   void testGettersAndSetters() {
     // Arrange and Act
     MethodOptimizationInfo actualMethodOptimizationInfo = new MethodOptimizationInfo();
@@ -572,9 +610,12 @@ class MethodOptimizationInfoDiffblueTest {
     Value actualReturnValue = actualMethodOptimizationInfo.getReturnValue();
     long actualReturnedParameters = actualMethodOptimizationInfo.getReturnedParameters();
     long actualUsedParameters = actualMethodOptimizationInfo.getUsedParameters();
-    boolean actualHasNoEscapingParametersResult = actualMethodOptimizationInfo.hasNoEscapingParameters();
-    boolean actualHasNoExternalReturnValuesResult = actualMethodOptimizationInfo.hasNoExternalReturnValues();
-    boolean actualHasNoExternalSideEffectsResult = actualMethodOptimizationInfo.hasNoExternalSideEffects();
+    boolean actualHasNoEscapingParametersResult =
+        actualMethodOptimizationInfo.hasNoEscapingParameters();
+    boolean actualHasNoExternalReturnValuesResult =
+        actualMethodOptimizationInfo.hasNoExternalReturnValues();
+    boolean actualHasNoExternalSideEffectsResult =
+        actualMethodOptimizationInfo.hasNoExternalSideEffects();
     boolean actualHasNoSideEffectsResult = actualMethodOptimizationInfo.hasNoSideEffects();
     boolean actualHasSynchronizedBlockResult = actualMethodOptimizationInfo.hasSynchronizedBlock();
     boolean actualHasUnusedParametersResult = actualMethodOptimizationInfo.hasUnusedParameters();

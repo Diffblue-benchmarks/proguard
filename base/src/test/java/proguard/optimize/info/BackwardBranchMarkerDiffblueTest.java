@@ -6,6 +6,7 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -21,30 +22,38 @@ import proguard.classfile.instruction.SwitchInstruction;
 
 class BackwardBranchMarkerDiffblueTest {
   /**
-   * Test {@link BackwardBranchMarker#visitBranchInstruction(Clazz, Method, CodeAttribute, int, BranchInstruction)}.
+   * Test {@link BackwardBranchMarker#visitBranchInstruction(Clazz, Method, CodeAttribute, int,
+   * BranchInstruction)}.
+   *
    * <ul>
-   *   <li>Then calls {@link ProgramMethodOptimizationInfo#setBranchesBackward()}.</li>
+   *   <li>Then calls {@link ProgramMethodOptimizationInfo#setBranchesBackward()}.
    * </ul>
-   * <p>
-   * Method under test: {@link BackwardBranchMarker#visitBranchInstruction(Clazz, Method, CodeAttribute, int, BranchInstruction)}
+   *
+   * <p>Method under test: {@link BackwardBranchMarker#visitBranchInstruction(Clazz, Method,
+   * CodeAttribute, int, BranchInstruction)}
    */
   @Test
-  @DisplayName("Test visitBranchInstruction(Clazz, Method, CodeAttribute, int, BranchInstruction); then calls setBranchesBackward()")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitBranchInstruction(Clazz, Method, CodeAttribute, int, BranchInstruction); then calls setBranchesBackward()")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.info.BackwardBranchMarker.visitBranchInstruction(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.CodeAttribute, int, proguard.classfile.instruction.BranchInstruction)"})
+    "void BackwardBranchMarker.visitBranchInstruction(Clazz, Method, CodeAttribute, int, BranchInstruction)"
+  })
   void testVisitBranchInstruction_thenCallsSetBranchesBackward() {
     // Arrange
     BackwardBranchMarker backwardBranchMarker = new BackwardBranchMarker();
     LibraryClass clazz = new LibraryClass();
-    ProgramMethodOptimizationInfo programMethodOptimizationInfo = mock(ProgramMethodOptimizationInfo.class);
+    ProgramMethodOptimizationInfo programMethodOptimizationInfo =
+        mock(ProgramMethodOptimizationInfo.class);
     doNothing().when(programMethodOptimizationInfo).setBranchesBackward();
     Method method = mock(Method.class);
     when(method.getProcessingInfo()).thenReturn(programMethodOptimizationInfo);
     CodeAttribute codeAttribute = new CodeAttribute(1);
 
     // Act
-    backwardBranchMarker.visitBranchInstruction(clazz, method, codeAttribute, 2, new BranchInstruction((byte) 'A', -1));
+    backwardBranchMarker.visitBranchInstruction(
+        clazz, method, codeAttribute, 2, new BranchInstruction((byte) 'A', -1));
 
     // Assert
     verify(programMethodOptimizationInfo).setBranchesBackward();
@@ -52,31 +61,43 @@ class BackwardBranchMarkerDiffblueTest {
   }
 
   /**
-   * Test {@link BackwardBranchMarker#visitAnySwitchInstruction(Clazz, Method, CodeAttribute, int, SwitchInstruction)}.
+   * Test {@link BackwardBranchMarker#visitAnySwitchInstruction(Clazz, Method, CodeAttribute, int,
+   * SwitchInstruction)}.
+   *
    * <ul>
-   *   <li>Then calls {@link ProgramMethodOptimizationInfo#setBranchesBackward()}.</li>
+   *   <li>Then calls {@link ProgramMethodOptimizationInfo#setBranchesBackward()}.
    * </ul>
-   * <p>
-   * Method under test: {@link BackwardBranchMarker#visitAnySwitchInstruction(Clazz, Method, CodeAttribute, int, SwitchInstruction)}
+   *
+   * <p>Method under test: {@link BackwardBranchMarker#visitAnySwitchInstruction(Clazz, Method,
+   * CodeAttribute, int, SwitchInstruction)}
    */
   @Test
-  @DisplayName("Test visitAnySwitchInstruction(Clazz, Method, CodeAttribute, int, SwitchInstruction); then calls setBranchesBackward()")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitAnySwitchInstruction(Clazz, Method, CodeAttribute, int, SwitchInstruction); then calls setBranchesBackward()")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.info.BackwardBranchMarker.visitAnySwitchInstruction(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.CodeAttribute, int, proguard.classfile.instruction.SwitchInstruction)"})
+    "void BackwardBranchMarker.visitAnySwitchInstruction(Clazz, Method, CodeAttribute, int, SwitchInstruction)"
+  })
   void testVisitAnySwitchInstruction_thenCallsSetBranchesBackward() {
     // Arrange
     BackwardBranchMarker backwardBranchMarker = new BackwardBranchMarker();
     LibraryClass clazz = new LibraryClass();
-    ProgramMethodOptimizationInfo programMethodOptimizationInfo = mock(ProgramMethodOptimizationInfo.class);
+    ProgramMethodOptimizationInfo programMethodOptimizationInfo =
+        mock(ProgramMethodOptimizationInfo.class);
     doNothing().when(programMethodOptimizationInfo).setBranchesBackward();
     Method method = mock(Method.class);
     when(method.getProcessingInfo()).thenReturn(programMethodOptimizationInfo);
     CodeAttribute codeAttribute = new CodeAttribute(1);
 
     // Act
-    backwardBranchMarker.visitAnySwitchInstruction(clazz, method, codeAttribute, 2,
-        new LookUpSwitchInstruction((byte) 'A', -1, new int[]{1, 0, 1, 0}, new int[]{1, 0, 1, 0}));
+    backwardBranchMarker.visitAnySwitchInstruction(
+        clazz,
+        method,
+        codeAttribute,
+        2,
+        new LookUpSwitchInstruction(
+            (byte) 'A', -1, new int[] {1, 0, 1, 0}, new int[] {1, 0, 1, 0}));
 
     // Assert
     verify(programMethodOptimizationInfo).setBranchesBackward();
@@ -85,17 +106,20 @@ class BackwardBranchMarkerDiffblueTest {
 
   /**
    * Test {@link BackwardBranchMarker#branchesBackward(Method)}.
+   *
    * <ul>
-   *   <li>Given {@link MethodOptimizationInfo} (default constructor).</li>
-   *   <li>Then return {@code true}.</li>
+   *   <li>Given {@link MethodOptimizationInfo} (default constructor).
+   *   <li>Then return {@code true}.
    * </ul>
-   * <p>
-   * Method under test: {@link BackwardBranchMarker#branchesBackward(Method)}
+   *
+   * <p>Method under test: {@link BackwardBranchMarker#branchesBackward(Method)}
    */
   @Test
-  @DisplayName("Test branchesBackward(Method); given MethodOptimizationInfo (default constructor); then return 'true'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.optimize.info.BackwardBranchMarker.branchesBackward(proguard.classfile.Method)"})
+  @DisplayName(
+      "Test branchesBackward(Method); given MethodOptimizationInfo (default constructor); then return 'true'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean BackwardBranchMarker.branchesBackward(Method)"})
   void testBranchesBackward_givenMethodOptimizationInfo_thenReturnTrue() {
     // Arrange
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");

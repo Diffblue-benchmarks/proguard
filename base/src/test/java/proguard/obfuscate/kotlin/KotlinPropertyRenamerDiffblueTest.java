@@ -1,6 +1,7 @@
 package proguard.obfuscate.kotlin;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -17,21 +18,26 @@ import proguard.classfile.kotlin.flags.KotlinVisibilityFlags;
 
 class KotlinPropertyRenamerDiffblueTest {
   /**
-   * Test {@link KotlinPropertyRenamer#visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata)}.
-   * <p>
-   * Method under test: {@link KotlinPropertyRenamer#visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata)}
+   * Test {@link KotlinPropertyRenamer#visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata,
+   * KotlinPropertyMetadata)}.
+   *
+   * <p>Method under test: {@link KotlinPropertyRenamer#visitAnyProperty(Clazz,
+   * KotlinDeclarationContainerMetadata, KotlinPropertyMetadata)}
    */
   @Test
-  @DisplayName("Test visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.obfuscate.kotlin.KotlinPropertyRenamer.visitAnyProperty(proguard.classfile.Clazz, proguard.classfile.kotlin.KotlinDeclarationContainerMetadata, proguard.classfile.kotlin.KotlinPropertyMetadata)"})
+    "void KotlinPropertyRenamer.visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata)"
+  })
   void testVisitAnyProperty() {
     // Arrange
     KotlinPropertyRenamer kotlinPropertyRenamer = new KotlinPropertyRenamer();
     LibraryClass clazz = new LibraryClass();
-    KotlinClassKindMetadata kotlinDeclarationContainerMetadata = new KotlinClassKindMetadata(new int[]{1, -1, 1, -1}, 1,
-        "Xs", "Pn");
+    KotlinClassKindMetadata kotlinDeclarationContainerMetadata =
+        new KotlinClassKindMetadata(new int[] {1, -1, 1, -1}, 1, "Xs", "Pn");
 
     KotlinVisibilityFlags visibility = new KotlinVisibilityFlags();
     visibility.isInternal = true;
@@ -59,7 +65,8 @@ class KotlinPropertyRenamerDiffblueTest {
     modality2.isFinal = true;
     modality2.isOpen = true;
     modality2.isSealed = true;
-    KotlinPropertyAccessorFlags getterFlags = new KotlinPropertyAccessorFlags(visibility2, modality2);
+    KotlinPropertyAccessorFlags getterFlags =
+        new KotlinPropertyAccessorFlags(visibility2, modality2);
 
     KotlinVisibilityFlags visibility3 = new KotlinVisibilityFlags();
     visibility3.isInternal = true;
@@ -73,32 +80,39 @@ class KotlinPropertyRenamerDiffblueTest {
     modality3.isFinal = true;
     modality3.isOpen = true;
     modality3.isSealed = true;
-    KotlinPropertyMetadata kotlinPropertyMetadata = new KotlinPropertyMetadata(flags, "Name", getterFlags,
-        new KotlinPropertyAccessorFlags(visibility3, modality3));
+    KotlinPropertyMetadata kotlinPropertyMetadata =
+        new KotlinPropertyMetadata(
+            flags, "Name", getterFlags, new KotlinPropertyAccessorFlags(visibility3, modality3));
 
     // Act
-    kotlinPropertyRenamer.visitAnyProperty(clazz, kotlinDeclarationContainerMetadata, kotlinPropertyMetadata);
+    kotlinPropertyRenamer.visitAnyProperty(
+        clazz, kotlinDeclarationContainerMetadata, kotlinPropertyMetadata);
 
     // Assert that nothing has changed
     assertEquals("Name", kotlinPropertyMetadata.name);
   }
 
   /**
-   * Test {@link KotlinPropertyRenamer#visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata)}.
-   * <p>
-   * Method under test: {@link KotlinPropertyRenamer#visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata)}
+   * Test {@link KotlinPropertyRenamer#visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata,
+   * KotlinPropertyMetadata)}.
+   *
+   * <p>Method under test: {@link KotlinPropertyRenamer#visitAnyProperty(Clazz,
+   * KotlinDeclarationContainerMetadata, KotlinPropertyMetadata)}
    */
   @Test
-  @DisplayName("Test visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.obfuscate.kotlin.KotlinPropertyRenamer.visitAnyProperty(proguard.classfile.Clazz, proguard.classfile.kotlin.KotlinDeclarationContainerMetadata, proguard.classfile.kotlin.KotlinPropertyMetadata)"})
+    "void KotlinPropertyRenamer.visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata)"
+  })
   void testVisitAnyProperty2() {
     // Arrange
     KotlinPropertyRenamer kotlinPropertyRenamer = new KotlinPropertyRenamer();
     LibraryClass clazz = new LibraryClass();
-    KotlinClassKindMetadata kotlinDeclarationContainerMetadata = new KotlinClassKindMetadata(new int[]{1, -1, 1, -1}, 1,
-        "Xs", "Pn");
+    KotlinClassKindMetadata kotlinDeclarationContainerMetadata =
+        new KotlinClassKindMetadata(new int[] {1, -1, 1, -1}, 1, "Xs", "Pn");
 
     KotlinVisibilityFlags visibility = new KotlinVisibilityFlags();
     visibility.isInternal = true;
@@ -126,7 +140,8 @@ class KotlinPropertyRenamerDiffblueTest {
     modality2.isFinal = true;
     modality2.isOpen = true;
     modality2.isSealed = true;
-    KotlinPropertyAccessorFlags getterFlags = new KotlinPropertyAccessorFlags(visibility2, modality2);
+    KotlinPropertyAccessorFlags getterFlags =
+        new KotlinPropertyAccessorFlags(visibility2, modality2);
 
     KotlinVisibilityFlags visibility3 = new KotlinVisibilityFlags();
     visibility3.isInternal = true;
@@ -141,33 +156,40 @@ class KotlinPropertyRenamerDiffblueTest {
     modality3.isOpen = true;
     modality3.isSealed = true;
 
-    KotlinPropertyMetadata kotlinPropertyMetadata = new KotlinPropertyMetadata(flags, "Name", getterFlags,
-        new KotlinPropertyAccessorFlags(visibility3, modality3));
-    kotlinPropertyMetadata.setProcessingInfo("Processing Info");
+    KotlinPropertyMetadata kotlinPropertyMetadata =
+        new KotlinPropertyMetadata(
+            flags, "Name", getterFlags, new KotlinPropertyAccessorFlags(visibility3, modality3));
+    kotlinPropertyMetadata.setProcessingInfo("Kotlin Property Metadata");
 
     // Act
-    kotlinPropertyRenamer.visitAnyProperty(clazz, kotlinDeclarationContainerMetadata, kotlinPropertyMetadata);
+    kotlinPropertyRenamer.visitAnyProperty(
+        clazz, kotlinDeclarationContainerMetadata, kotlinPropertyMetadata);
 
     // Assert
-    assertEquals("Processing Info", kotlinPropertyMetadata.name);
+    assertEquals("Kotlin Property Metadata", kotlinPropertyMetadata.name);
   }
 
   /**
-   * Test {@link KotlinPropertyRenamer#visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata)}.
-   * <p>
-   * Method under test: {@link KotlinPropertyRenamer#visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata)}
+   * Test {@link KotlinPropertyRenamer#visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata,
+   * KotlinPropertyMetadata)}.
+   *
+   * <p>Method under test: {@link KotlinPropertyRenamer#visitAnyProperty(Clazz,
+   * KotlinDeclarationContainerMetadata, KotlinPropertyMetadata)}
    */
   @Test
-  @DisplayName("Test visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.obfuscate.kotlin.KotlinPropertyRenamer.visitAnyProperty(proguard.classfile.Clazz, proguard.classfile.kotlin.KotlinDeclarationContainerMetadata, proguard.classfile.kotlin.KotlinPropertyMetadata)"})
+    "void KotlinPropertyRenamer.visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata)"
+  })
   void testVisitAnyProperty3() {
     // Arrange
     KotlinPropertyRenamer kotlinPropertyRenamer = new KotlinPropertyRenamer();
     LibraryClass clazz = new LibraryClass();
-    KotlinClassKindMetadata kotlinDeclarationContainerMetadata = new KotlinClassKindMetadata(new int[]{1, -1, 1, -1}, 1,
-        "Xs", "Pn");
+    KotlinClassKindMetadata kotlinDeclarationContainerMetadata =
+        new KotlinClassKindMetadata(new int[] {1, -1, 1, -1}, 1, "Xs", "Pn");
 
     KotlinVisibilityFlags visibility = new KotlinVisibilityFlags();
     visibility.isInternal = true;
@@ -195,7 +217,8 @@ class KotlinPropertyRenamerDiffblueTest {
     modality2.isFinal = true;
     modality2.isOpen = true;
     modality2.isSealed = true;
-    KotlinPropertyAccessorFlags getterFlags = new KotlinPropertyAccessorFlags(visibility2, modality2);
+    KotlinPropertyAccessorFlags getterFlags =
+        new KotlinPropertyAccessorFlags(visibility2, modality2);
 
     KotlinVisibilityFlags visibility3 = new KotlinVisibilityFlags();
     visibility3.isInternal = true;
@@ -210,14 +233,19 @@ class KotlinPropertyRenamerDiffblueTest {
     modality3.isOpen = true;
     modality3.isSealed = true;
 
-    KotlinPropertyMetadata kotlinPropertyMetadata = new KotlinPropertyMetadata(flags, "Processing Info", getterFlags,
-        new KotlinPropertyAccessorFlags(visibility3, modality3));
-    kotlinPropertyMetadata.setProcessingInfo("Processing Info");
+    KotlinPropertyMetadata kotlinPropertyMetadata =
+        new KotlinPropertyMetadata(
+            flags,
+            "Kotlin Property Metadata",
+            getterFlags,
+            new KotlinPropertyAccessorFlags(visibility3, modality3));
+    kotlinPropertyMetadata.setProcessingInfo("Kotlin Property Metadata");
 
     // Act
-    kotlinPropertyRenamer.visitAnyProperty(clazz, kotlinDeclarationContainerMetadata, kotlinPropertyMetadata);
+    kotlinPropertyRenamer.visitAnyProperty(
+        clazz, kotlinDeclarationContainerMetadata, kotlinPropertyMetadata);
 
     // Assert that nothing has changed
-    assertEquals("Processing Info", kotlinPropertyMetadata.name);
+    assertEquals("Kotlin Property Metadata", kotlinPropertyMetadata.name);
   }
 }

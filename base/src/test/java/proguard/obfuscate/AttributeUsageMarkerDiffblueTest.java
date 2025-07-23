@@ -1,6 +1,7 @@
 package proguard.obfuscate;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -11,17 +12,19 @@ import proguard.util.Processable;
 class AttributeUsageMarkerDiffblueTest {
   /**
    * Test {@link AttributeUsageMarker#isUsed(Processable)}.
+   *
    * <ul>
-   *   <li>When {@link LibraryClass#LibraryClass()}.</li>
-   *   <li>Then return {@code false}.</li>
+   *   <li>When {@link LibraryClass#LibraryClass()}.
+   *   <li>Then return {@code false}.
    * </ul>
-   * <p>
-   * Method under test: {@link AttributeUsageMarker#isUsed(Processable)}
+   *
+   * <p>Method under test: {@link AttributeUsageMarker#isUsed(Processable)}
    */
   @Test
   @DisplayName("Test isUsed(Processable); when LibraryClass(); then return 'false'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.obfuscate.AttributeUsageMarker.isUsed(proguard.util.Processable)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean AttributeUsageMarker.isUsed(Processable)"})
   void testIsUsed_whenLibraryClass_thenReturnFalse() {
     // Arrange, Act and Assert
     assertFalse(AttributeUsageMarker.isUsed(new LibraryClass()));

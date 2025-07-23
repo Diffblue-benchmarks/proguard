@@ -4,6 +4,7 @@ import static org.mockito.Mockito.atLeast;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -16,17 +17,18 @@ import proguard.classfile.visitor.MemberVisitor;
 class GsonAnnotationCleanerDiffblueTest {
   /**
    * Test {@link GsonAnnotationCleaner#visitProgramClass(ProgramClass)}.
+   *
    * <ul>
-   *   <li>Then calls {@link ProgramClass#fieldsAccept(MemberVisitor)}.</li>
+   *   <li>Then calls {@link ProgramClass#fieldsAccept(MemberVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link GsonAnnotationCleaner#visitProgramClass(ProgramClass)}
+   *
+   * <p>Method under test: {@link GsonAnnotationCleaner#visitProgramClass(ProgramClass)}
    */
   @Test
   @DisplayName("Test visitProgramClass(ProgramClass); then calls fieldsAccept(MemberVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.gson.GsonAnnotationCleaner.visitProgramClass(proguard.classfile.ProgramClass)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void GsonAnnotationCleaner.visitProgramClass(ProgramClass)"})
   void testVisitProgramClass_thenCallsFieldsAccept() {
     // Arrange
     GsonRuntimeSettings gsonRuntimeSettings = new GsonRuntimeSettings();

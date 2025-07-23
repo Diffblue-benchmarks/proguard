@@ -8,6 +8,7 @@ import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -25,23 +26,56 @@ import proguard.util.Processable;
 class InnerUsageMarkerDiffblueTest {
   /**
    * Test {@link InnerUsageMarker#visitInnerClassesAttribute(Clazz, InnerClassesAttribute)}.
-   * <ul>
-   *   <li>Then array length is one.</li>
-   * </ul>
-   * <p>
-   * Method under test: {@link InnerUsageMarker#visitInnerClassesAttribute(Clazz, InnerClassesAttribute)}
+   *
+   * <p>Method under test: {@link InnerUsageMarker#visitInnerClassesAttribute(Clazz,
+   * InnerClassesAttribute)}
    */
   @Test
-  @DisplayName("Test visitInnerClassesAttribute(Clazz, InnerClassesAttribute); then array length is one")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName("Test visitInnerClassesAttribute(Clazz, InnerClassesAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.shrink.InnerUsageMarker.visitInnerClassesAttribute(proguard.classfile.Clazz, proguard.classfile.attribute.InnerClassesAttribute)"})
-  void testVisitInnerClassesAttribute_thenArrayLengthIsOne() {
+    "void InnerUsageMarker.visitInnerClassesAttribute(Clazz, InnerClassesAttribute)"
+  })
+  void testVisitInnerClassesAttribute() {
+    // Arrange
+    ShortestUsageMarker usageMarker = new ShortestUsageMarker();
+    InnerUsageMarker innerUsageMarker =
+        new InnerUsageMarker(new ShortestClassUsageMarker(usageMarker, "Just cause"));
+    LibraryClass clazz = new LibraryClass();
+    InnerClassesAttribute innerClassesAttribute =
+        new InnerClassesAttribute(1, 1, new InnerClassesInfo[] {new InnerClassesInfo(1, 1, 1, 1)});
+
+    // Act
+    innerUsageMarker.visitInnerClassesAttribute(clazz, innerClassesAttribute);
+
+    // Assert
+    InnerClassesInfo[] innerClassesInfoArray = innerClassesAttribute.classes;
+    assertEquals(1, innerClassesInfoArray.length);
+    ShortestUsageMark shortestUsageMark = usageMarker.currentUsageMark;
+    assertSame(shortestUsageMark, innerClassesAttribute.getProcessingInfo());
+    assertSame(shortestUsageMark, (innerClassesInfoArray[0]).getProcessingInfo());
+  }
+
+  /**
+   * Test {@link InnerUsageMarker#visitInnerClassesAttribute(Clazz, InnerClassesAttribute)}.
+   *
+   * <p>Method under test: {@link InnerUsageMarker#visitInnerClassesAttribute(Clazz,
+   * InnerClassesAttribute)}
+   */
+  @Test
+  @DisplayName("Test visitInnerClassesAttribute(Clazz, InnerClassesAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void InnerUsageMarker.visitInnerClassesAttribute(Clazz, InnerClassesAttribute)"
+  })
+  void testVisitInnerClassesAttribute2() {
     // Arrange
     InnerUsageMarker innerUsageMarker = new InnerUsageMarker(new ClassUsageMarker());
     LibraryClass clazz = new LibraryClass();
-    InnerClassesAttribute innerClassesAttribute = new InnerClassesAttribute(1, 1,
-        new InnerClassesInfo[]{new InnerClassesInfo(1, 1, 1, 1)});
+    InnerClassesAttribute innerClassesAttribute =
+        new InnerClassesAttribute(1, 1, new InnerClassesInfo[] {new InnerClassesInfo(0, 1, 1, 1)});
 
     // Act
     innerUsageMarker.visitInnerClassesAttribute(clazz, innerClassesAttribute);
@@ -51,19 +85,166 @@ class InnerUsageMarkerDiffblueTest {
   }
 
   /**
+   * Test {@link InnerUsageMarker#visitInnerClassesAttribute(Clazz, InnerClassesAttribute)}.
+   *
+   * <p>Method under test: {@link InnerUsageMarker#visitInnerClassesAttribute(Clazz,
+   * InnerClassesAttribute)}
+   */
+  @Test
+  @DisplayName("Test visitInnerClassesAttribute(Clazz, InnerClassesAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void InnerUsageMarker.visitInnerClassesAttribute(Clazz, InnerClassesAttribute)"
+  })
+  void testVisitInnerClassesAttribute3() {
+    // Arrange
+    InnerUsageMarker innerUsageMarker = new InnerUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    InnerClassesAttribute innerClassesAttribute =
+        new InnerClassesAttribute(1, 1, new InnerClassesInfo[] {new InnerClassesInfo(1, 0, 1, 1)});
+
+    // Act
+    innerUsageMarker.visitInnerClassesAttribute(clazz, innerClassesAttribute);
+
+    // Assert
+    assertEquals(1, innerClassesAttribute.classes.length);
+  }
+
+  /**
+   * Test {@link InnerUsageMarker#visitInnerClassesAttribute(Clazz, InnerClassesAttribute)}.
+   *
+   * <p>Method under test: {@link InnerUsageMarker#visitInnerClassesAttribute(Clazz,
+   * InnerClassesAttribute)}
+   */
+  @Test
+  @DisplayName("Test visitInnerClassesAttribute(Clazz, InnerClassesAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void InnerUsageMarker.visitInnerClassesAttribute(Clazz, InnerClassesAttribute)"
+  })
+  void testVisitInnerClassesAttribute4() {
+    // Arrange
+    InnerUsageMarker innerUsageMarker = new InnerUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    InnerClassesAttribute innerClassesAttribute =
+        new InnerClassesAttribute(1, 1, new InnerClassesInfo[] {new InnerClassesInfo(1, 1, 0, 1)});
+
+    // Act
+    innerUsageMarker.visitInnerClassesAttribute(clazz, innerClassesAttribute);
+
+    // Assert
+    assertEquals(1, innerClassesAttribute.classes.length);
+  }
+
+  /**
+   * Test {@link InnerUsageMarker#visitInnerClassesAttribute(Clazz, InnerClassesAttribute)}.
+   *
+   * <p>Method under test: {@link InnerUsageMarker#visitInnerClassesAttribute(Clazz,
+   * InnerClassesAttribute)}
+   */
+  @Test
+  @DisplayName("Test visitInnerClassesAttribute(Clazz, InnerClassesAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void InnerUsageMarker.visitInnerClassesAttribute(Clazz, InnerClassesAttribute)"
+  })
+  void testVisitInnerClassesAttribute5() {
+    // Arrange
+    InnerUsageMarker innerUsageMarker =
+        new InnerUsageMarker(new ClassUsageMarker(new ShortestUsageMarker()));
+    LibraryClass clazz = new LibraryClass();
+    InnerClassesAttribute innerClassesAttribute =
+        new InnerClassesAttribute(1, 1, new InnerClassesInfo[] {new InnerClassesInfo(1, 1, 1, 1)});
+
+    // Act
+    innerUsageMarker.visitInnerClassesAttribute(clazz, innerClassesAttribute);
+
+    // Assert that nothing has changed
+    assertEquals(1, innerClassesAttribute.classes.length);
+  }
+
+  /**
+   * Test {@link InnerUsageMarker#visitInnerClassesAttribute(Clazz, InnerClassesAttribute)}.
+   *
+   * <ul>
+   *   <li>Then array length is one.
+   * </ul>
+   *
+   * <p>Method under test: {@link InnerUsageMarker#visitInnerClassesAttribute(Clazz,
+   * InnerClassesAttribute)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitInnerClassesAttribute(Clazz, InnerClassesAttribute); then array length is one")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void InnerUsageMarker.visitInnerClassesAttribute(Clazz, InnerClassesAttribute)"
+  })
+  void testVisitInnerClassesAttribute_thenArrayLengthIsOne() {
+    // Arrange
+    InnerUsageMarker innerUsageMarker = new InnerUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    InnerClassesAttribute innerClassesAttribute =
+        new InnerClassesAttribute(1, 1, new InnerClassesInfo[] {new InnerClassesInfo(1, 1, 1, 1)});
+
+    // Act
+    innerUsageMarker.visitInnerClassesAttribute(clazz, innerClassesAttribute);
+
+    // Assert
+    assertEquals(1, innerClassesAttribute.classes.length);
+  }
+
+  /**
+   * Test {@link InnerUsageMarker#visitInnerClassesAttribute(Clazz, InnerClassesAttribute)}.
+   *
+   * <ul>
+   *   <li>Then {@link InnerClassesAttribute#InnerClassesAttribute()} ProcessingInfo is {@code
+   *       null}.
+   * </ul>
+   *
+   * <p>Method under test: {@link InnerUsageMarker#visitInnerClassesAttribute(Clazz,
+   * InnerClassesAttribute)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitInnerClassesAttribute(Clazz, InnerClassesAttribute); then InnerClassesAttribute() ProcessingInfo is 'null'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void InnerUsageMarker.visitInnerClassesAttribute(Clazz, InnerClassesAttribute)"
+  })
+  void testVisitInnerClassesAttribute_thenInnerClassesAttributeProcessingInfoIsNull() {
+    // Arrange
+    InnerUsageMarker innerUsageMarker = new InnerUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    InnerClassesAttribute innerClassesAttribute = new InnerClassesAttribute();
+
+    // Act
+    innerUsageMarker.visitInnerClassesAttribute(clazz, innerClassesAttribute);
+
+    // Assert that nothing has changed
+    assertNull(innerClassesAttribute.getProcessingInfo());
+  }
+
+  /**
    * Test {@link InnerUsageMarker#visitInnerClassesInfo(Clazz, InnerClassesInfo)}.
-   * <p>
-   * Method under test: {@link InnerUsageMarker#visitInnerClassesInfo(Clazz, InnerClassesInfo)}
+   *
+   * <p>Method under test: {@link InnerUsageMarker#visitInnerClassesInfo(Clazz, InnerClassesInfo)}
    */
   @Test
   @DisplayName("Test visitInnerClassesInfo(Clazz, InnerClassesInfo)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.shrink.InnerUsageMarker.visitInnerClassesInfo(proguard.classfile.Clazz, proguard.classfile.attribute.InnerClassesInfo)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void InnerUsageMarker.visitInnerClassesInfo(Clazz, InnerClassesInfo)"})
   void testVisitInnerClassesInfo() {
     // Arrange
     ShortestUsageMarker usageMarker = new ShortestUsageMarker();
-    InnerUsageMarker innerUsageMarker = new InnerUsageMarker(new ShortestClassUsageMarker(usageMarker, "Just cause"));
+    InnerUsageMarker innerUsageMarker =
+        new InnerUsageMarker(new ShortestClassUsageMarker(usageMarker, "Just cause"));
     LibraryClass clazz = new LibraryClass();
     InnerClassesInfo innerClassesInfo = new InnerClassesInfo(1, 1, 1, 1);
 
@@ -76,19 +257,44 @@ class InnerUsageMarkerDiffblueTest {
   }
 
   /**
+   * Test {@link InnerUsageMarker#visitInnerClassesInfo(Clazz, InnerClassesInfo)}.
+   *
+   * <p>Method under test: {@link InnerUsageMarker#visitInnerClassesInfo(Clazz, InnerClassesInfo)}
+   */
+  @Test
+  @DisplayName("Test visitInnerClassesInfo(Clazz, InnerClassesInfo)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void InnerUsageMarker.visitInnerClassesInfo(Clazz, InnerClassesInfo)"})
+  void testVisitInnerClassesInfo2() {
+    // Arrange
+    InnerUsageMarker innerUsageMarker =
+        new InnerUsageMarker(new ClassUsageMarker(new ShortestUsageMarker()));
+    LibraryClass clazz = new LibraryClass();
+    InnerClassesInfo innerClassesInfo = new InnerClassesInfo(1, 1, 1, 1);
+
+    // Act
+    innerUsageMarker.visitInnerClassesInfo(clazz, innerClassesInfo);
+
+    // Assert that nothing has changed
+    assertNull(innerClassesInfo.getProcessingInfo());
+  }
+
+  /**
    * Test {@link InnerUsageMarker#visitClassConstant(Clazz, ClassConstant)}.
-   * <p>
-   * Method under test: {@link InnerUsageMarker#visitClassConstant(Clazz, ClassConstant)}
+   *
+   * <p>Method under test: {@link InnerUsageMarker#visitClassConstant(Clazz, ClassConstant)}
    */
   @Test
   @DisplayName("Test visitClassConstant(Clazz, ClassConstant)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.shrink.InnerUsageMarker.visitClassConstant(proguard.classfile.Clazz, proguard.classfile.constant.ClassConstant)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void InnerUsageMarker.visitClassConstant(Clazz, ClassConstant)"})
   void testVisitClassConstant() {
     // Arrange
     ShortestUsageMarker usageMarker = new ShortestUsageMarker();
-    InnerUsageMarker innerUsageMarker = new InnerUsageMarker(new ShortestClassUsageMarker(usageMarker, "Just cause"));
+    InnerUsageMarker innerUsageMarker =
+        new InnerUsageMarker(new ShortestClassUsageMarker(usageMarker, "Just cause"));
     LibraryClass clazz = new LibraryClass();
     ClassConstant classConstant = new ClassConstant();
 
@@ -101,42 +307,20 @@ class InnerUsageMarkerDiffblueTest {
   }
 
   /**
-   * Test {@link InnerUsageMarker#visitClassConstant(Clazz, ClassConstant)}.
-   * <p>
-   * Method under test: {@link InnerUsageMarker#visitClassConstant(Clazz, ClassConstant)}
-   */
-  @Test
-  @DisplayName("Test visitClassConstant(Clazz, ClassConstant)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.shrink.InnerUsageMarker.visitClassConstant(proguard.classfile.Clazz, proguard.classfile.constant.ClassConstant)"})
-  void testVisitClassConstant2() {
-    // Arrange
-    InnerUsageMarker innerUsageMarker = new InnerUsageMarker(new ClassUsageMarker());
-    LibraryClass clazz = new LibraryClass();
-    ClassConstant classConstant = new ClassConstant(1, new ProgramClass());
-
-    // Act
-    innerUsageMarker.visitClassConstant(clazz, classConstant);
-
-    // Assert that nothing has changed
-    assertNull(classConstant.getProcessingInfo());
-  }
-
-  /**
    * Test {@link InnerUsageMarker#visitUtf8Constant(Clazz, Utf8Constant)}.
-   * <p>
-   * Method under test: {@link InnerUsageMarker#visitUtf8Constant(Clazz, Utf8Constant)}
+   *
+   * <p>Method under test: {@link InnerUsageMarker#visitUtf8Constant(Clazz, Utf8Constant)}
    */
   @Test
   @DisplayName("Test visitUtf8Constant(Clazz, Utf8Constant)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.shrink.InnerUsageMarker.visitUtf8Constant(proguard.classfile.Clazz, proguard.classfile.constant.Utf8Constant)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void InnerUsageMarker.visitUtf8Constant(Clazz, Utf8Constant)"})
   void testVisitUtf8Constant() {
     // Arrange
     ShortestUsageMarker usageMarker = new ShortestUsageMarker();
-    InnerUsageMarker innerUsageMarker = new InnerUsageMarker(new ShortestClassUsageMarker(usageMarker, "Just cause"));
+    InnerUsageMarker innerUsageMarker =
+        new InnerUsageMarker(new ShortestClassUsageMarker(usageMarker, "Just cause"));
     LibraryClass clazz = new LibraryClass();
     Utf8Constant utf8Constant = new Utf8Constant("String");
 
@@ -150,38 +334,47 @@ class InnerUsageMarkerDiffblueTest {
 
   /**
    * Test {@link InnerUsageMarker#visitAnyClass(Clazz)}.
+   *
    * <ul>
-   *   <li>When {@link LibraryClass#LibraryClass()}.</li>
-   *   <li>Then throw {@link UnsupportedOperationException}.</li>
+   *   <li>When {@link LibraryClass#LibraryClass()}.
+   *   <li>Then throw {@link UnsupportedOperationException}.
    * </ul>
-   * <p>
-   * Method under test: {@link InnerUsageMarker#visitAnyClass(Clazz)}
+   *
+   * <p>Method under test: {@link InnerUsageMarker#visitAnyClass(Clazz)}
    */
   @Test
-  @DisplayName("Test visitAnyClass(Clazz); when LibraryClass(); then throw UnsupportedOperationException")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.shrink.InnerUsageMarker.visitAnyClass(proguard.classfile.Clazz)"})
+  @DisplayName(
+      "Test visitAnyClass(Clazz); when LibraryClass(); then throw UnsupportedOperationException")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void InnerUsageMarker.visitAnyClass(Clazz)"})
   void testVisitAnyClass_whenLibraryClass_thenThrowUnsupportedOperationException() {
     // Arrange
     InnerUsageMarker innerUsageMarker = new InnerUsageMarker(new ClassUsageMarker());
 
     // Act and Assert
-    assertThrows(UnsupportedOperationException.class, () -> innerUsageMarker.visitAnyClass(new LibraryClass()));
+    assertThrows(
+        UnsupportedOperationException.class,
+        () -> innerUsageMarker.visitAnyClass(new LibraryClass()));
   }
 
   /**
    * Test {@link InnerUsageMarker#visitProgramClass(ProgramClass)}.
+   *
    * <ul>
-   *   <li>Given {@link ClassUsageMarker} {@link ClassUsageMarker#isUsed(Processable)} return {@code true}.</li>
-   *   <li>Then calls {@link ClassUsageMarker#isUsed(Processable)}.</li>
+   *   <li>Given {@link ClassUsageMarker} {@link ClassUsageMarker#isUsed(Processable)} return {@code
+   *       true}.
+   *   <li>Then calls {@link ClassUsageMarker#isUsed(Processable)}.
    * </ul>
-   * <p>
-   * Method under test: {@link InnerUsageMarker#visitProgramClass(ProgramClass)}
+   *
+   * <p>Method under test: {@link InnerUsageMarker#visitProgramClass(ProgramClass)}
    */
   @Test
-  @DisplayName("Test visitProgramClass(ProgramClass); given ClassUsageMarker isUsed(Processable) return 'true'; then calls isUsed(Processable)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.shrink.InnerUsageMarker.visitProgramClass(proguard.classfile.ProgramClass)"})
+  @DisplayName(
+      "Test visitProgramClass(ProgramClass); given ClassUsageMarker isUsed(Processable) return 'true'; then calls isUsed(Processable)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void InnerUsageMarker.visitProgramClass(ProgramClass)"})
   void testVisitProgramClass_givenClassUsageMarkerIsUsedReturnTrue_thenCallsIsUsed() {
     // Arrange
     ClassUsageMarker classUsageMarker = mock(ClassUsageMarker.class);

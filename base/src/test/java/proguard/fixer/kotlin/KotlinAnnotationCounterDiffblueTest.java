@@ -6,6 +6,8 @@ import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -25,12 +27,14 @@ import proguard.classfile.attribute.annotation.RuntimeInvisibleParameterAnnotati
 import proguard.classfile.attribute.annotation.visitor.AnnotationVisitor;
 import proguard.shrink.ShortestUsageMarker;
 import proguard.shrink.SimpleUsageMarker;
+import proguard.util.Processable;
 
 class KotlinAnnotationCounterDiffblueTest {
   /**
    * Test getters and setters.
-   * <p>
-   * Methods under test:
+   *
+   * <p>Methods under test:
+   *
    * <ul>
    *   <li>{@link KotlinAnnotationCounter#KotlinAnnotationCounter()}
    *   <li>{@link KotlinAnnotationCounter#visitAnyAttribute(Clazz, Attribute)}
@@ -39,11 +43,14 @@ class KotlinAnnotationCounterDiffblueTest {
    */
   @Test
   @DisplayName("Test getters and setters")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.fixer.kotlin.KotlinAnnotationCounter.<init>()",
-      "void proguard.fixer.kotlin.KotlinAnnotationCounter.<init>(proguard.shrink.SimpleUsageMarker)",
-      "int proguard.fixer.kotlin.KotlinAnnotationCounter.getCount()",
-      "void proguard.fixer.kotlin.KotlinAnnotationCounter.visitAnyAttribute(proguard.classfile.Clazz, proguard.classfile.attribute.Attribute)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void KotlinAnnotationCounter.<init>()",
+    "void KotlinAnnotationCounter.<init>(SimpleUsageMarker)",
+    "int KotlinAnnotationCounter.getCount()",
+    "void KotlinAnnotationCounter.visitAnyAttribute(Clazz, Attribute)"
+  })
   void testGettersAndSetters() {
     // Arrange and Act
     KotlinAnnotationCounter actualKotlinAnnotationCounter = new KotlinAnnotationCounter();
@@ -56,11 +63,13 @@ class KotlinAnnotationCounterDiffblueTest {
 
   /**
    * Test getters and setters.
+   *
    * <ul>
-   *   <li>When {@link SimpleUsageMarker} (default constructor).</li>
+   *   <li>When {@link SimpleUsageMarker} (default constructor).
    * </ul>
-   * <p>
-   * Methods under test:
+   *
+   * <p>Methods under test:
+   *
    * <ul>
    *   <li>{@link KotlinAnnotationCounter#KotlinAnnotationCounter(SimpleUsageMarker)}
    *   <li>{@link KotlinAnnotationCounter#visitAnyAttribute(Clazz, Attribute)}
@@ -69,14 +78,18 @@ class KotlinAnnotationCounterDiffblueTest {
    */
   @Test
   @DisplayName("Test getters and setters; when SimpleUsageMarker (default constructor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.fixer.kotlin.KotlinAnnotationCounter.<init>()",
-      "void proguard.fixer.kotlin.KotlinAnnotationCounter.<init>(proguard.shrink.SimpleUsageMarker)",
-      "int proguard.fixer.kotlin.KotlinAnnotationCounter.getCount()",
-      "void proguard.fixer.kotlin.KotlinAnnotationCounter.visitAnyAttribute(proguard.classfile.Clazz, proguard.classfile.attribute.Attribute)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void KotlinAnnotationCounter.<init>()",
+    "void KotlinAnnotationCounter.<init>(SimpleUsageMarker)",
+    "int KotlinAnnotationCounter.getCount()",
+    "void KotlinAnnotationCounter.visitAnyAttribute(Clazz, Attribute)"
+  })
   void testGettersAndSetters_whenSimpleUsageMarker() {
     // Arrange and Act
-    KotlinAnnotationCounter actualKotlinAnnotationCounter = new KotlinAnnotationCounter(new SimpleUsageMarker());
+    KotlinAnnotationCounter actualKotlinAnnotationCounter =
+        new KotlinAnnotationCounter(new SimpleUsageMarker());
     LibraryClass clazz = new LibraryClass();
     actualKotlinAnnotationCounter.visitAnyAttribute(clazz, new BootstrapMethodsAttribute());
 
@@ -86,35 +99,37 @@ class KotlinAnnotationCounterDiffblueTest {
 
   /**
    * Test {@link KotlinAnnotationCounter#getParameterAnnotationCount(int)}.
-   * <p>
-   * Method under test: {@link KotlinAnnotationCounter#getParameterAnnotationCount(int)}
+   *
+   * <p>Method under test: {@link KotlinAnnotationCounter#getParameterAnnotationCount(int)}
    */
   @Test
   @DisplayName("Test getParameterAnnotationCount(int)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"int proguard.fixer.kotlin.KotlinAnnotationCounter.getParameterAnnotationCount(int)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"int KotlinAnnotationCounter.getParameterAnnotationCount(int)"})
   void testGetParameterAnnotationCount() {
     // Arrange, Act and Assert
-    assertEquals(-1, (new KotlinAnnotationCounter()).getParameterAnnotationCount(1));
+    assertEquals(-1, new KotlinAnnotationCounter().getParameterAnnotationCount(1));
   }
 
   /**
    * Test {@link KotlinAnnotationCounter#getParameterAnnotationCount(int)}.
-   * <p>
-   * Method under test: {@link KotlinAnnotationCounter#getParameterAnnotationCount(int)}
+   *
+   * <p>Method under test: {@link KotlinAnnotationCounter#getParameterAnnotationCount(int)}
    */
   @Test
   @DisplayName("Test getParameterAnnotationCount(int)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"int proguard.fixer.kotlin.KotlinAnnotationCounter.getParameterAnnotationCount(int)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"int KotlinAnnotationCounter.getParameterAnnotationCount(int)"})
   void testGetParameterAnnotationCount2() {
     // Arrange
     KotlinAnnotationCounter kotlinAnnotationCounter = new KotlinAnnotationCounter();
     LibraryClass clazz = new LibraryClass();
     LibraryMethod method = new LibraryMethod(-1, "Name", "Descriptor");
 
-    kotlinAnnotationCounter.visitAnyParameterAnnotationsAttribute(clazz, method,
-        new RuntimeInvisibleParameterAnnotationsAttribute());
+    kotlinAnnotationCounter.visitAnyParameterAnnotationsAttribute(
+        clazz, method, new RuntimeInvisibleParameterAnnotationsAttribute());
 
     // Act and Assert
     assertEquals(-1, kotlinAnnotationCounter.getParameterAnnotationCount(1));
@@ -122,14 +137,14 @@ class KotlinAnnotationCounterDiffblueTest {
 
   /**
    * Test {@link KotlinAnnotationCounter#reset()}.
-   * <p>
-   * Method under test: {@link KotlinAnnotationCounter#reset()}
+   *
+   * <p>Method under test: {@link KotlinAnnotationCounter#reset()}
    */
   @Test
   @DisplayName("Test reset()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "proguard.fixer.kotlin.KotlinAnnotationCounter proguard.fixer.kotlin.KotlinAnnotationCounter.reset()"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"KotlinAnnotationCounter KotlinAnnotationCounter.reset()"})
   void testReset() {
     // Arrange
     KotlinAnnotationCounter kotlinAnnotationCounter = new KotlinAnnotationCounter();
@@ -140,76 +155,260 @@ class KotlinAnnotationCounterDiffblueTest {
 
   /**
    * Test {@link KotlinAnnotationCounter#visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)}.
-   * <ul>
-   *   <li>Then calls {@link AnnotationsAttribute#annotationsAccept(Clazz, AnnotationVisitor)}.</li>
-   * </ul>
-   * <p>
-   * Method under test: {@link KotlinAnnotationCounter#visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)}
+   *
+   * <p>Method under test: {@link KotlinAnnotationCounter#visitAnyAnnotationsAttribute(Clazz,
+   * AnnotationsAttribute)}
    */
   @Test
-  @DisplayName("Test visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute); then calls annotationsAccept(Clazz, AnnotationVisitor)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName("Test visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.fixer.kotlin.KotlinAnnotationCounter.visitAnyAnnotationsAttribute(proguard.classfile.Clazz, proguard.classfile.attribute.annotation.AnnotationsAttribute)"})
+    "void KotlinAnnotationCounter.visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)"
+  })
+  void testVisitAnyAnnotationsAttribute() {
+    // Arrange
+    KotlinAnnotationCounter kotlinAnnotationCounter =
+        new KotlinAnnotationCounter(new SimpleUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    Annotation annotation = mock(Annotation.class);
+    when(annotation.getProcessingInfo()).thenReturn("Processing Info");
+    when(annotation.getType(Mockito.<Clazz>any())).thenReturn("Type");
+
+    // Act
+    kotlinAnnotationCounter.visitAnyAnnotationsAttribute(
+        clazz, new RuntimeInvisibleAnnotationsAttribute(1, 1, new Annotation[] {annotation}));
+
+    // Assert that nothing has changed
+    verify(annotation).getType(isA(Clazz.class));
+    verify(annotation).getProcessingInfo();
+    assertEquals(0, kotlinAnnotationCounter.getCount());
+  }
+
+  /**
+   * Test {@link KotlinAnnotationCounter#visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)}.
+   *
+   * <p>Method under test: {@link KotlinAnnotationCounter#visitAnyAnnotationsAttribute(Clazz,
+   * AnnotationsAttribute)}
+   */
+  @Test
+  @DisplayName("Test visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void KotlinAnnotationCounter.visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)"
+  })
+  void testVisitAnyAnnotationsAttribute2() {
+    // Arrange
+    KotlinAnnotationCounter kotlinAnnotationCounter =
+        new KotlinAnnotationCounter(new ShortestUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    Annotation annotation = mock(Annotation.class);
+    when(annotation.getProcessingInfo()).thenReturn("Processing Info");
+    when(annotation.getType(Mockito.<Clazz>any())).thenReturn("Type");
+
+    // Act
+    kotlinAnnotationCounter.visitAnyAnnotationsAttribute(
+        clazz, new RuntimeInvisibleAnnotationsAttribute(1, 1, new Annotation[] {annotation}));
+
+    // Assert that nothing has changed
+    verify(annotation).getType(isA(Clazz.class));
+    verify(annotation).getProcessingInfo();
+    assertEquals(0, kotlinAnnotationCounter.getCount());
+  }
+
+  /**
+   * Test {@link KotlinAnnotationCounter#visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)}.
+   *
+   * <p>Method under test: {@link KotlinAnnotationCounter#visitAnyAnnotationsAttribute(Clazz,
+   * AnnotationsAttribute)}
+   */
+  @Test
+  @DisplayName("Test visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void KotlinAnnotationCounter.visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)"
+  })
+  void testVisitAnyAnnotationsAttribute3() {
+    // Arrange
+    ShortestUsageMarker javaUsageMarker = mock(ShortestUsageMarker.class);
+    when(javaUsageMarker.isUsed(Mockito.<Processable>any())).thenReturn(true);
+    KotlinAnnotationCounter kotlinAnnotationCounter = new KotlinAnnotationCounter(javaUsageMarker);
+    LibraryClass clazz = new LibraryClass();
+    Annotation annotation = mock(Annotation.class);
+    when(annotation.getType(Mockito.<Clazz>any())).thenReturn("Type");
+
+    // Act
+    kotlinAnnotationCounter.visitAnyAnnotationsAttribute(
+        clazz, new RuntimeInvisibleAnnotationsAttribute(1, 1, new Annotation[] {annotation}));
+
+    // Assert
+    verify(annotation).getType(isA(Clazz.class));
+    verify(javaUsageMarker).isUsed(isA(Processable.class));
+    assertEquals(1, kotlinAnnotationCounter.getCount());
+  }
+
+  /**
+   * Test {@link KotlinAnnotationCounter#visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)}.
+   *
+   * <ul>
+   *   <li>Then calls {@link RuntimeInvisibleAnnotationsAttribute#annotationsAccept(Clazz,
+   *       AnnotationVisitor)}.
+   * </ul>
+   *
+   * <p>Method under test: {@link KotlinAnnotationCounter#visitAnyAnnotationsAttribute(Clazz,
+   * AnnotationsAttribute)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute); then calls annotationsAccept(Clazz, AnnotationVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void KotlinAnnotationCounter.visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)"
+  })
   void testVisitAnyAnnotationsAttribute_thenCallsAnnotationsAccept() {
     // Arrange
     KotlinAnnotationCounter kotlinAnnotationCounter = new KotlinAnnotationCounter();
     LibraryClass clazz = new LibraryClass();
-    RuntimeInvisibleAnnotationsAttribute annotationsAttribute = mock(RuntimeInvisibleAnnotationsAttribute.class);
-    doNothing().when(annotationsAttribute).annotationsAccept(Mockito.<Clazz>any(), Mockito.<AnnotationVisitor>any());
+    RuntimeInvisibleAnnotationsAttribute annotationsAttribute =
+        mock(RuntimeInvisibleAnnotationsAttribute.class);
+    doNothing()
+        .when(annotationsAttribute)
+        .annotationsAccept(Mockito.<Clazz>any(), Mockito.<AnnotationVisitor>any());
 
     // Act
     kotlinAnnotationCounter.visitAnyAnnotationsAttribute(clazz, annotationsAttribute);
 
-    // Assert
+    // Assert that nothing has changed
     verify(annotationsAttribute).annotationsAccept(isA(Clazz.class), isA(AnnotationVisitor.class));
+    assertEquals(0, kotlinAnnotationCounter.getCount());
   }
 
   /**
-   * Test {@link KotlinAnnotationCounter#visitAnyParameterAnnotationsAttribute(Clazz, Method, ParameterAnnotationsAttribute)}.
+   * Test {@link KotlinAnnotationCounter#visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)}.
+   *
    * <ul>
-   *   <li>Then calls {@link ParameterAnnotationsAttribute#annotationsAccept(Clazz, Method, AnnotationVisitor)}.</li>
+   *   <li>Then {@link KotlinAnnotationCounter#KotlinAnnotationCounter()} Count is one.
    * </ul>
-   * <p>
-   * Method under test: {@link KotlinAnnotationCounter#visitAnyParameterAnnotationsAttribute(Clazz, Method, ParameterAnnotationsAttribute)}
+   *
+   * <p>Method under test: {@link KotlinAnnotationCounter#visitAnyAnnotationsAttribute(Clazz,
+   * AnnotationsAttribute)}
    */
   @Test
-  @DisplayName("Test visitAnyParameterAnnotationsAttribute(Clazz, Method, ParameterAnnotationsAttribute); then calls annotationsAccept(Clazz, Method, AnnotationVisitor)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute); then KotlinAnnotationCounter() Count is one")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.fixer.kotlin.KotlinAnnotationCounter.visitAnyParameterAnnotationsAttribute(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.annotation.ParameterAnnotationsAttribute)"})
+    "void KotlinAnnotationCounter.visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)"
+  })
+  void testVisitAnyAnnotationsAttribute_thenKotlinAnnotationCounterCountIsOne() {
+    // Arrange
+    KotlinAnnotationCounter kotlinAnnotationCounter = new KotlinAnnotationCounter();
+    LibraryClass clazz = new LibraryClass();
+    Annotation annotation = mock(Annotation.class);
+    when(annotation.getType(Mockito.<Clazz>any())).thenReturn("Type");
+
+    // Act
+    kotlinAnnotationCounter.visitAnyAnnotationsAttribute(
+        clazz, new RuntimeInvisibleAnnotationsAttribute(1, 1, new Annotation[] {annotation}));
+
+    // Assert
+    verify(annotation).getType(isA(Clazz.class));
+    assertEquals(1, kotlinAnnotationCounter.getCount());
+  }
+
+  /**
+   * Test {@link KotlinAnnotationCounter#visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)}.
+   *
+   * <ul>
+   *   <li>When {@link RuntimeInvisibleAnnotationsAttribute#RuntimeInvisibleAnnotationsAttribute()}.
+   * </ul>
+   *
+   * <p>Method under test: {@link KotlinAnnotationCounter#visitAnyAnnotationsAttribute(Clazz,
+   * AnnotationsAttribute)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute); when RuntimeInvisibleAnnotationsAttribute()")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void KotlinAnnotationCounter.visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)"
+  })
+  void testVisitAnyAnnotationsAttribute_whenRuntimeInvisibleAnnotationsAttribute() {
+    // Arrange
+    KotlinAnnotationCounter kotlinAnnotationCounter = new KotlinAnnotationCounter();
+    LibraryClass clazz = new LibraryClass();
+
+    // Act
+    kotlinAnnotationCounter.visitAnyAnnotationsAttribute(
+        clazz, new RuntimeInvisibleAnnotationsAttribute());
+
+    // Assert that nothing has changed
+    assertEquals(0, kotlinAnnotationCounter.getCount());
+  }
+
+  /**
+   * Test {@link KotlinAnnotationCounter#visitAnyParameterAnnotationsAttribute(Clazz, Method,
+   * ParameterAnnotationsAttribute)}.
+   *
+   * <ul>
+   *   <li>Then calls {@link RuntimeInvisibleParameterAnnotationsAttribute#annotationsAccept(Clazz,
+   *       Method, AnnotationVisitor)}.
+   * </ul>
+   *
+   * <p>Method under test: {@link
+   * KotlinAnnotationCounter#visitAnyParameterAnnotationsAttribute(Clazz, Method,
+   * ParameterAnnotationsAttribute)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitAnyParameterAnnotationsAttribute(Clazz, Method, ParameterAnnotationsAttribute); then calls annotationsAccept(Clazz, Method, AnnotationVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void KotlinAnnotationCounter.visitAnyParameterAnnotationsAttribute(Clazz, Method, ParameterAnnotationsAttribute)"
+  })
   void testVisitAnyParameterAnnotationsAttribute_thenCallsAnnotationsAccept() {
     // Arrange
     KotlinAnnotationCounter kotlinAnnotationCounter = new KotlinAnnotationCounter();
     LibraryClass clazz = new LibraryClass();
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
 
-    RuntimeInvisibleParameterAnnotationsAttribute parameterAnnotationsAttribute = mock(
-        RuntimeInvisibleParameterAnnotationsAttribute.class);
-    doNothing().when(parameterAnnotationsAttribute)
-        .annotationsAccept(Mockito.<Clazz>any(), Mockito.<Method>any(), Mockito.<AnnotationVisitor>any());
+    RuntimeInvisibleParameterAnnotationsAttribute parameterAnnotationsAttribute =
+        mock(RuntimeInvisibleParameterAnnotationsAttribute.class);
+    doNothing()
+        .when(parameterAnnotationsAttribute)
+        .annotationsAccept(
+            Mockito.<Clazz>any(), Mockito.<Method>any(), Mockito.<AnnotationVisitor>any());
 
     // Act
-    kotlinAnnotationCounter.visitAnyParameterAnnotationsAttribute(clazz, method, parameterAnnotationsAttribute);
+    kotlinAnnotationCounter.visitAnyParameterAnnotationsAttribute(
+        clazz, method, parameterAnnotationsAttribute);
 
     // Assert
-    verify(parameterAnnotationsAttribute).annotationsAccept(isA(Clazz.class), isA(Method.class),
-        isA(AnnotationVisitor.class));
+    verify(parameterAnnotationsAttribute)
+        .annotationsAccept(isA(Clazz.class), isA(Method.class), isA(AnnotationVisitor.class));
   }
 
   /**
-   * Test {@link KotlinAnnotationCounter#visitAnnotation(Clazz, Annotation)} with {@code clazz}, {@code annotation}.
-   * <p>
-   * Method under test: {@link KotlinAnnotationCounter#visitAnnotation(Clazz, Annotation)}
+   * Test {@link KotlinAnnotationCounter#visitAnnotation(Clazz, Annotation)} with {@code clazz},
+   * {@code annotation}.
+   *
+   * <p>Method under test: {@link KotlinAnnotationCounter#visitAnnotation(Clazz, Annotation)}
    */
   @Test
   @DisplayName("Test visitAnnotation(Clazz, Annotation) with 'clazz', 'annotation'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.fixer.kotlin.KotlinAnnotationCounter.visitAnnotation(proguard.classfile.Clazz, proguard.classfile.attribute.annotation.Annotation)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void KotlinAnnotationCounter.visitAnnotation(Clazz, Annotation)"})
   void testVisitAnnotationWithClazzAnnotation() {
     // Arrange
-    KotlinAnnotationCounter kotlinAnnotationCounter = new KotlinAnnotationCounter(new SimpleUsageMarker());
+    KotlinAnnotationCounter kotlinAnnotationCounter =
+        new KotlinAnnotationCounter(new SimpleUsageMarker());
     LibraryClass clazz = new LibraryClass();
 
     // Act
@@ -220,18 +419,20 @@ class KotlinAnnotationCounterDiffblueTest {
   }
 
   /**
-   * Test {@link KotlinAnnotationCounter#visitAnnotation(Clazz, Annotation)} with {@code clazz}, {@code annotation}.
-   * <p>
-   * Method under test: {@link KotlinAnnotationCounter#visitAnnotation(Clazz, Annotation)}
+   * Test {@link KotlinAnnotationCounter#visitAnnotation(Clazz, Annotation)} with {@code clazz},
+   * {@code annotation}.
+   *
+   * <p>Method under test: {@link KotlinAnnotationCounter#visitAnnotation(Clazz, Annotation)}
    */
   @Test
   @DisplayName("Test visitAnnotation(Clazz, Annotation) with 'clazz', 'annotation'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.fixer.kotlin.KotlinAnnotationCounter.visitAnnotation(proguard.classfile.Clazz, proguard.classfile.attribute.annotation.Annotation)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void KotlinAnnotationCounter.visitAnnotation(Clazz, Annotation)"})
   void testVisitAnnotationWithClazzAnnotation2() {
     // Arrange
-    KotlinAnnotationCounter kotlinAnnotationCounter = new KotlinAnnotationCounter(new ShortestUsageMarker());
+    KotlinAnnotationCounter kotlinAnnotationCounter =
+        new KotlinAnnotationCounter(new ShortestUsageMarker());
     LibraryClass clazz = new LibraryClass();
 
     // Act
@@ -242,18 +443,21 @@ class KotlinAnnotationCounterDiffblueTest {
   }
 
   /**
-   * Test {@link KotlinAnnotationCounter#visitAnnotation(Clazz, Annotation)} with {@code clazz}, {@code annotation}.
+   * Test {@link KotlinAnnotationCounter#visitAnnotation(Clazz, Annotation)} with {@code clazz},
+   * {@code annotation}.
+   *
    * <ul>
-   *   <li>Then {@link KotlinAnnotationCounter#KotlinAnnotationCounter()} Count is one.</li>
+   *   <li>Then {@link KotlinAnnotationCounter#KotlinAnnotationCounter()} Count is one.
    * </ul>
-   * <p>
-   * Method under test: {@link KotlinAnnotationCounter#visitAnnotation(Clazz, Annotation)}
+   *
+   * <p>Method under test: {@link KotlinAnnotationCounter#visitAnnotation(Clazz, Annotation)}
    */
   @Test
-  @DisplayName("Test visitAnnotation(Clazz, Annotation) with 'clazz', 'annotation'; then KotlinAnnotationCounter() Count is one")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.fixer.kotlin.KotlinAnnotationCounter.visitAnnotation(proguard.classfile.Clazz, proguard.classfile.attribute.annotation.Annotation)"})
+  @DisplayName(
+      "Test visitAnnotation(Clazz, Annotation) with 'clazz', 'annotation'; then KotlinAnnotationCounter() Count is one")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void KotlinAnnotationCounter.visitAnnotation(Clazz, Annotation)"})
   void testVisitAnnotationWithClazzAnnotation_thenKotlinAnnotationCounterCountIsOne() {
     // Arrange
     KotlinAnnotationCounter kotlinAnnotationCounter = new KotlinAnnotationCounter();

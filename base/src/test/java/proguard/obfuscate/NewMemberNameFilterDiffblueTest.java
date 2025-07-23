@@ -12,6 +12,7 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -23,7 +24,6 @@ import proguard.classfile.LibraryField;
 import proguard.classfile.LibraryMethod;
 import proguard.classfile.ProgramClass;
 import proguard.classfile.ProgramField;
-import proguard.classfile.ProgramMember;
 import proguard.classfile.ProgramMethod;
 import proguard.classfile.visitor.MemberVisitor;
 import proguard.fixer.kotlin.KotlinAnnotationCounter;
@@ -32,14 +32,14 @@ import proguard.obfuscate.kotlin.KotlinValueParameterUsageMarker;
 class NewMemberNameFilterDiffblueTest {
   /**
    * Test {@link NewMemberNameFilter#visitProgramField(ProgramClass, ProgramField)}.
-   * <p>
-   * Method under test: {@link NewMemberNameFilter#visitProgramField(ProgramClass, ProgramField)}
+   *
+   * <p>Method under test: {@link NewMemberNameFilter#visitProgramField(ProgramClass, ProgramField)}
    */
   @Test
   @DisplayName("Test visitProgramField(ProgramClass, ProgramField)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.NewMemberNameFilter.visitProgramField(proguard.classfile.ProgramClass, proguard.classfile.ProgramField)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NewMemberNameFilter.visitProgramField(ProgramClass, ProgramField)"})
   void testVisitProgramField() {
     // Arrange
     NewMemberNameFilter newMemberNameFilter = new NewMemberNameFilter(new MemberNameCleaner());
@@ -57,20 +57,23 @@ class NewMemberNameFilterDiffblueTest {
 
   /**
    * Test {@link NewMemberNameFilter#visitProgramField(ProgramClass, ProgramField)}.
+   *
    * <ul>
-   *   <li>Then {@link ProgramField#ProgramField()} ProcessingInfo is {@code Processing Info}.</li>
+   *   <li>Then {@link ProgramField#ProgramField()} ProcessingInfo is {@code Processing Info}.
    * </ul>
-   * <p>
-   * Method under test: {@link NewMemberNameFilter#visitProgramField(ProgramClass, ProgramField)}
+   *
+   * <p>Method under test: {@link NewMemberNameFilter#visitProgramField(ProgramClass, ProgramField)}
    */
   @Test
-  @DisplayName("Test visitProgramField(ProgramClass, ProgramField); then ProgramField() ProcessingInfo is 'Processing Info'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.NewMemberNameFilter.visitProgramField(proguard.classfile.ProgramClass, proguard.classfile.ProgramField)"})
+  @DisplayName(
+      "Test visitProgramField(ProgramClass, ProgramField); then ProgramField() ProcessingInfo is 'Processing Info'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NewMemberNameFilter.visitProgramField(ProgramClass, ProgramField)"})
   void testVisitProgramField_thenProgramFieldProcessingInfoIsProcessingInfo() {
     // Arrange
-    NewMemberNameFilter newMemberNameFilter = new NewMemberNameFilter(new KotlinAnnotationCounter());
+    NewMemberNameFilter newMemberNameFilter =
+        new NewMemberNameFilter(new KotlinAnnotationCounter());
     ProgramClass programClass = new ProgramClass();
 
     ProgramField programField = new ProgramField();
@@ -85,21 +88,24 @@ class NewMemberNameFilterDiffblueTest {
 
   /**
    * Test {@link NewMemberNameFilter#visitProgramField(ProgramClass, ProgramField)}.
+   *
    * <ul>
-   *   <li>When {@link ProgramField#ProgramField()}.</li>
-   *   <li>Then {@link ProgramField#ProgramField()} ProcessingInfo is {@code null}.</li>
+   *   <li>When {@link ProgramField#ProgramField()}.
+   *   <li>Then {@link ProgramField#ProgramField()} ProcessingInfo is {@code null}.
    * </ul>
-   * <p>
-   * Method under test: {@link NewMemberNameFilter#visitProgramField(ProgramClass, ProgramField)}
+   *
+   * <p>Method under test: {@link NewMemberNameFilter#visitProgramField(ProgramClass, ProgramField)}
    */
   @Test
-  @DisplayName("Test visitProgramField(ProgramClass, ProgramField); when ProgramField(); then ProgramField() ProcessingInfo is 'null'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.NewMemberNameFilter.visitProgramField(proguard.classfile.ProgramClass, proguard.classfile.ProgramField)"})
+  @DisplayName(
+      "Test visitProgramField(ProgramClass, ProgramField); when ProgramField(); then ProgramField() ProcessingInfo is 'null'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NewMemberNameFilter.visitProgramField(ProgramClass, ProgramField)"})
   void testVisitProgramField_whenProgramField_thenProgramFieldProcessingInfoIsNull() {
     // Arrange
-    NewMemberNameFilter newMemberNameFilter = new NewMemberNameFilter(new KotlinAnnotationCounter());
+    NewMemberNameFilter newMemberNameFilter =
+        new NewMemberNameFilter(new KotlinAnnotationCounter());
     ProgramClass programClass = new ProgramClass();
     ProgramField programField = new ProgramField();
 
@@ -112,21 +118,25 @@ class NewMemberNameFilterDiffblueTest {
 
   /**
    * Test {@link NewMemberNameFilter#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   *
    * <ul>
-   *   <li>Given {@code <init>}.</li>
-   *   <li>When {@link ProgramClass} {@link ProgramClass#getString(int)} return {@code <init>}.</li>
+   *   <li>Given {@code <init>}.
+   *   <li>When {@link ProgramClass} {@link ProgramClass#getString(int)} return {@code <init>}.
    * </ul>
-   * <p>
-   * Method under test: {@link NewMemberNameFilter#visitProgramMethod(ProgramClass, ProgramMethod)}
+   *
+   * <p>Method under test: {@link NewMemberNameFilter#visitProgramMethod(ProgramClass,
+   * ProgramMethod)}
    */
   @Test
-  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); given '<init>'; when ProgramClass getString(int) return '<init>'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.NewMemberNameFilter.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
+  @DisplayName(
+      "Test visitProgramMethod(ProgramClass, ProgramMethod); given '<init>'; when ProgramClass getString(int) return '<init>'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NewMemberNameFilter.visitProgramMethod(ProgramClass, ProgramMethod)"})
   void testVisitProgramMethod_givenInit_whenProgramClassGetStringReturnInit() {
     // Arrange
-    NewMemberNameFilter newMemberNameFilter = new NewMemberNameFilter(new KotlinAnnotationCounter());
+    NewMemberNameFilter newMemberNameFilter =
+        new NewMemberNameFilter(new KotlinAnnotationCounter());
     ProgramClass programClass = mock(ProgramClass.class);
     when(programClass.getString(anyInt())).thenReturn("<init>");
     when(programClass.getProcessingInfo()).thenReturn("Processing Info");
@@ -141,21 +151,25 @@ class NewMemberNameFilterDiffblueTest {
 
   /**
    * Test {@link NewMemberNameFilter#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   *
    * <ul>
-   *   <li>Given {@code String}.</li>
-   *   <li>Then calls {@link ProgramClass#getString(int)}.</li>
+   *   <li>Given {@code String}.
+   *   <li>Then calls {@link ProgramClass#getString(int)}.
    * </ul>
-   * <p>
-   * Method under test: {@link NewMemberNameFilter#visitProgramMethod(ProgramClass, ProgramMethod)}
+   *
+   * <p>Method under test: {@link NewMemberNameFilter#visitProgramMethod(ProgramClass,
+   * ProgramMethod)}
    */
   @Test
-  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); given 'String'; then calls getString(int)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.NewMemberNameFilter.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
+  @DisplayName(
+      "Test visitProgramMethod(ProgramClass, ProgramMethod); given 'String'; then calls getString(int)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NewMemberNameFilter.visitProgramMethod(ProgramClass, ProgramMethod)"})
   void testVisitProgramMethod_givenString_thenCallsGetString() {
     // Arrange
-    NewMemberNameFilter newMemberNameFilter = new NewMemberNameFilter(new KotlinAnnotationCounter());
+    NewMemberNameFilter newMemberNameFilter =
+        new NewMemberNameFilter(new KotlinAnnotationCounter());
     ProgramClass programClass = mock(ProgramClass.class);
     when(programClass.getString(anyInt())).thenReturn("String");
     when(programClass.getProcessingInfo()).thenReturn("Processing Info");
@@ -170,24 +184,28 @@ class NewMemberNameFilterDiffblueTest {
 
   /**
    * Test {@link NewMemberNameFilter#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   *
    * <ul>
-   *   <li>Then calls {@link MemberVisitor#visitProgramMethod(ProgramClass, ProgramMethod)}.</li>
+   *   <li>Then calls {@link MemberVisitor#visitProgramMethod(ProgramClass, ProgramMethod)}.
    * </ul>
-   * <p>
-   * Method under test: {@link NewMemberNameFilter#visitProgramMethod(ProgramClass, ProgramMethod)}
+   *
+   * <p>Method under test: {@link NewMemberNameFilter#visitProgramMethod(ProgramClass,
+   * ProgramMethod)}
    */
   @Test
-  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); then calls visitProgramMethod(ProgramClass, ProgramMethod)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.NewMemberNameFilter.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
+  @DisplayName(
+      "Test visitProgramMethod(ProgramClass, ProgramMethod); then calls visitProgramMethod(ProgramClass, ProgramMethod)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NewMemberNameFilter.visitProgramMethod(ProgramClass, ProgramMethod)"})
   void testVisitProgramMethod_thenCallsVisitProgramMethod() {
     // Arrange
     MemberVisitor memberVisitor = mock(MemberVisitor.class);
-    doNothing().when(memberVisitor).visitProgramMethod(Mockito.<ProgramClass>any(), Mockito.<ProgramMethod>any());
+    doNothing()
+        .when(memberVisitor)
+        .visitProgramMethod(Mockito.<ProgramClass>any(), Mockito.<ProgramMethod>any());
     NewMemberNameFilter newMemberNameFilter = new NewMemberNameFilter(memberVisitor);
     ProgramClass programClass = mock(ProgramClass.class);
-    when(programClass.getProcessingInfo()).thenReturn("Processing Info");
     ProgramMethod programMethod = mock(ProgramMethod.class);
     when(programMethod.getProcessingInfo()).thenReturn("Processing Info");
 
@@ -201,23 +219,26 @@ class NewMemberNameFilterDiffblueTest {
 
   /**
    * Test {@link NewMemberNameFilter#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   *
    * <ul>
-   *   <li>When {@link ProgramMethod} {@link ProgramMember#accept(Clazz, MemberVisitor)} does nothing.</li>
-   *   <li>Then calls {@link ProgramMember#accept(Clazz, MemberVisitor)}.</li>
+   *   <li>When {@link ProgramClass}.
+   *   <li>Then calls {@link ProgramMethod#accept(Clazz, MemberVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link NewMemberNameFilter#visitProgramMethod(ProgramClass, ProgramMethod)}
+   *
+   * <p>Method under test: {@link NewMemberNameFilter#visitProgramMethod(ProgramClass,
+   * ProgramMethod)}
    */
   @Test
-  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); when ProgramMethod accept(Clazz, MemberVisitor) does nothing; then calls accept(Clazz, MemberVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.NewMemberNameFilter.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
-  void testVisitProgramMethod_whenProgramMethodAcceptDoesNothing_thenCallsAccept() {
+  @DisplayName(
+      "Test visitProgramMethod(ProgramClass, ProgramMethod); when ProgramClass; then calls accept(Clazz, MemberVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NewMemberNameFilter.visitProgramMethod(ProgramClass, ProgramMethod)"})
+  void testVisitProgramMethod_whenProgramClass_thenCallsAccept() {
     // Arrange
-    NewMemberNameFilter newMemberNameFilter = new NewMemberNameFilter(new KotlinAnnotationCounter());
+    NewMemberNameFilter newMemberNameFilter =
+        new NewMemberNameFilter(new KotlinAnnotationCounter());
     ProgramClass programClass = mock(ProgramClass.class);
-    when(programClass.getProcessingInfo()).thenReturn("Processing Info");
     ProgramMethod programMethod = mock(ProgramMethod.class);
     doNothing().when(programMethod).accept(Mockito.<Clazz>any(), Mockito.<MemberVisitor>any());
     when(programMethod.getProcessingInfo()).thenReturn("Processing Info");
@@ -232,17 +253,18 @@ class NewMemberNameFilterDiffblueTest {
 
   /**
    * Test {@link NewMemberNameFilter#visitLibraryField(LibraryClass, LibraryField)}.
-   * <p>
-   * Method under test: {@link NewMemberNameFilter#visitLibraryField(LibraryClass, LibraryField)}
+   *
+   * <p>Method under test: {@link NewMemberNameFilter#visitLibraryField(LibraryClass, LibraryField)}
    */
   @Test
   @DisplayName("Test visitLibraryField(LibraryClass, LibraryField)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.NewMemberNameFilter.visitLibraryField(proguard.classfile.LibraryClass, proguard.classfile.LibraryField)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NewMemberNameFilter.visitLibraryField(LibraryClass, LibraryField)"})
   void testVisitLibraryField() {
     // Arrange
-    NewMemberNameFilter newMemberNameFilter = new NewMemberNameFilter(new KotlinAnnotationCounter());
+    NewMemberNameFilter newMemberNameFilter =
+        new NewMemberNameFilter(new KotlinAnnotationCounter());
     LibraryClass libraryClass = new LibraryClass();
 
     LibraryField libraryField = new LibraryField(1, "Name", "Descriptor");
@@ -258,14 +280,14 @@ class NewMemberNameFilterDiffblueTest {
 
   /**
    * Test {@link NewMemberNameFilter#visitLibraryField(LibraryClass, LibraryField)}.
-   * <p>
-   * Method under test: {@link NewMemberNameFilter#visitLibraryField(LibraryClass, LibraryField)}
+   *
+   * <p>Method under test: {@link NewMemberNameFilter#visitLibraryField(LibraryClass, LibraryField)}
    */
   @Test
   @DisplayName("Test visitLibraryField(LibraryClass, LibraryField)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.NewMemberNameFilter.visitLibraryField(proguard.classfile.LibraryClass, proguard.classfile.LibraryField)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NewMemberNameFilter.visitLibraryField(LibraryClass, LibraryField)"})
   void testVisitLibraryField2() {
     // Arrange
     NewMemberNameFilter newMemberNameFilter = new NewMemberNameFilter(new ClassRenamer());
@@ -284,14 +306,14 @@ class NewMemberNameFilterDiffblueTest {
 
   /**
    * Test {@link NewMemberNameFilter#visitLibraryField(LibraryClass, LibraryField)}.
-   * <p>
-   * Method under test: {@link NewMemberNameFilter#visitLibraryField(LibraryClass, LibraryField)}
+   *
+   * <p>Method under test: {@link NewMemberNameFilter#visitLibraryField(LibraryClass, LibraryField)}
    */
   @Test
   @DisplayName("Test visitLibraryField(LibraryClass, LibraryField)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.NewMemberNameFilter.visitLibraryField(proguard.classfile.LibraryClass, proguard.classfile.LibraryField)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NewMemberNameFilter.visitLibraryField(LibraryClass, LibraryField)"})
   void testVisitLibraryField3() {
     // Arrange
     NewMemberNameFilter newMemberNameFilter = new NewMemberNameFilter(new MemberNameCleaner());
@@ -310,14 +332,14 @@ class NewMemberNameFilterDiffblueTest {
 
   /**
    * Test {@link NewMemberNameFilter#visitLibraryField(LibraryClass, LibraryField)}.
-   * <p>
-   * Method under test: {@link NewMemberNameFilter#visitLibraryField(LibraryClass, LibraryField)}
+   *
+   * <p>Method under test: {@link NewMemberNameFilter#visitLibraryField(LibraryClass, LibraryField)}
    */
   @Test
   @DisplayName("Test visitLibraryField(LibraryClass, LibraryField)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.NewMemberNameFilter.visitLibraryField(proguard.classfile.LibraryClass, proguard.classfile.LibraryField)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NewMemberNameFilter.visitLibraryField(LibraryClass, LibraryField)"})
   void testVisitLibraryField4() {
     // Arrange
     NewMemberNameFilter newMemberNameFilter = new NewMemberNameFilter(new NameMarker());
@@ -336,14 +358,14 @@ class NewMemberNameFilterDiffblueTest {
 
   /**
    * Test {@link NewMemberNameFilter#visitLibraryField(LibraryClass, LibraryField)}.
-   * <p>
-   * Method under test: {@link NewMemberNameFilter#visitLibraryField(LibraryClass, LibraryField)}
+   *
+   * <p>Method under test: {@link NewMemberNameFilter#visitLibraryField(LibraryClass, LibraryField)}
    */
   @Test
   @DisplayName("Test visitLibraryField(LibraryClass, LibraryField)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.NewMemberNameFilter.visitLibraryField(proguard.classfile.LibraryClass, proguard.classfile.LibraryField)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NewMemberNameFilter.visitLibraryField(LibraryClass, LibraryField)"})
   void testVisitLibraryField5() {
     // Arrange
     NewMemberNameFilter newMemberNameFilter = new NewMemberNameFilter(new NameMarker());
@@ -366,17 +388,18 @@ class NewMemberNameFilterDiffblueTest {
 
   /**
    * Test {@link NewMemberNameFilter#visitLibraryField(LibraryClass, LibraryField)}.
-   * <p>
-   * Method under test: {@link NewMemberNameFilter#visitLibraryField(LibraryClass, LibraryField)}
+   *
+   * <p>Method under test: {@link NewMemberNameFilter#visitLibraryField(LibraryClass, LibraryField)}
    */
   @Test
   @DisplayName("Test visitLibraryField(LibraryClass, LibraryField)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.NewMemberNameFilter.visitLibraryField(proguard.classfile.LibraryClass, proguard.classfile.LibraryField)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NewMemberNameFilter.visitLibraryField(LibraryClass, LibraryField)"})
   void testVisitLibraryField6() {
     // Arrange
-    NewMemberNameFilter newMemberNameFilter = new NewMemberNameFilter(new KotlinValueParameterUsageMarker());
+    NewMemberNameFilter newMemberNameFilter =
+        new NewMemberNameFilter(new KotlinValueParameterUsageMarker());
     LibraryClass libraryClass = new LibraryClass();
 
     LibraryField libraryField = new LibraryField(1, "Name", "Descriptor");
@@ -392,20 +415,24 @@ class NewMemberNameFilterDiffblueTest {
 
   /**
    * Test {@link NewMemberNameFilter#visitLibraryField(LibraryClass, LibraryField)}.
+   *
    * <ul>
-   *   <li>When {@link LibraryField#LibraryField(int, String, String)} with u2accessFlags is one and {@code Name} and {@code Descriptor}.</li>
+   *   <li>When {@link LibraryField#LibraryField(int, String, String)} with u2accessFlags is one and
+   *       {@code Name} and {@code Descriptor}.
    * </ul>
-   * <p>
-   * Method under test: {@link NewMemberNameFilter#visitLibraryField(LibraryClass, LibraryField)}
+   *
+   * <p>Method under test: {@link NewMemberNameFilter#visitLibraryField(LibraryClass, LibraryField)}
    */
   @Test
-  @DisplayName("Test visitLibraryField(LibraryClass, LibraryField); when LibraryField(int, String, String) with u2accessFlags is one and 'Name' and 'Descriptor'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.NewMemberNameFilter.visitLibraryField(proguard.classfile.LibraryClass, proguard.classfile.LibraryField)"})
+  @DisplayName(
+      "Test visitLibraryField(LibraryClass, LibraryField); when LibraryField(int, String, String) with u2accessFlags is one and 'Name' and 'Descriptor'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NewMemberNameFilter.visitLibraryField(LibraryClass, LibraryField)"})
   void testVisitLibraryField_whenLibraryFieldWithU2accessFlagsIsOneAndNameAndDescriptor() {
     // Arrange
-    NewMemberNameFilter newMemberNameFilter = new NewMemberNameFilter(new KotlinAnnotationCounter());
+    NewMemberNameFilter newMemberNameFilter =
+        new NewMemberNameFilter(new KotlinAnnotationCounter());
     LibraryClass libraryClass = new LibraryClass();
     LibraryField libraryField = new LibraryField(1, "Name", "Descriptor");
 
@@ -418,17 +445,19 @@ class NewMemberNameFilterDiffblueTest {
 
   /**
    * Test {@link NewMemberNameFilter#visitLibraryMethod(LibraryClass, LibraryMethod)}.
-   * <p>
-   * Method under test: {@link NewMemberNameFilter#visitLibraryMethod(LibraryClass, LibraryMethod)}
+   *
+   * <p>Method under test: {@link NewMemberNameFilter#visitLibraryMethod(LibraryClass,
+   * LibraryMethod)}
    */
   @Test
   @DisplayName("Test visitLibraryMethod(LibraryClass, LibraryMethod)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.NewMemberNameFilter.visitLibraryMethod(proguard.classfile.LibraryClass, proguard.classfile.LibraryMethod)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NewMemberNameFilter.visitLibraryMethod(LibraryClass, LibraryMethod)"})
   void testVisitLibraryMethod() {
     // Arrange
-    NewMemberNameFilter newMemberNameFilter = new NewMemberNameFilter(new KotlinAnnotationCounter());
+    NewMemberNameFilter newMemberNameFilter =
+        new NewMemberNameFilter(new KotlinAnnotationCounter());
     LibraryClass libraryClass = new LibraryClass();
     LibraryMethod libraryMethod = new LibraryMethod(1, "Name", "Descriptor");
 
@@ -441,17 +470,19 @@ class NewMemberNameFilterDiffblueTest {
 
   /**
    * Test {@link NewMemberNameFilter#visitLibraryMethod(LibraryClass, LibraryMethod)}.
-   * <p>
-   * Method under test: {@link NewMemberNameFilter#visitLibraryMethod(LibraryClass, LibraryMethod)}
+   *
+   * <p>Method under test: {@link NewMemberNameFilter#visitLibraryMethod(LibraryClass,
+   * LibraryMethod)}
    */
   @Test
   @DisplayName("Test visitLibraryMethod(LibraryClass, LibraryMethod)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.NewMemberNameFilter.visitLibraryMethod(proguard.classfile.LibraryClass, proguard.classfile.LibraryMethod)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NewMemberNameFilter.visitLibraryMethod(LibraryClass, LibraryMethod)"})
   void testVisitLibraryMethod2() {
     // Arrange
-    NewMemberNameFilter newMemberNameFilter = new NewMemberNameFilter(new KotlinAnnotationCounter());
+    NewMemberNameFilter newMemberNameFilter =
+        new NewMemberNameFilter(new KotlinAnnotationCounter());
 
     LibraryClass libraryClass = new LibraryClass();
     libraryClass.setProcessingInfo("Processing Info");
@@ -466,17 +497,19 @@ class NewMemberNameFilterDiffblueTest {
 
   /**
    * Test {@link NewMemberNameFilter#visitLibraryMethod(LibraryClass, LibraryMethod)}.
-   * <p>
-   * Method under test: {@link NewMemberNameFilter#visitLibraryMethod(LibraryClass, LibraryMethod)}
+   *
+   * <p>Method under test: {@link NewMemberNameFilter#visitLibraryMethod(LibraryClass,
+   * LibraryMethod)}
    */
   @Test
   @DisplayName("Test visitLibraryMethod(LibraryClass, LibraryMethod)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.NewMemberNameFilter.visitLibraryMethod(proguard.classfile.LibraryClass, proguard.classfile.LibraryMethod)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NewMemberNameFilter.visitLibraryMethod(LibraryClass, LibraryMethod)"})
   void testVisitLibraryMethod3() {
     // Arrange
-    NewMemberNameFilter newMemberNameFilter = new NewMemberNameFilter(new KotlinAnnotationCounter());
+    NewMemberNameFilter newMemberNameFilter =
+        new NewMemberNameFilter(new KotlinAnnotationCounter());
     LibraryClass libraryClass = new LibraryClass();
 
     LibraryMethod libraryMethod = new LibraryMethod(1, "Name", "Descriptor");
@@ -492,17 +525,19 @@ class NewMemberNameFilterDiffblueTest {
 
   /**
    * Test {@link NewMemberNameFilter#visitLibraryMethod(LibraryClass, LibraryMethod)}.
-   * <p>
-   * Method under test: {@link NewMemberNameFilter#visitLibraryMethod(LibraryClass, LibraryMethod)}
+   *
+   * <p>Method under test: {@link NewMemberNameFilter#visitLibraryMethod(LibraryClass,
+   * LibraryMethod)}
    */
   @Test
   @DisplayName("Test visitLibraryMethod(LibraryClass, LibraryMethod)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.NewMemberNameFilter.visitLibraryMethod(proguard.classfile.LibraryClass, proguard.classfile.LibraryMethod)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NewMemberNameFilter.visitLibraryMethod(LibraryClass, LibraryMethod)"})
   void testVisitLibraryMethod4() {
     // Arrange
-    NewMemberNameFilter newMemberNameFilter = new NewMemberNameFilter(new KotlinAnnotationCounter());
+    NewMemberNameFilter newMemberNameFilter =
+        new NewMemberNameFilter(new KotlinAnnotationCounter());
 
     LibraryClass libraryClass = new LibraryClass();
     libraryClass.setProcessingInfo("Processing Info");
@@ -517,14 +552,15 @@ class NewMemberNameFilterDiffblueTest {
 
   /**
    * Test {@link NewMemberNameFilter#visitLibraryMethod(LibraryClass, LibraryMethod)}.
-   * <p>
-   * Method under test: {@link NewMemberNameFilter#visitLibraryMethod(LibraryClass, LibraryMethod)}
+   *
+   * <p>Method under test: {@link NewMemberNameFilter#visitLibraryMethod(LibraryClass,
+   * LibraryMethod)}
    */
   @Test
   @DisplayName("Test visitLibraryMethod(LibraryClass, LibraryMethod)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.NewMemberNameFilter.visitLibraryMethod(proguard.classfile.LibraryClass, proguard.classfile.LibraryMethod)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NewMemberNameFilter.visitLibraryMethod(LibraryClass, LibraryMethod)"})
   void testVisitLibraryMethod5() {
     // Arrange
     NewMemberNameFilter newMemberNameFilter = new NewMemberNameFilter(new ClassRenamer());
@@ -543,14 +579,15 @@ class NewMemberNameFilterDiffblueTest {
 
   /**
    * Test {@link NewMemberNameFilter#visitLibraryMethod(LibraryClass, LibraryMethod)}.
-   * <p>
-   * Method under test: {@link NewMemberNameFilter#visitLibraryMethod(LibraryClass, LibraryMethod)}
+   *
+   * <p>Method under test: {@link NewMemberNameFilter#visitLibraryMethod(LibraryClass,
+   * LibraryMethod)}
    */
   @Test
   @DisplayName("Test visitLibraryMethod(LibraryClass, LibraryMethod)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.NewMemberNameFilter.visitLibraryMethod(proguard.classfile.LibraryClass, proguard.classfile.LibraryMethod)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NewMemberNameFilter.visitLibraryMethod(LibraryClass, LibraryMethod)"})
   void testVisitLibraryMethod6() {
     // Arrange
     NewMemberNameFilter newMemberNameFilter = new NewMemberNameFilter(new MemberNameCleaner());
@@ -569,14 +606,15 @@ class NewMemberNameFilterDiffblueTest {
 
   /**
    * Test {@link NewMemberNameFilter#visitLibraryMethod(LibraryClass, LibraryMethod)}.
-   * <p>
-   * Method under test: {@link NewMemberNameFilter#visitLibraryMethod(LibraryClass, LibraryMethod)}
+   *
+   * <p>Method under test: {@link NewMemberNameFilter#visitLibraryMethod(LibraryClass,
+   * LibraryMethod)}
    */
   @Test
   @DisplayName("Test visitLibraryMethod(LibraryClass, LibraryMethod)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.NewMemberNameFilter.visitLibraryMethod(proguard.classfile.LibraryClass, proguard.classfile.LibraryMethod)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NewMemberNameFilter.visitLibraryMethod(LibraryClass, LibraryMethod)"})
   void testVisitLibraryMethod7() {
     // Arrange
     NewMemberNameFilter newMemberNameFilter = new NewMemberNameFilter(new NameMarker());
@@ -595,14 +633,15 @@ class NewMemberNameFilterDiffblueTest {
 
   /**
    * Test {@link NewMemberNameFilter#visitLibraryMethod(LibraryClass, LibraryMethod)}.
-   * <p>
-   * Method under test: {@link NewMemberNameFilter#visitLibraryMethod(LibraryClass, LibraryMethod)}
+   *
+   * <p>Method under test: {@link NewMemberNameFilter#visitLibraryMethod(LibraryClass,
+   * LibraryMethod)}
    */
   @Test
   @DisplayName("Test visitLibraryMethod(LibraryClass, LibraryMethod)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.NewMemberNameFilter.visitLibraryMethod(proguard.classfile.LibraryClass, proguard.classfile.LibraryMethod)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NewMemberNameFilter.visitLibraryMethod(LibraryClass, LibraryMethod)"})
   void testVisitLibraryMethod8() {
     // Arrange
     NewMemberNameFilter newMemberNameFilter = new NewMemberNameFilter(new NameMarker());
@@ -620,14 +659,15 @@ class NewMemberNameFilterDiffblueTest {
 
   /**
    * Test {@link NewMemberNameFilter#visitLibraryMethod(LibraryClass, LibraryMethod)}.
-   * <p>
-   * Method under test: {@link NewMemberNameFilter#visitLibraryMethod(LibraryClass, LibraryMethod)}
+   *
+   * <p>Method under test: {@link NewMemberNameFilter#visitLibraryMethod(LibraryClass,
+   * LibraryMethod)}
    */
   @Test
   @DisplayName("Test visitLibraryMethod(LibraryClass, LibraryMethod)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.NewMemberNameFilter.visitLibraryMethod(proguard.classfile.LibraryClass, proguard.classfile.LibraryMethod)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NewMemberNameFilter.visitLibraryMethod(LibraryClass, LibraryMethod)"})
   void testVisitLibraryMethod9() {
     // Arrange
     NewMemberNameFilter newMemberNameFilter = new NewMemberNameFilter(new NameMarker());

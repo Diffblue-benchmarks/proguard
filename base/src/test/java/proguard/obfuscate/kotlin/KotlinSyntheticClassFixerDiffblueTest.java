@@ -7,6 +7,7 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -18,22 +19,27 @@ import proguard.classfile.ProgramClass;
 import proguard.classfile.kotlin.KotlinClassKindMetadata;
 import proguard.classfile.kotlin.KotlinSyntheticClassKindMetadata;
 import proguard.classfile.kotlin.KotlinSyntheticClassKindMetadata.Flavor;
-import proguard.util.SimpleProcessable;
 
 class KotlinSyntheticClassFixerDiffblueTest {
   /**
-   * Test {@link KotlinSyntheticClassFixer#visitKotlinClassMetadata(Clazz, KotlinClassKindMetadata)}.
+   * Test {@link KotlinSyntheticClassFixer#visitKotlinClassMetadata(Clazz,
+   * KotlinClassKindMetadata)}.
+   *
    * <ul>
-   *   <li>Then calls {@link SimpleProcessable#getProcessingInfo()}.</li>
+   *   <li>Then calls {@link LibraryClass#getProcessingInfo()}.
    * </ul>
-   * <p>
-   * Method under test: {@link KotlinSyntheticClassFixer#visitKotlinClassMetadata(Clazz, KotlinClassKindMetadata)}
+   *
+   * <p>Method under test: {@link KotlinSyntheticClassFixer#visitKotlinClassMetadata(Clazz,
+   * KotlinClassKindMetadata)}
    */
   @Test
-  @DisplayName("Test visitKotlinClassMetadata(Clazz, KotlinClassKindMetadata); then calls getProcessingInfo()")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitKotlinClassMetadata(Clazz, KotlinClassKindMetadata); then calls getProcessingInfo()")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.obfuscate.kotlin.KotlinSyntheticClassFixer.visitKotlinClassMetadata(proguard.classfile.Clazz, proguard.classfile.kotlin.KotlinClassKindMetadata)"})
+    "void KotlinSyntheticClassFixer.visitKotlinClassMetadata(Clazz, KotlinClassKindMetadata)"
+  })
   void testVisitKotlinClassMetadata_thenCallsGetProcessingInfo() {
     // Arrange
     KotlinSyntheticClassFixer kotlinSyntheticClassFixer = new KotlinSyntheticClassFixer();
@@ -42,8 +48,8 @@ class KotlinSyntheticClassFixerDiffblueTest {
     when(libraryClass.getProcessingInfo()).thenReturn("Processing Info");
     doNothing().when(libraryClass).setProcessingInfo(Mockito.<Object>any());
     libraryClass.setProcessingInfo("$DefaultImpls");
-    KotlinClassKindMetadata kotlinClassKindMetadata = new KotlinClassKindMetadata(new int[]{1, -1, 1, -1}, 1, "Xs",
-        "Pn");
+    KotlinClassKindMetadata kotlinClassKindMetadata =
+        new KotlinClassKindMetadata(new int[] {1, -1, 1, -1}, 1, "Xs", "Pn");
 
     kotlinClassKindMetadata.referencedDefaultImplsClass = new LibraryClass();
     kotlinClassKindMetadata.referencedClass = libraryClass;
@@ -57,38 +63,48 @@ class KotlinSyntheticClassFixerDiffblueTest {
   }
 
   /**
-   * Test {@link KotlinSyntheticClassFixer#visitKotlinSyntheticClassMetadata(Clazz, KotlinSyntheticClassKindMetadata)}.
-   * <p>
-   * Method under test: {@link KotlinSyntheticClassFixer#visitKotlinSyntheticClassMetadata(Clazz, KotlinSyntheticClassKindMetadata)}
+   * Test {@link KotlinSyntheticClassFixer#visitKotlinSyntheticClassMetadata(Clazz,
+   * KotlinSyntheticClassKindMetadata)}.
+   *
+   * <p>Method under test: {@link KotlinSyntheticClassFixer#visitKotlinSyntheticClassMetadata(Clazz,
+   * KotlinSyntheticClassKindMetadata)}
    */
   @Test
   @DisplayName("Test visitKotlinSyntheticClassMetadata(Clazz, KotlinSyntheticClassKindMetadata)")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.obfuscate.kotlin.KotlinSyntheticClassFixer.visitKotlinSyntheticClassMetadata(proguard.classfile.Clazz, proguard.classfile.kotlin.KotlinSyntheticClassKindMetadata)"})
+    "void KotlinSyntheticClassFixer.visitKotlinSyntheticClassMetadata(Clazz, KotlinSyntheticClassKindMetadata)"
+  })
   void testVisitKotlinSyntheticClassMetadata() {
     // Arrange
     KotlinSyntheticClassFixer kotlinSyntheticClassFixer = new KotlinSyntheticClassFixer();
     LibraryClass clazz = new LibraryClass(1, "This Class Name", "Super Class Name");
 
     // Act
-    kotlinSyntheticClassFixer.visitKotlinSyntheticClassMetadata(clazz,
-        new KotlinSyntheticClassKindMetadata(new int[]{1, -1, 1, -1}, 1, "Xs", "Pn", Flavor.LAMBDA));
+    kotlinSyntheticClassFixer.visitKotlinSyntheticClassMetadata(
+        clazz,
+        new KotlinSyntheticClassKindMetadata(
+            new int[] {1, -1, 1, -1}, 1, "Xs", "Pn", Flavor.LAMBDA));
 
     // Assert that nothing has changed
     assertNull(clazz.getProcessingInfo());
   }
 
   /**
-   * Test {@link KotlinSyntheticClassFixer#visitKotlinSyntheticClassMetadata(Clazz, KotlinSyntheticClassKindMetadata)}.
-   * <p>
-   * Method under test: {@link KotlinSyntheticClassFixer#visitKotlinSyntheticClassMetadata(Clazz, KotlinSyntheticClassKindMetadata)}
+   * Test {@link KotlinSyntheticClassFixer#visitKotlinSyntheticClassMetadata(Clazz,
+   * KotlinSyntheticClassKindMetadata)}.
+   *
+   * <p>Method under test: {@link KotlinSyntheticClassFixer#visitKotlinSyntheticClassMetadata(Clazz,
+   * KotlinSyntheticClassKindMetadata)}
    */
   @Test
   @DisplayName("Test visitKotlinSyntheticClassMetadata(Clazz, KotlinSyntheticClassKindMetadata)")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.obfuscate.kotlin.KotlinSyntheticClassFixer.visitKotlinSyntheticClassMetadata(proguard.classfile.Clazz, proguard.classfile.kotlin.KotlinSyntheticClassKindMetadata)"})
+    "void KotlinSyntheticClassFixer.visitKotlinSyntheticClassMetadata(Clazz, KotlinSyntheticClassKindMetadata)"
+  })
   void testVisitKotlinSyntheticClassMetadata2() {
     // Arrange
     KotlinSyntheticClassFixer kotlinSyntheticClassFixer = new KotlinSyntheticClassFixer();
@@ -97,23 +113,29 @@ class KotlinSyntheticClassFixerDiffblueTest {
     clazz.setProcessingInfo("Processing Info");
 
     // Act
-    kotlinSyntheticClassFixer.visitKotlinSyntheticClassMetadata(clazz,
-        new KotlinSyntheticClassKindMetadata(new int[]{1, -1, 1, -1}, 1, "Xs", "Pn", Flavor.WHEN_MAPPINGS));
+    kotlinSyntheticClassFixer.visitKotlinSyntheticClassMetadata(
+        clazz,
+        new KotlinSyntheticClassKindMetadata(
+            new int[] {1, -1, 1, -1}, 1, "Xs", "Pn", Flavor.WHEN_MAPPINGS));
 
     // Assert
     assertEquals("Processing Info$WhenMappings", clazz.getProcessingInfo());
   }
 
   /**
-   * Test {@link KotlinSyntheticClassFixer#visitKotlinSyntheticClassMetadata(Clazz, KotlinSyntheticClassKindMetadata)}.
-   * <p>
-   * Method under test: {@link KotlinSyntheticClassFixer#visitKotlinSyntheticClassMetadata(Clazz, KotlinSyntheticClassKindMetadata)}
+   * Test {@link KotlinSyntheticClassFixer#visitKotlinSyntheticClassMetadata(Clazz,
+   * KotlinSyntheticClassKindMetadata)}.
+   *
+   * <p>Method under test: {@link KotlinSyntheticClassFixer#visitKotlinSyntheticClassMetadata(Clazz,
+   * KotlinSyntheticClassKindMetadata)}
    */
   @Test
   @DisplayName("Test visitKotlinSyntheticClassMetadata(Clazz, KotlinSyntheticClassKindMetadata)")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.obfuscate.kotlin.KotlinSyntheticClassFixer.visitKotlinSyntheticClassMetadata(proguard.classfile.Clazz, proguard.classfile.kotlin.KotlinSyntheticClassKindMetadata)"})
+    "void KotlinSyntheticClassFixer.visitKotlinSyntheticClassMetadata(Clazz, KotlinSyntheticClassKindMetadata)"
+  })
   void testVisitKotlinSyntheticClassMetadata3() {
     // Arrange
     KotlinSyntheticClassFixer kotlinSyntheticClassFixer = new KotlinSyntheticClassFixer();
@@ -122,60 +144,78 @@ class KotlinSyntheticClassFixerDiffblueTest {
     clazz.setProcessingInfo("$WhenMappings");
 
     // Act
-    kotlinSyntheticClassFixer.visitKotlinSyntheticClassMetadata(clazz,
-        new KotlinSyntheticClassKindMetadata(new int[]{1, -1, 1, -1}, 1, "Xs", "Pn", Flavor.WHEN_MAPPINGS));
+    kotlinSyntheticClassFixer.visitKotlinSyntheticClassMetadata(
+        clazz,
+        new KotlinSyntheticClassKindMetadata(
+            new int[] {1, -1, 1, -1}, 1, "Xs", "Pn", Flavor.WHEN_MAPPINGS));
 
     // Assert that nothing has changed
     assertEquals("$WhenMappings", clazz.getProcessingInfo());
   }
 
   /**
-   * Test {@link KotlinSyntheticClassFixer#visitKotlinSyntheticClassMetadata(Clazz, KotlinSyntheticClassKindMetadata)}.
+   * Test {@link KotlinSyntheticClassFixer#visitKotlinSyntheticClassMetadata(Clazz,
+   * KotlinSyntheticClassKindMetadata)}.
+   *
    * <ul>
-   *   <li>Then {@link LibraryClass#LibraryClass()} ProcessingInfo is {@code null}.</li>
+   *   <li>Then {@link LibraryClass#LibraryClass()} ProcessingInfo is {@code null}.
    * </ul>
-   * <p>
-   * Method under test: {@link KotlinSyntheticClassFixer#visitKotlinSyntheticClassMetadata(Clazz, KotlinSyntheticClassKindMetadata)}
+   *
+   * <p>Method under test: {@link KotlinSyntheticClassFixer#visitKotlinSyntheticClassMetadata(Clazz,
+   * KotlinSyntheticClassKindMetadata)}
    */
   @Test
-  @DisplayName("Test visitKotlinSyntheticClassMetadata(Clazz, KotlinSyntheticClassKindMetadata); then LibraryClass() ProcessingInfo is 'null'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitKotlinSyntheticClassMetadata(Clazz, KotlinSyntheticClassKindMetadata); then LibraryClass() ProcessingInfo is 'null'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.obfuscate.kotlin.KotlinSyntheticClassFixer.visitKotlinSyntheticClassMetadata(proguard.classfile.Clazz, proguard.classfile.kotlin.KotlinSyntheticClassKindMetadata)"})
+    "void KotlinSyntheticClassFixer.visitKotlinSyntheticClassMetadata(Clazz, KotlinSyntheticClassKindMetadata)"
+  })
   void testVisitKotlinSyntheticClassMetadata_thenLibraryClassProcessingInfoIsNull() {
     // Arrange
     KotlinSyntheticClassFixer kotlinSyntheticClassFixer = new KotlinSyntheticClassFixer();
     LibraryClass clazz = new LibraryClass();
 
     // Act
-    kotlinSyntheticClassFixer.visitKotlinSyntheticClassMetadata(clazz,
-        new KotlinSyntheticClassKindMetadata(new int[]{1, -1, 1, -1}, 1, "Xs", "Pn", Flavor.REGULAR));
+    kotlinSyntheticClassFixer.visitKotlinSyntheticClassMetadata(
+        clazz,
+        new KotlinSyntheticClassKindMetadata(
+            new int[] {1, -1, 1, -1}, 1, "Xs", "Pn", Flavor.REGULAR));
 
     // Assert that nothing has changed
     assertNull(clazz.getProcessingInfo());
   }
 
   /**
-   * Test {@link KotlinSyntheticClassFixer#visitKotlinSyntheticClassMetadata(Clazz, KotlinSyntheticClassKindMetadata)}.
+   * Test {@link KotlinSyntheticClassFixer#visitKotlinSyntheticClassMetadata(Clazz,
+   * KotlinSyntheticClassKindMetadata)}.
+   *
    * <ul>
-   *   <li>Then {@link ProgramClass#ProgramClass()} ProcessingInfo is {@code null}.</li>
+   *   <li>Then {@link ProgramClass#ProgramClass()} ProcessingInfo is {@code null}.
    * </ul>
-   * <p>
-   * Method under test: {@link KotlinSyntheticClassFixer#visitKotlinSyntheticClassMetadata(Clazz, KotlinSyntheticClassKindMetadata)}
+   *
+   * <p>Method under test: {@link KotlinSyntheticClassFixer#visitKotlinSyntheticClassMetadata(Clazz,
+   * KotlinSyntheticClassKindMetadata)}
    */
   @Test
-  @DisplayName("Test visitKotlinSyntheticClassMetadata(Clazz, KotlinSyntheticClassKindMetadata); then ProgramClass() ProcessingInfo is 'null'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitKotlinSyntheticClassMetadata(Clazz, KotlinSyntheticClassKindMetadata); then ProgramClass() ProcessingInfo is 'null'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.obfuscate.kotlin.KotlinSyntheticClassFixer.visitKotlinSyntheticClassMetadata(proguard.classfile.Clazz, proguard.classfile.kotlin.KotlinSyntheticClassKindMetadata)"})
+    "void KotlinSyntheticClassFixer.visitKotlinSyntheticClassMetadata(Clazz, KotlinSyntheticClassKindMetadata)"
+  })
   void testVisitKotlinSyntheticClassMetadata_thenProgramClassProcessingInfoIsNull() {
     // Arrange
     KotlinSyntheticClassFixer kotlinSyntheticClassFixer = new KotlinSyntheticClassFixer();
     ProgramClass clazz = new ProgramClass();
 
     // Act
-    kotlinSyntheticClassFixer.visitKotlinSyntheticClassMetadata(clazz,
-        new KotlinSyntheticClassKindMetadata(new int[]{1, -1, 1, -1}, 1, "Xs", "Pn", Flavor.LAMBDA));
+    kotlinSyntheticClassFixer.visitKotlinSyntheticClassMetadata(
+        clazz,
+        new KotlinSyntheticClassKindMetadata(
+            new int[] {1, -1, 1, -1}, 1, "Xs", "Pn", Flavor.LAMBDA));
 
     // Assert that nothing has changed
     assertNull(clazz.getProcessingInfo());

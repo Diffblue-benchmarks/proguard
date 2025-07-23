@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -14,31 +15,34 @@ import proguard.classfile.LibraryClass;
 class ProgramClassOptimizationInfoDiffblueTest {
   /**
    * Test {@link ProgramClassOptimizationInfo#hasSideEffects()}.
-   * <p>
-   * Method under test: {@link ProgramClassOptimizationInfo#hasSideEffects()}
+   *
+   * <p>Method under test: {@link ProgramClassOptimizationInfo#hasSideEffects()}
    */
   @Test
   @DisplayName("Test hasSideEffects()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"boolean proguard.optimize.info.ProgramClassOptimizationInfo.hasSideEffects()"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean ProgramClassOptimizationInfo.hasSideEffects()"})
   void testHasSideEffects() {
     // Arrange, Act and Assert
-    assertFalse((new ProgramClassOptimizationInfo()).hasSideEffects());
+    assertFalse(new ProgramClassOptimizationInfo().hasSideEffects());
   }
 
   /**
    * Test {@link ProgramClassOptimizationInfo#merge(ClassOptimizationInfo)}.
+   *
    * <ul>
-   *   <li>Then not {@link ProgramClassOptimizationInfo} (default constructor) containsConstructors.</li>
+   *   <li>Then not {@link ProgramClassOptimizationInfo} (default constructor) containsConstructors.
    * </ul>
-   * <p>
-   * Method under test: {@link ProgramClassOptimizationInfo#merge(ClassOptimizationInfo)}
+   *
+   * <p>Method under test: {@link ProgramClassOptimizationInfo#merge(ClassOptimizationInfo)}
    */
   @Test
-  @DisplayName("Test merge(ClassOptimizationInfo); then not ProgramClassOptimizationInfo (default constructor) containsConstructors")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.ProgramClassOptimizationInfo.merge(proguard.optimize.info.ClassOptimizationInfo)"})
+  @DisplayName(
+      "Test merge(ClassOptimizationInfo); then not ProgramClassOptimizationInfo (default constructor) containsConstructors")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ProgramClassOptimizationInfo.merge(ClassOptimizationInfo)"})
   void testMerge_thenNotProgramClassOptimizationInfoContainsConstructors() {
     // Arrange
     ProgramClassOptimizationInfo programClassOptimizationInfo = new ProgramClassOptimizationInfo();
@@ -61,17 +65,19 @@ class ProgramClassOptimizationInfoDiffblueTest {
 
   /**
    * Test {@link ProgramClassOptimizationInfo#merge(ClassOptimizationInfo)}.
+   *
    * <ul>
-   *   <li>Then {@link ProgramClassOptimizationInfo} (default constructor) containsConstructors.</li>
+   *   <li>Then {@link ProgramClassOptimizationInfo} (default constructor) containsConstructors.
    * </ul>
-   * <p>
-   * Method under test: {@link ProgramClassOptimizationInfo#merge(ClassOptimizationInfo)}
+   *
+   * <p>Method under test: {@link ProgramClassOptimizationInfo#merge(ClassOptimizationInfo)}
    */
   @Test
-  @DisplayName("Test merge(ClassOptimizationInfo); then ProgramClassOptimizationInfo (default constructor) containsConstructors")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.ProgramClassOptimizationInfo.merge(proguard.optimize.info.ClassOptimizationInfo)"})
+  @DisplayName(
+      "Test merge(ClassOptimizationInfo); then ProgramClassOptimizationInfo (default constructor) containsConstructors")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ProgramClassOptimizationInfo.merge(ClassOptimizationInfo)"})
   void testMerge_thenProgramClassOptimizationInfoContainsConstructors() {
     // Arrange
     ProgramClassOptimizationInfo programClassOptimizationInfo = new ProgramClassOptimizationInfo();
@@ -93,14 +99,15 @@ class ProgramClassOptimizationInfoDiffblueTest {
 
   /**
    * Test {@link ProgramClassOptimizationInfo#setProgramClassOptimizationInfo(Clazz)}.
-   * <p>
-   * Method under test: {@link ProgramClassOptimizationInfo#setProgramClassOptimizationInfo(Clazz)}
+   *
+   * <p>Method under test: {@link
+   * ProgramClassOptimizationInfo#setProgramClassOptimizationInfo(Clazz)}
    */
   @Test
   @DisplayName("Test setProgramClassOptimizationInfo(Clazz)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.info.ProgramClassOptimizationInfo.setProgramClassOptimizationInfo(proguard.classfile.Clazz)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ProgramClassOptimizationInfo.setProgramClassOptimizationInfo(Clazz)"})
   void testSetProgramClassOptimizationInfo() {
     // Arrange
     LibraryClass clazz = new LibraryClass();
@@ -130,18 +137,23 @@ class ProgramClassOptimizationInfoDiffblueTest {
 
   /**
    * Test {@link ProgramClassOptimizationInfo#getProgramClassOptimizationInfo(Clazz)}.
+   *
    * <ul>
-   *   <li>When {@link LibraryClass#LibraryClass()}.</li>
-   *   <li>Then return {@code null}.</li>
+   *   <li>When {@link LibraryClass#LibraryClass()}.
+   *   <li>Then return {@code null}.
    * </ul>
-   * <p>
-   * Method under test: {@link ProgramClassOptimizationInfo#getProgramClassOptimizationInfo(Clazz)}
+   *
+   * <p>Method under test: {@link
+   * ProgramClassOptimizationInfo#getProgramClassOptimizationInfo(Clazz)}
    */
   @Test
-  @DisplayName("Test getProgramClassOptimizationInfo(Clazz); when LibraryClass(); then return 'null'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test getProgramClassOptimizationInfo(Clazz); when LibraryClass(); then return 'null'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "proguard.optimize.info.ProgramClassOptimizationInfo proguard.optimize.info.ProgramClassOptimizationInfo.getProgramClassOptimizationInfo(proguard.classfile.Clazz)"})
+    "ProgramClassOptimizationInfo ProgramClassOptimizationInfo.getProgramClassOptimizationInfo(Clazz)"
+  })
   void testGetProgramClassOptimizationInfo_whenLibraryClass_thenReturnNull() {
     // Arrange, Act and Assert
     assertNull(ProgramClassOptimizationInfo.getProgramClassOptimizationInfo(new LibraryClass()));
@@ -149,8 +161,9 @@ class ProgramClassOptimizationInfoDiffblueTest {
 
   /**
    * Test getters and setters.
-   * <p>
-   * Methods under test:
+   *
+   * <p>Methods under test:
+   *
    * <ul>
    *   <li>default or parameterless constructor of {@link ProgramClassOptimizationInfo}
    *   <li>{@link ProgramClassOptimizationInfo#setSimpleEnum(boolean)}
@@ -183,37 +196,41 @@ class ProgramClassOptimizationInfoDiffblueTest {
    */
   @Test
   @DisplayName("Test getters and setters")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.optimize.info.ProgramClassOptimizationInfo.<init>()",
-      "boolean proguard.optimize.info.ProgramClassOptimizationInfo.containsConstructors()",
-      "boolean proguard.optimize.info.ProgramClassOptimizationInfo.containsPackageVisibleMembers()",
-      "proguard.classfile.Clazz proguard.optimize.info.ProgramClassOptimizationInfo.getTargetClass()",
-      "proguard.classfile.Clazz proguard.optimize.info.ProgramClassOptimizationInfo.getWrappedClass()",
-      "boolean proguard.optimize.info.ProgramClassOptimizationInfo.invokesPackageVisibleMembers()",
-      "boolean proguard.optimize.info.ProgramClassOptimizationInfo.isCaught()",
-      "boolean proguard.optimize.info.ProgramClassOptimizationInfo.isDotClassed()",
-      "boolean proguard.optimize.info.ProgramClassOptimizationInfo.isEscaping()",
-      "boolean proguard.optimize.info.ProgramClassOptimizationInfo.isInstanceofed()",
-      "boolean proguard.optimize.info.ProgramClassOptimizationInfo.isInstantiated()",
-      "boolean proguard.optimize.info.ProgramClassOptimizationInfo.isKept()",
-      "boolean proguard.optimize.info.ProgramClassOptimizationInfo.isSimpleEnum()",
-      "boolean proguard.optimize.info.ProgramClassOptimizationInfo.mayBeMerged()",
-      "void proguard.optimize.info.ProgramClassOptimizationInfo.setCaught()",
-      "void proguard.optimize.info.ProgramClassOptimizationInfo.setContainsConstructors()",
-      "void proguard.optimize.info.ProgramClassOptimizationInfo.setContainsPackageVisibleMembers()",
-      "void proguard.optimize.info.ProgramClassOptimizationInfo.setDotClassed()",
-      "void proguard.optimize.info.ProgramClassOptimizationInfo.setEscaping()",
-      "void proguard.optimize.info.ProgramClassOptimizationInfo.setInstanceofed()",
-      "void proguard.optimize.info.ProgramClassOptimizationInfo.setInstantiated()",
-      "void proguard.optimize.info.ProgramClassOptimizationInfo.setInvokesPackageVisibleMembers()",
-      "void proguard.optimize.info.ProgramClassOptimizationInfo.setMayNotBeMerged()",
-      "void proguard.optimize.info.ProgramClassOptimizationInfo.setSideEffects()",
-      "void proguard.optimize.info.ProgramClassOptimizationInfo.setSimpleEnum(boolean)",
-      "void proguard.optimize.info.ProgramClassOptimizationInfo.setTargetClass(proguard.classfile.Clazz)",
-      "void proguard.optimize.info.ProgramClassOptimizationInfo.setWrappedClass(proguard.classfile.Clazz)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void ProgramClassOptimizationInfo.<init>()",
+    "boolean ProgramClassOptimizationInfo.containsConstructors()",
+    "boolean ProgramClassOptimizationInfo.containsPackageVisibleMembers()",
+    "Clazz ProgramClassOptimizationInfo.getTargetClass()",
+    "Clazz ProgramClassOptimizationInfo.getWrappedClass()",
+    "boolean ProgramClassOptimizationInfo.invokesPackageVisibleMembers()",
+    "boolean ProgramClassOptimizationInfo.isCaught()",
+    "boolean ProgramClassOptimizationInfo.isDotClassed()",
+    "boolean ProgramClassOptimizationInfo.isEscaping()",
+    "boolean ProgramClassOptimizationInfo.isInstanceofed()",
+    "boolean ProgramClassOptimizationInfo.isInstantiated()",
+    "boolean ProgramClassOptimizationInfo.isKept()",
+    "boolean ProgramClassOptimizationInfo.isSimpleEnum()",
+    "boolean ProgramClassOptimizationInfo.mayBeMerged()",
+    "void ProgramClassOptimizationInfo.setCaught()",
+    "void ProgramClassOptimizationInfo.setContainsConstructors()",
+    "void ProgramClassOptimizationInfo.setContainsPackageVisibleMembers()",
+    "void ProgramClassOptimizationInfo.setDotClassed()",
+    "void ProgramClassOptimizationInfo.setEscaping()",
+    "void ProgramClassOptimizationInfo.setInstanceofed()",
+    "void ProgramClassOptimizationInfo.setInstantiated()",
+    "void ProgramClassOptimizationInfo.setInvokesPackageVisibleMembers()",
+    "void ProgramClassOptimizationInfo.setMayNotBeMerged()",
+    "void ProgramClassOptimizationInfo.setSideEffects()",
+    "void ProgramClassOptimizationInfo.setSimpleEnum(boolean)",
+    "void ProgramClassOptimizationInfo.setTargetClass(Clazz)",
+    "void ProgramClassOptimizationInfo.setWrappedClass(Clazz)"
+  })
   void testGettersAndSetters() {
     // Arrange and Act
-    ProgramClassOptimizationInfo actualProgramClassOptimizationInfo = new ProgramClassOptimizationInfo();
+    ProgramClassOptimizationInfo actualProgramClassOptimizationInfo =
+        new ProgramClassOptimizationInfo();
     actualProgramClassOptimizationInfo.setSimpleEnum(true);
     LibraryClass targetClass = new LibraryClass();
     actualProgramClassOptimizationInfo.setTargetClass(targetClass);
@@ -229,13 +246,14 @@ class ProgramClassOptimizationInfoDiffblueTest {
     actualProgramClassOptimizationInfo.setInvokesPackageVisibleMembers();
     actualProgramClassOptimizationInfo.setMayNotBeMerged();
     actualProgramClassOptimizationInfo.setSideEffects();
-    boolean actualContainsConstructorsResult = actualProgramClassOptimizationInfo.containsConstructors();
-    boolean actualContainsPackageVisibleMembersResult = actualProgramClassOptimizationInfo
-        .containsPackageVisibleMembers();
+    boolean actualContainsConstructorsResult =
+        actualProgramClassOptimizationInfo.containsConstructors();
+    boolean actualContainsPackageVisibleMembersResult =
+        actualProgramClassOptimizationInfo.containsPackageVisibleMembers();
     Clazz actualTargetClass = actualProgramClassOptimizationInfo.getTargetClass();
     Clazz actualWrappedClass = actualProgramClassOptimizationInfo.getWrappedClass();
-    boolean actualInvokesPackageVisibleMembersResult = actualProgramClassOptimizationInfo
-        .invokesPackageVisibleMembers();
+    boolean actualInvokesPackageVisibleMembersResult =
+        actualProgramClassOptimizationInfo.invokesPackageVisibleMembers();
     boolean actualIsCaughtResult = actualProgramClassOptimizationInfo.isCaught();
     boolean actualIsDotClassedResult = actualProgramClassOptimizationInfo.isDotClassed();
     boolean actualIsEscapingResult = actualProgramClassOptimizationInfo.isEscaping();

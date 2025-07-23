@@ -9,6 +9,7 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -27,17 +28,18 @@ import proguard.classfile.visitor.MemberVisitor;
 class TypeParameterClassCheckerDiffblueTest {
   /**
    * Test {@link TypeParameterClassChecker#visitProgramClass(ProgramClass)}.
+   *
    * <ul>
-   *   <li>Then calls {@link ProgramClass#fieldsAccept(MemberVisitor)}.</li>
+   *   <li>Then calls {@link ProgramClass#fieldsAccept(MemberVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link TypeParameterClassChecker#visitProgramClass(ProgramClass)}
+   *
+   * <p>Method under test: {@link TypeParameterClassChecker#visitProgramClass(ProgramClass)}
    */
   @Test
   @DisplayName("Test visitProgramClass(ProgramClass); then calls fieldsAccept(MemberVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.gson.TypeParameterClassChecker.visitProgramClass(proguard.classfile.ProgramClass)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void TypeParameterClassChecker.visitProgramClass(ProgramClass)"})
   void testVisitProgramClass_thenCallsFieldsAccept() {
     // Arrange
     TypeParameterClassChecker typeParameterClassChecker = new TypeParameterClassChecker();
@@ -52,45 +54,118 @@ class TypeParameterClassCheckerDiffblueTest {
   }
 
   /**
-   * Test {@link TypeParameterClassChecker#visitSignatureAttribute(Clazz, Field, SignatureAttribute)} with {@code clazz}, {@code field}, {@code signatureAttribute}.
-   * <p>
-   * Method under test: {@link TypeParameterClassChecker#visitSignatureAttribute(Clazz, Field, SignatureAttribute)}
+   * Test {@link TypeParameterClassChecker#visitSignatureAttribute(Clazz, Field,
+   * SignatureAttribute)} with {@code clazz}, {@code field}, {@code signatureAttribute}.
+   *
+   * <p>Method under test: {@link TypeParameterClassChecker#visitSignatureAttribute(Clazz, Field,
+   * SignatureAttribute)}
    */
   @Test
-  @DisplayName("Test visitSignatureAttribute(Clazz, Field, SignatureAttribute) with 'clazz', 'field', 'signatureAttribute'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitSignatureAttribute(Clazz, Field, SignatureAttribute) with 'clazz', 'field', 'signatureAttribute'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.gson.TypeParameterClassChecker.visitSignatureAttribute(proguard.classfile.Clazz, proguard.classfile.Field, proguard.classfile.attribute.SignatureAttribute)"})
+    "void TypeParameterClassChecker.visitSignatureAttribute(Clazz, Field, SignatureAttribute)"
+  })
   void testVisitSignatureAttributeWithClazzFieldSignatureAttribute() {
+    // Arrange
+    TypeParameterClassChecker typeParameterClassChecker = new TypeParameterClassChecker();
+    LibraryClass clazz = mock(LibraryClass.class);
+    when(clazz.getString(anyInt())).thenReturn("String");
+    LibraryField field = new LibraryField(1, "Name", "Descriptor");
+
+    // Act
+    typeParameterClassChecker.visitSignatureAttribute(
+        clazz, (Field) field, new SignatureAttribute(1, 1));
+
+    // Assert that nothing has changed
+    verify(clazz).getString(eq(1));
+    assertFalse(typeParameterClassChecker.hasFieldWithTypeParameter);
+  }
+
+  /**
+   * Test {@link TypeParameterClassChecker#visitSignatureAttribute(Clazz, Field,
+   * SignatureAttribute)} with {@code clazz}, {@code field}, {@code signatureAttribute}.
+   *
+   * <p>Method under test: {@link TypeParameterClassChecker#visitSignatureAttribute(Clazz, Field,
+   * SignatureAttribute)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitSignatureAttribute(Clazz, Field, SignatureAttribute) with 'clazz', 'field', 'signatureAttribute'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void TypeParameterClassChecker.visitSignatureAttribute(Clazz, Field, SignatureAttribute)"
+  })
+  void testVisitSignatureAttributeWithClazzFieldSignatureAttribute2() {
+    // Arrange
+    TypeParameterClassChecker typeParameterClassChecker = new TypeParameterClassChecker();
+    LibraryClass clazz = mock(LibraryClass.class);
+    when(clazz.getString(anyInt())).thenReturn("T");
+    LibraryField field = new LibraryField(1, "Name", "Descriptor");
+
+    // Act
+    typeParameterClassChecker.visitSignatureAttribute(
+        clazz, (Field) field, new SignatureAttribute(1, 1));
+
+    // Assert
+    verify(clazz).getString(eq(1));
+    assertTrue(typeParameterClassChecker.hasFieldWithTypeParameter);
+  }
+
+  /**
+   * Test {@link TypeParameterClassChecker#visitSignatureAttribute(Clazz, Field,
+   * SignatureAttribute)} with {@code clazz}, {@code field}, {@code signatureAttribute}.
+   *
+   * <p>Method under test: {@link TypeParameterClassChecker#visitSignatureAttribute(Clazz, Field,
+   * SignatureAttribute)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitSignatureAttribute(Clazz, Field, SignatureAttribute) with 'clazz', 'field', 'signatureAttribute'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void TypeParameterClassChecker.visitSignatureAttribute(Clazz, Field, SignatureAttribute)"
+  })
+  void testVisitSignatureAttributeWithClazzFieldSignatureAttribute3() {
     // Arrange
     TypeParameterClassChecker typeParameterClassChecker = new TypeParameterClassChecker();
     LibraryClass clazz = mock(LibraryClass.class);
     LibraryField field = new LibraryField(1, "Name", "Descriptor");
 
     SignatureAttribute signatureAttribute = mock(SignatureAttribute.class);
-    when(signatureAttribute.getSignature(Mockito.<Clazz>any())).thenReturn("Signature");
+    when(signatureAttribute.getSignature(Mockito.<Clazz>any())).thenReturn("T");
 
     // Act
     typeParameterClassChecker.visitSignatureAttribute(clazz, (Field) field, signatureAttribute);
 
-    // Assert that nothing has changed
+    // Assert
     verify(signatureAttribute).getSignature(isA(Clazz.class));
-    assertFalse(typeParameterClassChecker.hasFieldWithTypeParameter);
+    assertTrue(typeParameterClassChecker.hasFieldWithTypeParameter);
   }
 
   /**
-   * Test {@link TypeParameterClassChecker#visitSignatureAttribute(Clazz, Field, SignatureAttribute)} with {@code clazz}, {@code field}, {@code signatureAttribute}.
+   * Test {@link TypeParameterClassChecker#visitSignatureAttribute(Clazz, Field,
+   * SignatureAttribute)} with {@code clazz}, {@code field}, {@code signatureAttribute}.
+   *
    * <ul>
-   *   <li>Given {@code +L}.</li>
+   *   <li>Given {@code +L}.
    * </ul>
-   * <p>
-   * Method under test: {@link TypeParameterClassChecker#visitSignatureAttribute(Clazz, Field, SignatureAttribute)}
+   *
+   * <p>Method under test: {@link TypeParameterClassChecker#visitSignatureAttribute(Clazz, Field,
+   * SignatureAttribute)}
    */
   @Test
-  @DisplayName("Test visitSignatureAttribute(Clazz, Field, SignatureAttribute) with 'clazz', 'field', 'signatureAttribute'; given '+L'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitSignatureAttribute(Clazz, Field, SignatureAttribute) with 'clazz', 'field', 'signatureAttribute'; given '+L'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.gson.TypeParameterClassChecker.visitSignatureAttribute(proguard.classfile.Clazz, proguard.classfile.Field, proguard.classfile.attribute.SignatureAttribute)"})
+    "void TypeParameterClassChecker.visitSignatureAttribute(Clazz, Field, SignatureAttribute)"
+  })
   void testVisitSignatureAttributeWithClazzFieldSignatureAttribute_givenL() {
     // Arrange
     TypeParameterClassChecker typeParameterClassChecker = new TypeParameterClassChecker();
@@ -99,7 +174,8 @@ class TypeParameterClassCheckerDiffblueTest {
     LibraryField field = new LibraryField(1, "Name", "Descriptor");
 
     // Act
-    typeParameterClassChecker.visitSignatureAttribute(clazz, (Field) field, new SignatureAttribute(1, 1));
+    typeParameterClassChecker.visitSignatureAttribute(
+        clazz, (Field) field, new SignatureAttribute(1, 1));
 
     // Assert
     verify(clazz).getString(eq(1));
@@ -107,75 +183,25 @@ class TypeParameterClassCheckerDiffblueTest {
   }
 
   /**
-   * Test {@link TypeParameterClassChecker#visitSignatureAttribute(Clazz, Field, SignatureAttribute)} with {@code clazz}, {@code field}, {@code signatureAttribute}.
+   * Test {@link TypeParameterClassChecker#visitSignatureAttribute(Clazz, Field,
+   * SignatureAttribute)} with {@code clazz}, {@code field}, {@code signatureAttribute}.
+   *
    * <ul>
-   *   <li>Given {@code String}.</li>
+   *   <li>Given {@code <T}.
    * </ul>
-   * <p>
-   * Method under test: {@link TypeParameterClassChecker#visitSignatureAttribute(Clazz, Field, SignatureAttribute)}
+   *
+   * <p>Method under test: {@link TypeParameterClassChecker#visitSignatureAttribute(Clazz, Field,
+   * SignatureAttribute)}
    */
   @Test
-  @DisplayName("Test visitSignatureAttribute(Clazz, Field, SignatureAttribute) with 'clazz', 'field', 'signatureAttribute'; given 'String'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitSignatureAttribute(Clazz, Field, SignatureAttribute) with 'clazz', 'field', 'signatureAttribute'; given '<T'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.gson.TypeParameterClassChecker.visitSignatureAttribute(proguard.classfile.Clazz, proguard.classfile.Field, proguard.classfile.attribute.SignatureAttribute)"})
-  void testVisitSignatureAttributeWithClazzFieldSignatureAttribute_givenString() {
-    // Arrange
-    TypeParameterClassChecker typeParameterClassChecker = new TypeParameterClassChecker();
-    LibraryClass clazz = mock(LibraryClass.class);
-    when(clazz.getString(anyInt())).thenReturn("String");
-    LibraryField field = new LibraryField(1, "Name", "Descriptor");
-
-    // Act
-    typeParameterClassChecker.visitSignatureAttribute(clazz, (Field) field, new SignatureAttribute(1, 1));
-
-    // Assert that nothing has changed
-    verify(clazz).getString(eq(1));
-    assertFalse(typeParameterClassChecker.hasFieldWithTypeParameter);
-  }
-
-  /**
-   * Test {@link TypeParameterClassChecker#visitSignatureAttribute(Clazz, Field, SignatureAttribute)} with {@code clazz}, {@code field}, {@code signatureAttribute}.
-   * <ul>
-   *   <li>Given {@code T}.</li>
-   * </ul>
-   * <p>
-   * Method under test: {@link TypeParameterClassChecker#visitSignatureAttribute(Clazz, Field, SignatureAttribute)}
-   */
-  @Test
-  @DisplayName("Test visitSignatureAttribute(Clazz, Field, SignatureAttribute) with 'clazz', 'field', 'signatureAttribute'; given 'T'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.gson.TypeParameterClassChecker.visitSignatureAttribute(proguard.classfile.Clazz, proguard.classfile.Field, proguard.classfile.attribute.SignatureAttribute)"})
+    "void TypeParameterClassChecker.visitSignatureAttribute(Clazz, Field, SignatureAttribute)"
+  })
   void testVisitSignatureAttributeWithClazzFieldSignatureAttribute_givenT() {
-    // Arrange
-    TypeParameterClassChecker typeParameterClassChecker = new TypeParameterClassChecker();
-    LibraryClass clazz = mock(LibraryClass.class);
-    when(clazz.getString(anyInt())).thenReturn("T");
-    LibraryField field = new LibraryField(1, "Name", "Descriptor");
-
-    // Act
-    typeParameterClassChecker.visitSignatureAttribute(clazz, (Field) field, new SignatureAttribute(1, 1));
-
-    // Assert
-    verify(clazz).getString(eq(1));
-    assertTrue(typeParameterClassChecker.hasFieldWithTypeParameter);
-  }
-
-  /**
-   * Test {@link TypeParameterClassChecker#visitSignatureAttribute(Clazz, Field, SignatureAttribute)} with {@code clazz}, {@code field}, {@code signatureAttribute}.
-   * <ul>
-   *   <li>Given {@code <T}.</li>
-   * </ul>
-   * <p>
-   * Method under test: {@link TypeParameterClassChecker#visitSignatureAttribute(Clazz, Field, SignatureAttribute)}
-   */
-  @Test
-  @DisplayName("Test visitSignatureAttribute(Clazz, Field, SignatureAttribute) with 'clazz', 'field', 'signatureAttribute'; given '<T'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.gson.TypeParameterClassChecker.visitSignatureAttribute(proguard.classfile.Clazz, proguard.classfile.Field, proguard.classfile.attribute.SignatureAttribute)"})
-  void testVisitSignatureAttributeWithClazzFieldSignatureAttribute_givenT2() {
     // Arrange
     TypeParameterClassChecker typeParameterClassChecker = new TypeParameterClassChecker();
     LibraryClass clazz = mock(LibraryClass.class);
@@ -183,7 +209,8 @@ class TypeParameterClassCheckerDiffblueTest {
     LibraryField field = new LibraryField(1, "Name", "Descriptor");
 
     // Act
-    typeParameterClassChecker.visitSignatureAttribute(clazz, (Field) field, new SignatureAttribute(1, 1));
+    typeParameterClassChecker.visitSignatureAttribute(
+        clazz, (Field) field, new SignatureAttribute(1, 1));
 
     // Assert
     verify(clazz).getString(eq(1));
@@ -191,19 +218,25 @@ class TypeParameterClassCheckerDiffblueTest {
   }
 
   /**
-   * Test {@link TypeParameterClassChecker#visitSignatureAttribute(Clazz, Field, SignatureAttribute)} with {@code clazz}, {@code field}, {@code signatureAttribute}.
+   * Test {@link TypeParameterClassChecker#visitSignatureAttribute(Clazz, Field,
+   * SignatureAttribute)} with {@code clazz}, {@code field}, {@code signatureAttribute}.
+   *
    * <ul>
-   *   <li>Given {@code ;T}.</li>
+   *   <li>Given {@code ;T}.
    * </ul>
-   * <p>
-   * Method under test: {@link TypeParameterClassChecker#visitSignatureAttribute(Clazz, Field, SignatureAttribute)}
+   *
+   * <p>Method under test: {@link TypeParameterClassChecker#visitSignatureAttribute(Clazz, Field,
+   * SignatureAttribute)}
    */
   @Test
-  @DisplayName("Test visitSignatureAttribute(Clazz, Field, SignatureAttribute) with 'clazz', 'field', 'signatureAttribute'; given ';T'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitSignatureAttribute(Clazz, Field, SignatureAttribute) with 'clazz', 'field', 'signatureAttribute'; given ';T'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.gson.TypeParameterClassChecker.visitSignatureAttribute(proguard.classfile.Clazz, proguard.classfile.Field, proguard.classfile.attribute.SignatureAttribute)"})
-  void testVisitSignatureAttributeWithClazzFieldSignatureAttribute_givenT3() {
+    "void TypeParameterClassChecker.visitSignatureAttribute(Clazz, Field, SignatureAttribute)"
+  })
+  void testVisitSignatureAttributeWithClazzFieldSignatureAttribute_givenT2() {
     // Arrange
     TypeParameterClassChecker typeParameterClassChecker = new TypeParameterClassChecker();
     LibraryClass clazz = mock(LibraryClass.class);
@@ -211,7 +244,8 @@ class TypeParameterClassCheckerDiffblueTest {
     LibraryField field = new LibraryField(1, "Name", "Descriptor");
 
     // Act
-    typeParameterClassChecker.visitSignatureAttribute(clazz, (Field) field, new SignatureAttribute(1, 1));
+    typeParameterClassChecker.visitSignatureAttribute(
+        clazz, (Field) field, new SignatureAttribute(1, 1));
 
     // Assert
     verify(clazz).getString(eq(1));
@@ -219,19 +253,25 @@ class TypeParameterClassCheckerDiffblueTest {
   }
 
   /**
-   * Test {@link TypeParameterClassChecker#visitSignatureAttribute(Clazz, Field, SignatureAttribute)} with {@code clazz}, {@code field}, {@code signatureAttribute}.
+   * Test {@link TypeParameterClassChecker#visitSignatureAttribute(Clazz, Field,
+   * SignatureAttribute)} with {@code clazz}, {@code field}, {@code signatureAttribute}.
+   *
    * <ul>
-   *   <li>Given {@code +T}.</li>
+   *   <li>Given {@code +T}.
    * </ul>
-   * <p>
-   * Method under test: {@link TypeParameterClassChecker#visitSignatureAttribute(Clazz, Field, SignatureAttribute)}
+   *
+   * <p>Method under test: {@link TypeParameterClassChecker#visitSignatureAttribute(Clazz, Field,
+   * SignatureAttribute)}
    */
   @Test
-  @DisplayName("Test visitSignatureAttribute(Clazz, Field, SignatureAttribute) with 'clazz', 'field', 'signatureAttribute'; given '+T'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitSignatureAttribute(Clazz, Field, SignatureAttribute) with 'clazz', 'field', 'signatureAttribute'; given '+T'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.gson.TypeParameterClassChecker.visitSignatureAttribute(proguard.classfile.Clazz, proguard.classfile.Field, proguard.classfile.attribute.SignatureAttribute)"})
-  void testVisitSignatureAttributeWithClazzFieldSignatureAttribute_givenT4() {
+    "void TypeParameterClassChecker.visitSignatureAttribute(Clazz, Field, SignatureAttribute)"
+  })
+  void testVisitSignatureAttributeWithClazzFieldSignatureAttribute_givenT3() {
     // Arrange
     TypeParameterClassChecker typeParameterClassChecker = new TypeParameterClassChecker();
     LibraryClass clazz = mock(LibraryClass.class);
@@ -239,7 +279,8 @@ class TypeParameterClassCheckerDiffblueTest {
     LibraryField field = new LibraryField(1, "Name", "Descriptor");
 
     // Act
-    typeParameterClassChecker.visitSignatureAttribute(clazz, (Field) field, new SignatureAttribute(1, 1));
+    typeParameterClassChecker.visitSignatureAttribute(
+        clazz, (Field) field, new SignatureAttribute(1, 1));
 
     // Assert
     verify(clazz).getString(eq(1));
@@ -247,19 +288,25 @@ class TypeParameterClassCheckerDiffblueTest {
   }
 
   /**
-   * Test {@link TypeParameterClassChecker#visitSignatureAttribute(Clazz, Field, SignatureAttribute)} with {@code clazz}, {@code field}, {@code signatureAttribute}.
+   * Test {@link TypeParameterClassChecker#visitSignatureAttribute(Clazz, Field,
+   * SignatureAttribute)} with {@code clazz}, {@code field}, {@code signatureAttribute}.
+   *
    * <ul>
-   *   <li>Given {@code [T}.</li>
+   *   <li>Given {@code [T}.
    * </ul>
-   * <p>
-   * Method under test: {@link TypeParameterClassChecker#visitSignatureAttribute(Clazz, Field, SignatureAttribute)}
+   *
+   * <p>Method under test: {@link TypeParameterClassChecker#visitSignatureAttribute(Clazz, Field,
+   * SignatureAttribute)}
    */
   @Test
-  @DisplayName("Test visitSignatureAttribute(Clazz, Field, SignatureAttribute) with 'clazz', 'field', 'signatureAttribute'; given '[T'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitSignatureAttribute(Clazz, Field, SignatureAttribute) with 'clazz', 'field', 'signatureAttribute'; given '[T'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.gson.TypeParameterClassChecker.visitSignatureAttribute(proguard.classfile.Clazz, proguard.classfile.Field, proguard.classfile.attribute.SignatureAttribute)"})
-  void testVisitSignatureAttributeWithClazzFieldSignatureAttribute_givenT5() {
+    "void TypeParameterClassChecker.visitSignatureAttribute(Clazz, Field, SignatureAttribute)"
+  })
+  void testVisitSignatureAttributeWithClazzFieldSignatureAttribute_givenT4() {
     // Arrange
     TypeParameterClassChecker typeParameterClassChecker = new TypeParameterClassChecker();
     LibraryClass clazz = mock(LibraryClass.class);
@@ -267,7 +314,8 @@ class TypeParameterClassCheckerDiffblueTest {
     LibraryField field = new LibraryField(1, "Name", "Descriptor");
 
     // Act
-    typeParameterClassChecker.visitSignatureAttribute(clazz, (Field) field, new SignatureAttribute(1, 1));
+    typeParameterClassChecker.visitSignatureAttribute(
+        clazz, (Field) field, new SignatureAttribute(1, 1));
 
     // Assert
     verify(clazz).getString(eq(1));
@@ -276,8 +324,9 @@ class TypeParameterClassCheckerDiffblueTest {
 
   /**
    * Test getters and setters.
-   * <p>
-   * Methods under test:
+   *
+   * <p>Methods under test:
+   *
    * <ul>
    *   <li>default or parameterless constructor of {@link TypeParameterClassChecker}
    *   <li>{@link TypeParameterClassChecker#visitAnyAttribute(Clazz, Attribute)}
@@ -286,10 +335,13 @@ class TypeParameterClassCheckerDiffblueTest {
    */
   @Test
   @DisplayName("Test getters and setters")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.optimize.gson.TypeParameterClassChecker.<init>()",
-      "void proguard.optimize.gson.TypeParameterClassChecker.visitAnyAttribute(proguard.classfile.Clazz, proguard.classfile.attribute.Attribute)",
-      "void proguard.optimize.gson.TypeParameterClassChecker.visitAnyClass(proguard.classfile.Clazz)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void TypeParameterClassChecker.<init>()",
+    "void TypeParameterClassChecker.visitAnyAttribute(Clazz, Attribute)",
+    "void TypeParameterClassChecker.visitAnyClass(Clazz)"
+  })
   void testGettersAndSetters() {
     // Arrange and Act
     TypeParameterClassChecker actualTypeParameterClassChecker = new TypeParameterClassChecker();

@@ -8,6 +8,7 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -22,28 +23,33 @@ import proguard.classfile.instruction.SimpleInstruction;
 
 class NonEmptyStackReturnMarkerDiffblueTest {
   /**
-   * Test {@link NonEmptyStackReturnMarker#visitSimpleInstruction(Clazz, Method, CodeAttribute, int, SimpleInstruction)}.
-   * <p>
-   * Method under test: {@link NonEmptyStackReturnMarker#visitSimpleInstruction(Clazz, Method, CodeAttribute, int, SimpleInstruction)}
+   * Test {@link NonEmptyStackReturnMarker#visitSimpleInstruction(Clazz, Method, CodeAttribute, int,
+   * SimpleInstruction)}.
+   *
+   * <p>Method under test: {@link NonEmptyStackReturnMarker#visitSimpleInstruction(Clazz, Method,
+   * CodeAttribute, int, SimpleInstruction)}
    */
   @Test
   @DisplayName("Test visitSimpleInstruction(Clazz, Method, CodeAttribute, int, SimpleInstruction)")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.info.NonEmptyStackReturnMarker.visitSimpleInstruction(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.CodeAttribute, int, proguard.classfile.instruction.SimpleInstruction)"})
+    "void NonEmptyStackReturnMarker.visitSimpleInstruction(Clazz, Method, CodeAttribute, int, SimpleInstruction)"
+  })
   void testVisitSimpleInstruction() {
     // Arrange
     StackSizeComputer stackSizeComputer = mock(StackSizeComputer.class);
     when(stackSizeComputer.getStackSizeBefore(anyInt())).thenReturn(-84);
     when(stackSizeComputer.isReachable(anyInt())).thenReturn(true);
-    NonEmptyStackReturnMarker nonEmptyStackReturnMarker = new NonEmptyStackReturnMarker(stackSizeComputer);
+    NonEmptyStackReturnMarker nonEmptyStackReturnMarker =
+        new NonEmptyStackReturnMarker(stackSizeComputer);
     LibraryClass clazz = new LibraryClass();
     Method method = mock(Method.class);
     CodeAttribute codeAttribute = new CodeAttribute(1);
 
     // Act
-    nonEmptyStackReturnMarker.visitSimpleInstruction(clazz, method, codeAttribute, 2,
-        new SimpleInstruction((byte) -84));
+    nonEmptyStackReturnMarker.visitSimpleInstruction(
+        clazz, method, codeAttribute, 2, new SimpleInstruction((byte) -84));
 
     // Assert
     verify(stackSizeComputer).getStackSizeBefore(eq(2));
@@ -51,34 +57,86 @@ class NonEmptyStackReturnMarkerDiffblueTest {
   }
 
   /**
-   * Test {@link NonEmptyStackReturnMarker#visitSimpleInstruction(Clazz, Method, CodeAttribute, int, SimpleInstruction)}.
+   * Test {@link NonEmptyStackReturnMarker#visitSimpleInstruction(Clazz, Method, CodeAttribute, int,
+   * SimpleInstruction)}.
+   *
    * <ul>
-   *   <li>Then calls {@link ProgramMethodOptimizationInfo#setReturnsWithNonEmptyStack()}.</li>
+   *   <li>Given {@link StackSizeComputer} {@link StackSizeComputer#isReachable(int)} return {@code
+   *       false}.
    * </ul>
-   * <p>
-   * Method under test: {@link NonEmptyStackReturnMarker#visitSimpleInstruction(Clazz, Method, CodeAttribute, int, SimpleInstruction)}
+   *
+   * <p>Method under test: {@link NonEmptyStackReturnMarker#visitSimpleInstruction(Clazz, Method,
+   * CodeAttribute, int, SimpleInstruction)}
    */
   @Test
-  @DisplayName("Test visitSimpleInstruction(Clazz, Method, CodeAttribute, int, SimpleInstruction); then calls setReturnsWithNonEmptyStack()")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitSimpleInstruction(Clazz, Method, CodeAttribute, int, SimpleInstruction); given StackSizeComputer isReachable(int) return 'false'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.info.NonEmptyStackReturnMarker.visitSimpleInstruction(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.CodeAttribute, int, proguard.classfile.instruction.SimpleInstruction)"})
-  void testVisitSimpleInstruction_thenCallsSetReturnsWithNonEmptyStack() {
+    "void NonEmptyStackReturnMarker.visitSimpleInstruction(Clazz, Method, CodeAttribute, int, SimpleInstruction)"
+  })
+  void testVisitSimpleInstruction_givenStackSizeComputerIsReachableReturnFalse() {
     // Arrange
     StackSizeComputer stackSizeComputer = mock(StackSizeComputer.class);
-    when(stackSizeComputer.getStackSizeBefore(anyInt())).thenReturn(3);
-    when(stackSizeComputer.isReachable(anyInt())).thenReturn(true);
-    NonEmptyStackReturnMarker nonEmptyStackReturnMarker = new NonEmptyStackReturnMarker(stackSizeComputer);
+    when(stackSizeComputer.isReachable(anyInt())).thenReturn(false);
+    NonEmptyStackReturnMarker nonEmptyStackReturnMarker =
+        new NonEmptyStackReturnMarker(stackSizeComputer);
     LibraryClass clazz = new LibraryClass();
-    ProgramMethodOptimizationInfo programMethodOptimizationInfo = mock(ProgramMethodOptimizationInfo.class);
+    ProgramMethodOptimizationInfo programMethodOptimizationInfo =
+        mock(ProgramMethodOptimizationInfo.class);
     doNothing().when(programMethodOptimizationInfo).setReturnsWithNonEmptyStack();
     Method method = mock(Method.class);
     when(method.getProcessingInfo()).thenReturn(programMethodOptimizationInfo);
     CodeAttribute codeAttribute = new CodeAttribute(1);
 
     // Act
-    nonEmptyStackReturnMarker.visitSimpleInstruction(clazz, method, codeAttribute, 2,
-        new SimpleInstruction((byte) -84));
+    nonEmptyStackReturnMarker.visitSimpleInstruction(
+        clazz, method, codeAttribute, 2, new SimpleInstruction((byte) -84));
+
+    // Assert
+    verify(stackSizeComputer).isReachable(eq(2));
+    verify(programMethodOptimizationInfo).setReturnsWithNonEmptyStack();
+    verify(method, atLeast(1)).getProcessingInfo();
+  }
+
+  /**
+   * Test {@link NonEmptyStackReturnMarker#visitSimpleInstruction(Clazz, Method, CodeAttribute, int,
+   * SimpleInstruction)}.
+   *
+   * <ul>
+   *   <li>Then calls {@link StackSizeComputer#getStackSizeBefore(int)}.
+   * </ul>
+   *
+   * <p>Method under test: {@link NonEmptyStackReturnMarker#visitSimpleInstruction(Clazz, Method,
+   * CodeAttribute, int, SimpleInstruction)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitSimpleInstruction(Clazz, Method, CodeAttribute, int, SimpleInstruction); then calls getStackSizeBefore(int)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void NonEmptyStackReturnMarker.visitSimpleInstruction(Clazz, Method, CodeAttribute, int, SimpleInstruction)"
+  })
+  void testVisitSimpleInstruction_thenCallsGetStackSizeBefore() {
+    // Arrange
+    StackSizeComputer stackSizeComputer = mock(StackSizeComputer.class);
+    when(stackSizeComputer.getStackSizeBefore(anyInt())).thenReturn(3);
+    when(stackSizeComputer.isReachable(anyInt())).thenReturn(true);
+    NonEmptyStackReturnMarker nonEmptyStackReturnMarker =
+        new NonEmptyStackReturnMarker(stackSizeComputer);
+    LibraryClass clazz = new LibraryClass();
+    ProgramMethodOptimizationInfo programMethodOptimizationInfo =
+        mock(ProgramMethodOptimizationInfo.class);
+    doNothing().when(programMethodOptimizationInfo).setReturnsWithNonEmptyStack();
+    Method method = mock(Method.class);
+    when(method.getProcessingInfo()).thenReturn(programMethodOptimizationInfo);
+    CodeAttribute codeAttribute = new CodeAttribute(1);
+
+    // Act
+    nonEmptyStackReturnMarker.visitSimpleInstruction(
+        clazz, method, codeAttribute, 2, new SimpleInstruction((byte) -84));
 
     // Assert
     verify(stackSizeComputer).getStackSizeBefore(eq(2));
@@ -88,34 +146,42 @@ class NonEmptyStackReturnMarkerDiffblueTest {
   }
 
   /**
-   * Test {@link NonEmptyStackReturnMarker#visitSimpleInstruction(Clazz, Method, CodeAttribute, int, SimpleInstruction)}.
+   * Test {@link NonEmptyStackReturnMarker#visitSimpleInstruction(Clazz, Method, CodeAttribute, int,
+   * SimpleInstruction)}.
+   *
    * <ul>
-   *   <li>When {@link SimpleInstruction#SimpleInstruction(byte)} with opcode is minus eighty-three.</li>
+   *   <li>When {@link SimpleInstruction#SimpleInstruction(byte)} with opcode is minus eighty-three.
    * </ul>
-   * <p>
-   * Method under test: {@link NonEmptyStackReturnMarker#visitSimpleInstruction(Clazz, Method, CodeAttribute, int, SimpleInstruction)}
+   *
+   * <p>Method under test: {@link NonEmptyStackReturnMarker#visitSimpleInstruction(Clazz, Method,
+   * CodeAttribute, int, SimpleInstruction)}
    */
   @Test
-  @DisplayName("Test visitSimpleInstruction(Clazz, Method, CodeAttribute, int, SimpleInstruction); when SimpleInstruction(byte) with opcode is minus eighty-three")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitSimpleInstruction(Clazz, Method, CodeAttribute, int, SimpleInstruction); when SimpleInstruction(byte) with opcode is minus eighty-three")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.info.NonEmptyStackReturnMarker.visitSimpleInstruction(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.CodeAttribute, int, proguard.classfile.instruction.SimpleInstruction)"})
+    "void NonEmptyStackReturnMarker.visitSimpleInstruction(Clazz, Method, CodeAttribute, int, SimpleInstruction)"
+  })
   void testVisitSimpleInstruction_whenSimpleInstructionWithOpcodeIsMinusEightyThree() {
     // Arrange
     StackSizeComputer stackSizeComputer = mock(StackSizeComputer.class);
     when(stackSizeComputer.getStackSizeBefore(anyInt())).thenReturn(3);
     when(stackSizeComputer.isReachable(anyInt())).thenReturn(true);
-    NonEmptyStackReturnMarker nonEmptyStackReturnMarker = new NonEmptyStackReturnMarker(stackSizeComputer);
+    NonEmptyStackReturnMarker nonEmptyStackReturnMarker =
+        new NonEmptyStackReturnMarker(stackSizeComputer);
     LibraryClass clazz = new LibraryClass();
-    ProgramMethodOptimizationInfo programMethodOptimizationInfo = mock(ProgramMethodOptimizationInfo.class);
+    ProgramMethodOptimizationInfo programMethodOptimizationInfo =
+        mock(ProgramMethodOptimizationInfo.class);
     doNothing().when(programMethodOptimizationInfo).setReturnsWithNonEmptyStack();
     Method method = mock(Method.class);
     when(method.getProcessingInfo()).thenReturn(programMethodOptimizationInfo);
     CodeAttribute codeAttribute = new CodeAttribute(1);
 
     // Act
-    nonEmptyStackReturnMarker.visitSimpleInstruction(clazz, method, codeAttribute, 2,
-        new SimpleInstruction((byte) -83));
+    nonEmptyStackReturnMarker.visitSimpleInstruction(
+        clazz, method, codeAttribute, 2, new SimpleInstruction((byte) -83));
 
     // Assert
     verify(stackSizeComputer).getStackSizeBefore(eq(2));
@@ -125,34 +191,42 @@ class NonEmptyStackReturnMarkerDiffblueTest {
   }
 
   /**
-   * Test {@link NonEmptyStackReturnMarker#visitSimpleInstruction(Clazz, Method, CodeAttribute, int, SimpleInstruction)}.
+   * Test {@link NonEmptyStackReturnMarker#visitSimpleInstruction(Clazz, Method, CodeAttribute, int,
+   * SimpleInstruction)}.
+   *
    * <ul>
-   *   <li>When {@link SimpleInstruction#SimpleInstruction(byte)} with opcode is minus seventy-nine.</li>
+   *   <li>When {@link SimpleInstruction#SimpleInstruction(byte)} with opcode is minus seventy-nine.
    * </ul>
-   * <p>
-   * Method under test: {@link NonEmptyStackReturnMarker#visitSimpleInstruction(Clazz, Method, CodeAttribute, int, SimpleInstruction)}
+   *
+   * <p>Method under test: {@link NonEmptyStackReturnMarker#visitSimpleInstruction(Clazz, Method,
+   * CodeAttribute, int, SimpleInstruction)}
    */
   @Test
-  @DisplayName("Test visitSimpleInstruction(Clazz, Method, CodeAttribute, int, SimpleInstruction); when SimpleInstruction(byte) with opcode is minus seventy-nine")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitSimpleInstruction(Clazz, Method, CodeAttribute, int, SimpleInstruction); when SimpleInstruction(byte) with opcode is minus seventy-nine")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.info.NonEmptyStackReturnMarker.visitSimpleInstruction(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.CodeAttribute, int, proguard.classfile.instruction.SimpleInstruction)"})
+    "void NonEmptyStackReturnMarker.visitSimpleInstruction(Clazz, Method, CodeAttribute, int, SimpleInstruction)"
+  })
   void testVisitSimpleInstruction_whenSimpleInstructionWithOpcodeIsMinusSeventyNine() {
     // Arrange
     StackSizeComputer stackSizeComputer = mock(StackSizeComputer.class);
     when(stackSizeComputer.getStackSizeBefore(anyInt())).thenReturn(3);
     when(stackSizeComputer.isReachable(anyInt())).thenReturn(true);
-    NonEmptyStackReturnMarker nonEmptyStackReturnMarker = new NonEmptyStackReturnMarker(stackSizeComputer);
+    NonEmptyStackReturnMarker nonEmptyStackReturnMarker =
+        new NonEmptyStackReturnMarker(stackSizeComputer);
     LibraryClass clazz = new LibraryClass();
-    ProgramMethodOptimizationInfo programMethodOptimizationInfo = mock(ProgramMethodOptimizationInfo.class);
+    ProgramMethodOptimizationInfo programMethodOptimizationInfo =
+        mock(ProgramMethodOptimizationInfo.class);
     doNothing().when(programMethodOptimizationInfo).setReturnsWithNonEmptyStack();
     Method method = mock(Method.class);
     when(method.getProcessingInfo()).thenReturn(programMethodOptimizationInfo);
     CodeAttribute codeAttribute = new CodeAttribute(1);
 
     // Act
-    nonEmptyStackReturnMarker.visitSimpleInstruction(clazz, method, codeAttribute, 2,
-        new SimpleInstruction((byte) -79));
+    nonEmptyStackReturnMarker.visitSimpleInstruction(
+        clazz, method, codeAttribute, 2, new SimpleInstruction((byte) -79));
 
     // Assert
     verify(stackSizeComputer).getStackSizeBefore(eq(2));
@@ -163,18 +237,20 @@ class NonEmptyStackReturnMarkerDiffblueTest {
 
   /**
    * Test {@link NonEmptyStackReturnMarker#returnsWithNonEmptyStack(Method)}.
+   *
    * <ul>
-   *   <li>Given {@link MethodOptimizationInfo} (default constructor).</li>
-   *   <li>Then return {@code false}.</li>
+   *   <li>Given {@link MethodOptimizationInfo} (default constructor).
+   *   <li>Then return {@code false}.
    * </ul>
-   * <p>
-   * Method under test: {@link NonEmptyStackReturnMarker#returnsWithNonEmptyStack(Method)}
+   *
+   * <p>Method under test: {@link NonEmptyStackReturnMarker#returnsWithNonEmptyStack(Method)}
    */
   @Test
-  @DisplayName("Test returnsWithNonEmptyStack(Method); given MethodOptimizationInfo (default constructor); then return 'false'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "boolean proguard.optimize.info.NonEmptyStackReturnMarker.returnsWithNonEmptyStack(proguard.classfile.Method)"})
+  @DisplayName(
+      "Test returnsWithNonEmptyStack(Method); given MethodOptimizationInfo (default constructor); then return 'false'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean NonEmptyStackReturnMarker.returnsWithNonEmptyStack(Method)"})
   void testReturnsWithNonEmptyStack_givenMethodOptimizationInfo_thenReturnFalse() {
     // Arrange
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");

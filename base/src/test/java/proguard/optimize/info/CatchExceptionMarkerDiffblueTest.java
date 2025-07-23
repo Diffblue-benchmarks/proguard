@@ -1,6 +1,7 @@
 package proguard.optimize.info;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -11,18 +12,20 @@ import proguard.classfile.Method;
 class CatchExceptionMarkerDiffblueTest {
   /**
    * Test {@link CatchExceptionMarker#catchesExceptions(Method)}.
+   *
    * <ul>
-   *   <li>Given {@link MethodOptimizationInfo} (default constructor).</li>
-   *   <li>Then return {@code true}.</li>
+   *   <li>Given {@link MethodOptimizationInfo} (default constructor).
+   *   <li>Then return {@code true}.
    * </ul>
-   * <p>
-   * Method under test: {@link CatchExceptionMarker#catchesExceptions(Method)}
+   *
+   * <p>Method under test: {@link CatchExceptionMarker#catchesExceptions(Method)}
    */
   @Test
-  @DisplayName("Test catchesExceptions(Method); given MethodOptimizationInfo (default constructor); then return 'true'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "boolean proguard.optimize.info.CatchExceptionMarker.catchesExceptions(proguard.classfile.Method)"})
+  @DisplayName(
+      "Test catchesExceptions(Method); given MethodOptimizationInfo (default constructor); then return 'true'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean CatchExceptionMarker.catchesExceptions(Method)"})
   void testCatchesExceptions_givenMethodOptimizationInfo_thenReturnTrue() {
     // Arrange
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");

@@ -4,6 +4,7 @@ import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.gradle.api.NamedDomainObjectContainer;
 import org.gradle.api.Project;
@@ -27,16 +28,18 @@ import org.mockito.Mockito;
 class ProGuardAndroidExtensionDiffblueTest {
   /**
    * Test {@link ProGuardAndroidExtension#ProGuardAndroidExtension(Project)}.
+   *
    * <ul>
-   *   <li>Then calls {@link Project#container(Class)}.</li>
+   *   <li>Then calls {@link ProjectInternal#container(Class)}.
    * </ul>
-   * <p>
-   * Method under test: {@link ProGuardAndroidExtension#ProGuardAndroidExtension(Project)}
+   *
+   * <p>Method under test: {@link ProGuardAndroidExtension#ProGuardAndroidExtension(Project)}
    */
   @Test
   @DisplayName("Test new ProGuardAndroidExtension(Project); then calls container(Class)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.gradle.plugin.android.dsl.ProGuardAndroidExtension.<init>(org.gradle.api.Project)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ProGuardAndroidExtension.<init>(Project)"})
   void testNewProGuardAndroidExtension_thenCallsContainer() {
     // Arrange
     ProjectInternal delegate = mock(ProjectInternal.class);
@@ -45,12 +48,21 @@ class ProGuardAndroidExtensionDiffblueTest {
     ProjectInternal referrer = mock(ProjectInternal.class);
 
     // Act
-    new ProGuardAndroidExtension(new ProblemReportingProject(delegate, referrer,
-        new CrossProjectModelAccessInstance(CrossProjectModelAccessPattern.DIRECT,
-            new LifecycleAwareProject(mock(ProjectInternal.class), mock(ProjectInternal.class),
-                mock(GradleLifecycleActionExecutor.class))),
-        mock(ProblemsListener.class), mock(CoupledProjectsListener.class), mock(ProblemFactory.class),
-        mock(BuildModelParameters.class), mock(DynamicCallProblemReporting.class)));
+    new ProGuardAndroidExtension(
+        new ProblemReportingProject(
+            delegate,
+            referrer,
+            new CrossProjectModelAccessInstance(
+                CrossProjectModelAccessPattern.DIRECT,
+                new LifecycleAwareProject(
+                    mock(ProjectInternal.class),
+                    mock(ProjectInternal.class),
+                    mock(GradleLifecycleActionExecutor.class))),
+            mock(ProblemsListener.class),
+            mock(CoupledProjectsListener.class),
+            mock(ProblemFactory.class),
+            mock(BuildModelParameters.class),
+            mock(DynamicCallProblemReporting.class)));
 
     // Assert
     verify(delegate).container(isA(Class.class));

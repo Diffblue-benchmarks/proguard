@@ -6,6 +6,7 @@ import static org.mockito.Mockito.atLeast;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -20,21 +21,25 @@ import proguard.classfile.util.WarningPrinter;
 class GetEnclosingClassCheckerDiffblueTest {
   /**
    * Test {@link GetEnclosingClassChecker#visitMethodrefConstant(Clazz, MethodrefConstant)}.
+   *
    * <ul>
-   *   <li>Given {@code Class Name}.</li>
+   *   <li>Given {@code Class Name}.
    * </ul>
-   * <p>
-   * Method under test: {@link GetEnclosingClassChecker#visitMethodrefConstant(Clazz, MethodrefConstant)}
+   *
+   * <p>Method under test: {@link GetEnclosingClassChecker#visitMethodrefConstant(Clazz,
+   * MethodrefConstant)}
    */
   @Test
   @DisplayName("Test visitMethodrefConstant(Clazz, MethodrefConstant); given 'Class Name'")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.GetEnclosingClassChecker.visitMethodrefConstant(proguard.classfile.Clazz, proguard.classfile.constant.MethodrefConstant)"})
+    "void GetEnclosingClassChecker.visitMethodrefConstant(Clazz, MethodrefConstant)"
+  })
   void testVisitMethodrefConstant_givenClassName() {
     // Arrange
-    GetEnclosingClassChecker getEnclosingClassChecker = new GetEnclosingClassChecker(
-        new WarningPrinter(new PrintWriter(new StringWriter())));
+    GetEnclosingClassChecker getEnclosingClassChecker =
+        new GetEnclosingClassChecker(new WarningPrinter(new PrintWriter(new StringWriter())));
     LibraryClass clazz = mock(LibraryClass.class);
     when(clazz.getClassName(anyInt())).thenReturn("Class Name");
 
@@ -47,22 +52,27 @@ class GetEnclosingClassCheckerDiffblueTest {
 
   /**
    * Test {@link GetEnclosingClassChecker#visitMethodrefConstant(Clazz, MethodrefConstant)}.
+   *
    * <ul>
-   *   <li>Given {@code getEnclosingClass}.</li>
-   *   <li>Then calls {@link LibraryClass#getName()}.</li>
+   *   <li>Given {@code getEnclosingClass}.
+   *   <li>Then calls {@link LibraryClass#getName()}.
    * </ul>
-   * <p>
-   * Method under test: {@link GetEnclosingClassChecker#visitMethodrefConstant(Clazz, MethodrefConstant)}
+   *
+   * <p>Method under test: {@link GetEnclosingClassChecker#visitMethodrefConstant(Clazz,
+   * MethodrefConstant)}
    */
   @Test
-  @DisplayName("Test visitMethodrefConstant(Clazz, MethodrefConstant); given 'getEnclosingClass'; then calls getName()")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitMethodrefConstant(Clazz, MethodrefConstant); given 'getEnclosingClass'; then calls getName()")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.GetEnclosingClassChecker.visitMethodrefConstant(proguard.classfile.Clazz, proguard.classfile.constant.MethodrefConstant)"})
+    "void GetEnclosingClassChecker.visitMethodrefConstant(Clazz, MethodrefConstant)"
+  })
   void testVisitMethodrefConstant_givenGetEnclosingClass_thenCallsGetName() {
     // Arrange
-    GetEnclosingClassChecker getEnclosingClassChecker = new GetEnclosingClassChecker(
-        new WarningPrinter(new PrintWriter(new StringWriter())));
+    GetEnclosingClassChecker getEnclosingClassChecker =
+        new GetEnclosingClassChecker(new WarningPrinter(new PrintWriter(new StringWriter())));
     LibraryClass clazz = mock(LibraryClass.class);
     when(clazz.getName()).thenReturn("Name");
     when(clazz.getName(anyInt())).thenReturn("getEnclosingClass");
@@ -79,22 +89,27 @@ class GetEnclosingClassCheckerDiffblueTest {
 
   /**
    * Test {@link GetEnclosingClassChecker#visitMethodrefConstant(Clazz, MethodrefConstant)}.
+   *
    * <ul>
-   *   <li>When {@link LibraryClass} {@link LibraryClass#getName(int)} return {@code Name}.</li>
-   *   <li>Then calls {@link LibraryClass#getName(int)}.</li>
+   *   <li>When {@link LibraryClass} {@link LibraryClass#getName(int)} return {@code Name}.
+   *   <li>Then calls {@link LibraryClass#getName(int)}.
    * </ul>
-   * <p>
-   * Method under test: {@link GetEnclosingClassChecker#visitMethodrefConstant(Clazz, MethodrefConstant)}
+   *
+   * <p>Method under test: {@link GetEnclosingClassChecker#visitMethodrefConstant(Clazz,
+   * MethodrefConstant)}
    */
   @Test
-  @DisplayName("Test visitMethodrefConstant(Clazz, MethodrefConstant); when LibraryClass getName(int) return 'Name'; then calls getName(int)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitMethodrefConstant(Clazz, MethodrefConstant); when LibraryClass getName(int) return 'Name'; then calls getName(int)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.GetEnclosingClassChecker.visitMethodrefConstant(proguard.classfile.Clazz, proguard.classfile.constant.MethodrefConstant)"})
+    "void GetEnclosingClassChecker.visitMethodrefConstant(Clazz, MethodrefConstant)"
+  })
   void testVisitMethodrefConstant_whenLibraryClassGetNameReturnName_thenCallsGetName() {
     // Arrange
-    GetEnclosingClassChecker getEnclosingClassChecker = new GetEnclosingClassChecker(
-        new WarningPrinter(new PrintWriter(new StringWriter())));
+    GetEnclosingClassChecker getEnclosingClassChecker =
+        new GetEnclosingClassChecker(new WarningPrinter(new PrintWriter(new StringWriter())));
     LibraryClass clazz = mock(LibraryClass.class);
     when(clazz.getName(anyInt())).thenReturn("Name");
     when(clazz.getClassName(anyInt())).thenReturn("java/lang/Class");

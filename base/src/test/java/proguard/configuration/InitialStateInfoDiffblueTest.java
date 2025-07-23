@@ -3,6 +3,7 @@ package proguard.configuration;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -12,17 +13,19 @@ import proguard.classfile.ClassPool;
 class InitialStateInfoDiffblueTest {
   /**
    * Test {@link InitialStateInfo#InitialStateInfo(ClassPool)}.
+   *
    * <ul>
-   *   <li>When {@link ClassPool#ClassPool()}.</li>
-   *   <li>Then return size is zero.</li>
+   *   <li>When {@link ClassPool#ClassPool()}.
+   *   <li>Then return size is zero.
    * </ul>
-   * <p>
-   * Method under test: {@link InitialStateInfo#InitialStateInfo(ClassPool)}
+   *
+   * <p>Method under test: {@link InitialStateInfo#InitialStateInfo(ClassPool)}
    */
   @Test
   @DisplayName("Test new InitialStateInfo(ClassPool); when ClassPool(); then return size is zero")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.configuration.InitialStateInfo.<init>(proguard.classfile.ClassPool)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void InitialStateInfo.<init>(ClassPool)"})
   void testNewInitialStateInfo_whenClassPool_thenReturnSizeIsZero() {
     // Arrange and Act
     InitialStateInfo actualInitialStateInfo = new InitialStateInfo(new ClassPool());
@@ -34,71 +37,76 @@ class InitialStateInfoDiffblueTest {
 
   /**
    * Test {@link InitialStateInfo#size()}.
-   * <p>
-   * Method under test: {@link InitialStateInfo#size()}
+   *
+   * <p>Method under test: {@link InitialStateInfo#size()}
    */
   @Test
   @DisplayName("Test size()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"int proguard.configuration.InitialStateInfo.size()"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"int InitialStateInfo.size()"})
   void testSize() {
     // Arrange, Act and Assert
-    assertEquals(0, (new InitialStateInfo(new ClassPool())).size());
+    assertEquals(0, new InitialStateInfo(new ClassPool()).size());
   }
 
   /**
    * Test {@link InitialStateInfo#classNames()}.
-   * <p>
-   * Method under test: {@link InitialStateInfo#classNames()}
+   *
+   * <p>Method under test: {@link InitialStateInfo#classNames()}
    */
   @Test
   @DisplayName("Test classNames()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"java.util.List proguard.configuration.InitialStateInfo.classNames()"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"java.util.List InitialStateInfo.classNames()"})
   void testClassNames() {
     // Arrange, Act and Assert
-    assertTrue((new InitialStateInfo(new ClassPool())).classNames().isEmpty());
+    assertTrue(new InitialStateInfo(new ClassPool()).classNames().isEmpty());
   }
 
   /**
    * Test {@link InitialStateInfo#getSuperClassName(String)}.
-   * <p>
-   * Method under test: {@link InitialStateInfo#getSuperClassName(String)}
+   *
+   * <p>Method under test: {@link InitialStateInfo#getSuperClassName(String)}
    */
   @Test
   @DisplayName("Test getSuperClassName(String)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"java.lang.String proguard.configuration.InitialStateInfo.getSuperClassName(java.lang.String)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"String InitialStateInfo.getSuperClassName(String)"})
   void testGetSuperClassName() {
     // Arrange, Act and Assert
-    assertNull((new InitialStateInfo(new ClassPool())).getSuperClassName("Class Name"));
+    assertNull(new InitialStateInfo(new ClassPool()).getSuperClassName("Class Name"));
   }
 
   /**
    * Test {@link InitialStateInfo#getMethodHashMap(String)}.
-   * <p>
-   * Method under test: {@link InitialStateInfo#getMethodHashMap(String)}
+   *
+   * <p>Method under test: {@link InitialStateInfo#getMethodHashMap(String)}
    */
   @Test
   @DisplayName("Test getMethodHashMap(String)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"java.util.Map proguard.configuration.InitialStateInfo.getMethodHashMap(java.lang.String)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"java.util.Map InitialStateInfo.getMethodHashMap(String)"})
   void testGetMethodHashMap() {
     // Arrange, Act and Assert
-    assertTrue((new InitialStateInfo(new ClassPool())).getMethodHashMap("Class Name").isEmpty());
+    assertTrue(new InitialStateInfo(new ClassPool()).getMethodHashMap("Class Name").isEmpty());
   }
 
   /**
    * Test {@link InitialStateInfo#getFieldHashMap(String)}.
-   * <p>
-   * Method under test: {@link InitialStateInfo#getFieldHashMap(String)}
+   *
+   * <p>Method under test: {@link InitialStateInfo#getFieldHashMap(String)}
    */
   @Test
   @DisplayName("Test getFieldHashMap(String)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"java.util.Map proguard.configuration.InitialStateInfo.getFieldHashMap(java.lang.String)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"java.util.Map InitialStateInfo.getFieldHashMap(String)"})
   void testGetFieldHashMap() {
     // Arrange, Act and Assert
-    assertTrue((new InitialStateInfo(new ClassPool())).getFieldHashMap("Class Name").isEmpty());
+    assertTrue(new InitialStateInfo(new ClassPool()).getFieldHashMap("Class Name").isEmpty());
   }
 }

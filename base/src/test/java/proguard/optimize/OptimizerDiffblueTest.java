@@ -3,6 +3,7 @@ package proguard.optimize;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -18,13 +19,14 @@ import proguard.Configuration;
 class OptimizerDiffblueTest {
   /**
    * Test {@link Optimizer#Optimizer(Configuration)}.
-   * <p>
-   * Method under test: {@link Optimizer#Optimizer(Configuration)}
+   *
+   * <p>Method under test: {@link Optimizer#Optimizer(Configuration)}
    */
   @Test
   @DisplayName("Test new Optimizer(Configuration)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.optimize.Optimizer.<init>(proguard.Configuration)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void Optimizer.<init>(Configuration)"})
   void testNewOptimizer() throws MalformedURLException {
     // Arrange
     Configuration configuration = new Configuration();
@@ -41,9 +43,8 @@ class OptimizerDiffblueTest {
     configuration.assumeNoSideEffects = new ArrayList<>();
     configuration.assumeValues = new ArrayList<>();
     configuration.backport = true;
-    configuration.classObfuscationDictionary = Paths.get(System.getProperty("java.io.tmpdir"), "test.txt")
-        .toUri()
-        .toURL();
+    configuration.classObfuscationDictionary =
+        Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toUri().toURL();
     configuration.dontCompress = new ArrayList<>();
     configuration.dontProcessKotlinMetadata = true;
     configuration.dump = Configuration.STD_OUT;
@@ -68,15 +69,15 @@ class OptimizerDiffblueTest {
     configuration.newSourceFileAttribute = "New Source File Attribute";
     configuration.note = new ArrayList<>();
     configuration.obfuscate = true;
-    configuration.obfuscationDictionary = Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toUri().toURL();
+    configuration.obfuscationDictionary =
+        Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toUri().toURL();
     configuration.optimizationPasses = 1;
     configuration.optimizations = new ArrayList<>();
     configuration.optimize = true;
     configuration.optimizeConservatively = true;
     configuration.overloadAggressively = true;
-    configuration.packageObfuscationDictionary = Paths.get(System.getProperty("java.io.tmpdir"), "test.txt")
-        .toUri()
-        .toURL();
+    configuration.packageObfuscationDictionary =
+        Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toUri().toURL();
     configuration.preverify = true;
     configuration.printConfiguration = Configuration.STD_OUT;
     configuration.printMapping = Configuration.STD_OUT;
@@ -96,24 +97,28 @@ class OptimizerDiffblueTest {
     configuration.zipAlign = 1;
 
     // Act and Assert
-    assertEquals("proguard.optimize.Optimizer", (new Optimizer(configuration)).getName());
+    assertEquals("proguard.optimize.Optimizer", new Optimizer(configuration).getName());
   }
 
   /**
    * Test {@link Optimizer#execute(AppView)}.
+   *
    * <ul>
-   *   <li>Given {@link Optimizer#Optimizer(Configuration)} with {@link Configuration}.</li>
-   *   <li>When {@link AppView#AppView()}.</li>
-   *   <li>Then throw {@link IOException}.</li>
+   *   <li>Given {@link Optimizer#Optimizer(Configuration)} with {@link Configuration}.
+   *   <li>When {@link AppView#AppView()}.
+   *   <li>Then throw {@link IOException}.
    * </ul>
-   * <p>
-   * Method under test: {@link Optimizer#execute(AppView)}
+   *
+   * <p>Method under test: {@link Optimizer#execute(AppView)}
    */
   @Test
-  @DisplayName("Test execute(AppView); given Optimizer(Configuration) with Configuration; when AppView(); then throw IOException")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.optimize.Optimizer.execute(proguard.AppView)"})
-  void testExecute_givenOptimizerWithConfiguration_whenAppView_thenThrowIOException() throws IOException {
+  @DisplayName(
+      "Test execute(AppView); given Optimizer(Configuration) with Configuration; when AppView(); then throw IOException")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void Optimizer.execute(AppView)"})
+  void testExecute_givenOptimizerWithConfiguration_whenAppView_thenThrowIOException()
+      throws IOException {
     // Arrange
     Optimizer optimizer = new Optimizer(mock(Configuration.class));
 

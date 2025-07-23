@@ -1,6 +1,7 @@
 package proguard.optimize.gson;
 
 import static org.junit.jupiter.api.Assertions.assertNull;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
@@ -13,20 +14,20 @@ import org.junit.jupiter.api.Test;
 class _OptimizedTypeAdapterImplDiffblueTest {
   /**
    * Test {@link _OptimizedTypeAdapterImpl#read(JsonReader)}.
-   * <p>
-   * Method under test: {@link _OptimizedTypeAdapterImpl#read(JsonReader)}
+   *
+   * <p>Method under test: {@link _OptimizedTypeAdapterImpl#read(JsonReader)}
    */
   @Test
   @DisplayName("Test read(JsonReader)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "java.lang.Object proguard.optimize.gson._OptimizedTypeAdapterImpl.read(com.google.gson.stream.JsonReader)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"java.lang.Object _OptimizedTypeAdapterImpl.read(JsonReader)"})
   void testRead() throws IOException {
     // Arrange
     Gson gson = new Gson();
     _OptimizedJsonReaderImpl optimizedJsonReader = new _OptimizedJsonReaderImpl();
-    _OptimizedTypeAdapterImpl _OptimizedTypeAdapterImpl = new _OptimizedTypeAdapterImpl(gson, optimizedJsonReader,
-        new _OptimizedJsonWriterImpl());
+    _OptimizedTypeAdapterImpl _OptimizedTypeAdapterImpl =
+        new _OptimizedTypeAdapterImpl(gson, optimizedJsonReader, new _OptimizedJsonWriterImpl());
 
     // Act and Assert
     assertNull(_OptimizedTypeAdapterImpl.read(new JsonReader(new StringReader("foo"))));

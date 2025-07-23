@@ -6,6 +6,7 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -19,17 +20,22 @@ import proguard.classfile.ProgramMethod;
 class NoSideEffectMethodMarkerDiffblueTest {
   /**
    * Test {@link NoSideEffectMethodMarker#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   *
    * <ul>
-   *   <li>Given {@link MethodOptimizationInfo} (default constructor).</li>
+   *   <li>Given {@link MethodOptimizationInfo} (default constructor).
    * </ul>
-   * <p>
-   * Method under test: {@link NoSideEffectMethodMarker#visitProgramMethod(ProgramClass, ProgramMethod)}
+   *
+   * <p>Method under test: {@link NoSideEffectMethodMarker#visitProgramMethod(ProgramClass,
+   * ProgramMethod)}
    */
   @Test
-  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); given MethodOptimizationInfo (default constructor)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitProgramMethod(ProgramClass, ProgramMethod); given MethodOptimizationInfo (default constructor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.info.NoSideEffectMethodMarker.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
+    "void NoSideEffectMethodMarker.visitProgramMethod(ProgramClass, ProgramMethod)"
+  })
   void testVisitProgramMethod_givenMethodOptimizationInfo() {
     // Arrange
     NoSideEffectMethodMarker noSideEffectMethodMarker = new NoSideEffectMethodMarker();
@@ -46,17 +52,22 @@ class NoSideEffectMethodMarkerDiffblueTest {
 
   /**
    * Test {@link NoSideEffectMethodMarker#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   *
    * <ul>
-   *   <li>Then calls {@link MethodOptimizationInfo#setNoSideEffects()}.</li>
+   *   <li>Then calls {@link MethodOptimizationInfo#setNoSideEffects()}.
    * </ul>
-   * <p>
-   * Method under test: {@link NoSideEffectMethodMarker#visitProgramMethod(ProgramClass, ProgramMethod)}
+   *
+   * <p>Method under test: {@link NoSideEffectMethodMarker#visitProgramMethod(ProgramClass,
+   * ProgramMethod)}
    */
   @Test
-  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); then calls setNoSideEffects()")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitProgramMethod(ProgramClass, ProgramMethod); then calls setNoSideEffects()")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.info.NoSideEffectMethodMarker.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
+    "void NoSideEffectMethodMarker.visitProgramMethod(ProgramClass, ProgramMethod)"
+  })
   void testVisitProgramMethod_thenCallsSetNoSideEffects() {
     // Arrange
     NoSideEffectMethodMarker noSideEffectMethodMarker = new NoSideEffectMethodMarker();
@@ -76,17 +87,22 @@ class NoSideEffectMethodMarkerDiffblueTest {
 
   /**
    * Test {@link NoSideEffectMethodMarker#visitLibraryMethod(LibraryClass, LibraryMethod)}.
+   *
    * <ul>
-   *   <li>Given {@link MethodOptimizationInfo} (default constructor).</li>
+   *   <li>Given {@link MethodOptimizationInfo} (default constructor).
    * </ul>
-   * <p>
-   * Method under test: {@link NoSideEffectMethodMarker#visitLibraryMethod(LibraryClass, LibraryMethod)}
+   *
+   * <p>Method under test: {@link NoSideEffectMethodMarker#visitLibraryMethod(LibraryClass,
+   * LibraryMethod)}
    */
   @Test
-  @DisplayName("Test visitLibraryMethod(LibraryClass, LibraryMethod); given MethodOptimizationInfo (default constructor)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitLibraryMethod(LibraryClass, LibraryMethod); given MethodOptimizationInfo (default constructor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.info.NoSideEffectMethodMarker.visitLibraryMethod(proguard.classfile.LibraryClass, proguard.classfile.LibraryMethod)"})
+    "void NoSideEffectMethodMarker.visitLibraryMethod(LibraryClass, LibraryMethod)"
+  })
   void testVisitLibraryMethod_givenMethodOptimizationInfo() {
     // Arrange
     NoSideEffectMethodMarker noSideEffectMethodMarker = new NoSideEffectMethodMarker();
@@ -103,17 +119,22 @@ class NoSideEffectMethodMarkerDiffblueTest {
 
   /**
    * Test {@link NoSideEffectMethodMarker#visitLibraryMethod(LibraryClass, LibraryMethod)}.
+   *
    * <ul>
-   *   <li>Then calls {@link MethodOptimizationInfo#setNoSideEffects()}.</li>
+   *   <li>Then calls {@link MethodOptimizationInfo#setNoSideEffects()}.
    * </ul>
-   * <p>
-   * Method under test: {@link NoSideEffectMethodMarker#visitLibraryMethod(LibraryClass, LibraryMethod)}
+   *
+   * <p>Method under test: {@link NoSideEffectMethodMarker#visitLibraryMethod(LibraryClass,
+   * LibraryMethod)}
    */
   @Test
-  @DisplayName("Test visitLibraryMethod(LibraryClass, LibraryMethod); then calls setNoSideEffects()")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test visitLibraryMethod(LibraryClass, LibraryMethod); then calls setNoSideEffects()")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.info.NoSideEffectMethodMarker.visitLibraryMethod(proguard.classfile.LibraryClass, proguard.classfile.LibraryMethod)"})
+    "void NoSideEffectMethodMarker.visitLibraryMethod(LibraryClass, LibraryMethod)"
+  })
   void testVisitLibraryMethod_thenCallsSetNoSideEffects() {
     // Arrange
     NoSideEffectMethodMarker noSideEffectMethodMarker = new NoSideEffectMethodMarker();
@@ -133,18 +154,20 @@ class NoSideEffectMethodMarkerDiffblueTest {
 
   /**
    * Test {@link NoSideEffectMethodMarker#hasNoSideEffects(Method)}.
+   *
    * <ul>
-   *   <li>Given {@link MethodOptimizationInfo} (default constructor).</li>
-   *   <li>Then return {@code false}.</li>
+   *   <li>Given {@link MethodOptimizationInfo} (default constructor).
+   *   <li>Then return {@code false}.
    * </ul>
-   * <p>
-   * Method under test: {@link NoSideEffectMethodMarker#hasNoSideEffects(Method)}
+   *
+   * <p>Method under test: {@link NoSideEffectMethodMarker#hasNoSideEffects(Method)}
    */
   @Test
-  @DisplayName("Test hasNoSideEffects(Method); given MethodOptimizationInfo (default constructor); then return 'false'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "boolean proguard.optimize.info.NoSideEffectMethodMarker.hasNoSideEffects(proguard.classfile.Method)"})
+  @DisplayName(
+      "Test hasNoSideEffects(Method); given MethodOptimizationInfo (default constructor); then return 'false'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean NoSideEffectMethodMarker.hasNoSideEffects(Method)"})
   void testHasNoSideEffects_givenMethodOptimizationInfo_thenReturnFalse() {
     // Arrange
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");

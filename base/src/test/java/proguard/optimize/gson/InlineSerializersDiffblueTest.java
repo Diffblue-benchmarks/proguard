@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -24,18 +25,24 @@ import proguard.testutils.cpa.NamedField;
 
 class InlineSerializersDiffblueTest {
   /**
-   * Test InlineBooleanSerializer {@link InlineBooleanSerializer#canSerialize(ClassPool, GsonRuntimeSettings)}.
+   * Test InlineBooleanSerializer {@link InlineBooleanSerializer#canSerialize(ClassPool,
+   * GsonRuntimeSettings)}.
+   *
    * <ul>
-   *   <li>Then return {@code false}.</li>
+   *   <li>Then return {@code false}.
    * </ul>
-   * <p>
-   * Method under test: {@link InlineBooleanSerializer#canSerialize(ClassPool, GsonRuntimeSettings)}
+   *
+   * <p>Method under test: {@link InlineBooleanSerializer#canSerialize(ClassPool,
+   * GsonRuntimeSettings)}
    */
   @Test
-  @DisplayName("Test InlineBooleanSerializer canSerialize(ClassPool, GsonRuntimeSettings); then return 'false'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test InlineBooleanSerializer canSerialize(ClassPool, GsonRuntimeSettings); then return 'false'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "boolean proguard.optimize.gson.InlineSerializers$InlineBooleanSerializer.canSerialize(proguard.classfile.ClassPool, proguard.optimize.gson.GsonRuntimeSettings)"})
+    "boolean InlineBooleanSerializer.canSerialize(ClassPool, GsonRuntimeSettings)"
+  })
   void testInlineBooleanSerializerCanSerialize_thenReturnFalse() {
     // Arrange
     InlineBooleanSerializer inlineBooleanSerializer = new InlineBooleanSerializer();
@@ -66,22 +73,28 @@ class InlineSerializersDiffblueTest {
   }
 
   /**
-   * Test InlineBooleanSerializer {@link InlineBooleanSerializer#serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)}.
-   * <p>
-   * Method under test: {@link InlineBooleanSerializer#serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)}
+   * Test InlineBooleanSerializer {@link InlineBooleanSerializer#serialize(ProgramClass,
+   * ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)}.
+   *
+   * <p>Method under test: {@link InlineBooleanSerializer#serialize(ProgramClass, ProgramField,
+   * CompactCodeAttributeComposer, GsonRuntimeSettings)}
    */
   @Test
-  @DisplayName("Test InlineBooleanSerializer serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test InlineBooleanSerializer serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.gson.InlineSerializers$InlineBooleanSerializer.serialize(proguard.classfile.ProgramClass, proguard.classfile.ProgramField, proguard.classfile.editor.CompactCodeAttributeComposer, proguard.optimize.gson.GsonRuntimeSettings)"})
+    "void InlineBooleanSerializer.serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)"
+  })
   void testInlineBooleanSerializerSerialize() {
     // Arrange
     InlineBooleanSerializer inlineBooleanSerializer = new InlineBooleanSerializer();
     NamedClass programClass = new NamedClass("Member Name");
     NamedField programField = new NamedField("Field Name", "Field Descriptor");
 
-    ProgramClass targetClass = new ProgramClass(2, 1, new Constant[]{new ClassConstant()}, 2, 2, 2);
+    ProgramClass targetClass =
+        new ProgramClass(2, 1, new Constant[] {new ClassConstant()}, 2, 2, 2);
 
     CompactCodeAttributeComposer ____ = new CompactCodeAttributeComposer(targetClass);
     GsonRuntimeSettings gsonRuntimeSettings = new GsonRuntimeSettings();
@@ -112,16 +125,73 @@ class InlineSerializersDiffblueTest {
   }
 
   /**
-   * Test InlineBooleanSerializer {@link InlineBooleanSerializer#serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)}.
-   * <p>
-   * Method under test: {@link InlineBooleanSerializer#serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)}
+   * Test InlineBooleanSerializer {@link InlineBooleanSerializer#serialize(ProgramClass,
+   * ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)}.
+   *
+   * <p>Method under test: {@link InlineBooleanSerializer#serialize(ProgramClass, ProgramField,
+   * CompactCodeAttributeComposer, GsonRuntimeSettings)}
    */
   @Test
-  @DisplayName("Test InlineBooleanSerializer serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test InlineBooleanSerializer serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.gson.InlineSerializers$InlineBooleanSerializer.serialize(proguard.classfile.ProgramClass, proguard.classfile.ProgramField, proguard.classfile.editor.CompactCodeAttributeComposer, proguard.optimize.gson.GsonRuntimeSettings)"})
+    "void InlineBooleanSerializer.serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)"
+  })
   void testInlineBooleanSerializerSerialize2() {
+    // Arrange
+    InlineBooleanSerializer inlineBooleanSerializer = new InlineBooleanSerializer();
+    NamedClass programClass = new NamedClass("Member Name");
+    NamedField programField = new NamedField("Field Name", "Field Descriptor");
+
+    ProgramClass targetClass =
+        new ProgramClass(2, 0, new Constant[] {new ClassConstant()}, 2, 2, 2);
+
+    CompactCodeAttributeComposer ____ = new CompactCodeAttributeComposer(targetClass);
+    GsonRuntimeSettings gsonRuntimeSettings = new GsonRuntimeSettings();
+    gsonRuntimeSettings.addDeserializationExclusionStrategy = true;
+    gsonRuntimeSettings.addSerializationExclusionStrategy = true;
+    gsonRuntimeSettings.disableInnerClassSerialization = true;
+    gsonRuntimeSettings.excludeFieldsWithModifiers = true;
+    gsonRuntimeSettings.excludeFieldsWithoutExposeAnnotation = true;
+    gsonRuntimeSettings.generateNonExecutableJson = true;
+    gsonRuntimeSettings.instanceCreatorClassPool = new ClassPool();
+    gsonRuntimeSettings.registerTypeAdapterFactory = true;
+    gsonRuntimeSettings.serializeNulls = true;
+    gsonRuntimeSettings.serializeSpecialFloatingPointValues = true;
+    gsonRuntimeSettings.setExclusionStrategies = true;
+    gsonRuntimeSettings.setFieldNamingPolicy = true;
+    gsonRuntimeSettings.setFieldNamingStrategy = true;
+    gsonRuntimeSettings.setLongSerializationPolicy = true;
+    gsonRuntimeSettings.setVersion = true;
+    gsonRuntimeSettings.typeAdapterClassPool = new ClassPool();
+
+    // Act
+    inlineBooleanSerializer.serialize(programClass, programField, ____, gsonRuntimeSettings);
+
+    // Assert
+    ProgramClass targetClass2 = ____.getTargetClass();
+    assertEquals(12, targetClass2.u2constantPoolCount);
+    assertSame(targetClass.constantPool, targetClass2.constantPool);
+  }
+
+  /**
+   * Test InlineBooleanSerializer {@link InlineBooleanSerializer#serialize(ProgramClass,
+   * ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)}.
+   *
+   * <p>Method under test: {@link InlineBooleanSerializer#serialize(ProgramClass, ProgramField,
+   * CompactCodeAttributeComposer, GsonRuntimeSettings)}
+   */
+  @Test
+  @DisplayName(
+      "Test InlineBooleanSerializer serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void InlineBooleanSerializer.serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)"
+  })
+  void testInlineBooleanSerializerSerialize3() {
     // Arrange
     InlineBooleanSerializer inlineBooleanSerializer = new InlineBooleanSerializer();
     NamedClass programClass = new NamedClass("Member Name");
@@ -129,8 +199,9 @@ class InlineSerializersDiffblueTest {
 
     ClassConstant classConstant = new ClassConstant();
     ClassConstant classConstant2 = new ClassConstant();
-    ProgramClass targetClass = new ProgramClass(2, 3,
-        new Constant[]{classConstant, classConstant2, new ClassConstant()}, 2, 2, 2);
+    ProgramClass targetClass =
+        new ProgramClass(
+            2, 3, new Constant[] {classConstant, classConstant2, new ClassConstant()}, 2, 2, 2);
 
     CompactCodeAttributeComposer ____ = new CompactCodeAttributeComposer(targetClass);
     GsonRuntimeSettings gsonRuntimeSettings = new GsonRuntimeSettings();
@@ -161,21 +232,28 @@ class InlineSerializersDiffblueTest {
   }
 
   /**
-   * Test InlinePrimitiveBooleanSerializer {@link InlinePrimitiveBooleanSerializer#canSerialize(ClassPool, GsonRuntimeSettings)}.
+   * Test InlinePrimitiveBooleanSerializer {@link
+   * InlinePrimitiveBooleanSerializer#canSerialize(ClassPool, GsonRuntimeSettings)}.
+   *
    * <ul>
-   *   <li>Then return {@code false}.</li>
+   *   <li>Then return {@code false}.
    * </ul>
-   * <p>
-   * Method under test: {@link InlinePrimitiveBooleanSerializer#canSerialize(ClassPool, GsonRuntimeSettings)}
+   *
+   * <p>Method under test: {@link InlinePrimitiveBooleanSerializer#canSerialize(ClassPool,
+   * GsonRuntimeSettings)}
    */
   @Test
-  @DisplayName("Test InlinePrimitiveBooleanSerializer canSerialize(ClassPool, GsonRuntimeSettings); then return 'false'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test InlinePrimitiveBooleanSerializer canSerialize(ClassPool, GsonRuntimeSettings); then return 'false'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "boolean proguard.optimize.gson.InlineSerializers$InlinePrimitiveBooleanSerializer.canSerialize(proguard.classfile.ClassPool, proguard.optimize.gson.GsonRuntimeSettings)"})
+    "boolean InlinePrimitiveBooleanSerializer.canSerialize(ClassPool, GsonRuntimeSettings)"
+  })
   void testInlinePrimitiveBooleanSerializerCanSerialize_thenReturnFalse() {
     // Arrange
-    InlinePrimitiveBooleanSerializer inlinePrimitiveBooleanSerializer = new InlinePrimitiveBooleanSerializer();
+    InlinePrimitiveBooleanSerializer inlinePrimitiveBooleanSerializer =
+        new InlinePrimitiveBooleanSerializer();
     ClassPool programClassPool = new ClassPool();
 
     ClassPool classPool = new ClassPool();
@@ -199,25 +277,33 @@ class InlineSerializersDiffblueTest {
     gsonRuntimeSettings.typeAdapterClassPool = classPool;
 
     // Act and Assert
-    assertFalse(inlinePrimitiveBooleanSerializer.canSerialize(programClassPool, gsonRuntimeSettings));
+    assertFalse(
+        inlinePrimitiveBooleanSerializer.canSerialize(programClassPool, gsonRuntimeSettings));
   }
 
   /**
-   * Test InlinePrimitiveBooleanSerializer {@link InlinePrimitiveBooleanSerializer#canSerialize(ClassPool, GsonRuntimeSettings)}.
+   * Test InlinePrimitiveBooleanSerializer {@link
+   * InlinePrimitiveBooleanSerializer#canSerialize(ClassPool, GsonRuntimeSettings)}.
+   *
    * <ul>
-   *   <li>Then return {@code true}.</li>
+   *   <li>Then return {@code true}.
    * </ul>
-   * <p>
-   * Method under test: {@link InlinePrimitiveBooleanSerializer#canSerialize(ClassPool, GsonRuntimeSettings)}
+   *
+   * <p>Method under test: {@link InlinePrimitiveBooleanSerializer#canSerialize(ClassPool,
+   * GsonRuntimeSettings)}
    */
   @Test
-  @DisplayName("Test InlinePrimitiveBooleanSerializer canSerialize(ClassPool, GsonRuntimeSettings); then return 'true'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test InlinePrimitiveBooleanSerializer canSerialize(ClassPool, GsonRuntimeSettings); then return 'true'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "boolean proguard.optimize.gson.InlineSerializers$InlinePrimitiveBooleanSerializer.canSerialize(proguard.classfile.ClassPool, proguard.optimize.gson.GsonRuntimeSettings)"})
+    "boolean InlinePrimitiveBooleanSerializer.canSerialize(ClassPool, GsonRuntimeSettings)"
+  })
   void testInlinePrimitiveBooleanSerializerCanSerialize_thenReturnTrue() {
     // Arrange
-    InlinePrimitiveBooleanSerializer inlinePrimitiveBooleanSerializer = new InlinePrimitiveBooleanSerializer();
+    InlinePrimitiveBooleanSerializer inlinePrimitiveBooleanSerializer =
+        new InlinePrimitiveBooleanSerializer();
     ClassPool programClassPool = new ClassPool();
     GsonRuntimeSettings gsonRuntimeSettings = new GsonRuntimeSettings();
     gsonRuntimeSettings.addDeserializationExclusionStrategy = true;
@@ -238,26 +324,35 @@ class InlineSerializersDiffblueTest {
     gsonRuntimeSettings.typeAdapterClassPool = new ClassPool();
 
     // Act and Assert
-    assertTrue(inlinePrimitiveBooleanSerializer.canSerialize(programClassPool, gsonRuntimeSettings));
+    assertTrue(
+        inlinePrimitiveBooleanSerializer.canSerialize(programClassPool, gsonRuntimeSettings));
   }
 
   /**
-   * Test InlinePrimitiveBooleanSerializer {@link InlinePrimitiveBooleanSerializer#serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)}.
-   * <p>
-   * Method under test: {@link InlinePrimitiveBooleanSerializer#serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)}
+   * Test InlinePrimitiveBooleanSerializer {@link
+   * InlinePrimitiveBooleanSerializer#serialize(ProgramClass, ProgramField,
+   * CompactCodeAttributeComposer, GsonRuntimeSettings)}.
+   *
+   * <p>Method under test: {@link InlinePrimitiveBooleanSerializer#serialize(ProgramClass,
+   * ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)}
    */
   @Test
-  @DisplayName("Test InlinePrimitiveBooleanSerializer serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test InlinePrimitiveBooleanSerializer serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.gson.InlineSerializers$InlinePrimitiveBooleanSerializer.serialize(proguard.classfile.ProgramClass, proguard.classfile.ProgramField, proguard.classfile.editor.CompactCodeAttributeComposer, proguard.optimize.gson.GsonRuntimeSettings)"})
+    "void InlinePrimitiveBooleanSerializer.serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)"
+  })
   void testInlinePrimitiveBooleanSerializerSerialize() {
     // Arrange
-    InlinePrimitiveBooleanSerializer inlinePrimitiveBooleanSerializer = new InlinePrimitiveBooleanSerializer();
+    InlinePrimitiveBooleanSerializer inlinePrimitiveBooleanSerializer =
+        new InlinePrimitiveBooleanSerializer();
     NamedClass programClass = new NamedClass("Member Name");
     NamedField programField = new NamedField("Field Name", "Field Descriptor");
 
-    ProgramClass targetClass = new ProgramClass(2, 1, new Constant[]{new ClassConstant()}, 2, 2, 2);
+    ProgramClass targetClass =
+        new ProgramClass(2, 1, new Constant[] {new ClassConstant()}, 2, 2, 2);
 
     CompactCodeAttributeComposer ____ = new CompactCodeAttributeComposer(targetClass);
     GsonRuntimeSettings gsonRuntimeSettings = new GsonRuntimeSettings();
@@ -279,7 +374,8 @@ class InlineSerializersDiffblueTest {
     gsonRuntimeSettings.typeAdapterClassPool = new ClassPool();
 
     // Act
-    inlinePrimitiveBooleanSerializer.serialize(programClass, programField, ____, gsonRuntimeSettings);
+    inlinePrimitiveBooleanSerializer.serialize(
+        programClass, programField, ____, gsonRuntimeSettings);
 
     // Assert
     ProgramClass targetClass2 = ____.getTargetClass();
@@ -288,25 +384,30 @@ class InlineSerializersDiffblueTest {
   }
 
   /**
-   * Test InlinePrimitiveBooleanSerializer {@link InlinePrimitiveBooleanSerializer#serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)}.
-   * <p>
-   * Method under test: {@link InlinePrimitiveBooleanSerializer#serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)}
+   * Test InlinePrimitiveBooleanSerializer {@link
+   * InlinePrimitiveBooleanSerializer#serialize(ProgramClass, ProgramField,
+   * CompactCodeAttributeComposer, GsonRuntimeSettings)}.
+   *
+   * <p>Method under test: {@link InlinePrimitiveBooleanSerializer#serialize(ProgramClass,
+   * ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)}
    */
   @Test
-  @DisplayName("Test InlinePrimitiveBooleanSerializer serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test InlinePrimitiveBooleanSerializer serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.gson.InlineSerializers$InlinePrimitiveBooleanSerializer.serialize(proguard.classfile.ProgramClass, proguard.classfile.ProgramField, proguard.classfile.editor.CompactCodeAttributeComposer, proguard.optimize.gson.GsonRuntimeSettings)"})
+    "void InlinePrimitiveBooleanSerializer.serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)"
+  })
   void testInlinePrimitiveBooleanSerializerSerialize2() {
     // Arrange
-    InlinePrimitiveBooleanSerializer inlinePrimitiveBooleanSerializer = new InlinePrimitiveBooleanSerializer();
+    InlinePrimitiveBooleanSerializer inlinePrimitiveBooleanSerializer =
+        new InlinePrimitiveBooleanSerializer();
     NamedClass programClass = new NamedClass("Member Name");
     NamedField programField = new NamedField("Field Name", "Field Descriptor");
 
-    ClassConstant classConstant = new ClassConstant();
-    ClassConstant classConstant2 = new ClassConstant();
-    ProgramClass targetClass = new ProgramClass(2, 3,
-        new Constant[]{classConstant, classConstant2, new ClassConstant()}, 2, 2, 2);
+    ProgramClass targetClass =
+        new ProgramClass(2, 0, new Constant[] {new ClassConstant()}, 2, 2, 2);
 
     CompactCodeAttributeComposer ____ = new CompactCodeAttributeComposer(targetClass);
     GsonRuntimeSettings gsonRuntimeSettings = new GsonRuntimeSettings();
@@ -328,7 +429,66 @@ class InlineSerializersDiffblueTest {
     gsonRuntimeSettings.typeAdapterClassPool = new ClassPool();
 
     // Act
-    inlinePrimitiveBooleanSerializer.serialize(programClass, programField, ____, gsonRuntimeSettings);
+    inlinePrimitiveBooleanSerializer.serialize(
+        programClass, programField, ____, gsonRuntimeSettings);
+
+    // Assert
+    ProgramClass targetClass2 = ____.getTargetClass();
+    assertEquals(12, targetClass2.u2constantPoolCount);
+    assertSame(targetClass.constantPool, targetClass2.constantPool);
+  }
+
+  /**
+   * Test InlinePrimitiveBooleanSerializer {@link
+   * InlinePrimitiveBooleanSerializer#serialize(ProgramClass, ProgramField,
+   * CompactCodeAttributeComposer, GsonRuntimeSettings)}.
+   *
+   * <p>Method under test: {@link InlinePrimitiveBooleanSerializer#serialize(ProgramClass,
+   * ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)}
+   */
+  @Test
+  @DisplayName(
+      "Test InlinePrimitiveBooleanSerializer serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void InlinePrimitiveBooleanSerializer.serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)"
+  })
+  void testInlinePrimitiveBooleanSerializerSerialize3() {
+    // Arrange
+    InlinePrimitiveBooleanSerializer inlinePrimitiveBooleanSerializer =
+        new InlinePrimitiveBooleanSerializer();
+    NamedClass programClass = new NamedClass("Member Name");
+    NamedField programField = new NamedField("Field Name", "Field Descriptor");
+
+    ClassConstant classConstant = new ClassConstant();
+    ClassConstant classConstant2 = new ClassConstant();
+    ProgramClass targetClass =
+        new ProgramClass(
+            2, 3, new Constant[] {classConstant, classConstant2, new ClassConstant()}, 2, 2, 2);
+
+    CompactCodeAttributeComposer ____ = new CompactCodeAttributeComposer(targetClass);
+    GsonRuntimeSettings gsonRuntimeSettings = new GsonRuntimeSettings();
+    gsonRuntimeSettings.addDeserializationExclusionStrategy = true;
+    gsonRuntimeSettings.addSerializationExclusionStrategy = true;
+    gsonRuntimeSettings.disableInnerClassSerialization = true;
+    gsonRuntimeSettings.excludeFieldsWithModifiers = true;
+    gsonRuntimeSettings.excludeFieldsWithoutExposeAnnotation = true;
+    gsonRuntimeSettings.generateNonExecutableJson = true;
+    gsonRuntimeSettings.instanceCreatorClassPool = new ClassPool();
+    gsonRuntimeSettings.registerTypeAdapterFactory = true;
+    gsonRuntimeSettings.serializeNulls = true;
+    gsonRuntimeSettings.serializeSpecialFloatingPointValues = true;
+    gsonRuntimeSettings.setExclusionStrategies = true;
+    gsonRuntimeSettings.setFieldNamingPolicy = true;
+    gsonRuntimeSettings.setFieldNamingStrategy = true;
+    gsonRuntimeSettings.setLongSerializationPolicy = true;
+    gsonRuntimeSettings.setVersion = true;
+    gsonRuntimeSettings.typeAdapterClassPool = new ClassPool();
+
+    // Act
+    inlinePrimitiveBooleanSerializer.serialize(
+        programClass, programField, ____, gsonRuntimeSettings);
 
     // Assert
     ProgramClass targetClass2 = ____.getTargetClass();
@@ -337,21 +497,28 @@ class InlineSerializersDiffblueTest {
   }
 
   /**
-   * Test InlinePrimitiveIntegerSerializer {@link InlinePrimitiveIntegerSerializer#canSerialize(ClassPool, GsonRuntimeSettings)}.
+   * Test InlinePrimitiveIntegerSerializer {@link
+   * InlinePrimitiveIntegerSerializer#canSerialize(ClassPool, GsonRuntimeSettings)}.
+   *
    * <ul>
-   *   <li>Then return {@code false}.</li>
+   *   <li>Then return {@code false}.
    * </ul>
-   * <p>
-   * Method under test: {@link InlinePrimitiveIntegerSerializer#canSerialize(ClassPool, GsonRuntimeSettings)}
+   *
+   * <p>Method under test: {@link InlinePrimitiveIntegerSerializer#canSerialize(ClassPool,
+   * GsonRuntimeSettings)}
    */
   @Test
-  @DisplayName("Test InlinePrimitiveIntegerSerializer canSerialize(ClassPool, GsonRuntimeSettings); then return 'false'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test InlinePrimitiveIntegerSerializer canSerialize(ClassPool, GsonRuntimeSettings); then return 'false'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "boolean proguard.optimize.gson.InlineSerializers$InlinePrimitiveIntegerSerializer.canSerialize(proguard.classfile.ClassPool, proguard.optimize.gson.GsonRuntimeSettings)"})
+    "boolean InlinePrimitiveIntegerSerializer.canSerialize(ClassPool, GsonRuntimeSettings)"
+  })
   void testInlinePrimitiveIntegerSerializerCanSerialize_thenReturnFalse() {
     // Arrange
-    InlinePrimitiveIntegerSerializer inlinePrimitiveIntegerSerializer = new InlinePrimitiveIntegerSerializer();
+    InlinePrimitiveIntegerSerializer inlinePrimitiveIntegerSerializer =
+        new InlinePrimitiveIntegerSerializer();
     ClassPool programClassPool = new ClassPool();
 
     ClassPool classPool = new ClassPool();
@@ -375,25 +542,33 @@ class InlineSerializersDiffblueTest {
     gsonRuntimeSettings.typeAdapterClassPool = classPool;
 
     // Act and Assert
-    assertFalse(inlinePrimitiveIntegerSerializer.canSerialize(programClassPool, gsonRuntimeSettings));
+    assertFalse(
+        inlinePrimitiveIntegerSerializer.canSerialize(programClassPool, gsonRuntimeSettings));
   }
 
   /**
-   * Test InlinePrimitiveIntegerSerializer {@link InlinePrimitiveIntegerSerializer#canSerialize(ClassPool, GsonRuntimeSettings)}.
+   * Test InlinePrimitiveIntegerSerializer {@link
+   * InlinePrimitiveIntegerSerializer#canSerialize(ClassPool, GsonRuntimeSettings)}.
+   *
    * <ul>
-   *   <li>Then return {@code true}.</li>
+   *   <li>Then return {@code true}.
    * </ul>
-   * <p>
-   * Method under test: {@link InlinePrimitiveIntegerSerializer#canSerialize(ClassPool, GsonRuntimeSettings)}
+   *
+   * <p>Method under test: {@link InlinePrimitiveIntegerSerializer#canSerialize(ClassPool,
+   * GsonRuntimeSettings)}
    */
   @Test
-  @DisplayName("Test InlinePrimitiveIntegerSerializer canSerialize(ClassPool, GsonRuntimeSettings); then return 'true'")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test InlinePrimitiveIntegerSerializer canSerialize(ClassPool, GsonRuntimeSettings); then return 'true'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "boolean proguard.optimize.gson.InlineSerializers$InlinePrimitiveIntegerSerializer.canSerialize(proguard.classfile.ClassPool, proguard.optimize.gson.GsonRuntimeSettings)"})
+    "boolean InlinePrimitiveIntegerSerializer.canSerialize(ClassPool, GsonRuntimeSettings)"
+  })
   void testInlinePrimitiveIntegerSerializerCanSerialize_thenReturnTrue() {
     // Arrange
-    InlinePrimitiveIntegerSerializer inlinePrimitiveIntegerSerializer = new InlinePrimitiveIntegerSerializer();
+    InlinePrimitiveIntegerSerializer inlinePrimitiveIntegerSerializer =
+        new InlinePrimitiveIntegerSerializer();
     ClassPool programClassPool = new ClassPool();
     GsonRuntimeSettings gsonRuntimeSettings = new GsonRuntimeSettings();
     gsonRuntimeSettings.addDeserializationExclusionStrategy = true;
@@ -414,26 +589,35 @@ class InlineSerializersDiffblueTest {
     gsonRuntimeSettings.typeAdapterClassPool = new ClassPool();
 
     // Act and Assert
-    assertTrue(inlinePrimitiveIntegerSerializer.canSerialize(programClassPool, gsonRuntimeSettings));
+    assertTrue(
+        inlinePrimitiveIntegerSerializer.canSerialize(programClassPool, gsonRuntimeSettings));
   }
 
   /**
-   * Test InlinePrimitiveIntegerSerializer {@link InlinePrimitiveIntegerSerializer#serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)}.
-   * <p>
-   * Method under test: {@link InlinePrimitiveIntegerSerializer#serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)}
+   * Test InlinePrimitiveIntegerSerializer {@link
+   * InlinePrimitiveIntegerSerializer#serialize(ProgramClass, ProgramField,
+   * CompactCodeAttributeComposer, GsonRuntimeSettings)}.
+   *
+   * <p>Method under test: {@link InlinePrimitiveIntegerSerializer#serialize(ProgramClass,
+   * ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)}
    */
   @Test
-  @DisplayName("Test InlinePrimitiveIntegerSerializer serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test InlinePrimitiveIntegerSerializer serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.gson.InlineSerializers$InlinePrimitiveIntegerSerializer.serialize(proguard.classfile.ProgramClass, proguard.classfile.ProgramField, proguard.classfile.editor.CompactCodeAttributeComposer, proguard.optimize.gson.GsonRuntimeSettings)"})
+    "void InlinePrimitiveIntegerSerializer.serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)"
+  })
   void testInlinePrimitiveIntegerSerializerSerialize() {
     // Arrange
-    InlinePrimitiveIntegerSerializer inlinePrimitiveIntegerSerializer = new InlinePrimitiveIntegerSerializer();
+    InlinePrimitiveIntegerSerializer inlinePrimitiveIntegerSerializer =
+        new InlinePrimitiveIntegerSerializer();
     NamedClass programClass = new NamedClass("Member Name");
     NamedField programField = new NamedField("Field Name", "Field Descriptor");
 
-    ProgramClass targetClass = new ProgramClass(2, 1, new Constant[]{new ClassConstant()}, 2, 2, 2);
+    ProgramClass targetClass =
+        new ProgramClass(2, 1, new Constant[] {new ClassConstant()}, 2, 2, 2);
 
     CompactCodeAttributeComposer ____ = new CompactCodeAttributeComposer(targetClass);
     GsonRuntimeSettings gsonRuntimeSettings = new GsonRuntimeSettings();
@@ -455,7 +639,8 @@ class InlineSerializersDiffblueTest {
     gsonRuntimeSettings.typeAdapterClassPool = new ClassPool();
 
     // Act
-    inlinePrimitiveIntegerSerializer.serialize(programClass, programField, ____, gsonRuntimeSettings);
+    inlinePrimitiveIntegerSerializer.serialize(
+        programClass, programField, ____, gsonRuntimeSettings);
 
     // Assert
     ProgramClass targetClass2 = ____.getTargetClass();
@@ -464,25 +649,30 @@ class InlineSerializersDiffblueTest {
   }
 
   /**
-   * Test InlinePrimitiveIntegerSerializer {@link InlinePrimitiveIntegerSerializer#serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)}.
-   * <p>
-   * Method under test: {@link InlinePrimitiveIntegerSerializer#serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)}
+   * Test InlinePrimitiveIntegerSerializer {@link
+   * InlinePrimitiveIntegerSerializer#serialize(ProgramClass, ProgramField,
+   * CompactCodeAttributeComposer, GsonRuntimeSettings)}.
+   *
+   * <p>Method under test: {@link InlinePrimitiveIntegerSerializer#serialize(ProgramClass,
+   * ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)}
    */
   @Test
-  @DisplayName("Test InlinePrimitiveIntegerSerializer serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test InlinePrimitiveIntegerSerializer serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.gson.InlineSerializers$InlinePrimitiveIntegerSerializer.serialize(proguard.classfile.ProgramClass, proguard.classfile.ProgramField, proguard.classfile.editor.CompactCodeAttributeComposer, proguard.optimize.gson.GsonRuntimeSettings)"})
+    "void InlinePrimitiveIntegerSerializer.serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)"
+  })
   void testInlinePrimitiveIntegerSerializerSerialize2() {
     // Arrange
-    InlinePrimitiveIntegerSerializer inlinePrimitiveIntegerSerializer = new InlinePrimitiveIntegerSerializer();
+    InlinePrimitiveIntegerSerializer inlinePrimitiveIntegerSerializer =
+        new InlinePrimitiveIntegerSerializer();
     NamedClass programClass = new NamedClass("Member Name");
     NamedField programField = new NamedField("Field Name", "Field Descriptor");
 
-    ClassConstant classConstant = new ClassConstant();
-    ClassConstant classConstant2 = new ClassConstant();
-    ProgramClass targetClass = new ProgramClass(2, 3,
-        new Constant[]{classConstant, classConstant2, new ClassConstant()}, 2, 2, 2);
+    ProgramClass targetClass =
+        new ProgramClass(2, 0, new Constant[] {new ClassConstant()}, 2, 2, 2);
 
     CompactCodeAttributeComposer ____ = new CompactCodeAttributeComposer(targetClass);
     GsonRuntimeSettings gsonRuntimeSettings = new GsonRuntimeSettings();
@@ -504,7 +694,66 @@ class InlineSerializersDiffblueTest {
     gsonRuntimeSettings.typeAdapterClassPool = new ClassPool();
 
     // Act
-    inlinePrimitiveIntegerSerializer.serialize(programClass, programField, ____, gsonRuntimeSettings);
+    inlinePrimitiveIntegerSerializer.serialize(
+        programClass, programField, ____, gsonRuntimeSettings);
+
+    // Assert
+    ProgramClass targetClass2 = ____.getTargetClass();
+    assertEquals(18, targetClass2.u2constantPoolCount);
+    assertSame(targetClass.constantPool, targetClass2.constantPool);
+  }
+
+  /**
+   * Test InlinePrimitiveIntegerSerializer {@link
+   * InlinePrimitiveIntegerSerializer#serialize(ProgramClass, ProgramField,
+   * CompactCodeAttributeComposer, GsonRuntimeSettings)}.
+   *
+   * <p>Method under test: {@link InlinePrimitiveIntegerSerializer#serialize(ProgramClass,
+   * ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)}
+   */
+  @Test
+  @DisplayName(
+      "Test InlinePrimitiveIntegerSerializer serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void InlinePrimitiveIntegerSerializer.serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)"
+  })
+  void testInlinePrimitiveIntegerSerializerSerialize3() {
+    // Arrange
+    InlinePrimitiveIntegerSerializer inlinePrimitiveIntegerSerializer =
+        new InlinePrimitiveIntegerSerializer();
+    NamedClass programClass = new NamedClass("Member Name");
+    NamedField programField = new NamedField("Field Name", "Field Descriptor");
+
+    ClassConstant classConstant = new ClassConstant();
+    ClassConstant classConstant2 = new ClassConstant();
+    ProgramClass targetClass =
+        new ProgramClass(
+            2, 3, new Constant[] {classConstant, classConstant2, new ClassConstant()}, 2, 2, 2);
+
+    CompactCodeAttributeComposer ____ = new CompactCodeAttributeComposer(targetClass);
+    GsonRuntimeSettings gsonRuntimeSettings = new GsonRuntimeSettings();
+    gsonRuntimeSettings.addDeserializationExclusionStrategy = true;
+    gsonRuntimeSettings.addSerializationExclusionStrategy = true;
+    gsonRuntimeSettings.disableInnerClassSerialization = true;
+    gsonRuntimeSettings.excludeFieldsWithModifiers = true;
+    gsonRuntimeSettings.excludeFieldsWithoutExposeAnnotation = true;
+    gsonRuntimeSettings.generateNonExecutableJson = true;
+    gsonRuntimeSettings.instanceCreatorClassPool = new ClassPool();
+    gsonRuntimeSettings.registerTypeAdapterFactory = true;
+    gsonRuntimeSettings.serializeNulls = true;
+    gsonRuntimeSettings.serializeSpecialFloatingPointValues = true;
+    gsonRuntimeSettings.setExclusionStrategies = true;
+    gsonRuntimeSettings.setFieldNamingPolicy = true;
+    gsonRuntimeSettings.setFieldNamingStrategy = true;
+    gsonRuntimeSettings.setLongSerializationPolicy = true;
+    gsonRuntimeSettings.setVersion = true;
+    gsonRuntimeSettings.typeAdapterClassPool = new ClassPool();
+
+    // Act
+    inlinePrimitiveIntegerSerializer.serialize(
+        programClass, programField, ____, gsonRuntimeSettings);
 
     // Assert
     ProgramClass targetClass2 = ____.getTargetClass();
@@ -513,18 +762,22 @@ class InlineSerializersDiffblueTest {
   }
 
   /**
-   * Test InlineStringSerializer {@link InlineStringSerializer#canSerialize(ClassPool, GsonRuntimeSettings)}.
+   * Test InlineStringSerializer {@link InlineStringSerializer#canSerialize(ClassPool,
+   * GsonRuntimeSettings)}.
+   *
    * <ul>
-   *   <li>Then return {@code false}.</li>
+   *   <li>Then return {@code false}.
    * </ul>
-   * <p>
-   * Method under test: {@link InlineStringSerializer#canSerialize(ClassPool, GsonRuntimeSettings)}
+   *
+   * <p>Method under test: {@link InlineStringSerializer#canSerialize(ClassPool,
+   * GsonRuntimeSettings)}
    */
   @Test
-  @DisplayName("Test InlineStringSerializer canSerialize(ClassPool, GsonRuntimeSettings); then return 'false'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "boolean proguard.optimize.gson.InlineSerializers$InlineStringSerializer.canSerialize(proguard.classfile.ClassPool, proguard.optimize.gson.GsonRuntimeSettings)"})
+  @DisplayName(
+      "Test InlineStringSerializer canSerialize(ClassPool, GsonRuntimeSettings); then return 'false'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean InlineStringSerializer.canSerialize(ClassPool, GsonRuntimeSettings)"})
   void testInlineStringSerializerCanSerialize_thenReturnFalse() {
     // Arrange
     InlineStringSerializer inlineStringSerializer = new InlineStringSerializer();
@@ -555,18 +808,22 @@ class InlineSerializersDiffblueTest {
   }
 
   /**
-   * Test InlineStringSerializer {@link InlineStringSerializer#canSerialize(ClassPool, GsonRuntimeSettings)}.
+   * Test InlineStringSerializer {@link InlineStringSerializer#canSerialize(ClassPool,
+   * GsonRuntimeSettings)}.
+   *
    * <ul>
-   *   <li>Then return {@code true}.</li>
+   *   <li>Then return {@code true}.
    * </ul>
-   * <p>
-   * Method under test: {@link InlineStringSerializer#canSerialize(ClassPool, GsonRuntimeSettings)}
+   *
+   * <p>Method under test: {@link InlineStringSerializer#canSerialize(ClassPool,
+   * GsonRuntimeSettings)}
    */
   @Test
-  @DisplayName("Test InlineStringSerializer canSerialize(ClassPool, GsonRuntimeSettings); then return 'true'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "boolean proguard.optimize.gson.InlineSerializers$InlineStringSerializer.canSerialize(proguard.classfile.ClassPool, proguard.optimize.gson.GsonRuntimeSettings)"})
+  @DisplayName(
+      "Test InlineStringSerializer canSerialize(ClassPool, GsonRuntimeSettings); then return 'true'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean InlineStringSerializer.canSerialize(ClassPool, GsonRuntimeSettings)"})
   void testInlineStringSerializerCanSerialize_thenReturnTrue() {
     // Arrange
     InlineStringSerializer inlineStringSerializer = new InlineStringSerializer();
@@ -594,22 +851,28 @@ class InlineSerializersDiffblueTest {
   }
 
   /**
-   * Test InlineStringSerializer {@link InlineStringSerializer#serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)}.
-   * <p>
-   * Method under test: {@link InlineStringSerializer#serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)}
+   * Test InlineStringSerializer {@link InlineStringSerializer#serialize(ProgramClass, ProgramField,
+   * CompactCodeAttributeComposer, GsonRuntimeSettings)}.
+   *
+   * <p>Method under test: {@link InlineStringSerializer#serialize(ProgramClass, ProgramField,
+   * CompactCodeAttributeComposer, GsonRuntimeSettings)}
    */
   @Test
-  @DisplayName("Test InlineStringSerializer serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test InlineStringSerializer serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.gson.InlineSerializers$InlineStringSerializer.serialize(proguard.classfile.ProgramClass, proguard.classfile.ProgramField, proguard.classfile.editor.CompactCodeAttributeComposer, proguard.optimize.gson.GsonRuntimeSettings)"})
+    "void InlineStringSerializer.serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)"
+  })
   void testInlineStringSerializerSerialize() {
     // Arrange
     InlineStringSerializer inlineStringSerializer = new InlineStringSerializer();
     NamedClass programClass = new NamedClass("Member Name");
     NamedField programField = new NamedField("Field Name", "Field Descriptor");
 
-    ProgramClass targetClass = new ProgramClass(2, 1, new Constant[]{new ClassConstant()}, 2, 2, 2);
+    ProgramClass targetClass =
+        new ProgramClass(2, 1, new Constant[] {new ClassConstant()}, 2, 2, 2);
 
     CompactCodeAttributeComposer ____ = new CompactCodeAttributeComposer(targetClass);
     GsonRuntimeSettings gsonRuntimeSettings = new GsonRuntimeSettings();
@@ -640,16 +903,73 @@ class InlineSerializersDiffblueTest {
   }
 
   /**
-   * Test InlineStringSerializer {@link InlineStringSerializer#serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)}.
-   * <p>
-   * Method under test: {@link InlineStringSerializer#serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)}
+   * Test InlineStringSerializer {@link InlineStringSerializer#serialize(ProgramClass, ProgramField,
+   * CompactCodeAttributeComposer, GsonRuntimeSettings)}.
+   *
+   * <p>Method under test: {@link InlineStringSerializer#serialize(ProgramClass, ProgramField,
+   * CompactCodeAttributeComposer, GsonRuntimeSettings)}
    */
   @Test
-  @DisplayName("Test InlineStringSerializer serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName(
+      "Test InlineStringSerializer serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.optimize.gson.InlineSerializers$InlineStringSerializer.serialize(proguard.classfile.ProgramClass, proguard.classfile.ProgramField, proguard.classfile.editor.CompactCodeAttributeComposer, proguard.optimize.gson.GsonRuntimeSettings)"})
+    "void InlineStringSerializer.serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)"
+  })
   void testInlineStringSerializerSerialize2() {
+    // Arrange
+    InlineStringSerializer inlineStringSerializer = new InlineStringSerializer();
+    NamedClass programClass = new NamedClass("Member Name");
+    NamedField programField = new NamedField("Field Name", "Field Descriptor");
+
+    ProgramClass targetClass =
+        new ProgramClass(2, 0, new Constant[] {new ClassConstant()}, 2, 2, 2);
+
+    CompactCodeAttributeComposer ____ = new CompactCodeAttributeComposer(targetClass);
+    GsonRuntimeSettings gsonRuntimeSettings = new GsonRuntimeSettings();
+    gsonRuntimeSettings.addDeserializationExclusionStrategy = true;
+    gsonRuntimeSettings.addSerializationExclusionStrategy = true;
+    gsonRuntimeSettings.disableInnerClassSerialization = true;
+    gsonRuntimeSettings.excludeFieldsWithModifiers = true;
+    gsonRuntimeSettings.excludeFieldsWithoutExposeAnnotation = true;
+    gsonRuntimeSettings.generateNonExecutableJson = true;
+    gsonRuntimeSettings.instanceCreatorClassPool = new ClassPool();
+    gsonRuntimeSettings.registerTypeAdapterFactory = true;
+    gsonRuntimeSettings.serializeNulls = true;
+    gsonRuntimeSettings.serializeSpecialFloatingPointValues = true;
+    gsonRuntimeSettings.setExclusionStrategies = true;
+    gsonRuntimeSettings.setFieldNamingPolicy = true;
+    gsonRuntimeSettings.setFieldNamingStrategy = true;
+    gsonRuntimeSettings.setLongSerializationPolicy = true;
+    gsonRuntimeSettings.setVersion = true;
+    gsonRuntimeSettings.typeAdapterClassPool = new ClassPool();
+
+    // Act
+    inlineStringSerializer.serialize(programClass, programField, ____, gsonRuntimeSettings);
+
+    // Assert
+    ProgramClass targetClass2 = ____.getTargetClass();
+    assertEquals(12, targetClass2.u2constantPoolCount);
+    assertSame(targetClass.constantPool, targetClass2.constantPool);
+  }
+
+  /**
+   * Test InlineStringSerializer {@link InlineStringSerializer#serialize(ProgramClass, ProgramField,
+   * CompactCodeAttributeComposer, GsonRuntimeSettings)}.
+   *
+   * <p>Method under test: {@link InlineStringSerializer#serialize(ProgramClass, ProgramField,
+   * CompactCodeAttributeComposer, GsonRuntimeSettings)}
+   */
+  @Test
+  @DisplayName(
+      "Test InlineStringSerializer serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void InlineStringSerializer.serialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)"
+  })
+  void testInlineStringSerializerSerialize3() {
     // Arrange
     InlineStringSerializer inlineStringSerializer = new InlineStringSerializer();
     NamedClass programClass = new NamedClass("Member Name");
@@ -657,8 +977,9 @@ class InlineSerializersDiffblueTest {
 
     ClassConstant classConstant = new ClassConstant();
     ClassConstant classConstant2 = new ClassConstant();
-    ProgramClass targetClass = new ProgramClass(2, 3,
-        new Constant[]{classConstant, classConstant2, new ClassConstant()}, 2, 2, 2);
+    ProgramClass targetClass =
+        new ProgramClass(
+            2, 3, new Constant[] {classConstant, classConstant2, new ClassConstant()}, 2, 2, 2);
 
     CompactCodeAttributeComposer ____ = new CompactCodeAttributeComposer(targetClass);
     GsonRuntimeSettings gsonRuntimeSettings = new GsonRuntimeSettings();

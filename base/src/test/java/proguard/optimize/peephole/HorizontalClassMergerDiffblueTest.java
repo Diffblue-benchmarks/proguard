@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -19,21 +20,23 @@ import proguard.optimize.info.ProgramClassOptimizationInfo;
 class HorizontalClassMergerDiffblueTest {
   /**
    * Test {@link HorizontalClassMerger#visitClassPool(ClassPool)}.
+   *
    * <ul>
-   *   <li>Given {@link ArrayList#ArrayList()}.</li>
-   *   <li>Then calls {@link ClassPool#classes()}.</li>
+   *   <li>Given {@link ArrayList#ArrayList()}.
+   *   <li>Then calls {@link ClassPool#classes()}.
    * </ul>
-   * <p>
-   * Method under test: {@link HorizontalClassMerger#visitClassPool(ClassPool)}
+   *
+   * <p>Method under test: {@link HorizontalClassMerger#visitClassPool(ClassPool)}
    */
   @Test
   @DisplayName("Test visitClassPool(ClassPool); given ArrayList(); then calls classes()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.peephole.HorizontalClassMerger.visitClassPool(proguard.classfile.ClassPool)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void HorizontalClassMerger.visitClassPool(ClassPool)"})
   void testVisitClassPool_givenArrayList_thenCallsClasses() {
     // Arrange
-    HorizontalClassMerger horizontalClassMerger = new HorizontalClassMerger(true, true, new HashSet<>());
+    HorizontalClassMerger horizontalClassMerger =
+        new HorizontalClassMerger(true, true, new HashSet<>());
     ClassPool classPool = mock(ClassPool.class);
     when(classPool.classes()).thenReturn(new ArrayList<>());
 
@@ -46,20 +49,23 @@ class HorizontalClassMergerDiffblueTest {
 
   /**
    * Test {@link HorizontalClassMerger#isCandidateForMerging(Clazz)}.
+   *
    * <ul>
-   *   <li>Given {@link ClassOptimizationInfo} (default constructor).</li>
+   *   <li>Given {@link ClassOptimizationInfo} (default constructor).
    * </ul>
-   * <p>
-   * Method under test: {@link HorizontalClassMerger#isCandidateForMerging(Clazz)}
+   *
+   * <p>Method under test: {@link HorizontalClassMerger#isCandidateForMerging(Clazz)}
    */
   @Test
-  @DisplayName("Test isCandidateForMerging(Clazz); given ClassOptimizationInfo (default constructor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "boolean proguard.optimize.peephole.HorizontalClassMerger.isCandidateForMerging(proguard.classfile.Clazz)"})
+  @DisplayName(
+      "Test isCandidateForMerging(Clazz); given ClassOptimizationInfo (default constructor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean HorizontalClassMerger.isCandidateForMerging(Clazz)"})
   void testIsCandidateForMerging_givenClassOptimizationInfo() {
     // Arrange
-    HorizontalClassMerger horizontalClassMerger = new HorizontalClassMerger(true, true, new HashSet<>());
+    HorizontalClassMerger horizontalClassMerger =
+        new HorizontalClassMerger(true, true, new HashSet<>());
 
     LibraryClass clazz = new LibraryClass();
     clazz.setProcessingInfo(new ClassOptimizationInfo());
@@ -70,20 +76,23 @@ class HorizontalClassMergerDiffblueTest {
 
   /**
    * Test {@link HorizontalClassMerger#isCandidateForMerging(Clazz)}.
+   *
    * <ul>
-   *   <li>Given {@link ProgramClassOptimizationInfo} (default constructor).</li>
+   *   <li>Given {@link ProgramClassOptimizationInfo} (default constructor).
    * </ul>
-   * <p>
-   * Method under test: {@link HorizontalClassMerger#isCandidateForMerging(Clazz)}
+   *
+   * <p>Method under test: {@link HorizontalClassMerger#isCandidateForMerging(Clazz)}
    */
   @Test
-  @DisplayName("Test isCandidateForMerging(Clazz); given ProgramClassOptimizationInfo (default constructor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "boolean proguard.optimize.peephole.HorizontalClassMerger.isCandidateForMerging(proguard.classfile.Clazz)"})
+  @DisplayName(
+      "Test isCandidateForMerging(Clazz); given ProgramClassOptimizationInfo (default constructor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"boolean HorizontalClassMerger.isCandidateForMerging(Clazz)"})
   void testIsCandidateForMerging_givenProgramClassOptimizationInfo() {
     // Arrange
-    HorizontalClassMerger horizontalClassMerger = new HorizontalClassMerger(true, true, new HashSet<>());
+    HorizontalClassMerger horizontalClassMerger =
+        new HorizontalClassMerger(true, true, new HashSet<>());
 
     LibraryClass clazz = new LibraryClass();
     clazz.setProcessingInfo(new ProgramClassOptimizationInfo());

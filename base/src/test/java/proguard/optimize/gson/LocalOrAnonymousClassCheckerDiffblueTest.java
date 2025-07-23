@@ -5,6 +5,7 @@ import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -18,17 +19,19 @@ import proguard.classfile.attribute.visitor.AttributeVisitor;
 class LocalOrAnonymousClassCheckerDiffblueTest {
   /**
    * Test {@link LocalOrAnonymousClassChecker#visitProgramClass(ProgramClass)}.
+   *
    * <ul>
-   *   <li>Then calls {@link ProgramClass#attributesAccept(AttributeVisitor)}.</li>
+   *   <li>Then calls {@link ProgramClass#attributesAccept(AttributeVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link LocalOrAnonymousClassChecker#visitProgramClass(ProgramClass)}
+   *
+   * <p>Method under test: {@link LocalOrAnonymousClassChecker#visitProgramClass(ProgramClass)}
    */
   @Test
-  @DisplayName("Test visitProgramClass(ProgramClass); then calls attributesAccept(AttributeVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.optimize.gson.LocalOrAnonymousClassChecker.visitProgramClass(proguard.classfile.ProgramClass)"})
+  @DisplayName(
+      "Test visitProgramClass(ProgramClass); then calls attributesAccept(AttributeVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void LocalOrAnonymousClassChecker.visitProgramClass(ProgramClass)"})
   void testVisitProgramClass_thenCallsAttributesAccept() {
     // Arrange
     LocalOrAnonymousClassChecker localOrAnonymousClassChecker = new LocalOrAnonymousClassChecker();
@@ -44,8 +47,9 @@ class LocalOrAnonymousClassCheckerDiffblueTest {
 
   /**
    * Test getters and setters.
-   * <p>
-   * Methods under test:
+   *
+   * <p>Methods under test:
+   *
    * <ul>
    *   <li>default or parameterless constructor of {@link LocalOrAnonymousClassChecker}
    *   <li>{@link LocalOrAnonymousClassChecker#visitAnyClass(Clazz)}
@@ -54,13 +58,17 @@ class LocalOrAnonymousClassCheckerDiffblueTest {
    */
   @Test
   @DisplayName("Test getters and setters")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.optimize.gson.LocalOrAnonymousClassChecker.<init>()",
-      "boolean proguard.optimize.gson.LocalOrAnonymousClassChecker.isLocalOrAnonymous()",
-      "void proguard.optimize.gson.LocalOrAnonymousClassChecker.visitAnyClass(proguard.classfile.Clazz)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void LocalOrAnonymousClassChecker.<init>()",
+    "boolean LocalOrAnonymousClassChecker.isLocalOrAnonymous()",
+    "void LocalOrAnonymousClassChecker.visitAnyClass(Clazz)"
+  })
   void testGettersAndSetters() {
     // Arrange and Act
-    LocalOrAnonymousClassChecker actualLocalOrAnonymousClassChecker = new LocalOrAnonymousClassChecker();
+    LocalOrAnonymousClassChecker actualLocalOrAnonymousClassChecker =
+        new LocalOrAnonymousClassChecker();
     actualLocalOrAnonymousClassChecker.visitAnyClass(new LibraryClass());
 
     // Assert

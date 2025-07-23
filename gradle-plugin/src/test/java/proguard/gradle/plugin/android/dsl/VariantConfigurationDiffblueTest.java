@@ -3,6 +3,7 @@ package proguard.gradle.plugin.android.dsl;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,14 +14,21 @@ import org.junit.jupiter.api.Test;
 class VariantConfigurationDiffblueTest {
   /**
    * Test {@link VariantConfiguration#configuration(String)}.
-   * <p>
-   * Method under test: {@link VariantConfiguration#configuration(String)}
+   *
+   * <ul>
+   *   <li>Then {@link VariantConfiguration#VariantConfiguration(String)} with {@code Name}
+   *       Configurations size is one.
+   * </ul>
+   *
+   * <p>Method under test: {@link VariantConfiguration#configuration(String)}
    */
   @Test
-  @DisplayName("Test configuration(String)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.gradle.plugin.android.dsl.VariantConfiguration.configuration(java.lang.String)"})
-  void testConfiguration() {
+  @DisplayName(
+      "Test configuration(String); then VariantConfiguration(String) with 'Name' Configurations size is one")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void VariantConfiguration.configuration(String)"})
+  void testConfiguration_thenVariantConfigurationWithNameConfigurationsSizeIsOne() {
     // Arrange
     VariantConfiguration variantConfiguration = new VariantConfiguration("Name");
 
@@ -39,13 +47,14 @@ class VariantConfigurationDiffblueTest {
 
   /**
    * Test {@link VariantConfiguration#configurations(String[])}.
-   * <p>
-   * Method under test: {@link VariantConfiguration#configurations(String[])}
+   *
+   * <p>Method under test: {@link VariantConfiguration#configurations(String[])}
    */
   @Test
   @DisplayName("Test configurations(String[])")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.gradle.plugin.android.dsl.VariantConfiguration.configurations(java.lang.String[])"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void VariantConfiguration.configurations(String[])"})
   void testConfigurations() {
     // Arrange
     VariantConfiguration variantConfiguration = new VariantConfiguration("Name");
@@ -65,14 +74,14 @@ class VariantConfigurationDiffblueTest {
 
   /**
    * Test {@link VariantConfiguration#consumerRuleFilter(String[])}.
-   * <p>
-   * Method under test: {@link VariantConfiguration#consumerRuleFilter(String[])}
+   *
+   * <p>Method under test: {@link VariantConfiguration#consumerRuleFilter(String[])}
    */
   @Test
   @DisplayName("Test consumerRuleFilter(String[])")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.gradle.plugin.android.dsl.VariantConfiguration.consumerRuleFilter(java.lang.String[])"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void VariantConfiguration.consumerRuleFilter(String[])"})
   void testConsumerRuleFilter() {
     // Arrange
     VariantConfiguration variantConfiguration = new VariantConfiguration("Name");
@@ -88,8 +97,9 @@ class VariantConfigurationDiffblueTest {
 
   /**
    * Test getters and setters.
-   * <p>
-   * Methods under test:
+   *
+   * <p>Methods under test:
+   *
    * <ul>
    *   <li>{@link VariantConfiguration#setConfigurations(List)}
    *   <li>{@link VariantConfiguration#setConsumerRuleFilter(List)}
@@ -100,12 +110,15 @@ class VariantConfigurationDiffblueTest {
    */
   @Test
   @DisplayName("Test getters and setters")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"java.util.List proguard.gradle.plugin.android.dsl.VariantConfiguration.getConfigurations()",
-      "java.util.List proguard.gradle.plugin.android.dsl.VariantConfiguration.getConsumerRuleFilter()",
-      "java.lang.String proguard.gradle.plugin.android.dsl.VariantConfiguration.getName()",
-      "void proguard.gradle.plugin.android.dsl.VariantConfiguration.setConfigurations(java.util.List)",
-      "void proguard.gradle.plugin.android.dsl.VariantConfiguration.setConsumerRuleFilter(java.util.List)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "List VariantConfiguration.getConfigurations()",
+    "List VariantConfiguration.getConsumerRuleFilter()",
+    "String VariantConfiguration.getName()",
+    "void VariantConfiguration.setConfigurations(List)",
+    "void VariantConfiguration.setConsumerRuleFilter(List)"
+  })
   void testGettersAndSetters() {
     // Arrange
     VariantConfiguration variantConfiguration = new VariantConfiguration("Name");
@@ -128,14 +141,20 @@ class VariantConfigurationDiffblueTest {
 
   /**
    * Test {@link VariantConfiguration#VariantConfiguration(String)}.
-   * <p>
-   * Method under test: {@link VariantConfiguration#VariantConfiguration(String)}
+   *
+   * <ul>
+   *   <li>When {@code Name}.
+   *   <li>Then return {@code Name}.
+   * </ul>
+   *
+   * <p>Method under test: {@link VariantConfiguration#VariantConfiguration(String)}
    */
   @Test
-  @DisplayName("Test new VariantConfiguration(String)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.gradle.plugin.android.dsl.VariantConfiguration.<init>(java.lang.String)"})
-  void testNewVariantConfiguration() {
+  @DisplayName("Test new VariantConfiguration(String); when 'Name'; then return 'Name'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void VariantConfiguration.<init>(String)"})
+  void testNewVariantConfiguration_whenName_thenReturnName() {
     // Arrange and Act
     VariantConfiguration actualVariantConfiguration = new VariantConfiguration("Name");
 

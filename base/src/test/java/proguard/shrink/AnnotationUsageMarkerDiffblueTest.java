@@ -10,6 +10,7 @@ import static org.mockito.Mockito.atLeast;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -43,28 +44,54 @@ import proguard.classfile.constant.FloatConstant;
 import proguard.classfile.constant.IntegerConstant;
 import proguard.testutils.cpa.NamedClass;
 import proguard.util.Processable;
-import proguard.util.SimpleProcessable;
 
 class AnnotationUsageMarkerDiffblueTest {
   /**
    * Test {@link AnnotationUsageMarker#visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)}.
-   * <ul>
-   *   <li>Then array length is one.</li>
-   * </ul>
-   * <p>
-   * Method under test: {@link AnnotationUsageMarker#visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)}
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnyAnnotationsAttribute(Clazz,
+   * AnnotationsAttribute)}
    */
   @Test
-  @DisplayName("Test visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute); then array length is one")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName("Test visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.shrink.AnnotationUsageMarker.visitAnyAnnotationsAttribute(proguard.classfile.Clazz, proguard.classfile.attribute.annotation.AnnotationsAttribute)"})
-  void testVisitAnyAnnotationsAttribute_thenArrayLengthIsOne() {
+    "void AnnotationUsageMarker.visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)"
+  })
+  void testVisitAnyAnnotationsAttribute() {
     // Arrange
     AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
     LibraryClass clazz = new LibraryClass();
-    RuntimeInvisibleAnnotationsAttribute annotationsAttribute = new RuntimeInvisibleAnnotationsAttribute(1, 1,
-        new Annotation[]{new Annotation()});
+    RuntimeInvisibleAnnotationsAttribute annotationsAttribute =
+        new RuntimeInvisibleAnnotationsAttribute();
+
+    // Act
+    annotationUsageMarker.visitAnyAnnotationsAttribute(clazz, annotationsAttribute);
+
+    // Assert that nothing has changed
+    assertNull(annotationsAttribute.getProcessingInfo());
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)}.
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnyAnnotationsAttribute(Clazz,
+   * AnnotationsAttribute)}
+   */
+  @Test
+  @DisplayName("Test visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void AnnotationUsageMarker.visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)"
+  })
+  void testVisitAnyAnnotationsAttribute2() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    RuntimeInvisibleAnnotationsAttribute annotationsAttribute =
+        new RuntimeInvisibleAnnotationsAttribute(0, 1, new Annotation[] {new Annotation()});
 
     // Act
     annotationUsageMarker.visitAnyAnnotationsAttribute(clazz, annotationsAttribute);
@@ -74,29 +101,329 @@ class AnnotationUsageMarkerDiffblueTest {
   }
 
   /**
-   * Test {@link AnnotationUsageMarker#visitAnyParameterAnnotationsAttribute(Clazz, Method, ParameterAnnotationsAttribute)}.
-   * <ul>
-   *   <li>Then array length is one.</li>
-   * </ul>
-   * <p>
-   * Method under test: {@link AnnotationUsageMarker#visitAnyParameterAnnotationsAttribute(Clazz, Method, ParameterAnnotationsAttribute)}
+   * Test {@link AnnotationUsageMarker#visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)}.
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnyAnnotationsAttribute(Clazz,
+   * AnnotationsAttribute)}
    */
   @Test
-  @DisplayName("Test visitAnyParameterAnnotationsAttribute(Clazz, Method, ParameterAnnotationsAttribute); then array length is one")
-  @Tag("MaintainedByDiffblue")
+  @DisplayName("Test visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.shrink.AnnotationUsageMarker.visitAnyParameterAnnotationsAttribute(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.annotation.ParameterAnnotationsAttribute)"})
-  void testVisitAnyParameterAnnotationsAttribute_thenArrayLengthIsOne() {
+    "void AnnotationUsageMarker.visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)"
+  })
+  void testVisitAnyAnnotationsAttribute3() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    RuntimeInvisibleAnnotationsAttribute annotationsAttribute =
+        new RuntimeInvisibleAnnotationsAttribute(1, 1, new Annotation[] {new Annotation()});
+
+    // Act
+    annotationUsageMarker.visitAnyAnnotationsAttribute(clazz, annotationsAttribute);
+
+    // Assert
+    assertEquals(1, annotationsAttribute.annotations.length);
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)}.
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnyAnnotationsAttribute(Clazz,
+   * AnnotationsAttribute)}
+   */
+  @Test
+  @DisplayName("Test visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void AnnotationUsageMarker.visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)"
+  })
+  void testVisitAnyAnnotationsAttribute4() {
+    // Arrange
+    ShortestUsageMarker usageMarker = new ShortestUsageMarker();
+    AnnotationUsageMarker annotationUsageMarker =
+        new AnnotationUsageMarker(new ShortestClassUsageMarker(usageMarker, "Just cause"));
+    LibraryClass clazz = new LibraryClass();
+    RuntimeInvisibleAnnotationsAttribute annotationsAttribute =
+        new RuntimeInvisibleAnnotationsAttribute(0, 1, new Annotation[] {new Annotation()});
+
+    // Act
+    annotationUsageMarker.visitAnyAnnotationsAttribute(clazz, annotationsAttribute);
+
+    // Assert
+    Annotation[] annotationArray = annotationsAttribute.annotations;
+    assertEquals(1, annotationArray.length);
+    ShortestUsageMark shortestUsageMark = usageMarker.currentUsageMark;
+    assertSame(shortestUsageMark, annotationsAttribute.getProcessingInfo());
+    assertSame(shortestUsageMark, (annotationArray[0]).getProcessingInfo());
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)}.
+   *
+   * <ul>
+   *   <li>Then first element {@link AnnotationElementValue}.
+   * </ul>
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnyAnnotationsAttribute(Clazz,
+   * AnnotationsAttribute)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute); then first element AnnotationElementValue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void AnnotationUsageMarker.visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)"
+  })
+  void testVisitAnyAnnotationsAttribute_thenFirstElementAnnotationElementValue() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    RuntimeInvisibleAnnotationsAttribute annotationsAttribute =
+        new RuntimeInvisibleAnnotationsAttribute(
+            0,
+            1,
+            new Annotation[] {
+              new Annotation(
+                  1, 1, new ElementValue[] {new AnnotationElementValue(1, new Annotation())})
+            });
+
+    // Act
+    annotationUsageMarker.visitAnyAnnotationsAttribute(clazz, annotationsAttribute);
+
+    // Assert
+    Annotation[] annotationArray = annotationsAttribute.annotations;
+    ElementValue[] elementValueArray = (annotationArray[0]).elementValues;
+    assertTrue(elementValueArray[0] instanceof AnnotationElementValue);
+    assertEquals(1, elementValueArray.length);
+    assertEquals(1, annotationArray.length);
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)}.
+   *
+   * <ul>
+   *   <li>Then first element {@link ArrayElementValue}.
+   * </ul>
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnyAnnotationsAttribute(Clazz,
+   * AnnotationsAttribute)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute); then first element ArrayElementValue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void AnnotationUsageMarker.visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)"
+  })
+  void testVisitAnyAnnotationsAttribute_thenFirstElementArrayElementValue() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    RuntimeInvisibleAnnotationsAttribute annotationsAttribute =
+        new RuntimeInvisibleAnnotationsAttribute(
+            0,
+            1,
+            new Annotation[] {new Annotation(1, 1, new ElementValue[] {new ArrayElementValue()})});
+
+    // Act
+    annotationUsageMarker.visitAnyAnnotationsAttribute(clazz, annotationsAttribute);
+
+    // Assert
+    Annotation[] annotationArray = annotationsAttribute.annotations;
+    ElementValue[] elementValueArray = (annotationArray[0]).elementValues;
+    assertTrue(elementValueArray[0] instanceof ArrayElementValue);
+    assertEquals(1, elementValueArray.length);
+    assertEquals(1, annotationArray.length);
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)}.
+   *
+   * <ul>
+   *   <li>Then first element {@link ClassElementValue}.
+   * </ul>
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnyAnnotationsAttribute(Clazz,
+   * AnnotationsAttribute)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute); then first element ClassElementValue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void AnnotationUsageMarker.visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)"
+  })
+  void testVisitAnyAnnotationsAttribute_thenFirstElementClassElementValue() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    RuntimeInvisibleAnnotationsAttribute annotationsAttribute =
+        new RuntimeInvisibleAnnotationsAttribute(
+            0,
+            1,
+            new Annotation[] {
+              new Annotation(1, 1, new ElementValue[] {new ClassElementValue(1, 1)})
+            });
+
+    // Act
+    annotationUsageMarker.visitAnyAnnotationsAttribute(clazz, annotationsAttribute);
+
+    // Assert
+    Annotation[] annotationArray = annotationsAttribute.annotations;
+    ElementValue[] elementValueArray = (annotationArray[0]).elementValues;
+    assertTrue(elementValueArray[0] instanceof ClassElementValue);
+    assertEquals(1, elementValueArray.length);
+    assertEquals(1, annotationArray.length);
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)}.
+   *
+   * <ul>
+   *   <li>Then first element {@link ConstantElementValue}.
+   * </ul>
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnyAnnotationsAttribute(Clazz,
+   * AnnotationsAttribute)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute); then first element ConstantElementValue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void AnnotationUsageMarker.visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)"
+  })
+  void testVisitAnyAnnotationsAttribute_thenFirstElementConstantElementValue() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    RuntimeInvisibleAnnotationsAttribute annotationsAttribute =
+        new RuntimeInvisibleAnnotationsAttribute(
+            0,
+            1,
+            new Annotation[] {
+              new Annotation(1, 1, new ElementValue[] {new ConstantElementValue('\u0001')})
+            });
+
+    // Act
+    annotationUsageMarker.visitAnyAnnotationsAttribute(clazz, annotationsAttribute);
+
+    // Assert
+    Annotation[] annotationArray = annotationsAttribute.annotations;
+    ElementValue[] elementValueArray = (annotationArray[0]).elementValues;
+    assertTrue(elementValueArray[0] instanceof ConstantElementValue);
+    assertEquals(1, elementValueArray.length);
+    assertEquals(1, annotationArray.length);
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)}.
+   *
+   * <ul>
+   *   <li>Then first element {@link EnumConstantElementValue}.
+   * </ul>
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnyAnnotationsAttribute(Clazz,
+   * AnnotationsAttribute)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute); then first element EnumConstantElementValue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void AnnotationUsageMarker.visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)"
+  })
+  void testVisitAnyAnnotationsAttribute_thenFirstElementEnumConstantElementValue() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    RuntimeInvisibleAnnotationsAttribute annotationsAttribute =
+        new RuntimeInvisibleAnnotationsAttribute(
+            0,
+            1,
+            new Annotation[] {
+              new Annotation(1, 1, new ElementValue[] {new EnumConstantElementValue(1, 1, 1)})
+            });
+
+    // Act
+    annotationUsageMarker.visitAnyAnnotationsAttribute(clazz, annotationsAttribute);
+
+    // Assert
+    Annotation[] annotationArray = annotationsAttribute.annotations;
+    ElementValue[] elementValueArray = (annotationArray[0]).elementValues;
+    assertTrue(elementValueArray[0] instanceof EnumConstantElementValue);
+    assertEquals(1, elementValueArray.length);
+    assertEquals(1, annotationArray.length);
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitAnyParameterAnnotationsAttribute(Clazz, Method,
+   * ParameterAnnotationsAttribute)}.
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnyParameterAnnotationsAttribute(Clazz,
+   * Method, ParameterAnnotationsAttribute)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitAnyParameterAnnotationsAttribute(Clazz, Method, ParameterAnnotationsAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void AnnotationUsageMarker.visitAnyParameterAnnotationsAttribute(Clazz, Method, ParameterAnnotationsAttribute)"
+  })
+  void testVisitAnyParameterAnnotationsAttribute() {
     // Arrange
     AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
     LibraryClass clazz = new LibraryClass();
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
 
-    RuntimeInvisibleParameterAnnotationsAttribute parameterAnnotationsAttribute = new RuntimeInvisibleParameterAnnotationsAttribute(
-        1, 1, new int[]{1, 1, 3, 1}, new Annotation[][]{new Annotation[]{new Annotation()}});
+    RuntimeInvisibleParameterAnnotationsAttribute parameterAnnotationsAttribute =
+        new RuntimeInvisibleParameterAnnotationsAttribute();
 
     // Act
-    annotationUsageMarker.visitAnyParameterAnnotationsAttribute(clazz, method, parameterAnnotationsAttribute);
+    annotationUsageMarker.visitAnyParameterAnnotationsAttribute(
+        clazz, method, parameterAnnotationsAttribute);
+
+    // Assert that nothing has changed
+    assertNull(parameterAnnotationsAttribute.getProcessingInfo());
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitAnyParameterAnnotationsAttribute(Clazz, Method,
+   * ParameterAnnotationsAttribute)}.
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnyParameterAnnotationsAttribute(Clazz,
+   * Method, ParameterAnnotationsAttribute)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitAnyParameterAnnotationsAttribute(Clazz, Method, ParameterAnnotationsAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void AnnotationUsageMarker.visitAnyParameterAnnotationsAttribute(Clazz, Method, ParameterAnnotationsAttribute)"
+  })
+  void testVisitAnyParameterAnnotationsAttribute2() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
+
+    RuntimeInvisibleParameterAnnotationsAttribute parameterAnnotationsAttribute =
+        new RuntimeInvisibleParameterAnnotationsAttribute(
+            0, 1, new int[] {1, 1, 3, 1}, new Annotation[][] {new Annotation[] {new Annotation()}});
+
+    // Act
+    annotationUsageMarker.visitAnyParameterAnnotationsAttribute(
+        clazz, method, parameterAnnotationsAttribute);
 
     // Assert
     Annotation[][] annotationArray = parameterAnnotationsAttribute.parameterAnnotations;
@@ -105,157 +432,264 @@ class AnnotationUsageMarkerDiffblueTest {
   }
 
   /**
-   * Test {@link AnnotationUsageMarker#visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)}.
-   * <p>
-   * Method under test: {@link AnnotationUsageMarker#visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)}
+   * Test {@link AnnotationUsageMarker#visitAnyParameterAnnotationsAttribute(Clazz, Method,
+   * ParameterAnnotationsAttribute)}.
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnyParameterAnnotationsAttribute(Clazz,
+   * Method, ParameterAnnotationsAttribute)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitAnyParameterAnnotationsAttribute(Clazz, Method, ParameterAnnotationsAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void AnnotationUsageMarker.visitAnyParameterAnnotationsAttribute(Clazz, Method, ParameterAnnotationsAttribute)"
+  })
+  void testVisitAnyParameterAnnotationsAttribute3() {
+    // Arrange
+    ShortestUsageMarker usageMarker = new ShortestUsageMarker();
+    AnnotationUsageMarker annotationUsageMarker =
+        new AnnotationUsageMarker(new ShortestClassUsageMarker(usageMarker, "Just cause"));
+    LibraryClass clazz = new LibraryClass();
+    LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
+
+    RuntimeInvisibleParameterAnnotationsAttribute parameterAnnotationsAttribute =
+        new RuntimeInvisibleParameterAnnotationsAttribute(
+            0, 1, new int[] {1, 1, 3, 1}, new Annotation[][] {new Annotation[] {new Annotation()}});
+
+    // Act
+    annotationUsageMarker.visitAnyParameterAnnotationsAttribute(
+        clazz, method, parameterAnnotationsAttribute);
+
+    // Assert
+    Annotation[][] annotationArray = parameterAnnotationsAttribute.parameterAnnotations;
+    Annotation[] annotationArray2 = annotationArray[0];
+    assertEquals(1, annotationArray2.length);
+    assertEquals(1, annotationArray.length);
+    ShortestUsageMark shortestUsageMark = usageMarker.currentUsageMark;
+    assertSame(shortestUsageMark, parameterAnnotationsAttribute.getProcessingInfo());
+    assertSame(shortestUsageMark, (annotationArray2[0]).getProcessingInfo());
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitAnyParameterAnnotationsAttribute(Clazz, Method,
+   * ParameterAnnotationsAttribute)}.
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnyParameterAnnotationsAttribute(Clazz,
+   * Method, ParameterAnnotationsAttribute)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitAnyParameterAnnotationsAttribute(Clazz, Method, ParameterAnnotationsAttribute)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void AnnotationUsageMarker.visitAnyParameterAnnotationsAttribute(Clazz, Method, ParameterAnnotationsAttribute)"
+  })
+  void testVisitAnyParameterAnnotationsAttribute4() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
+
+    RuntimeInvisibleParameterAnnotationsAttribute parameterAnnotationsAttribute =
+        new RuntimeInvisibleParameterAnnotationsAttribute(
+            1, 1, new int[] {1, 1, 3, 1}, new Annotation[][] {new Annotation[] {new Annotation()}});
+
+    // Act
+    annotationUsageMarker.visitAnyParameterAnnotationsAttribute(
+        clazz, method, parameterAnnotationsAttribute);
+
+    // Assert
+    Annotation[][] annotationArray = parameterAnnotationsAttribute.parameterAnnotations;
+    assertEquals(1, (annotationArray[0]).length);
+    assertEquals(1, annotationArray.length);
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitAnnotationDefaultAttribute(Clazz, Method,
+   * AnnotationDefaultAttribute)}.
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnnotationDefaultAttribute(Clazz,
+   * Method, AnnotationDefaultAttribute)}
    */
   @Test
   @DisplayName("Test visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.shrink.AnnotationUsageMarker.visitAnnotationDefaultAttribute(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.annotation.AnnotationDefaultAttribute)"})
+    "void AnnotationUsageMarker.visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)"
+  })
   void testVisitAnnotationDefaultAttribute() {
     // Arrange
     AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
     LibraryClass clazz = new LibraryClass();
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
 
-    AnnotationDefaultAttribute annotationDefaultAttribute = new AnnotationDefaultAttribute(1,
-        new AnnotationElementValue(1, new Annotation()));
+    AnnotationDefaultAttribute annotationDefaultAttribute =
+        new AnnotationDefaultAttribute(0, new AnnotationElementValue(1, new Annotation()));
 
     // Act
-    annotationUsageMarker.visitAnnotationDefaultAttribute(clazz, method, annotationDefaultAttribute);
+    annotationUsageMarker.visitAnnotationDefaultAttribute(
+        clazz, method, annotationDefaultAttribute);
 
     // Assert
     assertTrue(annotationDefaultAttribute.defaultValue instanceof AnnotationElementValue);
   }
 
   /**
-   * Test {@link AnnotationUsageMarker#visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)}.
-   * <p>
-   * Method under test: {@link AnnotationUsageMarker#visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)}
+   * Test {@link AnnotationUsageMarker#visitAnnotationDefaultAttribute(Clazz, Method,
+   * AnnotationDefaultAttribute)}.
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnnotationDefaultAttribute(Clazz,
+   * Method, AnnotationDefaultAttribute)}
    */
   @Test
   @DisplayName("Test visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.shrink.AnnotationUsageMarker.visitAnnotationDefaultAttribute(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.annotation.AnnotationDefaultAttribute)"})
+    "void AnnotationUsageMarker.visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)"
+  })
   void testVisitAnnotationDefaultAttribute2() {
     // Arrange
     AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
     LibraryClass clazz = new LibraryClass();
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
 
-    AnnotationDefaultAttribute annotationDefaultAttribute = new AnnotationDefaultAttribute(1, new ArrayElementValue());
+    AnnotationDefaultAttribute annotationDefaultAttribute =
+        new AnnotationDefaultAttribute(0, new ArrayElementValue());
 
     // Act
-    annotationUsageMarker.visitAnnotationDefaultAttribute(clazz, method, annotationDefaultAttribute);
+    annotationUsageMarker.visitAnnotationDefaultAttribute(
+        clazz, method, annotationDefaultAttribute);
 
     // Assert
     assertTrue(annotationDefaultAttribute.defaultValue instanceof ArrayElementValue);
   }
 
   /**
-   * Test {@link AnnotationUsageMarker#visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)}.
-   * <p>
-   * Method under test: {@link AnnotationUsageMarker#visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)}
+   * Test {@link AnnotationUsageMarker#visitAnnotationDefaultAttribute(Clazz, Method,
+   * AnnotationDefaultAttribute)}.
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnnotationDefaultAttribute(Clazz,
+   * Method, AnnotationDefaultAttribute)}
    */
   @Test
   @DisplayName("Test visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.shrink.AnnotationUsageMarker.visitAnnotationDefaultAttribute(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.annotation.AnnotationDefaultAttribute)"})
+    "void AnnotationUsageMarker.visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)"
+  })
   void testVisitAnnotationDefaultAttribute3() {
     // Arrange
     AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
     LibraryClass clazz = new LibraryClass();
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
 
-    AnnotationDefaultAttribute annotationDefaultAttribute = new AnnotationDefaultAttribute(1,
-        new ClassElementValue(1, 1));
+    AnnotationDefaultAttribute annotationDefaultAttribute =
+        new AnnotationDefaultAttribute(0, new ClassElementValue(1, 1));
 
     // Act
-    annotationUsageMarker.visitAnnotationDefaultAttribute(clazz, method, annotationDefaultAttribute);
+    annotationUsageMarker.visitAnnotationDefaultAttribute(
+        clazz, method, annotationDefaultAttribute);
 
     // Assert
     assertTrue(annotationDefaultAttribute.defaultValue instanceof ClassElementValue);
   }
 
   /**
-   * Test {@link AnnotationUsageMarker#visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)}.
-   * <p>
-   * Method under test: {@link AnnotationUsageMarker#visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)}
+   * Test {@link AnnotationUsageMarker#visitAnnotationDefaultAttribute(Clazz, Method,
+   * AnnotationDefaultAttribute)}.
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnnotationDefaultAttribute(Clazz,
+   * Method, AnnotationDefaultAttribute)}
    */
   @Test
   @DisplayName("Test visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.shrink.AnnotationUsageMarker.visitAnnotationDefaultAttribute(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.annotation.AnnotationDefaultAttribute)"})
+    "void AnnotationUsageMarker.visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)"
+  })
   void testVisitAnnotationDefaultAttribute4() {
     // Arrange
     AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
     LibraryClass clazz = new LibraryClass();
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
 
-    AnnotationDefaultAttribute annotationDefaultAttribute = new AnnotationDefaultAttribute(1,
-        new ConstantElementValue('\u0001'));
+    AnnotationDefaultAttribute annotationDefaultAttribute =
+        new AnnotationDefaultAttribute(0, new ConstantElementValue('\u0001'));
 
     // Act
-    annotationUsageMarker.visitAnnotationDefaultAttribute(clazz, method, annotationDefaultAttribute);
+    annotationUsageMarker.visitAnnotationDefaultAttribute(
+        clazz, method, annotationDefaultAttribute);
 
     // Assert
     assertTrue(annotationDefaultAttribute.defaultValue instanceof ConstantElementValue);
   }
 
   /**
-   * Test {@link AnnotationUsageMarker#visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)}.
-   * <p>
-   * Method under test: {@link AnnotationUsageMarker#visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)}
+   * Test {@link AnnotationUsageMarker#visitAnnotationDefaultAttribute(Clazz, Method,
+   * AnnotationDefaultAttribute)}.
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnnotationDefaultAttribute(Clazz,
+   * Method, AnnotationDefaultAttribute)}
    */
   @Test
   @DisplayName("Test visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.shrink.AnnotationUsageMarker.visitAnnotationDefaultAttribute(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.annotation.AnnotationDefaultAttribute)"})
+    "void AnnotationUsageMarker.visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)"
+  })
   void testVisitAnnotationDefaultAttribute5() {
     // Arrange
     AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
     LibraryClass clazz = new LibraryClass();
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
 
-    AnnotationDefaultAttribute annotationDefaultAttribute = new AnnotationDefaultAttribute(1,
-        new EnumConstantElementValue(1, 1, 1));
+    AnnotationDefaultAttribute annotationDefaultAttribute =
+        new AnnotationDefaultAttribute(0, new EnumConstantElementValue(1, 1, 1));
 
     // Act
-    annotationUsageMarker.visitAnnotationDefaultAttribute(clazz, method, annotationDefaultAttribute);
+    annotationUsageMarker.visitAnnotationDefaultAttribute(
+        clazz, method, annotationDefaultAttribute);
 
     // Assert
     assertTrue(annotationDefaultAttribute.defaultValue instanceof EnumConstantElementValue);
   }
 
   /**
-   * Test {@link AnnotationUsageMarker#visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)}.
-   * <p>
-   * Method under test: {@link AnnotationUsageMarker#visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)}
+   * Test {@link AnnotationUsageMarker#visitAnnotationDefaultAttribute(Clazz, Method,
+   * AnnotationDefaultAttribute)}.
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnnotationDefaultAttribute(Clazz,
+   * Method, AnnotationDefaultAttribute)}
    */
   @Test
   @DisplayName("Test visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.shrink.AnnotationUsageMarker.visitAnnotationDefaultAttribute(proguard.classfile.Clazz, proguard.classfile.Method, proguard.classfile.attribute.annotation.AnnotationDefaultAttribute)"})
+    "void AnnotationUsageMarker.visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)"
+  })
   void testVisitAnnotationDefaultAttribute6() {
     // Arrange
     ShortestUsageMarker usageMarker = new ShortestUsageMarker();
-    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(
-        new ShortestClassUsageMarker(usageMarker, "Just cause"));
+    AnnotationUsageMarker annotationUsageMarker =
+        new AnnotationUsageMarker(new ShortestClassUsageMarker(usageMarker, "Just cause"));
     LibraryClass clazz = new LibraryClass();
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
 
-    AnnotationDefaultAttribute annotationDefaultAttribute = new AnnotationDefaultAttribute(1,
-        new AnnotationElementValue(1, new Annotation()));
+    AnnotationDefaultAttribute annotationDefaultAttribute =
+        new AnnotationDefaultAttribute(0, new AnnotationElementValue(1, new Annotation()));
 
     // Act
-    annotationUsageMarker.visitAnnotationDefaultAttribute(clazz, method, annotationDefaultAttribute);
+    annotationUsageMarker.visitAnnotationDefaultAttribute(
+        clazz, method, annotationDefaultAttribute);
 
     // Assert
     ElementValue elementValue = annotationDefaultAttribute.defaultValue;
@@ -263,24 +697,180 @@ class AnnotationUsageMarkerDiffblueTest {
     ShortestUsageMark shortestUsageMark = usageMarker.currentUsageMark;
     assertSame(shortestUsageMark, annotationDefaultAttribute.getProcessingInfo());
     assertSame(shortestUsageMark, elementValue.getProcessingInfo());
-    assertSame(shortestUsageMark, ((AnnotationElementValue) elementValue).annotationValue.getProcessingInfo());
+    assertSame(
+        shortestUsageMark,
+        ((AnnotationElementValue) elementValue).annotationValue.getProcessingInfo());
   }
 
   /**
-   * Test {@link AnnotationUsageMarker#visitAnnotation(Clazz, Annotation)} with {@code clazz}, {@code annotation}.
-   * <p>
-   * Method under test: {@link AnnotationUsageMarker#visitAnnotation(Clazz, Annotation)}
+   * Test {@link AnnotationUsageMarker#visitAnnotationDefaultAttribute(Clazz, Method,
+   * AnnotationDefaultAttribute)}.
+   *
+   * <ul>
+   *   <li>Then first element {@link AnnotationElementValue}.
+   * </ul>
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnnotationDefaultAttribute(Clazz,
+   * Method, AnnotationDefaultAttribute)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute); then first element AnnotationElementValue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void AnnotationUsageMarker.visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)"
+  })
+  void testVisitAnnotationDefaultAttribute_thenFirstElementAnnotationElementValue() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
+
+    AnnotationDefaultAttribute annotationDefaultAttribute =
+        new AnnotationDefaultAttribute(
+            0,
+            new ArrayElementValue(
+                1, 1, new ElementValue[] {new AnnotationElementValue(1, new Annotation())}));
+
+    // Act
+    annotationUsageMarker.visitAnnotationDefaultAttribute(
+        clazz, method, annotationDefaultAttribute);
+
+    // Assert
+    ElementValue elementValue = annotationDefaultAttribute.defaultValue;
+    ElementValue[] elementValueArray = ((ArrayElementValue) elementValue).elementValues;
+    assertTrue(elementValueArray[0] instanceof AnnotationElementValue);
+    assertTrue(elementValue instanceof ArrayElementValue);
+    assertEquals(1, elementValueArray.length);
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitAnnotationDefaultAttribute(Clazz, Method,
+   * AnnotationDefaultAttribute)}.
+   *
+   * <ul>
+   *   <li>Then first element {@link ArrayElementValue}.
+   * </ul>
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnnotationDefaultAttribute(Clazz,
+   * Method, AnnotationDefaultAttribute)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute); then first element ArrayElementValue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void AnnotationUsageMarker.visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)"
+  })
+  void testVisitAnnotationDefaultAttribute_thenFirstElementArrayElementValue() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
+
+    AnnotationDefaultAttribute annotationDefaultAttribute =
+        new AnnotationDefaultAttribute(
+            0, new ArrayElementValue(1, 1, new ElementValue[] {new ArrayElementValue()}));
+
+    // Act
+    annotationUsageMarker.visitAnnotationDefaultAttribute(
+        clazz, method, annotationDefaultAttribute);
+
+    // Assert
+    ElementValue elementValue = annotationDefaultAttribute.defaultValue;
+    ElementValue[] elementValueArray = ((ArrayElementValue) elementValue).elementValues;
+    assertTrue(elementValueArray[0] instanceof ArrayElementValue);
+    assertTrue(elementValue instanceof ArrayElementValue);
+    assertEquals(1, elementValueArray.length);
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitAnnotationDefaultAttribute(Clazz, Method,
+   * AnnotationDefaultAttribute)}.
+   *
+   * <ul>
+   *   <li>Then first element {@link ClassElementValue}.
+   * </ul>
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnnotationDefaultAttribute(Clazz,
+   * Method, AnnotationDefaultAttribute)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute); then first element ClassElementValue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void AnnotationUsageMarker.visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)"
+  })
+  void testVisitAnnotationDefaultAttribute_thenFirstElementClassElementValue() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
+
+    AnnotationDefaultAttribute annotationDefaultAttribute =
+        new AnnotationDefaultAttribute(
+            0, new ArrayElementValue(1, 1, new ElementValue[] {new ClassElementValue(1, 1)}));
+
+    // Act
+    annotationUsageMarker.visitAnnotationDefaultAttribute(
+        clazz, method, annotationDefaultAttribute);
+
+    // Assert
+    ElementValue elementValue = annotationDefaultAttribute.defaultValue;
+    assertTrue(elementValue instanceof ArrayElementValue);
+    ElementValue[] elementValueArray = ((ArrayElementValue) elementValue).elementValues;
+    assertTrue(elementValueArray[0] instanceof ClassElementValue);
+    assertEquals(1, elementValueArray.length);
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitAnnotation(Clazz, Annotation)} with {@code clazz},
+   * {@code annotation}.
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnnotation(Clazz, Annotation)}
    */
   @Test
   @DisplayName("Test visitAnnotation(Clazz, Annotation) with 'clazz', 'annotation'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.shrink.AnnotationUsageMarker.visitAnnotation(proguard.classfile.Clazz, proguard.classfile.attribute.annotation.Annotation)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AnnotationUsageMarker.visitAnnotation(Clazz, Annotation)"})
   void testVisitAnnotationWithClazzAnnotation() {
     // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    Annotation annotation = new Annotation(1, 0, new ElementValue[] {new AnnotationElementValue()});
+
+    annotation.referencedClasses = null;
+
+    // Act
+    annotationUsageMarker.visitAnnotation(clazz, annotation);
+
+    // Assert that nothing has changed
+    ElementValue[] elementValueArray = annotation.elementValues;
+    assertTrue(elementValueArray[0] instanceof AnnotationElementValue);
+    assertEquals(1, elementValueArray.length);
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitAnnotation(Clazz, Annotation)} with {@code clazz},
+   * {@code annotation}.
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnnotation(Clazz, Annotation)}
+   */
+  @Test
+  @DisplayName("Test visitAnnotation(Clazz, Annotation) with 'clazz', 'annotation'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AnnotationUsageMarker.visitAnnotation(Clazz, Annotation)"})
+  void testVisitAnnotationWithClazzAnnotation2() {
+    // Arrange
     ShortestUsageMarker usageMarker = new ShortestUsageMarker();
-    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(
-        new ShortestClassUsageMarker(usageMarker, "Just cause"));
+    AnnotationUsageMarker annotationUsageMarker =
+        new AnnotationUsageMarker(new ShortestClassUsageMarker(usageMarker, "Just cause"));
     LibraryClass clazz = new LibraryClass();
     Annotation annotation = new Annotation();
 
@@ -293,20 +883,396 @@ class AnnotationUsageMarkerDiffblueTest {
   }
 
   /**
-   * Test {@link AnnotationUsageMarker#visitConstantElementValue(Clazz, Annotation, ConstantElementValue)}.
-   * <p>
-   * Method under test: {@link AnnotationUsageMarker#visitConstantElementValue(Clazz, Annotation, ConstantElementValue)}
+   * Test {@link AnnotationUsageMarker#visitAnnotation(Clazz, Annotation)} with {@code clazz},
+   * {@code annotation}.
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnnotation(Clazz, Annotation)}
+   */
+  @Test
+  @DisplayName("Test visitAnnotation(Clazz, Annotation) with 'clazz', 'annotation'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AnnotationUsageMarker.visitAnnotation(Clazz, Annotation)"})
+  void testVisitAnnotationWithClazzAnnotation3() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    Annotation annotation = new Annotation(0, 0, new ElementValue[] {new AnnotationElementValue()});
+
+    annotation.referencedClasses =
+        new Clazz[] {new LibraryClass(1, "kotlin/Metadata", "kotlin/Metadata")};
+
+    // Act
+    annotationUsageMarker.visitAnnotation(clazz, annotation);
+
+    // Assert that nothing has changed
+    ElementValue[] elementValueArray = annotation.elementValues;
+    assertTrue(elementValueArray[0] instanceof AnnotationElementValue);
+    assertEquals(1, elementValueArray.length);
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitAnnotation(Clazz, Annotation)} with {@code clazz},
+   * {@code annotation}.
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnnotation(Clazz, Annotation)}
+   */
+  @Test
+  @DisplayName("Test visitAnnotation(Clazz, Annotation) with 'clazz', 'annotation'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AnnotationUsageMarker.visitAnnotation(Clazz, Annotation)"})
+  void testVisitAnnotationWithClazzAnnotation4() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    Annotation annotation = new Annotation(0, 0, new ElementValue[] {new AnnotationElementValue()});
+
+    annotation.referencedClasses = new Clazz[] {new NamedClass("kotlin/Metadata")};
+
+    // Act
+    annotationUsageMarker.visitAnnotation(clazz, annotation);
+
+    // Assert that nothing has changed
+    ElementValue[] elementValueArray = annotation.elementValues;
+    assertTrue(elementValueArray[0] instanceof AnnotationElementValue);
+    assertEquals(1, elementValueArray.length);
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitAnnotation(Clazz, Annotation)} with {@code clazz},
+   * {@code annotation}.
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnnotation(Clazz, Annotation)}
+   */
+  @Test
+  @DisplayName("Test visitAnnotation(Clazz, Annotation) with 'clazz', 'annotation'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AnnotationUsageMarker.visitAnnotation(Clazz, Annotation)"})
+  void testVisitAnnotationWithClazzAnnotation5() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    Annotation annotation = new Annotation(0, 0, new ElementValue[] {new AnnotationElementValue()});
+
+    annotation.referencedClasses =
+        new Clazz[] {new LibraryClass(1, "This Class Name", "kotlin/Metadata")};
+
+    // Act
+    annotationUsageMarker.visitAnnotation(clazz, annotation);
+
+    // Assert that nothing has changed
+    ElementValue[] elementValueArray = annotation.elementValues;
+    assertTrue(elementValueArray[0] instanceof AnnotationElementValue);
+    assertEquals(1, elementValueArray.length);
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitAnnotation(Clazz, Annotation)} with {@code clazz},
+   * {@code annotation}.
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnnotation(Clazz, Annotation)}
+   */
+  @Test
+  @DisplayName("Test visitAnnotation(Clazz, Annotation) with 'clazz', 'annotation'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AnnotationUsageMarker.visitAnnotation(Clazz, Annotation)"})
+  void testVisitAnnotationWithClazzAnnotation6() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+
+    LibraryClass libraryClass = new LibraryClass(1, "kotlin/Metadata", "kotlin/Metadata");
+    libraryClass.addProcessingFlags(-1, 1, 2, 1);
+    Annotation annotation = new Annotation(0, 0, new ElementValue[] {new AnnotationElementValue()});
+
+    annotation.referencedClasses = new Clazz[] {libraryClass};
+
+    // Act
+    annotationUsageMarker.visitAnnotation(clazz, annotation);
+
+    // Assert that nothing has changed
+    ElementValue[] elementValueArray = annotation.elementValues;
+    assertTrue(elementValueArray[0] instanceof AnnotationElementValue);
+    assertEquals(1, elementValueArray.length);
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitAnnotation(Clazz, Annotation)} with {@code clazz},
+   * {@code annotation}.
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnnotation(Clazz, Annotation)}
+   */
+  @Test
+  @DisplayName("Test visitAnnotation(Clazz, Annotation) with 'clazz', 'annotation'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AnnotationUsageMarker.visitAnnotation(Clazz, Annotation)"})
+  void testVisitAnnotationWithClazzAnnotation7() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker =
+        new AnnotationUsageMarker(
+            new ShortestClassUsageMarker(new ShortestUsageMarker(), "Just cause"));
+    LibraryClass clazz = new LibraryClass();
+    Annotation annotation = new Annotation(0, 0, new ElementValue[] {new AnnotationElementValue()});
+
+    annotation.referencedClasses = new Clazz[] {new NamedClass("kotlin/Metadata")};
+
+    // Act
+    annotationUsageMarker.visitAnnotation(clazz, annotation);
+
+    // Assert that nothing has changed
+    ElementValue[] elementValueArray = annotation.elementValues;
+    assertTrue(elementValueArray[0] instanceof AnnotationElementValue);
+    assertEquals(1, elementValueArray.length);
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitAnnotation(Clazz, Annotation)} with {@code clazz},
+   * {@code annotation}.
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnnotation(Clazz, Annotation)}
+   */
+  @Test
+  @DisplayName("Test visitAnnotation(Clazz, Annotation) with 'clazz', 'annotation'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AnnotationUsageMarker.visitAnnotation(Clazz, Annotation)"})
+  void testVisitAnnotationWithClazzAnnotation8() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    Annotation annotation = new Annotation(0, 0, new ElementValue[] {new AnnotationElementValue()});
+
+    annotation.referencedClasses =
+        new Clazz[] {new NamedClass("kotlin/coroutines/jvm/internal/DebugMetadata")};
+
+    // Act
+    annotationUsageMarker.visitAnnotation(clazz, annotation);
+
+    // Assert that nothing has changed
+    ElementValue[] elementValueArray = annotation.elementValues;
+    assertTrue(elementValueArray[0] instanceof AnnotationElementValue);
+    assertEquals(1, elementValueArray.length);
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitAnnotation(Clazz, Annotation)} with {@code clazz},
+   * {@code annotation}.
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnnotation(Clazz, Annotation)}
+   */
+  @Test
+  @DisplayName("Test visitAnnotation(Clazz, Annotation) with 'clazz', 'annotation'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AnnotationUsageMarker.visitAnnotation(Clazz, Annotation)"})
+  void testVisitAnnotationWithClazzAnnotation9() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    Annotation annotation =
+        new Annotation(0, 1, new ElementValue[] {new AnnotationElementValue(1, new Annotation())});
+
+    annotation.referencedClasses = null;
+
+    // Act
+    annotationUsageMarker.visitAnnotation(clazz, annotation);
+
+    // Assert
+    ElementValue[] elementValueArray = annotation.elementValues;
+    assertTrue(elementValueArray[0] instanceof AnnotationElementValue);
+    assertEquals(1, elementValueArray.length);
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitAnnotation(Clazz, Annotation)} with {@code clazz},
+   * {@code annotation}.
+   *
+   * <ul>
+   *   <li>Given array of {@link Clazz} with {@code null}.
+   * </ul>
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnnotation(Clazz, Annotation)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitAnnotation(Clazz, Annotation) with 'clazz', 'annotation'; given array of Clazz with 'null'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AnnotationUsageMarker.visitAnnotation(Clazz, Annotation)"})
+  void testVisitAnnotationWithClazzAnnotation_givenArrayOfClazzWithNull() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    Annotation annotation = new Annotation(0, 0, new ElementValue[] {new AnnotationElementValue()});
+
+    annotation.referencedClasses = new Clazz[] {null};
+
+    // Act
+    annotationUsageMarker.visitAnnotation(clazz, annotation);
+
+    // Assert that nothing has changed
+    ElementValue[] elementValueArray = annotation.elementValues;
+    assertTrue(elementValueArray[0] instanceof AnnotationElementValue);
+    assertEquals(1, elementValueArray.length);
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitAnnotation(Clazz, Annotation)} with {@code clazz},
+   * {@code annotation}.
+   *
+   * <ul>
+   *   <li>Then first element {@link ArrayElementValue}.
+   * </ul>
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnnotation(Clazz, Annotation)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitAnnotation(Clazz, Annotation) with 'clazz', 'annotation'; then first element ArrayElementValue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AnnotationUsageMarker.visitAnnotation(Clazz, Annotation)"})
+  void testVisitAnnotationWithClazzAnnotation_thenFirstElementArrayElementValue() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    Annotation annotation = new Annotation(0, 1, new ElementValue[] {new ArrayElementValue()});
+
+    annotation.referencedClasses = null;
+
+    // Act
+    annotationUsageMarker.visitAnnotation(clazz, annotation);
+
+    // Assert
+    ElementValue[] elementValueArray = annotation.elementValues;
+    assertTrue(elementValueArray[0] instanceof ArrayElementValue);
+    assertEquals(1, elementValueArray.length);
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitAnnotation(Clazz, Annotation)} with {@code clazz},
+   * {@code annotation}.
+   *
+   * <ul>
+   *   <li>Then first element {@link ClassElementValue}.
+   * </ul>
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnnotation(Clazz, Annotation)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitAnnotation(Clazz, Annotation) with 'clazz', 'annotation'; then first element ClassElementValue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AnnotationUsageMarker.visitAnnotation(Clazz, Annotation)"})
+  void testVisitAnnotationWithClazzAnnotation_thenFirstElementClassElementValue() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    Annotation annotation = new Annotation(0, 1, new ElementValue[] {new ClassElementValue(1, 1)});
+
+    annotation.referencedClasses = null;
+
+    // Act
+    annotationUsageMarker.visitAnnotation(clazz, annotation);
+
+    // Assert
+    ElementValue[] elementValueArray = annotation.elementValues;
+    assertTrue(elementValueArray[0] instanceof ClassElementValue);
+    assertEquals(1, elementValueArray.length);
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitAnnotation(Clazz, Annotation)} with {@code clazz},
+   * {@code annotation}.
+   *
+   * <ul>
+   *   <li>Then first element {@link ConstantElementValue}.
+   * </ul>
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnnotation(Clazz, Annotation)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitAnnotation(Clazz, Annotation) with 'clazz', 'annotation'; then first element ConstantElementValue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AnnotationUsageMarker.visitAnnotation(Clazz, Annotation)"})
+  void testVisitAnnotationWithClazzAnnotation_thenFirstElementConstantElementValue() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    Annotation annotation =
+        new Annotation(0, 1, new ElementValue[] {new ConstantElementValue('\u0001')});
+
+    annotation.referencedClasses = null;
+
+    // Act
+    annotationUsageMarker.visitAnnotation(clazz, annotation);
+
+    // Assert
+    ElementValue[] elementValueArray = annotation.elementValues;
+    assertTrue(elementValueArray[0] instanceof ConstantElementValue);
+    assertEquals(1, elementValueArray.length);
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitAnnotation(Clazz, Annotation)} with {@code clazz},
+   * {@code annotation}.
+   *
+   * <ul>
+   *   <li>Then first element {@link EnumConstantElementValue}.
+   * </ul>
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnnotation(Clazz, Annotation)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitAnnotation(Clazz, Annotation) with 'clazz', 'annotation'; then first element EnumConstantElementValue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AnnotationUsageMarker.visitAnnotation(Clazz, Annotation)"})
+  void testVisitAnnotationWithClazzAnnotation_thenFirstElementEnumConstantElementValue() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    Annotation annotation =
+        new Annotation(0, 1, new ElementValue[] {new EnumConstantElementValue(1, 1, 1)});
+
+    annotation.referencedClasses = null;
+
+    // Act
+    annotationUsageMarker.visitAnnotation(clazz, annotation);
+
+    // Assert
+    ElementValue[] elementValueArray = annotation.elementValues;
+    assertTrue(elementValueArray[0] instanceof EnumConstantElementValue);
+    assertEquals(1, elementValueArray.length);
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitConstantElementValue(Clazz, Annotation,
+   * ConstantElementValue)}.
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitConstantElementValue(Clazz, Annotation,
+   * ConstantElementValue)}
    */
   @Test
   @DisplayName("Test visitConstantElementValue(Clazz, Annotation, ConstantElementValue)")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.shrink.AnnotationUsageMarker.visitConstantElementValue(proguard.classfile.Clazz, proguard.classfile.attribute.annotation.Annotation, proguard.classfile.attribute.annotation.ConstantElementValue)"})
+    "void AnnotationUsageMarker.visitConstantElementValue(Clazz, Annotation, ConstantElementValue)"
+  })
   void testVisitConstantElementValue() {
     // Arrange
     ShortestUsageMarker usageMarker = new ShortestUsageMarker();
-    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(
-        new ShortestClassUsageMarker(usageMarker, "Just cause"));
+    AnnotationUsageMarker annotationUsageMarker =
+        new AnnotationUsageMarker(new ShortestClassUsageMarker(usageMarker, "Just cause"));
     LibraryClass clazz = new LibraryClass();
     Annotation annotation = new Annotation();
     ConstantElementValue constantElementValue = new ConstantElementValue('A');
@@ -320,26 +1286,121 @@ class AnnotationUsageMarkerDiffblueTest {
   }
 
   /**
-   * Test {@link AnnotationUsageMarker#visitEnumConstantElementValue(Clazz, Annotation, EnumConstantElementValue)}.
-   * <p>
-   * Method under test: {@link AnnotationUsageMarker#visitEnumConstantElementValue(Clazz, Annotation, EnumConstantElementValue)}
+   * Test {@link AnnotationUsageMarker#visitConstantElementValue(Clazz, Annotation,
+   * ConstantElementValue)}.
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitConstantElementValue(Clazz, Annotation,
+   * ConstantElementValue)}
+   */
+  @Test
+  @DisplayName("Test visitConstantElementValue(Clazz, Annotation, ConstantElementValue)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void AnnotationUsageMarker.visitConstantElementValue(Clazz, Annotation, ConstantElementValue)"
+  })
+  void testVisitConstantElementValue2() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    Annotation annotation = new Annotation();
+    ConstantElementValue constantElementValue = new ConstantElementValue('A');
+    constantElementValue.referencedMethod = new ProgramMethod();
+
+    // Act
+    annotationUsageMarker.visitConstantElementValue(clazz, annotation, constantElementValue);
+
+    // Assert that nothing has changed
+    assertNull(constantElementValue.getProcessingInfo());
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitConstantElementValue(Clazz, Annotation,
+   * ConstantElementValue)}.
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitConstantElementValue(Clazz, Annotation,
+   * ConstantElementValue)}
+   */
+  @Test
+  @DisplayName("Test visitConstantElementValue(Clazz, Annotation, ConstantElementValue)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void AnnotationUsageMarker.visitConstantElementValue(Clazz, Annotation, ConstantElementValue)"
+  })
+  void testVisitConstantElementValue3() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker =
+        new AnnotationUsageMarker(
+            new ShortestClassUsageMarker(new ShortestUsageMarker(), "Just cause"));
+    LibraryClass clazz = new LibraryClass();
+    Annotation annotation = new Annotation();
+    ConstantElementValue constantElementValue = new ConstantElementValue('A');
+    constantElementValue.referencedMethod = new ProgramMethod();
+
+    // Act
+    annotationUsageMarker.visitConstantElementValue(clazz, annotation, constantElementValue);
+
+    // Assert that nothing has changed
+    assertNull(constantElementValue.getProcessingInfo());
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitConstantElementValue(Clazz, Annotation,
+   * ConstantElementValue)}.
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitConstantElementValue(Clazz, Annotation,
+   * ConstantElementValue)}
+   */
+  @Test
+  @DisplayName("Test visitConstantElementValue(Clazz, Annotation, ConstantElementValue)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void AnnotationUsageMarker.visitConstantElementValue(Clazz, Annotation, ConstantElementValue)"
+  })
+  void testVisitConstantElementValue4() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker =
+        new AnnotationUsageMarker(new ClassUsageMarker(new ShortestUsageMarker()));
+    LibraryClass clazz = new LibraryClass();
+    Annotation annotation = new Annotation();
+    ConstantElementValue constantElementValue = new ConstantElementValue('A');
+    constantElementValue.referencedMethod = new ProgramMethod();
+
+    // Act
+    annotationUsageMarker.visitConstantElementValue(clazz, annotation, constantElementValue);
+
+    // Assert that nothing has changed
+    assertNull(constantElementValue.getProcessingInfo());
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitEnumConstantElementValue(Clazz, Annotation,
+   * EnumConstantElementValue)}.
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitEnumConstantElementValue(Clazz,
+   * Annotation, EnumConstantElementValue)}
    */
   @Test
   @DisplayName("Test visitEnumConstantElementValue(Clazz, Annotation, EnumConstantElementValue)")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.shrink.AnnotationUsageMarker.visitEnumConstantElementValue(proguard.classfile.Clazz, proguard.classfile.attribute.annotation.Annotation, proguard.classfile.attribute.annotation.EnumConstantElementValue)"})
+    "void AnnotationUsageMarker.visitEnumConstantElementValue(Clazz, Annotation, EnumConstantElementValue)"
+  })
   void testVisitEnumConstantElementValue() {
     // Arrange
     ShortestUsageMarker usageMarker = new ShortestUsageMarker();
-    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(
-        new ShortestClassUsageMarker(usageMarker, "Just cause"));
+    AnnotationUsageMarker annotationUsageMarker =
+        new AnnotationUsageMarker(new ShortestClassUsageMarker(usageMarker, "Just cause"));
     LibraryClass clazz = new LibraryClass();
     Annotation annotation = new Annotation();
     EnumConstantElementValue enumConstantElementValue = new EnumConstantElementValue(1, 1, 1);
 
     // Act
-    annotationUsageMarker.visitEnumConstantElementValue(clazz, annotation, enumConstantElementValue);
+    annotationUsageMarker.visitEnumConstantElementValue(
+        clazz, annotation, enumConstantElementValue);
 
     // Assert
     ShortestUsageMark expectedProcessingInfo = usageMarker.currentUsageMark;
@@ -347,20 +1408,152 @@ class AnnotationUsageMarkerDiffblueTest {
   }
 
   /**
-   * Test {@link AnnotationUsageMarker#visitClassElementValue(Clazz, Annotation, ClassElementValue)}.
-   * <p>
-   * Method under test: {@link AnnotationUsageMarker#visitClassElementValue(Clazz, Annotation, ClassElementValue)}
+   * Test {@link AnnotationUsageMarker#visitEnumConstantElementValue(Clazz, Annotation,
+   * EnumConstantElementValue)}.
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitEnumConstantElementValue(Clazz,
+   * Annotation, EnumConstantElementValue)}
+   */
+  @Test
+  @DisplayName("Test visitEnumConstantElementValue(Clazz, Annotation, EnumConstantElementValue)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void AnnotationUsageMarker.visitEnumConstantElementValue(Clazz, Annotation, EnumConstantElementValue)"
+  })
+  void testVisitEnumConstantElementValue2() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    Annotation annotation = new Annotation();
+    EnumConstantElementValue enumConstantElementValue = new EnumConstantElementValue(0, 0, 0);
+
+    enumConstantElementValue.referencedClasses =
+        new Clazz[] {new LibraryClass(1, "kotlin/Metadata", "kotlin/Metadata")};
+
+    // Act
+    annotationUsageMarker.visitEnumConstantElementValue(
+        clazz, annotation, enumConstantElementValue);
+
+    // Assert that nothing has changed
+    assertNull(enumConstantElementValue.getProcessingInfo());
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitEnumConstantElementValue(Clazz, Annotation,
+   * EnumConstantElementValue)}.
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitEnumConstantElementValue(Clazz,
+   * Annotation, EnumConstantElementValue)}
+   */
+  @Test
+  @DisplayName("Test visitEnumConstantElementValue(Clazz, Annotation, EnumConstantElementValue)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void AnnotationUsageMarker.visitEnumConstantElementValue(Clazz, Annotation, EnumConstantElementValue)"
+  })
+  void testVisitEnumConstantElementValue3() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    Annotation annotation = new Annotation();
+    EnumConstantElementValue enumConstantElementValue = new EnumConstantElementValue(0, 0, 0);
+
+    enumConstantElementValue.referencedClasses = new Clazz[] {new NamedClass("kotlin/Metadata")};
+
+    // Act
+    annotationUsageMarker.visitEnumConstantElementValue(
+        clazz, annotation, enumConstantElementValue);
+
+    // Assert that nothing has changed
+    assertNull(enumConstantElementValue.getProcessingInfo());
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitEnumConstantElementValue(Clazz, Annotation,
+   * EnumConstantElementValue)}.
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitEnumConstantElementValue(Clazz,
+   * Annotation, EnumConstantElementValue)}
+   */
+  @Test
+  @DisplayName("Test visitEnumConstantElementValue(Clazz, Annotation, EnumConstantElementValue)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void AnnotationUsageMarker.visitEnumConstantElementValue(Clazz, Annotation, EnumConstantElementValue)"
+  })
+  void testVisitEnumConstantElementValue4() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker =
+        new AnnotationUsageMarker(
+            new ShortestClassUsageMarker(new ShortestUsageMarker(), "Just cause"));
+    LibraryClass clazz = new LibraryClass();
+    Annotation annotation = new Annotation();
+    EnumConstantElementValue enumConstantElementValue = new EnumConstantElementValue(0, 0, 0);
+
+    enumConstantElementValue.referencedClasses = new Clazz[] {new NamedClass("kotlin/Metadata")};
+
+    // Act
+    annotationUsageMarker.visitEnumConstantElementValue(
+        clazz, annotation, enumConstantElementValue);
+
+    // Assert that nothing has changed
+    assertNull(enumConstantElementValue.getProcessingInfo());
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitEnumConstantElementValue(Clazz, Annotation,
+   * EnumConstantElementValue)}.
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitEnumConstantElementValue(Clazz,
+   * Annotation, EnumConstantElementValue)}
+   */
+  @Test
+  @DisplayName("Test visitEnumConstantElementValue(Clazz, Annotation, EnumConstantElementValue)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void AnnotationUsageMarker.visitEnumConstantElementValue(Clazz, Annotation, EnumConstantElementValue)"
+  })
+  void testVisitEnumConstantElementValue5() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    Annotation annotation = new Annotation();
+    EnumConstantElementValue enumConstantElementValue = new EnumConstantElementValue(0, 0, 0);
+
+    enumConstantElementValue.referencedClasses =
+        new Clazz[] {new NamedClass("kotlin/coroutines/jvm/internal/DebugMetadata")};
+
+    // Act
+    annotationUsageMarker.visitEnumConstantElementValue(
+        clazz, annotation, enumConstantElementValue);
+
+    // Assert that nothing has changed
+    assertNull(enumConstantElementValue.getProcessingInfo());
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitClassElementValue(Clazz, Annotation,
+   * ClassElementValue)}.
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitClassElementValue(Clazz, Annotation,
+   * ClassElementValue)}
    */
   @Test
   @DisplayName("Test visitClassElementValue(Clazz, Annotation, ClassElementValue)")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.shrink.AnnotationUsageMarker.visitClassElementValue(proguard.classfile.Clazz, proguard.classfile.attribute.annotation.Annotation, proguard.classfile.attribute.annotation.ClassElementValue)"})
+    "void AnnotationUsageMarker.visitClassElementValue(Clazz, Annotation, ClassElementValue)"
+  })
   void testVisitClassElementValue() {
     // Arrange
     ShortestUsageMarker usageMarker = new ShortestUsageMarker();
-    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(
-        new ShortestClassUsageMarker(usageMarker, "Just cause"));
+    AnnotationUsageMarker annotationUsageMarker =
+        new AnnotationUsageMarker(new ShortestClassUsageMarker(usageMarker, "Just cause"));
     LibraryClass clazz = new LibraryClass();
     Annotation annotation = new Annotation();
     ClassElementValue classElementValue = new ClassElementValue(1, 1);
@@ -374,23 +1567,168 @@ class AnnotationUsageMarkerDiffblueTest {
   }
 
   /**
-   * Test {@link AnnotationUsageMarker#visitAnnotationElementValue(Clazz, Annotation, AnnotationElementValue)}.
-   * <p>
-   * Method under test: {@link AnnotationUsageMarker#visitAnnotationElementValue(Clazz, Annotation, AnnotationElementValue)}
+   * Test {@link AnnotationUsageMarker#visitClassElementValue(Clazz, Annotation,
+   * ClassElementValue)}.
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitClassElementValue(Clazz, Annotation,
+   * ClassElementValue)}
+   */
+  @Test
+  @DisplayName("Test visitClassElementValue(Clazz, Annotation, ClassElementValue)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void AnnotationUsageMarker.visitClassElementValue(Clazz, Annotation, ClassElementValue)"
+  })
+  void testVisitClassElementValue2() {
+    // Arrange
+    ShortestUsageMarker usageMarker = new ShortestUsageMarker();
+    AnnotationUsageMarker annotationUsageMarker =
+        new AnnotationUsageMarker(new ShortestClassUsageMarker(usageMarker, "Just cause"));
+    LibraryClass clazz = new LibraryClass();
+    Annotation annotation = new Annotation();
+    ClassElementValue classElementValue = new ClassElementValue(0, 0);
+
+    classElementValue.referencedClasses =
+        new Clazz[] {new LibraryClass(1, "This Class Name", "Super Class Name")};
+
+    // Act
+    annotationUsageMarker.visitClassElementValue(clazz, annotation, classElementValue);
+
+    // Assert
+    Clazz[] clazzArray = classElementValue.referencedClasses;
+    Clazz clazz2 = clazzArray[0];
+    assertTrue(clazz2 instanceof LibraryClass);
+    assertEquals(1, clazzArray.length);
+    ShortestUsageMark shortestUsageMark = usageMarker.currentUsageMark;
+    assertSame(shortestUsageMark, clazz2.getProcessingInfo());
+    assertSame(shortestUsageMark, classElementValue.getProcessingInfo());
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitClassElementValue(Clazz, Annotation,
+   * ClassElementValue)}.
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitClassElementValue(Clazz, Annotation,
+   * ClassElementValue)}
+   */
+  @Test
+  @DisplayName("Test visitClassElementValue(Clazz, Annotation, ClassElementValue)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void AnnotationUsageMarker.visitClassElementValue(Clazz, Annotation, ClassElementValue)"
+  })
+  void testVisitClassElementValue3() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    Annotation annotation = new Annotation();
+    ClassElementValue classElementValue = new ClassElementValue(1, 1);
+
+    classElementValue.referencedMethod = new ProgramMethod();
+
+    // Act
+    annotationUsageMarker.visitClassElementValue(clazz, annotation, classElementValue);
+
+    // Assert that nothing has changed
+    assertNull(classElementValue.getProcessingInfo());
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitClassElementValue(Clazz, Annotation,
+   * ClassElementValue)}.
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitClassElementValue(Clazz, Annotation,
+   * ClassElementValue)}
+   */
+  @Test
+  @DisplayName("Test visitClassElementValue(Clazz, Annotation, ClassElementValue)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void AnnotationUsageMarker.visitClassElementValue(Clazz, Annotation, ClassElementValue)"
+  })
+  void testVisitClassElementValue4() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker =
+        new AnnotationUsageMarker(
+            new ShortestClassUsageMarker(new ShortestUsageMarker(), "Just cause"));
+    LibraryClass clazz = new LibraryClass();
+    Annotation annotation = new Annotation();
+    ClassElementValue classElementValue = new ClassElementValue(1, 1);
+
+    classElementValue.referencedMethod = new ProgramMethod();
+
+    // Act
+    annotationUsageMarker.visitClassElementValue(clazz, annotation, classElementValue);
+
+    // Assert that nothing has changed
+    assertNull(classElementValue.getProcessingInfo());
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitClassElementValue(Clazz, Annotation,
+   * ClassElementValue)}.
+   *
+   * <ul>
+   *   <li>Then first element {@link LibraryClass}.
+   * </ul>
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitClassElementValue(Clazz, Annotation,
+   * ClassElementValue)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitClassElementValue(Clazz, Annotation, ClassElementValue); then first element LibraryClass")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void AnnotationUsageMarker.visitClassElementValue(Clazz, Annotation, ClassElementValue)"
+  })
+  void testVisitClassElementValue_thenFirstElementLibraryClass() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    Annotation annotation = new Annotation();
+    ClassElementValue classElementValue = new ClassElementValue(0, 0);
+
+    classElementValue.referencedClasses =
+        new Clazz[] {new LibraryClass(1, "This Class Name", "Super Class Name")};
+
+    // Act
+    annotationUsageMarker.visitClassElementValue(clazz, annotation, classElementValue);
+
+    // Assert
+    Clazz[] clazzArray = classElementValue.referencedClasses;
+    assertTrue(clazzArray[0] instanceof LibraryClass);
+    assertEquals(1, clazzArray.length);
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitAnnotationElementValue(Clazz, Annotation,
+   * AnnotationElementValue)}.
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnnotationElementValue(Clazz,
+   * Annotation, AnnotationElementValue)}
    */
   @Test
   @DisplayName("Test visitAnnotationElementValue(Clazz, Annotation, AnnotationElementValue)")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.shrink.AnnotationUsageMarker.visitAnnotationElementValue(proguard.classfile.Clazz, proguard.classfile.attribute.annotation.Annotation, proguard.classfile.attribute.annotation.AnnotationElementValue)"})
+    "void AnnotationUsageMarker.visitAnnotationElementValue(Clazz, Annotation, AnnotationElementValue)"
+  })
   void testVisitAnnotationElementValue() {
     // Arrange
     ShortestUsageMarker usageMarker = new ShortestUsageMarker();
-    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(
-        new ShortestClassUsageMarker(usageMarker, "Just cause"));
+    AnnotationUsageMarker annotationUsageMarker =
+        new AnnotationUsageMarker(new ShortestClassUsageMarker(usageMarker, "Just cause"));
     LibraryClass clazz = new LibraryClass();
     Annotation annotation = new Annotation();
     AnnotationElementValue annotationElementValue = new AnnotationElementValue(1, new Annotation());
+
+    annotationElementValue.referencedMethod = null;
 
     // Act
     annotationUsageMarker.visitAnnotationElementValue(clazz, annotation, annotationElementValue);
@@ -402,20 +1740,316 @@ class AnnotationUsageMarkerDiffblueTest {
   }
 
   /**
-   * Test {@link AnnotationUsageMarker#visitArrayElementValue(Clazz, Annotation, ArrayElementValue)}.
-   * <p>
-   * Method under test: {@link AnnotationUsageMarker#visitArrayElementValue(Clazz, Annotation, ArrayElementValue)}
+   * Test {@link AnnotationUsageMarker#visitAnnotationElementValue(Clazz, Annotation,
+   * AnnotationElementValue)}.
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnnotationElementValue(Clazz,
+   * Annotation, AnnotationElementValue)}
+   */
+  @Test
+  @DisplayName("Test visitAnnotationElementValue(Clazz, Annotation, AnnotationElementValue)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void AnnotationUsageMarker.visitAnnotationElementValue(Clazz, Annotation, AnnotationElementValue)"
+  })
+  void testVisitAnnotationElementValue2() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    Annotation annotation = new Annotation();
+    AnnotationElementValue annotationElementValue = new AnnotationElementValue(1, new Annotation());
+
+    annotationElementValue.referencedMethod = new ProgramMethod();
+
+    // Act
+    annotationUsageMarker.visitAnnotationElementValue(clazz, annotation, annotationElementValue);
+
+    // Assert that nothing has changed
+    assertNull(annotationElementValue.getProcessingInfo());
+    assertNull(annotationElementValue.annotationValue.getProcessingInfo());
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitAnnotationElementValue(Clazz, Annotation,
+   * AnnotationElementValue)}.
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnnotationElementValue(Clazz,
+   * Annotation, AnnotationElementValue)}
+   */
+  @Test
+  @DisplayName("Test visitAnnotationElementValue(Clazz, Annotation, AnnotationElementValue)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void AnnotationUsageMarker.visitAnnotationElementValue(Clazz, Annotation, AnnotationElementValue)"
+  })
+  void testVisitAnnotationElementValue3() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker =
+        new AnnotationUsageMarker(
+            new ShortestClassUsageMarker(new ShortestUsageMarker(), "Just cause"));
+    LibraryClass clazz = new LibraryClass();
+    Annotation annotation = new Annotation();
+    AnnotationElementValue annotationElementValue = new AnnotationElementValue(1, new Annotation());
+
+    annotationElementValue.referencedMethod = new ProgramMethod();
+
+    // Act
+    annotationUsageMarker.visitAnnotationElementValue(clazz, annotation, annotationElementValue);
+
+    // Assert that nothing has changed
+    assertNull(annotationElementValue.getProcessingInfo());
+    assertNull(annotationElementValue.annotationValue.getProcessingInfo());
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitAnnotationElementValue(Clazz, Annotation,
+   * AnnotationElementValue)}.
+   *
+   * <ul>
+   *   <li>Then first element {@link AnnotationElementValue}.
+   * </ul>
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnnotationElementValue(Clazz,
+   * Annotation, AnnotationElementValue)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitAnnotationElementValue(Clazz, Annotation, AnnotationElementValue); then first element AnnotationElementValue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void AnnotationUsageMarker.visitAnnotationElementValue(Clazz, Annotation, AnnotationElementValue)"
+  })
+  void testVisitAnnotationElementValue_thenFirstElementAnnotationElementValue() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    Annotation annotation = new Annotation();
+    AnnotationElementValue annotationElementValue =
+        new AnnotationElementValue(
+            1,
+            new Annotation(
+                1, 1, new ElementValue[] {new AnnotationElementValue(1, new Annotation())}));
+
+    annotationElementValue.referencedMethod = null;
+
+    // Act
+    annotationUsageMarker.visitAnnotationElementValue(clazz, annotation, annotationElementValue);
+
+    // Assert
+    ElementValue[] elementValueArray = annotationElementValue.annotationValue.elementValues;
+    assertTrue(elementValueArray[0] instanceof AnnotationElementValue);
+    assertEquals(1, elementValueArray.length);
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitAnnotationElementValue(Clazz, Annotation,
+   * AnnotationElementValue)}.
+   *
+   * <ul>
+   *   <li>Then first element {@link ArrayElementValue}.
+   * </ul>
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnnotationElementValue(Clazz,
+   * Annotation, AnnotationElementValue)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitAnnotationElementValue(Clazz, Annotation, AnnotationElementValue); then first element ArrayElementValue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void AnnotationUsageMarker.visitAnnotationElementValue(Clazz, Annotation, AnnotationElementValue)"
+  })
+  void testVisitAnnotationElementValue_thenFirstElementArrayElementValue() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    Annotation annotation = new Annotation();
+    AnnotationElementValue annotationElementValue =
+        new AnnotationElementValue(
+            1, new Annotation(1, 1, new ElementValue[] {new ArrayElementValue()}));
+
+    annotationElementValue.referencedMethod = null;
+
+    // Act
+    annotationUsageMarker.visitAnnotationElementValue(clazz, annotation, annotationElementValue);
+
+    // Assert
+    ElementValue[] elementValueArray = annotationElementValue.annotationValue.elementValues;
+    assertTrue(elementValueArray[0] instanceof ArrayElementValue);
+    assertEquals(1, elementValueArray.length);
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitAnnotationElementValue(Clazz, Annotation,
+   * AnnotationElementValue)}.
+   *
+   * <ul>
+   *   <li>Then first element {@link ClassElementValue}.
+   * </ul>
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnnotationElementValue(Clazz,
+   * Annotation, AnnotationElementValue)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitAnnotationElementValue(Clazz, Annotation, AnnotationElementValue); then first element ClassElementValue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void AnnotationUsageMarker.visitAnnotationElementValue(Clazz, Annotation, AnnotationElementValue)"
+  })
+  void testVisitAnnotationElementValue_thenFirstElementClassElementValue() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    Annotation annotation = new Annotation();
+    AnnotationElementValue annotationElementValue =
+        new AnnotationElementValue(
+            1, new Annotation(1, 1, new ElementValue[] {new ClassElementValue(1, 1)}));
+
+    annotationElementValue.referencedMethod = null;
+
+    // Act
+    annotationUsageMarker.visitAnnotationElementValue(clazz, annotation, annotationElementValue);
+
+    // Assert
+    ElementValue[] elementValueArray = annotationElementValue.annotationValue.elementValues;
+    assertTrue(elementValueArray[0] instanceof ClassElementValue);
+    assertEquals(1, elementValueArray.length);
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitAnnotationElementValue(Clazz, Annotation,
+   * AnnotationElementValue)}.
+   *
+   * <ul>
+   *   <li>Then first element {@link ConstantElementValue}.
+   * </ul>
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnnotationElementValue(Clazz,
+   * Annotation, AnnotationElementValue)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitAnnotationElementValue(Clazz, Annotation, AnnotationElementValue); then first element ConstantElementValue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void AnnotationUsageMarker.visitAnnotationElementValue(Clazz, Annotation, AnnotationElementValue)"
+  })
+  void testVisitAnnotationElementValue_thenFirstElementConstantElementValue() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    Annotation annotation = new Annotation();
+    AnnotationElementValue annotationElementValue =
+        new AnnotationElementValue(
+            1, new Annotation(1, 1, new ElementValue[] {new ConstantElementValue('\u0001')}));
+
+    annotationElementValue.referencedMethod = null;
+
+    // Act
+    annotationUsageMarker.visitAnnotationElementValue(clazz, annotation, annotationElementValue);
+
+    // Assert
+    ElementValue[] elementValueArray = annotationElementValue.annotationValue.elementValues;
+    assertTrue(elementValueArray[0] instanceof ConstantElementValue);
+    assertEquals(1, elementValueArray.length);
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitAnnotationElementValue(Clazz, Annotation,
+   * AnnotationElementValue)}.
+   *
+   * <ul>
+   *   <li>Then first element {@link EnumConstantElementValue}.
+   * </ul>
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnnotationElementValue(Clazz,
+   * Annotation, AnnotationElementValue)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitAnnotationElementValue(Clazz, Annotation, AnnotationElementValue); then first element EnumConstantElementValue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void AnnotationUsageMarker.visitAnnotationElementValue(Clazz, Annotation, AnnotationElementValue)"
+  })
+  void testVisitAnnotationElementValue_thenFirstElementEnumConstantElementValue() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    Annotation annotation = new Annotation();
+    AnnotationElementValue annotationElementValue =
+        new AnnotationElementValue(
+            1, new Annotation(1, 1, new ElementValue[] {new EnumConstantElementValue(1, 1, 1)}));
+
+    annotationElementValue.referencedMethod = null;
+
+    // Act
+    annotationUsageMarker.visitAnnotationElementValue(clazz, annotation, annotationElementValue);
+
+    // Assert
+    ElementValue[] elementValueArray = annotationElementValue.annotationValue.elementValues;
+    assertTrue(elementValueArray[0] instanceof EnumConstantElementValue);
+    assertEquals(1, elementValueArray.length);
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitArrayElementValue(Clazz, Annotation,
+   * ArrayElementValue)}.
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitArrayElementValue(Clazz, Annotation,
+   * ArrayElementValue)}
    */
   @Test
   @DisplayName("Test visitArrayElementValue(Clazz, Annotation, ArrayElementValue)")
-  @Tag("MaintainedByDiffblue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
   @MethodsUnderTest({
-      "void proguard.shrink.AnnotationUsageMarker.visitArrayElementValue(proguard.classfile.Clazz, proguard.classfile.attribute.annotation.Annotation, proguard.classfile.attribute.annotation.ArrayElementValue)"})
+    "void AnnotationUsageMarker.visitArrayElementValue(Clazz, Annotation, ArrayElementValue)"
+  })
   void testVisitArrayElementValue() {
     // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    Annotation annotation = new Annotation();
+    ArrayElementValue arrayElementValue =
+        new ArrayElementValue(1, 0, new ElementValue[] {new AnnotationElementValue()});
+
+    // Act
+    annotationUsageMarker.visitArrayElementValue(clazz, annotation, arrayElementValue);
+
+    // Assert that nothing has changed
+    ElementValue[] elementValueArray = arrayElementValue.elementValues;
+    assertTrue(elementValueArray[0] instanceof AnnotationElementValue);
+    assertEquals(1, elementValueArray.length);
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitArrayElementValue(Clazz, Annotation,
+   * ArrayElementValue)}.
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitArrayElementValue(Clazz, Annotation,
+   * ArrayElementValue)}
+   */
+  @Test
+  @DisplayName("Test visitArrayElementValue(Clazz, Annotation, ArrayElementValue)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void AnnotationUsageMarker.visitArrayElementValue(Clazz, Annotation, ArrayElementValue)"
+  })
+  void testVisitArrayElementValue2() {
+    // Arrange
     ShortestUsageMarker usageMarker = new ShortestUsageMarker();
-    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(
-        new ShortestClassUsageMarker(usageMarker, "Just cause"));
+    AnnotationUsageMarker annotationUsageMarker =
+        new AnnotationUsageMarker(new ShortestClassUsageMarker(usageMarker, "Just cause"));
     LibraryClass clazz = new LibraryClass();
     Annotation annotation = new Annotation();
     ArrayElementValue arrayElementValue = new ArrayElementValue();
@@ -429,20 +2063,245 @@ class AnnotationUsageMarkerDiffblueTest {
   }
 
   /**
+   * Test {@link AnnotationUsageMarker#visitArrayElementValue(Clazz, Annotation,
+   * ArrayElementValue)}.
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitArrayElementValue(Clazz, Annotation,
+   * ArrayElementValue)}
+   */
+  @Test
+  @DisplayName("Test visitArrayElementValue(Clazz, Annotation, ArrayElementValue)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void AnnotationUsageMarker.visitArrayElementValue(Clazz, Annotation, ArrayElementValue)"
+  })
+  void testVisitArrayElementValue3() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    Annotation annotation = new Annotation();
+    ArrayElementValue arrayElementValue =
+        new ArrayElementValue(
+            0,
+            1,
+            new ElementValue[] {
+              new AnnotationElementValue(
+                  1,
+                  new Annotation(
+                      1, 1, new ElementValue[] {new AnnotationElementValue(1, new Annotation())}))
+            });
+
+    // Act
+    annotationUsageMarker.visitArrayElementValue(clazz, annotation, arrayElementValue);
+
+    // Assert
+    ElementValue[] elementValueArray = arrayElementValue.elementValues;
+    ElementValue elementValue = elementValueArray[0];
+    ElementValue[] elementValueArray2 =
+        ((AnnotationElementValue) elementValue).annotationValue.elementValues;
+    assertTrue(elementValueArray2[0] instanceof AnnotationElementValue);
+    assertTrue(elementValue instanceof AnnotationElementValue);
+    assertEquals(1, elementValueArray2.length);
+    assertEquals(1, elementValueArray.length);
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitArrayElementValue(Clazz, Annotation,
+   * ArrayElementValue)}.
+   *
+   * <ul>
+   *   <li>Then first element {@link AnnotationElementValue}.
+   * </ul>
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitArrayElementValue(Clazz, Annotation,
+   * ArrayElementValue)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitArrayElementValue(Clazz, Annotation, ArrayElementValue); then first element AnnotationElementValue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void AnnotationUsageMarker.visitArrayElementValue(Clazz, Annotation, ArrayElementValue)"
+  })
+  void testVisitArrayElementValue_thenFirstElementAnnotationElementValue() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    Annotation annotation = new Annotation();
+    ArrayElementValue arrayElementValue =
+        new ArrayElementValue(
+            0, 1, new ElementValue[] {new AnnotationElementValue(1, new Annotation())});
+
+    // Act
+    annotationUsageMarker.visitArrayElementValue(clazz, annotation, arrayElementValue);
+
+    // Assert
+    ElementValue[] elementValueArray = arrayElementValue.elementValues;
+    assertTrue(elementValueArray[0] instanceof AnnotationElementValue);
+    assertEquals(1, elementValueArray.length);
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitArrayElementValue(Clazz, Annotation,
+   * ArrayElementValue)}.
+   *
+   * <ul>
+   *   <li>Then first element {@link ArrayElementValue}.
+   * </ul>
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitArrayElementValue(Clazz, Annotation,
+   * ArrayElementValue)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitArrayElementValue(Clazz, Annotation, ArrayElementValue); then first element ArrayElementValue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void AnnotationUsageMarker.visitArrayElementValue(Clazz, Annotation, ArrayElementValue)"
+  })
+  void testVisitArrayElementValue_thenFirstElementArrayElementValue() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    Annotation annotation = new Annotation();
+    ArrayElementValue arrayElementValue =
+        new ArrayElementValue(0, 1, new ElementValue[] {new ArrayElementValue()});
+
+    // Act
+    annotationUsageMarker.visitArrayElementValue(clazz, annotation, arrayElementValue);
+
+    // Assert
+    ElementValue[] elementValueArray = arrayElementValue.elementValues;
+    assertTrue(elementValueArray[0] instanceof ArrayElementValue);
+    assertEquals(1, elementValueArray.length);
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitArrayElementValue(Clazz, Annotation,
+   * ArrayElementValue)}.
+   *
+   * <ul>
+   *   <li>Then first element {@link ClassElementValue}.
+   * </ul>
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitArrayElementValue(Clazz, Annotation,
+   * ArrayElementValue)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitArrayElementValue(Clazz, Annotation, ArrayElementValue); then first element ClassElementValue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void AnnotationUsageMarker.visitArrayElementValue(Clazz, Annotation, ArrayElementValue)"
+  })
+  void testVisitArrayElementValue_thenFirstElementClassElementValue() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    Annotation annotation = new Annotation();
+    ArrayElementValue arrayElementValue =
+        new ArrayElementValue(0, 1, new ElementValue[] {new ClassElementValue(1, 1)});
+
+    // Act
+    annotationUsageMarker.visitArrayElementValue(clazz, annotation, arrayElementValue);
+
+    // Assert
+    ElementValue[] elementValueArray = arrayElementValue.elementValues;
+    assertTrue(elementValueArray[0] instanceof ClassElementValue);
+    assertEquals(1, elementValueArray.length);
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitArrayElementValue(Clazz, Annotation,
+   * ArrayElementValue)}.
+   *
+   * <ul>
+   *   <li>Then first element {@link ConstantElementValue}.
+   * </ul>
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitArrayElementValue(Clazz, Annotation,
+   * ArrayElementValue)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitArrayElementValue(Clazz, Annotation, ArrayElementValue); then first element ConstantElementValue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void AnnotationUsageMarker.visitArrayElementValue(Clazz, Annotation, ArrayElementValue)"
+  })
+  void testVisitArrayElementValue_thenFirstElementConstantElementValue() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    Annotation annotation = new Annotation();
+    ArrayElementValue arrayElementValue =
+        new ArrayElementValue(0, 1, new ElementValue[] {new ConstantElementValue('\u0001')});
+
+    // Act
+    annotationUsageMarker.visitArrayElementValue(clazz, annotation, arrayElementValue);
+
+    // Assert
+    ElementValue[] elementValueArray = arrayElementValue.elementValues;
+    assertTrue(elementValueArray[0] instanceof ConstantElementValue);
+    assertEquals(1, elementValueArray.length);
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitArrayElementValue(Clazz, Annotation,
+   * ArrayElementValue)}.
+   *
+   * <ul>
+   *   <li>Then first element {@link EnumConstantElementValue}.
+   * </ul>
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitArrayElementValue(Clazz, Annotation,
+   * ArrayElementValue)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitArrayElementValue(Clazz, Annotation, ArrayElementValue); then first element EnumConstantElementValue")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({
+    "void AnnotationUsageMarker.visitArrayElementValue(Clazz, Annotation, ArrayElementValue)"
+  })
+  void testVisitArrayElementValue_thenFirstElementEnumConstantElementValue() {
+    // Arrange
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    Annotation annotation = new Annotation();
+    ArrayElementValue arrayElementValue =
+        new ArrayElementValue(0, 1, new ElementValue[] {new EnumConstantElementValue(1, 1, 1)});
+
+    // Act
+    annotationUsageMarker.visitArrayElementValue(clazz, annotation, arrayElementValue);
+
+    // Assert
+    ElementValue[] elementValueArray = arrayElementValue.elementValues;
+    assertTrue(elementValueArray[0] instanceof EnumConstantElementValue);
+    assertEquals(1, elementValueArray.length);
+  }
+
+  /**
    * Test {@link AnnotationUsageMarker#visitAnyConstant(Clazz, Constant)}.
-   * <p>
-   * Method under test: {@link AnnotationUsageMarker#visitAnyConstant(Clazz, Constant)}
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnyConstant(Clazz, Constant)}
    */
   @Test
   @DisplayName("Test visitAnyConstant(Clazz, Constant)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.shrink.AnnotationUsageMarker.visitAnyConstant(proguard.classfile.Clazz, proguard.classfile.constant.Constant)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AnnotationUsageMarker.visitAnyConstant(Clazz, Constant)"})
   void testVisitAnyConstant() {
     // Arrange
     ShortestUsageMarker usageMarker = new ShortestUsageMarker();
-    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(
-        new ShortestClassUsageMarker(usageMarker, "Just cause"));
+    AnnotationUsageMarker annotationUsageMarker =
+        new AnnotationUsageMarker(new ShortestClassUsageMarker(usageMarker, "Just cause"));
     LibraryClass clazz = new LibraryClass();
     ClassConstant constant = new ClassConstant();
 
@@ -456,19 +2315,19 @@ class AnnotationUsageMarkerDiffblueTest {
 
   /**
    * Test {@link AnnotationUsageMarker#visitAnyConstant(Clazz, Constant)}.
-   * <p>
-   * Method under test: {@link AnnotationUsageMarker#visitAnyConstant(Clazz, Constant)}
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnyConstant(Clazz, Constant)}
    */
   @Test
   @DisplayName("Test visitAnyConstant(Clazz, Constant)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.shrink.AnnotationUsageMarker.visitAnyConstant(proguard.classfile.Clazz, proguard.classfile.constant.Constant)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AnnotationUsageMarker.visitAnyConstant(Clazz, Constant)"})
   void testVisitAnyConstant2() {
     // Arrange
     ShortestUsageMarker usageMarker = new ShortestUsageMarker();
-    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(
-        new ShortestClassUsageMarker(usageMarker, "Just cause"));
+    AnnotationUsageMarker annotationUsageMarker =
+        new AnnotationUsageMarker(new ShortestClassUsageMarker(usageMarker, "Just cause"));
     LibraryClass clazz = new LibraryClass();
     DoubleConstant constant = new DoubleConstant();
 
@@ -482,19 +2341,19 @@ class AnnotationUsageMarkerDiffblueTest {
 
   /**
    * Test {@link AnnotationUsageMarker#visitAnyConstant(Clazz, Constant)}.
-   * <p>
-   * Method under test: {@link AnnotationUsageMarker#visitAnyConstant(Clazz, Constant)}
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnyConstant(Clazz, Constant)}
    */
   @Test
   @DisplayName("Test visitAnyConstant(Clazz, Constant)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.shrink.AnnotationUsageMarker.visitAnyConstant(proguard.classfile.Clazz, proguard.classfile.constant.Constant)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AnnotationUsageMarker.visitAnyConstant(Clazz, Constant)"})
   void testVisitAnyConstant3() {
     // Arrange
     ShortestUsageMarker usageMarker = new ShortestUsageMarker();
-    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(
-        new ShortestClassUsageMarker(usageMarker, "Just cause"));
+    AnnotationUsageMarker annotationUsageMarker =
+        new AnnotationUsageMarker(new ShortestClassUsageMarker(usageMarker, "Just cause"));
     LibraryClass clazz = new LibraryClass();
     FieldrefConstant constant = new FieldrefConstant();
 
@@ -508,19 +2367,20 @@ class AnnotationUsageMarkerDiffblueTest {
 
   /**
    * Test {@link AnnotationUsageMarker#visitAnyConstant(Clazz, Constant)}.
-   * <p>
-   * Method under test: {@link AnnotationUsageMarker#visitAnyConstant(Clazz, Constant)}
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnyConstant(Clazz, Constant)}
    */
   @Test
   @DisplayName("Test visitAnyConstant(Clazz, Constant)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.shrink.AnnotationUsageMarker.visitAnyConstant(proguard.classfile.Clazz, proguard.classfile.constant.Constant)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AnnotationUsageMarker.visitAnyConstant(Clazz, Constant)"})
   void testVisitAnyConstant4() {
     // Arrange
     AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
     LibraryClass clazz = new LibraryClass();
-    ClassConstant constant = new ClassConstant(1, new LibraryClass(5, "This Class Name", "Super Class Name"));
+    ClassConstant constant =
+        new ClassConstant(1, new LibraryClass(5, "This Class Name", "Super Class Name"));
 
     // Act
     annotationUsageMarker.visitAnyConstant(clazz, constant);
@@ -531,21 +2391,22 @@ class AnnotationUsageMarkerDiffblueTest {
 
   /**
    * Test {@link AnnotationUsageMarker#visitAnyConstant(Clazz, Constant)}.
-   * <p>
-   * Method under test: {@link AnnotationUsageMarker#visitAnyConstant(Clazz, Constant)}
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnyConstant(Clazz, Constant)}
    */
   @Test
   @DisplayName("Test visitAnyConstant(Clazz, Constant)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.shrink.AnnotationUsageMarker.visitAnyConstant(proguard.classfile.Clazz, proguard.classfile.constant.Constant)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AnnotationUsageMarker.visitAnyConstant(Clazz, Constant)"})
   void testVisitAnyConstant5() {
     // Arrange
     AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
     LibraryClass clazz = new LibraryClass();
     LibraryClass referencedClass = new LibraryClass(5, "This Class Name", "Super Class Name");
 
-    FieldrefConstant constant = new FieldrefConstant(1, 1, referencedClass, new LibraryField(5, "Name", "Descriptor"));
+    FieldrefConstant constant =
+        new FieldrefConstant(1, 1, referencedClass, new LibraryField(5, "Name", "Descriptor"));
 
     // Act
     annotationUsageMarker.visitAnyConstant(clazz, constant);
@@ -556,19 +2417,19 @@ class AnnotationUsageMarkerDiffblueTest {
 
   /**
    * Test {@link AnnotationUsageMarker#visitAnyConstant(Clazz, Constant)}.
-   * <p>
-   * Method under test: {@link AnnotationUsageMarker#visitAnyConstant(Clazz, Constant)}
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnyConstant(Clazz, Constant)}
    */
   @Test
   @DisplayName("Test visitAnyConstant(Clazz, Constant)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.shrink.AnnotationUsageMarker.visitAnyConstant(proguard.classfile.Clazz, proguard.classfile.constant.Constant)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AnnotationUsageMarker.visitAnyConstant(Clazz, Constant)"})
   void testVisitAnyConstant6() {
     // Arrange
     ShortestUsageMarker usageMarker = new ShortestUsageMarker();
-    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(
-        new ShortestClassUsageMarker(usageMarker, "Just cause"));
+    AnnotationUsageMarker annotationUsageMarker =
+        new AnnotationUsageMarker(new ShortestClassUsageMarker(usageMarker, "Just cause"));
     LibraryClass clazz = new LibraryClass();
     FloatConstant constant = new FloatConstant(10.0f);
 
@@ -582,19 +2443,19 @@ class AnnotationUsageMarkerDiffblueTest {
 
   /**
    * Test {@link AnnotationUsageMarker#visitAnyConstant(Clazz, Constant)}.
-   * <p>
-   * Method under test: {@link AnnotationUsageMarker#visitAnyConstant(Clazz, Constant)}
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnyConstant(Clazz, Constant)}
    */
   @Test
   @DisplayName("Test visitAnyConstant(Clazz, Constant)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.shrink.AnnotationUsageMarker.visitAnyConstant(proguard.classfile.Clazz, proguard.classfile.constant.Constant)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AnnotationUsageMarker.visitAnyConstant(Clazz, Constant)"})
   void testVisitAnyConstant7() {
     // Arrange
     ShortestUsageMarker usageMarker = new ShortestUsageMarker();
-    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(
-        new ShortestClassUsageMarker(usageMarker, "Just cause"));
+    AnnotationUsageMarker annotationUsageMarker =
+        new AnnotationUsageMarker(new ShortestClassUsageMarker(usageMarker, "Just cause"));
     LibraryClass clazz = new LibraryClass();
     IntegerConstant constant = new IntegerConstant(42);
 
@@ -608,19 +2469,19 @@ class AnnotationUsageMarkerDiffblueTest {
 
   /**
    * Test {@link AnnotationUsageMarker#visitClassConstant(Clazz, ClassConstant)}.
-   * <p>
-   * Method under test: {@link AnnotationUsageMarker#visitClassConstant(Clazz, ClassConstant)}
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitClassConstant(Clazz, ClassConstant)}
    */
   @Test
   @DisplayName("Test visitClassConstant(Clazz, ClassConstant)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.shrink.AnnotationUsageMarker.visitClassConstant(proguard.classfile.Clazz, proguard.classfile.constant.ClassConstant)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AnnotationUsageMarker.visitClassConstant(Clazz, ClassConstant)"})
   void testVisitClassConstant() {
     // Arrange
     ShortestUsageMarker usageMarker = new ShortestUsageMarker();
-    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(
-        new ShortestClassUsageMarker(usageMarker, "Just cause"));
+    AnnotationUsageMarker annotationUsageMarker =
+        new AnnotationUsageMarker(new ShortestClassUsageMarker(usageMarker, "Just cause"));
     LibraryClass clazz = new LibraryClass();
     ClassConstant classConstant = new ClassConstant();
 
@@ -634,69 +2495,25 @@ class AnnotationUsageMarkerDiffblueTest {
 
   /**
    * Test {@link AnnotationUsageMarker#visitClassConstant(Clazz, ClassConstant)}.
-   * <p>
-   * Method under test: {@link AnnotationUsageMarker#visitClassConstant(Clazz, ClassConstant)}
-   */
-  @Test
-  @DisplayName("Test visitClassConstant(Clazz, ClassConstant)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.shrink.AnnotationUsageMarker.visitClassConstant(proguard.classfile.Clazz, proguard.classfile.constant.ClassConstant)"})
-  void testVisitClassConstant2() {
-    // Arrange
-    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
-    LibraryClass clazz = new LibraryClass();
-    ClassConstant classConstant = new ClassConstant(1, new LibraryClass(5, "kotlin/Metadata", "kotlin/Metadata"));
-
-    // Act
-    annotationUsageMarker.visitClassConstant(clazz, classConstant);
-
-    // Assert that nothing has changed
-    assertNull(classConstant.getProcessingInfo());
-  }
-
-  /**
-   * Test {@link AnnotationUsageMarker#visitClassConstant(Clazz, ClassConstant)}.
-   * <p>
-   * Method under test: {@link AnnotationUsageMarker#visitClassConstant(Clazz, ClassConstant)}
-   */
-  @Test
-  @DisplayName("Test visitClassConstant(Clazz, ClassConstant)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.shrink.AnnotationUsageMarker.visitClassConstant(proguard.classfile.Clazz, proguard.classfile.constant.ClassConstant)"})
-  void testVisitClassConstant3() {
-    // Arrange
-    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
-    LibraryClass clazz = new LibraryClass();
-    ClassConstant classConstant = new ClassConstant(1, new NamedClass("kotlin/Metadata"));
-
-    // Act
-    annotationUsageMarker.visitClassConstant(clazz, classConstant);
-
-    // Assert that nothing has changed
-    assertNull(classConstant.getProcessingInfo());
-  }
-
-  /**
-   * Test {@link AnnotationUsageMarker#visitClassConstant(Clazz, ClassConstant)}.
+   *
    * <ul>
-   *   <li>Then first element {@link DoubleConstant}.</li>
+   *   <li>Then first element {@link DoubleConstant}.
    * </ul>
-   * <p>
-   * Method under test: {@link AnnotationUsageMarker#visitClassConstant(Clazz, ClassConstant)}
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitClassConstant(Clazz, ClassConstant)}
    */
   @Test
   @DisplayName("Test visitClassConstant(Clazz, ClassConstant); then first element DoubleConstant")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.shrink.AnnotationUsageMarker.visitClassConstant(proguard.classfile.Clazz, proguard.classfile.constant.ClassConstant)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AnnotationUsageMarker.visitClassConstant(Clazz, ClassConstant)"})
   void testVisitClassConstant_thenFirstElementDoubleConstant() {
     // Arrange
     ShortestUsageMarker usageMarker = new ShortestUsageMarker();
-    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(
-        new ShortestClassUsageMarker(usageMarker, "Just cause"));
-    ProgramClass clazz = new ProgramClass(5, 3, new Constant[]{new DoubleConstant(10.0d)}, 5, 5, 5);
+    AnnotationUsageMarker annotationUsageMarker =
+        new AnnotationUsageMarker(new ShortestClassUsageMarker(usageMarker, "Just cause"));
+    ProgramClass clazz =
+        new ProgramClass(5, 3, new Constant[] {new DoubleConstant(10.0d)}, 5, 5, 5);
 
     ClassConstant classConstant = new ClassConstant();
 
@@ -715,23 +2532,24 @@ class AnnotationUsageMarkerDiffblueTest {
 
   /**
    * Test {@link AnnotationUsageMarker#visitClassConstant(Clazz, ClassConstant)}.
+   *
    * <ul>
-   *   <li>Then first element {@link DynamicConstant}.</li>
+   *   <li>Then first element {@link DynamicConstant}.
    * </ul>
-   * <p>
-   * Method under test: {@link AnnotationUsageMarker#visitClassConstant(Clazz, ClassConstant)}
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitClassConstant(Clazz, ClassConstant)}
    */
   @Test
   @DisplayName("Test visitClassConstant(Clazz, ClassConstant); then first element DynamicConstant")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.shrink.AnnotationUsageMarker.visitClassConstant(proguard.classfile.Clazz, proguard.classfile.constant.ClassConstant)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AnnotationUsageMarker.visitClassConstant(Clazz, ClassConstant)"})
   void testVisitClassConstant_thenFirstElementDynamicConstant() {
     // Arrange
     ShortestUsageMarker usageMarker = new ShortestUsageMarker();
-    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(
-        new ShortestClassUsageMarker(usageMarker, "Just cause"));
-    ProgramClass clazz = new ProgramClass(5, 3, new Constant[]{new DynamicConstant()}, 5, 5, 5);
+    AnnotationUsageMarker annotationUsageMarker =
+        new AnnotationUsageMarker(new ShortestClassUsageMarker(usageMarker, "Just cause"));
+    ProgramClass clazz = new ProgramClass(5, 3, new Constant[] {new DynamicConstant()}, 5, 5, 5);
 
     ClassConstant classConstant = new ClassConstant();
 
@@ -750,23 +2568,24 @@ class AnnotationUsageMarkerDiffblueTest {
 
   /**
    * Test {@link AnnotationUsageMarker#visitClassConstant(Clazz, ClassConstant)}.
+   *
    * <ul>
-   *   <li>Then first element {@link FieldrefConstant}.</li>
+   *   <li>Then first element {@link FieldrefConstant}.
    * </ul>
-   * <p>
-   * Method under test: {@link AnnotationUsageMarker#visitClassConstant(Clazz, ClassConstant)}
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitClassConstant(Clazz, ClassConstant)}
    */
   @Test
   @DisplayName("Test visitClassConstant(Clazz, ClassConstant); then first element FieldrefConstant")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.shrink.AnnotationUsageMarker.visitClassConstant(proguard.classfile.Clazz, proguard.classfile.constant.ClassConstant)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AnnotationUsageMarker.visitClassConstant(Clazz, ClassConstant)"})
   void testVisitClassConstant_thenFirstElementFieldrefConstant() {
     // Arrange
     ShortestUsageMarker usageMarker = new ShortestUsageMarker();
-    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(
-        new ShortestClassUsageMarker(usageMarker, "Just cause"));
-    ProgramClass clazz = new ProgramClass(5, 3, new Constant[]{new FieldrefConstant()}, 5, 5, 5);
+    AnnotationUsageMarker annotationUsageMarker =
+        new AnnotationUsageMarker(new ShortestClassUsageMarker(usageMarker, "Just cause"));
+    ProgramClass clazz = new ProgramClass(5, 3, new Constant[] {new FieldrefConstant()}, 5, 5, 5);
 
     ClassConstant classConstant = new ClassConstant();
 
@@ -785,23 +2604,24 @@ class AnnotationUsageMarkerDiffblueTest {
 
   /**
    * Test {@link AnnotationUsageMarker#visitClassConstant(Clazz, ClassConstant)}.
+   *
    * <ul>
-   *   <li>Then first element {@link FloatConstant}.</li>
+   *   <li>Then first element {@link FloatConstant}.
    * </ul>
-   * <p>
-   * Method under test: {@link AnnotationUsageMarker#visitClassConstant(Clazz, ClassConstant)}
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitClassConstant(Clazz, ClassConstant)}
    */
   @Test
   @DisplayName("Test visitClassConstant(Clazz, ClassConstant); then first element FloatConstant")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.shrink.AnnotationUsageMarker.visitClassConstant(proguard.classfile.Clazz, proguard.classfile.constant.ClassConstant)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AnnotationUsageMarker.visitClassConstant(Clazz, ClassConstant)"})
   void testVisitClassConstant_thenFirstElementFloatConstant() {
     // Arrange
     ShortestUsageMarker usageMarker = new ShortestUsageMarker();
-    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(
-        new ShortestClassUsageMarker(usageMarker, "Just cause"));
-    ProgramClass clazz = new ProgramClass(5, 3, new Constant[]{new FloatConstant(10.0f)}, 5, 5, 5);
+    AnnotationUsageMarker annotationUsageMarker =
+        new AnnotationUsageMarker(new ShortestClassUsageMarker(usageMarker, "Just cause"));
+    ProgramClass clazz = new ProgramClass(5, 3, new Constant[] {new FloatConstant(10.0f)}, 5, 5, 5);
 
     ClassConstant classConstant = new ClassConstant();
 
@@ -819,69 +2639,107 @@ class AnnotationUsageMarkerDiffblueTest {
   }
 
   /**
-   * Test {@link AnnotationUsageMarker#visitAnyClass(Clazz)}.
+   * Test {@link AnnotationUsageMarker#visitClassConstant(Clazz, ClassConstant)}.
+   *
    * <ul>
-   *   <li>When {@link LibraryClass#LibraryClass()}.</li>
-   *   <li>Then throw {@link UnsupportedOperationException}.</li>
+   *   <li>Then first element {@link IntegerConstant}.
    * </ul>
-   * <p>
-   * Method under test: {@link AnnotationUsageMarker#visitAnyClass(Clazz)}
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitClassConstant(Clazz, ClassConstant)}
    */
   @Test
-  @DisplayName("Test visitAnyClass(Clazz); when LibraryClass(); then throw UnsupportedOperationException")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.shrink.AnnotationUsageMarker.visitAnyClass(proguard.classfile.Clazz)"})
+  @DisplayName("Test visitClassConstant(Clazz, ClassConstant); then first element IntegerConstant")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AnnotationUsageMarker.visitClassConstant(Clazz, ClassConstant)"})
+  void testVisitClassConstant_thenFirstElementIntegerConstant() {
+    // Arrange
+    ShortestUsageMarker usageMarker = new ShortestUsageMarker();
+    AnnotationUsageMarker annotationUsageMarker =
+        new AnnotationUsageMarker(new ShortestClassUsageMarker(usageMarker, "Just cause"));
+    ProgramClass clazz = new ProgramClass(5, 3, new Constant[] {new IntegerConstant(42)}, 5, 5, 5);
+
+    ClassConstant classConstant = new ClassConstant();
+
+    // Act
+    annotationUsageMarker.visitClassConstant(clazz, classConstant);
+
+    // Assert
+    Constant[] constantArray = clazz.constantPool;
+    Constant constant = constantArray[0];
+    assertTrue(constant instanceof IntegerConstant);
+    assertEquals(1, constantArray.length);
+    Object processingInfo = constant.getProcessingInfo();
+    assertSame(processingInfo, classConstant.getProcessingInfo());
+    assertSame(usageMarker.currentUsageMark, processingInfo);
+  }
+
+  /**
+   * Test {@link AnnotationUsageMarker#visitAnyClass(Clazz)}.
+   *
+   * <ul>
+   *   <li>When {@link LibraryClass#LibraryClass()}.
+   *   <li>Then throw {@link UnsupportedOperationException}.
+   * </ul>
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitAnyClass(Clazz)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitAnyClass(Clazz); when LibraryClass(); then throw UnsupportedOperationException")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AnnotationUsageMarker.visitAnyClass(Clazz)"})
   void testVisitAnyClass_whenLibraryClass_thenThrowUnsupportedOperationException() {
     // Arrange
     AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
 
     // Act and Assert
-    assertThrows(UnsupportedOperationException.class, () -> annotationUsageMarker.visitAnyClass(new LibraryClass()));
+    assertThrows(
+        UnsupportedOperationException.class,
+        () -> annotationUsageMarker.visitAnyClass(new LibraryClass()));
   }
 
   /**
    * Test {@link AnnotationUsageMarker#visitProgramClass(ProgramClass)}.
-   * <ul>
-   *   <li>Given {@code 1048576}.</li>
-   * </ul>
-   * <p>
-   * Method under test: {@link AnnotationUsageMarker#visitProgramClass(ProgramClass)}
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitProgramClass(ProgramClass)}
    */
   @Test
-  @DisplayName("Test visitProgramClass(ProgramClass); given '1048576'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.shrink.AnnotationUsageMarker.visitProgramClass(proguard.classfile.ProgramClass)"})
-  void testVisitProgramClass_given1048576() {
+  @DisplayName("Test visitProgramClass(ProgramClass)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AnnotationUsageMarker.visitProgramClass(ProgramClass)"})
+  void testVisitProgramClass() {
     // Arrange
     ClassUsageMarker classUsageMarker = mock(ClassUsageMarker.class);
     when(classUsageMarker.isUsed(Mockito.<Processable>any())).thenReturn(true);
     AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(classUsageMarker);
-    ProgramClass programClass = mock(ProgramClass.class);
-    when(programClass.getProcessingFlags()).thenReturn(1048576);
-    when(programClass.getName()).thenReturn("kotlin/coroutines/jvm/internal/DebugMetadata");
 
     // Act
-    annotationUsageMarker.visitProgramClass(programClass);
+    annotationUsageMarker.visitProgramClass(
+        new NamedClass("kotlin/coroutines/jvm/internal/DebugMetadata"));
 
     // Assert
-    verify(programClass).getName();
     verify(classUsageMarker).isUsed(isA(Processable.class));
-    verify(programClass).getProcessingFlags();
   }
 
   /**
    * Test {@link AnnotationUsageMarker#visitProgramClass(ProgramClass)}.
+   *
    * <ul>
-   *   <li>Given {@code Name}.</li>
-   *   <li>When {@link ProgramClass} {@link ProgramClass#getName()} return {@code Name}.</li>
+   *   <li>Given {@code Name}.
+   *   <li>When {@link ProgramClass} {@link ProgramClass#getName()} return {@code Name}.
    * </ul>
-   * <p>
-   * Method under test: {@link AnnotationUsageMarker#visitProgramClass(ProgramClass)}
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitProgramClass(ProgramClass)}
    */
   @Test
-  @DisplayName("Test visitProgramClass(ProgramClass); given 'Name'; when ProgramClass getName() return 'Name'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.shrink.AnnotationUsageMarker.visitProgramClass(proguard.classfile.ProgramClass)"})
+  @DisplayName(
+      "Test visitProgramClass(ProgramClass); given 'Name'; when ProgramClass getName() return 'Name'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AnnotationUsageMarker.visitProgramClass(ProgramClass)"})
   void testVisitProgramClass_givenName_whenProgramClassGetNameReturnName() {
     // Arrange
     ClassUsageMarker classUsageMarker = mock(ClassUsageMarker.class);
@@ -899,49 +2757,50 @@ class AnnotationUsageMarkerDiffblueTest {
   }
 
   /**
-   * Test {@link AnnotationUsageMarker#visitProgramClass(ProgramClass)}.
+   * Test {@link AnnotationUsageMarker#visitLibraryClass(LibraryClass)}.
+   *
    * <ul>
-   *   <li>Given one.</li>
-   *   <li>When {@link ProgramClass} {@link SimpleProcessable#getProcessingFlags()} return one.</li>
+   *   <li>Given minus one.
    * </ul>
-   * <p>
-   * Method under test: {@link AnnotationUsageMarker#visitProgramClass(ProgramClass)}
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitLibraryClass(LibraryClass)}
    */
   @Test
-  @DisplayName("Test visitProgramClass(ProgramClass); given one; when ProgramClass getProcessingFlags() return one")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.shrink.AnnotationUsageMarker.visitProgramClass(proguard.classfile.ProgramClass)"})
-  void testVisitProgramClass_givenOne_whenProgramClassGetProcessingFlagsReturnOne() {
+  @DisplayName("Test visitLibraryClass(LibraryClass); given minus one")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AnnotationUsageMarker.visitLibraryClass(LibraryClass)"})
+  void testVisitLibraryClass_givenMinusOne() {
     // Arrange
-    ClassUsageMarker classUsageMarker = mock(ClassUsageMarker.class);
-    when(classUsageMarker.isUsed(Mockito.<Processable>any())).thenReturn(true);
-    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(classUsageMarker);
-    ProgramClass programClass = mock(ProgramClass.class);
-    when(programClass.getProcessingFlags()).thenReturn(1);
-    when(programClass.getName()).thenReturn("kotlin/coroutines/jvm/internal/DebugMetadata");
+    AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
+    LibraryClass libraryClass = mock(LibraryClass.class);
+    when(libraryClass.getProcessingFlags()).thenReturn(-1);
+    when(libraryClass.getName()).thenReturn("kotlin/Metadata");
 
     // Act
-    annotationUsageMarker.visitProgramClass(programClass);
+    annotationUsageMarker.visitLibraryClass(libraryClass);
 
     // Assert
-    verify(programClass).getName();
-    verify(classUsageMarker).isUsed(isA(Processable.class));
-    verify(programClass).getProcessingFlags();
+    verify(libraryClass).getName();
+    verify(libraryClass).getProcessingFlags();
   }
 
   /**
    * Test {@link AnnotationUsageMarker#visitLibraryClass(LibraryClass)}.
+   *
    * <ul>
-   *   <li>Given {@code Name}.</li>
-   *   <li>When {@link LibraryClass} {@link LibraryClass#getName()} return {@code Name}.</li>
+   *   <li>Given {@code Name}.
+   *   <li>When {@link LibraryClass} {@link LibraryClass#getName()} return {@code Name}.
    * </ul>
-   * <p>
-   * Method under test: {@link AnnotationUsageMarker#visitLibraryClass(LibraryClass)}
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitLibraryClass(LibraryClass)}
    */
   @Test
-  @DisplayName("Test visitLibraryClass(LibraryClass); given 'Name'; when LibraryClass getName() return 'Name'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.shrink.AnnotationUsageMarker.visitLibraryClass(proguard.classfile.LibraryClass)"})
+  @DisplayName(
+      "Test visitLibraryClass(LibraryClass); given 'Name'; when LibraryClass getName() return 'Name'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AnnotationUsageMarker.visitLibraryClass(LibraryClass)"})
   void testVisitLibraryClass_givenName_whenLibraryClassGetNameReturnName() {
     // Arrange
     AnnotationUsageMarker annotationUsageMarker = new AnnotationUsageMarker(new ClassUsageMarker());
@@ -957,18 +2816,22 @@ class AnnotationUsageMarkerDiffblueTest {
 
   /**
    * Test {@link AnnotationUsageMarker#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   *
    * <ul>
-   *   <li>Given {@link ClassUsageMarker} {@link ClassUsageMarker#isUsed(Processable)} return {@code true}.</li>
-   *   <li>Then calls {@link ClassUsageMarker#isUsed(Processable)}.</li>
+   *   <li>Given {@link ClassUsageMarker} {@link ClassUsageMarker#isUsed(Processable)} return {@code
+   *       true}.
+   *   <li>Then calls {@link ClassUsageMarker#isUsed(Processable)}.
    * </ul>
-   * <p>
-   * Method under test: {@link AnnotationUsageMarker#visitProgramMethod(ProgramClass, ProgramMethod)}
+   *
+   * <p>Method under test: {@link AnnotationUsageMarker#visitProgramMethod(ProgramClass,
+   * ProgramMethod)}
    */
   @Test
-  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); given ClassUsageMarker isUsed(Processable) return 'true'; then calls isUsed(Processable)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.shrink.AnnotationUsageMarker.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
+  @DisplayName(
+      "Test visitProgramMethod(ProgramClass, ProgramMethod); given ClassUsageMarker isUsed(Processable) return 'true'; then calls isUsed(Processable)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void AnnotationUsageMarker.visitProgramMethod(ProgramClass, ProgramMethod)"})
   void testVisitProgramMethod_givenClassUsageMarkerIsUsedReturnTrue_thenCallsIsUsed() {
     // Arrange
     ClassUsageMarker classUsageMarker = mock(ClassUsageMarker.class);

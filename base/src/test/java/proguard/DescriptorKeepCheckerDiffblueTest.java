@@ -5,6 +5,7 @@ import static org.mockito.Mockito.atLeast;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -22,21 +23,25 @@ import proguard.classfile.visitor.ClassVisitor;
 class DescriptorKeepCheckerDiffblueTest {
   /**
    * Test {@link DescriptorKeepChecker#checkClassSpecifications(List)}.
-   * <p>
-   * Method under test: {@link DescriptorKeepChecker#checkClassSpecifications(List)}
+   *
+   * <p>Method under test: {@link DescriptorKeepChecker#checkClassSpecifications(List)}
    */
   @Test
   @DisplayName("Test checkClassSpecifications(List)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.DescriptorKeepChecker.checkClassSpecifications(java.util.List)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void DescriptorKeepChecker.checkClassSpecifications(List)"})
   void testCheckClassSpecifications() {
     // Arrange
     ClassPool programClassPool = mock(ClassPool.class);
     doNothing().when(programClassPool).accept(Mockito.<ClassPoolVisitor>any());
     doNothing().when(programClassPool).classesAccept(Mockito.<ClassVisitor>any());
     ClassPool libraryClassPool = new ClassPool();
-    DescriptorKeepChecker descriptorKeepChecker = new DescriptorKeepChecker(programClassPool, libraryClassPool,
-        new WarningPrinter(new PrintWriter(new StringWriter())));
+    DescriptorKeepChecker descriptorKeepChecker =
+        new DescriptorKeepChecker(
+            programClassPool,
+            libraryClassPool,
+            new WarningPrinter(new PrintWriter(new StringWriter())));
 
     // Act
     descriptorKeepChecker.checkClassSpecifications(new ArrayList<>());
@@ -48,13 +53,14 @@ class DescriptorKeepCheckerDiffblueTest {
 
   /**
    * Test {@link DescriptorKeepChecker#checkClassSpecifications(List)}.
-   * <p>
-   * Method under test: {@link DescriptorKeepChecker#checkClassSpecifications(List)}
+   *
+   * <p>Method under test: {@link DescriptorKeepChecker#checkClassSpecifications(List)}
    */
   @Test
   @DisplayName("Test checkClassSpecifications(List)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.DescriptorKeepChecker.checkClassSpecifications(java.util.List)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void DescriptorKeepChecker.checkClassSpecifications(List)"})
   void testCheckClassSpecifications2() {
     // Arrange
     ClassPool programClassPool = mock(ClassPool.class);
@@ -63,8 +69,11 @@ class DescriptorKeepCheckerDiffblueTest {
     ClassPool libraryClassPool = mock(ClassPool.class);
     doNothing().when(libraryClassPool).accept(Mockito.<ClassPoolVisitor>any());
     doNothing().when(libraryClassPool).classesAccept(Mockito.<ClassVisitor>any());
-    DescriptorKeepChecker descriptorKeepChecker = new DescriptorKeepChecker(programClassPool, libraryClassPool,
-        new WarningPrinter(new PrintWriter(new StringWriter())));
+    DescriptorKeepChecker descriptorKeepChecker =
+        new DescriptorKeepChecker(
+            programClassPool,
+            libraryClassPool,
+            new WarningPrinter(new PrintWriter(new StringWriter())));
 
     // Act
     descriptorKeepChecker.checkClassSpecifications(new ArrayList<>());

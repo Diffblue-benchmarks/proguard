@@ -14,6 +14,7 @@ import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -33,42 +34,50 @@ import proguard.classfile.constant.ClassConstant;
 import proguard.classfile.constant.Constant;
 import proguard.classfile.constant.visitor.ConstantVisitor;
 import proguard.testutils.cpa.NamedClass;
-import proguard.util.SimpleProcessable;
+import proguard.util.SimpleFeatureNamedProcessable;
 
 class NameMarkerDiffblueTest {
   /**
    * Test {@link NameMarker#visitAnyClass(Clazz)}.
+   *
    * <ul>
-   *   <li>When {@link LibraryClass#LibraryClass()}.</li>
-   *   <li>Then throw {@link UnsupportedOperationException}.</li>
+   *   <li>When {@link LibraryClass#LibraryClass()}.
+   *   <li>Then throw {@link UnsupportedOperationException}.
    * </ul>
-   * <p>
-   * Method under test: {@link NameMarker#visitAnyClass(Clazz)}
+   *
+   * <p>Method under test: {@link NameMarker#visitAnyClass(Clazz)}
    */
   @Test
-  @DisplayName("Test visitAnyClass(Clazz); when LibraryClass(); then throw UnsupportedOperationException")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.obfuscate.NameMarker.visitAnyClass(proguard.classfile.Clazz)"})
+  @DisplayName(
+      "Test visitAnyClass(Clazz); when LibraryClass(); then throw UnsupportedOperationException")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NameMarker.visitAnyClass(Clazz)"})
   void testVisitAnyClass_whenLibraryClass_thenThrowUnsupportedOperationException() {
     // Arrange
     NameMarker nameMarker = new NameMarker();
 
     // Act and Assert
-    assertThrows(UnsupportedOperationException.class, () -> nameMarker.visitAnyClass(new LibraryClass()));
+    assertThrows(
+        UnsupportedOperationException.class, () -> nameMarker.visitAnyClass(new LibraryClass()));
   }
 
   /**
    * Test {@link NameMarker#visitProgramClass(ProgramClass)}.
+   *
    * <ul>
-   *   <li>Then {@link NamedClass#NamedClass(String)} with {@code Member Name} ProcessingInfo is {@code Member Name}.</li>
+   *   <li>Then {@link NamedClass#NamedClass(String)} with {@code Member Name} ProcessingInfo is
+   *       {@code Member Name}.
    * </ul>
-   * <p>
-   * Method under test: {@link NameMarker#visitProgramClass(ProgramClass)}
+   *
+   * <p>Method under test: {@link NameMarker#visitProgramClass(ProgramClass)}
    */
   @Test
-  @DisplayName("Test visitProgramClass(ProgramClass); then NamedClass(String) with 'Member Name' ProcessingInfo is 'Member Name'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.obfuscate.NameMarker.visitProgramClass(proguard.classfile.ProgramClass)"})
+  @DisplayName(
+      "Test visitProgramClass(ProgramClass); then NamedClass(String) with 'Member Name' ProcessingInfo is 'Member Name'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NameMarker.visitProgramClass(ProgramClass)"})
   void testVisitProgramClass_thenNamedClassWithMemberNameProcessingInfoIsMemberName() {
     // Arrange
     NameMarker nameMarker = new NameMarker();
@@ -83,14 +92,14 @@ class NameMarkerDiffblueTest {
 
   /**
    * Test {@link NameMarker#visitProgramField(ProgramClass, ProgramField)}.
-   * <p>
-   * Method under test: {@link NameMarker#visitProgramField(ProgramClass, ProgramField)}
+   *
+   * <p>Method under test: {@link NameMarker#visitProgramField(ProgramClass, ProgramField)}
    */
   @Test
   @DisplayName("Test visitProgramField(ProgramClass, ProgramField)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.NameMarker.visitProgramField(proguard.classfile.ProgramClass, proguard.classfile.ProgramField)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NameMarker.visitProgramField(ProgramClass, ProgramField)"})
   void testVisitProgramField() {
     // Arrange
     NameMarker nameMarker = new NameMarker();
@@ -109,18 +118,20 @@ class NameMarkerDiffblueTest {
 
   /**
    * Test {@link NameMarker#visitProgramField(ProgramClass, ProgramField)}.
+   *
    * <ul>
-   *   <li>Given {@code Processing Info}.</li>
-   *   <li>Then calls {@link SimpleProcessable#setProcessingInfo(Object)}.</li>
+   *   <li>Given {@code Processing Info}.
+   *   <li>Then calls {@link ProgramField#setProcessingInfo(Object)}.
    * </ul>
-   * <p>
-   * Method under test: {@link NameMarker#visitProgramField(ProgramClass, ProgramField)}
+   *
+   * <p>Method under test: {@link NameMarker#visitProgramField(ProgramClass, ProgramField)}
    */
   @Test
-  @DisplayName("Test visitProgramField(ProgramClass, ProgramField); given 'Processing Info'; then calls setProcessingInfo(Object)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.NameMarker.visitProgramField(proguard.classfile.ProgramClass, proguard.classfile.ProgramField)"})
+  @DisplayName(
+      "Test visitProgramField(ProgramClass, ProgramField); given 'Processing Info'; then calls setProcessingInfo(Object)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NameMarker.visitProgramField(ProgramClass, ProgramField)"})
   void testVisitProgramField_givenProcessingInfo_thenCallsSetProcessingInfo() {
     // Arrange
     NameMarker nameMarker = new NameMarker();
@@ -141,18 +152,20 @@ class NameMarkerDiffblueTest {
 
   /**
    * Test {@link NameMarker#visitProgramField(ProgramClass, ProgramField)}.
+   *
    * <ul>
-   *   <li>Given {@code String}.</li>
-   *   <li>Then calls {@link ProgramClass#getString(int)}.</li>
+   *   <li>Given {@code String}.
+   *   <li>Then calls {@link ProgramClass#getString(int)}.
    * </ul>
-   * <p>
-   * Method under test: {@link NameMarker#visitProgramField(ProgramClass, ProgramField)}
+   *
+   * <p>Method under test: {@link NameMarker#visitProgramField(ProgramClass, ProgramField)}
    */
   @Test
-  @DisplayName("Test visitProgramField(ProgramClass, ProgramField); given 'String'; then calls getString(int)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.NameMarker.visitProgramField(proguard.classfile.ProgramClass, proguard.classfile.ProgramField)"})
+  @DisplayName(
+      "Test visitProgramField(ProgramClass, ProgramField); given 'String'; then calls getString(int)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NameMarker.visitProgramField(ProgramClass, ProgramField)"})
   void testVisitProgramField_givenString_thenCallsGetString() {
     // Arrange
     NameMarker nameMarker = new NameMarker();
@@ -168,14 +181,14 @@ class NameMarkerDiffblueTest {
 
   /**
    * Test {@link NameMarker#visitProgramMethod(ProgramClass, ProgramMethod)}.
-   * <p>
-   * Method under test: {@link NameMarker#visitProgramMethod(ProgramClass, ProgramMethod)}
+   *
+   * <p>Method under test: {@link NameMarker#visitProgramMethod(ProgramClass, ProgramMethod)}
    */
   @Test
   @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.NameMarker.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NameMarker.visitProgramMethod(ProgramClass, ProgramMethod)"})
   void testVisitProgramMethod() {
     // Arrange
     NameMarker nameMarker = new NameMarker();
@@ -194,18 +207,20 @@ class NameMarkerDiffblueTest {
 
   /**
    * Test {@link NameMarker#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   *
    * <ul>
-   *   <li>Given {@code Processing Info}.</li>
-   *   <li>Then calls {@link SimpleProcessable#setProcessingInfo(Object)}.</li>
+   *   <li>Given {@code Processing Info}.
+   *   <li>Then calls {@link ProgramMethod#setProcessingInfo(Object)}.
    * </ul>
-   * <p>
-   * Method under test: {@link NameMarker#visitProgramMethod(ProgramClass, ProgramMethod)}
+   *
+   * <p>Method under test: {@link NameMarker#visitProgramMethod(ProgramClass, ProgramMethod)}
    */
   @Test
-  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); given 'Processing Info'; then calls setProcessingInfo(Object)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.NameMarker.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
+  @DisplayName(
+      "Test visitProgramMethod(ProgramClass, ProgramMethod); given 'Processing Info'; then calls setProcessingInfo(Object)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NameMarker.visitProgramMethod(ProgramClass, ProgramMethod)"})
   void testVisitProgramMethod_givenProcessingInfo_thenCallsSetProcessingInfo() {
     // Arrange
     NameMarker nameMarker = new NameMarker();
@@ -226,18 +241,20 @@ class NameMarkerDiffblueTest {
 
   /**
    * Test {@link NameMarker#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   *
    * <ul>
-   *   <li>Given {@code String}.</li>
-   *   <li>Then calls {@link ProgramClass#getString(int)}.</li>
+   *   <li>Given {@code String}.
+   *   <li>Then calls {@link ProgramClass#getString(int)}.
    * </ul>
-   * <p>
-   * Method under test: {@link NameMarker#visitProgramMethod(ProgramClass, ProgramMethod)}
+   *
+   * <p>Method under test: {@link NameMarker#visitProgramMethod(ProgramClass, ProgramMethod)}
    */
   @Test
-  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); given 'String'; then calls getString(int)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.NameMarker.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
+  @DisplayName(
+      "Test visitProgramMethod(ProgramClass, ProgramMethod); given 'String'; then calls getString(int)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NameMarker.visitProgramMethod(ProgramClass, ProgramMethod)"})
   void testVisitProgramMethod_givenString_thenCallsGetString() {
     // Arrange
     NameMarker nameMarker = new NameMarker();
@@ -253,21 +270,22 @@ class NameMarkerDiffblueTest {
 
   /**
    * Test {@link NameMarker#visitLibraryField(LibraryClass, LibraryField)}.
-   * <p>
-   * Method under test: {@link NameMarker#visitLibraryField(LibraryClass, LibraryField)}
+   *
+   * <p>Method under test: {@link NameMarker#visitLibraryField(LibraryClass, LibraryField)}
    */
   @Test
   @DisplayName("Test visitLibraryField(LibraryClass, LibraryField)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.NameMarker.visitLibraryField(proguard.classfile.LibraryClass, proguard.classfile.LibraryField)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NameMarker.visitLibraryField(LibraryClass, LibraryField)"})
   void testVisitLibraryField() {
     // Arrange
     NameMarker nameMarker = new NameMarker();
     LibraryClass libraryClass = new LibraryClass();
 
     LibraryField libraryField = new LibraryField(1, "Name", "Descriptor");
-    LibraryField libraryField2 = new LibraryField();
+    LibraryField libraryField2 = new LibraryField(1, "Name", "Descriptor");
+
     libraryField.setProcessingInfo(libraryField2);
 
     // Act
@@ -282,17 +300,49 @@ class NameMarkerDiffblueTest {
 
   /**
    * Test {@link NameMarker#visitLibraryField(LibraryClass, LibraryField)}.
+   *
+   * <p>Method under test: {@link NameMarker#visitLibraryField(LibraryClass, LibraryField)}
+   */
+  @Test
+  @DisplayName("Test visitLibraryField(LibraryClass, LibraryField)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NameMarker.visitLibraryField(LibraryClass, LibraryField)"})
+  void testVisitLibraryField2() {
+    // Arrange
+    NameMarker nameMarker = new NameMarker();
+    LibraryClass libraryClass = new LibraryClass();
+
+    SimpleFeatureNamedProcessable simpleFeatureNamedProcessable =
+        new SimpleFeatureNamedProcessable();
+    simpleFeatureNamedProcessable.addProcessingFlags(2, 1, 2, 1);
+
+    LibraryField libraryField = new LibraryField(1, "Name", "Descriptor");
+    libraryField.setProcessingInfo(simpleFeatureNamedProcessable);
+
+    // Act
+    nameMarker.visitLibraryField(libraryClass, libraryField);
+
+    // Assert that nothing has changed
+    Object processingInfo = libraryField.getProcessingInfo();
+    assertTrue(processingInfo instanceof SimpleFeatureNamedProcessable);
+    assertSame(simpleFeatureNamedProcessable, processingInfo);
+  }
+
+  /**
+   * Test {@link NameMarker#visitLibraryField(LibraryClass, LibraryField)}.
+   *
    * <ul>
-   *   <li>Given {@code Processing Info}.</li>
+   *   <li>Given {@code Processing Info}.
    * </ul>
-   * <p>
-   * Method under test: {@link NameMarker#visitLibraryField(LibraryClass, LibraryField)}
+   *
+   * <p>Method under test: {@link NameMarker#visitLibraryField(LibraryClass, LibraryField)}
    */
   @Test
   @DisplayName("Test visitLibraryField(LibraryClass, LibraryField); given 'Processing Info'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.NameMarker.visitLibraryField(proguard.classfile.LibraryClass, proguard.classfile.LibraryField)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NameMarker.visitLibraryField(LibraryClass, LibraryField)"})
   void testVisitLibraryField_givenProcessingInfo() {
     // Arrange
     NameMarker nameMarker = new NameMarker();
@@ -310,17 +360,20 @@ class NameMarkerDiffblueTest {
 
   /**
    * Test {@link NameMarker#visitLibraryField(LibraryClass, LibraryField)}.
+   *
    * <ul>
-   *   <li>When {@link LibraryField#LibraryField(int, String, String)} with u2accessFlags is one and {@code Name} and {@code Descriptor}.</li>
+   *   <li>When {@link LibraryField#LibraryField(int, String, String)} with u2accessFlags is one and
+   *       {@code Name} and {@code Descriptor}.
    * </ul>
-   * <p>
-   * Method under test: {@link NameMarker#visitLibraryField(LibraryClass, LibraryField)}
+   *
+   * <p>Method under test: {@link NameMarker#visitLibraryField(LibraryClass, LibraryField)}
    */
   @Test
-  @DisplayName("Test visitLibraryField(LibraryClass, LibraryField); when LibraryField(int, String, String) with u2accessFlags is one and 'Name' and 'Descriptor'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.NameMarker.visitLibraryField(proguard.classfile.LibraryClass, proguard.classfile.LibraryField)"})
+  @DisplayName(
+      "Test visitLibraryField(LibraryClass, LibraryField); when LibraryField(int, String, String) with u2accessFlags is one and 'Name' and 'Descriptor'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NameMarker.visitLibraryField(LibraryClass, LibraryField)"})
   void testVisitLibraryField_whenLibraryFieldWithU2accessFlagsIsOneAndNameAndDescriptor() {
     // Arrange
     NameMarker nameMarker = new NameMarker();
@@ -336,14 +389,14 @@ class NameMarkerDiffblueTest {
 
   /**
    * Test {@link NameMarker#visitLibraryMethod(LibraryClass, LibraryMethod)}.
-   * <p>
-   * Method under test: {@link NameMarker#visitLibraryMethod(LibraryClass, LibraryMethod)}
+   *
+   * <p>Method under test: {@link NameMarker#visitLibraryMethod(LibraryClass, LibraryMethod)}
    */
   @Test
   @DisplayName("Test visitLibraryMethod(LibraryClass, LibraryMethod)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.NameMarker.visitLibraryMethod(proguard.classfile.LibraryClass, proguard.classfile.LibraryMethod)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NameMarker.visitLibraryMethod(LibraryClass, LibraryMethod)"})
   void testVisitLibraryMethod() {
     // Arrange
     NameMarker nameMarker = new NameMarker();
@@ -359,21 +412,22 @@ class NameMarkerDiffblueTest {
 
   /**
    * Test {@link NameMarker#visitLibraryMethod(LibraryClass, LibraryMethod)}.
-   * <p>
-   * Method under test: {@link NameMarker#visitLibraryMethod(LibraryClass, LibraryMethod)}
+   *
+   * <p>Method under test: {@link NameMarker#visitLibraryMethod(LibraryClass, LibraryMethod)}
    */
   @Test
   @DisplayName("Test visitLibraryMethod(LibraryClass, LibraryMethod)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.NameMarker.visitLibraryMethod(proguard.classfile.LibraryClass, proguard.classfile.LibraryMethod)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NameMarker.visitLibraryMethod(LibraryClass, LibraryMethod)"})
   void testVisitLibraryMethod2() {
     // Arrange
     NameMarker nameMarker = new NameMarker();
     LibraryClass libraryClass = new LibraryClass();
 
     LibraryMethod libraryMethod = new LibraryMethod(1, "Name", "Descriptor");
-    LibraryField libraryField = new LibraryField();
+    LibraryField libraryField = new LibraryField(1, "Name", "Descriptor");
+
     libraryMethod.setProcessingInfo(libraryField);
 
     // Act
@@ -388,17 +442,49 @@ class NameMarkerDiffblueTest {
 
   /**
    * Test {@link NameMarker#visitLibraryMethod(LibraryClass, LibraryMethod)}.
+   *
+   * <p>Method under test: {@link NameMarker#visitLibraryMethod(LibraryClass, LibraryMethod)}
+   */
+  @Test
+  @DisplayName("Test visitLibraryMethod(LibraryClass, LibraryMethod)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NameMarker.visitLibraryMethod(LibraryClass, LibraryMethod)"})
+  void testVisitLibraryMethod3() {
+    // Arrange
+    NameMarker nameMarker = new NameMarker();
+    LibraryClass libraryClass = new LibraryClass();
+
+    SimpleFeatureNamedProcessable simpleFeatureNamedProcessable =
+        new SimpleFeatureNamedProcessable();
+    simpleFeatureNamedProcessable.addProcessingFlags(2, 1, 2, 1);
+
+    LibraryMethod libraryMethod = new LibraryMethod(1, "Name", "Descriptor");
+    libraryMethod.setProcessingInfo(simpleFeatureNamedProcessable);
+
+    // Act
+    nameMarker.visitLibraryMethod(libraryClass, libraryMethod);
+
+    // Assert that nothing has changed
+    Object processingInfo = libraryMethod.getProcessingInfo();
+    assertTrue(processingInfo instanceof SimpleFeatureNamedProcessable);
+    assertSame(simpleFeatureNamedProcessable, processingInfo);
+  }
+
+  /**
+   * Test {@link NameMarker#visitLibraryMethod(LibraryClass, LibraryMethod)}.
+   *
    * <ul>
-   *   <li>Given {@code Processing Info}.</li>
+   *   <li>Given {@code Processing Info}.
    * </ul>
-   * <p>
-   * Method under test: {@link NameMarker#visitLibraryMethod(LibraryClass, LibraryMethod)}
+   *
+   * <p>Method under test: {@link NameMarker#visitLibraryMethod(LibraryClass, LibraryMethod)}
    */
   @Test
   @DisplayName("Test visitLibraryMethod(LibraryClass, LibraryMethod); given 'Processing Info'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.NameMarker.visitLibraryMethod(proguard.classfile.LibraryClass, proguard.classfile.LibraryMethod)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NameMarker.visitLibraryMethod(LibraryClass, LibraryMethod)"})
   void testVisitLibraryMethod_givenProcessingInfo() {
     // Arrange
     NameMarker nameMarker = new NameMarker();
@@ -416,45 +502,52 @@ class NameMarkerDiffblueTest {
 
   /**
    * Test {@link NameMarker#visitInnerClassesAttribute(Clazz, InnerClassesAttribute)}.
+   *
    * <ul>
-   *   <li>Then calls {@link InnerClassesAttribute#innerClassEntriesAccept(Clazz, InnerClassesInfoVisitor)}.</li>
+   *   <li>Then calls {@link InnerClassesAttribute#innerClassEntriesAccept(Clazz,
+   *       InnerClassesInfoVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link NameMarker#visitInnerClassesAttribute(Clazz, InnerClassesAttribute)}
+   *
+   * <p>Method under test: {@link NameMarker#visitInnerClassesAttribute(Clazz,
+   * InnerClassesAttribute)}
    */
   @Test
-  @DisplayName("Test visitInnerClassesAttribute(Clazz, InnerClassesAttribute); then calls innerClassEntriesAccept(Clazz, InnerClassesInfoVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.NameMarker.visitInnerClassesAttribute(proguard.classfile.Clazz, proguard.classfile.attribute.InnerClassesAttribute)"})
+  @DisplayName(
+      "Test visitInnerClassesAttribute(Clazz, InnerClassesAttribute); then calls innerClassEntriesAccept(Clazz, InnerClassesInfoVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NameMarker.visitInnerClassesAttribute(Clazz, InnerClassesAttribute)"})
   void testVisitInnerClassesAttribute_thenCallsInnerClassEntriesAccept() {
     // Arrange
     NameMarker nameMarker = new NameMarker();
     LibraryClass clazz = new LibraryClass();
     InnerClassesAttribute innerClassesAttribute = mock(InnerClassesAttribute.class);
-    doNothing().when(innerClassesAttribute)
+    doNothing()
+        .when(innerClassesAttribute)
         .innerClassEntriesAccept(Mockito.<Clazz>any(), Mockito.<InnerClassesInfoVisitor>any());
 
     // Act
     nameMarker.visitInnerClassesAttribute(clazz, innerClassesAttribute);
 
     // Assert
-    verify(innerClassesAttribute).innerClassEntriesAccept(isA(Clazz.class), isA(InnerClassesInfoVisitor.class));
+    verify(innerClassesAttribute)
+        .innerClassEntriesAccept(isA(Clazz.class), isA(InnerClassesInfoVisitor.class));
   }
 
   /**
    * Test {@link NameMarker#visitInnerClassesInfo(Clazz, InnerClassesInfo)}.
+   *
    * <ul>
-   *   <li>Given {@code Class Name}.</li>
+   *   <li>Given {@code Class Name}.
    * </ul>
-   * <p>
-   * Method under test: {@link NameMarker#visitInnerClassesInfo(Clazz, InnerClassesInfo)}
+   *
+   * <p>Method under test: {@link NameMarker#visitInnerClassesInfo(Clazz, InnerClassesInfo)}
    */
   @Test
   @DisplayName("Test visitInnerClassesInfo(Clazz, InnerClassesInfo); given 'Class Name'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.NameMarker.visitInnerClassesInfo(proguard.classfile.Clazz, proguard.classfile.attribute.InnerClassesInfo)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NameMarker.visitInnerClassesInfo(Clazz, InnerClassesInfo)"})
   void testVisitInnerClassesInfo_givenClassName() {
     // Arrange
     NameMarker nameMarker = new NameMarker();
@@ -472,18 +565,55 @@ class NameMarkerDiffblueTest {
 
   /**
    * Test {@link NameMarker#visitInnerClassesInfo(Clazz, InnerClassesInfo)}.
+   *
    * <ul>
-   *   <li>Then calls {@link LibraryClass#constantPoolEntryAccept(int, ConstantVisitor)}.</li>
+   *   <li>Then throw {@link UnsupportedOperationException}.
    * </ul>
-   * <p>
-   * Method under test: {@link NameMarker#visitInnerClassesInfo(Clazz, InnerClassesInfo)}
+   *
+   * <p>Method under test: {@link NameMarker#visitInnerClassesInfo(Clazz, InnerClassesInfo)}
    */
   @Test
-  @DisplayName("Test visitInnerClassesInfo(Clazz, InnerClassesInfo); then calls constantPoolEntryAccept(int, ConstantVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.NameMarker.visitInnerClassesInfo(proguard.classfile.Clazz, proguard.classfile.attribute.InnerClassesInfo)"})
-  void testVisitInnerClassesInfo_thenCallsConstantPoolEntryAccept() {
+  @DisplayName(
+      "Test visitInnerClassesInfo(Clazz, InnerClassesInfo); then throw UnsupportedOperationException")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NameMarker.visitInnerClassesInfo(Clazz, InnerClassesInfo)"})
+  void testVisitInnerClassesInfo_thenThrowUnsupportedOperationException() {
+    // Arrange
+    NameMarker nameMarker = new NameMarker();
+    LibraryClass clazz = mock(LibraryClass.class);
+    doThrow(new UnsupportedOperationException("Name"))
+        .when(clazz)
+        .constantPoolEntryAccept(anyInt(), Mockito.<ConstantVisitor>any());
+    when(clazz.getClassName(anyInt())).thenReturn("Name");
+    when(clazz.getName()).thenReturn("Name");
+
+    // Act and Assert
+    assertThrows(
+        UnsupportedOperationException.class,
+        () -> nameMarker.visitInnerClassesInfo(clazz, new InnerClassesInfo(1, 1, 1, 1)));
+    verify(clazz).constantPoolEntryAccept(eq(1), isA(ConstantVisitor.class));
+    verify(clazz).getClassName(eq(1));
+    verify(clazz).getName();
+  }
+
+  /**
+   * Test {@link NameMarker#visitInnerClassesInfo(Clazz, InnerClassesInfo)}.
+   *
+   * <ul>
+   *   <li>When {@link LibraryClass} {@link LibraryClass#constantPoolEntryAccept(int,
+   *       ConstantVisitor)} does nothing.
+   * </ul>
+   *
+   * <p>Method under test: {@link NameMarker#visitInnerClassesInfo(Clazz, InnerClassesInfo)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitInnerClassesInfo(Clazz, InnerClassesInfo); when LibraryClass constantPoolEntryAccept(int, ConstantVisitor) does nothing")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NameMarker.visitInnerClassesInfo(Clazz, InnerClassesInfo)"})
+  void testVisitInnerClassesInfo_whenLibraryClassConstantPoolEntryAcceptDoesNothing() {
     // Arrange
     NameMarker nameMarker = new NameMarker();
     LibraryClass clazz = mock(LibraryClass.class);
@@ -501,54 +631,20 @@ class NameMarkerDiffblueTest {
   }
 
   /**
-   * Test {@link NameMarker#visitInnerClassesInfo(Clazz, InnerClassesInfo)}.
-   * <ul>
-   *   <li>Then throw {@link UnsupportedOperationException}.</li>
-   * </ul>
-   * <p>
-   * Method under test: {@link NameMarker#visitInnerClassesInfo(Clazz, InnerClassesInfo)}
-   */
-  @Test
-  @DisplayName("Test visitInnerClassesInfo(Clazz, InnerClassesInfo); then throw UnsupportedOperationException")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.NameMarker.visitInnerClassesInfo(proguard.classfile.Clazz, proguard.classfile.attribute.InnerClassesInfo)"})
-  void testVisitInnerClassesInfo_thenThrowUnsupportedOperationException() {
-    // Arrange
-    NameMarker nameMarker = new NameMarker();
-    LibraryClass clazz = mock(LibraryClass.class);
-    doThrow(new UnsupportedOperationException("Name")).when(clazz)
-        .constantPoolEntryAccept(anyInt(), Mockito.<ConstantVisitor>any());
-    when(clazz.getClassName(anyInt())).thenReturn("Name");
-    when(clazz.getName()).thenReturn("Name");
-
-    // Act and Assert
-    assertThrows(UnsupportedOperationException.class,
-        () -> nameMarker.visitInnerClassesInfo(clazz, new InnerClassesInfo(1, 1, 1, 1)));
-    verify(clazz).constantPoolEntryAccept(eq(1), isA(ConstantVisitor.class));
-    verify(clazz).getClassName(eq(1));
-    verify(clazz).getName();
-  }
-
-  /**
    * Test {@link NameMarker#visitClassConstant(Clazz, ClassConstant)}.
-   * <ul>
-   *   <li>Then {@link ClassConstant#ClassConstant()} {@link ClassConstant#referencedClass} {@link LibraryClass}.</li>
-   * </ul>
-   * <p>
-   * Method under test: {@link NameMarker#visitClassConstant(Clazz, ClassConstant)}
+   *
+   * <p>Method under test: {@link NameMarker#visitClassConstant(Clazz, ClassConstant)}
    */
   @Test
-  @DisplayName("Test visitClassConstant(Clazz, ClassConstant); then ClassConstant() referencedClass LibraryClass")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.NameMarker.visitClassConstant(proguard.classfile.Clazz, proguard.classfile.constant.ClassConstant)"})
-  void testVisitClassConstant_thenClassConstantReferencedClassLibraryClass() {
+  @DisplayName("Test visitClassConstant(Clazz, ClassConstant)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NameMarker.visitClassConstant(Clazz, ClassConstant)"})
+  void testVisitClassConstant() {
     // Arrange
     NameMarker nameMarker = new NameMarker();
     LibraryClass clazz = new LibraryClass();
-    ClassConstant classConstant = new ClassConstant();
-    classConstant.referencedClass = new LibraryClass();
+    ClassConstant classConstant = new ClassConstant(1, new LibraryClass());
 
     // Act
     nameMarker.visitClassConstant(clazz, classConstant);
@@ -559,26 +655,19 @@ class NameMarkerDiffblueTest {
 
   /**
    * Test {@link NameMarker#visitClassConstant(Clazz, ClassConstant)}.
-   * <ul>
-   *   <li>Then {@link ClassConstant#ClassConstant()} {@link ClassConstant#referencedClass} {@link NamedClass}.</li>
-   * </ul>
-   * <p>
-   * Method under test: {@link NameMarker#visitClassConstant(Clazz, ClassConstant)}
+   *
+   * <p>Method under test: {@link NameMarker#visitClassConstant(Clazz, ClassConstant)}
    */
   @Test
-  @DisplayName("Test visitClassConstant(Clazz, ClassConstant); then ClassConstant() referencedClass NamedClass")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.obfuscate.NameMarker.visitClassConstant(proguard.classfile.Clazz, proguard.classfile.constant.ClassConstant)"})
-  void testVisitClassConstant_thenClassConstantReferencedClassNamedClass() {
+  @DisplayName("Test visitClassConstant(Clazz, ClassConstant)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NameMarker.visitClassConstant(Clazz, ClassConstant)"})
+  void testVisitClassConstant2() {
     // Arrange
     NameMarker nameMarker = new NameMarker();
     LibraryClass clazz = new LibraryClass();
-
-    NamedClass namedClass = new NamedClass("Member Name");
-    namedClass.addSubClass(new LibraryClass());
-    ClassConstant classConstant = new ClassConstant();
-    classConstant.referencedClass = namedClass;
+    ClassConstant classConstant = new ClassConstant(1, new NamedClass("Member Name"));
 
     // Act
     nameMarker.visitClassConstant(clazz, classConstant);
@@ -591,13 +680,14 @@ class NameMarkerDiffblueTest {
 
   /**
    * Test {@link NameMarker#keepClassName(Clazz)}.
-   * <p>
-   * Method under test: {@link NameMarker#keepClassName(Clazz)}
+   *
+   * <p>Method under test: {@link NameMarker#keepClassName(Clazz)}
    */
   @Test
   @DisplayName("Test keepClassName(Clazz)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.obfuscate.NameMarker.keepClassName(proguard.classfile.Clazz)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NameMarker.keepClassName(Clazz)"})
   void testKeepClassName() {
     // Arrange
     NameMarker nameMarker = new NameMarker();
@@ -606,7 +696,8 @@ class NameMarkerDiffblueTest {
     classConstant.addProcessingFlags(2, 1, 2, 1);
     ClassConstant classConstant2 = mock(ClassConstant.class);
     when(classConstant2.getName(Mockito.<Clazz>any())).thenReturn("Name");
-    ProgramClass clazz = new ProgramClass(1, 3, new Constant[]{classConstant, classConstant2}, 1, 1, 1);
+    ProgramClass clazz =
+        new ProgramClass(1, 3, new Constant[] {classConstant, classConstant2}, 1, 1, 1);
 
     // Act
     nameMarker.keepClassName(clazz);
@@ -619,17 +710,20 @@ class NameMarkerDiffblueTest {
 
   /**
    * Test {@link NameMarker#keepClassName(Clazz)}.
+   *
    * <ul>
-   *   <li>When {@link LibraryClass#LibraryClass()}.</li>
-   *   <li>Then {@link LibraryClass#LibraryClass()} ProcessingInfo is {@code null}.</li>
+   *   <li>When {@link LibraryClass#LibraryClass()}.
+   *   <li>Then {@link LibraryClass#LibraryClass()} ProcessingInfo is {@code null}.
    * </ul>
-   * <p>
-   * Method under test: {@link NameMarker#keepClassName(Clazz)}
+   *
+   * <p>Method under test: {@link NameMarker#keepClassName(Clazz)}
    */
   @Test
-  @DisplayName("Test keepClassName(Clazz); when LibraryClass(); then LibraryClass() ProcessingInfo is 'null'")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.obfuscate.NameMarker.keepClassName(proguard.classfile.Clazz)"})
+  @DisplayName(
+      "Test keepClassName(Clazz); when LibraryClass(); then LibraryClass() ProcessingInfo is 'null'")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void NameMarker.keepClassName(Clazz)"})
   void testKeepClassName_whenLibraryClass_thenLibraryClassProcessingInfoIsNull() {
     // Arrange
     NameMarker nameMarker = new NameMarker();

@@ -9,6 +9,7 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.ManagedByDiffblue;
 import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -24,49 +25,55 @@ import proguard.classfile.ProgramMethod;
 import proguard.classfile.attribute.visitor.AttributeVisitor;
 import proguard.classfile.visitor.ClassVisitor;
 import proguard.util.Processable;
-import proguard.util.SimpleProcessable;
 
 class ShortestUsagePrinterDiffblueTest {
   /**
    * Test {@link ShortestUsagePrinter#visitAnyClass(Clazz)}.
+   *
    * <ul>
-   *   <li>When {@link LibraryClass#LibraryClass()}.</li>
-   *   <li>Then throw {@link UnsupportedOperationException}.</li>
+   *   <li>When {@link LibraryClass#LibraryClass()}.
+   *   <li>Then throw {@link UnsupportedOperationException}.
    * </ul>
-   * <p>
-   * Method under test: {@link ShortestUsagePrinter#visitAnyClass(Clazz)}
+   *
+   * <p>Method under test: {@link ShortestUsagePrinter#visitAnyClass(Clazz)}
    */
   @Test
-  @DisplayName("Test visitAnyClass(Clazz); when LibraryClass(); then throw UnsupportedOperationException")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.shrink.ShortestUsagePrinter.visitAnyClass(proguard.classfile.Clazz)"})
+  @DisplayName(
+      "Test visitAnyClass(Clazz); when LibraryClass(); then throw UnsupportedOperationException")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ShortestUsagePrinter.visitAnyClass(Clazz)"})
   void testVisitAnyClass_whenLibraryClass_thenThrowUnsupportedOperationException() {
     // Arrange
     ShortestUsageMarker shortestUsageMarker = new ShortestUsageMarker();
-    ShortestUsagePrinter shortestUsagePrinter = new ShortestUsagePrinter(shortestUsageMarker, true,
-        new PrintWriter(new StringWriter()));
+    ShortestUsagePrinter shortestUsagePrinter =
+        new ShortestUsagePrinter(shortestUsageMarker, true, new PrintWriter(new StringWriter()));
 
     // Act and Assert
-    assertThrows(UnsupportedOperationException.class, () -> shortestUsagePrinter.visitAnyClass(new LibraryClass()));
+    assertThrows(
+        UnsupportedOperationException.class,
+        () -> shortestUsagePrinter.visitAnyClass(new LibraryClass()));
   }
 
   /**
    * Test {@link ShortestUsagePrinter#visitProgramClass(ProgramClass)}.
+   *
    * <ul>
-   *   <li>Then calls {@link SimpleProcessable#getProcessingInfo()}.</li>
+   *   <li>Then calls {@link ProgramClass#getProcessingInfo()}.
    * </ul>
-   * <p>
-   * Method under test: {@link ShortestUsagePrinter#visitProgramClass(ProgramClass)}
+   *
+   * <p>Method under test: {@link ShortestUsagePrinter#visitProgramClass(ProgramClass)}
    */
   @Test
   @DisplayName("Test visitProgramClass(ProgramClass); then calls getProcessingInfo()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.shrink.ShortestUsagePrinter.visitProgramClass(proguard.classfile.ProgramClass)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ShortestUsagePrinter.visitProgramClass(ProgramClass)"})
   void testVisitProgramClass_thenCallsGetProcessingInfo() {
     // Arrange
     ShortestUsageMarker shortestUsageMarker = new ShortestUsageMarker();
-    ShortestUsagePrinter shortestUsagePrinter = new ShortestUsagePrinter(shortestUsageMarker, true,
-        new PrintWriter(new StringWriter()));
+    ShortestUsagePrinter shortestUsagePrinter =
+        new ShortestUsagePrinter(shortestUsageMarker, true, new PrintWriter(new StringWriter()));
     ProgramClass programClass = mock(ProgramClass.class);
     when(programClass.getProcessingInfo()).thenReturn("Processing Info");
     when(programClass.getName()).thenReturn("Name");
@@ -81,24 +88,26 @@ class ShortestUsagePrinterDiffblueTest {
 
   /**
    * Test {@link ShortestUsagePrinter#visitProgramClass(ProgramClass)}.
+   *
    * <ul>
-   *   <li>Then calls {@link ShortestUsageMarker#getShortestUsageMark(Processable)}.</li>
+   *   <li>Then calls {@link ShortestUsageMarker#getShortestUsageMark(Processable)}.
    * </ul>
-   * <p>
-   * Method under test: {@link ShortestUsagePrinter#visitProgramClass(ProgramClass)}
+   *
+   * <p>Method under test: {@link ShortestUsagePrinter#visitProgramClass(ProgramClass)}
    */
   @Test
   @DisplayName("Test visitProgramClass(ProgramClass); then calls getShortestUsageMark(Processable)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({"void proguard.shrink.ShortestUsagePrinter.visitProgramClass(proguard.classfile.ProgramClass)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ShortestUsagePrinter.visitProgramClass(ProgramClass)"})
   void testVisitProgramClass_thenCallsGetShortestUsageMark() {
     // Arrange
     ShortestUsageMarker shortestUsageMarker = mock(ShortestUsageMarker.class);
     when(shortestUsageMarker.getShortestUsageMark(Mockito.<Processable>any()))
         .thenReturn(new ShortestUsageMark("Just cause"));
     when(shortestUsageMarker.isUsed(Mockito.<Processable>any())).thenReturn(true);
-    ShortestUsagePrinter shortestUsagePrinter = new ShortestUsagePrinter(shortestUsageMarker, true,
-        new PrintWriter(new StringWriter()));
+    ShortestUsagePrinter shortestUsagePrinter =
+        new ShortestUsagePrinter(shortestUsageMarker, true, new PrintWriter(new StringWriter()));
     ProgramClass programClass = mock(ProgramClass.class);
     when(programClass.getName()).thenReturn("Name");
 
@@ -113,22 +122,23 @@ class ShortestUsagePrinterDiffblueTest {
 
   /**
    * Test {@link ShortestUsagePrinter#visitProgramField(ProgramClass, ProgramField)}.
-   * <p>
-   * Method under test: {@link ShortestUsagePrinter#visitProgramField(ProgramClass, ProgramField)}
+   *
+   * <p>Method under test: {@link ShortestUsagePrinter#visitProgramField(ProgramClass,
+   * ProgramField)}
    */
   @Test
   @DisplayName("Test visitProgramField(ProgramClass, ProgramField)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.shrink.ShortestUsagePrinter.visitProgramField(proguard.classfile.ProgramClass, proguard.classfile.ProgramField)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ShortestUsagePrinter.visitProgramField(ProgramClass, ProgramField)"})
   void testVisitProgramField() {
     // Arrange
     ShortestUsageMarker shortestUsageMarker = mock(ShortestUsageMarker.class);
     when(shortestUsageMarker.getShortestUsageMark(Mockito.<Processable>any()))
         .thenReturn(new ShortestUsageMark("Just cause"));
     when(shortestUsageMarker.isUsed(Mockito.<Processable>any())).thenReturn(true);
-    ShortestUsagePrinter shortestUsagePrinter = new ShortestUsagePrinter(shortestUsageMarker, false,
-        new PrintWriter(new StringWriter()));
+    ShortestUsagePrinter shortestUsagePrinter =
+        new ShortestUsagePrinter(shortestUsageMarker, false, new PrintWriter(new StringWriter()));
     ProgramClass programClass = mock(ProgramClass.class);
     when(programClass.getName()).thenReturn("Name");
     ProgramField programField = mock(ProgramField.class);
@@ -148,23 +158,26 @@ class ShortestUsagePrinterDiffblueTest {
 
   /**
    * Test {@link ShortestUsagePrinter#visitProgramField(ProgramClass, ProgramField)}.
-   * <p>
-   * Method under test: {@link ShortestUsagePrinter#visitProgramField(ProgramClass, ProgramField)}
+   *
+   * <p>Method under test: {@link ShortestUsagePrinter#visitProgramField(ProgramClass,
+   * ProgramField)}
    */
   @Test
   @DisplayName("Test visitProgramField(ProgramClass, ProgramField)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.shrink.ShortestUsagePrinter.visitProgramField(proguard.classfile.ProgramClass, proguard.classfile.ProgramField)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ShortestUsagePrinter.visitProgramField(ProgramClass, ProgramField)"})
   void testVisitProgramField2() {
     // Arrange
     ShortestUsageMarker shortestUsageMarker = mock(ShortestUsageMarker.class);
     ShortestUsageMark previousUsageMark = new ShortestUsageMark("Just cause");
     when(shortestUsageMarker.getShortestUsageMark(Mockito.<Processable>any()))
-        .thenReturn(new ShortestUsageMark(previousUsageMark, "Just cause", 1, new LibraryClass(1, ".", ".")));
+        .thenReturn(
+            new ShortestUsageMark(
+                previousUsageMark, "Just cause", 1, new LibraryClass(1, ".", ".")));
     when(shortestUsageMarker.isUsed(Mockito.<Processable>any())).thenReturn(true);
-    ShortestUsagePrinter shortestUsagePrinter = new ShortestUsagePrinter(shortestUsageMarker, false,
-        new PrintWriter(new StringWriter()));
+    ShortestUsagePrinter shortestUsagePrinter =
+        new ShortestUsagePrinter(shortestUsageMarker, false, new PrintWriter(new StringWriter()));
     ProgramClass programClass = mock(ProgramClass.class);
     when(programClass.getName()).thenReturn("Name");
     ProgramField programField = mock(ProgramField.class);
@@ -184,28 +197,32 @@ class ShortestUsagePrinterDiffblueTest {
 
   /**
    * Test {@link ShortestUsagePrinter#visitProgramField(ProgramClass, ProgramField)}.
+   *
    * <ul>
-   *   <li>Given {@link Clazz} {@link Clazz#accept(ClassVisitor)} does nothing.</li>
-   *   <li>Then calls {@link Clazz#accept(ClassVisitor)}.</li>
+   *   <li>Given {@link Clazz} {@link Clazz#accept(ClassVisitor)} does nothing.
+   *   <li>Then calls {@link Clazz#accept(ClassVisitor)}.
    * </ul>
-   * <p>
-   * Method under test: {@link ShortestUsagePrinter#visitProgramField(ProgramClass, ProgramField)}
+   *
+   * <p>Method under test: {@link ShortestUsagePrinter#visitProgramField(ProgramClass,
+   * ProgramField)}
    */
   @Test
-  @DisplayName("Test visitProgramField(ProgramClass, ProgramField); given Clazz accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.shrink.ShortestUsagePrinter.visitProgramField(proguard.classfile.ProgramClass, proguard.classfile.ProgramField)"})
+  @DisplayName(
+      "Test visitProgramField(ProgramClass, ProgramField); given Clazz accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ShortestUsagePrinter.visitProgramField(ProgramClass, ProgramField)"})
   void testVisitProgramField_givenClazzAcceptDoesNothing_thenCallsAccept() {
     // Arrange
     Clazz clazz = mock(Clazz.class);
     doNothing().when(clazz).accept(Mockito.<ClassVisitor>any());
     ShortestUsageMarker shortestUsageMarker = mock(ShortestUsageMarker.class);
     when(shortestUsageMarker.getShortestUsageMark(Mockito.<Processable>any()))
-        .thenReturn(new ShortestUsageMark(new ShortestUsageMark("Just cause"), "Just cause", 1, clazz));
+        .thenReturn(
+            new ShortestUsageMark(new ShortestUsageMark("Just cause"), "Just cause", 1, clazz));
     when(shortestUsageMarker.isUsed(Mockito.<Processable>any())).thenReturn(true);
-    ShortestUsagePrinter shortestUsagePrinter = new ShortestUsagePrinter(shortestUsageMarker, false,
-        new PrintWriter(new StringWriter()));
+    ShortestUsagePrinter shortestUsagePrinter =
+        new ShortestUsagePrinter(shortestUsageMarker, false, new PrintWriter(new StringWriter()));
     ProgramClass programClass = mock(ProgramClass.class);
     when(programClass.getName()).thenReturn("Name");
     ProgramField programField = mock(ProgramField.class);
@@ -226,22 +243,24 @@ class ShortestUsagePrinterDiffblueTest {
 
   /**
    * Test {@link ShortestUsagePrinter#visitProgramField(ProgramClass, ProgramField)}.
+   *
    * <ul>
-   *   <li>Then calls {@link SimpleProcessable#getProcessingInfo()}.</li>
+   *   <li>Then calls {@link ProgramField#getProcessingInfo()}.
    * </ul>
-   * <p>
-   * Method under test: {@link ShortestUsagePrinter#visitProgramField(ProgramClass, ProgramField)}
+   *
+   * <p>Method under test: {@link ShortestUsagePrinter#visitProgramField(ProgramClass,
+   * ProgramField)}
    */
   @Test
   @DisplayName("Test visitProgramField(ProgramClass, ProgramField); then calls getProcessingInfo()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.shrink.ShortestUsagePrinter.visitProgramField(proguard.classfile.ProgramClass, proguard.classfile.ProgramField)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ShortestUsagePrinter.visitProgramField(ProgramClass, ProgramField)"})
   void testVisitProgramField_thenCallsGetProcessingInfo() {
     // Arrange
     ShortestUsageMarker shortestUsageMarker = new ShortestUsageMarker();
-    ShortestUsagePrinter shortestUsagePrinter = new ShortestUsagePrinter(shortestUsageMarker, false,
-        new PrintWriter(new StringWriter()));
+    ShortestUsagePrinter shortestUsagePrinter =
+        new ShortestUsagePrinter(shortestUsageMarker, false, new PrintWriter(new StringWriter()));
     ProgramClass programClass = mock(ProgramClass.class);
     when(programClass.getName()).thenReturn("Name");
     ProgramField programField = mock(ProgramField.class);
@@ -261,22 +280,24 @@ class ShortestUsagePrinterDiffblueTest {
 
   /**
    * Test {@link ShortestUsagePrinter#visitProgramField(ProgramClass, ProgramField)}.
+   *
    * <ul>
-   *   <li>Then calls {@link ProgramClass#getString(int)}.</li>
+   *   <li>Then calls {@link ProgramClass#getString(int)}.
    * </ul>
-   * <p>
-   * Method under test: {@link ShortestUsagePrinter#visitProgramField(ProgramClass, ProgramField)}
+   *
+   * <p>Method under test: {@link ShortestUsagePrinter#visitProgramField(ProgramClass,
+   * ProgramField)}
    */
   @Test
   @DisplayName("Test visitProgramField(ProgramClass, ProgramField); then calls getString(int)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.shrink.ShortestUsagePrinter.visitProgramField(proguard.classfile.ProgramClass, proguard.classfile.ProgramField)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ShortestUsagePrinter.visitProgramField(ProgramClass, ProgramField)"})
   void testVisitProgramField_thenCallsGetString() {
     // Arrange
     ShortestUsageMarker shortestUsageMarker = new ShortestUsageMarker();
-    ShortestUsagePrinter shortestUsagePrinter = new ShortestUsagePrinter(shortestUsageMarker, false,
-        new PrintWriter(new StringWriter()));
+    ShortestUsagePrinter shortestUsagePrinter =
+        new ShortestUsagePrinter(shortestUsageMarker, false, new PrintWriter(new StringWriter()));
     ProgramClass programClass = mock(ProgramClass.class);
     when(programClass.getName()).thenReturn("Name");
     when(programClass.getString(anyInt())).thenReturn("String");
@@ -291,25 +312,28 @@ class ShortestUsagePrinterDiffblueTest {
 
   /**
    * Test {@link ShortestUsagePrinter#visitProgramField(ProgramClass, ProgramField)}.
+   *
    * <ul>
-   *   <li>Then throw {@link UnsupportedOperationException}.</li>
+   *   <li>Then throw {@link UnsupportedOperationException}.
    * </ul>
-   * <p>
-   * Method under test: {@link ShortestUsagePrinter#visitProgramField(ProgramClass, ProgramField)}
+   *
+   * <p>Method under test: {@link ShortestUsagePrinter#visitProgramField(ProgramClass,
+   * ProgramField)}
    */
   @Test
-  @DisplayName("Test visitProgramField(ProgramClass, ProgramField); then throw UnsupportedOperationException")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.shrink.ShortestUsagePrinter.visitProgramField(proguard.classfile.ProgramClass, proguard.classfile.ProgramField)"})
+  @DisplayName(
+      "Test visitProgramField(ProgramClass, ProgramField); then throw UnsupportedOperationException")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ShortestUsagePrinter.visitProgramField(ProgramClass, ProgramField)"})
   void testVisitProgramField_thenThrowUnsupportedOperationException() {
     // Arrange
     ShortestUsageMarker shortestUsageMarker = mock(ShortestUsageMarker.class);
     when(shortestUsageMarker.getShortestUsageMark(Mockito.<Processable>any()))
         .thenThrow(new UnsupportedOperationException("."));
     when(shortestUsageMarker.isUsed(Mockito.<Processable>any())).thenReturn(true);
-    ShortestUsagePrinter shortestUsagePrinter = new ShortestUsagePrinter(shortestUsageMarker, false,
-        new PrintWriter(new StringWriter()));
+    ShortestUsagePrinter shortestUsagePrinter =
+        new ShortestUsagePrinter(shortestUsageMarker, false, new PrintWriter(new StringWriter()));
     ProgramClass programClass = mock(ProgramClass.class);
     when(programClass.getName()).thenReturn("Name");
     ProgramField programField = mock(ProgramField.class);
@@ -317,7 +341,8 @@ class ShortestUsagePrinterDiffblueTest {
     when(programField.getName(Mockito.<Clazz>any())).thenReturn("Name");
 
     // Act and Assert
-    assertThrows(UnsupportedOperationException.class,
+    assertThrows(
+        UnsupportedOperationException.class,
         () -> shortestUsagePrinter.visitProgramField(programClass, programField));
     verify(programClass).getName();
     verify(programField).getDescriptor(isA(Clazz.class));
@@ -328,178 +353,20 @@ class ShortestUsagePrinterDiffblueTest {
 
   /**
    * Test {@link ShortestUsagePrinter#visitProgramMethod(ProgramClass, ProgramMethod)}.
-   * <p>
-   * Method under test: {@link ShortestUsagePrinter#visitProgramMethod(ProgramClass, ProgramMethod)}
+   *
+   * <p>Method under test: {@link ShortestUsagePrinter#visitProgramMethod(ProgramClass,
+   * ProgramMethod)}
    */
   @Test
   @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.shrink.ShortestUsagePrinter.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ShortestUsagePrinter.visitProgramMethod(ProgramClass, ProgramMethod)"})
   void testVisitProgramMethod() {
     // Arrange
-    ShortestUsageMarker shortestUsageMarker = mock(ShortestUsageMarker.class);
-    when(shortestUsageMarker.getShortestUsageMark(Mockito.<Processable>any()))
-        .thenReturn(new ShortestUsageMark("Just cause"));
-    when(shortestUsageMarker.isUsed(Mockito.<Processable>any())).thenReturn(true);
-    ShortestUsagePrinter shortestUsagePrinter = new ShortestUsagePrinter(shortestUsageMarker, false,
-        new PrintWriter(new StringWriter()));
-    ProgramClass programClass = mock(ProgramClass.class);
-    when(programClass.getName()).thenReturn("Name");
-    ProgramMethod programMethod = mock(ProgramMethod.class);
-    doNothing().when(programMethod).attributesAccept(Mockito.<ProgramClass>any(), Mockito.<AttributeVisitor>any());
-    when(programMethod.getDescriptor(Mockito.<Clazz>any())).thenReturn("Descriptor");
-    when(programMethod.getName(Mockito.<Clazz>any())).thenReturn("Name");
-
-    // Act
-    shortestUsagePrinter.visitProgramMethod(programClass, programMethod);
-
-    // Assert
-    verify(programClass).getName();
-    verify(programMethod).getDescriptor(isA(Clazz.class));
-    verify(programMethod).getName(isA(Clazz.class));
-    verify(programMethod).attributesAccept(isA(ProgramClass.class), isA(AttributeVisitor.class));
-    verify(shortestUsageMarker).getShortestUsageMark(isA(Processable.class));
-    verify(shortestUsageMarker).isUsed(isA(Processable.class));
-  }
-
-  /**
-   * Test {@link ShortestUsagePrinter#visitProgramMethod(ProgramClass, ProgramMethod)}.
-   * <p>
-   * Method under test: {@link ShortestUsagePrinter#visitProgramMethod(ProgramClass, ProgramMethod)}
-   */
-  @Test
-  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.shrink.ShortestUsagePrinter.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
-  void testVisitProgramMethod2() {
-    // Arrange
-    ShortestUsageMarker shortestUsageMarker = mock(ShortestUsageMarker.class);
-    ShortestUsageMark previousUsageMark = new ShortestUsageMark("Just cause");
-    when(shortestUsageMarker.getShortestUsageMark(Mockito.<Processable>any()))
-        .thenReturn(new ShortestUsageMark(previousUsageMark, "Just cause", 1, new LibraryClass(1, ".", ".")));
-    when(shortestUsageMarker.isUsed(Mockito.<Processable>any())).thenReturn(true);
-    ShortestUsagePrinter shortestUsagePrinter = new ShortestUsagePrinter(shortestUsageMarker, false,
-        new PrintWriter(new StringWriter()));
-    ProgramClass programClass = mock(ProgramClass.class);
-    when(programClass.getName()).thenReturn("Name");
-    ProgramMethod programMethod = mock(ProgramMethod.class);
-    doNothing().when(programMethod).attributesAccept(Mockito.<ProgramClass>any(), Mockito.<AttributeVisitor>any());
-    when(programMethod.getDescriptor(Mockito.<Clazz>any())).thenReturn("Descriptor");
-    when(programMethod.getName(Mockito.<Clazz>any())).thenReturn("Name");
-
-    // Act
-    shortestUsagePrinter.visitProgramMethod(programClass, programMethod);
-
-    // Assert
-    verify(programClass).getName();
-    verify(programMethod).getDescriptor(isA(Clazz.class));
-    verify(programMethod).getName(isA(Clazz.class));
-    verify(programMethod).attributesAccept(isA(ProgramClass.class), isA(AttributeVisitor.class));
-    verify(shortestUsageMarker).getShortestUsageMark(isA(Processable.class));
-    verify(shortestUsageMarker).isUsed(isA(Processable.class));
-  }
-
-  /**
-   * Test {@link ShortestUsagePrinter#visitProgramMethod(ProgramClass, ProgramMethod)}.
-   * <ul>
-   *   <li>Given {@link Clazz} {@link Clazz#accept(ClassVisitor)} does nothing.</li>
-   *   <li>Then calls {@link Clazz#accept(ClassVisitor)}.</li>
-   * </ul>
-   * <p>
-   * Method under test: {@link ShortestUsagePrinter#visitProgramMethod(ProgramClass, ProgramMethod)}
-   */
-  @Test
-  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); given Clazz accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.shrink.ShortestUsagePrinter.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
-  void testVisitProgramMethod_givenClazzAcceptDoesNothing_thenCallsAccept() {
-    // Arrange
-    Clazz clazz = mock(Clazz.class);
-    doNothing().when(clazz).accept(Mockito.<ClassVisitor>any());
-    ShortestUsageMarker shortestUsageMarker = mock(ShortestUsageMarker.class);
-    when(shortestUsageMarker.getShortestUsageMark(Mockito.<Processable>any()))
-        .thenReturn(new ShortestUsageMark(new ShortestUsageMark("Just cause"), "Just cause", 1, clazz));
-    when(shortestUsageMarker.isUsed(Mockito.<Processable>any())).thenReturn(true);
-    ShortestUsagePrinter shortestUsagePrinter = new ShortestUsagePrinter(shortestUsageMarker, false,
-        new PrintWriter(new StringWriter()));
-    ProgramClass programClass = mock(ProgramClass.class);
-    when(programClass.getName()).thenReturn("Name");
-    ProgramMethod programMethod = mock(ProgramMethod.class);
-    doNothing().when(programMethod).attributesAccept(Mockito.<ProgramClass>any(), Mockito.<AttributeVisitor>any());
-    when(programMethod.getDescriptor(Mockito.<Clazz>any())).thenReturn("Descriptor");
-    when(programMethod.getName(Mockito.<Clazz>any())).thenReturn("Name");
-
-    // Act
-    shortestUsagePrinter.visitProgramMethod(programClass, programMethod);
-
-    // Assert
-    verify(clazz).accept(isA(ClassVisitor.class));
-    verify(programClass).getName();
-    verify(programMethod).getDescriptor(isA(Clazz.class));
-    verify(programMethod).getName(isA(Clazz.class));
-    verify(programMethod).attributesAccept(isA(ProgramClass.class), isA(AttributeVisitor.class));
-    verify(shortestUsageMarker).getShortestUsageMark(isA(Processable.class));
-    verify(shortestUsageMarker).isUsed(isA(Processable.class));
-  }
-
-  /**
-   * Test {@link ShortestUsagePrinter#visitProgramMethod(ProgramClass, ProgramMethod)}.
-   * <ul>
-   *   <li>Then calls {@link SimpleProcessable#getProcessingInfo()}.</li>
-   * </ul>
-   * <p>
-   * Method under test: {@link ShortestUsagePrinter#visitProgramMethod(ProgramClass, ProgramMethod)}
-   */
-  @Test
-  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); then calls getProcessingInfo()")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.shrink.ShortestUsagePrinter.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
-  void testVisitProgramMethod_thenCallsGetProcessingInfo() {
-    // Arrange
     ShortestUsageMarker shortestUsageMarker = new ShortestUsageMarker();
-    ShortestUsagePrinter shortestUsagePrinter = new ShortestUsagePrinter(shortestUsageMarker, false,
-        new PrintWriter(new StringWriter()));
-    ProgramClass programClass = mock(ProgramClass.class);
-    when(programClass.getName()).thenReturn("Name");
-    ProgramMethod programMethod = mock(ProgramMethod.class);
-    when(programMethod.getProcessingInfo()).thenReturn("Processing Info");
-    doNothing().when(programMethod).attributesAccept(Mockito.<ProgramClass>any(), Mockito.<AttributeVisitor>any());
-    when(programMethod.getDescriptor(Mockito.<Clazz>any())).thenReturn("Descriptor");
-    when(programMethod.getName(Mockito.<Clazz>any())).thenReturn("Name");
-
-    // Act
-    shortestUsagePrinter.visitProgramMethod(programClass, programMethod);
-
-    // Assert
-    verify(programClass).getName();
-    verify(programMethod).getDescriptor(isA(Clazz.class));
-    verify(programMethod).getName(isA(Clazz.class));
-    verify(programMethod).attributesAccept(isA(ProgramClass.class), isA(AttributeVisitor.class));
-    verify(programMethod).getProcessingInfo();
-  }
-
-  /**
-   * Test {@link ShortestUsagePrinter#visitProgramMethod(ProgramClass, ProgramMethod)}.
-   * <ul>
-   *   <li>Then calls {@link ProgramClass#getString(int)}.</li>
-   * </ul>
-   * <p>
-   * Method under test: {@link ShortestUsagePrinter#visitProgramMethod(ProgramClass, ProgramMethod)}
-   */
-  @Test
-  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); then calls getString(int)")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.shrink.ShortestUsagePrinter.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
-  void testVisitProgramMethod_thenCallsGetString() {
-    // Arrange
-    ShortestUsageMarker shortestUsageMarker = new ShortestUsageMarker();
-    ShortestUsagePrinter shortestUsagePrinter = new ShortestUsagePrinter(shortestUsageMarker, false,
-        new PrintWriter(new StringWriter()));
+    ShortestUsagePrinter shortestUsagePrinter =
+        new ShortestUsagePrinter(shortestUsageMarker, false, new PrintWriter(new StringWriter()));
     ProgramClass programClass = mock(ProgramClass.class);
     when(programClass.getName()).thenReturn("Name");
     when(programClass.getString(anyInt())).thenReturn("String");
@@ -514,39 +381,121 @@ class ShortestUsagePrinterDiffblueTest {
 
   /**
    * Test {@link ShortestUsagePrinter#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   *
    * <ul>
-   *   <li>Then throw {@link UnsupportedOperationException}.</li>
+   *   <li>Given {@code Descriptor}.
+   *   <li>Then calls {@link ProgramMethod#getDescriptor(Clazz)}.
    * </ul>
-   * <p>
-   * Method under test: {@link ShortestUsagePrinter#visitProgramMethod(ProgramClass, ProgramMethod)}
+   *
+   * <p>Method under test: {@link ShortestUsagePrinter#visitProgramMethod(ProgramClass,
+   * ProgramMethod)}
    */
   @Test
-  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); then throw UnsupportedOperationException")
-  @Tag("MaintainedByDiffblue")
-  @MethodsUnderTest({
-      "void proguard.shrink.ShortestUsagePrinter.visitProgramMethod(proguard.classfile.ProgramClass, proguard.classfile.ProgramMethod)"})
+  @DisplayName(
+      "Test visitProgramMethod(ProgramClass, ProgramMethod); given 'Descriptor'; then calls getDescriptor(Clazz)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ShortestUsagePrinter.visitProgramMethod(ProgramClass, ProgramMethod)"})
+  void testVisitProgramMethod_givenDescriptor_thenCallsGetDescriptor() {
+    // Arrange
+    ShortestUsageMarker shortestUsageMarker = mock(ShortestUsageMarker.class);
+    when(shortestUsageMarker.getShortestUsageMark(Mockito.<Processable>any()))
+        .thenReturn(new ShortestUsageMark("Just cause"));
+    when(shortestUsageMarker.isUsed(Mockito.<Processable>any())).thenReturn(true);
+    ShortestUsagePrinter shortestUsagePrinter =
+        new ShortestUsagePrinter(shortestUsageMarker, false, new PrintWriter(new StringWriter()));
+    ProgramClass programClass = mock(ProgramClass.class);
+    when(programClass.getName()).thenReturn("Name");
+    ProgramMethod programMethod = mock(ProgramMethod.class);
+    when(programMethod.getDescriptor(Mockito.<Clazz>any())).thenReturn("Descriptor");
+    when(programMethod.getName(Mockito.<Clazz>any())).thenReturn("Name");
+    doNothing()
+        .when(programMethod)
+        .attributesAccept(Mockito.<ProgramClass>any(), Mockito.<AttributeVisitor>any());
+
+    // Act
+    shortestUsagePrinter.visitProgramMethod(programClass, programMethod);
+
+    // Assert
+    verify(programClass).getName();
+    verify(programMethod).getDescriptor(isA(Clazz.class));
+    verify(programMethod).getName(isA(Clazz.class));
+    verify(programMethod).attributesAccept(isA(ProgramClass.class), isA(AttributeVisitor.class));
+    verify(shortestUsageMarker).getShortestUsageMark(isA(Processable.class));
+    verify(shortestUsageMarker).isUsed(isA(Processable.class));
+  }
+
+  /**
+   * Test {@link ShortestUsagePrinter#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   *
+   * <ul>
+   *   <li>Then calls {@link ProgramClass#getString(int)}.
+   * </ul>
+   *
+   * <p>Method under test: {@link ShortestUsagePrinter#visitProgramMethod(ProgramClass,
+   * ProgramMethod)}
+   */
+  @Test
+  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); then calls getString(int)")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ShortestUsagePrinter.visitProgramMethod(ProgramClass, ProgramMethod)"})
+  void testVisitProgramMethod_thenCallsGetString() {
+    // Arrange
+    ShortestUsageMarker shortestUsageMarker = mock(ShortestUsageMarker.class);
+    when(shortestUsageMarker.getShortestUsageMark(Mockito.<Processable>any()))
+        .thenReturn(new ShortestUsageMark("Just cause"));
+    when(shortestUsageMarker.isUsed(Mockito.<Processable>any())).thenReturn(true);
+    ShortestUsagePrinter shortestUsagePrinter =
+        new ShortestUsagePrinter(shortestUsageMarker, false, new PrintWriter(new StringWriter()));
+    ProgramClass programClass = mock(ProgramClass.class);
+    when(programClass.getName()).thenReturn("Name");
+    when(programClass.getString(anyInt())).thenReturn("String");
+
+    // Act
+    shortestUsagePrinter.visitProgramMethod(programClass, new ProgramMethod());
+
+    // Assert
+    verify(programClass).getName();
+    verify(programClass, atLeast(1)).getString(eq(0));
+    verify(shortestUsageMarker).getShortestUsageMark(isA(Processable.class));
+    verify(shortestUsageMarker).isUsed(isA(Processable.class));
+  }
+
+  /**
+   * Test {@link ShortestUsagePrinter#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   *
+   * <ul>
+   *   <li>Then throw {@link UnsupportedOperationException}.
+   * </ul>
+   *
+   * <p>Method under test: {@link ShortestUsagePrinter#visitProgramMethod(ProgramClass,
+   * ProgramMethod)}
+   */
+  @Test
+  @DisplayName(
+      "Test visitProgramMethod(ProgramClass, ProgramMethod); then throw UnsupportedOperationException")
+  @Tag("ContributionFromDiffblue")
+  @ManagedByDiffblue
+  @MethodsUnderTest({"void ShortestUsagePrinter.visitProgramMethod(ProgramClass, ProgramMethod)"})
   void testVisitProgramMethod_thenThrowUnsupportedOperationException() {
     // Arrange
     ShortestUsageMarker shortestUsageMarker = mock(ShortestUsageMarker.class);
     when(shortestUsageMarker.getShortestUsageMark(Mockito.<Processable>any()))
         .thenThrow(new UnsupportedOperationException("."));
     when(shortestUsageMarker.isUsed(Mockito.<Processable>any())).thenReturn(true);
-    ShortestUsagePrinter shortestUsagePrinter = new ShortestUsagePrinter(shortestUsageMarker, false,
-        new PrintWriter(new StringWriter()));
+    ShortestUsagePrinter shortestUsagePrinter =
+        new ShortestUsagePrinter(shortestUsageMarker, false, new PrintWriter(new StringWriter()));
     ProgramClass programClass = mock(ProgramClass.class);
     when(programClass.getName()).thenReturn("Name");
-    ProgramMethod programMethod = mock(ProgramMethod.class);
-    doNothing().when(programMethod).attributesAccept(Mockito.<ProgramClass>any(), Mockito.<AttributeVisitor>any());
-    when(programMethod.getDescriptor(Mockito.<Clazz>any())).thenReturn("Descriptor");
-    when(programMethod.getName(Mockito.<Clazz>any())).thenReturn("Name");
+    when(programClass.getString(anyInt())).thenReturn("String");
 
     // Act and Assert
-    assertThrows(UnsupportedOperationException.class,
-        () -> shortestUsagePrinter.visitProgramMethod(programClass, programMethod));
+    assertThrows(
+        UnsupportedOperationException.class,
+        () -> shortestUsagePrinter.visitProgramMethod(programClass, new ProgramMethod()));
     verify(programClass).getName();
-    verify(programMethod).getDescriptor(isA(Clazz.class));
-    verify(programMethod).getName(isA(Clazz.class));
-    verify(programMethod).attributesAccept(isA(ProgramClass.class), isA(AttributeVisitor.class));
+    verify(programClass, atLeast(1)).getString(eq(0));
     verify(shortestUsageMarker).getShortestUsageMark(isA(Processable.class));
     verify(shortestUsageMarker).isUsed(isA(Processable.class));
   }
