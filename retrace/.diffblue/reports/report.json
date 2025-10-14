@@ -1,0 +1,1014 @@
+{
+  "meta" : {
+    "reportVersion" : "2.7"
+  },
+  "run" : {
+    "version" : "2025.09.01-44e352d-licensed",
+    "creationTimestamp" : "2025-10-14T09:35:38.081Z",
+    "command" : "dcover create --exclude-modules=proguard-app --coverage-reports --upload http://localhost:8080 --project-name proguard --name with-diffblue-tests",
+    "totalTime" : 125.787,
+    "environmentDetectionTime" : 0.035,
+    "indexingTime" : 0.3,
+    "entryPointsTime" : 0.027,
+    "generationTime" : 2806.928,
+    "timeToFirstTest" : 405.2,
+    "timeToLastTest" : 2991.024,
+    "indexQueryTime" : 3.724,
+    "verificationTime" : 10.516,
+    "validationTime" : 19.454
+  },
+  "codes" : {
+    "R000" : "Success",
+    "R002" : "Missing observers",
+    "R013" : "No inputs found that don't throw a trivial exception",
+    "T000" : "Method eligible for test creation",
+    "T001" : "Trivial getter",
+    "T003" : "Private method",
+    "T005" : "Trivial constructor",
+    "T006" : "Main method",
+    "T012" : "Synthetic method",
+    "T020" : "Other trivial method",
+    "V000" : "Validated successfully"
+  },
+  "summary" : {
+    "classesCount" : 6,
+    "methodsCount" : 50,
+    "cumulativeDiffblueTestCount" : 12,
+    "cumulativeManualTestCount" : 0,
+    "completeTestCount" : 12,
+    "incompleteTestCount" : 0,
+    "skeletonTestCount" : 0,
+    "totalPhysicalLineCount" : 786,
+    "perMethodTestability" : {
+      "T000" : 9,
+      "T001" : 7,
+      "T003" : 14,
+      "T005" : 4,
+      "T006" : 1,
+      "T012" : 14,
+      "T020" : 1
+    },
+    "perMethodOutcome" : {
+      "R000" : 15,
+      "R002" : 5,
+      "R013" : 1,
+      "T003" : 14,
+      "T006" : 1,
+      "T012" : 14
+    },
+    "perTestOutcome" : {
+      "R000" : 12
+    },
+    "perTestValidation" : {
+      "V000" : 12
+    }
+  },
+  "classes" : {
+    "proguard.retrace.FrameInfo" : {
+      "methodsCount" : 9,
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : {
+        "T001" : 7,
+        "T005" : 1,
+        "T020" : 1
+      },
+      "perMethodOutcome" : {
+        "R000" : 9
+      },
+      "perTestOutcome" : {
+        "R000" : 1
+      }
+    },
+    "proguard.retrace.FramePattern" : {
+      "methodsCount" : 3,
+      "completeTestCount" : 5,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : {
+        "T000" : 3
+      },
+      "perMethodOutcome" : {
+        "R000" : 3
+      },
+      "perTestOutcome" : {
+        "R000" : 5
+      }
+    },
+    "proguard.retrace.FrameRemapper" : {
+      "methodsCount" : 11,
+      "completeTestCount" : 6,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : {
+        "T000" : 5,
+        "T003" : 5,
+        "T005" : 1
+      },
+      "perMethodOutcome" : {
+        "R000" : 3,
+        "R002" : 3,
+        "T003" : 5
+      },
+      "perTestOutcome" : {
+        "R000" : 6
+      }
+    },
+    "proguard.retrace.FrameRemapper$FieldInfo" : {
+      "methodsCount" : 7,
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : {
+        "T003" : 2,
+        "T012" : 5
+      },
+      "perMethodOutcome" : {
+        "T003" : 2,
+        "T012" : 5
+      }
+    },
+    "proguard.retrace.FrameRemapper$MethodInfo" : {
+      "methodsCount" : 11,
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : {
+        "T003" : 2,
+        "T012" : 9
+      },
+      "perMethodOutcome" : {
+        "T003" : 2,
+        "T012" : 9
+      }
+    },
+    "proguard.retrace.ReTrace" : {
+      "methodsCount" : 9,
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : {
+        "T000" : 1,
+        "T003" : 5,
+        "T005" : 2,
+        "T006" : 1
+      },
+      "perMethodOutcome" : {
+        "R002" : 2,
+        "R013" : 1,
+        "T003" : 5,
+        "T006" : 1
+      }
+    }
+  },
+  "methods" : {
+    "proguard.retrace.FrameInfo.<init>:(Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T005",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57
+      ]
+    },
+    "proguard.retrace.FrameInfo.getArguments:()Ljava/lang/String;" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T001",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        98
+      ]
+    },
+    "proguard.retrace.FrameInfo.getClassName:()Ljava/lang/String;" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T001",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        62
+      ]
+    },
+    "proguard.retrace.FrameInfo.getFieldName:()Ljava/lang/String;" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T001",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        86
+      ]
+    },
+    "proguard.retrace.FrameInfo.getLineNumber:()I" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T001",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        74
+      ]
+    },
+    "proguard.retrace.FrameInfo.getMethodName:()Ljava/lang/String;" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T001",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        92
+      ]
+    },
+    "proguard.retrace.FrameInfo.getSourceFile:()Ljava/lang/String;" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T001",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        68
+      ]
+    },
+    "proguard.retrace.FrameInfo.getType:()Ljava/lang/String;" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T001",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        80
+      ]
+    },
+    "proguard.retrace.FrameInfo.toString:()Ljava/lang/String;" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T020",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        106
+      ]
+    },
+    "proguard.retrace.FramePattern.<init>:(Ljava/lang/String;Z)V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        57,
+        47,
+        59,
+        61,
+        62,
+        65,
+        66,
+        67,
+        70,
+        74,
+        75,
+        77,
+        78,
+        81,
+        82,
+        85,
+        86,
+        89,
+        90,
+        93,
+        94,
+        97,
+        98,
+        101,
+        102,
+        105,
+        106,
+        109,
+        113,
+        115,
+        117,
+        118,
+        121,
+        123,
+        124,
+        125,
+        126
+      ]
+    },
+    "proguard.retrace.FramePattern.format:(Ljava/lang/String;Lproguard/retrace/FrameInfo;)Ljava/lang/String;" : {
+      "completeTestCount" : 2,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 2
+      },
+      "lineNumbers" : [
+        223,
+        225,
+        227,
+        230,
+        232,
+        233,
+        235,
+        236,
+        238,
+        239,
+        242,
+        245,
+        246,
+        249,
+        250,
+        253,
+        254,
+        257,
+        258,
+        262,
+        264,
+        266,
+        267,
+        270,
+        271,
+        274,
+        276,
+        278,
+        279,
+        282,
+        284,
+        286,
+        287,
+        289,
+        294,
+        300,
+        233,
+        305,
+        308
+      ]
+    },
+    "proguard.retrace.FramePattern.parse:(Ljava/lang/String;)Lproguard/retrace/FrameInfo;" : {
+      "completeTestCount" : 2,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 2
+      },
+      "lineNumbers" : [
+        138,
+        140,
+        142,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        156,
+        158,
+        159,
+        161,
+        163,
+        164,
+        167,
+        168,
+        171,
+        172,
+        175,
+        176,
+        179,
+        180,
+        183,
+        184,
+        187,
+        188,
+        191,
+        192,
+        195,
+        156,
+        201
+      ]
+    },
+    "proguard.retrace.FrameRemapper$FieldInfo.<init>:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        370,
+        371,
+        372,
+        373,
+        374
+      ]
+    },
+    "proguard.retrace.FrameRemapper$FieldInfo.<init>:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lproguard/retrace/FrameRemapper$1;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T012",
+      "perMethodOutcome" : "T012",
+      "lineNumbers" : [
+        357
+      ]
+    },
+    "proguard.retrace.FrameRemapper$FieldInfo.access$000:(Lproguard/retrace/FrameRemapper$FieldInfo;Ljava/lang/String;)Z" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T012",
+      "perMethodOutcome" : "T012",
+      "lineNumbers" : [
+        357
+      ]
+    },
+    "proguard.retrace.FrameRemapper$FieldInfo.access$100:(Lproguard/retrace/FrameRemapper$FieldInfo;)Ljava/lang/String;" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T012",
+      "perMethodOutcome" : "T012",
+      "lineNumbers" : [
+        357
+      ]
+    },
+    "proguard.retrace.FrameRemapper$FieldInfo.access$200:(Lproguard/retrace/FrameRemapper$FieldInfo;)Ljava/lang/String;" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T012",
+      "perMethodOutcome" : "T012",
+      "lineNumbers" : [
+        357
+      ]
+    },
+    "proguard.retrace.FrameRemapper$FieldInfo.access$300:(Lproguard/retrace/FrameRemapper$FieldInfo;)Ljava/lang/String;" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T012",
+      "perMethodOutcome" : "T012",
+      "lineNumbers" : [
+        357
+      ]
+    },
+    "proguard.retrace.FrameRemapper$FieldInfo.matches:(Ljava/lang/String;)Z" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        383,
+        384,
+        383
+      ]
+    },
+    "proguard.retrace.FrameRemapper$MethodInfo.<init>:(IILjava/lang/String;IILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        416,
+        417,
+        418,
+        419,
+        420,
+        421,
+        422,
+        423,
+        424,
+        425
+      ]
+    },
+    "proguard.retrace.FrameRemapper$MethodInfo.<init>:(IILjava/lang/String;IILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Lproguard/retrace/FrameRemapper$1;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T012",
+      "perMethodOutcome" : "T012",
+      "lineNumbers" : [
+        393
+      ]
+    },
+    "proguard.retrace.FrameRemapper$MethodInfo.access$1000:(Lproguard/retrace/FrameRemapper$MethodInfo;)Ljava/lang/String;" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T012",
+      "perMethodOutcome" : "T012",
+      "lineNumbers" : [
+        393
+      ]
+    },
+    "proguard.retrace.FrameRemapper$MethodInfo.access$1100:(Lproguard/retrace/FrameRemapper$MethodInfo;)Ljava/lang/String;" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T012",
+      "perMethodOutcome" : "T012",
+      "lineNumbers" : [
+        393
+      ]
+    },
+    "proguard.retrace.FrameRemapper$MethodInfo.access$400:(Lproguard/retrace/FrameRemapper$MethodInfo;ILjava/lang/String;Ljava/lang/String;)Z" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T012",
+      "perMethodOutcome" : "T012",
+      "lineNumbers" : [
+        393
+      ]
+    },
+    "proguard.retrace.FrameRemapper$MethodInfo.access$500:(Lproguard/retrace/FrameRemapper$MethodInfo;)I" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T012",
+      "perMethodOutcome" : "T012",
+      "lineNumbers" : [
+        393
+      ]
+    },
+    "proguard.retrace.FrameRemapper$MethodInfo.access$600:(Lproguard/retrace/FrameRemapper$MethodInfo;)I" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T012",
+      "perMethodOutcome" : "T012",
+      "lineNumbers" : [
+        393
+      ]
+    },
+    "proguard.retrace.FrameRemapper$MethodInfo.access$700:(Lproguard/retrace/FrameRemapper$MethodInfo;)I" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T012",
+      "perMethodOutcome" : "T012",
+      "lineNumbers" : [
+        393
+      ]
+    },
+    "proguard.retrace.FrameRemapper$MethodInfo.access$800:(Lproguard/retrace/FrameRemapper$MethodInfo;)Ljava/lang/String;" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T012",
+      "perMethodOutcome" : "T012",
+      "lineNumbers" : [
+        393
+      ]
+    },
+    "proguard.retrace.FrameRemapper$MethodInfo.access$900:(Lproguard/retrace/FrameRemapper$MethodInfo;)Ljava/lang/String;" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T012",
+      "perMethodOutcome" : "T012",
+      "lineNumbers" : [
+        393
+      ]
+    },
+    "proguard.retrace.FrameRemapper$MethodInfo.matches:(ILjava/lang/String;Ljava/lang/String;)Z" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        436,
+        442,
+        443,
+        436
+      ]
+    },
+    "proguard.retrace.FrameRemapper.<init>:()V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T005",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        33,
+        36,
+        39,
+        40
+      ]
+    },
+    "proguard.retrace.FrameRemapper.originalArguments:(Ljava/lang/String;)Ljava/lang/String;" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        209,
+        211,
+        214,
+        215,
+        217,
+        220,
+        222,
+        223,
+        225,
+        227
+      ]
+    },
+    "proguard.retrace.FrameRemapper.originalClassName:(Ljava/lang/String;)Ljava/lang/String;" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        249,
+        251
+      ]
+    },
+    "proguard.retrace.FrameRemapper.originalType:(Ljava/lang/String;)Ljava/lang/String;" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        236,
+        238,
+        239,
+        240,
+        238
+      ]
+    },
+    "proguard.retrace.FrameRemapper.processClassMapping:(Ljava/lang/String;Ljava/lang/String;)Z" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        279,
+        281
+      ]
+    },
+    "proguard.retrace.FrameRemapper.processFieldMapping:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        292,
+        293,
+        295,
+        296,
+        300,
+        301,
+        303,
+        304,
+        308,
+        311
+      ]
+    },
+    "proguard.retrace.FrameRemapper.processMethodMapping:(Ljava/lang/String;IILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IILjava/lang/String;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        326,
+        327,
+        329,
+        330,
+        334,
+        335,
+        337,
+        338,
+        342,
+        350
+      ]
+    },
+    "proguard.retrace.FrameRemapper.sourceFileName:(Ljava/lang/String;)Ljava/lang/String;" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        263,
+        264,
+        266,
+        267,
+        268,
+        266
+      ]
+    },
+    "proguard.retrace.FrameRemapper.transform:(Lproguard/retrace/FrameInfo;)Ljava/util/List;" : {
+      "completeTestCount" : 4,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 4
+      },
+      "lineNumbers" : [
+        49,
+        50,
+        52,
+        55,
+        58,
+        63,
+        67,
+        69,
+        71,
+        72,
+        73,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        71,
+        83
+      ]
+    },
+    "proguard.retrace.FrameRemapper.transformFieldInfo:(Lproguard/retrace/FrameInfo;Ljava/lang/String;Ljava/util/List;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        99,
+        100,
+        103,
+        104,
+        105,
+        107,
+        108,
+        109,
+        112,
+        113,
+        115,
+        116,
+        118,
+        119,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        118,
+        128,
+        131
+      ]
+    },
+    "proguard.retrace.FrameRemapper.transformMethodInfo:(Lproguard/retrace/FrameInfo;Ljava/lang/String;Ljava/util/List;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        146,
+        147,
+        150,
+        151,
+        152,
+        154,
+        156,
+        157,
+        158,
+        160,
+        161,
+        162,
+        165,
+        166,
+        168,
+        169,
+        175,
+        176,
+        180,
+        181,
+        182,
+        184,
+        185,
+        188,
+        189,
+        191,
+        193,
+        194,
+        195,
+        196,
+        188,
+        198,
+        201
+      ]
+    },
+    "proguard.retrace.ReTrace.<init>:(Ljava/io/File;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T005",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        115,
+        116
+      ]
+    },
+    "proguard.retrace.ReTrace.<init>:(Ljava/lang/String;Ljava/lang/String;ZZLjava/io/File;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T005",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142
+      ]
+    },
+    "proguard.retrace.ReTrace.deobfuscateTokens:(Ljava/lang/String;Lproguard/retrace/FrameRemapper;)Ljava/lang/String;" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        257,
+        260,
+        261,
+        263,
+        266
+      ]
+    },
+    "proguard.retrace.ReTrace.firstNonCommonIndex:(Ljava/lang/String;Ljava/lang/String;)I" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        307,
+        308,
+        309,
+        310,
+        312,
+        315
+      ]
+    },
+    "proguard.retrace.ReTrace.handle:(Lproguard/retrace/FrameInfo;Lproguard/retrace/FrameRemapper;Lproguard/retrace/FramePattern;Ljava/lang/String;)Ljava/lang/String;" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        192,
+        193,
+        197,
+        198,
+        200,
+        202,
+        205,
+        208,
+        209,
+        214,
+        216,
+        217,
+        221,
+        223,
+        225,
+        228,
+        229,
+        230,
+        234,
+        235,
+        236,
+        239,
+        241,
+        245,
+        247
+      ]
+    },
+    "proguard.retrace.ReTrace.lastNonIdentifierIndex:(Ljava/lang/String;I)I" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        325,
+        326,
+        328,
+        331
+      ]
+    },
+    "proguard.retrace.ReTrace.main:([Ljava/lang/String;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T006",
+      "perMethodOutcome" : "T006",
+      "lineNumbers" : [
+        341,
+        343,
+        344,
+        345,
+        346,
+        349,
+        350,
+        351,
+        352,
+        354,
+        355,
+        357,
+        358,
+        360,
+        362,
+        364,
+        366,
+        368,
+        375,
+        376,
+        378,
+        380,
+        381,
+        385,
+        386,
+        395,
+        402,
+        408,
+        409,
+        414,
+        416,
+        414,
+        416,
+        418,
+        434,
+        420,
+        422,
+        425,
+        430,
+        433,
+        436,
+        437
+      ]
+    },
+    "proguard.retrace.ReTrace.retrace:(Ljava/io/LineNumberReader;Ljava/io/PrintWriter;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R013",
+      "lineNumbers" : [
+        154,
+        155,
+        158,
+        161,
+        162,
+        168,
+        169,
+        171,
+        175,
+        176,
+        178,
+        182,
+        184,
+        185,
+        187,
+        188
+      ]
+    },
+    "proguard.retrace.ReTrace.trim:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        276,
+        279,
+        280,
+        282,
+        286,
+        289,
+        291,
+        293,
+        289,
+        297
+      ]
+    }
+  },
+  "validationMetrics" : {
+    "failingTests" : [
+      "Gradle Test Executor 4.failed to execute tests"
+    ]
+  }
+}

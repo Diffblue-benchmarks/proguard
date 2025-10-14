@@ -1,0 +1,34 @@
+{
+  "meta" : {
+    "reportVersion" : "2.7"
+  },
+  "run" : {
+    "version" : "2025.09.01-44e352d-licensed",
+    "creationTimestamp" : "2025-10-14T09:27:21.307Z",
+    "command" : "dcover coverage-reports --exclude-modules=proguard-app upload --exclude-modules=proguard-app http://localhost:8080 --project-name proguard --name baseline-no-diffblue-tests",
+    "totalTime" : 56.22,
+    "environmentDetectionTime" : 29.297,
+    "indexingTime" : 0.0,
+    "entryPointsTime" : 0.0,
+    "generationTime" : 0.0,
+    "timeToFirstTest" : 56.22,
+    "timeToLastTest" : 56.22,
+    "indexQueryTime" : 0.0,
+    "verificationTime" : 0.0,
+    "validationTime" : 0.0
+  },
+  "codes" : { },
+  "summary" : {
+    "classesCount" : 0,
+    "methodsCount" : 0,
+    "cumulativeDiffblueTestCount" : 0,
+    "cumulativeManualTestCount" : 0,
+    "completeTestCount" : 0,
+    "incompleteTestCount" : 0,
+    "skeletonTestCount" : 0,
+    "totalPhysicalLineCount" : 78
+  },
+  "classes" : { },
+  "methods" : { },
+  "validationMetrics" : { }
+}
