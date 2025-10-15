@@ -4,18 +4,18 @@
   },
   "run" : {
     "version" : "2025.09.01-44e352d-licensed",
-    "creationTimestamp" : "2025-10-14T09:35:38.081Z",
+    "creationTimestamp" : "2025-10-15T15:37:08.754Z",
     "command" : "dcover create --exclude-modules=proguard-app --coverage-reports --upload http://localhost:8080 --project-name proguard --name with-diffblue-tests",
-    "totalTime" : 619.941,
-    "environmentDetectionTime" : 0.488,
-    "indexingTime" : 0.312,
-    "entryPointsTime" : 0.48,
-    "generationTime" : 3624.925,
-    "timeToFirstTest" : 1493.718,
-    "timeToLastTest" : 3975.866,
-    "indexQueryTime" : 4.154,
-    "verificationTime" : 27.037,
-    "validationTime" : 21.357
+    "totalTime" : 613.848,
+    "environmentDetectionTime" : 0.484,
+    "indexingTime" : 0.342,
+    "entryPointsTime" : 0.476,
+    "generationTime" : 3615.046,
+    "timeToFirstTest" : 1486.163,
+    "timeToLastTest" : 3964.253,
+    "indexQueryTime" : 4.2,
+    "verificationTime" : 26.072,
+    "validationTime" : 21.166
   },
   "codes" : {
     "R000" : "Success",
@@ -38,8 +38,7 @@
     "T012" : "Synthetic method",
     "T020" : "Other trivial method",
     "T023" : "Testability unknown",
-    "V000" : "Validated successfully",
-    "W002" : "Test compiled, but did not pass"
+    "V000" : "Validated successfully"
   },
   "summary" : {
     "classesCount" : 105,
@@ -86,9 +85,6 @@
     },
     "perTestValidation" : {
       "V000" : 64
-    },
-    "warnings" : {
-      "W002" : 1
     }
   },
   "classes" : {
@@ -1284,9 +1280,6 @@
       },
       "perTestOutcome" : {
         "R000" : 7
-      },
-      "warnings" : {
-        "W002" : 1
       }
     },
     "proguard.gui.splash.SplashPanel$1" : {
@@ -8403,9 +8396,6 @@
       "perTestOutcome" : {
         "R000" : 5
       },
-      "warnings" : {
-        "W002" : 1
-      },
       "lineNumbers" : [
         94,
         97,
@@ -8622,7 +8612,7 @@
   },
   "validationMetrics" : {
     "failingTests" : [
-      "Gradle Test Executor 4.failed to execute tests"
+      "Gradle Test Executor 1.failed to execute tests"
     ]
   }
 }

@@ -13,45 +13,10 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.AppView;
 import proguard.classfile.ClassPool;
-import proguard.classfile.LibraryClass;
 import proguard.classfile.kotlin.KotlinConstants;
 import proguard.classfile.visitor.ClassPoolVisitor;
-import proguard.classfile.visitor.ClassVisitor;
 
 class StringNormalizerDiffblueTest {
-  /**
-   * Test {@link StringNormalizer#execute(AppView)}.
-   *
-   * <ul>
-   *   <li>Given {@link LibraryClass} {@link LibraryClass#accept(ClassVisitor)} does nothing.
-   *   <li>Then calls {@link LibraryClass#accept(ClassVisitor)}.
-   * </ul>
-   *
-   * <p>Method under test: {@link StringNormalizer#execute(AppView)}
-   */
-  @Test
-  @DisplayName(
-      "Test execute(AppView); given LibraryClass accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
-  @Tag("ContributionFromDiffblue")
-  @ManagedByDiffblue
-  @MethodsUnderTest({"void StringNormalizer.execute(AppView)"})
-  void testExecute_givenLibraryClassAcceptDoesNothing_thenCallsAccept() throws Exception {
-    // Arrange
-    StringNormalizer stringNormalizer = new StringNormalizer();
-
-    LibraryClass clazz = mock(LibraryClass.class);
-    doNothing().when(clazz).accept(Mockito.<ClassVisitor>any());
-
-    ClassPool programClassPool = new ClassPool();
-    programClassPool.addClass("Name", clazz);
-
-    // Act
-    stringNormalizer.execute(new AppView(programClassPool, KotlinConstants.dummyClassPool));
-
-    // Assert
-    verify(clazz).accept(isA(ClassVisitor.class));
-  }
-
   /**
    * Test {@link StringNormalizer#execute(AppView)}.
    *

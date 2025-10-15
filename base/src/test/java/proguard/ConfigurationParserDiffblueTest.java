@@ -117,7 +117,7 @@ class ConfigurationParserDiffblueTest {
       throws IOException, ParseException {
     // Arrange
     URL url =
-        Paths.get(System.getProperty("java.io.tmpdir"), "2025_10_14_10_01_51_17164")
+        Paths.get(System.getProperty("java.io.tmpdir"), "2025_10_15_16_03_13_17245")
             .toUri()
             .toURL();
     ConfigurationParser configurationParser = new ConfigurationParser(url, new Properties());
@@ -147,7 +147,7 @@ class ConfigurationParserDiffblueTest {
       throws IOException, ParseException {
     // Arrange
     URL url =
-        Paths.get(System.getProperty("java.io.tmpdir"), "2025_10_14_10_01_51_17164")
+        Paths.get(System.getProperty("java.io.tmpdir"), "2025_10_15_16_03_13_17245")
             .toUri()
             .toURL();
     ConfigurationParser configurationParser = new ConfigurationParser(url, new Properties());

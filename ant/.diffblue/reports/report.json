@@ -4,18 +4,18 @@
   },
   "run" : {
     "version" : "2025.09.01-44e352d-licensed",
-    "creationTimestamp" : "2025-10-14T09:35:38.081Z",
+    "creationTimestamp" : "2025-10-15T15:37:08.754Z",
     "command" : "dcover create --exclude-modules=proguard-app --coverage-reports --upload http://localhost:8080 --project-name proguard --name with-diffblue-tests",
-    "totalTime" : 417.707,
-    "environmentDetectionTime" : 0.161,
-    "indexingTime" : 0.305,
-    "entryPointsTime" : 0.152,
-    "generationTime" : 3111.581,
-    "timeToFirstTest" : 823.845,
-    "timeToLastTest" : 3358.297,
-    "indexQueryTime" : 4.206,
-    "verificationTime" : 23.09,
-    "validationTime" : 21.962
+    "totalTime" : 415.818,
+    "environmentDetectionTime" : 0.2,
+    "indexingTime" : 0.334,
+    "entryPointsTime" : 0.192,
+    "generationTime" : 3106.172,
+    "timeToFirstTest" : 822.764,
+    "timeToLastTest" : 3352.223,
+    "indexQueryTime" : 4.176,
+    "verificationTime" : 22.131,
+    "validationTime" : 20.631
   },
   "codes" : {
     "R000" : "Success",
@@ -2057,7 +2057,7 @@
   },
   "validationMetrics" : {
     "failingTests" : [
-      "Gradle Test Executor 4.failed to execute tests"
+      "Gradle Test Executor 1.failed to execute tests"
     ]
   }
 }
