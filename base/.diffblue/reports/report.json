@@ -4,18 +4,18 @@
   },
   "run" : {
     "version" : "2025.09.01-44e352d-licensed",
-    "creationTimestamp" : "2025-10-14T09:35:38.081Z",
+    "creationTimestamp" : "2025-10-15T15:37:08.754Z",
     "command" : "dcover create --exclude-modules=proguard-app --coverage-reports --upload http://localhost:8080 --project-name proguard --name with-diffblue-tests",
-    "totalTime" : 11774.721,
-    "environmentDetectionTime" : 2.356,
-    "indexingTime" : 0.316,
-    "entryPointsTime" : 2.349,
-    "generationTime" : 14741.547,
-    "timeToFirstTest" : 13270.186,
-    "timeToLastTest" : 15296.057,
-    "indexQueryTime" : 13.596,
-    "verificationTime" : 127.318,
-    "validationTime" : 243.612
+    "totalTime" : 11747.498,
+    "environmentDetectionTime" : 2.6,
+    "indexingTime" : 0.345,
+    "entryPointsTime" : 2.593,
+    "generationTime" : 14711.762,
+    "timeToFirstTest" : 13235.394,
+    "timeToLastTest" : 15263.793,
+    "indexQueryTime" : 14.529,
+    "verificationTime" : 124.044,
+    "validationTime" : 238.198
   },
   "codes" : {
     "F009" : "Internal error",
@@ -48,9 +48,9 @@
   "summary" : {
     "classesCount" : 445,
     "methodsCount" : 3436,
-    "cumulativeDiffblueTestCount" : 2655,
+    "cumulativeDiffblueTestCount" : 2651,
     "cumulativeManualTestCount" : 152,
-    "completeTestCount" : 2658,
+    "completeTestCount" : 2654,
     "incompleteTestCount" : 0,
     "skeletonTestCount" : 0,
     "totalPhysicalLineCount" : 45664,
@@ -91,10 +91,10 @@
       "W002" : 1
     },
     "perTestOutcome" : {
-      "R000" : 2658
+      "R000" : 2654
     },
     "perTestValidation" : {
-      "V000" : 2655,
+      "V000" : 2651,
       "V003" : 3
     },
     "warnings" : {
@@ -1658,7 +1658,7 @@
     },
     "proguard.normalize.StringNormalizer" : {
       "methodsCount" : 3,
-      "completeTestCount" : 3,
+      "completeTestCount" : 2,
       "incompleteTestCount" : 0,
       "perMethodTestability" : {
         "T000" : 1,
@@ -1670,7 +1670,7 @@
         "T012" : 1
       },
       "perTestOutcome" : {
-        "R000" : 3
+        "R000" : 2
       }
     },
     "proguard.obfuscate.AttributeShrinker" : {
@@ -7150,7 +7150,7 @@
     },
     "proguard.shrink.UsageMarker" : {
       "methodsCount" : 3,
-      "completeTestCount" : 5,
+      "completeTestCount" : 2,
       "incompleteTestCount" : 0,
       "perMethodTestability" : {
         "T000" : 2,
@@ -7161,7 +7161,7 @@
         "R002" : 1
       },
       "perTestOutcome" : {
-        "R000" : 5
+        "R000" : 2
       },
       "warnings" : {
         "W002" : 3
@@ -20349,12 +20349,12 @@
       ]
     },
     "proguard.normalize.StringNormalizer.execute:(Lproguard/AppView;)V" : {
-      "completeTestCount" : 2,
+      "completeTestCount" : 1,
       "incompleteTestCount" : 0,
       "perMethodTestability" : "T000",
       "perMethodOutcome" : "R000",
       "perTestOutcome" : {
-        "R000" : 2
+        "R000" : 1
       },
       "lineNumbers" : [
         17,
@@ -57771,12 +57771,12 @@
       ]
     },
     "proguard.shrink.UsageMarker.mark:(Lproguard/classfile/ClassPool;Lproguard/classfile/ClassPool;Lproguard/resources/file/ResourceFilePool;Lproguard/shrink/SimpleUsageMarker;)V" : {
-      "completeTestCount" : 4,
+      "completeTestCount" : 1,
       "incompleteTestCount" : 0,
       "perMethodTestability" : "T000",
       "perMethodOutcome" : "R000",
       "perTestOutcome" : {
-        "R000" : 4
+        "R000" : 1
       },
       "warnings" : {
         "W002" : 2
@@ -58609,7 +58609,7 @@
   },
   "validationMetrics" : {
     "failingTests" : [
-      "Gradle Test Executor 4.failed to execute tests"
+      "Gradle Test Executor 1.failed to execute tests"
     ]
   }
 }

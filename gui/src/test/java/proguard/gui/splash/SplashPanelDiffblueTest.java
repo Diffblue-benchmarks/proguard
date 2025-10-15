@@ -13,17 +13,11 @@ import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.awt.Component;
 import java.awt.Component.BaselineResizeBehavior;
 import java.awt.FlowLayout;
-import java.awt.event.HierarchyListener;
 import java.awt.image.DirectColorModel;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import javax.swing.ActionMap;
+import java.beans.VetoableChangeListener;
 import javax.swing.JComponent;
-import javax.swing.JSlider;
-import javax.swing.plaf.basic.BasicSliderUI;
-import javax.swing.plaf.basic.BasicSliderUI.ComponentHandler;
-import javax.swing.plaf.basic.BasicTextUI;
-import javax.swing.plaf.basic.BasicTextUI.BasicCaret;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -233,18 +227,21 @@ class SplashPanelDiffblueTest {
     PropertyChangeListener propertyChangeListener = mock(PropertyChangeListener.class);
     doNothing().when(propertyChangeListener).propertyChange(Mockito.<PropertyChangeEvent>any());
 
+    PropertyChangeListener propertyChangeListener2 = mock(PropertyChangeListener.class);
+    doNothing().when(propertyChangeListener2).propertyChange(Mockito.<PropertyChangeEvent>any());
+
     SplashPanel splashPanel = new SplashPanel(mock(Sprite.class), 10.0d);
-    splashPanel.addHierarchyListener(mock(HierarchyListener.class));
-    splashPanel.addPropertyChangeListener("42", propertyChangeListener);
-    splashPanel.addPropertyChangeListener("foo", mock(PropertyChangeListener.class));
-    splashPanel.putClientProperty("42", JComponent.UNDEFINED_CONDITION);
-    splashPanel.addComponentListener(new BasicSliderUI(new JSlider()).new ComponentHandler());
-    splashPanel.addFocusListener(null);
+    splashPanel.setVerifyInputWhenFocusTarget(true);
+    splashPanel.addPropertyChangeListener(propertyChangeListener2);
+    splashPanel.addPropertyChangeListener(propertyChangeListener);
+    splashPanel.addVetoableChangeListener(mock(VetoableChangeListener.class));
+    splashPanel.putClientProperty(42, 10);
 
     // Act
     splashPanel.start();
 
     // Assert
+    verify(propertyChangeListener2).propertyChange(isA(PropertyChangeEvent.class));
     verify(propertyChangeListener).propertyChange(isA(PropertyChangeEvent.class));
   }
 
@@ -263,18 +260,21 @@ class SplashPanelDiffblueTest {
     PropertyChangeListener propertyChangeListener = mock(PropertyChangeListener.class);
     doNothing().when(propertyChangeListener).propertyChange(Mockito.<PropertyChangeEvent>any());
 
-    SplashPanel splashPanel = new SplashPanel(mock(Sprite.class), 10.0d);
-    splashPanel.addMouseMotionListener(new BasicCaret());
-    splashPanel.addPropertyChangeListener("42", propertyChangeListener);
-    splashPanel.addPropertyChangeListener("foo", mock(PropertyChangeListener.class));
-    splashPanel.putClientProperty("42", JComponent.UNDEFINED_CONDITION);
-    splashPanel.addComponentListener(new BasicSliderUI(new JSlider()).new ComponentHandler());
-    splashPanel.addFocusListener(null);
+    PropertyChangeListener propertyChangeListener2 = mock(PropertyChangeListener.class);
+    doNothing().when(propertyChangeListener2).propertyChange(Mockito.<PropertyChangeEvent>any());
+
+    SplashPanel splashPanel = new SplashPanel(mock(Sprite.class), 2.0d);
+    splashPanel.setVerifyInputWhenFocusTarget(true);
+    splashPanel.addPropertyChangeListener(propertyChangeListener2);
+    splashPanel.addPropertyChangeListener(propertyChangeListener);
+    splashPanel.addVetoableChangeListener(mock(VetoableChangeListener.class));
+    splashPanel.putClientProperty(42, 10);
 
     // Act
     splashPanel.start();
 
     // Assert
+    verify(propertyChangeListener2).propertyChange(isA(PropertyChangeEvent.class));
     verify(propertyChangeListener).propertyChange(isA(PropertyChangeEvent.class));
   }
 
@@ -293,91 +293,87 @@ class SplashPanelDiffblueTest {
     PropertyChangeListener propertyChangeListener = mock(PropertyChangeListener.class);
     doNothing().when(propertyChangeListener).propertyChange(Mockito.<PropertyChangeEvent>any());
 
+    PropertyChangeListener propertyChangeListener2 = mock(PropertyChangeListener.class);
+    doNothing().when(propertyChangeListener2).propertyChange(Mockito.<PropertyChangeEvent>any());
+
     SplashPanel splashPanel = new SplashPanel(mock(Sprite.class), 10.0d);
-    splashPanel.addPropertyChangeListener("42", propertyChangeListener);
-    splashPanel.addPropertyChangeListener("foo", mock(PropertyChangeListener.class));
-    splashPanel.putClientProperty("42", JComponent.UNDEFINED_CONDITION);
-    splashPanel.addComponentListener(null);
-    splashPanel.addFocusListener(null);
+    splashPanel.setVerifyInputWhenFocusTarget(true);
+    splashPanel.addPropertyChangeListener(propertyChangeListener2);
+    splashPanel.addPropertyChangeListener(propertyChangeListener);
+    splashPanel.addVetoableChangeListener(mock(VetoableChangeListener.class));
+    splashPanel.putClientProperty(42, "42");
 
     // Act
     splashPanel.start();
 
     // Assert
+    verify(propertyChangeListener2).propertyChange(isA(PropertyChangeEvent.class));
     verify(propertyChangeListener).propertyChange(isA(PropertyChangeEvent.class));
   }
 
   /**
    * Test {@link SplashPanel#start()}.
    *
-   * <ul>
-   *   <li>Given {@link JSlider#JSlider()} ActionMap is {@link ActionMap} (default constructor).
-   *   <li>Then calls {@link PropertyChangeListener#propertyChange(PropertyChangeEvent)}.
-   * </ul>
-   *
    * <p>Method under test: {@link SplashPanel#start()}
    */
   @Test
-  @DisplayName(
-      "Test start(); given JSlider() ActionMap is ActionMap (default constructor); then calls propertyChange(PropertyChangeEvent)")
+  @DisplayName("Test start()")
   @Tag("ContributionFromDiffblue")
   @ManagedByDiffblue
   @MethodsUnderTest({"void SplashPanel.start()"})
-  void testStart_givenJSliderActionMapIsActionMap_thenCallsPropertyChange() {
+  void testStart4() {
     // Arrange
-    JSlider jSlider = new JSlider();
-    jSlider.setActionMap(new ActionMap());
-    ComponentHandler componentHandler = new BasicSliderUI(jSlider).new ComponentHandler();
-
     PropertyChangeListener propertyChangeListener = mock(PropertyChangeListener.class);
     doNothing().when(propertyChangeListener).propertyChange(Mockito.<PropertyChangeEvent>any());
 
+    PropertyChangeListener propertyChangeListener2 = mock(PropertyChangeListener.class);
+    doNothing().when(propertyChangeListener2).propertyChange(Mockito.<PropertyChangeEvent>any());
+
     SplashPanel splashPanel = new SplashPanel(mock(Sprite.class), 10.0d);
-    splashPanel.addPropertyChangeListener("42", propertyChangeListener);
-    splashPanel.addPropertyChangeListener("foo", mock(PropertyChangeListener.class));
-    splashPanel.putClientProperty("42", JComponent.UNDEFINED_CONDITION);
-    splashPanel.addComponentListener(componentHandler);
-    splashPanel.addFocusListener(null);
+    splashPanel.setVerifyInputWhenFocusTarget(true);
+    splashPanel.addPropertyChangeListener(propertyChangeListener2);
+    splashPanel.addPropertyChangeListener(propertyChangeListener);
+    splashPanel.addVetoableChangeListener(mock(VetoableChangeListener.class));
+    splashPanel.putClientProperty(42, JComponent.UNDEFINED_CONDITION);
 
     // Act
     splashPanel.start();
 
     // Assert
+    verify(propertyChangeListener2).propertyChange(isA(PropertyChangeEvent.class));
     verify(propertyChangeListener).propertyChange(isA(PropertyChangeEvent.class));
   }
 
   /**
    * Test {@link SplashPanel#start()}.
    *
-   * <ul>
-   *   <li>Given {@link JSlider#JSlider(int)} with one.
-   *   <li>Then calls {@link PropertyChangeListener#propertyChange(PropertyChangeEvent)}.
-   * </ul>
-   *
    * <p>Method under test: {@link SplashPanel#start()}
    */
   @Test
-  @DisplayName(
-      "Test start(); given JSlider(int) with one; then calls propertyChange(PropertyChangeEvent)")
+  @DisplayName("Test start()")
   @Tag("ContributionFromDiffblue")
   @ManagedByDiffblue
   @MethodsUnderTest({"void SplashPanel.start()"})
-  void testStart_givenJSliderWithOne_thenCallsPropertyChange() {
+  void testStart5() {
     // Arrange
     PropertyChangeListener propertyChangeListener = mock(PropertyChangeListener.class);
     doNothing().when(propertyChangeListener).propertyChange(Mockito.<PropertyChangeEvent>any());
 
-    SplashPanel splashPanel = new SplashPanel(mock(Sprite.class), 10.0d);
-    splashPanel.addPropertyChangeListener("42", propertyChangeListener);
-    splashPanel.addPropertyChangeListener("foo", mock(PropertyChangeListener.class));
-    splashPanel.putClientProperty("42", JComponent.UNDEFINED_CONDITION);
-    splashPanel.addComponentListener(new BasicSliderUI(new JSlider(1)).new ComponentHandler());
-    splashPanel.addFocusListener(null);
+    PropertyChangeListener propertyChangeListener2 = mock(PropertyChangeListener.class);
+    doNothing().when(propertyChangeListener2).propertyChange(Mockito.<PropertyChangeEvent>any());
+
+    SplashPanel splashPanel = new SplashPanel(mock(Sprite.class), 10.0d, 1L);
+    splashPanel.setVerifyInputWhenFocusTarget(true);
+    splashPanel.addPropertyChangeListener(propertyChangeListener2);
+    splashPanel.addPropertyChangeListener(propertyChangeListener);
+    splashPanel.addVetoableChangeListener(mock(VetoableChangeListener.class));
+    splashPanel.putClientProperty(42, "42");
 
     // Act
     splashPanel.start();
 
     // Assert
+    verify(propertyChangeListener2).propertyChange(isA(PropertyChangeEvent.class));
     verify(propertyChangeListener).propertyChange(isA(PropertyChangeEvent.class));
   }
 }
