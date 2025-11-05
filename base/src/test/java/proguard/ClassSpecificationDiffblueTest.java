@@ -1,0 +1,463 @@
+package proguard;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+import java.util.ArrayList;
+import java.util.List;
+import org.junit.jupiter.api.Test;
+
+class ClassSpecificationDiffblueTest {
+  /**
+   * Method under test: {@link ClassSpecification#addField(MemberSpecification)}
+   */
+  @Test
+  void testAddField() {
+    // Arrange
+    ClassSpecification classSpecification = new ClassSpecification("Comments", 1, 1, "Annotation Type", "Class Name",
+        "Extends Annotation Type", "Extends Class Name");
+    MemberSpecification fieldSpecification = new MemberSpecification(1, 1, "Annotation Type", "Name", "Descriptor");
+
+    // Act
+    classSpecification.addField(fieldSpecification);
+
+    // Assert
+    List<MemberSpecification> memberSpecificationList = classSpecification.fieldSpecifications;
+    assertEquals(1, memberSpecificationList.size());
+    assertSame(fieldSpecification, memberSpecificationList.get(0));
+  }
+
+  /**
+   * Method under test: {@link ClassSpecification#addField(MemberSpecification)}
+   */
+  @Test
+  void testAddField2() {
+    // Arrange
+    ClassSpecification classSpecification = new ClassSpecification("Comments", 1, 1, "Annotation Type", "Class Name",
+        "Extends Annotation Type", "Extends Class Name");
+    classSpecification.fieldSpecifications = new ArrayList<>();
+    MemberSpecification fieldSpecification = new MemberSpecification(1, 1, "Annotation Type", "Name", "Descriptor");
+
+    // Act
+    classSpecification.addField(fieldSpecification);
+
+    // Assert
+    List<MemberSpecification> memberSpecificationList = classSpecification.fieldSpecifications;
+    assertEquals(1, memberSpecificationList.size());
+    assertSame(fieldSpecification, memberSpecificationList.get(0));
+  }
+
+  /**
+   * Method under test: {@link ClassSpecification#addMethod(MemberSpecification)}
+   */
+  @Test
+  void testAddMethod() {
+    // Arrange
+    ClassSpecification classSpecification = new ClassSpecification("Comments", 1, 1, "Annotation Type", "Class Name",
+        "Extends Annotation Type", "Extends Class Name");
+    MemberSpecification methodSpecification = new MemberSpecification(1, 1, "Annotation Type", "Name", "Descriptor");
+
+    // Act
+    classSpecification.addMethod(methodSpecification);
+
+    // Assert
+    List<MemberSpecification> memberSpecificationList = classSpecification.methodSpecifications;
+    assertEquals(1, memberSpecificationList.size());
+    assertSame(methodSpecification, memberSpecificationList.get(0));
+  }
+
+  /**
+   * Method under test: {@link ClassSpecification#addMethod(MemberSpecification)}
+   */
+  @Test
+  void testAddMethod2() {
+    // Arrange
+    ClassSpecification classSpecification = new ClassSpecification("Comments", 1, 1, "Annotation Type", "Class Name",
+        "Extends Annotation Type", "Extends Class Name");
+    classSpecification.methodSpecifications = new ArrayList<>();
+    MemberSpecification methodSpecification = new MemberSpecification(1, 1, "Annotation Type", "Name", "Descriptor");
+
+    // Act
+    classSpecification.addMethod(methodSpecification);
+
+    // Assert
+    List<MemberSpecification> memberSpecificationList = classSpecification.methodSpecifications;
+    assertEquals(1, memberSpecificationList.size());
+    assertSame(methodSpecification, memberSpecificationList.get(0));
+  }
+
+  /**
+   * Methods under test:
+   * <ul>
+   *   <li>{@link ClassSpecification#equals(Object)}
+   *   <li>{@link ClassSpecification#hashCode()}
+   * </ul>
+   */
+  @Test
+  void testEqualsAndHashCode_whenOtherIsEqual_thenReturnEqual() {
+    // Arrange
+    ClassSpecification classSpecification = new ClassSpecification("Comments", 1, 1, "Annotation Type", "Class Name",
+        "Extends Annotation Type", "Extends Class Name");
+    ClassSpecification classSpecification2 = new ClassSpecification("Comments", 1, 1, "Annotation Type", "Class Name",
+        "Extends Annotation Type", "Extends Class Name");
+
+    // Act and Assert
+    assertEquals(classSpecification, classSpecification2);
+    int expectedHashCodeResult = classSpecification.hashCode();
+    assertEquals(expectedHashCodeResult, classSpecification2.hashCode());
+  }
+
+  /**
+   * Methods under test:
+   * <ul>
+   *   <li>{@link ClassSpecification#equals(Object)}
+   *   <li>{@link ClassSpecification#hashCode()}
+   * </ul>
+   */
+  @Test
+  void testEqualsAndHashCode_whenOtherIsSame_thenReturnEqual() {
+    // Arrange
+    ClassSpecification classSpecification = new ClassSpecification("Comments", 1, 1, "Annotation Type", "Class Name",
+        "Extends Annotation Type", "Extends Class Name");
+
+    // Act and Assert
+    assertEquals(classSpecification, classSpecification);
+    int expectedHashCodeResult = classSpecification.hashCode();
+    assertEquals(expectedHashCodeResult, classSpecification.hashCode());
+  }
+
+  /**
+   * Method under test: {@link ClassSpecification#clone()}
+   */
+  @Test
+  void testClone() {
+    // Arrange
+    ClassSpecification classSpecification = new ClassSpecification("Comments", 1, 1, "Annotation Type", "Class Name",
+        "Extends Annotation Type", "Extends Class Name");
+
+    // Act
+    Object actualCloneResult = classSpecification.clone();
+
+    // Assert
+    assertTrue(actualCloneResult instanceof ClassSpecification);
+    assertEquals(classSpecification, actualCloneResult);
+  }
+
+  /**
+   * Method under test: {@link ClassSpecification#equals(Object)}
+   */
+  @Test
+  void testEquals_whenOtherIsDifferent_thenReturnNotEqual() {
+    // Arrange
+    ClassSpecification classSpecification = new ClassSpecification("Comments", 0, 1, "Annotation Type", "Class Name",
+        "Extends Annotation Type", "Extends Class Name");
+
+    // Act and Assert
+    assertNotEquals(classSpecification, new ClassSpecification("Comments", 1, 1, "Annotation Type", "Class Name",
+        "Extends Annotation Type", "Extends Class Name"));
+  }
+
+  /**
+   * Method under test: {@link ClassSpecification#equals(Object)}
+   */
+  @Test
+  void testEquals_whenOtherIsDifferent_thenReturnNotEqual2() {
+    // Arrange
+    ClassSpecification classSpecification = new ClassSpecification("Comments", 1, 0, "Annotation Type", "Class Name",
+        "Extends Annotation Type", "Extends Class Name");
+
+    // Act and Assert
+    assertNotEquals(classSpecification, new ClassSpecification("Comments", 1, 1, "Annotation Type", "Class Name",
+        "Extends Annotation Type", "Extends Class Name"));
+  }
+
+  /**
+   * Method under test: {@link ClassSpecification#equals(Object)}
+   */
+  @Test
+  void testEquals_whenOtherIsDifferent_thenReturnNotEqual3() {
+    // Arrange
+    ClassSpecification classSpecification = new ClassSpecification("Comments", 1, 1, "Class Name", "Class Name",
+        "Extends Annotation Type", "Extends Class Name");
+
+    // Act and Assert
+    assertNotEquals(classSpecification, new ClassSpecification("Comments", 1, 1, "Annotation Type", "Class Name",
+        "Extends Annotation Type", "Extends Class Name"));
+  }
+
+  /**
+   * Method under test: {@link ClassSpecification#equals(Object)}
+   */
+  @Test
+  void testEquals_whenOtherIsDifferent_thenReturnNotEqual4() {
+    // Arrange
+    ClassSpecification classSpecification = new ClassSpecification("Comments", 1, 1, null, "Class Name",
+        "Extends Annotation Type", "Extends Class Name");
+
+    // Act and Assert
+    assertNotEquals(classSpecification, new ClassSpecification("Comments", 1, 1, "Annotation Type", "Class Name",
+        "Extends Annotation Type", "Extends Class Name"));
+  }
+
+  /**
+   * Method under test: {@link ClassSpecification#equals(Object)}
+   */
+  @Test
+  void testEquals_whenOtherIsDifferent_thenReturnNotEqual5() {
+    // Arrange
+    ClassSpecification classSpecification = new ClassSpecification("Comments", 1, 1, "Annotation Type",
+        "Annotation Type", "Extends Annotation Type", "Extends Class Name");
+
+    // Act and Assert
+    assertNotEquals(classSpecification, new ClassSpecification("Comments", 1, 1, "Annotation Type", "Class Name",
+        "Extends Annotation Type", "Extends Class Name"));
+  }
+
+  /**
+   * Method under test: {@link ClassSpecification#equals(Object)}
+   */
+  @Test
+  void testEquals_whenOtherIsDifferent_thenReturnNotEqual6() {
+    // Arrange
+    ClassSpecification classSpecification = new ClassSpecification("Comments", 1, 1, "Annotation Type", null,
+        "Extends Annotation Type", "Extends Class Name");
+
+    // Act and Assert
+    assertNotEquals(classSpecification, new ClassSpecification("Comments", 1, 1, "Annotation Type", "Class Name",
+        "Extends Annotation Type", "Extends Class Name"));
+  }
+
+  /**
+   * Method under test: {@link ClassSpecification#equals(Object)}
+   */
+  @Test
+  void testEquals_whenOtherIsDifferent_thenReturnNotEqual7() {
+    // Arrange
+    ClassSpecification classSpecification = new ClassSpecification("Comments", 1, 1, "Annotation Type", "Class Name",
+        "Annotation Type", "Extends Class Name");
+
+    // Act and Assert
+    assertNotEquals(classSpecification, new ClassSpecification("Comments", 1, 1, "Annotation Type", "Class Name",
+        "Extends Annotation Type", "Extends Class Name"));
+  }
+
+  /**
+   * Method under test: {@link ClassSpecification#equals(Object)}
+   */
+  @Test
+  void testEquals_whenOtherIsDifferent_thenReturnNotEqual8() {
+    // Arrange
+    ClassSpecification classSpecification = new ClassSpecification("Comments", 1, 1, "Annotation Type", "Class Name",
+        null, "Extends Class Name");
+
+    // Act and Assert
+    assertNotEquals(classSpecification, new ClassSpecification("Comments", 1, 1, "Annotation Type", "Class Name",
+        "Extends Annotation Type", "Extends Class Name"));
+  }
+
+  /**
+   * Method under test: {@link ClassSpecification#equals(Object)}
+   */
+  @Test
+  void testEquals_whenOtherIsDifferent_thenReturnNotEqual9() {
+    // Arrange
+    ClassSpecification classSpecification = new ClassSpecification("Comments", 1, 1, "Annotation Type", "Class Name",
+        "Extends Annotation Type", "Annotation Type");
+
+    // Act and Assert
+    assertNotEquals(classSpecification, new ClassSpecification("Comments", 1, 1, "Annotation Type", "Class Name",
+        "Extends Annotation Type", "Extends Class Name"));
+  }
+
+  /**
+   * Method under test: {@link ClassSpecification#equals(Object)}
+   */
+  @Test
+  void testEquals_whenOtherIsDifferent_thenReturnNotEqual10() {
+    // Arrange
+    ClassSpecification classSpecification = new ClassSpecification("Comments", 1, 1, "Annotation Type", "Class Name",
+        "Extends Annotation Type", null);
+
+    // Act and Assert
+    assertNotEquals(classSpecification, new ClassSpecification("Comments", 1, 1, "Annotation Type", "Class Name",
+        "Extends Annotation Type", "Extends Class Name"));
+  }
+
+  /**
+   * Method under test: {@link ClassSpecification#equals(Object)}
+   */
+  @Test
+  void testEquals_whenOtherIsDifferent_thenReturnNotEqual11() {
+    // Arrange
+    ClassSpecification classSpecification = new ClassSpecification("Comments", 1, 1, "Annotation Type", "Class Name",
+        "Extends Annotation Type", "Extends Class Name");
+    classSpecification.addField(new MemberSpecification(1, 1, "Annotation Type", "Annotation Type", "Annotation Type"));
+
+    // Act and Assert
+    assertNotEquals(classSpecification, new ClassSpecification("Comments", 1, 1, "Annotation Type", "Class Name",
+        "Extends Annotation Type", "Extends Class Name"));
+  }
+
+  /**
+   * Method under test: {@link ClassSpecification#equals(Object)}
+   */
+  @Test
+  void testEquals_whenOtherIsDifferent_thenReturnNotEqual12() {
+    // Arrange
+    ClassSpecification classSpecification = new ClassSpecification("Comments", 1, 1, "Annotation Type", "Class Name",
+        "Extends Annotation Type", "Extends Class Name");
+    classSpecification
+        .addMethod(new MemberSpecification(1, 1, "Annotation Type", "Annotation Type", "Annotation Type"));
+
+    // Act and Assert
+    assertNotEquals(classSpecification, new ClassSpecification("Comments", 1, 1, "Annotation Type", "Class Name",
+        "Extends Annotation Type", "Extends Class Name"));
+  }
+
+  /**
+   * Method under test: {@link ClassSpecification#equals(Object)}
+   */
+  @Test
+  void testEquals_whenOtherIsDifferent_thenReturnNotEqual13() {
+    // Arrange, Act and Assert
+    assertNotEquals(new ClassSpecification("Comments", 1, 1, "Annotation Type", "Class Name", "Extends Annotation Type",
+        "Extends Class Name"), mock(KeepClassSpecification.class));
+  }
+
+  /**
+   * Method under test: {@link ClassSpecification#equals(Object)}
+   */
+  @Test
+  void testEquals_whenOtherIsDifferent_thenReturnNotEqual14() {
+    // Arrange
+    ClassSpecification classSpecification = new ClassSpecification("Comments", 1, 1, "Annotation Type", "Class Name",
+        "Extends Annotation Type", "Extends Class Name");
+
+    ClassSpecification classSpecification2 = new ClassSpecification("Comments", 1, 1, "Annotation Type", "Class Name",
+        "Extends Annotation Type", "Extends Class Name");
+    classSpecification2
+        .addField(new MemberSpecification(1, 1, "Annotation Type", "Annotation Type", "Annotation Type"));
+
+    // Act and Assert
+    assertNotEquals(classSpecification, classSpecification2);
+  }
+
+  /**
+   * Method under test: {@link ClassSpecification#equals(Object)}
+   */
+  @Test
+  void testEquals_whenOtherIsDifferent_thenReturnNotEqual15() {
+    // Arrange
+    ClassSpecification classSpecification = new ClassSpecification("Comments", 1, 1, "Annotation Type", "Class Name",
+        "Extends Annotation Type", "Extends Class Name");
+
+    ClassSpecification classSpecification2 = new ClassSpecification("Comments", 1, 1, "Annotation Type", "Class Name",
+        "Extends Annotation Type", "Extends Class Name");
+    classSpecification2
+        .addMethod(new MemberSpecification(1, 1, "Annotation Type", "Annotation Type", "Annotation Type"));
+
+    // Act and Assert
+    assertNotEquals(classSpecification, classSpecification2);
+  }
+
+  /**
+   * Method under test: {@link ClassSpecification#equals(Object)}
+   */
+  @Test
+  void testEquals_whenOtherIsNull_thenReturnNotEqual() {
+    // Arrange, Act and Assert
+    assertNotEquals(new ClassSpecification("Comments", 1, 1, "Annotation Type", "Class Name", "Extends Annotation Type",
+        "Extends Class Name"), null);
+  }
+
+  /**
+   * Method under test: {@link ClassSpecification#equals(Object)}
+   */
+  @Test
+  void testEquals_whenOtherIsWrongType_thenReturnNotEqual() {
+    // Arrange, Act and Assert
+    assertNotEquals(new ClassSpecification("Comments", 1, 1, "Annotation Type", "Class Name", "Extends Annotation Type",
+        "Extends Class Name"), "Different type to ClassSpecification");
+  }
+
+  /**
+   * Method under test: {@link ClassSpecification#ClassSpecification()}
+   */
+  @Test
+  void testNewClassSpecification() {
+    // Arrange and Act
+    ClassSpecification actualClassSpecification = new ClassSpecification();
+
+    // Assert
+    assertNull(actualClassSpecification.annotationType);
+    assertNull(actualClassSpecification.className);
+    assertNull(actualClassSpecification.comments);
+    assertNull(actualClassSpecification.extendsAnnotationType);
+    assertNull(actualClassSpecification.extendsClassName);
+    assertNull(actualClassSpecification.memberComments);
+    assertNull(actualClassSpecification.attributeNames);
+    assertNull(actualClassSpecification.fieldSpecifications);
+    assertNull(actualClassSpecification.methodSpecifications);
+    assertEquals(0, actualClassSpecification.requiredSetAccessFlags);
+    assertEquals(0, actualClassSpecification.requiredUnsetAccessFlags);
+  }
+
+  /**
+   * Method under test:
+   * {@link ClassSpecification#ClassSpecification(String, int, int, String, String, String, String)}
+   */
+  @Test
+  void testNewClassSpecification2() {
+    // Arrange and Act
+    ClassSpecification actualClassSpecification = new ClassSpecification("Comments", 1, 1, "Annotation Type",
+        "Class Name", "Extends Annotation Type", "Extends Class Name");
+
+    // Assert
+    assertEquals("Annotation Type", actualClassSpecification.annotationType);
+    assertEquals("Class Name", actualClassSpecification.className);
+    assertEquals("Comments", actualClassSpecification.comments);
+    assertEquals("Extends Annotation Type", actualClassSpecification.extendsAnnotationType);
+    assertEquals("Extends Class Name", actualClassSpecification.extendsClassName);
+    assertNull(actualClassSpecification.memberComments);
+    assertNull(actualClassSpecification.attributeNames);
+    assertNull(actualClassSpecification.fieldSpecifications);
+    assertNull(actualClassSpecification.methodSpecifications);
+    assertEquals(1, actualClassSpecification.requiredSetAccessFlags);
+    assertEquals(1, actualClassSpecification.requiredUnsetAccessFlags);
+  }
+
+  /**
+   * Method under test:
+   * {@link ClassSpecification#ClassSpecification(String, int, int, String, String, String, String, List, List)}
+   */
+  @Test
+  void testNewClassSpecification3() {
+    // Arrange
+    ArrayList<Object> fieldSpecifications = new ArrayList<>();
+
+    // Act
+    ClassSpecification actualClassSpecification = new ClassSpecification("Comments", 1, 1, "Annotation Type",
+        "Class Name", "Extends Annotation Type", "Extends Class Name", fieldSpecifications, new ArrayList<>());
+
+    // Assert
+    assertTrue(actualClassSpecification.fieldSpecifications.isEmpty());
+    assertTrue(actualClassSpecification.methodSpecifications.isEmpty());
+  }
+
+  /**
+   * Method under test:
+   * {@link ClassSpecification#ClassSpecification(ClassSpecification)}
+   */
+  @Test
+  void testNewClassSpecification4() {
+    // Arrange
+    ClassSpecification classSpecification = new ClassSpecification("Comments", 1, 1, "Annotation Type", "Class Name",
+        "Extends Annotation Type", "Extends Class Name");
+
+    // Act and Assert
+    assertEquals(classSpecification, new ClassSpecification(classSpecification));
+  }
+}

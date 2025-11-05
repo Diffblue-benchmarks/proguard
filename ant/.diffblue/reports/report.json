@@ -1,0 +1,2058 @@
+{
+  "meta" : {
+    "reportVersion" : "2.6"
+  },
+  "run" : {
+    "version" : "2024.10.01-2ee2e3d-licensed",
+    "creationTimestamp" : "2025-11-05T13:23:12.16Z",
+    "command" : "dcover create --exclude-modules=proguard-app --coverage-reports --upload http://localhost:8080 --project-name proguard --name with-diffblue-tests",
+    "totalTime" : 2809.907,
+    "environmentDetectionTime" : 0.457,
+    "indexingTime" : 0.301,
+    "entryPointsTime" : 0.454,
+    "generationTime" : 2346.742,
+    "timeToFirstTest" : 155.397,
+    "timeToLastTest" : 2129.541,
+    "indexQueryTime" : 4.442,
+    "verificationTime" : 16.661,
+    "validationTime" : 21.661
+  },
+  "codes" : {
+    "R000" : "Success",
+    "R002" : "Missing observers",
+    "R013" : "No inputs found that don't throw a trivial exception",
+    "T000" : "Method eligible for test creation",
+    "T002" : "Trivial setter",
+    "T003" : "Private method",
+    "V000" : "Validated successfully"
+  },
+  "summary" : {
+    "classesCount" : 8,
+    "methodsCount" : 135,
+    "cumulativeDiffblueTestCount" : 305,
+    "cumulativeManualTestCount" : 0,
+    "completeTestCount" : 305,
+    "incompleteTestCount" : 0,
+    "skeletonTestCount" : 0,
+    "totalPhysicalLineCount" : 1243,
+    "perMethodTestability" : {
+      "T000" : 71,
+      "T002" : 48,
+      "T003" : 16
+    },
+    "perMethodOutcome" : {
+      "R000" : 70,
+      "R002" : 48,
+      "R013" : 1,
+      "T003" : 16
+    },
+    "perTestOutcome" : {
+      "R000" : 305
+    },
+    "perTestValidation" : {
+      "V000" : 305
+    }
+  },
+  "classes" : {
+    "proguard.ant.ClassPathElement" : {
+      "methodsCount" : 12,
+      "completeTestCount" : 14,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : {
+        "T000" : 5,
+        "T002" : 7
+      },
+      "perMethodOutcome" : {
+        "R000" : 5,
+        "R002" : 7
+      },
+      "perTestOutcome" : {
+        "R000" : 14
+      }
+    },
+    "proguard.ant.ClassSpecificationElement" : {
+      "methodsCount" : 14,
+      "completeTestCount" : 51,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : {
+        "T000" : 6,
+        "T002" : 7,
+        "T003" : 1
+      },
+      "perMethodOutcome" : {
+        "R000" : 6,
+        "R002" : 7,
+        "T003" : 1
+      },
+      "perTestOutcome" : {
+        "R000" : 51
+      }
+    },
+    "proguard.ant.ConfigurationElement" : {
+      "methodsCount" : 2,
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : {
+        "T000" : 2
+      },
+      "perMethodOutcome" : {
+        "R000" : 1,
+        "R013" : 1
+      },
+      "perTestOutcome" : {
+        "R000" : 1
+      }
+    },
+    "proguard.ant.ConfigurationTask" : {
+      "methodsCount" : 40,
+      "completeTestCount" : 112,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : {
+        "T000" : 32,
+        "T003" : 8
+      },
+      "perMethodOutcome" : {
+        "R000" : 32,
+        "T003" : 8
+      },
+      "perTestOutcome" : {
+        "R000" : 112
+      }
+    },
+    "proguard.ant.FilterElement" : {
+      "methodsCount" : 4,
+      "completeTestCount" : 5,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : {
+        "T000" : 2,
+        "T002" : 2
+      },
+      "perMethodOutcome" : {
+        "R000" : 2,
+        "R002" : 2
+      },
+      "perTestOutcome" : {
+        "R000" : 5
+      }
+    },
+    "proguard.ant.KeepSpecificationElement" : {
+      "methodsCount" : 7,
+      "completeTestCount" : 23,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : {
+        "T000" : 2,
+        "T002" : 5
+      },
+      "perMethodOutcome" : {
+        "R000" : 2,
+        "R002" : 5
+      },
+      "perTestOutcome" : {
+        "R000" : 23
+      }
+    },
+    "proguard.ant.MemberSpecificationElement" : {
+      "methodsCount" : 13,
+      "completeTestCount" : 25,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : {
+        "T000" : 2,
+        "T002" : 7,
+        "T003" : 4
+      },
+      "perMethodOutcome" : {
+        "R000" : 2,
+        "R002" : 7,
+        "T003" : 4
+      },
+      "perTestOutcome" : {
+        "R000" : 25
+      }
+    },
+    "proguard.ant.ProGuardTask" : {
+      "methodsCount" : 43,
+      "completeTestCount" : 74,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : {
+        "T000" : 20,
+        "T002" : 20,
+        "T003" : 3
+      },
+      "perMethodOutcome" : {
+        "R000" : 20,
+        "R002" : 20,
+        "T003" : 3
+      },
+      "perTestOutcome" : {
+        "R000" : 74
+      }
+    }
+  },
+  "methods" : {
+    "proguard.ant.ClassPathElement.<init>:(Lorg/apache/tools/ant/Project;)V" : {
+      "completeTestCount" : 2,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 2
+      },
+      "lineNumbers" : [
+        52,
+        53
+      ]
+    },
+    "proguard.ant.ClassPathElement.appendClassPathEntriesTo:(Lproguard/ClassPath;Z)V" : {
+      "completeTestCount" : 6,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 6
+      },
+      "lineNumbers" : [
+        63,
+        66,
+        69,
+        70,
+        69,
+        72,
+        74,
+        77,
+        78,
+        79,
+        81,
+        84,
+        85,
+        86,
+        87,
+        90,
+        92,
+        96,
+        99,
+        101,
+        103,
+        114,
+        118,
+        119,
+        121,
+        122,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        133,
+        114,
+        135
+      ]
+    },
+    "proguard.ant.ClassPathElement.setAarfilter:(Ljava/lang/String;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        187,
+        188
+      ]
+    },
+    "proguard.ant.ClassPathElement.setApkfilter:(Ljava/lang/String;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        175,
+        176
+      ]
+    },
+    "proguard.ant.ClassPathElement.setDir:(Ljava/io/File;)V" : {
+      "completeTestCount" : 2,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 2
+      },
+      "lineNumbers" : [
+        154,
+        155
+      ]
+    },
+    "proguard.ant.ClassPathElement.setEarfilter:(Ljava/lang/String;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        199,
+        200
+      ]
+    },
+    "proguard.ant.ClassPathElement.setFile:(Ljava/io/File;)V" : {
+      "completeTestCount" : 2,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 2
+      },
+      "lineNumbers" : [
+        145,
+        146
+      ]
+    },
+    "proguard.ant.ClassPathElement.setFilter:(Ljava/lang/String;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        169,
+        170
+      ]
+    },
+    "proguard.ant.ClassPathElement.setJarfilter:(Ljava/lang/String;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        181,
+        182
+      ]
+    },
+    "proguard.ant.ClassPathElement.setName:(Ljava/io/File;)V" : {
+      "completeTestCount" : 2,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 2
+      },
+      "lineNumbers" : [
+        163,
+        164
+      ]
+    },
+    "proguard.ant.ClassPathElement.setWarfilter:(Ljava/lang/String;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        193,
+        194
+      ]
+    },
+    "proguard.ant.ClassPathElement.setZipfilter:(Ljava/lang/String;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        205,
+        206
+      ]
+    },
+    "proguard.ant.ClassSpecificationElement.<init>:()V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        36,
+        46,
+        47
+      ]
+    },
+    "proguard.ant.ClassSpecificationElement.addConfiguredConstructor:(Lproguard/ant/MemberSpecificationElement;)V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        188,
+        190,
+        193,
+        196
+      ]
+    },
+    "proguard.ant.ClassSpecificationElement.addConfiguredField:(Lproguard/ant/MemberSpecificationElement;)V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        162,
+        164,
+        167,
+        170
+      ]
+    },
+    "proguard.ant.ClassSpecificationElement.addConfiguredMethod:(Lproguard/ant/MemberSpecificationElement;)V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        175,
+        177,
+        180,
+        183
+      ]
+    },
+    "proguard.ant.ClassSpecificationElement.appendTo:(Ljava/util/List;)V" : {
+      "completeTestCount" : 24,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 24
+      },
+      "lineNumbers" : [
+        57,
+        58,
+        59,
+        58,
+        62,
+        63,
+        66,
+        67
+      ]
+    },
+    "proguard.ant.ClassSpecificationElement.createClassSpecification:(Lproguard/ant/ClassSpecificationElement;)Lproguard/ClassSpecification;" : {
+      "completeTestCount" : 23,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 23
+      },
+      "lineNumbers" : [
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        85,
+        86,
+        88,
+        91,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        100,
+        102,
+        100,
+        105,
+        107,
+        105,
+        110
+      ]
+    },
+    "proguard.ant.ClassSpecificationElement.requiredAccessFlags:(ZLjava/lang/String;Ljava/lang/String;)I" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        206,
+        208,
+        210,
+        211,
+        213,
+        215,
+        217,
+        218,
+        221,
+        222,
+        223,
+        224,
+        225,
+        226,
+        229,
+        231,
+        234,
+        236,
+        239,
+        241,
+        242,
+        243,
+        244,
+        245,
+        246,
+        249,
+        251,
+        254,
+        257
+      ]
+    },
+    "proguard.ant.ClassSpecificationElement.setAccess:(Ljava/lang/String;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        118,
+        119
+      ]
+    },
+    "proguard.ant.ClassSpecificationElement.setAnnotation:(Ljava/lang/String;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        124,
+        125
+      ]
+    },
+    "proguard.ant.ClassSpecificationElement.setExtends:(Ljava/lang/String;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        148,
+        149
+      ]
+    },
+    "proguard.ant.ClassSpecificationElement.setExtendsannotation:(Ljava/lang/String;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        142,
+        143
+      ]
+    },
+    "proguard.ant.ClassSpecificationElement.setImplements:(Ljava/lang/String;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        154,
+        155
+      ]
+    },
+    "proguard.ant.ClassSpecificationElement.setName:(Ljava/lang/String;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        136,
+        137
+      ]
+    },
+    "proguard.ant.ClassSpecificationElement.setType:(Ljava/lang/String;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        130,
+        131
+      ]
+    },
+    "proguard.ant.ConfigurationElement.<init>:()V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        36
+      ]
+    },
+    "proguard.ant.ConfigurationElement.appendTo:(Lproguard/Configuration;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R013",
+      "lineNumbers" : [
+        48,
+        51,
+        52,
+        51,
+        54,
+        58,
+        63,
+        65,
+        67,
+        69,
+        72,
+        73,
+        74,
+        75,
+        78,
+        80,
+        84,
+        85,
+        86,
+        91,
+        92,
+        98,
+        100,
+        102,
+        105,
+        106,
+        102,
+        106,
+        110,
+        107,
+        109,
+        98,
+        116,
+        113,
+        115,
+        117
+      ]
+    },
+    "proguard.ant.ConfigurationTask.<init>:()V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        34,
+        36
+      ]
+    },
+    "proguard.ant.ConfigurationTask.addConfiguredAdaptclassstrings:(Lproguard/ant/FilterElement;)V" : {
+      "completeTestCount" : 3,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 3
+      },
+      "lineNumbers" : [
+        297,
+        299
+      ]
+    },
+    "proguard.ant.ConfigurationTask.addConfiguredAdaptresourcefilecontents:(Lproguard/ant/FilterElement;)V" : {
+      "completeTestCount" : 3,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 3
+      },
+      "lineNumbers" : [
+        311,
+        313
+      ]
+    },
+    "proguard.ant.ConfigurationTask.addConfiguredAdaptresourcefilenames:(Lproguard/ant/FilterElement;)V" : {
+      "completeTestCount" : 3,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 3
+      },
+      "lineNumbers" : [
+        304,
+        306
+      ]
+    },
+    "proguard.ant.ConfigurationTask.addConfiguredAssumenoescapingparameters:(Lproguard/ant/ClassSpecificationElement;)V" : {
+      "completeTestCount" : 4,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 4
+      },
+      "lineNumbers" : [
+        234,
+        236
+      ]
+    },
+    "proguard.ant.ConfigurationTask.addConfiguredAssumenoexternalreturnvalues:(Lproguard/ant/ClassSpecificationElement;)V" : {
+      "completeTestCount" : 4,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 4
+      },
+      "lineNumbers" : [
+        241,
+        243
+      ]
+    },
+    "proguard.ant.ConfigurationTask.addConfiguredAssumenoexternalsideeffects:(Lproguard/ant/ClassSpecificationElement;)V" : {
+      "completeTestCount" : 4,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 4
+      },
+      "lineNumbers" : [
+        227,
+        229
+      ]
+    },
+    "proguard.ant.ConfigurationTask.addConfiguredAssumenosideeffects:(Lproguard/ant/ClassSpecificationElement;)V" : {
+      "completeTestCount" : 4,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 4
+      },
+      "lineNumbers" : [
+        220,
+        222
+      ]
+    },
+    "proguard.ant.ConfigurationTask.addConfiguredAssumevalues:(Lproguard/ant/ClassSpecificationElement;)V" : {
+      "completeTestCount" : 4,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 4
+      },
+      "lineNumbers" : [
+        248,
+        250
+      ]
+    },
+    "proguard.ant.ConfigurationTask.addConfiguredConfiguration:(Lproguard/ant/ConfigurationElement;)V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        330,
+        331
+      ]
+    },
+    "proguard.ant.ConfigurationTask.addConfiguredDontnote:(Lproguard/ant/FilterElement;)V" : {
+      "completeTestCount" : 3,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 3
+      },
+      "lineNumbers" : [
+        318,
+        319
+      ]
+    },
+    "proguard.ant.ConfigurationTask.addConfiguredDontwarn:(Lproguard/ant/FilterElement;)V" : {
+      "completeTestCount" : 3,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 3
+      },
+      "lineNumbers" : [
+        324,
+        325
+      ]
+    },
+    "proguard.ant.ConfigurationTask.addConfiguredInjar:(Lproguard/ant/ClassPathElement;)V" : {
+      "completeTestCount" : 8,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 8
+      },
+      "lineNumbers" : [
+        106,
+        109
+      ]
+    },
+    "proguard.ant.ConfigurationTask.addConfiguredKeep:(Lproguard/ant/KeepSpecificationElement;)V" : {
+      "completeTestCount" : 4,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 4
+      },
+      "lineNumbers" : [
+        144,
+        149
+      ]
+    },
+    "proguard.ant.ConfigurationTask.addConfiguredKeepattribute:(Lproguard/ant/FilterElement;)V" : {
+      "completeTestCount" : 3,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 3
+      },
+      "lineNumbers" : [
+        290,
+        292
+      ]
+    },
+    "proguard.ant.ConfigurationTask.addConfiguredKeepattributes:(Lproguard/ant/FilterElement;)V" : {
+      "completeTestCount" : 3,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 3
+      },
+      "lineNumbers" : [
+        284,
+        285
+      ]
+    },
+    "proguard.ant.ConfigurationTask.addConfiguredKeepclasseswithmembernames:(Lproguard/ant/KeepSpecificationElement;)V" : {
+      "completeTestCount" : 4,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 4
+      },
+      "lineNumbers" : [
+        201,
+        203,
+        208
+      ]
+    },
+    "proguard.ant.ConfigurationTask.addConfiguredKeepclasseswithmembers:(Lproguard/ant/KeepSpecificationElement;)V" : {
+      "completeTestCount" : 4,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 4
+      },
+      "lineNumbers" : [
+        164,
+        169
+      ]
+    },
+    "proguard.ant.ConfigurationTask.addConfiguredKeepclassmembernames:(Lproguard/ant/KeepSpecificationElement;)V" : {
+      "completeTestCount" : 4,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 4
+      },
+      "lineNumbers" : [
+        188,
+        190,
+        195
+      ]
+    },
+    "proguard.ant.ConfigurationTask.addConfiguredKeepclassmembers:(Lproguard/ant/KeepSpecificationElement;)V" : {
+      "completeTestCount" : 4,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 4
+      },
+      "lineNumbers" : [
+        154,
+        159
+      ]
+    },
+    "proguard.ant.ConfigurationTask.addConfiguredKeepdirectories:(Lproguard/ant/FilterElement;)V" : {
+      "completeTestCount" : 3,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 3
+      },
+      "lineNumbers" : [
+        137,
+        139
+      ]
+    },
+    "proguard.ant.ConfigurationTask.addConfiguredKeepdirectory:(Lproguard/ant/FilterElement;)V" : {
+      "completeTestCount" : 3,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 3
+      },
+      "lineNumbers" : [
+        130,
+        132
+      ]
+    },
+    "proguard.ant.ConfigurationTask.addConfiguredKeepnames:(Lproguard/ant/KeepSpecificationElement;)V" : {
+      "completeTestCount" : 4,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 4
+      },
+      "lineNumbers" : [
+        175,
+        177,
+        182
+      ]
+    },
+    "proguard.ant.ConfigurationTask.addConfiguredKeeppackagename:(Lproguard/ant/FilterElement;)V" : {
+      "completeTestCount" : 3,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 3
+      },
+      "lineNumbers" : [
+        268,
+        271
+      ]
+    },
+    "proguard.ant.ConfigurationTask.addConfiguredKeeppackagenames:(Lproguard/ant/FilterElement;)V" : {
+      "completeTestCount" : 3,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 3
+      },
+      "lineNumbers" : [
+        276,
+        279
+      ]
+    },
+    "proguard.ant.ConfigurationTask.addConfiguredLibraryjar:(Lproguard/ant/ClassPathElement;)V" : {
+      "completeTestCount" : 8,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 8
+      },
+      "lineNumbers" : [
+        122,
+        125
+      ]
+    },
+    "proguard.ant.ConfigurationTask.addConfiguredOptimization:(Lproguard/ant/FilterElement;)V" : {
+      "completeTestCount" : 3,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 3
+      },
+      "lineNumbers" : [
+        261,
+        263
+      ]
+    },
+    "proguard.ant.ConfigurationTask.addConfiguredOptimizations:(Lproguard/ant/FilterElement;)V" : {
+      "completeTestCount" : 3,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 3
+      },
+      "lineNumbers" : [
+        255,
+        256
+      ]
+    },
+    "proguard.ant.ConfigurationTask.addConfiguredOutjar:(Lproguard/ant/ClassPathElement;)V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        114,
+        117
+      ]
+    },
+    "proguard.ant.ConfigurationTask.addConfiguredWhyareyoukeeping:(Lproguard/ant/ClassSpecificationElement;)V" : {
+      "completeTestCount" : 4,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 4
+      },
+      "lineNumbers" : [
+        213,
+        215
+      ]
+    },
+    "proguard.ant.ConfigurationTask.addText:(Ljava/lang/String;)V" : {
+      "completeTestCount" : 2,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 2
+      },
+      "lineNumbers" : [
+        340,
+        343,
+        347,
+        348,
+        350,
+        352,
+        350,
+        355,
+        356,
+        350,
+        356,
+        360,
+        357,
+        359,
+        365,
+        362,
+        364,
+        366
+      ]
+    },
+    "proguard.ant.ConfigurationTask.appendTo:(Lproguard/Configuration;)V" : {
+      "completeTestCount" : 4,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 4
+      },
+      "lineNumbers" : [
+        46,
+        49,
+        52,
+        55,
+        58,
+        61,
+        64,
+        67,
+        70,
+        73,
+        76,
+        79,
+        82,
+        85,
+        88,
+        91,
+        94,
+        97,
+        99
+      ]
+    },
+    "proguard.ant.ConfigurationTask.extendClassPath:(Lproguard/ClassPath;Lproguard/ClassPath;)Lproguard/ClassPath;" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        390,
+        392,
+        394,
+        397,
+        400
+      ]
+    },
+    "proguard.ant.ConfigurationTask.extendClassPath:(Lproguard/ClassPath;Lproguard/ant/ClassPathElement;Z)Lproguard/ClassPath;" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        375,
+        377,
+        380,
+        383
+      ]
+    },
+    "proguard.ant.ConfigurationTask.extendClassSpecifications:(Ljava/util/List;Ljava/util/List;)Ljava/util/List;" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        441,
+        443,
+        445,
+        448,
+        451
+      ]
+    },
+    "proguard.ant.ConfigurationTask.extendClassSpecifications:(Ljava/util/List;Lproguard/ant/ClassSpecificationElement;)Ljava/util/List;" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        427,
+        429,
+        432,
+        434
+      ]
+    },
+    "proguard.ant.ConfigurationTask.extendFilter:(Ljava/util/List;Lproguard/ant/FilterElement;)Ljava/util/List;" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        458
+      ]
+    },
+    "proguard.ant.ConfigurationTask.extendFilter:(Ljava/util/List;Lproguard/ant/FilterElement;Z)Ljava/util/List;" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        466,
+        468,
+        471,
+        473
+      ]
+    },
+    "proguard.ant.ConfigurationTask.extendKeepSpecifications:(Ljava/util/List;Lproguard/ant/KeepSpecificationElement;ZZZ)Ljava/util/List;" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        410,
+        412,
+        415,
+        420
+      ]
+    },
+    "proguard.ant.ConfigurationTask.extendList:(Ljava/util/List;Ljava/util/List;)Ljava/util/List;" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        480,
+        482,
+        484,
+        487,
+        490
+      ]
+    },
+    "proguard.ant.FilterElement.<init>:()V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        34
+      ]
+    },
+    "proguard.ant.FilterElement.appendTo:(Ljava/util/List;Z)V" : {
+      "completeTestCount" : 4,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 4
+      },
+      "lineNumbers" : [
+        48,
+        49,
+        50,
+        49,
+        53,
+        55,
+        58,
+        62,
+        64,
+        68,
+        70
+      ]
+    },
+    "proguard.ant.FilterElement.setFilter:(Ljava/lang/String;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        83,
+        84
+      ]
+    },
+    "proguard.ant.FilterElement.setName:(Ljava/lang/String;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        77,
+        78
+      ]
+    },
+    "proguard.ant.KeepSpecificationElement.<init>:()V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        32
+      ]
+    },
+    "proguard.ant.KeepSpecificationElement.appendTo:(Ljava/util/List;ZZZ)V" : {
+      "completeTestCount" : 22,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 22
+      },
+      "lineNumbers" : [
+        54,
+        55,
+        56,
+        55,
+        59,
+        69,
+        72,
+        73
+      ]
+    },
+    "proguard.ant.KeepSpecificationElement.setAllowobfuscation:(Z)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        104,
+        105
+      ]
+    },
+    "proguard.ant.KeepSpecificationElement.setAllowoptimization:(Z)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        98,
+        99
+      ]
+    },
+    "proguard.ant.KeepSpecificationElement.setAllowshrinking:(Z)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        92,
+        93
+      ]
+    },
+    "proguard.ant.KeepSpecificationElement.setIncludecode:(Z)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        86,
+        87
+      ]
+    },
+    "proguard.ant.KeepSpecificationElement.setIncludedescriptorclasses:(Z)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        80,
+        81
+      ]
+    },
+    "proguard.ant.MemberSpecificationElement.<init>:()V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        37
+      ]
+    },
+    "proguard.ant.MemberSpecificationElement.appendTo:(Ljava/util/List;ZZ)V" : {
+      "completeTestCount" : 24,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 24
+      },
+      "lineNumbers" : [
+        62,
+        63,
+        64,
+        63,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        76,
+        78,
+        81,
+        83,
+        85,
+        87,
+        90,
+        92,
+        95,
+        97,
+        100,
+        102,
+        104,
+        109,
+        111,
+        115,
+        117,
+        119,
+        123,
+        125,
+        126,
+        127,
+        130,
+        131,
+        132,
+        137,
+        136,
+        139,
+        140,
+        146,
+        147
+      ]
+    },
+    "proguard.ant.MemberSpecificationElement.parseBoolean:(Ljava/lang/String;)Ljava/lang/Integer;" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        328,
+        330,
+        332,
+        334,
+        338
+      ]
+    },
+    "proguard.ant.MemberSpecificationElement.parseValue:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/Number;" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        284,
+        288,
+        295,
+        311,
+        315,
+        317
+      ]
+    },
+    "proguard.ant.MemberSpecificationElement.parseValues:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)[Ljava/lang/Number;" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        258,
+        259,
+        262,
+        263,
+        267,
+        259
+      ]
+    },
+    "proguard.ant.MemberSpecificationElement.requiredAccessFlags:(ZLjava/lang/String;)I" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        203,
+        205,
+        207,
+        208,
+        210,
+        212,
+        214,
+        215,
+        218,
+        219,
+        220,
+        221,
+        222,
+        223,
+        224,
+        225,
+        226,
+        227,
+        228,
+        229,
+        230,
+        231,
+        232,
+        235,
+        237,
+        240,
+        242,
+        245
+      ]
+    },
+    "proguard.ant.MemberSpecificationElement.setAccess:(Ljava/lang/String;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        154,
+        155
+      ]
+    },
+    "proguard.ant.MemberSpecificationElement.setAnnotation:(Ljava/lang/String;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        160,
+        161
+      ]
+    },
+    "proguard.ant.MemberSpecificationElement.setName:(Ljava/lang/String;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        172,
+        173
+      ]
+    },
+    "proguard.ant.MemberSpecificationElement.setParam:(Ljava/lang/String;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        187,
+        188
+      ]
+    },
+    "proguard.ant.MemberSpecificationElement.setParameters:(Ljava/lang/String;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        178,
+        179
+      ]
+    },
+    "proguard.ant.MemberSpecificationElement.setType:(Ljava/lang/String;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        166,
+        167
+      ]
+    },
+    "proguard.ant.MemberSpecificationElement.setValues:(Ljava/lang/String;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        193,
+        194
+      ]
+    },
+    "proguard.ant.ProGuardTask.<init>:()V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        36
+      ]
+    },
+    "proguard.ant.ProGuardTask.execute:()V" : {
+      "completeTestCount" : 5,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 5
+      },
+      "lineNumbers" : [
+        332,
+        333,
+        338,
+        335,
+        337,
+        339
+      ]
+    },
+    "proguard.ant.ProGuardTask.optionalFile:(Ljava/io/File;)Ljava/io/File;" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        351,
+        353,
+        354,
+        355,
+        356,
+        357,
+        358,
+        359,
+        360,
+        353
+      ]
+    },
+    "proguard.ant.ProGuardTask.resolvedFile:(Ljava/io/File;)Ljava/io/File;" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        387,
+        388,
+        389,
+        387
+      ]
+    },
+    "proguard.ant.ProGuardTask.resolvedURL:(Ljava/io/File;)Ljava/net/URL;" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T003",
+      "perMethodOutcome" : "T003",
+      "lineNumbers" : [
+        372,
+        374,
+        376
+      ]
+    },
+    "proguard.ant.ProGuardTask.setAddconfigurationdebugging:(Z)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        317,
+        318
+      ]
+    },
+    "proguard.ant.ProGuardTask.setAllowaccessmodification:(Z)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        139,
+        140
+      ]
+    },
+    "proguard.ant.ProGuardTask.setAndroid:(Z)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        249,
+        250
+      ]
+    },
+    "proguard.ant.ProGuardTask.setApplymapping:(Ljava/io/File;)V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        163,
+        164
+      ]
+    },
+    "proguard.ant.ProGuardTask.setClassobfuscationdictionary:(Ljava/io/File;)V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        175,
+        176
+      ]
+    },
+    "proguard.ant.ProGuardTask.setConfiguration:(Ljava/io/File;)V" : {
+      "completeTestCount" : 4,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 4
+      },
+      "lineNumbers" : [
+        46,
+        47,
+        49,
+        50,
+        52,
+        56,
+        57,
+        52,
+        57,
+        61,
+        58,
+        60,
+        66,
+        63,
+        65,
+        67
+      ]
+    },
+    "proguard.ant.ProGuardTask.setDefaultpackage:(Ljava/lang/String;)V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        219,
+        220
+      ]
+    },
+    "proguard.ant.ProGuardTask.setDump:(Ljava/io/File;)V" : {
+      "completeTestCount" : 7,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 7
+      },
+      "lineNumbers" : [
+        311,
+        312
+      ]
+    },
+    "proguard.ant.ProGuardTask.setFlattenpackagehierarchy:(Ljava/lang/String;)V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        205,
+        206
+      ]
+    },
+    "proguard.ant.ProGuardTask.setForceprocessing:(Z)V" : {
+      "completeTestCount" : 2,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 2
+      },
+      "lineNumbers" : [
+        103,
+        104
+      ]
+    },
+    "proguard.ant.ProGuardTask.setIgnorewarnings:(Z)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        299,
+        300
+      ]
+    },
+    "proguard.ant.ProGuardTask.setKeepkotlinmetadata:(Z)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        322,
+        323
+      ]
+    },
+    "proguard.ant.ProGuardTask.setKeepparameternames:(Z)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        225,
+        226
+      ]
+    },
+    "proguard.ant.ProGuardTask.setMergeinterfacesaggressively:(Z)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        145,
+        146
+      ]
+    },
+    "proguard.ant.ProGuardTask.setMicroedition:(Z)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        243,
+        244
+      ]
+    },
+    "proguard.ant.ProGuardTask.setNote:(Z)V" : {
+      "completeTestCount" : 4,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 4
+      },
+      "lineNumbers" : [
+        261,
+        264,
+        265,
+        267,
+        273,
+        275
+      ]
+    },
+    "proguard.ant.ProGuardTask.setObfuscate:(Z)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        151,
+        152
+      ]
+    },
+    "proguard.ant.ProGuardTask.setObfuscationdictionary:(Ljava/io/File;)V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        169,
+        170
+      ]
+    },
+    "proguard.ant.ProGuardTask.setOptimizationpasses:(I)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        133,
+        134
+      ]
+    },
+    "proguard.ant.ProGuardTask.setOptimize:(Z)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        127,
+        128
+      ]
+    },
+    "proguard.ant.ProGuardTask.setOutjar:(Ljava/lang/String;)V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        75
+      ]
+    },
+    "proguard.ant.ProGuardTask.setOverloadaggressively:(Z)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        187,
+        188
+      ]
+    },
+    "proguard.ant.ProGuardTask.setPackageobfuscationdictionary:(Ljava/io/File;)V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        181,
+        182
+      ]
+    },
+    "proguard.ant.ProGuardTask.setPreverify:(Z)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        237,
+        238
+      ]
+    },
+    "proguard.ant.ProGuardTask.setPrintconfiguration:(Ljava/io/File;)V" : {
+      "completeTestCount" : 7,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 7
+      },
+      "lineNumbers" : [
+        305,
+        306
+      ]
+    },
+    "proguard.ant.ProGuardTask.setPrintmapping:(Ljava/io/File;)V" : {
+      "completeTestCount" : 7,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 7
+      },
+      "lineNumbers" : [
+        157,
+        158
+      ]
+    },
+    "proguard.ant.ProGuardTask.setPrintseeds:(Ljava/io/File;)V" : {
+      "completeTestCount" : 7,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 7
+      },
+      "lineNumbers" : [
+        109,
+        110
+      ]
+    },
+    "proguard.ant.ProGuardTask.setPrintusage:(Ljava/io/File;)V" : {
+      "completeTestCount" : 7,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 7
+      },
+      "lineNumbers" : [
+        121,
+        122
+      ]
+    },
+    "proguard.ant.ProGuardTask.setRenamesourcefileattribute:(Ljava/lang/String;)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        231,
+        232
+      ]
+    },
+    "proguard.ant.ProGuardTask.setRepackageclasses:(Ljava/lang/String;)V" : {
+      "completeTestCount" : 1,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
+      },
+      "lineNumbers" : [
+        211,
+        212
+      ]
+    },
+    "proguard.ant.ProGuardTask.setShrink:(Z)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        115,
+        116
+      ]
+    },
+    "proguard.ant.ProGuardTask.setSkipnonpubliclibraryclasses:(Z)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        81,
+        82
+      ]
+    },
+    "proguard.ant.ProGuardTask.setSkipnonpubliclibraryclassmembers:(Z)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        87,
+        88
+      ]
+    },
+    "proguard.ant.ProGuardTask.setTarget:(Ljava/lang/String;)V" : {
+      "completeTestCount" : 11,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 11
+      },
+      "lineNumbers" : [
+        93,
+        94,
+        96,
+        98
+      ]
+    },
+    "proguard.ant.ProGuardTask.setUsemixedcaseclassnames:(Z)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        199,
+        200
+      ]
+    },
+    "proguard.ant.ProGuardTask.setUseuniqueclassmembernames:(Z)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        193,
+        194
+      ]
+    },
+    "proguard.ant.ProGuardTask.setVerbose:(Z)V" : {
+      "completeTestCount" : 0,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T002",
+      "perMethodOutcome" : "R002",
+      "lineNumbers" : [
+        255,
+        256
+      ]
+    },
+    "proguard.ant.ProGuardTask.setWarn:(Z)V" : {
+      "completeTestCount" : 4,
+      "incompleteTestCount" : 0,
+      "perMethodTestability" : "T000",
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 4
+      },
+      "lineNumbers" : [
+        280,
+        283,
+        284,
+        286,
+        292,
+        294
+      ]
+    }
+  }
+}
