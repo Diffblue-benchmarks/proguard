@@ -5,8 +5,11 @@ import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.util.ArrayList;
 import java.util.List;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.ClassPool;
@@ -23,53 +26,16 @@ import proguard.util.WildcardManager;
 
 class ClassSpecificationVisitorFactoryDiffblueTest {
   /**
-   * Method under test:
-   * {@link ClassSpecificationVisitorFactory#createClassPoolVisitor(List, ClassVisitor, MemberVisitor)}
+   * Test {@link ClassSpecificationVisitorFactory#createClassPoolVisitor(ClassSpecification, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor, WildcardManager)} with {@code classSpecification}, {@code classVisitor}, {@code fieldVisitor}, {@code methodVisitor}, {@code attributeVisitor}, {@code wildcardManager}.
+   * <p>
+   * Method under test: {@link ClassSpecificationVisitorFactory#createClassPoolVisitor(ClassSpecification, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor, WildcardManager)}
    */
   @Test
-  void testCreateClassPoolVisitor() {
-    // Arrange
-    ClassSpecificationVisitorFactory classSpecificationVisitorFactory = new ClassSpecificationVisitorFactory();
-    ArrayList<Object> classSpecifications = new ArrayList<>();
-    ClassVisitor classVisitor = mock(ClassVisitor.class);
-
-    // Act
-    ClassPoolVisitor actualCreateClassPoolVisitorResult = classSpecificationVisitorFactory
-        .createClassPoolVisitor(classSpecifications, classVisitor, new KotlinAnnotationCounter());
-    actualCreateClassPoolVisitorResult.visitClassPool(new ClassPool());
-
-    // Assert that nothing has changed
-    assertTrue(actualCreateClassPoolVisitorResult instanceof MultiClassPoolVisitor);
-  }
-
-  /**
-   * Method under test:
-   * {@link ClassSpecificationVisitorFactory#createClassPoolVisitor(List, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor)}
-   */
-  @Test
-  void testCreateClassPoolVisitor2() {
-    // Arrange
-    ClassSpecificationVisitorFactory classSpecificationVisitorFactory = new ClassSpecificationVisitorFactory();
-    ArrayList<Object> classSpecifications = new ArrayList<>();
-    ClassVisitor classVisitor = mock(ClassVisitor.class);
-    KotlinAnnotationCounter fieldVisitor = new KotlinAnnotationCounter();
-    KotlinAnnotationCounter methodVisitor = new KotlinAnnotationCounter();
-
-    // Act
-    ClassPoolVisitor actualCreateClassPoolVisitorResult = classSpecificationVisitorFactory.createClassPoolVisitor(
-        classSpecifications, classVisitor, fieldVisitor, methodVisitor, new KotlinAnnotationCounter());
-    actualCreateClassPoolVisitorResult.visitClassPool(new ClassPool());
-
-    // Assert that nothing has changed
-    assertTrue(actualCreateClassPoolVisitorResult instanceof MultiClassPoolVisitor);
-  }
-
-  /**
-   * Method under test:
-   * {@link ClassSpecificationVisitorFactory#createClassPoolVisitor(ClassSpecification, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor, WildcardManager)}
-   */
-  @Test
-  void testCreateClassPoolVisitor3() {
+  @DisplayName("Test createClassPoolVisitor(ClassSpecification, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor, WildcardManager) with 'classSpecification', 'classVisitor', 'fieldVisitor', 'methodVisitor', 'attributeVisitor', 'wildcardManager'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "ClassPoolVisitor ClassSpecificationVisitorFactory.createClassPoolVisitor(ClassSpecification, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor, WildcardManager)"})
+  void testCreateClassPoolVisitorWithClassSpecificationClassVisitorFieldVisitorMethodVisitorAttributeVisitorWildcardManager() {
     // Arrange
     ClassSpecificationVisitorFactory classSpecificationVisitorFactory = new ClassSpecificationVisitorFactory();
     ClassSpecification classSpecification = new ClassSpecification("Comments", 1, 1, "Annotation Type", "Class Name",
@@ -85,16 +51,192 @@ class ClassSpecificationVisitorFactoryDiffblueTest {
         classSpecification, classVisitor, fieldVisitor, methodVisitor, attributeVisitor, new WildcardManager());
     actualCreateClassPoolVisitorResult.visitClassPool(new ClassPool());
 
-    // Assert that nothing has changed
+    // Assert
     assertTrue(actualCreateClassPoolVisitorResult instanceof NamedClassVisitor);
   }
 
   /**
-   * Method under test:
-   * {@link ClassSpecificationVisitorFactory#createCombinedClassVisitor(List, List, List, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor, WildcardManager)}
+   * Test {@link ClassSpecificationVisitorFactory#createClassPoolVisitor(List, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor)} with {@code classSpecifications}, {@code classVisitor}, {@code fieldVisitor}, {@code methodVisitor}, {@code attributeVisitor}.
+   * <p>
+   * Method under test: {@link ClassSpecificationVisitorFactory#createClassPoolVisitor(List, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor)}
    */
   @Test
-  void testCreateCombinedClassVisitor() {
+  @DisplayName("Test createClassPoolVisitor(List, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor) with 'classSpecifications', 'classVisitor', 'fieldVisitor', 'methodVisitor', 'attributeVisitor'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "ClassPoolVisitor ClassSpecificationVisitorFactory.createClassPoolVisitor(List, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor)"})
+  void testCreateClassPoolVisitorWithClassSpecificationsClassVisitorFieldVisitorMethodVisitorAttributeVisitor() {
+    // Arrange
+    ClassSpecificationVisitorFactory classSpecificationVisitorFactory = new ClassSpecificationVisitorFactory();
+    ArrayList<Object> classSpecifications = new ArrayList<>();
+    ClassVisitor classVisitor = mock(ClassVisitor.class);
+    KotlinAnnotationCounter fieldVisitor = new KotlinAnnotationCounter();
+    KotlinAnnotationCounter methodVisitor = new KotlinAnnotationCounter();
+
+    // Act
+    ClassPoolVisitor actualCreateClassPoolVisitorResult = classSpecificationVisitorFactory.createClassPoolVisitor(
+        classSpecifications, classVisitor, fieldVisitor, methodVisitor, new KotlinAnnotationCounter());
+    actualCreateClassPoolVisitorResult.visitClassPool(new ClassPool());
+
+    // Assert
+    assertTrue(actualCreateClassPoolVisitorResult instanceof MultiClassPoolVisitor);
+  }
+
+  /**
+   * Test {@link ClassSpecificationVisitorFactory#createClassPoolVisitor(List, ClassVisitor, MemberVisitor)} with {@code classSpecifications}, {@code classVisitor}, {@code memberVisitor}.
+   * <p>
+   * Method under test: {@link ClassSpecificationVisitorFactory#createClassPoolVisitor(List, ClassVisitor, MemberVisitor)}
+   */
+  @Test
+  @DisplayName("Test createClassPoolVisitor(List, ClassVisitor, MemberVisitor) with 'classSpecifications', 'classVisitor', 'memberVisitor'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "ClassPoolVisitor ClassSpecificationVisitorFactory.createClassPoolVisitor(List, ClassVisitor, MemberVisitor)"})
+  void testCreateClassPoolVisitorWithClassSpecificationsClassVisitorMemberVisitor() {
+    // Arrange
+    ClassSpecificationVisitorFactory classSpecificationVisitorFactory = new ClassSpecificationVisitorFactory();
+    ArrayList<Object> classSpecifications = new ArrayList<>();
+    ClassVisitor classVisitor = mock(ClassVisitor.class);
+
+    // Act
+    ClassPoolVisitor actualCreateClassPoolVisitorResult = classSpecificationVisitorFactory
+        .createClassPoolVisitor(classSpecifications, classVisitor, new KotlinAnnotationCounter());
+    actualCreateClassPoolVisitorResult.visitClassPool(new ClassPool());
+
+    // Assert
+    assertTrue(actualCreateClassPoolVisitorResult instanceof MultiClassPoolVisitor);
+  }
+
+  /**
+   * Test {@link ClassSpecificationVisitorFactory#createCombinedClassVisitor(List, List, List, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor, WildcardManager)}.
+   * <ul>
+   *   <li>Given {@code 42}.</li>
+   *   <li>Then calls {@link ClassVisitor#visitLibraryClass(LibraryClass)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassSpecificationVisitorFactory#createCombinedClassVisitor(List, List, List, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor, WildcardManager)}
+   */
+  @Test
+  @DisplayName("Test createCombinedClassVisitor(List, List, List, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor, WildcardManager); given '42'; then calls visitLibraryClass(LibraryClass)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "ClassVisitor ClassSpecificationVisitorFactory.createCombinedClassVisitor(List, List, List, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor, WildcardManager)"})
+  void testCreateCombinedClassVisitor_given42_thenCallsVisitLibraryClass() {
+    // Arrange
+    ClassSpecificationVisitorFactory classSpecificationVisitorFactory = new ClassSpecificationVisitorFactory();
+
+    ArrayList<Object> attributeNames = new ArrayList<>();
+    attributeNames.add("42");
+    ArrayList<Object> fieldSpecifications = new ArrayList<>();
+    ArrayList<Object> methodSpecifications = new ArrayList<>();
+    ClassVisitor classVisitor = mock(ClassVisitor.class);
+    doNothing().when(classVisitor).visitLibraryClass(Mockito.<LibraryClass>any());
+    KotlinAnnotationCounter fieldVisitor = new KotlinAnnotationCounter();
+    KotlinAnnotationCounter methodVisitor = new KotlinAnnotationCounter();
+    KotlinAnnotationCounter attributeVisitor = new KotlinAnnotationCounter();
+
+    // Act
+    ClassVisitor actualCreateCombinedClassVisitorResult = classSpecificationVisitorFactory.createCombinedClassVisitor(
+        attributeNames, fieldSpecifications, methodSpecifications, classVisitor, fieldVisitor, methodVisitor,
+        attributeVisitor, new WildcardManager());
+    actualCreateCombinedClassVisitorResult.visitAnyClass(new LibraryClass());
+
+    // Assert
+    verify(classVisitor).visitLibraryClass(isA(LibraryClass.class));
+    assertTrue(actualCreateCombinedClassVisitorResult instanceof MultiClassVisitor);
+  }
+
+  /**
+   * Test {@link ClassSpecificationVisitorFactory#createCombinedClassVisitor(List, List, List, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor, WildcardManager)}.
+   * <ul>
+   *   <li>Given {@code 42}.</li>
+   *   <li>Then calls {@link ClassVisitor#visitLibraryClass(LibraryClass)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassSpecificationVisitorFactory#createCombinedClassVisitor(List, List, List, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor, WildcardManager)}
+   */
+  @Test
+  @DisplayName("Test createCombinedClassVisitor(List, List, List, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor, WildcardManager); given '42'; then calls visitLibraryClass(LibraryClass)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "ClassVisitor ClassSpecificationVisitorFactory.createCombinedClassVisitor(List, List, List, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor, WildcardManager)"})
+  void testCreateCombinedClassVisitor_given42_thenCallsVisitLibraryClass2() {
+    // Arrange
+    ClassSpecificationVisitorFactory classSpecificationVisitorFactory = new ClassSpecificationVisitorFactory();
+
+    ArrayList<Object> attributeNames = new ArrayList<>();
+    attributeNames.add("42");
+    attributeNames.add("42");
+    ArrayList<Object> fieldSpecifications = new ArrayList<>();
+    ArrayList<Object> methodSpecifications = new ArrayList<>();
+    ClassVisitor classVisitor = mock(ClassVisitor.class);
+    doNothing().when(classVisitor).visitLibraryClass(Mockito.<LibraryClass>any());
+    KotlinAnnotationCounter fieldVisitor = new KotlinAnnotationCounter();
+    KotlinAnnotationCounter methodVisitor = new KotlinAnnotationCounter();
+    KotlinAnnotationCounter attributeVisitor = new KotlinAnnotationCounter();
+
+    // Act
+    ClassVisitor actualCreateCombinedClassVisitorResult = classSpecificationVisitorFactory.createCombinedClassVisitor(
+        attributeNames, fieldSpecifications, methodSpecifications, classVisitor, fieldVisitor, methodVisitor,
+        attributeVisitor, new WildcardManager());
+    actualCreateCombinedClassVisitorResult.visitAnyClass(new LibraryClass());
+
+    // Assert
+    verify(classVisitor).visitLibraryClass(isA(LibraryClass.class));
+    assertTrue(actualCreateCombinedClassVisitorResult instanceof MultiClassVisitor);
+  }
+
+  /**
+   * Test {@link ClassSpecificationVisitorFactory#createCombinedClassVisitor(List, List, List, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor, WildcardManager)}.
+   * <ul>
+   *   <li>Then calls {@link ClassVisitor#visitLibraryClass(LibraryClass)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassSpecificationVisitorFactory#createCombinedClassVisitor(List, List, List, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor, WildcardManager)}
+   */
+  @Test
+  @DisplayName("Test createCombinedClassVisitor(List, List, List, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor, WildcardManager); then calls visitLibraryClass(LibraryClass)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "ClassVisitor ClassSpecificationVisitorFactory.createCombinedClassVisitor(List, List, List, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor, WildcardManager)"})
+  void testCreateCombinedClassVisitor_thenCallsVisitLibraryClass() {
+    // Arrange
+    ClassSpecificationVisitorFactory classSpecificationVisitorFactory = new ClassSpecificationVisitorFactory();
+    ArrayList<Object> attributeNames = new ArrayList<>();
+    ArrayList<Object> fieldSpecifications = new ArrayList<>();
+    ArrayList<Object> methodSpecifications = new ArrayList<>();
+    ClassVisitor classVisitor = mock(ClassVisitor.class);
+    doNothing().when(classVisitor).visitLibraryClass(Mockito.<LibraryClass>any());
+    KotlinAnnotationCounter fieldVisitor = new KotlinAnnotationCounter();
+    KotlinAnnotationCounter methodVisitor = new KotlinAnnotationCounter();
+    KotlinAnnotationCounter attributeVisitor = new KotlinAnnotationCounter();
+
+    // Act
+    ClassVisitor actualCreateCombinedClassVisitorResult = classSpecificationVisitorFactory.createCombinedClassVisitor(
+        attributeNames, fieldSpecifications, methodSpecifications, classVisitor, fieldVisitor, methodVisitor,
+        attributeVisitor, new WildcardManager());
+    actualCreateCombinedClassVisitorResult.visitAnyClass(new LibraryClass());
+
+    // Assert
+    verify(classVisitor).visitLibraryClass(isA(LibraryClass.class));
+    assertTrue(actualCreateCombinedClassVisitorResult instanceof MultiClassVisitor);
+  }
+
+  /**
+   * Test {@link ClassSpecificationVisitorFactory#createCombinedClassVisitor(List, List, List, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor, WildcardManager)}.
+   * <ul>
+   *   <li>When {@code null}.</li>
+   *   <li>Then return {@link MultiClassVisitor}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassSpecificationVisitorFactory#createCombinedClassVisitor(List, List, List, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor, WildcardManager)}
+   */
+  @Test
+  @DisplayName("Test createCombinedClassVisitor(List, List, List, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor, WildcardManager); when 'null'; then return MultiClassVisitor")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "ClassVisitor ClassSpecificationVisitorFactory.createCombinedClassVisitor(List, List, List, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor, WildcardManager)"})
+  void testCreateCombinedClassVisitor_whenNull_thenReturnMultiClassVisitor() {
     // Arrange
     ClassSpecificationVisitorFactory classSpecificationVisitorFactory = new ClassSpecificationVisitorFactory();
 
@@ -103,16 +245,25 @@ class ClassSpecificationVisitorFactoryDiffblueTest {
         .createCombinedClassVisitor(null, null, null, null, null, null, null, new WildcardManager());
     actualCreateCombinedClassVisitorResult.visitAnyClass(new LibraryClass());
 
-    // Assert that nothing has changed
+    // Assert
     assertTrue(actualCreateCombinedClassVisitorResult instanceof MultiClassVisitor);
   }
 
   /**
-   * Method under test:
-   * {@link ClassSpecificationVisitorFactory#createCombinedClassVisitor(List, List, List, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor, WildcardManager)}
+   * Test {@link ClassSpecificationVisitorFactory#createCombinedClassVisitor(List, List, List, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor, WildcardManager)}.
+   * <ul>
+   *   <li>When {@code null}.</li>
+   *   <li>Then return {@link MultiClassVisitor}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassSpecificationVisitorFactory#createCombinedClassVisitor(List, List, List, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor, WildcardManager)}
    */
   @Test
-  void testCreateCombinedClassVisitor2() {
+  @DisplayName("Test createCombinedClassVisitor(List, List, List, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor, WildcardManager); when 'null'; then return MultiClassVisitor")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "ClassVisitor ClassSpecificationVisitorFactory.createCombinedClassVisitor(List, List, List, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor, WildcardManager)"})
+  void testCreateCombinedClassVisitor_whenNull_thenReturnMultiClassVisitor2() {
     // Arrange
     ClassSpecificationVisitorFactory classSpecificationVisitorFactory = new ClassSpecificationVisitorFactory();
     ArrayList<Object> methodSpecifications = new ArrayList<>();
@@ -122,105 +273,21 @@ class ClassSpecificationVisitorFactoryDiffblueTest {
         .createCombinedClassVisitor(null, null, methodSpecifications, null, null, null, null, new WildcardManager());
     actualCreateCombinedClassVisitorResult.visitAnyClass(new LibraryClass());
 
-    // Assert that nothing has changed
-    assertTrue(actualCreateCombinedClassVisitorResult instanceof MultiClassVisitor);
-  }
-
-  /**
-   * Method under test:
-   * {@link ClassSpecificationVisitorFactory#createCombinedClassVisitor(List, List, List, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor, WildcardManager)}
-   */
-  @Test
-  void testCreateCombinedClassVisitor3() {
-    // Arrange
-    ClassSpecificationVisitorFactory classSpecificationVisitorFactory = new ClassSpecificationVisitorFactory();
-    ArrayList<Object> attributeNames = new ArrayList<>();
-    ArrayList<Object> fieldSpecifications = new ArrayList<>();
-    ArrayList<Object> methodSpecifications = new ArrayList<>();
-    ClassVisitor classVisitor = mock(ClassVisitor.class);
-    doNothing().when(classVisitor).visitLibraryClass(Mockito.<LibraryClass>any());
-    KotlinAnnotationCounter fieldVisitor = new KotlinAnnotationCounter();
-    KotlinAnnotationCounter methodVisitor = new KotlinAnnotationCounter();
-    KotlinAnnotationCounter attributeVisitor = new KotlinAnnotationCounter();
-
-    // Act
-    ClassVisitor actualCreateCombinedClassVisitorResult = classSpecificationVisitorFactory.createCombinedClassVisitor(
-        attributeNames, fieldSpecifications, methodSpecifications, classVisitor, fieldVisitor, methodVisitor,
-        attributeVisitor, new WildcardManager());
-    actualCreateCombinedClassVisitorResult.visitAnyClass(new LibraryClass());
-
     // Assert
-    verify(classVisitor).visitLibraryClass(isA(LibraryClass.class));
     assertTrue(actualCreateCombinedClassVisitorResult instanceof MultiClassVisitor);
   }
 
   /**
-   * Method under test:
-   * {@link ClassSpecificationVisitorFactory#createCombinedClassVisitor(List, List, List, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor, WildcardManager)}
+   * Test {@link ClassSpecificationVisitorFactory#createClassTester(ClassSpecification, ClassPoolVisitor, WildcardManager)} with {@code classSpecification}, {@code classPoolVisitor}, {@code wildcardManager}.
+   * <p>
+   * Method under test: {@link ClassSpecificationVisitorFactory#createClassTester(ClassSpecification, ClassPoolVisitor, WildcardManager)}
    */
   @Test
-  void testCreateCombinedClassVisitor4() {
-    // Arrange
-    ClassSpecificationVisitorFactory classSpecificationVisitorFactory = new ClassSpecificationVisitorFactory();
-
-    ArrayList<Object> attributeNames = new ArrayList<>();
-    attributeNames.add("42");
-    ArrayList<Object> fieldSpecifications = new ArrayList<>();
-    ArrayList<Object> methodSpecifications = new ArrayList<>();
-    ClassVisitor classVisitor = mock(ClassVisitor.class);
-    doNothing().when(classVisitor).visitLibraryClass(Mockito.<LibraryClass>any());
-    KotlinAnnotationCounter fieldVisitor = new KotlinAnnotationCounter();
-    KotlinAnnotationCounter methodVisitor = new KotlinAnnotationCounter();
-    KotlinAnnotationCounter attributeVisitor = new KotlinAnnotationCounter();
-
-    // Act
-    ClassVisitor actualCreateCombinedClassVisitorResult = classSpecificationVisitorFactory.createCombinedClassVisitor(
-        attributeNames, fieldSpecifications, methodSpecifications, classVisitor, fieldVisitor, methodVisitor,
-        attributeVisitor, new WildcardManager());
-    actualCreateCombinedClassVisitorResult.visitAnyClass(new LibraryClass());
-
-    // Assert
-    verify(classVisitor).visitLibraryClass(isA(LibraryClass.class));
-    assertTrue(actualCreateCombinedClassVisitorResult instanceof MultiClassVisitor);
-  }
-
-  /**
-   * Method under test:
-   * {@link ClassSpecificationVisitorFactory#createCombinedClassVisitor(List, List, List, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor, WildcardManager)}
-   */
-  @Test
-  void testCreateCombinedClassVisitor5() {
-    // Arrange
-    ClassSpecificationVisitorFactory classSpecificationVisitorFactory = new ClassSpecificationVisitorFactory();
-
-    ArrayList<Object> attributeNames = new ArrayList<>();
-    attributeNames.add("42");
-    attributeNames.add("42");
-    ArrayList<Object> fieldSpecifications = new ArrayList<>();
-    ArrayList<Object> methodSpecifications = new ArrayList<>();
-    ClassVisitor classVisitor = mock(ClassVisitor.class);
-    doNothing().when(classVisitor).visitLibraryClass(Mockito.<LibraryClass>any());
-    KotlinAnnotationCounter fieldVisitor = new KotlinAnnotationCounter();
-    KotlinAnnotationCounter methodVisitor = new KotlinAnnotationCounter();
-    KotlinAnnotationCounter attributeVisitor = new KotlinAnnotationCounter();
-
-    // Act
-    ClassVisitor actualCreateCombinedClassVisitorResult = classSpecificationVisitorFactory.createCombinedClassVisitor(
-        attributeNames, fieldSpecifications, methodSpecifications, classVisitor, fieldVisitor, methodVisitor,
-        attributeVisitor, new WildcardManager());
-    actualCreateCombinedClassVisitorResult.visitAnyClass(new LibraryClass());
-
-    // Assert
-    verify(classVisitor).visitLibraryClass(isA(LibraryClass.class));
-    assertTrue(actualCreateCombinedClassVisitorResult instanceof MultiClassVisitor);
-  }
-
-  /**
-   * Method under test:
-   * {@link ClassSpecificationVisitorFactory#createClassTester(ClassSpecification, ClassPoolVisitor, WildcardManager)}
-   */
-  @Test
-  void testCreateClassTester() {
+  @DisplayName("Test createClassTester(ClassSpecification, ClassPoolVisitor, WildcardManager) with 'classSpecification', 'classPoolVisitor', 'wildcardManager'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "ClassPoolVisitor ClassSpecificationVisitorFactory.createClassTester(ClassSpecification, ClassPoolVisitor, WildcardManager)"})
+  void testCreateClassTesterWithClassSpecificationClassPoolVisitorWildcardManager() {
     // Arrange
     ClassSpecificationVisitorFactory classSpecificationVisitorFactory = new ClassSpecificationVisitorFactory();
     ClassSpecification classSpecification = new ClassSpecification("Comments", 1, 1, "Annotation Type", "Class Name",
@@ -238,11 +305,16 @@ class ClassSpecificationVisitorFactoryDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ClassSpecificationVisitorFactory#createClassTester(ClassSpecification, ClassVisitor, WildcardManager)}
+   * Test {@link ClassSpecificationVisitorFactory#createClassTester(ClassSpecification, ClassVisitor, WildcardManager)} with {@code classSpecification}, {@code classVisitor}, {@code wildcardManager}.
+   * <p>
+   * Method under test: {@link ClassSpecificationVisitorFactory#createClassTester(ClassSpecification, ClassVisitor, WildcardManager)}
    */
   @Test
-  void testCreateClassTester2() {
+  @DisplayName("Test createClassTester(ClassSpecification, ClassVisitor, WildcardManager) with 'classSpecification', 'classVisitor', 'wildcardManager'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "ClassPoolVisitor ClassSpecificationVisitorFactory.createClassTester(ClassSpecification, ClassVisitor, WildcardManager)"})
+  void testCreateClassTesterWithClassSpecificationClassVisitorWildcardManager() {
     // Arrange
     ClassSpecificationVisitorFactory classSpecificationVisitorFactory = new ClassSpecificationVisitorFactory();
     ClassSpecification classSpecification = new ClassSpecification("Comments", 1, 1, "Annotation Type", "Class Name",
@@ -255,7 +327,7 @@ class ClassSpecificationVisitorFactoryDiffblueTest {
         .createClassTester(classSpecification, classVisitor, new WildcardManager());
     actualCreateClassTesterResult.visitClassPool(new ClassPool());
 
-    // Assert that nothing has changed
+    // Assert
     assertTrue(actualCreateClassTesterResult instanceof NamedClassVisitor);
   }
 }

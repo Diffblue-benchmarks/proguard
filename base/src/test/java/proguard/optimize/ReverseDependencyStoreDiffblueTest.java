@@ -6,8 +6,11 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.util.HashSet;
 import java.util.Set;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.ClassMemberPair;
@@ -18,22 +21,30 @@ import proguard.classfile.Method;
 import proguard.classfile.ProgramClass;
 import proguard.classfile.ProgramMethod;
 import proguard.fixer.kotlin.KotlinAnnotationCounter;
+import proguard.optimize.ReverseDependencyStore.InfluencedMethodTraveller;
 import proguard.optimize.info.MethodOptimizationInfo;
 import proguard.optimize.info.ProgramMethodOptimizationInfo;
 import proguard.util.MultiValueMap;
 
 class ReverseDependencyStoreDiffblueTest {
   /**
-   * Method under test:
-   * {@link ReverseDependencyStore.InfluencedMethodTraveller#visitProgramMethod(ProgramClass, ProgramMethod)}
+   * Test InfluencedMethodTraveller {@link InfluencedMethodTraveller#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   * <ul>
+   *   <li>Given {@link MethodOptimizationInfo} (default constructor).</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link InfluencedMethodTraveller#visitProgramMethod(ProgramClass, ProgramMethod)}
    */
   @Test
-  void testInfluencedMethodTravellerVisitProgramMethod() {
+  @DisplayName("Test InfluencedMethodTraveller visitProgramMethod(ProgramClass, ProgramMethod); given MethodOptimizationInfo (default constructor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void InfluencedMethodTraveller.visitProgramMethod(ProgramClass, ProgramMethod)"})
+  void testInfluencedMethodTravellerVisitProgramMethod_givenMethodOptimizationInfo() {
     // Arrange
     MultiValueMap<Method, ClassMemberPair> calledBy = new MultiValueMap<>();
     ReverseDependencyStore reverseDependencyStore = new ReverseDependencyStore(calledBy, new MultiValueMap<>());
 
-    ReverseDependencyStore.InfluencedMethodTraveller influencedMethodTraveller = reverseDependencyStore.new InfluencedMethodTraveller(
+    InfluencedMethodTraveller influencedMethodTraveller = reverseDependencyStore.new InfluencedMethodTraveller(
         new KotlinAnnotationCounter());
     ProgramClass programClass = new ProgramClass();
     ProgramMethod programMethod = mock(ProgramMethod.class);
@@ -47,11 +58,18 @@ class ReverseDependencyStoreDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ReverseDependencyStore.InfluencedMethodTraveller#visitProgramMethod(ProgramClass, ProgramMethod)}
+   * Test InfluencedMethodTraveller {@link InfluencedMethodTraveller#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   * <ul>
+   *   <li>Then calls {@link MultiValueMap#get(Object)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link InfluencedMethodTraveller#visitProgramMethod(ProgramClass, ProgramMethod)}
    */
   @Test
-  void testInfluencedMethodTravellerVisitProgramMethod2() {
+  @DisplayName("Test InfluencedMethodTraveller visitProgramMethod(ProgramClass, ProgramMethod); then calls get(Object)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void InfluencedMethodTraveller.visitProgramMethod(ProgramClass, ProgramMethod)"})
+  void testInfluencedMethodTravellerVisitProgramMethod_thenCallsGet() {
     // Arrange
     MultiValueMap<Method, ClassMemberPair> calledBy = mock(MultiValueMap.class);
     doNothing().when(calledBy).put(Mockito.<Method>any(), Mockito.<ClassMemberPair>any());
@@ -70,7 +88,7 @@ class ReverseDependencyStoreDiffblueTest {
     ReverseDependencyStore reverseDependencyStore = new ReverseDependencyStore(calledBy,
         methodsByProgramMethodOptimizationInfo);
 
-    ReverseDependencyStore.InfluencedMethodTraveller influencedMethodTraveller = reverseDependencyStore.new InfluencedMethodTraveller(
+    InfluencedMethodTraveller influencedMethodTraveller = reverseDependencyStore.new InfluencedMethodTraveller(
         new KotlinAnnotationCounter());
     ProgramClass programClass = new ProgramClass();
     ProgramMethod programMethod = mock(ProgramMethod.class);
@@ -87,11 +105,18 @@ class ReverseDependencyStoreDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ReverseDependencyStore.InfluencedMethodTraveller#visitProgramMethod(ProgramClass, ProgramMethod)}
+   * Test InfluencedMethodTraveller {@link InfluencedMethodTraveller#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   * <ul>
+   *   <li>Then calls {@link MultiValueMap#keySet()}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link InfluencedMethodTraveller#visitProgramMethod(ProgramClass, ProgramMethod)}
    */
   @Test
-  void testInfluencedMethodTravellerVisitProgramMethod3() {
+  @DisplayName("Test InfluencedMethodTraveller visitProgramMethod(ProgramClass, ProgramMethod); then calls keySet()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void InfluencedMethodTraveller.visitProgramMethod(ProgramClass, ProgramMethod)"})
+  void testInfluencedMethodTravellerVisitProgramMethod_thenCallsKeySet() {
     // Arrange
     MultiValueMap<Method, ClassMemberPair> calledBy = mock(MultiValueMap.class);
     when(calledBy.keySet()).thenReturn(new HashSet<>());
@@ -114,7 +139,7 @@ class ReverseDependencyStoreDiffblueTest {
     ReverseDependencyStore reverseDependencyStore = new ReverseDependencyStore(calledBy,
         methodsByProgramMethodOptimizationInfo);
 
-    ReverseDependencyStore.InfluencedMethodTraveller influencedMethodTraveller = reverseDependencyStore.new InfluencedMethodTraveller(
+    InfluencedMethodTraveller influencedMethodTraveller = reverseDependencyStore.new InfluencedMethodTraveller(
         new KotlinAnnotationCounter());
     ProgramClass programClass = new ProgramClass();
     ProgramMethod programMethod = mock(ProgramMethod.class);

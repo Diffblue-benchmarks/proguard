@@ -5,8 +5,11 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.ProgramClass;
@@ -17,10 +20,72 @@ import proguard.util.Processable;
 
 class UsagePrinterDiffblueTest {
   /**
+   * Test {@link UsagePrinter#visitProgramClass(ProgramClass)}.
+   * <p>
    * Method under test: {@link UsagePrinter#visitProgramClass(ProgramClass)}
    */
   @Test
+  @DisplayName("Test visitProgramClass(ProgramClass)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void UsagePrinter.visitProgramClass(ProgramClass)"})
   void testVisitProgramClass() {
+    // Arrange
+    ShortestUsageMarker usageMarker = mock(ShortestUsageMarker.class);
+    when(usageMarker.isUsed(Mockito.<Processable>any())).thenReturn(true);
+    UsagePrinter usagePrinter = new UsagePrinter(usageMarker, false, new PrintWriter(new StringWriter()));
+    ProgramClass programClass = mock(ProgramClass.class);
+    when(programClass.getName()).thenReturn("Name");
+
+    // Act
+    usagePrinter.visitProgramClass(programClass);
+
+    // Assert
+    verify(programClass).getName();
+    verify(usageMarker).isUsed(isA(Processable.class));
+  }
+
+  /**
+   * Test {@link UsagePrinter#visitProgramClass(ProgramClass)}.
+   * <ul>
+   *   <li>Given {@link ShortestUsageMarker} {@link ShortestUsageMarker#isUsed(Processable)} return {@code false}.</li>
+   *   <li>Then calls {@link ProgramClass#getName()}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link UsagePrinter#visitProgramClass(ProgramClass)}
+   */
+  @Test
+  @DisplayName("Test visitProgramClass(ProgramClass); given ShortestUsageMarker isUsed(Processable) return 'false'; then calls getName()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void UsagePrinter.visitProgramClass(ProgramClass)"})
+  void testVisitProgramClass_givenShortestUsageMarkerIsUsedReturnFalse_thenCallsGetName() {
+    // Arrange
+    ShortestUsageMarker usageMarker = mock(ShortestUsageMarker.class);
+    when(usageMarker.isUsed(Mockito.<Processable>any())).thenReturn(false);
+    UsagePrinter usagePrinter = new UsagePrinter(usageMarker, true, new PrintWriter(new StringWriter()));
+    ProgramClass programClass = mock(ProgramClass.class);
+    when(programClass.getName()).thenReturn("Name");
+
+    // Act
+    usagePrinter.visitProgramClass(programClass);
+
+    // Assert
+    verify(programClass).getName();
+    verify(usageMarker).isUsed(isA(Processable.class));
+  }
+
+  /**
+   * Test {@link UsagePrinter#visitProgramClass(ProgramClass)}.
+   * <ul>
+   *   <li>Then calls {@link ProgramClass#fieldsAccept(MemberVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link UsagePrinter#visitProgramClass(ProgramClass)}
+   */
+  @Test
+  @DisplayName("Test visitProgramClass(ProgramClass); then calls fieldsAccept(MemberVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void UsagePrinter.visitProgramClass(ProgramClass)"})
+  void testVisitProgramClass_thenCallsFieldsAccept() {
     // Arrange
     ShortestUsageMarker usageMarker = mock(ShortestUsageMarker.class);
     when(usageMarker.isUsed(Mockito.<Processable>any())).thenReturn(true);
@@ -41,50 +106,18 @@ class UsagePrinterDiffblueTest {
   }
 
   /**
+   * Test {@link UsagePrinter#visitProgramClass(ProgramClass)}.
+   * <ul>
+   *   <li>When {@link ProgramClass}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link UsagePrinter#visitProgramClass(ProgramClass)}
    */
   @Test
-  void testVisitProgramClass2() {
-    // Arrange
-    ShortestUsageMarker usageMarker = mock(ShortestUsageMarker.class);
-    when(usageMarker.isUsed(Mockito.<Processable>any())).thenReturn(false);
-    UsagePrinter usagePrinter = new UsagePrinter(usageMarker, true, new PrintWriter(new StringWriter()));
-    ProgramClass programClass = mock(ProgramClass.class);
-    when(programClass.getName()).thenReturn("Name");
-
-    // Act
-    usagePrinter.visitProgramClass(programClass);
-
-    // Assert
-    verify(programClass).getName();
-    verify(usageMarker).isUsed(isA(Processable.class));
-  }
-
-  /**
-   * Method under test: {@link UsagePrinter#visitProgramClass(ProgramClass)}
-   */
-  @Test
-  void testVisitProgramClass3() {
-    // Arrange
-    ShortestUsageMarker usageMarker = mock(ShortestUsageMarker.class);
-    when(usageMarker.isUsed(Mockito.<Processable>any())).thenReturn(true);
-    UsagePrinter usagePrinter = new UsagePrinter(usageMarker, false, new PrintWriter(new StringWriter()));
-    ProgramClass programClass = mock(ProgramClass.class);
-    when(programClass.getName()).thenReturn("Name");
-
-    // Act
-    usagePrinter.visitProgramClass(programClass);
-
-    // Assert
-    verify(programClass).getName();
-    verify(usageMarker).isUsed(isA(Processable.class));
-  }
-
-  /**
-   * Method under test: {@link UsagePrinter#visitProgramClass(ProgramClass)}
-   */
-  @Test
-  void testVisitProgramClass4() {
+  @DisplayName("Test visitProgramClass(ProgramClass); when ProgramClass")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void UsagePrinter.visitProgramClass(ProgramClass)"})
+  void testVisitProgramClass_whenProgramClass() {
     // Arrange
     ShortestUsageMarker usageMarker = mock(ShortestUsageMarker.class);
     when(usageMarker.isUsed(Mockito.<Processable>any())).thenReturn(false);
@@ -98,11 +131,19 @@ class UsagePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link UsagePrinter#visitProgramField(ProgramClass, ProgramField)}
+   * Test {@link UsagePrinter#visitProgramField(ProgramClass, ProgramField)}.
+   * <ul>
+   *   <li>Given {@link ShortestUsageMarker} {@link ShortestUsageMarker#isUsed(Processable)} return {@code true}.</li>
+   *   <li>Then calls {@link ShortestUsageMarker#isUsed(Processable)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link UsagePrinter#visitProgramField(ProgramClass, ProgramField)}
    */
   @Test
-  void testVisitProgramField() {
+  @DisplayName("Test visitProgramField(ProgramClass, ProgramField); given ShortestUsageMarker isUsed(Processable) return 'true'; then calls isUsed(Processable)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void UsagePrinter.visitProgramField(ProgramClass, ProgramField)"})
+  void testVisitProgramField_givenShortestUsageMarkerIsUsedReturnTrue_thenCallsIsUsed() {
     // Arrange
     ShortestUsageMarker usageMarker = mock(ShortestUsageMarker.class);
     when(usageMarker.isUsed(Mockito.<Processable>any())).thenReturn(true);
@@ -117,11 +158,19 @@ class UsagePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link UsagePrinter#visitProgramMethod(ProgramClass, ProgramMethod)}
+   * Test {@link UsagePrinter#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   * <ul>
+   *   <li>Given {@link ShortestUsageMarker} {@link ShortestUsageMarker#isUsed(Processable)} return {@code true}.</li>
+   *   <li>Then calls {@link ShortestUsageMarker#isUsed(Processable)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link UsagePrinter#visitProgramMethod(ProgramClass, ProgramMethod)}
    */
   @Test
-  void testVisitProgramMethod() {
+  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); given ShortestUsageMarker isUsed(Processable) return 'true'; then calls isUsed(Processable)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void UsagePrinter.visitProgramMethod(ProgramClass, ProgramMethod)"})
+  void testVisitProgramMethod_givenShortestUsageMarkerIsUsedReturnTrue_thenCallsIsUsed() {
     // Arrange
     ShortestUsageMarker usageMarker = mock(ShortestUsageMarker.class);
     when(usageMarker.isUsed(Mockito.<Processable>any())).thenReturn(true);

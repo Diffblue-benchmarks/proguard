@@ -3,28 +3,37 @@ package proguard.optimize.info;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.isA;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.Clazz;
 import proguard.classfile.LibraryClass;
 import proguard.classfile.LibraryMethod;
 import proguard.classfile.Method;
-import proguard.classfile.ProgramClass;
 import proguard.classfile.attribute.CodeAttribute;
 import proguard.classfile.instruction.BranchInstruction;
 import proguard.classfile.instruction.Instruction;
 
 class EscapingClassMarkerDiffblueTest {
   /**
-   * Method under test:
-   * {@link EscapingClassMarker#visitAnyInstruction(Clazz, Method, CodeAttribute, int, Instruction)}
+   * Test {@link EscapingClassMarker#visitAnyInstruction(Clazz, Method, CodeAttribute, int, Instruction)}.
+   * <ul>
+   *   <li>Given three.</li>
+   *   <li>Then calls {@link Instruction#stackPushCount(Clazz)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link EscapingClassMarker#visitAnyInstruction(Clazz, Method, CodeAttribute, int, Instruction)}
    */
   @Test
-  void testVisitAnyInstruction() {
+  @DisplayName("Test visitAnyInstruction(Clazz, Method, CodeAttribute, int, Instruction); given three; then calls stackPushCount(Clazz)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void EscapingClassMarker.visitAnyInstruction(Clazz, Method, CodeAttribute, int, Instruction)"})
+  void testVisitAnyInstruction_givenThree_thenCallsStackPushCount() {
     // Arrange
     EscapingClassMarker escapingClassMarker = new EscapingClassMarker();
     LibraryClass clazz = new LibraryClass();
@@ -42,67 +51,19 @@ class EscapingClassMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link EscapingClassMarker#visitProgramClass(ProgramClass)}
-   */
-  @Test
-  void testVisitProgramClass() {
-    // Arrange
-    EscapingClassMarker escapingClassMarker = new EscapingClassMarker();
-    ProgramClass programClass = mock(ProgramClass.class);
-    when(programClass.getProcessingInfo()).thenReturn(new ClassOptimizationInfo());
-
-    // Act
-    escapingClassMarker.visitProgramClass(programClass);
-
-    // Assert
-    verify(programClass).getProcessingInfo();
-  }
-
-  /**
-   * Method under test:
-   * {@link EscapingClassMarker#visitProgramClass(ProgramClass)}
-   */
-  @Test
-  void testVisitProgramClass2() {
-    // Arrange
-    EscapingClassMarker escapingClassMarker = new EscapingClassMarker();
-    ProgramClass programClass = mock(ProgramClass.class);
-    when(programClass.getProcessingInfo()).thenReturn(new ProgramClassOptimizationInfo());
-
-    // Act
-    escapingClassMarker.visitProgramClass(programClass);
-
-    // Assert
-    verify(programClass).getProcessingInfo();
-  }
-
-  /**
-   * Method under test:
-   * {@link EscapingClassMarker#visitProgramClass(ProgramClass)}
-   */
-  @Test
-  void testVisitProgramClass3() {
-    // Arrange
-    EscapingClassMarker escapingClassMarker = new EscapingClassMarker();
-    ProgramClassOptimizationInfo programClassOptimizationInfo = mock(ProgramClassOptimizationInfo.class);
-    doNothing().when(programClassOptimizationInfo).setEscaping();
-    ProgramClass programClass = mock(ProgramClass.class);
-    when(programClass.getProcessingInfo()).thenReturn(programClassOptimizationInfo);
-
-    // Act
-    escapingClassMarker.visitProgramClass(programClass);
-
-    // Assert
-    verify(programClassOptimizationInfo).setEscaping();
-    verify(programClass).getProcessingInfo();
-  }
-
-  /**
+   * Test {@link EscapingClassMarker#isClassEscaping(Clazz)}.
+   * <ul>
+   *   <li>Given {@link ClassOptimizationInfo} (default constructor).</li>
+   *   <li>Then return {@code true}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link EscapingClassMarker#isClassEscaping(Clazz)}
    */
   @Test
-  void testIsClassEscaping() {
+  @DisplayName("Test isClassEscaping(Clazz); given ClassOptimizationInfo (default constructor); then return 'true'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean EscapingClassMarker.isClassEscaping(Clazz)"})
+  void testIsClassEscaping_givenClassOptimizationInfo_thenReturnTrue() {
     // Arrange
     LibraryClass clazz = new LibraryClass();
     clazz.setProcessingInfo(new ClassOptimizationInfo());
@@ -112,10 +73,19 @@ class EscapingClassMarkerDiffblueTest {
   }
 
   /**
+   * Test {@link EscapingClassMarker#isClassEscaping(Clazz)}.
+   * <ul>
+   *   <li>Given {@link ProgramClassOptimizationInfo} (default constructor).</li>
+   *   <li>Then return {@code false}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link EscapingClassMarker#isClassEscaping(Clazz)}
    */
   @Test
-  void testIsClassEscaping2() {
+  @DisplayName("Test isClassEscaping(Clazz); given ProgramClassOptimizationInfo (default constructor); then return 'false'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean EscapingClassMarker.isClassEscaping(Clazz)"})
+  void testIsClassEscaping_givenProgramClassOptimizationInfo_thenReturnFalse() {
     // Arrange
     LibraryClass clazz = new LibraryClass();
     clazz.setProcessingInfo(new ProgramClassOptimizationInfo());

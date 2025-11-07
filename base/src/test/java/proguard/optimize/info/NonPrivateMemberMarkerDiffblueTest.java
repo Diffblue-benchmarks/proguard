@@ -1,8 +1,6 @@
 package proguard.optimize.info;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.ArgumentMatchers.isA;
@@ -12,6 +10,9 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.Clazz;
@@ -32,11 +33,18 @@ import proguard.classfile.visitor.MemberVisitor;
 
 class NonPrivateMemberMarkerDiffblueTest {
   /**
-   * Method under test:
-   * {@link NonPrivateMemberMarker#visitProgramClass(ProgramClass)}
+   * Test {@link NonPrivateMemberMarker#visitProgramClass(ProgramClass)}.
+   * <ul>
+   *   <li>Then calls {@link ProgramClass#constantPoolEntriesAccept(ConstantVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link NonPrivateMemberMarker#visitProgramClass(ProgramClass)}
    */
   @Test
-  void testVisitProgramClass() {
+  @DisplayName("Test visitProgramClass(ProgramClass); then calls constantPoolEntriesAccept(ConstantVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void NonPrivateMemberMarker.visitProgramClass(ProgramClass)"})
+  void testVisitProgramClass_thenCallsConstantPoolEntriesAccept() {
     // Arrange
     NonPrivateMemberMarker nonPrivateMemberMarker = new NonPrivateMemberMarker();
     ProgramClass programClass = mock(ProgramClass.class);
@@ -55,77 +63,26 @@ class NonPrivateMemberMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link NonPrivateMemberMarker#visitStringConstant(Clazz, StringConstant)}
+   * Test {@link NonPrivateMemberMarker#visitStringConstant(Clazz, StringConstant)}.
+   * <ul>
+   *   <li>Then {@link StringConstant#StringConstant()} {@link StringConstant#referencedMember} {@link ProgramField}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link NonPrivateMemberMarker#visitStringConstant(Clazz, StringConstant)}
    */
   @Test
-  void testVisitStringConstant() {
-    // Arrange
-    NonPrivateMemberMarker nonPrivateMemberMarker = new NonPrivateMemberMarker();
-    LibraryClass clazz = new LibraryClass();
-    StringConstant stringConstant = new StringConstant();
-
-    // Act
-    nonPrivateMemberMarker.visitStringConstant(clazz, stringConstant);
-
-    // Assert that nothing has changed
-    assertNull(stringConstant.referencedMember);
-  }
-
-  /**
-   * Method under test:
-   * {@link NonPrivateMemberMarker#visitStringConstant(Clazz, StringConstant)}
-   */
-  @Test
-  void testVisitStringConstant2() {
-    // Arrange
-    NonPrivateMemberMarker nonPrivateMemberMarker = new NonPrivateMemberMarker();
-    LibraryClass clazz = new LibraryClass();
-    StringConstant stringConstant = new StringConstant();
-    stringConstant.referencedMember = new LibraryField(1, "Name", "Descriptor");
-
-    // Act
-    nonPrivateMemberMarker.visitStringConstant(clazz, stringConstant);
-
-    // Assert that nothing has changed
-    assertTrue(stringConstant.referencedMember instanceof LibraryField);
-  }
-
-  /**
-   * Method under test:
-   * {@link NonPrivateMemberMarker#visitStringConstant(Clazz, StringConstant)}
-   */
-  @Test
-  void testVisitStringConstant3() {
-    // Arrange
-    NonPrivateMemberMarker nonPrivateMemberMarker = new NonPrivateMemberMarker();
-    LibraryClass clazz = new LibraryClass();
-    StringConstant stringConstant = new StringConstant();
-    stringConstant.referencedMember = new ProgramField();
-
-    // Act
-    nonPrivateMemberMarker.visitStringConstant(clazz, stringConstant);
-
-    // Assert that nothing has changed
-    assertTrue(stringConstant.referencedMember instanceof ProgramField);
-  }
-
-  /**
-   * Method under test:
-   * {@link NonPrivateMemberMarker#visitStringConstant(Clazz, StringConstant)}
-   */
-  @Test
-  void testVisitStringConstant4() {
+  @DisplayName("Test visitStringConstant(Clazz, StringConstant); then StringConstant() referencedMember ProgramField")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void NonPrivateMemberMarker.visitStringConstant(Clazz, StringConstant)"})
+  void testVisitStringConstant_thenStringConstantReferencedMemberProgramField() {
     // Arrange
     NonPrivateMemberMarker nonPrivateMemberMarker = new NonPrivateMemberMarker();
     LibraryClass clazz = new LibraryClass();
 
     ProgramField programField = new ProgramField();
     LibraryClass clazz2 = new LibraryClass();
-    ProgramFieldOptimizationInfo programFieldOptimizationInfo = new ProgramFieldOptimizationInfo(clazz2,
-        new LibraryField(1, "Name", "Descriptor"), true);
-
-    programField.setProcessingInfo(programFieldOptimizationInfo);
+    programField
+        .setProcessingInfo(new ProgramFieldOptimizationInfo(clazz2, new LibraryField(1, "Name", "Descriptor"), true));
     StringConstant stringConstant = new StringConstant();
     stringConstant.referencedMember = programField;
 
@@ -138,15 +95,21 @@ class NonPrivateMemberMarkerDiffblueTest {
     Object processingInfo = member.getProcessingInfo();
     assertTrue(processingInfo instanceof ProgramFieldOptimizationInfo);
     assertFalse(((ProgramFieldOptimizationInfo) processingInfo).canBeMadePrivate());
-    assertSame(programFieldOptimizationInfo, processingInfo);
   }
 
   /**
-   * Method under test:
-   * {@link NonPrivateMemberMarker#visitAnyRefConstant(Clazz, RefConstant)}
+   * Test {@link NonPrivateMemberMarker#visitAnyRefConstant(Clazz, RefConstant)}.
+   * <ul>
+   *   <li>Then calls {@link LibraryClass#getClassName(int)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link NonPrivateMemberMarker#visitAnyRefConstant(Clazz, RefConstant)}
    */
   @Test
-  void testVisitAnyRefConstant() {
+  @DisplayName("Test visitAnyRefConstant(Clazz, RefConstant); then calls getClassName(int)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void NonPrivateMemberMarker.visitAnyRefConstant(Clazz, RefConstant)"})
+  void testVisitAnyRefConstant_thenCallsGetClassName() {
     // Arrange
     NonPrivateMemberMarker nonPrivateMemberMarker = new NonPrivateMemberMarker();
     LibraryClass clazz = mock(LibraryClass.class);
@@ -162,31 +125,18 @@ class NonPrivateMemberMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link NonPrivateMemberMarker#visitAnyRefConstant(Clazz, RefConstant)}
+   * Test {@link NonPrivateMemberMarker#visitAnyRefConstant(Clazz, RefConstant)}.
+   * <ul>
+   *   <li>Then calls {@link FieldrefConstant#referencedMemberAccept(MemberVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link NonPrivateMemberMarker#visitAnyRefConstant(Clazz, RefConstant)}
    */
   @Test
-  void testVisitAnyRefConstant2() {
-    // Arrange
-    NonPrivateMemberMarker nonPrivateMemberMarker = new NonPrivateMemberMarker();
-    LibraryClass clazz = mock(LibraryClass.class);
-    when(clazz.getClassName(anyInt())).thenReturn("Name");
-    when(clazz.getName()).thenReturn("Name");
-
-    // Act
-    nonPrivateMemberMarker.visitAnyRefConstant(clazz, new FieldrefConstant());
-
-    // Assert
-    verify(clazz).getClassName(eq(0));
-    verify(clazz).getName();
-  }
-
-  /**
-   * Method under test:
-   * {@link NonPrivateMemberMarker#visitAnyRefConstant(Clazz, RefConstant)}
-   */
-  @Test
-  void testVisitAnyRefConstant3() {
+  @DisplayName("Test visitAnyRefConstant(Clazz, RefConstant); then calls referencedMemberAccept(MemberVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void NonPrivateMemberMarker.visitAnyRefConstant(Clazz, RefConstant)"})
+  void testVisitAnyRefConstant_thenCallsReferencedMemberAccept() {
     // Arrange
     NonPrivateMemberMarker nonPrivateMemberMarker = new NonPrivateMemberMarker();
     LibraryClass clazz = mock(LibraryClass.class);
@@ -205,11 +155,45 @@ class NonPrivateMemberMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link NonPrivateMemberMarker#visitProgramMethod(ProgramClass, ProgramMethod)}
+   * Test {@link NonPrivateMemberMarker#visitAnyRefConstant(Clazz, RefConstant)}.
+   * <ul>
+   *   <li>When {@link LibraryClass} {@link LibraryClass#getClassName(int)} return {@code Name}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link NonPrivateMemberMarker#visitAnyRefConstant(Clazz, RefConstant)}
    */
   @Test
-  void testVisitProgramMethod() {
+  @DisplayName("Test visitAnyRefConstant(Clazz, RefConstant); when LibraryClass getClassName(int) return 'Name'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void NonPrivateMemberMarker.visitAnyRefConstant(Clazz, RefConstant)"})
+  void testVisitAnyRefConstant_whenLibraryClassGetClassNameReturnName() {
+    // Arrange
+    NonPrivateMemberMarker nonPrivateMemberMarker = new NonPrivateMemberMarker();
+    LibraryClass clazz = mock(LibraryClass.class);
+    when(clazz.getClassName(anyInt())).thenReturn("Name");
+    when(clazz.getName()).thenReturn("Name");
+
+    // Act
+    nonPrivateMemberMarker.visitAnyRefConstant(clazz, new FieldrefConstant());
+
+    // Assert
+    verify(clazz).getClassName(eq(0));
+    verify(clazz).getName();
+  }
+
+  /**
+   * Test {@link NonPrivateMemberMarker#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   * <ul>
+   *   <li>Then calls {@link ProgramMethodOptimizationInfo#setCanNotBeMadePrivate()}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link NonPrivateMemberMarker#visitProgramMethod(ProgramClass, ProgramMethod)}
+   */
+  @Test
+  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); then calls setCanNotBeMadePrivate()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void NonPrivateMemberMarker.visitProgramMethod(ProgramClass, ProgramMethod)"})
+  void testVisitProgramMethod_thenCallsSetCanNotBeMadePrivate() {
     // Arrange
     NonPrivateMemberMarker nonPrivateMemberMarker = new NonPrivateMemberMarker();
     ProgramClass programClass = new ProgramClass();
@@ -227,10 +211,19 @@ class NonPrivateMemberMarkerDiffblueTest {
   }
 
   /**
+   * Test {@link NonPrivateMemberMarker#canBeMadePrivate(Field)} with {@code field}.
+   * <ul>
+   *   <li>Given {@link FieldOptimizationInfo} (default constructor).</li>
+   *   <li>Then return {@code false}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link NonPrivateMemberMarker#canBeMadePrivate(Field)}
    */
   @Test
-  void testCanBeMadePrivate() {
+  @DisplayName("Test canBeMadePrivate(Field) with 'field'; given FieldOptimizationInfo (default constructor); then return 'false'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean NonPrivateMemberMarker.canBeMadePrivate(Field)"})
+  void testCanBeMadePrivateWithField_givenFieldOptimizationInfo_thenReturnFalse() {
     // Arrange
     LibraryField field = new LibraryField(1, "Name", "Descriptor");
     field.setProcessingInfo(new FieldOptimizationInfo());
@@ -240,10 +233,18 @@ class NonPrivateMemberMarkerDiffblueTest {
   }
 
   /**
+   * Test {@link NonPrivateMemberMarker#canBeMadePrivate(Field)} with {@code field}.
+   * <ul>
+   *   <li>Then return {@code true}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link NonPrivateMemberMarker#canBeMadePrivate(Field)}
    */
   @Test
-  void testCanBeMadePrivate2() {
+  @DisplayName("Test canBeMadePrivate(Field) with 'field'; then return 'true'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean NonPrivateMemberMarker.canBeMadePrivate(Field)"})
+  void testCanBeMadePrivateWithField_thenReturnTrue() {
     // Arrange
     LibraryField field = new LibraryField(1, "Name", "Descriptor");
     LibraryClass clazz = new LibraryClass();
@@ -254,10 +255,19 @@ class NonPrivateMemberMarkerDiffblueTest {
   }
 
   /**
+   * Test {@link NonPrivateMemberMarker#canBeMadePrivate(Method)} with {@code method}.
+   * <ul>
+   *   <li>Given {@link MethodOptimizationInfo} (default constructor).</li>
+   *   <li>Then return {@code false}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link NonPrivateMemberMarker#canBeMadePrivate(Method)}
    */
   @Test
-  void testCanBeMadePrivate3() {
+  @DisplayName("Test canBeMadePrivate(Method) with 'method'; given MethodOptimizationInfo (default constructor); then return 'false'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean NonPrivateMemberMarker.canBeMadePrivate(Method)"})
+  void testCanBeMadePrivateWithMethod_givenMethodOptimizationInfo_thenReturnFalse() {
     // Arrange
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
     method.setProcessingInfo(new MethodOptimizationInfo());

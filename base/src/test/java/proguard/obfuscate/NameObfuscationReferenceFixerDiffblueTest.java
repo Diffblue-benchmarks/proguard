@@ -1,19 +1,26 @@
 package proguard.obfuscate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.net.MalformedURLException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import proguard.ClassPath;
 import proguard.Configuration;
 
 class NameObfuscationReferenceFixerDiffblueTest {
   /**
-   * Method under test:
-   * {@link NameObfuscationReferenceFixer#NameObfuscationReferenceFixer(Configuration)}
+   * Test {@link NameObfuscationReferenceFixer#NameObfuscationReferenceFixer(Configuration)}.
+   * <p>
+   * Method under test: {@link NameObfuscationReferenceFixer#NameObfuscationReferenceFixer(Configuration)}
    */
   @Test
+  @DisplayName("Test new NameObfuscationReferenceFixer(Configuration)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void NameObfuscationReferenceFixer.<init>(Configuration)"})
   void testNewNameObfuscationReferenceFixer() throws MalformedURLException {
     // Arrange
     Configuration configuration = new Configuration();

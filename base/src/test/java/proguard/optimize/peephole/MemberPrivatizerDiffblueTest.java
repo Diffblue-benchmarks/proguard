@@ -6,10 +6,14 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.Clazz;
 import proguard.classfile.ProgramClass;
+import proguard.classfile.ProgramMember;
 import proguard.classfile.ProgramMethod;
 import proguard.classfile.visitor.MemberVisitor;
 import proguard.fixer.kotlin.KotlinAnnotationCounter;
@@ -17,30 +21,19 @@ import proguard.optimize.info.MethodOptimizationInfo;
 
 class MemberPrivatizerDiffblueTest {
   /**
-   * Method under test:
-   * {@link MemberPrivatizer#visitProgramMethod(ProgramClass, ProgramMethod)}
+   * Test {@link MemberPrivatizer#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   * <ul>
+   *   <li>Given {@link MemberPrivatizer#MemberPrivatizer()}.</li>
+   *   <li>Then calls {@link MethodOptimizationInfo#canBeMadePrivate()}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link MemberPrivatizer#visitProgramMethod(ProgramClass, ProgramMethod)}
    */
   @Test
-  void testVisitProgramMethod() {
-    // Arrange
-    MemberPrivatizer memberPrivatizer = new MemberPrivatizer();
-    ProgramClass programClass = new ProgramClass();
-    ProgramMethod programMethod = mock(ProgramMethod.class);
-    when(programMethod.getProcessingInfo()).thenReturn(new MethodOptimizationInfo());
-
-    // Act
-    memberPrivatizer.visitProgramMethod(programClass, programMethod);
-
-    // Assert
-    verify(programMethod, atLeast(1)).getProcessingInfo();
-  }
-
-  /**
-   * Method under test:
-   * {@link MemberPrivatizer#visitProgramMethod(ProgramClass, ProgramMethod)}
-   */
-  @Test
-  void testVisitProgramMethod2() {
+  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); given MemberPrivatizer(); then calls canBeMadePrivate()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void MemberPrivatizer.visitProgramMethod(ProgramClass, ProgramMethod)"})
+  void testVisitProgramMethod_givenMemberPrivatizer_thenCallsCanBeMadePrivate() {
     // Arrange
     MemberPrivatizer memberPrivatizer = new MemberPrivatizer();
     ProgramClass programClass = new ProgramClass();
@@ -58,11 +51,44 @@ class MemberPrivatizerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link MemberPrivatizer#visitProgramMethod(ProgramClass, ProgramMethod)}
+   * Test {@link MemberPrivatizer#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   * <ul>
+   *   <li>Given {@link MethodOptimizationInfo} (default constructor).</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link MemberPrivatizer#visitProgramMethod(ProgramClass, ProgramMethod)}
    */
   @Test
-  void testVisitProgramMethod3() {
+  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); given MethodOptimizationInfo (default constructor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void MemberPrivatizer.visitProgramMethod(ProgramClass, ProgramMethod)"})
+  void testVisitProgramMethod_givenMethodOptimizationInfo() {
+    // Arrange
+    MemberPrivatizer memberPrivatizer = new MemberPrivatizer();
+    ProgramClass programClass = new ProgramClass();
+    ProgramMethod programMethod = mock(ProgramMethod.class);
+    when(programMethod.getProcessingInfo()).thenReturn(new MethodOptimizationInfo());
+
+    // Act
+    memberPrivatizer.visitProgramMethod(programClass, programMethod);
+
+    // Assert
+    verify(programMethod, atLeast(1)).getProcessingInfo();
+  }
+
+  /**
+   * Test {@link MemberPrivatizer#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   * <ul>
+   *   <li>Then calls {@link ProgramMember#accept(Clazz, MemberVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link MemberPrivatizer#visitProgramMethod(ProgramClass, ProgramMethod)}
+   */
+  @Test
+  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); then calls accept(Clazz, MemberVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void MemberPrivatizer.visitProgramMethod(ProgramClass, ProgramMethod)"})
+  void testVisitProgramMethod_thenCallsAccept() {
     // Arrange
     MemberPrivatizer memberPrivatizer = new MemberPrivatizer(new KotlinAnnotationCounter());
     ProgramClass programClass = new ProgramClass();
@@ -82,11 +108,18 @@ class MemberPrivatizerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link MemberPrivatizer#visitProgramMethod(ProgramClass, ProgramMethod)}
+   * Test {@link MemberPrivatizer#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   * <ul>
+   *   <li>Then calls {@link MemberVisitor#visitProgramMethod(ProgramClass, ProgramMethod)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link MemberPrivatizer#visitProgramMethod(ProgramClass, ProgramMethod)}
    */
   @Test
-  void testVisitProgramMethod4() {
+  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); then calls visitProgramMethod(ProgramClass, ProgramMethod)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void MemberPrivatizer.visitProgramMethod(ProgramClass, ProgramMethod)"})
+  void testVisitProgramMethod_thenCallsVisitProgramMethod() {
     // Arrange
     MemberVisitor extraMemberVisitor = mock(MemberVisitor.class);
     doNothing().when(extraMemberVisitor).visitProgramMethod(Mockito.<ProgramClass>any(), Mockito.<ProgramMethod>any());

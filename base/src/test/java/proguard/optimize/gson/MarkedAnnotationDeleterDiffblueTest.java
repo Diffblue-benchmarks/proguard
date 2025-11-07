@@ -4,6 +4,9 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.Clazz;
@@ -15,11 +18,44 @@ import proguard.classfile.attribute.annotation.RuntimeVisibleParameterAnnotation
 
 class MarkedAnnotationDeleterDiffblueTest {
   /**
-   * Method under test:
-   * {@link MarkedAnnotationDeleter#visitRuntimeVisibleParameterAnnotationsAttribute(Clazz, Method, RuntimeVisibleParameterAnnotationsAttribute)}
+   * Test {@link MarkedAnnotationDeleter#visitRuntimeVisibleParameterAnnotationsAttribute(Clazz, Method, RuntimeVisibleParameterAnnotationsAttribute)}.
+   * <p>
+   * Method under test: {@link MarkedAnnotationDeleter#visitRuntimeVisibleParameterAnnotationsAttribute(Clazz, Method, RuntimeVisibleParameterAnnotationsAttribute)}
    */
   @Test
+  @DisplayName("Test visitRuntimeVisibleParameterAnnotationsAttribute(Clazz, Method, RuntimeVisibleParameterAnnotationsAttribute)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void MarkedAnnotationDeleter.visitRuntimeVisibleParameterAnnotationsAttribute(Clazz, Method, RuntimeVisibleParameterAnnotationsAttribute)"})
   void testVisitRuntimeVisibleParameterAnnotationsAttribute() {
+    // Arrange
+    MarkedAnnotationDeleter markedAnnotationDeleter = new MarkedAnnotationDeleter("Mark");
+    ProgramClass clazz = mock(ProgramClass.class);
+    doNothing().when(clazz).addExtraFeatureName(Mockito.<String>any());
+    clazz.addExtraFeatureName("RuntimeVisibleParameterAnnotations");
+
+    // Act
+    markedAnnotationDeleter.visitRuntimeVisibleParameterAnnotationsAttribute(clazz, null,
+        new RuntimeVisibleParameterAnnotationsAttribute());
+
+    // Assert
+    verify(clazz).addExtraFeatureName(eq("RuntimeVisibleParameterAnnotations"));
+  }
+
+  /**
+   * Test {@link MarkedAnnotationDeleter#visitRuntimeVisibleParameterAnnotationsAttribute(Clazz, Method, RuntimeVisibleParameterAnnotationsAttribute)}.
+   * <ul>
+   *   <li>When {@link ProgramMethod#ProgramMethod()}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link MarkedAnnotationDeleter#visitRuntimeVisibleParameterAnnotationsAttribute(Clazz, Method, RuntimeVisibleParameterAnnotationsAttribute)}
+   */
+  @Test
+  @DisplayName("Test visitRuntimeVisibleParameterAnnotationsAttribute(Clazz, Method, RuntimeVisibleParameterAnnotationsAttribute); when ProgramMethod()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void MarkedAnnotationDeleter.visitRuntimeVisibleParameterAnnotationsAttribute(Clazz, Method, RuntimeVisibleParameterAnnotationsAttribute)"})
+  void testVisitRuntimeVisibleParameterAnnotationsAttribute_whenProgramMethod() {
     // Arrange
     MarkedAnnotationDeleter markedAnnotationDeleter = new MarkedAnnotationDeleter("Mark");
     ProgramClass clazz = mock(ProgramClass.class);
@@ -36,31 +72,44 @@ class MarkedAnnotationDeleterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link MarkedAnnotationDeleter#visitRuntimeVisibleParameterAnnotationsAttribute(Clazz, Method, RuntimeVisibleParameterAnnotationsAttribute)}
+   * Test {@link MarkedAnnotationDeleter#visitRuntimeInvisibleParameterAnnotationsAttribute(Clazz, Method, RuntimeInvisibleParameterAnnotationsAttribute)}.
+   * <p>
+   * Method under test: {@link MarkedAnnotationDeleter#visitRuntimeInvisibleParameterAnnotationsAttribute(Clazz, Method, RuntimeInvisibleParameterAnnotationsAttribute)}
    */
   @Test
-  void testVisitRuntimeVisibleParameterAnnotationsAttribute2() {
+  @DisplayName("Test visitRuntimeInvisibleParameterAnnotationsAttribute(Clazz, Method, RuntimeInvisibleParameterAnnotationsAttribute)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void MarkedAnnotationDeleter.visitRuntimeInvisibleParameterAnnotationsAttribute(Clazz, Method, RuntimeInvisibleParameterAnnotationsAttribute)"})
+  void testVisitRuntimeInvisibleParameterAnnotationsAttribute() {
     // Arrange
     MarkedAnnotationDeleter markedAnnotationDeleter = new MarkedAnnotationDeleter("Mark");
     ProgramClass clazz = mock(ProgramClass.class);
     doNothing().when(clazz).addExtraFeatureName(Mockito.<String>any());
-    clazz.addExtraFeatureName("RuntimeVisibleParameterAnnotations");
+    clazz.addExtraFeatureName("RuntimeInvisibleParameterAnnotations");
 
     // Act
-    markedAnnotationDeleter.visitRuntimeVisibleParameterAnnotationsAttribute(clazz, null,
-        new RuntimeVisibleParameterAnnotationsAttribute());
+    markedAnnotationDeleter.visitRuntimeInvisibleParameterAnnotationsAttribute(clazz, null,
+        new RuntimeInvisibleParameterAnnotationsAttribute());
 
     // Assert
-    verify(clazz).addExtraFeatureName(eq("RuntimeVisibleParameterAnnotations"));
+    verify(clazz).addExtraFeatureName(eq("RuntimeInvisibleParameterAnnotations"));
   }
 
   /**
-   * Method under test:
-   * {@link MarkedAnnotationDeleter#visitRuntimeInvisibleParameterAnnotationsAttribute(Clazz, Method, RuntimeInvisibleParameterAnnotationsAttribute)}
+   * Test {@link MarkedAnnotationDeleter#visitRuntimeInvisibleParameterAnnotationsAttribute(Clazz, Method, RuntimeInvisibleParameterAnnotationsAttribute)}.
+   * <ul>
+   *   <li>When {@link ProgramMethod#ProgramMethod()}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link MarkedAnnotationDeleter#visitRuntimeInvisibleParameterAnnotationsAttribute(Clazz, Method, RuntimeInvisibleParameterAnnotationsAttribute)}
    */
   @Test
-  void testVisitRuntimeInvisibleParameterAnnotationsAttribute() {
+  @DisplayName("Test visitRuntimeInvisibleParameterAnnotationsAttribute(Clazz, Method, RuntimeInvisibleParameterAnnotationsAttribute); when ProgramMethod()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void MarkedAnnotationDeleter.visitRuntimeInvisibleParameterAnnotationsAttribute(Clazz, Method, RuntimeInvisibleParameterAnnotationsAttribute)"})
+  void testVisitRuntimeInvisibleParameterAnnotationsAttribute_whenProgramMethod() {
     // Arrange
     MarkedAnnotationDeleter markedAnnotationDeleter = new MarkedAnnotationDeleter("Mark");
     ProgramClass clazz = mock(ProgramClass.class);
@@ -70,26 +119,6 @@ class MarkedAnnotationDeleterDiffblueTest {
 
     // Act
     markedAnnotationDeleter.visitRuntimeInvisibleParameterAnnotationsAttribute(clazz, method,
-        new RuntimeInvisibleParameterAnnotationsAttribute());
-
-    // Assert
-    verify(clazz).addExtraFeatureName(eq("RuntimeInvisibleParameterAnnotations"));
-  }
-
-  /**
-   * Method under test:
-   * {@link MarkedAnnotationDeleter#visitRuntimeInvisibleParameterAnnotationsAttribute(Clazz, Method, RuntimeInvisibleParameterAnnotationsAttribute)}
-   */
-  @Test
-  void testVisitRuntimeInvisibleParameterAnnotationsAttribute2() {
-    // Arrange
-    MarkedAnnotationDeleter markedAnnotationDeleter = new MarkedAnnotationDeleter("Mark");
-    ProgramClass clazz = mock(ProgramClass.class);
-    doNothing().when(clazz).addExtraFeatureName(Mockito.<String>any());
-    clazz.addExtraFeatureName("RuntimeInvisibleParameterAnnotations");
-
-    // Act
-    markedAnnotationDeleter.visitRuntimeInvisibleParameterAnnotationsAttribute(clazz, null,
         new RuntimeInvisibleParameterAnnotationsAttribute());
 
     // Assert

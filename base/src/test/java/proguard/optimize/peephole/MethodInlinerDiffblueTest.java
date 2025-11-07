@@ -3,20 +3,24 @@ package proguard.optimize.peephole;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.ArgumentMatchers.isNull;
-import static org.mockito.Mockito.anyInt;
 import static org.mockito.Mockito.atLeast;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.io.UnsupportedEncodingException;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.Clazz;
 import proguard.classfile.LibraryClass;
+import proguard.classfile.LibraryMember;
 import proguard.classfile.LibraryMethod;
 import proguard.classfile.Method;
 import proguard.classfile.ProgramClass;
+import proguard.classfile.ProgramMember;
 import proguard.classfile.ProgramMethod;
 import proguard.classfile.attribute.CodeAttribute;
 import proguard.classfile.attribute.ExtendedLineNumberInfo;
@@ -29,83 +33,22 @@ import proguard.classfile.constant.AnyMethodrefConstant;
 import proguard.classfile.constant.InterfaceMethodrefConstant;
 import proguard.classfile.instruction.visitor.InstructionVisitor;
 import proguard.classfile.visitor.MemberVisitor;
+import proguard.testutils.cpa.NamedClass;
 
 class MethodInlinerDiffblueTest {
   /**
-   * Method under test:
-   * {@link MethodInliner#visitCodeAttribute(Clazz, Method, CodeAttribute)}
+   * Test {@link MethodInliner#visitCodeAttribute(Clazz, Method, CodeAttribute)}.
+   * <p>
+   * Method under test: {@link MethodInliner#visitCodeAttribute(Clazz, Method, CodeAttribute)}
    */
   @Test
-  void testVisitCodeAttribute() {
+  @DisplayName("Test visitCodeAttribute(Clazz, Method, CodeAttribute)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void MethodInliner.visitCodeAttribute(Clazz, Method, CodeAttribute)"})
+  void testVisitCodeAttribute() throws UnsupportedEncodingException {
     // Arrange
     ShortMethodInliner shortMethodInliner = new ShortMethodInliner(true, true, true);
-    ProgramClass clazz = mock(ProgramClass.class);
-    when(clazz.getString(anyInt())).thenReturn("String");
-    when(clazz.getName()).thenReturn("Name");
-    ProgramMethod method = new ProgramMethod();
-
-    // Act
-    shortMethodInliner.visitCodeAttribute(clazz, method, new CodeAttribute(1));
-
-    // Assert
-    verify(clazz, atLeast(1)).getName();
-    verify(clazz, atLeast(1)).getString(eq(0));
-  }
-
-  /**
-   * Method under test:
-   * {@link MethodInliner#visitCodeAttribute(Clazz, Method, CodeAttribute)}
-   */
-  @Test
-  void testVisitCodeAttribute2() {
-    // Arrange
-    ShortMethodInliner shortMethodInliner = new ShortMethodInliner(true, true, true);
-    ProgramClass clazz = mock(ProgramClass.class);
-    when(clazz.getString(anyInt())).thenReturn("<init>");
-    when(clazz.getName()).thenReturn("Name");
-    ProgramMethod method = new ProgramMethod();
-
-    // Act
-    shortMethodInliner.visitCodeAttribute(clazz, method, new CodeAttribute(1));
-
-    // Assert
-    verify(clazz, atLeast(1)).getName();
-    verify(clazz, atLeast(1)).getString(eq(0));
-  }
-
-  /**
-   * Method under test:
-   * {@link MethodInliner#visitCodeAttribute(Clazz, Method, CodeAttribute)}
-   */
-  @Test
-  void testVisitCodeAttribute3() {
-    // Arrange
-    ShortMethodInliner shortMethodInliner = new ShortMethodInliner(true, true, true);
-    ProgramClass clazz = mock(ProgramClass.class);
-    when(clazz.getName()).thenReturn("Name");
-    ProgramMethod method = mock(ProgramMethod.class);
-    when(method.getDescriptor(Mockito.<Clazz>any())).thenReturn("Descriptor");
-    when(method.getName(Mockito.<Clazz>any())).thenReturn("Name");
-
-    // Act
-    shortMethodInliner.visitCodeAttribute(clazz, method, null);
-
-    // Assert
-    verify(clazz).getName();
-    verify(method).getDescriptor(isA(Clazz.class));
-    verify(method).getName(isA(Clazz.class));
-  }
-
-  /**
-   * Method under test:
-   * {@link MethodInliner#visitCodeAttribute(Clazz, Method, CodeAttribute)}
-   */
-  @Test
-  void testVisitCodeAttribute4() throws UnsupportedEncodingException {
-    // Arrange
-    ShortMethodInliner shortMethodInliner = new ShortMethodInliner(true, true, true);
-    ProgramClass clazz = mock(ProgramClass.class);
-    when(clazz.getName()).thenReturn("Name");
+    NamedClass clazz = new NamedClass("Unexpected error while inlining method:");
     ProgramMethod method = mock(ProgramMethod.class);
     when(method.getDescriptor(Mockito.<Clazz>any())).thenReturn("Descriptor");
     when(method.getName(Mockito.<Clazz>any())).thenReturn("Name");
@@ -114,20 +57,115 @@ class MethodInlinerDiffblueTest {
     shortMethodInliner.visitCodeAttribute(clazz, method, new CodeAttribute(1, 3, 3, 3, "AXAXAXAX".getBytes("UTF-8")));
 
     // Assert
-    verify(clazz, atLeast(1)).getName();
     verify(method, atLeast(1)).getDescriptor(isA(Clazz.class));
     verify(method, atLeast(1)).getName(isA(Clazz.class));
   }
 
   /**
-   * Method under test:
-   * {@link MethodInliner#visitCodeAttribute(Clazz, Method, CodeAttribute)}
+   * Test {@link MethodInliner#visitCodeAttribute(Clazz, Method, CodeAttribute)}.
+   * <ul>
+   *   <li>Given {@code Descriptor}.</li>
+   *   <li>Then calls {@link ProgramMember#getDescriptor(Clazz)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link MethodInliner#visitCodeAttribute(Clazz, Method, CodeAttribute)}
    */
   @Test
-  void testVisitCodeAttribute5() {
+  @DisplayName("Test visitCodeAttribute(Clazz, Method, CodeAttribute); given 'Descriptor'; then calls getDescriptor(Clazz)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void MethodInliner.visitCodeAttribute(Clazz, Method, CodeAttribute)"})
+  void testVisitCodeAttribute_givenDescriptor_thenCallsGetDescriptor() {
     // Arrange
     ShortMethodInliner shortMethodInliner = new ShortMethodInliner(true, true, true);
-    ProgramClass clazz = mock(ProgramClass.class);
+    NamedClass clazz = new NamedClass("Unexpected error while inlining method:");
+    ProgramMethod method = mock(ProgramMethod.class);
+    when(method.getDescriptor(Mockito.<Clazz>any())).thenReturn("Descriptor");
+    when(method.getName(Mockito.<Clazz>any())).thenReturn("Name");
+
+    // Act
+    shortMethodInliner.visitCodeAttribute(clazz, method, new CodeAttribute(1));
+
+    // Assert
+    verify(method, atLeast(1)).getDescriptor(isA(Clazz.class));
+    verify(method, atLeast(1)).getName(isA(Clazz.class));
+  }
+
+  /**
+   * Test {@link MethodInliner#visitCodeAttribute(Clazz, Method, CodeAttribute)}.
+   * <ul>
+   *   <li>Given {@code Descriptor}.</li>
+   *   <li>When {@code null}.</li>
+   *   <li>Then calls {@link ProgramMember#getDescriptor(Clazz)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link MethodInliner#visitCodeAttribute(Clazz, Method, CodeAttribute)}
+   */
+  @Test
+  @DisplayName("Test visitCodeAttribute(Clazz, Method, CodeAttribute); given 'Descriptor'; when 'null'; then calls getDescriptor(Clazz)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void MethodInliner.visitCodeAttribute(Clazz, Method, CodeAttribute)"})
+  void testVisitCodeAttribute_givenDescriptor_whenNull_thenCallsGetDescriptor() {
+    // Arrange
+    ShortMethodInliner shortMethodInliner = new ShortMethodInliner(true, true, true);
+    NamedClass clazz = new NamedClass("Unexpected error while inlining method:");
+    ProgramMethod method = mock(ProgramMethod.class);
+    when(method.getDescriptor(Mockito.<Clazz>any())).thenReturn("Descriptor");
+    when(method.getName(Mockito.<Clazz>any())).thenReturn("Name");
+
+    // Act
+    shortMethodInliner.visitCodeAttribute(clazz, method, null);
+
+    // Assert
+    verify(method).getDescriptor(isA(Clazz.class));
+    verify(method).getName(isA(Clazz.class));
+  }
+
+  /**
+   * Test {@link MethodInliner#visitCodeAttribute(Clazz, Method, CodeAttribute)}.
+   * <ul>
+   *   <li>Given {@code <init>}.</li>
+   *   <li>When {@link ProgramMethod} {@link ProgramMember#getName(Clazz)} return {@code <init>}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link MethodInliner#visitCodeAttribute(Clazz, Method, CodeAttribute)}
+   */
+  @Test
+  @DisplayName("Test visitCodeAttribute(Clazz, Method, CodeAttribute); given '<init>'; when ProgramMethod getName(Clazz) return '<init>'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void MethodInliner.visitCodeAttribute(Clazz, Method, CodeAttribute)"})
+  void testVisitCodeAttribute_givenInit_whenProgramMethodGetNameReturnInit() {
+    // Arrange
+    ShortMethodInliner shortMethodInliner = new ShortMethodInliner(true, true, true);
+    NamedClass clazz = new NamedClass("Unexpected error while inlining method:");
+    ProgramMethod method = mock(ProgramMethod.class);
+    when(method.getDescriptor(Mockito.<Clazz>any())).thenReturn("Descriptor");
+    when(method.getName(Mockito.<Clazz>any())).thenReturn("<init>");
+
+    // Act
+    shortMethodInliner.visitCodeAttribute(clazz, method, new CodeAttribute(1));
+
+    // Assert
+    verify(method, atLeast(1)).getDescriptor(isA(Clazz.class));
+    verify(method, atLeast(1)).getName(isA(Clazz.class));
+  }
+
+  /**
+   * Test {@link MethodInliner#visitCodeAttribute(Clazz, Method, CodeAttribute)}.
+   * <ul>
+   *   <li>Given one.</li>
+   *   <li>Then calls {@link ProgramMethod#accept(ProgramClass, MemberVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link MethodInliner#visitCodeAttribute(Clazz, Method, CodeAttribute)}
+   */
+  @Test
+  @DisplayName("Test visitCodeAttribute(Clazz, Method, CodeAttribute); given one; then calls accept(ProgramClass, MemberVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void MethodInliner.visitCodeAttribute(Clazz, Method, CodeAttribute)"})
+  void testVisitCodeAttribute_givenOne_thenCallsAccept() {
+    // Arrange
+    ShortMethodInliner shortMethodInliner = new ShortMethodInliner(true, true, true);
+    NamedClass clazz = new NamedClass("Unexpected error while inlining method:");
     ProgramMethod method = mock(ProgramMethod.class);
     when(method.getProcessingFlags()).thenReturn(1);
     doNothing().when(method).accept(Mockito.<ProgramClass>any(), Mockito.<MemberVisitor>any());
@@ -156,11 +194,19 @@ class MethodInlinerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link MethodInliner#visitCodeAttribute0(Clazz, Method, CodeAttribute)}
+   * Test {@link MethodInliner#visitCodeAttribute0(Clazz, Method, CodeAttribute)}.
+   * <ul>
+   *   <li>Given one.</li>
+   *   <li>Then calls {@link ProgramMember#getName(Clazz)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link MethodInliner#visitCodeAttribute0(Clazz, Method, CodeAttribute)}
    */
   @Test
-  void testVisitCodeAttribute0() {
+  @DisplayName("Test visitCodeAttribute0(Clazz, Method, CodeAttribute); given one; then calls getName(Clazz)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void MethodInliner.visitCodeAttribute0(Clazz, Method, CodeAttribute)"})
+  void testVisitCodeAttribute0_givenOne_thenCallsGetName() {
     // Arrange
     ShortMethodInliner shortMethodInliner = new ShortMethodInliner(true, true, true);
     ProgramClass clazz = mock(ProgramClass.class);
@@ -195,11 +241,19 @@ class MethodInlinerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link MethodInliner#visitLineNumberTableAttribute(Clazz, Method, CodeAttribute, LineNumberTableAttribute)}
+   * Test {@link MethodInliner#visitLineNumberTableAttribute(Clazz, Method, CodeAttribute, LineNumberTableAttribute)}.
+   * <ul>
+   *   <li>Then calls {@link LineNumberTableAttribute#lineNumbersAccept(Clazz, Method, CodeAttribute, LineNumberInfoVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link MethodInliner#visitLineNumberTableAttribute(Clazz, Method, CodeAttribute, LineNumberTableAttribute)}
    */
   @Test
-  void testVisitLineNumberTableAttribute() {
+  @DisplayName("Test visitLineNumberTableAttribute(Clazz, Method, CodeAttribute, LineNumberTableAttribute); then calls lineNumbersAccept(Clazz, Method, CodeAttribute, LineNumberInfoVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void MethodInliner.visitLineNumberTableAttribute(Clazz, Method, CodeAttribute, LineNumberTableAttribute)"})
+  void testVisitLineNumberTableAttribute_thenCallsLineNumbersAccept() {
     // Arrange
     ShortMethodInliner shortMethodInliner = new ShortMethodInliner(true, true, true);
     LibraryClass clazz = new LibraryClass();
@@ -220,30 +274,18 @@ class MethodInlinerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link MethodInliner#visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant)}
+   * Test {@link MethodInliner#visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant)}.
+   * <ul>
+   *   <li>Then calls {@link LibraryMember#accept(Clazz, MemberVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link MethodInliner#visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant)}
    */
   @Test
-  void testVisitAnyMethodrefConstant() {
-    // Arrange
-    ShortMethodInliner shortMethodInliner = new ShortMethodInliner(true, true, true);
-    LibraryClass clazz = new LibraryClass();
-    InterfaceMethodrefConstant anyMethodrefConstant = mock(InterfaceMethodrefConstant.class);
-    doNothing().when(anyMethodrefConstant).referencedMethodAccept(Mockito.<MemberVisitor>any());
-
-    // Act
-    shortMethodInliner.visitAnyMethodrefConstant(clazz, anyMethodrefConstant);
-
-    // Assert
-    verify(anyMethodrefConstant).referencedMethodAccept(isA(MemberVisitor.class));
-  }
-
-  /**
-   * Method under test:
-   * {@link MethodInliner#visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant)}
-   */
-  @Test
-  void testVisitAnyMethodrefConstant2() {
+  @DisplayName("Test visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant); then calls accept(Clazz, MemberVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void MethodInliner.visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant)"})
+  void testVisitAnyMethodrefConstant_thenCallsAccept() {
     // Arrange
     ShortMethodInliner shortMethodInliner = new ShortMethodInliner(true, true, true);
     LibraryClass clazz = new LibraryClass();
@@ -260,11 +302,45 @@ class MethodInlinerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link MethodInliner#visitLineNumberInfo(Clazz, Method, CodeAttribute, LineNumberInfo)}
+   * Test {@link MethodInliner#visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant)}.
+   * <ul>
+   *   <li>Then calls {@link AnyMethodrefConstant#referencedMethodAccept(MemberVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link MethodInliner#visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant)}
    */
   @Test
-  void testVisitLineNumberInfo() {
+  @DisplayName("Test visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant); then calls referencedMethodAccept(MemberVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void MethodInliner.visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant)"})
+  void testVisitAnyMethodrefConstant_thenCallsReferencedMethodAccept() {
+    // Arrange
+    ShortMethodInliner shortMethodInliner = new ShortMethodInliner(true, true, true);
+    LibraryClass clazz = new LibraryClass();
+    InterfaceMethodrefConstant anyMethodrefConstant = mock(InterfaceMethodrefConstant.class);
+    doNothing().when(anyMethodrefConstant).referencedMethodAccept(Mockito.<MemberVisitor>any());
+
+    // Act
+    shortMethodInliner.visitAnyMethodrefConstant(clazz, anyMethodrefConstant);
+
+    // Assert
+    verify(anyMethodrefConstant).referencedMethodAccept(isA(MemberVisitor.class));
+  }
+
+  /**
+   * Test {@link MethodInliner#visitLineNumberInfo(Clazz, Method, CodeAttribute, LineNumberInfo)}.
+   * <ul>
+   *   <li>Given {@link IllegalArgumentException#IllegalArgumentException(String)} with {@code foo}.</li>
+   *   <li>Then calls {@link ExtendedLineNumberInfo#getSource()}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link MethodInliner#visitLineNumberInfo(Clazz, Method, CodeAttribute, LineNumberInfo)}
+   */
+  @Test
+  @DisplayName("Test visitLineNumberInfo(Clazz, Method, CodeAttribute, LineNumberInfo); given IllegalArgumentException(String) with 'foo'; then calls getSource()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void MethodInliner.visitLineNumberInfo(Clazz, Method, CodeAttribute, LineNumberInfo)"})
+  void testVisitLineNumberInfo_givenIllegalArgumentExceptionWithFoo_thenCallsGetSource() {
     // Arrange
     ShortMethodInliner shortMethodInliner = new ShortMethodInliner(true, true, true);
     LibraryClass clazz = new LibraryClass();

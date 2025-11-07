@@ -2,60 +2,28 @@ package proguard.optimize.info;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import proguard.classfile.Clazz;
 import proguard.classfile.LibraryClass;
-import proguard.classfile.ProgramClass;
 
 class SideEffectClassMarkerDiffblueTest {
   /**
-   * Method under test:
-   * {@link SideEffectClassMarker#visitProgramClass(ProgramClass)}
-   */
-  @Test
-  void testVisitProgramClass() {
-    // Arrange
-    SideEffectClassMarker sideEffectClassMarker = new SideEffectClassMarker();
-    ProgramClass programClass = mock(ProgramClass.class);
-    when(programClass.getProcessingInfo()).thenReturn(new ProgramClassOptimizationInfo());
-
-    // Act
-    sideEffectClassMarker.visitProgramClass(programClass);
-
-    // Assert
-    verify(programClass).getProcessingInfo();
-  }
-
-  /**
-   * Method under test:
-   * {@link SideEffectClassMarker#visitProgramClass(ProgramClass)}
-   */
-  @Test
-  void testVisitProgramClass2() {
-    // Arrange
-    SideEffectClassMarker sideEffectClassMarker = new SideEffectClassMarker();
-    ProgramClassOptimizationInfo programClassOptimizationInfo = mock(ProgramClassOptimizationInfo.class);
-    doNothing().when(programClassOptimizationInfo).setSideEffects();
-    ProgramClass programClass = mock(ProgramClass.class);
-    when(programClass.getProcessingInfo()).thenReturn(programClassOptimizationInfo);
-
-    // Act
-    sideEffectClassMarker.visitProgramClass(programClass);
-
-    // Assert
-    verify(programClassOptimizationInfo).setSideEffects();
-    verify(programClass).getProcessingInfo();
-  }
-
-  /**
+   * Test {@link SideEffectClassMarker#hasSideEffects(Clazz)}.
+   * <ul>
+   *   <li>Given {@link ClassOptimizationInfo} (default constructor).</li>
+   *   <li>Then return {@code true}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link SideEffectClassMarker#hasSideEffects(Clazz)}
    */
   @Test
-  void testHasSideEffects() {
+  @DisplayName("Test hasSideEffects(Clazz); given ClassOptimizationInfo (default constructor); then return 'true'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean SideEffectClassMarker.hasSideEffects(Clazz)"})
+  void testHasSideEffects_givenClassOptimizationInfo_thenReturnTrue() {
     // Arrange
     LibraryClass clazz = new LibraryClass();
     clazz.processingInfo = new ClassOptimizationInfo();
@@ -65,10 +33,19 @@ class SideEffectClassMarkerDiffblueTest {
   }
 
   /**
+   * Test {@link SideEffectClassMarker#hasSideEffects(Clazz)}.
+   * <ul>
+   *   <li>Given {@link ProgramClassOptimizationInfo} (default constructor).</li>
+   *   <li>Then return {@code false}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link SideEffectClassMarker#hasSideEffects(Clazz)}
    */
   @Test
-  void testHasSideEffects2() {
+  @DisplayName("Test hasSideEffects(Clazz); given ProgramClassOptimizationInfo (default constructor); then return 'false'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean SideEffectClassMarker.hasSideEffects(Clazz)"})
+  void testHasSideEffects_givenProgramClassOptimizationInfo_thenReturnFalse() {
     // Arrange
     LibraryClass clazz = new LibraryClass();
     clazz.processingInfo = new ProgramClassOptimizationInfo();

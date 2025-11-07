@@ -9,16 +9,24 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 class WordReaderDiffblueTest {
   /**
+   * Test {@link WordReader#setBaseDir(File)}.
+   * <p>
    * Method under test: {@link WordReader#setBaseDir(File)}
    */
   @Test
+  @DisplayName("Test setBaseDir(File)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void WordReader.setBaseDir(File)"})
   void testSetBaseDir() throws IOException {
     // Arrange
     FileWordReader fileWordReader = new FileWordReader(
@@ -33,9 +41,14 @@ class WordReaderDiffblueTest {
   }
 
   /**
+   * Test {@link WordReader#setBaseDir(File)}.
+   * <p>
    * Method under test: {@link WordReader#setBaseDir(File)}
    */
   @Test
+  @DisplayName("Test setBaseDir(File)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void WordReader.setBaseDir(File)"})
   void testSetBaseDir2() throws IOException {
     // Arrange
     FileWordReader fileWordReader = new FileWordReader(
@@ -46,24 +59,23 @@ class WordReaderDiffblueTest {
     // Act
     fileWordReader.setBaseDir(baseDir);
 
-    // Assert
+    // Assert that nothing has changed
     assertSame(baseDir, fileWordReader.getBaseDir());
   }
 
   /**
+   * Test {@link WordReader#getBaseDir()}.
+   * <ul>
+   *   <li>Then return Name is empty string.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link WordReader#getBaseDir()}
    */
   @Test
-  void testGetBaseDir() throws IOException {
-    // Arrange, Act and Assert
-    assertNull((new FileWordReader(Paths.get(System.getProperty("java.io.tmpdir"), "").toUri().toURL())).getBaseDir());
-  }
-
-  /**
-   * Method under test: {@link WordReader#getBaseDir()}
-   */
-  @Test
-  void testGetBaseDir2() throws IOException {
+  @DisplayName("Test getBaseDir(); then return Name is empty string")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"File WordReader.getBaseDir()"})
+  void testGetBaseDir_thenReturnNameIsEmptyString() throws IOException {
     // Arrange
     FileWordReader fileWordReader = new FileWordReader(
         Paths.get(System.getProperty("java.io.tmpdir"), "").toUri().toURL());
@@ -78,10 +90,35 @@ class WordReaderDiffblueTest {
   }
 
   /**
+   * Test {@link WordReader#getBaseDir()}.
+   * <ul>
+   *   <li>Then return {@code null}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link WordReader#getBaseDir()}
+   */
+  @Test
+  @DisplayName("Test getBaseDir(); then return 'null'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"File WordReader.getBaseDir()"})
+  void testGetBaseDir_thenReturnNull() throws IOException {
+    // Arrange, Act and Assert
+    assertNull((new FileWordReader(Paths.get(System.getProperty("java.io.tmpdir"), "").toUri().toURL())).getBaseDir());
+  }
+
+  /**
+   * Test {@link WordReader#getBaseURL()}.
+   * <ul>
+   *   <li>Then return {@code null}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link WordReader#getBaseURL()}
    */
   @Test
-  void testGetBaseURL() throws IOException {
+  @DisplayName("Test getBaseURL(); then return 'null'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"java.net.URL WordReader.getBaseURL()"})
+  void testGetBaseURL_thenReturnNull() throws IOException {
     // Arrange
     FileWordReader fileWordReader = new FileWordReader(
         Paths.get(System.getProperty("java.io.tmpdir"), "").toUri().toURL());
@@ -92,26 +129,18 @@ class WordReaderDiffblueTest {
   }
 
   /**
-   * Method under test: {@link WordReader#includeWordReader(WordReader)}
-   */
-  @Test
-  void testIncludeWordReader() throws IOException {
-    // Arrange
-    FileWordReader fileWordReader = new FileWordReader(
-        Paths.get(System.getProperty("java.io.tmpdir"), "").toUri().toURL());
-
-    // Act
-    fileWordReader.includeWordReader(mock(ArgumentWordReader.class));
-
-    // Assert
-    assertNull(fileWordReader.getBaseURL());
-  }
-
-  /**
+   * Test {@link WordReader#nextWord(boolean, boolean)}.
+   * <ul>
+   *   <li>Then return {@code Arguments}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link WordReader#nextWord(boolean, boolean)}
    */
   @Test
-  void testNextWord() throws IOException {
+  @DisplayName("Test nextWord(boolean, boolean); then return 'Arguments'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"String WordReader.nextWord(boolean, boolean)"})
+  void testNextWord_thenReturnArguments() throws IOException {
     // Arrange
     FileWordReader fileWordReader = new FileWordReader(
         Paths.get(System.getProperty("java.io.tmpdir"), "").toUri().toURL());
@@ -119,13 +148,17 @@ class WordReaderDiffblueTest {
 
     // Act and Assert
     assertEquals("Arguments", fileWordReader.nextWord(true, true));
-    assertNull(fileWordReader.getBaseURL());
   }
 
   /**
+   * Test {@link WordReader#lastComments()}.
+   * <p>
    * Method under test: {@link WordReader#lastComments()}
    */
   @Test
+  @DisplayName("Test lastComments()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"String WordReader.lastComments()"})
   void testLastComments() throws IOException {
     // Arrange, Act and Assert
     assertNull(
@@ -133,9 +166,14 @@ class WordReaderDiffblueTest {
   }
 
   /**
+   * Test {@link WordReader#lastComments()}.
+   * <p>
    * Method under test: {@link WordReader#lastComments()}
    */
   @Test
+  @DisplayName("Test lastComments()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"String WordReader.lastComments()"})
   void testLastComments2() throws IOException {
     // Arrange
     FileWordReader fileWordReader = new FileWordReader(
@@ -147,9 +185,14 @@ class WordReaderDiffblueTest {
   }
 
   /**
+   * Test {@link WordReader#close()}.
+   * <p>
    * Method under test: {@link WordReader#close()}
    */
   @Test
+  @DisplayName("Test close()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void WordReader.close()"})
   void testClose() throws IOException {
     // Arrange
     ArgumentWordReader argumentWordReader = new ArgumentWordReader(new String[]{"Arguments"}, Configuration.STD_OUT);
@@ -164,9 +207,14 @@ class WordReaderDiffblueTest {
   }
 
   /**
+   * Test {@link WordReader#close()}.
+   * <p>
    * Method under test: {@link WordReader#close()}
    */
   @Test
+  @DisplayName("Test close()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void WordReader.close()"})
   void testClose2() throws IOException {
     // Arrange
     ArgumentWordReader argumentWordReader = new ArgumentWordReader(new String[]{"Arguments"}, Configuration.STD_OUT);
@@ -175,17 +223,26 @@ class WordReaderDiffblueTest {
     // Act
     argumentWordReader.close();
 
-    // Assert
+    // Assert that nothing has changed
     File baseDir = argumentWordReader.getBaseDir();
     assertEquals("", baseDir.getName());
     assertFalse(baseDir.isAbsolute());
   }
 
   /**
+   * Test {@link WordReader#close()}.
+   * <ul>
+   *   <li>Given {@link FileWordReader} {@link LineWordReader#close()} does nothing.</li>
+   *   <li>Then calls {@link LineWordReader#close()}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link WordReader#close()}
    */
   @Test
-  void testClose3() throws IOException {
+  @DisplayName("Test close(); given FileWordReader close() does nothing; then calls close()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void WordReader.close()"})
+  void testClose_givenFileWordReaderCloseDoesNothing_thenCallsClose() throws IOException {
     // Arrange
     FileWordReader newIncludeWordReader = mock(FileWordReader.class);
     doNothing().when(newIncludeWordReader).close();
@@ -204,10 +261,19 @@ class WordReaderDiffblueTest {
   }
 
   /**
+   * Test {@link WordReader#close()}.
+   * <ul>
+   *   <li>Given {@link FileWordReader} {@link LineWordReader#close()} throw {@link IOException#IOException(String)} with {@code foo}.</li>
+   *   <li>Then throw {@link IOException}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link WordReader#close()}
    */
   @Test
-  void testClose4() throws IOException {
+  @DisplayName("Test close(); given FileWordReader close() throw IOException(String) with 'foo'; then throw IOException")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void WordReader.close()"})
+  void testClose_givenFileWordReaderCloseThrowIOExceptionWithFoo_thenThrowIOException() throws IOException {
     // Arrange
     FileWordReader newIncludeWordReader = mock(FileWordReader.class);
     doThrow(new IOException("foo")).when(newIncludeWordReader).close();

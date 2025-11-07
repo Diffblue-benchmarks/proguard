@@ -6,6 +6,9 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.Clazz;
@@ -19,11 +22,18 @@ import proguard.util.Processable;
 
 class RecordComponentUsageMarkerDiffblueTest {
   /**
-   * Method under test:
-   * {@link RecordComponentUsageMarker#visitRecordComponentInfo(Clazz, RecordComponentInfo)}
+   * Test {@link RecordComponentUsageMarker#visitRecordComponentInfo(Clazz, RecordComponentInfo)}.
+   * <ul>
+   *   <li>Then calls {@link RecordComponentInfo#referencedFieldAccept(Clazz, MemberVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link RecordComponentUsageMarker#visitRecordComponentInfo(Clazz, RecordComponentInfo)}
    */
   @Test
-  void testVisitRecordComponentInfo() {
+  @DisplayName("Test visitRecordComponentInfo(Clazz, RecordComponentInfo); then calls referencedFieldAccept(Clazz, MemberVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void RecordComponentUsageMarker.visitRecordComponentInfo(Clazz, RecordComponentInfo)"})
+  void testVisitRecordComponentInfo_thenCallsReferencedFieldAccept() {
     // Arrange
     RecordComponentUsageMarker recordComponentUsageMarker = new RecordComponentUsageMarker(new ClassUsageMarker());
     LibraryClass clazz = new LibraryClass();
@@ -38,11 +48,19 @@ class RecordComponentUsageMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link RecordComponentUsageMarker#visitProgramField(ProgramClass, ProgramField)}
+   * Test {@link RecordComponentUsageMarker#visitProgramField(ProgramClass, ProgramField)}.
+   * <ul>
+   *   <li>Given {@link ClassUsageMarker} {@link ClassUsageMarker#isUsed(Processable)} return {@code true}.</li>
+   *   <li>Then calls {@link ClassUsageMarker#isUsed(Processable)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link RecordComponentUsageMarker#visitProgramField(ProgramClass, ProgramField)}
    */
   @Test
-  void testVisitProgramField() {
+  @DisplayName("Test visitProgramField(ProgramClass, ProgramField); given ClassUsageMarker isUsed(Processable) return 'true'; then calls isUsed(Processable)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void RecordComponentUsageMarker.visitProgramField(ProgramClass, ProgramField)"})
+  void testVisitProgramField_givenClassUsageMarkerIsUsedReturnTrue_thenCallsIsUsed() {
     // Arrange
     ClassUsageMarker classUsageMarker = mock(ClassUsageMarker.class);
     when(classUsageMarker.isUsed(Mockito.<Processable>any())).thenReturn(true);
@@ -57,10 +75,14 @@ class RecordComponentUsageMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link RecordComponentUsageMarker#visitUtf8Constant(Clazz, Utf8Constant)}
+   * Test {@link RecordComponentUsageMarker#visitUtf8Constant(Clazz, Utf8Constant)}.
+   * <p>
+   * Method under test: {@link RecordComponentUsageMarker#visitUtf8Constant(Clazz, Utf8Constant)}
    */
   @Test
+  @DisplayName("Test visitUtf8Constant(Clazz, Utf8Constant)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void RecordComponentUsageMarker.visitUtf8Constant(Clazz, Utf8Constant)"})
   void testVisitUtf8Constant() {
     // Arrange
     ShortestUsageMarker usageMarker = new ShortestUsageMarker();

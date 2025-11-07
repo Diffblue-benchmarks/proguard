@@ -4,37 +4,25 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.mock;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 class ClassPathDiffblueTest {
   /**
+   * Test {@link ClassPath#hasOutput()}.
+   * <ul>
+   *   <li>Given {@link ClassPath} (default constructor) add {@link ClassPathEntry#ClassPathEntry(File, boolean)} with file is {@link Configuration#STD_OUT} and isOutput is {@code false}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ClassPath#hasOutput()}
    */
   @Test
-  void testHasOutput() {
-    // Arrange, Act and Assert
-    assertFalse((new ClassPath()).hasOutput());
-  }
-
-  /**
-   * Method under test: {@link ClassPath#hasOutput()}
-   */
-  @Test
-  void testHasOutput2() {
-    // Arrange
-    ClassPath classPath = new ClassPath();
-    classPath.add(new ClassPathEntry(Configuration.STD_OUT, true));
-
-    // Act and Assert
-    assertTrue(classPath.hasOutput());
-  }
-
-  /**
-   * Method under test: {@link ClassPath#hasOutput()}
-   */
-  @Test
-  void testHasOutput3() {
+  @DisplayName("Test hasOutput(); given ClassPath (default constructor) add ClassPathEntry(File, boolean) with file is STD_OUT and isOutput is 'false'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ClassPath.hasOutput()"})
+  void testHasOutput_givenClassPathAddClassPathEntryWithFileIsStd_outAndIsOutputIsFalse() {
     // Arrange
     ClassPath classPath = new ClassPath();
     classPath.add(new ClassPathEntry(Configuration.STD_OUT, false));
@@ -44,62 +32,54 @@ class ClassPathDiffblueTest {
   }
 
   /**
-   * Method under test: {@link ClassPath#clear()}
+   * Test {@link ClassPath#hasOutput()}.
+   * <ul>
+   *   <li>Given {@link ClassPath} (default constructor).</li>
+   *   <li>Then return {@code false}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassPath#hasOutput()}
    */
   @Test
-  void testClear() {
-    // Arrange
-    ClassPath classPath = new ClassPath();
-
-    // Act
-    classPath.clear();
-
-    // Assert
-    assertEquals(0, classPath.size());
-    assertFalse(classPath.hasOutput());
-    assertTrue(classPath.isEmpty());
+  @DisplayName("Test hasOutput(); given ClassPath (default constructor); then return 'false'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ClassPath.hasOutput()"})
+  void testHasOutput_givenClassPath_thenReturnFalse() {
+    // Arrange, Act and Assert
+    assertFalse((new ClassPath()).hasOutput());
   }
 
   /**
-   * Method under test: {@link ClassPath#clear()}
+   * Test {@link ClassPath#hasOutput()}.
+   * <ul>
+   *   <li>Then return {@code true}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassPath#hasOutput()}
    */
   @Test
-  void testClear2() {
-    // Arrange
-    ClassPath classPath = new ClassPath();
-    classPath.add(new ClassPathEntry(Configuration.STD_OUT, true));
-    classPath.add(1, mock(ClassPathEntry.class));
-
-    // Act
-    classPath.clear();
-
-    // Assert
-    assertEquals(0, classPath.size());
-    assertFalse(classPath.hasOutput());
-    assertTrue(classPath.isEmpty());
-  }
-
-  /**
-   * Method under test: {@link ClassPath#add(int, ClassPathEntry)}
-   */
-  @Test
-  void testAdd() {
+  @DisplayName("Test hasOutput(); then return 'true'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ClassPath.hasOutput()"})
+  void testHasOutput_thenReturnTrue() {
     // Arrange
     ClassPath classPath = new ClassPath();
     classPath.add(new ClassPathEntry(Configuration.STD_OUT, true));
 
-    // Act
-    classPath.add(1, new ClassPathEntry(Configuration.STD_OUT, true));
-
-    // Assert
-    assertEquals(2, classPath.size());
+    // Act and Assert
+    assertTrue(classPath.hasOutput());
   }
 
   /**
+   * Test {@link ClassPath#add(ClassPathEntry)} with {@code classPathEntry}.
+   * <p>
    * Method under test: {@link ClassPath#add(ClassPathEntry)}
    */
   @Test
-  void testAdd2() {
+  @DisplayName("Test add(ClassPathEntry) with 'classPathEntry'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ClassPath.add(ClassPathEntry)"})
+  void testAddWithClassPathEntry() {
     // Arrange
     ClassPath classPath = new ClassPath();
 
@@ -114,22 +94,43 @@ class ClassPathDiffblueTest {
   }
 
   /**
-   * Method under test: {@link ClassPath#addAll(ClassPath)}
+   * Test {@link ClassPath#add(int, ClassPathEntry)} with {@code index}, {@code classPathEntry}.
+   * <ul>
+   *   <li>Then {@link ClassPath} (default constructor) size is two.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassPath#add(int, ClassPathEntry)}
    */
   @Test
-  void testAddAll() {
+  @DisplayName("Test add(int, ClassPathEntry) with 'index', 'classPathEntry'; then ClassPath (default constructor) size is two")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ClassPath.add(int, ClassPathEntry)"})
+  void testAddWithIndexClassPathEntry_thenClassPathSizeIsTwo() {
     // Arrange
     ClassPath classPath = new ClassPath();
+    classPath.add(new ClassPathEntry(Configuration.STD_OUT, true));
 
-    // Act and Assert
-    assertFalse(classPath.addAll(new ClassPath()));
+    // Act
+    classPath.add(1, new ClassPathEntry(Configuration.STD_OUT, true));
+
+    // Assert
+    assertEquals(2, classPath.size());
   }
 
   /**
+   * Test {@link ClassPath#addAll(ClassPath)}.
+   * <ul>
+   *   <li>Given {@link ClassPathEntry#ClassPathEntry(File, boolean)} with file is {@link Configuration#STD_OUT} and isOutput is {@code true}.</li>
+   *   <li>Then return {@code true}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ClassPath#addAll(ClassPath)}
    */
   @Test
-  void testAddAll2() {
+  @DisplayName("Test addAll(ClassPath); given ClassPathEntry(File, boolean) with file is STD_OUT and isOutput is 'true'; then return 'true'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ClassPath.addAll(ClassPath)"})
+  void testAddAll_givenClassPathEntryWithFileIsStd_outAndIsOutputIsTrue_thenReturnTrue() {
     // Arrange
     ClassPath classPath = new ClassPath();
 
@@ -141,10 +142,39 @@ class ClassPathDiffblueTest {
   }
 
   /**
+   * Test {@link ClassPath#addAll(ClassPath)}.
+   * <ul>
+   *   <li>When {@link ClassPath} (default constructor).</li>
+   *   <li>Then return {@code false}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassPath#addAll(ClassPath)}
+   */
+  @Test
+  @DisplayName("Test addAll(ClassPath); when ClassPath (default constructor); then return 'false'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ClassPath.addAll(ClassPath)"})
+  void testAddAll_whenClassPath_thenReturnFalse() {
+    // Arrange
+    ClassPath classPath = new ClassPath();
+
+    // Act and Assert
+    assertFalse(classPath.addAll(new ClassPath()));
+  }
+
+  /**
+   * Test {@link ClassPath#get(int)}.
+   * <ul>
+   *   <li>Then return {@link ClassPathEntry#ClassPathEntry(File, boolean)} with file is {@link Configuration#STD_OUT} and isOutput is {@code true}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ClassPath#get(int)}
    */
   @Test
-  void testGet() {
+  @DisplayName("Test get(int); then return ClassPathEntry(File, boolean) with file is STD_OUT and isOutput is 'true'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"ClassPathEntry ClassPath.get(int)"})
+  void testGet_thenReturnClassPathEntryWithFileIsStd_outAndIsOutputIsTrue() {
     // Arrange
     ClassPath classPath = new ClassPath();
     classPath.add(new ClassPathEntry(Configuration.STD_OUT, true));
@@ -157,10 +187,18 @@ class ClassPathDiffblueTest {
   }
 
   /**
+   * Test {@link ClassPath#remove(int)}.
+   * <ul>
+   *   <li>Then {@link ClassPath} (default constructor) size is one.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ClassPath#remove(int)}
    */
   @Test
-  void testRemove() {
+  @DisplayName("Test remove(int); then ClassPath (default constructor) size is one")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"ClassPathEntry ClassPath.remove(int)"})
+  void testRemove_thenClassPathSizeIsOne() {
     // Arrange
     ClassPath classPath = new ClassPath();
     classPath.add(new ClassPathEntry(Configuration.STD_OUT, true));
@@ -177,19 +215,36 @@ class ClassPathDiffblueTest {
   }
 
   /**
+   * Test {@link ClassPath#isEmpty()}.
+   * <ul>
+   *   <li>Given {@link ClassPath} (default constructor).</li>
+   *   <li>Then return {@code true}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ClassPath#isEmpty()}
    */
   @Test
-  void testIsEmpty() {
+  @DisplayName("Test isEmpty(); given ClassPath (default constructor); then return 'true'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ClassPath.isEmpty()"})
+  void testIsEmpty_givenClassPath_thenReturnTrue() {
     // Arrange, Act and Assert
     assertTrue((new ClassPath()).isEmpty());
   }
 
   /**
+   * Test {@link ClassPath#isEmpty()}.
+   * <ul>
+   *   <li>Then return {@code false}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ClassPath#isEmpty()}
    */
   @Test
-  void testIsEmpty2() {
+  @DisplayName("Test isEmpty(); then return 'false'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ClassPath.isEmpty()"})
+  void testIsEmpty_thenReturnFalse() {
     // Arrange
     ClassPath classPath = new ClassPath();
     classPath.add(new ClassPathEntry(Configuration.STD_OUT, true));
@@ -199,18 +254,28 @@ class ClassPathDiffblueTest {
   }
 
   /**
+   * Test {@link ClassPath#size()}.
+   * <p>
    * Method under test: {@link ClassPath#size()}
    */
   @Test
+  @DisplayName("Test size()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"int ClassPath.size()"})
   void testSize() {
     // Arrange, Act and Assert
     assertEquals(0, (new ClassPath()).size());
   }
 
   /**
+   * Test new {@link ClassPath} (default constructor).
+   * <p>
    * Method under test: default or parameterless constructor of {@link ClassPath}
    */
   @Test
+  @DisplayName("Test new ClassPath (default constructor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ClassPath.<init>()"})
   void testNewClassPath() {
     // Arrange and Act
     ClassPath actualClassPath = new ClassPath();

@@ -5,6 +5,9 @@ import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.Clazz;
@@ -14,30 +17,18 @@ import proguard.classfile.attribute.visitor.AttributeVisitor;
 
 class LocalOrAnonymousClassCheckerDiffblueTest {
   /**
-   * Methods under test:
+   * Test {@link LocalOrAnonymousClassChecker#visitProgramClass(ProgramClass)}.
    * <ul>
-   *   <li>default or parameterless constructor of
-   * {@link LocalOrAnonymousClassChecker}
-   *   <li>{@link LocalOrAnonymousClassChecker#visitAnyClass(Clazz)}
-   *   <li>{@link LocalOrAnonymousClassChecker#isLocalOrAnonymous()}
+   *   <li>Then calls {@link ProgramClass#attributesAccept(AttributeVisitor)}.</li>
    * </ul>
+   * <p>
+   * Method under test: {@link LocalOrAnonymousClassChecker#visitProgramClass(ProgramClass)}
    */
   @Test
-  void testGettersAndSetters() {
-    // Arrange and Act
-    LocalOrAnonymousClassChecker actualLocalOrAnonymousClassChecker = new LocalOrAnonymousClassChecker();
-    actualLocalOrAnonymousClassChecker.visitAnyClass(new LibraryClass());
-
-    // Assert that nothing has changed
-    assertFalse(actualLocalOrAnonymousClassChecker.isLocalOrAnonymous());
-  }
-
-  /**
-   * Method under test:
-   * {@link LocalOrAnonymousClassChecker#visitProgramClass(ProgramClass)}
-   */
-  @Test
-  void testVisitProgramClass() {
+  @DisplayName("Test visitProgramClass(ProgramClass); then calls attributesAccept(AttributeVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void LocalOrAnonymousClassChecker.visitProgramClass(ProgramClass)"})
+  void testVisitProgramClass_thenCallsAttributesAccept() {
     // Arrange
     LocalOrAnonymousClassChecker localOrAnonymousClassChecker = new LocalOrAnonymousClassChecker();
     ProgramClass programClass = mock(ProgramClass.class);
@@ -48,5 +39,30 @@ class LocalOrAnonymousClassCheckerDiffblueTest {
 
     // Assert
     verify(programClass).attributesAccept(isA(AttributeVisitor.class));
+  }
+
+  /**
+   * Test getters and setters.
+   * <p>
+   * Methods under test:
+   * <ul>
+   *   <li>default or parameterless constructor of {@link LocalOrAnonymousClassChecker}
+   *   <li>{@link LocalOrAnonymousClassChecker#visitAnyClass(Clazz)}
+   *   <li>{@link LocalOrAnonymousClassChecker#isLocalOrAnonymous()}
+   * </ul>
+   */
+  @Test
+  @DisplayName("Test getters and setters")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void LocalOrAnonymousClassChecker.<init>()",
+      "boolean LocalOrAnonymousClassChecker.isLocalOrAnonymous()",
+      "void LocalOrAnonymousClassChecker.visitAnyClass(Clazz)"})
+  void testGettersAndSetters() {
+    // Arrange and Act
+    LocalOrAnonymousClassChecker actualLocalOrAnonymousClassChecker = new LocalOrAnonymousClassChecker();
+    actualLocalOrAnonymousClassChecker.visitAnyClass(new LibraryClass());
+
+    // Assert
+    assertFalse(actualLocalOrAnonymousClassChecker.isLocalOrAnonymous());
   }
 }

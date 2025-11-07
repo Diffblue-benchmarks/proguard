@@ -5,7 +5,10 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.util.HashMap;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.Clazz;
@@ -15,11 +18,18 @@ import proguard.classfile.constant.InvokeDynamicConstant;
 
 class LambdaExpressionCollectorDiffblueTest {
   /**
-   * Method under test:
-   * {@link LambdaExpressionCollector#visitInvokeDynamicConstant(Clazz, InvokeDynamicConstant)}
+   * Test {@link LambdaExpressionCollector#visitInvokeDynamicConstant(Clazz, InvokeDynamicConstant)}.
+   * <ul>
+   *   <li>Then calls {@link LibraryClass#attributesAccept(AttributeVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link LambdaExpressionCollector#visitInvokeDynamicConstant(Clazz, InvokeDynamicConstant)}
    */
   @Test
-  void testVisitInvokeDynamicConstant() {
+  @DisplayName("Test visitInvokeDynamicConstant(Clazz, InvokeDynamicConstant); then calls attributesAccept(AttributeVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void LambdaExpressionCollector.visitInvokeDynamicConstant(Clazz, InvokeDynamicConstant)"})
+  void testVisitInvokeDynamicConstant_thenCallsAttributesAccept() {
     // Arrange
     LambdaExpressionCollector lambdaExpressionCollector = new LambdaExpressionCollector(new HashMap<>());
     LibraryClass clazz = mock(LibraryClass.class);
@@ -33,11 +43,18 @@ class LambdaExpressionCollectorDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link LambdaExpressionCollector#visitInvokeDynamicConstant(Clazz, InvokeDynamicConstant)}
+   * Test {@link LambdaExpressionCollector#visitInvokeDynamicConstant(Clazz, InvokeDynamicConstant)}.
+   * <ul>
+   *   <li>Then calls {@link InvokeDynamicConstant#getBootstrapMethodAttributeIndex()}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link LambdaExpressionCollector#visitInvokeDynamicConstant(Clazz, InvokeDynamicConstant)}
    */
   @Test
-  void testVisitInvokeDynamicConstant2() {
+  @DisplayName("Test visitInvokeDynamicConstant(Clazz, InvokeDynamicConstant); then calls getBootstrapMethodAttributeIndex()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void LambdaExpressionCollector.visitInvokeDynamicConstant(Clazz, InvokeDynamicConstant)"})
+  void testVisitInvokeDynamicConstant_thenCallsGetBootstrapMethodAttributeIndex() {
     // Arrange
     LambdaExpressionCollector lambdaExpressionCollector = new LambdaExpressionCollector(new HashMap<>());
     LibraryClass clazz = mock(LibraryClass.class);

@@ -12,10 +12,15 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import proguard.backport.AbstractAPIConverter.MethodReplacement;
+import proguard.backport.AbstractAPIConverter.TypeReplacement;
 import proguard.classfile.ClassPool;
 import proguard.classfile.Clazz;
 import proguard.classfile.LibraryClass;
@@ -56,50 +61,59 @@ import proguard.util.VariableStringMatcher;
 
 class AbstractAPIConverterDiffblueTest {
   /**
-   * Method under test:
-   * {@link AbstractAPIConverter.MethodReplacement#matches(Clazz, AnyMethodrefConstant)}
+   * Test MethodReplacement {@link MethodReplacement#matches(Clazz, AnyMethodrefConstant)}.
+   * <p>
+   * Method under test: {@link MethodReplacement#matches(Clazz, AnyMethodrefConstant)}
    */
   @Test
+  @DisplayName("Test MethodReplacement matches(Clazz, AnyMethodrefConstant)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean MethodReplacement.matches(Clazz, AnyMethodrefConstant)"})
   void testMethodReplacementMatches() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
     WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
     ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
-    AbstractAPIConverter.MethodReplacement methodReplacement = (new AbstractAPIConverter(programClassPool,
-        libraryClassPool, warningPrinter, modifiedClassVisitor,
-        new DuplicateInitializerInvocationFixer())).new MethodReplacement("Class Name", "Method Name", "Method Desc",
-            "Replacement Class Name", "Replacement Method Name", "Replacement Method Desc");
+    MethodReplacement methodReplacement = (new AbstractAPIConverter(programClassPool, libraryClassPool, warningPrinter,
+        modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).new MethodReplacement("<default>",
+            "Method Name", "Method Desc", "Replacement Class Name", "Replacement Method Name",
+            "Replacement Method Desc");
     LibraryClass clazz = mock(LibraryClass.class);
     when(clazz.getClassName(anyInt())).thenReturn("Class Name");
     when(clazz.getName(anyInt())).thenReturn("Name");
     when(clazz.getType(anyInt())).thenReturn("Type");
+    LibraryClass referencedClass = new LibraryClass();
 
     // Act
-    boolean actualMatchesResult = methodReplacement.matches(clazz, new InterfaceMethodrefConstant());
+    boolean actualMatchesResult = methodReplacement.matches(clazz,
+        new InterfaceMethodrefConstant(1, 1, referencedClass, new LibraryMethod(1, "Name", "Descriptor")));
 
     // Assert
-    verify(clazz).getClassName(eq(0));
-    verify(clazz).getName(eq(0));
-    verify(clazz).getType(eq(0));
+    verify(clazz).getClassName(eq(1));
+    verify(clazz).getName(eq(1));
+    verify(clazz).getType(eq(1));
     assertFalse(actualMatchesResult);
   }
 
   /**
-   * Method under test:
-   * {@link AbstractAPIConverter.MethodReplacement#matches(Clazz, AnyMethodrefConstant)}
+   * Test MethodReplacement {@link MethodReplacement#matches(Clazz, AnyMethodrefConstant)}.
+   * <p>
+   * Method under test: {@link MethodReplacement#matches(Clazz, AnyMethodrefConstant)}
    */
   @Test
+  @DisplayName("Test MethodReplacement matches(Clazz, AnyMethodrefConstant)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean MethodReplacement.matches(Clazz, AnyMethodrefConstant)"})
   void testMethodReplacementMatches2() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
     WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
     ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
-    AbstractAPIConverter.MethodReplacement methodReplacement = (new AbstractAPIConverter(programClassPool,
-        libraryClassPool, warningPrinter, modifiedClassVisitor,
-        new DuplicateInitializerInvocationFixer())).new MethodReplacement("Class Name", "Method Name", "Method Desc",
-            "Replacement Class Name", "Replacement Method Name", "Replacement Method Desc");
+    MethodReplacement methodReplacement = (new AbstractAPIConverter(programClassPool, libraryClassPool, warningPrinter,
+        modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).new MethodReplacement("Class Name",
+            "<default>", "Method Desc", "Replacement Class Name", "Replacement Method Name", "Replacement Method Desc");
     LibraryClass clazz = mock(LibraryClass.class);
     when(clazz.getClassName(anyInt())).thenReturn("Class Name");
     when(clazz.getName(anyInt())).thenReturn("Name");
@@ -118,20 +132,23 @@ class AbstractAPIConverterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link AbstractAPIConverter.MethodReplacement#matches(Clazz, AnyMethodrefConstant)}
+   * Test MethodReplacement {@link MethodReplacement#matches(Clazz, AnyMethodrefConstant)}.
+   * <p>
+   * Method under test: {@link MethodReplacement#matches(Clazz, AnyMethodrefConstant)}
    */
   @Test
+  @DisplayName("Test MethodReplacement matches(Clazz, AnyMethodrefConstant)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean MethodReplacement.matches(Clazz, AnyMethodrefConstant)"})
   void testMethodReplacementMatches3() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
     WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
     ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
-    AbstractAPIConverter.MethodReplacement methodReplacement = (new AbstractAPIConverter(programClassPool,
-        libraryClassPool, warningPrinter, modifiedClassVisitor,
-        new DuplicateInitializerInvocationFixer())).new MethodReplacement("<default>", "Method Name", "Method Desc",
-            "Replacement Class Name", "Replacement Method Name", "Replacement Method Desc");
+    MethodReplacement methodReplacement = (new AbstractAPIConverter(programClassPool, libraryClassPool, warningPrinter,
+        modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).new MethodReplacement("Class Name",
+            "<static>", "Method Desc", "Replacement Class Name", "Replacement Method Name", "Replacement Method Desc");
     LibraryClass clazz = mock(LibraryClass.class);
     when(clazz.getClassName(anyInt())).thenReturn("Class Name");
     when(clazz.getName(anyInt())).thenReturn("Name");
@@ -150,84 +167,23 @@ class AbstractAPIConverterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link AbstractAPIConverter.MethodReplacement#matches(Clazz, AnyMethodrefConstant)}
+   * Test MethodReplacement {@link MethodReplacement#matches(Clazz, AnyMethodrefConstant)}.
+   * <p>
+   * Method under test: {@link MethodReplacement#matches(Clazz, AnyMethodrefConstant)}
    */
   @Test
+  @DisplayName("Test MethodReplacement matches(Clazz, AnyMethodrefConstant)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean MethodReplacement.matches(Clazz, AnyMethodrefConstant)"})
   void testMethodReplacementMatches4() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
     WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
     ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
-    AbstractAPIConverter.MethodReplacement methodReplacement = (new AbstractAPIConverter(programClassPool,
-        libraryClassPool, warningPrinter, modifiedClassVisitor,
-        new DuplicateInitializerInvocationFixer())).new MethodReplacement("Class Name", "<default>", "Method Desc",
-            "Replacement Class Name", "Replacement Method Name", "Replacement Method Desc");
-    LibraryClass clazz = mock(LibraryClass.class);
-    when(clazz.getClassName(anyInt())).thenReturn("Class Name");
-    when(clazz.getName(anyInt())).thenReturn("Name");
-    when(clazz.getType(anyInt())).thenReturn("Type");
-    LibraryClass referencedClass = new LibraryClass();
-
-    // Act
-    boolean actualMatchesResult = methodReplacement.matches(clazz,
-        new InterfaceMethodrefConstant(1, 1, referencedClass, new LibraryMethod(1, "Name", "Descriptor")));
-
-    // Assert
-    verify(clazz).getClassName(eq(1));
-    verify(clazz).getName(eq(1));
-    verify(clazz).getType(eq(1));
-    assertFalse(actualMatchesResult);
-  }
-
-  /**
-   * Method under test:
-   * {@link AbstractAPIConverter.MethodReplacement#matches(Clazz, AnyMethodrefConstant)}
-   */
-  @Test
-  void testMethodReplacementMatches5() {
-    // Arrange
-    ClassPool programClassPool = new ClassPool();
-    ClassPool libraryClassPool = new ClassPool();
-    WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
-    ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
-    AbstractAPIConverter.MethodReplacement methodReplacement = (new AbstractAPIConverter(programClassPool,
-        libraryClassPool, warningPrinter, modifiedClassVisitor,
-        new DuplicateInitializerInvocationFixer())).new MethodReplacement("Class Name", "<static>", "Method Desc",
-            "Replacement Class Name", "Replacement Method Name", "Replacement Method Desc");
-    LibraryClass clazz = mock(LibraryClass.class);
-    when(clazz.getClassName(anyInt())).thenReturn("Class Name");
-    when(clazz.getName(anyInt())).thenReturn("Name");
-    when(clazz.getType(anyInt())).thenReturn("Type");
-    LibraryClass referencedClass = new LibraryClass();
-
-    // Act
-    boolean actualMatchesResult = methodReplacement.matches(clazz,
-        new InterfaceMethodrefConstant(1, 1, referencedClass, new LibraryMethod(1, "Name", "Descriptor")));
-
-    // Assert
-    verify(clazz).getClassName(eq(1));
-    verify(clazz).getName(eq(1));
-    verify(clazz).getType(eq(1));
-    assertFalse(actualMatchesResult);
-  }
-
-  /**
-   * Method under test:
-   * {@link AbstractAPIConverter.MethodReplacement#matches(Clazz, AnyMethodrefConstant)}
-   */
-  @Test
-  void testMethodReplacementMatches6() {
-    // Arrange
-    ClassPool programClassPool = new ClassPool();
-    ClassPool libraryClassPool = new ClassPool();
-    WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
-    ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
-    AbstractAPIConverter.MethodReplacement methodReplacement = (new AbstractAPIConverter(programClassPool,
-        libraryClassPool, warningPrinter, modifiedClassVisitor,
-        new DuplicateInitializerInvocationFixer())).new MethodReplacement("Class Name", "*", "Method Desc",
-            "Replacement Class Name", "Replacement Method Name", "Replacement Method Desc");
+    MethodReplacement methodReplacement = (new AbstractAPIConverter(programClassPool, libraryClassPool, warningPrinter,
+        modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).new MethodReplacement("Class Name", "*",
+            "Method Desc", "Replacement Class Name", "Replacement Method Name", "Replacement Method Desc");
     LibraryClass clazz = mock(LibraryClass.class);
     when(clazz.getClassName(anyInt())).thenReturn("Class Name");
     when(clazz.getName(anyInt())).thenReturn("Name");
@@ -249,20 +205,24 @@ class AbstractAPIConverterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link AbstractAPIConverter.MethodReplacement#matches(Clazz, AnyMethodrefConstant)}
+   * Test MethodReplacement {@link MethodReplacement#matches(Clazz, AnyMethodrefConstant)}.
+   * <p>
+   * Method under test: {@link MethodReplacement#matches(Clazz, AnyMethodrefConstant)}
    */
   @Test
-  void testMethodReplacementMatches7() {
+  @DisplayName("Test MethodReplacement matches(Clazz, AnyMethodrefConstant)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean MethodReplacement.matches(Clazz, AnyMethodrefConstant)"})
+  void testMethodReplacementMatches5() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
     WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
     ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
-    AbstractAPIConverter.MethodReplacement methodReplacement = (new AbstractAPIConverter(programClassPool,
-        libraryClassPool, warningPrinter, modifiedClassVisitor,
-        new DuplicateInitializerInvocationFixer())).new MethodReplacement("Class Name", "Method Name", "Method Desc",
-            "Replacement Class Name", "Replacement Method Name", "Replacement Method Desc");
+    MethodReplacement methodReplacement = (new AbstractAPIConverter(programClassPool, libraryClassPool, warningPrinter,
+        modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).new MethodReplacement("Class Name",
+            "Method Name", "Method Desc", "Replacement Class Name", "Replacement Method Name",
+            "Replacement Method Desc");
     LibraryClass clazz = mock(LibraryClass.class);
     when(clazz.getClassName(anyInt())).thenReturn("Class Name");
     when(clazz.getName(anyInt())).thenReturn("Name");
@@ -280,10 +240,92 @@ class AbstractAPIConverterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link AbstractAPIConverter.MethodReplacement#MethodReplacement(AbstractAPIConverter, String, String, String, String, String, String)}
+   * Test MethodReplacement {@link MethodReplacement#matches(Clazz, AnyMethodrefConstant)}.
+   * <ul>
+   *   <li>Then return {@code false}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link MethodReplacement#matches(Clazz, AnyMethodrefConstant)}
    */
   @Test
+  @DisplayName("Test MethodReplacement matches(Clazz, AnyMethodrefConstant); then return 'false'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean MethodReplacement.matches(Clazz, AnyMethodrefConstant)"})
+  void testMethodReplacementMatches_thenReturnFalse() {
+    // Arrange
+    ClassPool programClassPool = new ClassPool();
+    ClassPool libraryClassPool = new ClassPool();
+    WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
+    ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
+    MethodReplacement methodReplacement = (new AbstractAPIConverter(programClassPool, libraryClassPool, warningPrinter,
+        modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).new MethodReplacement("Class Name",
+            "Method Name", "Method Desc", "Replacement Class Name", "Replacement Method Name",
+            "Replacement Method Desc");
+    LibraryClass clazz = mock(LibraryClass.class);
+    when(clazz.getClassName(anyInt())).thenReturn("Class Name");
+    when(clazz.getName(anyInt())).thenReturn("Name");
+    when(clazz.getType(anyInt())).thenReturn("Type");
+    LibraryClass referencedClass = new LibraryClass();
+
+    // Act
+    boolean actualMatchesResult = methodReplacement.matches(clazz,
+        new InterfaceMethodrefConstant(1, 1, referencedClass, new LibraryMethod(1, "Name", "Descriptor")));
+
+    // Assert
+    verify(clazz).getClassName(eq(1));
+    verify(clazz).getName(eq(1));
+    verify(clazz).getType(eq(1));
+    assertFalse(actualMatchesResult);
+  }
+
+  /**
+   * Test MethodReplacement {@link MethodReplacement#matches(Clazz, AnyMethodrefConstant)}.
+   * <ul>
+   *   <li>When {@link InterfaceMethodrefConstant#InterfaceMethodrefConstant()}.</li>
+   *   <li>Then return {@code false}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link MethodReplacement#matches(Clazz, AnyMethodrefConstant)}
+   */
+  @Test
+  @DisplayName("Test MethodReplacement matches(Clazz, AnyMethodrefConstant); when InterfaceMethodrefConstant(); then return 'false'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean MethodReplacement.matches(Clazz, AnyMethodrefConstant)"})
+  void testMethodReplacementMatches_whenInterfaceMethodrefConstant_thenReturnFalse() {
+    // Arrange
+    ClassPool programClassPool = new ClassPool();
+    ClassPool libraryClassPool = new ClassPool();
+    WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
+    ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
+    MethodReplacement methodReplacement = (new AbstractAPIConverter(programClassPool, libraryClassPool, warningPrinter,
+        modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).new MethodReplacement("Class Name",
+            "Method Name", "Method Desc", "Replacement Class Name", "Replacement Method Name",
+            "Replacement Method Desc");
+    LibraryClass clazz = mock(LibraryClass.class);
+    when(clazz.getClassName(anyInt())).thenReturn("Class Name");
+    when(clazz.getName(anyInt())).thenReturn("Name");
+    when(clazz.getType(anyInt())).thenReturn("Type");
+
+    // Act
+    boolean actualMatchesResult = methodReplacement.matches(clazz, new InterfaceMethodrefConstant());
+
+    // Assert
+    verify(clazz).getClassName(eq(0));
+    verify(clazz).getName(eq(0));
+    verify(clazz).getType(eq(0));
+    assertFalse(actualMatchesResult);
+  }
+
+  /**
+   * Test MethodReplacement {@link MethodReplacement#MethodReplacement(AbstractAPIConverter, String, String, String, String, String, String)}.
+   * <p>
+   * Method under test: {@link MethodReplacement#MethodReplacement(AbstractAPIConverter, String, String, String, String, String, String)}
+   */
+  @Test
+  @DisplayName("Test MethodReplacement new MethodReplacement(AbstractAPIConverter, String, String, String, String, String, String)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void MethodReplacement.<init>(AbstractAPIConverter, String, String, String, String, String, String)"})
   void testMethodReplacementNewMethodReplacement() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
@@ -292,10 +334,10 @@ class AbstractAPIConverterDiffblueTest {
     ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
 
     // Act
-    AbstractAPIConverter.MethodReplacement actualMethodReplacement = (new AbstractAPIConverter(programClassPool,
-        libraryClassPool, warningPrinter, modifiedClassVisitor,
-        new DuplicateInitializerInvocationFixer())).new MethodReplacement("Class Name", "Method Name", "Method Desc",
-            "Replacement Class Name", "Replacement Method Name", "Replacement Method Desc");
+    MethodReplacement actualMethodReplacement = (new AbstractAPIConverter(programClassPool, libraryClassPool,
+        warningPrinter, modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).new MethodReplacement(
+            "Class Name", "Method Name", "Method Desc", "Replacement Class Name", "Replacement Method Name",
+            "Replacement Method Desc");
 
     // Assert
     assertTrue(actualMethodReplacement.classNameMatcher instanceof FixedStringMatcher);
@@ -304,16 +346,18 @@ class AbstractAPIConverterDiffblueTest {
     assertEquals("Class Name", actualMethodReplacement.matchingClassName);
     assertEquals("Method Desc", actualMethodReplacement.matchingMethodDesc);
     assertEquals("Method Name", actualMethodReplacement.matchingMethodName);
-    assertEquals("Replacement Class Name", actualMethodReplacement.replacementClassName);
-    assertEquals("Replacement Method Desc", actualMethodReplacement.replacementMethodDesc);
-    assertEquals("Replacement Method Name", actualMethodReplacement.replacementMethodName);
   }
 
   /**
-   * Method under test:
-   * {@link AbstractAPIConverter.MethodReplacement#MethodReplacement(AbstractAPIConverter, String, String, String, String, String, String)}
+   * Test MethodReplacement {@link MethodReplacement#MethodReplacement(AbstractAPIConverter, String, String, String, String, String, String)}.
+   * <p>
+   * Method under test: {@link MethodReplacement#MethodReplacement(AbstractAPIConverter, String, String, String, String, String, String)}
    */
   @Test
+  @DisplayName("Test MethodReplacement new MethodReplacement(AbstractAPIConverter, String, String, String, String, String, String)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void MethodReplacement.<init>(AbstractAPIConverter, String, String, String, String, String, String)"})
   void testMethodReplacementNewMethodReplacement2() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
@@ -322,10 +366,10 @@ class AbstractAPIConverterDiffblueTest {
     ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
 
     // Act
-    AbstractAPIConverter.MethodReplacement actualMethodReplacement = (new AbstractAPIConverter(programClassPool,
-        libraryClassPool, warningPrinter, modifiedClassVisitor,
-        new DuplicateInitializerInvocationFixer())).new MethodReplacement("**", "Method Name", "Method Desc",
-            "Replacement Class Name", "Replacement Method Name", "Replacement Method Desc");
+    MethodReplacement actualMethodReplacement = (new AbstractAPIConverter(programClassPool, libraryClassPool,
+        warningPrinter, modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).new MethodReplacement("**",
+            "Method Name", "Method Desc", "Replacement Class Name", "Replacement Method Name",
+            "Replacement Method Desc");
 
     // Assert
     assertTrue(actualMethodReplacement.descMatcher instanceof FixedStringMatcher);
@@ -334,16 +378,18 @@ class AbstractAPIConverterDiffblueTest {
     assertEquals("**", actualMethodReplacement.matchingClassName);
     assertEquals("Method Desc", actualMethodReplacement.matchingMethodDesc);
     assertEquals("Method Name", actualMethodReplacement.matchingMethodName);
-    assertEquals("Replacement Class Name", actualMethodReplacement.replacementClassName);
-    assertEquals("Replacement Method Desc", actualMethodReplacement.replacementMethodDesc);
-    assertEquals("Replacement Method Name", actualMethodReplacement.replacementMethodName);
   }
 
   /**
-   * Method under test:
-   * {@link AbstractAPIConverter.MethodReplacement#MethodReplacement(AbstractAPIConverter, String, String, String, String, String, String)}
+   * Test MethodReplacement {@link MethodReplacement#MethodReplacement(AbstractAPIConverter, String, String, String, String, String, String)}.
+   * <p>
+   * Method under test: {@link MethodReplacement#MethodReplacement(AbstractAPIConverter, String, String, String, String, String, String)}
    */
   @Test
+  @DisplayName("Test MethodReplacement new MethodReplacement(AbstractAPIConverter, String, String, String, String, String, String)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void MethodReplacement.<init>(AbstractAPIConverter, String, String, String, String, String, String)"})
   void testMethodReplacementNewMethodReplacement3() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
@@ -352,10 +398,76 @@ class AbstractAPIConverterDiffblueTest {
     ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
 
     // Act
-    AbstractAPIConverter.MethodReplacement actualMethodReplacement = (new AbstractAPIConverter(programClassPool,
-        libraryClassPool, warningPrinter, modifiedClassVisitor,
-        new DuplicateInitializerInvocationFixer())).new MethodReplacement("*", "Method Name", "Method Desc",
-            "Replacement Class Name", "Replacement Method Name", "Replacement Method Desc");
+    MethodReplacement actualMethodReplacement = (new AbstractAPIConverter(programClassPool, libraryClassPool,
+        warningPrinter, modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).new MethodReplacement(
+            "Class Name", "**", "Method Desc", "Replacement Class Name", "Replacement Method Name",
+            "Replacement Method Desc");
+
+    // Assert
+    assertTrue(actualMethodReplacement.classNameMatcher instanceof FixedStringMatcher);
+    assertTrue(actualMethodReplacement.methodNameMatcher instanceof VariableStringMatcher);
+    assertEquals("**", actualMethodReplacement.matchingMethodName);
+    assertEquals("Class Name", actualMethodReplacement.matchingClassName);
+  }
+
+  /**
+   * Test MethodReplacement {@link MethodReplacement#MethodReplacement(AbstractAPIConverter, String, String, String, String, String, String)}.
+   * <ul>
+   *   <li>Then {@link MethodReplacement#descMatcher} return {@link ConstantMatcher}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link MethodReplacement#MethodReplacement(AbstractAPIConverter, String, String, String, String, String, String)}
+   */
+  @Test
+  @DisplayName("Test MethodReplacement new MethodReplacement(AbstractAPIConverter, String, String, String, String, String, String); then descMatcher return ConstantMatcher")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void MethodReplacement.<init>(AbstractAPIConverter, String, String, String, String, String, String)"})
+  void testMethodReplacementNewMethodReplacement_thenDescMatcherReturnConstantMatcher() {
+    // Arrange
+    ClassPool programClassPool = new ClassPool();
+    ClassPool libraryClassPool = new ClassPool();
+    WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
+    ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
+
+    // Act
+    MethodReplacement actualMethodReplacement = (new AbstractAPIConverter(programClassPool, libraryClassPool,
+        warningPrinter, modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).new MethodReplacement(
+            "Class Name", "Method Name", "**", "Replacement Class Name", "Replacement Method Name",
+            "Replacement Method Desc");
+
+    // Assert
+    assertTrue(actualMethodReplacement.descMatcher instanceof ConstantMatcher);
+    assertTrue(actualMethodReplacement.classNameMatcher instanceof FixedStringMatcher);
+    assertEquals("**", actualMethodReplacement.matchingMethodDesc);
+    assertEquals("Class Name", actualMethodReplacement.matchingClassName);
+  }
+
+  /**
+   * Test MethodReplacement {@link MethodReplacement#MethodReplacement(AbstractAPIConverter, String, String, String, String, String, String)}.
+   * <ul>
+   *   <li>Then return {@link MethodReplacement#matchingClassName} is {@code *}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link MethodReplacement#MethodReplacement(AbstractAPIConverter, String, String, String, String, String, String)}
+   */
+  @Test
+  @DisplayName("Test MethodReplacement new MethodReplacement(AbstractAPIConverter, String, String, String, String, String, String); then return matchingClassName is '*'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void MethodReplacement.<init>(AbstractAPIConverter, String, String, String, String, String, String)"})
+  void testMethodReplacementNewMethodReplacement_thenReturnMatchingClassNameIsAsterisk() {
+    // Arrange
+    ClassPool programClassPool = new ClassPool();
+    ClassPool libraryClassPool = new ClassPool();
+    WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
+    ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
+
+    // Act
+    MethodReplacement actualMethodReplacement = (new AbstractAPIConverter(programClassPool, libraryClassPool,
+        warningPrinter, modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).new MethodReplacement("*",
+            "Method Name", "Method Desc", "Replacement Class Name", "Replacement Method Name",
+            "Replacement Method Desc");
 
     // Assert
     assertTrue(actualMethodReplacement.descMatcher instanceof FixedStringMatcher);
@@ -364,86 +476,30 @@ class AbstractAPIConverterDiffblueTest {
     assertEquals("*", actualMethodReplacement.matchingClassName);
     assertEquals("Method Desc", actualMethodReplacement.matchingMethodDesc);
     assertEquals("Method Name", actualMethodReplacement.matchingMethodName);
-    assertEquals("Replacement Class Name", actualMethodReplacement.replacementClassName);
-    assertEquals("Replacement Method Desc", actualMethodReplacement.replacementMethodDesc);
-    assertEquals("Replacement Method Name", actualMethodReplacement.replacementMethodName);
   }
 
   /**
-   * Method under test:
-   * {@link AbstractAPIConverter.MethodReplacement#MethodReplacement(AbstractAPIConverter, String, String, String, String, String, String)}
+   * Test MethodReplacement {@link MethodReplacement#replaceInstruction(int, Clazz, Method, AnyMethodrefConstant)}.
+   * <ul>
+   *   <li>Then calls {@link LibraryClass#getClassName(int)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link MethodReplacement#replaceInstruction(int, Clazz, Method, AnyMethodrefConstant)}
    */
   @Test
-  void testMethodReplacementNewMethodReplacement4() {
+  @DisplayName("Test MethodReplacement replaceInstruction(int, Clazz, Method, AnyMethodrefConstant); then calls getClassName(int)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void MethodReplacement.replaceInstruction(int, Clazz, Method, AnyMethodrefConstant)"})
+  void testMethodReplacementReplaceInstruction_thenCallsGetClassName() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
     WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
     ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
-
-    // Act
-    AbstractAPIConverter.MethodReplacement actualMethodReplacement = (new AbstractAPIConverter(programClassPool,
-        libraryClassPool, warningPrinter, modifiedClassVisitor,
-        new DuplicateInitializerInvocationFixer())).new MethodReplacement("Class Name", "**", "Method Desc",
-            "Replacement Class Name", "Replacement Method Name", "Replacement Method Desc");
-
-    // Assert
-    assertTrue(actualMethodReplacement.classNameMatcher instanceof FixedStringMatcher);
-    assertTrue(actualMethodReplacement.descMatcher instanceof FixedStringMatcher);
-    assertTrue(actualMethodReplacement.methodNameMatcher instanceof VariableStringMatcher);
-    assertEquals("**", actualMethodReplacement.matchingMethodName);
-    assertEquals("Class Name", actualMethodReplacement.matchingClassName);
-    assertEquals("Method Desc", actualMethodReplacement.matchingMethodDesc);
-    assertEquals("Replacement Class Name", actualMethodReplacement.replacementClassName);
-    assertEquals("Replacement Method Desc", actualMethodReplacement.replacementMethodDesc);
-    assertEquals("Replacement Method Name", actualMethodReplacement.replacementMethodName);
-  }
-
-  /**
-   * Method under test:
-   * {@link AbstractAPIConverter.MethodReplacement#MethodReplacement(AbstractAPIConverter, String, String, String, String, String, String)}
-   */
-  @Test
-  void testMethodReplacementNewMethodReplacement5() {
-    // Arrange
-    ClassPool programClassPool = new ClassPool();
-    ClassPool libraryClassPool = new ClassPool();
-    WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
-    ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
-
-    // Act
-    AbstractAPIConverter.MethodReplacement actualMethodReplacement = (new AbstractAPIConverter(programClassPool,
-        libraryClassPool, warningPrinter, modifiedClassVisitor,
-        new DuplicateInitializerInvocationFixer())).new MethodReplacement("Class Name", "Method Name", "**",
-            "Replacement Class Name", "Replacement Method Name", "Replacement Method Desc");
-
-    // Assert
-    assertTrue(actualMethodReplacement.descMatcher instanceof ConstantMatcher);
-    assertTrue(actualMethodReplacement.classNameMatcher instanceof FixedStringMatcher);
-    assertTrue(actualMethodReplacement.methodNameMatcher instanceof FixedStringMatcher);
-    assertEquals("**", actualMethodReplacement.matchingMethodDesc);
-    assertEquals("Class Name", actualMethodReplacement.matchingClassName);
-    assertEquals("Method Name", actualMethodReplacement.matchingMethodName);
-    assertEquals("Replacement Class Name", actualMethodReplacement.replacementClassName);
-    assertEquals("Replacement Method Desc", actualMethodReplacement.replacementMethodDesc);
-    assertEquals("Replacement Method Name", actualMethodReplacement.replacementMethodName);
-  }
-
-  /**
-   * Method under test:
-   * {@link AbstractAPIConverter.MethodReplacement#replaceInstruction(int, Clazz, Method, AnyMethodrefConstant)}
-   */
-  @Test
-  void testMethodReplacementReplaceInstruction() {
-    // Arrange
-    ClassPool programClassPool = new ClassPool();
-    ClassPool libraryClassPool = new ClassPool();
-    WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
-    ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
-    AbstractAPIConverter.MethodReplacement methodReplacement = (new AbstractAPIConverter(programClassPool,
-        libraryClassPool, warningPrinter, modifiedClassVisitor,
-        new DuplicateInitializerInvocationFixer())).new MethodReplacement("Class Name", "Method Name", "Method Desc",
-            "Replacement Class Name", "Replacement Method Name", "Replacement Method Desc");
+    MethodReplacement methodReplacement = (new AbstractAPIConverter(programClassPool, libraryClassPool, warningPrinter,
+        modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).new MethodReplacement("Class Name",
+            "Method Name", "Method Desc", "Replacement Class Name", "Replacement Method Name",
+            "Replacement Method Desc");
     LibraryClass clazz = mock(LibraryClass.class);
     when(clazz.getClassName(anyInt())).thenReturn("Class Name");
     when(clazz.getName(anyInt())).thenReturn("Name");
@@ -460,10 +516,40 @@ class AbstractAPIConverterDiffblueTest {
   }
 
   /**
-   * Method under test: {@link AbstractAPIConverter#replace(String, String)}
+   * Test {@link AbstractAPIConverter#AbstractAPIConverter(ClassPool, ClassPool, WarningPrinter, ClassVisitor, InstructionVisitor)}.
+   * <p>
+   * Method under test: {@link AbstractAPIConverter#AbstractAPIConverter(ClassPool, ClassPool, WarningPrinter, ClassVisitor, InstructionVisitor)}
    */
   @Test
-  void testReplace() {
+  @DisplayName("Test new AbstractAPIConverter(ClassPool, ClassPool, WarningPrinter, ClassVisitor, InstructionVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void AbstractAPIConverter.<init>(ClassPool, ClassPool, WarningPrinter, ClassVisitor, InstructionVisitor)"})
+  void testNewAbstractAPIConverter() {
+    // Arrange
+    ClassPool programClassPool = new ClassPool();
+    ClassPool libraryClassPool = new ClassPool();
+    WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
+    ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
+
+    // Act and Assert
+    TypeReplacement missingResult = (new AbstractAPIConverter(programClassPool, libraryClassPool, warningPrinter,
+        modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).missing("Class Name");
+    assertTrue(missingResult.classNameMatcher instanceof FixedStringMatcher);
+    assertEquals("Class Name", missingResult.matchingClassName);
+    assertNull(missingResult.replacementClassName);
+  }
+
+  /**
+   * Test {@link AbstractAPIConverter#replace(String, String, String, String, String, String)} with {@code className}, {@code methodName}, {@code methodDesc}, {@code replacementClassName}, {@code replacementMethodName}, {@code replacementMethodDesc}.
+   * <p>
+   * Method under test: {@link AbstractAPIConverter#replace(String, String, String, String, String, String)}
+   */
+  @Test
+  @DisplayName("Test replace(String, String, String, String, String, String) with 'className', 'methodName', 'methodDesc', 'replacementClassName', 'replacementMethodName', 'replacementMethodDesc'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"MethodReplacement AbstractAPIConverter.replace(String, String, String, String, String, String)"})
+  void testReplaceWithClassNameMethodNameMethodDescReplacementClassNameReplacementMethodNameReplacementMethodDesc() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
@@ -471,9 +557,217 @@ class AbstractAPIConverterDiffblueTest {
     ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
 
     // Act
-    AbstractAPIConverter.TypeReplacement actualReplaceResult = (new AbstractAPIConverter(programClassPool,
-        libraryClassPool, warningPrinter, modifiedClassVisitor, new DuplicateInitializerInvocationFixer()))
-            .replace("Class Name", "Replacement Class Name");
+    MethodReplacement actualReplaceResult = (new AbstractAPIConverter(programClassPool, libraryClassPool,
+        warningPrinter, modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).replace("Class Name",
+            "Method Name", "Method Desc", "Replacement Class Name", "Replacement Method Name",
+            "Replacement Method Desc");
+
+    // Assert
+    assertTrue(actualReplaceResult.classNameMatcher instanceof FixedStringMatcher);
+    assertEquals("Class Name", actualReplaceResult.matchingClassName);
+    assertNull(actualReplaceResult.replacementClassName);
+    assertNull(actualReplaceResult.replacementMethodDesc);
+    assertNull(actualReplaceResult.replacementMethodName);
+  }
+
+  /**
+   * Test {@link AbstractAPIConverter#replace(String, String, String, String, String, String)} with {@code className}, {@code methodName}, {@code methodDesc}, {@code replacementClassName}, {@code replacementMethodName}, {@code replacementMethodDesc}.
+   * <p>
+   * Method under test: {@link AbstractAPIConverter#replace(String, String, String, String, String, String)}
+   */
+  @Test
+  @DisplayName("Test replace(String, String, String, String, String, String) with 'className', 'methodName', 'methodDesc', 'replacementClassName', 'replacementMethodName', 'replacementMethodDesc'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"MethodReplacement AbstractAPIConverter.replace(String, String, String, String, String, String)"})
+  void testReplaceWithClassNameMethodNameMethodDescReplacementClassNameReplacementMethodNameReplacementMethodDesc2() {
+    // Arrange
+    ClassPool programClassPool = new ClassPool();
+    ClassPool libraryClassPool = new ClassPool();
+    WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
+    ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
+
+    // Act
+    MethodReplacement actualReplaceResult = (new AbstractAPIConverter(programClassPool, libraryClassPool,
+        warningPrinter, modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).replace("**", "Method Name",
+            "Method Desc", "Replacement Class Name", "Replacement Method Name", "Replacement Method Desc");
+
+    // Assert
+    assertTrue(actualReplaceResult.classNameMatcher instanceof VariableStringMatcher);
+    assertEquals("**", actualReplaceResult.matchingClassName);
+    assertNull(actualReplaceResult.replacementClassName);
+    assertNull(actualReplaceResult.replacementMethodDesc);
+    assertNull(actualReplaceResult.replacementMethodName);
+  }
+
+  /**
+   * Test {@link AbstractAPIConverter#replace(String, String, String, String, String, String)} with {@code className}, {@code methodName}, {@code methodDesc}, {@code replacementClassName}, {@code replacementMethodName}, {@code replacementMethodDesc}.
+   * <p>
+   * Method under test: {@link AbstractAPIConverter#replace(String, String, String, String, String, String)}
+   */
+  @Test
+  @DisplayName("Test replace(String, String, String, String, String, String) with 'className', 'methodName', 'methodDesc', 'replacementClassName', 'replacementMethodName', 'replacementMethodDesc'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"MethodReplacement AbstractAPIConverter.replace(String, String, String, String, String, String)"})
+  void testReplaceWithClassNameMethodNameMethodDescReplacementClassNameReplacementMethodNameReplacementMethodDesc3() {
+    // Arrange
+    ClassPool programClassPool = new ClassPool();
+    ClassPool libraryClassPool = new ClassPool();
+    WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
+    ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
+
+    // Act
+    MethodReplacement actualReplaceResult = (new AbstractAPIConverter(programClassPool, libraryClassPool,
+        warningPrinter, modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).replace("*", "Method Name",
+            "Method Desc", "Replacement Class Name", "Replacement Method Name", "Replacement Method Desc");
+
+    // Assert
+    assertTrue(actualReplaceResult.classNameMatcher instanceof VariableStringMatcher);
+    assertEquals("*", actualReplaceResult.matchingClassName);
+    assertNull(actualReplaceResult.replacementClassName);
+    assertNull(actualReplaceResult.replacementMethodDesc);
+    assertNull(actualReplaceResult.replacementMethodName);
+  }
+
+  /**
+   * Test {@link AbstractAPIConverter#replace(String, String, String, String, String, String)} with {@code className}, {@code methodName}, {@code methodDesc}, {@code replacementClassName}, {@code replacementMethodName}, {@code replacementMethodDesc}.
+   * <p>
+   * Method under test: {@link AbstractAPIConverter#replace(String, String, String, String, String, String)}
+   */
+  @Test
+  @DisplayName("Test replace(String, String, String, String, String, String) with 'className', 'methodName', 'methodDesc', 'replacementClassName', 'replacementMethodName', 'replacementMethodDesc'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"MethodReplacement AbstractAPIConverter.replace(String, String, String, String, String, String)"})
+  void testReplaceWithClassNameMethodNameMethodDescReplacementClassNameReplacementMethodNameReplacementMethodDesc4() {
+    // Arrange
+    ClassPool programClassPool = new ClassPool();
+    ClassPool libraryClassPool = new ClassPool();
+    WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
+    ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
+
+    // Act
+    MethodReplacement actualReplaceResult = (new AbstractAPIConverter(programClassPool, libraryClassPool,
+        warningPrinter, modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).replace("Class Name", "**",
+            "Method Desc", "Replacement Class Name", "Replacement Method Name", "Replacement Method Desc");
+
+    // Assert
+    assertTrue(actualReplaceResult.classNameMatcher instanceof FixedStringMatcher);
+    assertTrue(actualReplaceResult.methodNameMatcher instanceof VariableStringMatcher);
+    assertEquals("**", actualReplaceResult.matchingMethodName);
+    assertEquals("Class Name", actualReplaceResult.matchingClassName);
+    assertNull(actualReplaceResult.replacementClassName);
+    assertNull(actualReplaceResult.replacementMethodDesc);
+    assertNull(actualReplaceResult.replacementMethodName);
+  }
+
+  /**
+   * Test {@link AbstractAPIConverter#replace(String, String, String, String, String, String)} with {@code className}, {@code methodName}, {@code methodDesc}, {@code replacementClassName}, {@code replacementMethodName}, {@code replacementMethodDesc}.
+   * <p>
+   * Method under test: {@link AbstractAPIConverter#replace(String, String, String, String, String, String)}
+   */
+  @Test
+  @DisplayName("Test replace(String, String, String, String, String, String) with 'className', 'methodName', 'methodDesc', 'replacementClassName', 'replacementMethodName', 'replacementMethodDesc'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"MethodReplacement AbstractAPIConverter.replace(String, String, String, String, String, String)"})
+  void testReplaceWithClassNameMethodNameMethodDescReplacementClassNameReplacementMethodNameReplacementMethodDesc5() {
+    // Arrange
+    ClassPool programClassPool = new ClassPool();
+    ClassPool libraryClassPool = new ClassPool();
+    WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
+    ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
+
+    // Act
+    MethodReplacement actualReplaceResult = (new AbstractAPIConverter(programClassPool, libraryClassPool,
+        warningPrinter, modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).replace("Class Name",
+            "Method Name", "**", "Replacement Class Name", "Replacement Method Name", "Replacement Method Desc");
+
+    // Assert
+    assertTrue(actualReplaceResult.descMatcher instanceof ConstantMatcher);
+    assertTrue(actualReplaceResult.classNameMatcher instanceof FixedStringMatcher);
+    assertEquals("**", actualReplaceResult.matchingMethodDesc);
+    assertEquals("Class Name", actualReplaceResult.matchingClassName);
+    assertNull(actualReplaceResult.replacementClassName);
+    assertNull(actualReplaceResult.replacementMethodDesc);
+    assertNull(actualReplaceResult.replacementMethodName);
+  }
+
+  /**
+   * Test {@link AbstractAPIConverter#replace(String, String, String, String, String, String)} with {@code className}, {@code methodName}, {@code methodDesc}, {@code replacementClassName}, {@code replacementMethodName}, {@code replacementMethodDesc}.
+   * <p>
+   * Method under test: {@link AbstractAPIConverter#replace(String, String, String, String, String, String)}
+   */
+  @Test
+  @DisplayName("Test replace(String, String, String, String, String, String) with 'className', 'methodName', 'methodDesc', 'replacementClassName', 'replacementMethodName', 'replacementMethodDesc'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"MethodReplacement AbstractAPIConverter.replace(String, String, String, String, String, String)"})
+  void testReplaceWithClassNameMethodNameMethodDescReplacementClassNameReplacementMethodNameReplacementMethodDesc6() {
+    // Arrange
+    ClassPool programClassPool = new ClassPool();
+    ClassPool libraryClassPool = new ClassPool();
+    WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
+    ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
+
+    // Act
+    MethodReplacement actualReplaceResult = (new AbstractAPIConverter(programClassPool, libraryClassPool,
+        warningPrinter, modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).replace("Class Name",
+            "Method Name", "Method Desc", "**", "Replacement Method Name", "Replacement Method Desc");
+
+    // Assert
+    assertTrue(actualReplaceResult.classNameMatcher instanceof FixedStringMatcher);
+    assertEquals("**", actualReplaceResult.replacementClassName);
+    assertEquals("Class Name", actualReplaceResult.matchingClassName);
+    assertEquals("Replacement Method Desc", actualReplaceResult.replacementMethodDesc);
+    assertEquals("Replacement Method Name", actualReplaceResult.replacementMethodName);
+  }
+
+  /**
+   * Test {@link AbstractAPIConverter#replace(String, String, String, String, String, String)} with {@code className}, {@code methodName}, {@code methodDesc}, {@code replacementClassName}, {@code replacementMethodName}, {@code replacementMethodDesc}.
+   * <p>
+   * Method under test: {@link AbstractAPIConverter#replace(String, String, String, String, String, String)}
+   */
+  @Test
+  @DisplayName("Test replace(String, String, String, String, String, String) with 'className', 'methodName', 'methodDesc', 'replacementClassName', 'replacementMethodName', 'replacementMethodDesc'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"MethodReplacement AbstractAPIConverter.replace(String, String, String, String, String, String)"})
+  void testReplaceWithClassNameMethodNameMethodDescReplacementClassNameReplacementMethodNameReplacementMethodDesc7() {
+    // Arrange
+    ClassPool programClassPool = new ClassPool();
+    ClassPool libraryClassPool = new ClassPool();
+    WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
+    ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
+
+    // Act
+    MethodReplacement actualReplaceResult = (new AbstractAPIConverter(programClassPool, libraryClassPool,
+        warningPrinter, modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).replace("Class Name",
+            "Method Name", "Method Desc", "<1>", "Replacement Method Name", "Replacement Method Desc");
+
+    // Assert
+    assertTrue(actualReplaceResult.classNameMatcher instanceof FixedStringMatcher);
+    assertEquals("<1>", actualReplaceResult.replacementClassName);
+    assertEquals("Class Name", actualReplaceResult.matchingClassName);
+    assertEquals("Replacement Method Desc", actualReplaceResult.replacementMethodDesc);
+    assertEquals("Replacement Method Name", actualReplaceResult.replacementMethodName);
+  }
+
+  /**
+   * Test {@link AbstractAPIConverter#replace(String, String)} with {@code className}, {@code replacementClassName}.
+   * <p>
+   * Method under test: {@link AbstractAPIConverter#replace(String, String)}
+   */
+  @Test
+  @DisplayName("Test replace(String, String) with 'className', 'replacementClassName'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"TypeReplacement AbstractAPIConverter.replace(String, String)"})
+  void testReplaceWithClassNameReplacementClassName() {
+    // Arrange
+    ClassPool programClassPool = new ClassPool();
+    ClassPool libraryClassPool = new ClassPool();
+    WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
+    ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
+
+    // Act
+    TypeReplacement actualReplaceResult = (new AbstractAPIConverter(programClassPool, libraryClassPool, warningPrinter,
+        modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).replace("Class Name",
+            "Replacement Class Name");
 
     // Assert
     assertTrue(actualReplaceResult.classNameMatcher instanceof FixedStringMatcher);
@@ -482,10 +776,15 @@ class AbstractAPIConverterDiffblueTest {
   }
 
   /**
+   * Test {@link AbstractAPIConverter#replace(String, String)} with {@code className}, {@code replacementClassName}.
+   * <p>
    * Method under test: {@link AbstractAPIConverter#replace(String, String)}
    */
   @Test
-  void testReplace2() {
+  @DisplayName("Test replace(String, String) with 'className', 'replacementClassName'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"TypeReplacement AbstractAPIConverter.replace(String, String)"})
+  void testReplaceWithClassNameReplacementClassName2() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
@@ -493,9 +792,8 @@ class AbstractAPIConverterDiffblueTest {
     ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
 
     // Act
-    AbstractAPIConverter.TypeReplacement actualReplaceResult = (new AbstractAPIConverter(programClassPool,
-        libraryClassPool, warningPrinter, modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).replace("*",
-            "Replacement Class Name");
+    TypeReplacement actualReplaceResult = (new AbstractAPIConverter(programClassPool, libraryClassPool, warningPrinter,
+        modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).replace("*", "Replacement Class Name");
 
     // Assert
     assertTrue(actualReplaceResult.classNameMatcher instanceof VariableStringMatcher);
@@ -504,10 +802,15 @@ class AbstractAPIConverterDiffblueTest {
   }
 
   /**
+   * Test {@link AbstractAPIConverter#replace(String, String)} with {@code className}, {@code replacementClassName}.
+   * <p>
    * Method under test: {@link AbstractAPIConverter#replace(String, String)}
    */
   @Test
-  void testReplace3() {
+  @DisplayName("Test replace(String, String) with 'className', 'replacementClassName'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"TypeReplacement AbstractAPIConverter.replace(String, String)"})
+  void testReplaceWithClassNameReplacementClassName3() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
@@ -515,9 +818,8 @@ class AbstractAPIConverterDiffblueTest {
     ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
 
     // Act
-    AbstractAPIConverter.TypeReplacement actualReplaceResult = (new AbstractAPIConverter(programClassPool,
-        libraryClassPool, warningPrinter, modifiedClassVisitor, new DuplicateInitializerInvocationFixer()))
-            .replace("Class Name", "*");
+    TypeReplacement actualReplaceResult = (new AbstractAPIConverter(programClassPool, libraryClassPool, warningPrinter,
+        modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).replace("Class Name", "*");
 
     // Assert
     assertTrue(actualReplaceResult.classNameMatcher instanceof FixedStringMatcher);
@@ -526,10 +828,18 @@ class AbstractAPIConverterDiffblueTest {
   }
 
   /**
+   * Test {@link AbstractAPIConverter#replace(String, String)} with {@code className}, {@code replacementClassName}.
+   * <ul>
+   *   <li>Then return {@link TypeReplacement#replacementClassName} is {@code <1>}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link AbstractAPIConverter#replace(String, String)}
    */
   @Test
-  void testReplace4() {
+  @DisplayName("Test replace(String, String) with 'className', 'replacementClassName'; then return replacementClassName is '<1>'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"TypeReplacement AbstractAPIConverter.replace(String, String)"})
+  void testReplaceWithClassNameReplacementClassName_thenReturnReplacementClassNameIs1() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
@@ -537,9 +847,8 @@ class AbstractAPIConverterDiffblueTest {
     ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
 
     // Act
-    AbstractAPIConverter.TypeReplacement actualReplaceResult = (new AbstractAPIConverter(programClassPool,
-        libraryClassPool, warningPrinter, modifiedClassVisitor, new DuplicateInitializerInvocationFixer()))
-            .replace("Class Name", "<1>");
+    TypeReplacement actualReplaceResult = (new AbstractAPIConverter(programClassPool, libraryClassPool, warningPrinter,
+        modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).replace("Class Name", "<1>");
 
     // Assert
     assertTrue(actualReplaceResult.classNameMatcher instanceof FixedStringMatcher);
@@ -548,11 +857,15 @@ class AbstractAPIConverterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link AbstractAPIConverter#replace(String, String, String, String, String, String)}
+   * Test {@link AbstractAPIConverter#missing(String, String, String)} with {@code className}, {@code methodName}, {@code methodDesc}.
+   * <p>
+   * Method under test: {@link AbstractAPIConverter#missing(String, String, String)}
    */
   @Test
-  void testReplace5() {
+  @DisplayName("Test missing(String, String, String) with 'className', 'methodName', 'methodDesc'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"MethodReplacement AbstractAPIConverter.missing(String, String, String)"})
+  void testMissingWithClassNameMethodNameMethodDesc() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
@@ -560,260 +873,9 @@ class AbstractAPIConverterDiffblueTest {
     ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
 
     // Act
-    AbstractAPIConverter.MethodReplacement actualReplaceResult = (new AbstractAPIConverter(programClassPool,
-        libraryClassPool, warningPrinter, modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).replace(
-            "Class Name", "Method Name", "Method Desc", "Replacement Class Name", "Replacement Method Name",
-            "Replacement Method Desc");
-
-    // Assert
-    assertTrue(actualReplaceResult.classNameMatcher instanceof FixedStringMatcher);
-    assertTrue(actualReplaceResult.descMatcher instanceof FixedStringMatcher);
-    assertTrue(actualReplaceResult.methodNameMatcher instanceof FixedStringMatcher);
-    assertEquals("Class Name", actualReplaceResult.matchingClassName);
-    assertEquals("Method Desc", actualReplaceResult.matchingMethodDesc);
-    assertEquals("Method Name", actualReplaceResult.matchingMethodName);
-    assertNull(actualReplaceResult.replacementClassName);
-    assertNull(actualReplaceResult.replacementMethodDesc);
-    assertNull(actualReplaceResult.replacementMethodName);
-  }
-
-  /**
-   * Method under test:
-   * {@link AbstractAPIConverter#replace(String, String, String, String, String, String)}
-   */
-  @Test
-  void testReplace6() {
-    // Arrange
-    ClassPool programClassPool = new ClassPool();
-    ClassPool libraryClassPool = new ClassPool();
-    WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
-    ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
-
-    // Act
-    AbstractAPIConverter.MethodReplacement actualReplaceResult = (new AbstractAPIConverter(programClassPool,
-        libraryClassPool, warningPrinter, modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).replace(
-            "**", "Method Name", "Method Desc", "Replacement Class Name", "Replacement Method Name",
-            "Replacement Method Desc");
-
-    // Assert
-    assertTrue(actualReplaceResult.descMatcher instanceof FixedStringMatcher);
-    assertTrue(actualReplaceResult.methodNameMatcher instanceof FixedStringMatcher);
-    assertTrue(actualReplaceResult.classNameMatcher instanceof VariableStringMatcher);
-    assertEquals("**", actualReplaceResult.matchingClassName);
-    assertEquals("Method Desc", actualReplaceResult.matchingMethodDesc);
-    assertEquals("Method Name", actualReplaceResult.matchingMethodName);
-    assertNull(actualReplaceResult.replacementClassName);
-    assertNull(actualReplaceResult.replacementMethodDesc);
-    assertNull(actualReplaceResult.replacementMethodName);
-  }
-
-  /**
-   * Method under test:
-   * {@link AbstractAPIConverter#replace(String, String, String, String, String, String)}
-   */
-  @Test
-  void testReplace7() {
-    // Arrange
-    ClassPool programClassPool = new ClassPool();
-    ClassPool libraryClassPool = new ClassPool();
-    WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
-    ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
-
-    // Act
-    AbstractAPIConverter.MethodReplacement actualReplaceResult = (new AbstractAPIConverter(programClassPool,
-        libraryClassPool, warningPrinter, modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).replace("*",
-            "Method Name", "Method Desc", "Replacement Class Name", "Replacement Method Name",
-            "Replacement Method Desc");
-
-    // Assert
-    assertTrue(actualReplaceResult.descMatcher instanceof FixedStringMatcher);
-    assertTrue(actualReplaceResult.methodNameMatcher instanceof FixedStringMatcher);
-    assertTrue(actualReplaceResult.classNameMatcher instanceof VariableStringMatcher);
-    assertEquals("*", actualReplaceResult.matchingClassName);
-    assertEquals("Method Desc", actualReplaceResult.matchingMethodDesc);
-    assertEquals("Method Name", actualReplaceResult.matchingMethodName);
-    assertNull(actualReplaceResult.replacementClassName);
-    assertNull(actualReplaceResult.replacementMethodDesc);
-    assertNull(actualReplaceResult.replacementMethodName);
-  }
-
-  /**
-   * Method under test:
-   * {@link AbstractAPIConverter#replace(String, String, String, String, String, String)}
-   */
-  @Test
-  void testReplace8() {
-    // Arrange
-    ClassPool programClassPool = new ClassPool();
-    ClassPool libraryClassPool = new ClassPool();
-    WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
-    ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
-
-    // Act
-    AbstractAPIConverter.MethodReplacement actualReplaceResult = (new AbstractAPIConverter(programClassPool,
-        libraryClassPool, warningPrinter, modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).replace(
-            "Class Name", "**", "Method Desc", "Replacement Class Name", "Replacement Method Name",
-            "Replacement Method Desc");
-
-    // Assert
-    assertTrue(actualReplaceResult.classNameMatcher instanceof FixedStringMatcher);
-    assertTrue(actualReplaceResult.descMatcher instanceof FixedStringMatcher);
-    assertTrue(actualReplaceResult.methodNameMatcher instanceof VariableStringMatcher);
-    assertEquals("**", actualReplaceResult.matchingMethodName);
-    assertEquals("Class Name", actualReplaceResult.matchingClassName);
-    assertEquals("Method Desc", actualReplaceResult.matchingMethodDesc);
-    assertNull(actualReplaceResult.replacementClassName);
-    assertNull(actualReplaceResult.replacementMethodDesc);
-    assertNull(actualReplaceResult.replacementMethodName);
-  }
-
-  /**
-   * Method under test:
-   * {@link AbstractAPIConverter#replace(String, String, String, String, String, String)}
-   */
-  @Test
-  void testReplace9() {
-    // Arrange
-    ClassPool programClassPool = new ClassPool();
-    ClassPool libraryClassPool = new ClassPool();
-    WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
-    ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
-
-    // Act
-    AbstractAPIConverter.MethodReplacement actualReplaceResult = (new AbstractAPIConverter(programClassPool,
-        libraryClassPool, warningPrinter, modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).replace(
-            "Class Name", "Method Name", "**", "Replacement Class Name", "Replacement Method Name",
-            "Replacement Method Desc");
-
-    // Assert
-    assertTrue(actualReplaceResult.descMatcher instanceof ConstantMatcher);
-    assertTrue(actualReplaceResult.classNameMatcher instanceof FixedStringMatcher);
-    assertTrue(actualReplaceResult.methodNameMatcher instanceof FixedStringMatcher);
-    assertEquals("**", actualReplaceResult.matchingMethodDesc);
-    assertEquals("Class Name", actualReplaceResult.matchingClassName);
-    assertEquals("Method Name", actualReplaceResult.matchingMethodName);
-    assertNull(actualReplaceResult.replacementClassName);
-    assertNull(actualReplaceResult.replacementMethodDesc);
-    assertNull(actualReplaceResult.replacementMethodName);
-  }
-
-  /**
-   * Method under test:
-   * {@link AbstractAPIConverter#replace(String, String, String, String, String, String)}
-   */
-  @Test
-  void testReplace10() {
-    // Arrange
-    ClassPool programClassPool = new ClassPool();
-    ClassPool libraryClassPool = new ClassPool();
-    WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
-    ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
-
-    // Act
-    AbstractAPIConverter.MethodReplacement actualReplaceResult = (new AbstractAPIConverter(programClassPool,
-        libraryClassPool, warningPrinter, modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).replace(
-            "Class Name", "Method Name", "Method Desc", "**", "Replacement Method Name", "Replacement Method Desc");
-
-    // Assert
-    assertTrue(actualReplaceResult.classNameMatcher instanceof FixedStringMatcher);
-    assertTrue(actualReplaceResult.descMatcher instanceof FixedStringMatcher);
-    assertTrue(actualReplaceResult.methodNameMatcher instanceof FixedStringMatcher);
-    assertEquals("**", actualReplaceResult.replacementClassName);
-    assertEquals("Class Name", actualReplaceResult.matchingClassName);
-    assertEquals("Method Desc", actualReplaceResult.matchingMethodDesc);
-    assertEquals("Method Name", actualReplaceResult.matchingMethodName);
-    assertEquals("Replacement Method Desc", actualReplaceResult.replacementMethodDesc);
-    assertEquals("Replacement Method Name", actualReplaceResult.replacementMethodName);
-  }
-
-  /**
-   * Method under test:
-   * {@link AbstractAPIConverter#replace(String, String, String, String, String, String)}
-   */
-  @Test
-  void testReplace11() {
-    // Arrange
-    ClassPool programClassPool = new ClassPool();
-    ClassPool libraryClassPool = new ClassPool();
-    WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
-    ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
-
-    // Act
-    AbstractAPIConverter.MethodReplacement actualReplaceResult = (new AbstractAPIConverter(programClassPool,
-        libraryClassPool, warningPrinter, modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).replace(
-            "Class Name", "Method Name", "Method Desc", "<1>", "Replacement Method Name", "Replacement Method Desc");
-
-    // Assert
-    assertTrue(actualReplaceResult.classNameMatcher instanceof FixedStringMatcher);
-    assertTrue(actualReplaceResult.descMatcher instanceof FixedStringMatcher);
-    assertTrue(actualReplaceResult.methodNameMatcher instanceof FixedStringMatcher);
-    assertEquals("<1>", actualReplaceResult.replacementClassName);
-    assertEquals("Class Name", actualReplaceResult.matchingClassName);
-    assertEquals("Method Desc", actualReplaceResult.matchingMethodDesc);
-    assertEquals("Method Name", actualReplaceResult.matchingMethodName);
-    assertEquals("Replacement Method Desc", actualReplaceResult.replacementMethodDesc);
-    assertEquals("Replacement Method Name", actualReplaceResult.replacementMethodName);
-  }
-
-  /**
-   * Method under test: {@link AbstractAPIConverter#missing(String)}
-   */
-  @Test
-  void testMissing() {
-    // Arrange
-    ClassPool programClassPool = new ClassPool();
-    ClassPool libraryClassPool = new ClassPool();
-    WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
-    ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
-
-    // Act
-    AbstractAPIConverter.TypeReplacement actualMissingResult = (new AbstractAPIConverter(programClassPool,
-        libraryClassPool, warningPrinter, modifiedClassVisitor, new DuplicateInitializerInvocationFixer()))
-            .missing("Class Name");
-
-    // Assert
-    assertTrue(actualMissingResult.classNameMatcher instanceof FixedStringMatcher);
-    assertEquals("Class Name", actualMissingResult.matchingClassName);
-    assertNull(actualMissingResult.replacementClassName);
-  }
-
-  /**
-   * Method under test: {@link AbstractAPIConverter#missing(String)}
-   */
-  @Test
-  void testMissing2() {
-    // Arrange
-    ClassPool programClassPool = new ClassPool();
-    ClassPool libraryClassPool = new ClassPool();
-    WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
-    ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
-
-    // Act
-    AbstractAPIConverter.TypeReplacement actualMissingResult = (new AbstractAPIConverter(programClassPool,
-        libraryClassPool, warningPrinter, modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).missing("");
-
-    // Assert
-    assertTrue(actualMissingResult.classNameMatcher instanceof EmptyStringMatcher);
-    assertEquals("", actualMissingResult.matchingClassName);
-    assertNull(actualMissingResult.replacementClassName);
-  }
-
-  /**
-   * Method under test:
-   * {@link AbstractAPIConverter#missing(String, String, String)}
-   */
-  @Test
-  void testMissing3() {
-    // Arrange
-    ClassPool programClassPool = new ClassPool();
-    ClassPool libraryClassPool = new ClassPool();
-    WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
-    ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
-
-    // Act
-    AbstractAPIConverter.MethodReplacement actualMissingResult = (new AbstractAPIConverter(programClassPool,
-        libraryClassPool, warningPrinter, modifiedClassVisitor, new DuplicateInitializerInvocationFixer()))
-            .missing("Class Name", "Method Name", "Method Desc");
+    MethodReplacement actualMissingResult = (new AbstractAPIConverter(programClassPool, libraryClassPool,
+        warningPrinter, modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).missing("Class Name",
+            "Method Name", "Method Desc");
 
     // Assert
     assertTrue(actualMissingResult.classNameMatcher instanceof FixedStringMatcher);
@@ -822,17 +884,18 @@ class AbstractAPIConverterDiffblueTest {
     assertEquals("Class Name", actualMissingResult.matchingClassName);
     assertEquals("Method Desc", actualMissingResult.matchingMethodDesc);
     assertEquals("Method Name", actualMissingResult.matchingMethodName);
-    assertNull(actualMissingResult.replacementClassName);
-    assertNull(actualMissingResult.replacementMethodDesc);
-    assertNull(actualMissingResult.replacementMethodName);
   }
 
   /**
-   * Method under test:
-   * {@link AbstractAPIConverter#missing(String, String, String)}
+   * Test {@link AbstractAPIConverter#missing(String, String, String)} with {@code className}, {@code methodName}, {@code methodDesc}.
+   * <p>
+   * Method under test: {@link AbstractAPIConverter#missing(String, String, String)}
    */
   @Test
-  void testMissing4() {
+  @DisplayName("Test missing(String, String, String) with 'className', 'methodName', 'methodDesc'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"MethodReplacement AbstractAPIConverter.missing(String, String, String)"})
+  void testMissingWithClassNameMethodNameMethodDesc2() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
@@ -840,9 +903,9 @@ class AbstractAPIConverterDiffblueTest {
     ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
 
     // Act
-    AbstractAPIConverter.MethodReplacement actualMissingResult = (new AbstractAPIConverter(programClassPool,
-        libraryClassPool, warningPrinter, modifiedClassVisitor, new DuplicateInitializerInvocationFixer()))
-            .missing("**", "Method Name", "Method Desc");
+    MethodReplacement actualMissingResult = (new AbstractAPIConverter(programClassPool, libraryClassPool,
+        warningPrinter, modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).missing("**", "Method Name",
+            "Method Desc");
 
     // Assert
     assertTrue(actualMissingResult.descMatcher instanceof FixedStringMatcher);
@@ -851,17 +914,18 @@ class AbstractAPIConverterDiffblueTest {
     assertEquals("**", actualMissingResult.matchingClassName);
     assertEquals("Method Desc", actualMissingResult.matchingMethodDesc);
     assertEquals("Method Name", actualMissingResult.matchingMethodName);
-    assertNull(actualMissingResult.replacementClassName);
-    assertNull(actualMissingResult.replacementMethodDesc);
-    assertNull(actualMissingResult.replacementMethodName);
   }
 
   /**
-   * Method under test:
-   * {@link AbstractAPIConverter#missing(String, String, String)}
+   * Test {@link AbstractAPIConverter#missing(String, String, String)} with {@code className}, {@code methodName}, {@code methodDesc}.
+   * <p>
+   * Method under test: {@link AbstractAPIConverter#missing(String, String, String)}
    */
   @Test
-  void testMissing5() {
+  @DisplayName("Test missing(String, String, String) with 'className', 'methodName', 'methodDesc'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"MethodReplacement AbstractAPIConverter.missing(String, String, String)"})
+  void testMissingWithClassNameMethodNameMethodDesc3() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
@@ -869,9 +933,9 @@ class AbstractAPIConverterDiffblueTest {
     ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
 
     // Act
-    AbstractAPIConverter.MethodReplacement actualMissingResult = (new AbstractAPIConverter(programClassPool,
-        libraryClassPool, warningPrinter, modifiedClassVisitor, new DuplicateInitializerInvocationFixer()))
-            .missing("Class Name", "**", "Method Desc");
+    MethodReplacement actualMissingResult = (new AbstractAPIConverter(programClassPool, libraryClassPool,
+        warningPrinter, modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).missing("Class Name", "**",
+            "Method Desc");
 
     // Assert
     assertTrue(actualMissingResult.classNameMatcher instanceof FixedStringMatcher);
@@ -880,17 +944,18 @@ class AbstractAPIConverterDiffblueTest {
     assertEquals("**", actualMissingResult.matchingMethodName);
     assertEquals("Class Name", actualMissingResult.matchingClassName);
     assertEquals("Method Desc", actualMissingResult.matchingMethodDesc);
-    assertNull(actualMissingResult.replacementClassName);
-    assertNull(actualMissingResult.replacementMethodDesc);
-    assertNull(actualMissingResult.replacementMethodName);
   }
 
   /**
-   * Method under test:
-   * {@link AbstractAPIConverter#missing(String, String, String)}
+   * Test {@link AbstractAPIConverter#missing(String, String, String)} with {@code className}, {@code methodName}, {@code methodDesc}.
+   * <p>
+   * Method under test: {@link AbstractAPIConverter#missing(String, String, String)}
    */
   @Test
-  void testMissing6() {
+  @DisplayName("Test missing(String, String, String) with 'className', 'methodName', 'methodDesc'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"MethodReplacement AbstractAPIConverter.missing(String, String, String)"})
+  void testMissingWithClassNameMethodNameMethodDesc4() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
@@ -898,9 +963,9 @@ class AbstractAPIConverterDiffblueTest {
     ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
 
     // Act
-    AbstractAPIConverter.MethodReplacement actualMissingResult = (new AbstractAPIConverter(programClassPool,
-        libraryClassPool, warningPrinter, modifiedClassVisitor, new DuplicateInitializerInvocationFixer()))
-            .missing("Class Name", "Method Name", "**");
+    MethodReplacement actualMissingResult = (new AbstractAPIConverter(programClassPool, libraryClassPool,
+        warningPrinter, modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).missing("Class Name",
+            "Method Name", "**");
 
     // Assert
     assertTrue(actualMissingResult.descMatcher instanceof ConstantMatcher);
@@ -909,16 +974,121 @@ class AbstractAPIConverterDiffblueTest {
     assertEquals("**", actualMissingResult.matchingMethodDesc);
     assertEquals("Class Name", actualMissingResult.matchingClassName);
     assertEquals("Method Name", actualMissingResult.matchingMethodName);
-    assertNull(actualMissingResult.replacementClassName);
-    assertNull(actualMissingResult.replacementMethodDesc);
-    assertNull(actualMissingResult.replacementMethodName);
   }
 
   /**
-   * Method under test: {@link AbstractAPIConverter.TypeReplacement#isValid()}
+   * Test {@link AbstractAPIConverter#missing(String)} with {@code className}.
+   * <ul>
+   *   <li>Then {@link TypeReplacement#classNameMatcher} return {@link EmptyStringMatcher}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link AbstractAPIConverter#missing(String)}
    */
   @Test
+  @DisplayName("Test missing(String) with 'className'; then classNameMatcher return EmptyStringMatcher")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"TypeReplacement AbstractAPIConverter.missing(String)"})
+  void testMissingWithClassName_thenClassNameMatcherReturnEmptyStringMatcher() {
+    // Arrange
+    ClassPool programClassPool = new ClassPool();
+    ClassPool libraryClassPool = new ClassPool();
+    WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
+    ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
+
+    // Act
+    TypeReplacement actualMissingResult = (new AbstractAPIConverter(programClassPool, libraryClassPool, warningPrinter,
+        modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).missing("");
+
+    // Assert
+    assertTrue(actualMissingResult.classNameMatcher instanceof EmptyStringMatcher);
+    assertEquals("", actualMissingResult.matchingClassName);
+    assertNull(actualMissingResult.replacementClassName);
+  }
+
+  /**
+   * Test {@link AbstractAPIConverter#missing(String)} with {@code className}.
+   * <ul>
+   *   <li>Then {@link TypeReplacement#classNameMatcher} return {@link FixedStringMatcher}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link AbstractAPIConverter#missing(String)}
+   */
+  @Test
+  @DisplayName("Test missing(String) with 'className'; then classNameMatcher return FixedStringMatcher")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"TypeReplacement AbstractAPIConverter.missing(String)"})
+  void testMissingWithClassName_thenClassNameMatcherReturnFixedStringMatcher() {
+    // Arrange
+    ClassPool programClassPool = new ClassPool();
+    ClassPool libraryClassPool = new ClassPool();
+    WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
+    ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
+
+    // Act
+    TypeReplacement actualMissingResult = (new AbstractAPIConverter(programClassPool, libraryClassPool, warningPrinter,
+        modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).missing("Class Name");
+
+    // Assert
+    assertTrue(actualMissingResult.classNameMatcher instanceof FixedStringMatcher);
+    assertEquals("Class Name", actualMissingResult.matchingClassName);
+    assertNull(actualMissingResult.replacementClassName);
+  }
+
+  /**
+   * Test TypeReplacement {@link TypeReplacement#isValid()}.
+   * <p>
+   * Method under test: {@link TypeReplacement#isValid()}
+   */
+  @Test
+  @DisplayName("Test TypeReplacement isValid()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean TypeReplacement.isValid()"})
   void testTypeReplacementIsValid() {
+    // Arrange
+    ClassPool programClassPool = new ClassPool();
+    ClassPool libraryClassPool = new ClassPool();
+    WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
+    ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
+
+    // Act and Assert
+    assertTrue(((new AbstractAPIConverter(programClassPool, libraryClassPool, warningPrinter, modifiedClassVisitor,
+        new DuplicateInitializerInvocationFixer())).new TypeReplacement("Matching Class Name", "*")).isValid());
+  }
+
+  /**
+   * Test TypeReplacement {@link TypeReplacement#isValid()}.
+   * <p>
+   * Method under test: {@link TypeReplacement#isValid()}
+   */
+  @Test
+  @DisplayName("Test TypeReplacement isValid()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean TypeReplacement.isValid()"})
+  void testTypeReplacementIsValid2() {
+    // Arrange
+    ClassPool programClassPool = new ClassPool();
+    ClassPool libraryClassPool = new ClassPool();
+    WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
+    ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
+
+    // Act and Assert
+    assertTrue(((new AbstractAPIConverter(programClassPool, libraryClassPool, warningPrinter, modifiedClassVisitor,
+        new DuplicateInitializerInvocationFixer())).new TypeReplacement("Matching Class Name", "<1>")).isValid());
+  }
+
+  /**
+   * Test TypeReplacement {@link TypeReplacement#isValid()}.
+   * <ul>
+   *   <li>Then return {@code false}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link TypeReplacement#isValid()}
+   */
+  @Test
+  @DisplayName("Test TypeReplacement isValid(); then return 'false'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean TypeReplacement.isValid()"})
+  void testTypeReplacementIsValid_thenReturnFalse() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
@@ -932,68 +1102,22 @@ class AbstractAPIConverterDiffblueTest {
   }
 
   /**
-   * Method under test: {@link AbstractAPIConverter.TypeReplacement#isValid()}
+   * Test TypeReplacement {@link TypeReplacement#matchesClassName(String)}.
+   * <p>
+   * Method under test: {@link TypeReplacement#matchesClassName(String)}
    */
   @Test
-  void testTypeReplacementIsValid2() {
-    // Arrange
-    ClassPool programClassPool = new ClassPool();
-    ClassPool libraryClassPool = new ClassPool();
-    WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
-    ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
-
-    // Act and Assert
-    assertTrue(((new AbstractAPIConverter(programClassPool, libraryClassPool, warningPrinter, modifiedClassVisitor,
-        new DuplicateInitializerInvocationFixer())).new TypeReplacement("Matching Class Name", "*")).isValid());
-  }
-
-  /**
-   * Method under test: {@link AbstractAPIConverter.TypeReplacement#isValid()}
-   */
-  @Test
-  void testTypeReplacementIsValid3() {
-    // Arrange
-    ClassPool programClassPool = new ClassPool();
-    ClassPool libraryClassPool = new ClassPool();
-    WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
-    ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
-
-    // Act and Assert
-    assertTrue(((new AbstractAPIConverter(programClassPool, libraryClassPool, warningPrinter, modifiedClassVisitor,
-        new DuplicateInitializerInvocationFixer())).new TypeReplacement("Matching Class Name", "<1>")).isValid());
-  }
-
-  /**
-   * Method under test:
-   * {@link AbstractAPIConverter.TypeReplacement#matchesClassName(String)}
-   */
-  @Test
+  @DisplayName("Test TypeReplacement matchesClassName(String)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean TypeReplacement.matchesClassName(String)"})
   void testTypeReplacementMatchesClassName() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
     WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
     ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
-
-    // Act and Assert
-    assertFalse(((new AbstractAPIConverter(programClassPool, libraryClassPool, warningPrinter, modifiedClassVisitor,
-        new DuplicateInitializerInvocationFixer())).new TypeReplacement("Matching Class Name",
-            "Replacement Class Name")).matchesClassName("Class Name"));
-  }
-
-  /**
-   * Method under test:
-   * {@link AbstractAPIConverter.TypeReplacement#matchesClassName(String)}
-   */
-  @Test
-  void testTypeReplacementMatchesClassName2() {
-    // Arrange
-    ClassPool programClassPool = new ClassPool();
-    ClassPool libraryClassPool = new ClassPool();
-    WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
-    ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
-    AbstractAPIConverter.TypeReplacement typeReplacement = (new AbstractAPIConverter(programClassPool, libraryClassPool,
-        warningPrinter, modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).new TypeReplacement("*",
+    TypeReplacement typeReplacement = (new AbstractAPIConverter(programClassPool, libraryClassPool, warningPrinter,
+        modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).new TypeReplacement("*",
             "Replacement Class Name");
 
     // Act
@@ -1007,10 +1131,39 @@ class AbstractAPIConverterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link AbstractAPIConverter.TypeReplacement#TypeReplacement(AbstractAPIConverter, String, String)}
+   * Test TypeReplacement {@link TypeReplacement#matchesClassName(String)}.
+   * <ul>
+   *   <li>Then return {@code false}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link TypeReplacement#matchesClassName(String)}
    */
   @Test
+  @DisplayName("Test TypeReplacement matchesClassName(String); then return 'false'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean TypeReplacement.matchesClassName(String)"})
+  void testTypeReplacementMatchesClassName_thenReturnFalse() {
+    // Arrange
+    ClassPool programClassPool = new ClassPool();
+    ClassPool libraryClassPool = new ClassPool();
+    WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
+    ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
+
+    // Act and Assert
+    assertFalse(((new AbstractAPIConverter(programClassPool, libraryClassPool, warningPrinter, modifiedClassVisitor,
+        new DuplicateInitializerInvocationFixer())).new TypeReplacement("Matching Class Name",
+            "Replacement Class Name")).matchesClassName("Class Name"));
+  }
+
+  /**
+   * Test TypeReplacement {@link TypeReplacement#TypeReplacement(AbstractAPIConverter, String, String)}.
+   * <p>
+   * Method under test: {@link TypeReplacement#TypeReplacement(AbstractAPIConverter, String, String)}
+   */
+  @Test
+  @DisplayName("Test TypeReplacement new TypeReplacement(AbstractAPIConverter, String, String)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void TypeReplacement.<init>(AbstractAPIConverter, String, String)"})
   void testTypeReplacementNewTypeReplacement() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
@@ -1019,10 +1172,9 @@ class AbstractAPIConverterDiffblueTest {
     ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
 
     // Act
-    AbstractAPIConverter.TypeReplacement actualTypeReplacement = (new AbstractAPIConverter(programClassPool,
-        libraryClassPool, warningPrinter, modifiedClassVisitor,
-        new DuplicateInitializerInvocationFixer())).new TypeReplacement("Matching Class Name",
-            "Replacement Class Name");
+    TypeReplacement actualTypeReplacement = (new AbstractAPIConverter(programClassPool, libraryClassPool,
+        warningPrinter, modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).new TypeReplacement(
+            "Matching Class Name", "Replacement Class Name");
 
     // Assert
     assertTrue(actualTypeReplacement.classNameMatcher instanceof FixedStringMatcher);
@@ -1031,10 +1183,14 @@ class AbstractAPIConverterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link AbstractAPIConverter.TypeReplacement#TypeReplacement(AbstractAPIConverter, String, String)}
+   * Test TypeReplacement {@link TypeReplacement#TypeReplacement(AbstractAPIConverter, String, String)}.
+   * <p>
+   * Method under test: {@link TypeReplacement#TypeReplacement(AbstractAPIConverter, String, String)}
    */
   @Test
+  @DisplayName("Test TypeReplacement new TypeReplacement(AbstractAPIConverter, String, String)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void TypeReplacement.<init>(AbstractAPIConverter, String, String)"})
   void testTypeReplacementNewTypeReplacement2() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
@@ -1043,9 +1199,9 @@ class AbstractAPIConverterDiffblueTest {
     ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
 
     // Act
-    AbstractAPIConverter.TypeReplacement actualTypeReplacement = (new AbstractAPIConverter(programClassPool,
-        libraryClassPool, warningPrinter, modifiedClassVisitor,
-        new DuplicateInitializerInvocationFixer())).new TypeReplacement("*", "Replacement Class Name");
+    TypeReplacement actualTypeReplacement = (new AbstractAPIConverter(programClassPool, libraryClassPool,
+        warningPrinter, modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).new TypeReplacement("*",
+            "Replacement Class Name");
 
     // Assert
     assertTrue(actualTypeReplacement.classNameMatcher instanceof VariableStringMatcher);
@@ -1054,30 +1210,41 @@ class AbstractAPIConverterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link AbstractAPIConverter.TypeReplacement#replaceClassName(Clazz, String)}
+   * Test TypeReplacement {@link TypeReplacement#replaceClassName(Clazz, String)}.
+   * <p>
+   * Method under test: {@link TypeReplacement#replaceClassName(Clazz, String)}
    */
   @Test
+  @DisplayName("Test TypeReplacement replaceClassName(Clazz, String)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"String TypeReplacement.replaceClassName(Clazz, String)"})
   void testTypeReplacementReplaceClassName() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
     WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
     ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
-    AbstractAPIConverter.TypeReplacement typeReplacement = (new AbstractAPIConverter(programClassPool, libraryClassPool,
-        warningPrinter, modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).new TypeReplacement(
-            "Matching Class Name", "Replacement Class Name");
+    TypeReplacement typeReplacement = (new AbstractAPIConverter(programClassPool, libraryClassPool, warningPrinter,
+        modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).new TypeReplacement("Matching Class Name",
+            "Replacement Class Name");
 
     // Act and Assert
     assertEquals("Replacement Class Name", typeReplacement.replaceClassName(new LibraryClass(), "Class Name"));
   }
 
   /**
-   * Method under test:
-   * {@link AbstractAPIConverter#visitProgramClass(ProgramClass)}
+   * Test {@link AbstractAPIConverter#visitProgramClass(ProgramClass)}.
+   * <ul>
+   *   <li>Then calls {@link ProgramClass#attributesAccept(AttributeVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link AbstractAPIConverter#visitProgramClass(ProgramClass)}
    */
   @Test
-  void testVisitProgramClass() {
+  @DisplayName("Test visitProgramClass(ProgramClass); then calls attributesAccept(AttributeVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void AbstractAPIConverter.visitProgramClass(ProgramClass)"})
+  void testVisitProgramClass_thenCallsAttributesAccept() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
@@ -1102,34 +1269,15 @@ class AbstractAPIConverterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link AbstractAPIConverter#visitProgramField(ProgramClass, ProgramField)}
+   * Test {@link AbstractAPIConverter#visitProgramField(ProgramClass, ProgramField)}.
+   * <p>
+   * Method under test: {@link AbstractAPIConverter#visitProgramField(ProgramClass, ProgramField)}
    */
   @Test
+  @DisplayName("Test visitProgramField(ProgramClass, ProgramField)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void AbstractAPIConverter.visitProgramField(ProgramClass, ProgramField)"})
   void testVisitProgramField() {
-    // Arrange
-    ClassPool programClassPool = new ClassPool();
-    ClassPool libraryClassPool = new ClassPool();
-    WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
-    ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
-    AbstractAPIConverter abstractAPIConverter = new AbstractAPIConverter(programClassPool, libraryClassPool,
-        warningPrinter, modifiedClassVisitor, new DuplicateInitializerInvocationFixer());
-    ProgramClass programClass = mock(ProgramClass.class);
-    when(programClass.getString(anyInt())).thenReturn("String");
-
-    // Act
-    abstractAPIConverter.visitProgramField(programClass, new ProgramField());
-
-    // Assert
-    verify(programClass).getString(eq(0));
-  }
-
-  /**
-   * Method under test:
-   * {@link AbstractAPIConverter#visitProgramField(ProgramClass, ProgramField)}
-   */
-  @Test
-  void testVisitProgramField2() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
@@ -1148,11 +1296,20 @@ class AbstractAPIConverterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link AbstractAPIConverter#visitProgramMethod(ProgramClass, ProgramMethod)}
+   * Test {@link AbstractAPIConverter#visitProgramField(ProgramClass, ProgramField)}.
+   * <ul>
+   *   <li>Given {@code String}.</li>
+   *   <li>When {@link ProgramField#ProgramField()}.</li>
+   *   <li>Then calls {@link ProgramClass#getString(int)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link AbstractAPIConverter#visitProgramField(ProgramClass, ProgramField)}
    */
   @Test
-  void testVisitProgramMethod() {
+  @DisplayName("Test visitProgramField(ProgramClass, ProgramField); given 'String'; when ProgramField(); then calls getString(int)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void AbstractAPIConverter.visitProgramField(ProgramClass, ProgramField)"})
+  void testVisitProgramField_givenString_whenProgramField_thenCallsGetString() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
@@ -1164,18 +1321,22 @@ class AbstractAPIConverterDiffblueTest {
     when(programClass.getString(anyInt())).thenReturn("String");
 
     // Act
-    abstractAPIConverter.visitProgramMethod(programClass, new ProgramMethod());
+    abstractAPIConverter.visitProgramField(programClass, new ProgramField());
 
     // Assert
     verify(programClass).getString(eq(0));
   }
 
   /**
-   * Method under test:
-   * {@link AbstractAPIConverter#visitProgramMethod(ProgramClass, ProgramMethod)}
+   * Test {@link AbstractAPIConverter#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   * <p>
+   * Method under test: {@link AbstractAPIConverter#visitProgramMethod(ProgramClass, ProgramMethod)}
    */
   @Test
-  void testVisitProgramMethod2() {
+  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void AbstractAPIConverter.visitProgramMethod(ProgramClass, ProgramMethod)"})
+  void testVisitProgramMethod() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
@@ -1194,11 +1355,50 @@ class AbstractAPIConverterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link AbstractAPIConverter#visitCodeAttribute(Clazz, Method, CodeAttribute)}
+   * Test {@link AbstractAPIConverter#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   * <ul>
+   *   <li>Given {@code String}.</li>
+   *   <li>When {@link ProgramMethod#ProgramMethod()}.</li>
+   *   <li>Then calls {@link ProgramClass#getString(int)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link AbstractAPIConverter#visitProgramMethod(ProgramClass, ProgramMethod)}
    */
   @Test
-  void testVisitCodeAttribute() {
+  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); given 'String'; when ProgramMethod(); then calls getString(int)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void AbstractAPIConverter.visitProgramMethod(ProgramClass, ProgramMethod)"})
+  void testVisitProgramMethod_givenString_whenProgramMethod_thenCallsGetString() {
+    // Arrange
+    ClassPool programClassPool = new ClassPool();
+    ClassPool libraryClassPool = new ClassPool();
+    WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
+    ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
+    AbstractAPIConverter abstractAPIConverter = new AbstractAPIConverter(programClassPool, libraryClassPool,
+        warningPrinter, modifiedClassVisitor, new DuplicateInitializerInvocationFixer());
+    ProgramClass programClass = mock(ProgramClass.class);
+    when(programClass.getString(anyInt())).thenReturn("String");
+
+    // Act
+    abstractAPIConverter.visitProgramMethod(programClass, new ProgramMethod());
+
+    // Assert
+    verify(programClass).getString(eq(0));
+  }
+
+  /**
+   * Test {@link AbstractAPIConverter#visitCodeAttribute(Clazz, Method, CodeAttribute)}.
+   * <ul>
+   *   <li>Then calls {@link CodeAttribute#attributesAccept(Clazz, Method, AttributeVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link AbstractAPIConverter#visitCodeAttribute(Clazz, Method, CodeAttribute)}
+   */
+  @Test
+  @DisplayName("Test visitCodeAttribute(Clazz, Method, CodeAttribute); then calls attributesAccept(Clazz, Method, AttributeVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void AbstractAPIConverter.visitCodeAttribute(Clazz, Method, CodeAttribute)"})
+  void testVisitCodeAttribute_thenCallsAttributesAccept() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
@@ -1224,11 +1424,18 @@ class AbstractAPIConverterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link AbstractAPIConverter#visitSignatureAttribute(Clazz, SignatureAttribute)}
+   * Test {@link AbstractAPIConverter#visitSignatureAttribute(Clazz, SignatureAttribute)} with {@code clazz}, {@code signatureAttribute}.
+   * <ul>
+   *   <li>Then calls {@link LibraryClass#getString(int)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link AbstractAPIConverter#visitSignatureAttribute(Clazz, SignatureAttribute)}
    */
   @Test
-  void testVisitSignatureAttribute() {
+  @DisplayName("Test visitSignatureAttribute(Clazz, SignatureAttribute) with 'clazz', 'signatureAttribute'; then calls getString(int)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void AbstractAPIConverter.visitSignatureAttribute(Clazz, SignatureAttribute)"})
+  void testVisitSignatureAttributeWithClazzSignatureAttribute_thenCallsGetString() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
@@ -1247,11 +1454,19 @@ class AbstractAPIConverterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link AbstractAPIConverter#visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)}
+   * Test {@link AbstractAPIConverter#visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)}.
+   * <ul>
+   *   <li>Then calls {@link AnnotationDefaultAttribute#defaultValueAccept(Clazz, ElementValueVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link AbstractAPIConverter#visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)}
    */
   @Test
-  void testVisitAnnotationDefaultAttribute() {
+  @DisplayName("Test visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute); then calls defaultValueAccept(Clazz, ElementValueVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void AbstractAPIConverter.visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)"})
+  void testVisitAnnotationDefaultAttribute_thenCallsDefaultValueAccept() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
@@ -1274,11 +1489,20 @@ class AbstractAPIConverterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link AbstractAPIConverter#visitLocalVariableInfo(Clazz, Method, CodeAttribute, LocalVariableInfo)}
+   * Test {@link AbstractAPIConverter#visitLocalVariableInfo(Clazz, Method, CodeAttribute, LocalVariableInfo)}.
+   * <ul>
+   *   <li>Given {@code String}.</li>
+   *   <li>Then calls {@link LibraryClass#getString(int)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link AbstractAPIConverter#visitLocalVariableInfo(Clazz, Method, CodeAttribute, LocalVariableInfo)}
    */
   @Test
-  void testVisitLocalVariableInfo() {
+  @DisplayName("Test visitLocalVariableInfo(Clazz, Method, CodeAttribute, LocalVariableInfo); given 'String'; then calls getString(int)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void AbstractAPIConverter.visitLocalVariableInfo(Clazz, Method, CodeAttribute, LocalVariableInfo)"})
+  void testVisitLocalVariableInfo_givenString_thenCallsGetString() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
@@ -1300,11 +1524,20 @@ class AbstractAPIConverterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link AbstractAPIConverter#visitLocalVariableTypeInfo(Clazz, Method, CodeAttribute, LocalVariableTypeInfo)}
+   * Test {@link AbstractAPIConverter#visitLocalVariableTypeInfo(Clazz, Method, CodeAttribute, LocalVariableTypeInfo)}.
+   * <ul>
+   *   <li>Given {@code String}.</li>
+   *   <li>Then calls {@link LibraryClass#getString(int)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link AbstractAPIConverter#visitLocalVariableTypeInfo(Clazz, Method, CodeAttribute, LocalVariableTypeInfo)}
    */
   @Test
-  void testVisitLocalVariableTypeInfo() {
+  @DisplayName("Test visitLocalVariableTypeInfo(Clazz, Method, CodeAttribute, LocalVariableTypeInfo); given 'String'; then calls getString(int)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void AbstractAPIConverter.visitLocalVariableTypeInfo(Clazz, Method, CodeAttribute, LocalVariableTypeInfo)"})
+  void testVisitLocalVariableTypeInfo_givenString_thenCallsGetString() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
@@ -1327,11 +1560,19 @@ class AbstractAPIConverterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link AbstractAPIConverter#visitAnnotation(Clazz, Annotation)}
+   * Test {@link AbstractAPIConverter#visitAnnotation(Clazz, Annotation)} with {@code clazz}, {@code annotation}.
+   * <ul>
+   *   <li>Given {@code String}.</li>
+   *   <li>Then calls {@link LibraryClass#getString(int)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link AbstractAPIConverter#visitAnnotation(Clazz, Annotation)}
    */
   @Test
-  void testVisitAnnotation() {
+  @DisplayName("Test visitAnnotation(Clazz, Annotation) with 'clazz', 'annotation'; given 'String'; then calls getString(int)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void AbstractAPIConverter.visitAnnotation(Clazz, Annotation)"})
+  void testVisitAnnotationWithClazzAnnotation_givenString_thenCallsGetString() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
@@ -1350,11 +1591,18 @@ class AbstractAPIConverterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link AbstractAPIConverter#visitAnnotation(Clazz, Annotation)}
+   * Test {@link AbstractAPIConverter#visitAnnotation(Clazz, Annotation)} with {@code clazz}, {@code annotation}.
+   * <ul>
+   *   <li>Then calls {@link Annotation#elementValuesAccept(Clazz, ElementValueVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link AbstractAPIConverter#visitAnnotation(Clazz, Annotation)}
    */
   @Test
-  void testVisitAnnotation2() {
+  @DisplayName("Test visitAnnotation(Clazz, Annotation) with 'clazz', 'annotation'; then calls elementValuesAccept(Clazz, ElementValueVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void AbstractAPIConverter.visitAnnotation(Clazz, Annotation)"})
+  void testVisitAnnotationWithClazzAnnotation_thenCallsElementValuesAccept() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
@@ -1376,11 +1624,20 @@ class AbstractAPIConverterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link AbstractAPIConverter#visitEnumConstantElementValue(Clazz, Annotation, EnumConstantElementValue)}
+   * Test {@link AbstractAPIConverter#visitEnumConstantElementValue(Clazz, Annotation, EnumConstantElementValue)}.
+   * <ul>
+   *   <li>Given {@code String}.</li>
+   *   <li>Then calls {@link LibraryClass#getString(int)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link AbstractAPIConverter#visitEnumConstantElementValue(Clazz, Annotation, EnumConstantElementValue)}
    */
   @Test
-  void testVisitEnumConstantElementValue() {
+  @DisplayName("Test visitEnumConstantElementValue(Clazz, Annotation, EnumConstantElementValue); given 'String'; then calls getString(int)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void AbstractAPIConverter.visitEnumConstantElementValue(Clazz, Annotation, EnumConstantElementValue)"})
+  void testVisitEnumConstantElementValue_givenString_thenCallsGetString() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
@@ -1400,11 +1657,18 @@ class AbstractAPIConverterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link AbstractAPIConverter#visitClassElementValue(Clazz, Annotation, ClassElementValue)}
+   * Test {@link AbstractAPIConverter#visitClassElementValue(Clazz, Annotation, ClassElementValue)}.
+   * <ul>
+   *   <li>Then calls {@link LibraryClass#getString(int)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link AbstractAPIConverter#visitClassElementValue(Clazz, Annotation, ClassElementValue)}
    */
   @Test
-  void testVisitClassElementValue() {
+  @DisplayName("Test visitClassElementValue(Clazz, Annotation, ClassElementValue); then calls getString(int)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void AbstractAPIConverter.visitClassElementValue(Clazz, Annotation, ClassElementValue)"})
+  void testVisitClassElementValue_thenCallsGetString() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
@@ -1424,11 +1688,19 @@ class AbstractAPIConverterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link AbstractAPIConverter#visitAnnotationElementValue(Clazz, Annotation, AnnotationElementValue)}
+   * Test {@link AbstractAPIConverter#visitAnnotationElementValue(Clazz, Annotation, AnnotationElementValue)}.
+   * <ul>
+   *   <li>Then calls {@link AnnotationElementValue#annotationAccept(Clazz, AnnotationVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link AbstractAPIConverter#visitAnnotationElementValue(Clazz, Annotation, AnnotationElementValue)}
    */
   @Test
-  void testVisitAnnotationElementValue() {
+  @DisplayName("Test visitAnnotationElementValue(Clazz, Annotation, AnnotationElementValue); then calls annotationAccept(Clazz, AnnotationVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void AbstractAPIConverter.visitAnnotationElementValue(Clazz, Annotation, AnnotationElementValue)"})
+  void testVisitAnnotationElementValue_thenCallsAnnotationAccept() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
@@ -1449,11 +1721,18 @@ class AbstractAPIConverterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link AbstractAPIConverter#visitClassConstant(Clazz, ClassConstant)}
+   * Test {@link AbstractAPIConverter#visitClassConstant(Clazz, ClassConstant)}.
+   * <ul>
+   *   <li>Then calls {@link LibraryClass#getString(int)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link AbstractAPIConverter#visitClassConstant(Clazz, ClassConstant)}
    */
   @Test
-  void testVisitClassConstant() {
+  @DisplayName("Test visitClassConstant(Clazz, ClassConstant); then calls getString(int)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void AbstractAPIConverter.visitClassConstant(Clazz, ClassConstant)"})
+  void testVisitClassConstant_thenCallsGetString() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
@@ -1472,11 +1751,19 @@ class AbstractAPIConverterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link AbstractAPIConverter#visitFieldrefConstant(Clazz, FieldrefConstant)}
+   * Test {@link AbstractAPIConverter#visitFieldrefConstant(Clazz, FieldrefConstant)}.
+   * <ul>
+   *   <li>Given {@code foo}.</li>
+   *   <li>Then calls {@link LibraryClass#getName(int)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link AbstractAPIConverter#visitFieldrefConstant(Clazz, FieldrefConstant)}
    */
   @Test
-  void testVisitFieldrefConstant() {
+  @DisplayName("Test visitFieldrefConstant(Clazz, FieldrefConstant); given 'foo'; then calls getName(int)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void AbstractAPIConverter.visitFieldrefConstant(Clazz, FieldrefConstant)"})
+  void testVisitFieldrefConstant_givenFoo_thenCallsGetName() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
@@ -1497,11 +1784,19 @@ class AbstractAPIConverterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link AbstractAPIConverter#visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant)}
+   * Test {@link AbstractAPIConverter#visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant)}.
+   * <ul>
+   *   <li>Given {@code foo}.</li>
+   *   <li>Then calls {@link LibraryClass#getClassName(int)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link AbstractAPIConverter#visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant)}
    */
   @Test
-  void testVisitAnyMethodrefConstant() {
+  @DisplayName("Test visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant); given 'foo'; then calls getClassName(int)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void AbstractAPIConverter.visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant)"})
+  void testVisitAnyMethodrefConstant_givenFoo_thenCallsGetClassName() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
@@ -1521,25 +1816,5 @@ class AbstractAPIConverterDiffblueTest {
     verify(libraryClass).getClassName(eq(0));
     verify(libraryClass, atLeast(1)).getName(eq(0));
     verify(libraryClass, atLeast(1)).getType(eq(0));
-  }
-
-  /**
-   * Method under test:
-   * {@link AbstractAPIConverter#AbstractAPIConverter(ClassPool, ClassPool, WarningPrinter, ClassVisitor, InstructionVisitor)}
-   */
-  @Test
-  void testNewAbstractAPIConverter() {
-    // Arrange
-    ClassPool programClassPool = new ClassPool();
-    ClassPool libraryClassPool = new ClassPool();
-    WarningPrinter warningPrinter = new WarningPrinter(new PrintWriter(new StringWriter()));
-    ClassVisitor modifiedClassVisitor = mock(ClassVisitor.class);
-
-    // Act and Assert
-    AbstractAPIConverter.TypeReplacement missingResult = (new AbstractAPIConverter(programClassPool, libraryClassPool,
-        warningPrinter, modifiedClassVisitor, new DuplicateInitializerInvocationFixer())).missing("Class Name");
-    assertTrue(missingResult.classNameMatcher instanceof FixedStringMatcher);
-    assertEquals("Class Name", missingResult.matchingClassName);
-    assertNull(missingResult.replacementClassName);
   }
 }

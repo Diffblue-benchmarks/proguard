@@ -4,51 +4,30 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.tools.ant.Location;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 class FilterElementDiffblueTest {
   /**
+   * Test {@link FilterElement#appendTo(List, boolean)}.
+   * <ul>
+   *   <li>Given {@code 42}.</li>
+   *   <li>When {@link ArrayList#ArrayList()} add {@code 42}.</li>
+   *   <li>Then {@link ArrayList#ArrayList()} size is two.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link FilterElement#appendTo(List, boolean)}
    */
   @Test
-  void testAppendTo() {
-    // Arrange
-    FilterElement filterElement = new FilterElement();
-    ArrayList<Object> filter = new ArrayList<>();
-
-    // Act
-    filterElement.appendTo(filter, true);
-
-    // Assert
-    assertTrue(filter.isEmpty());
-  }
-
-  /**
-   * Method under test: {@link FilterElement#appendTo(List, boolean)}
-   */
-  @Test
-  void testAppendTo2() {
-    // Arrange
-    FilterElement filterElement = new FilterElement();
-    filterElement.setName("Name");
-    ArrayList<Object> filter = new ArrayList<>();
-
-    // Act
-    filterElement.appendTo(filter, true);
-
-    // Assert
-    assertEquals(1, filter.size());
-    assertEquals("Name", filter.get(0));
-  }
-
-  /**
-   * Method under test: {@link FilterElement#appendTo(List, boolean)}
-   */
-  @Test
-  void testAppendTo3() {
+  @DisplayName("Test appendTo(List, boolean); given '42'; when ArrayList() add '42'; then ArrayList() size is two")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void FilterElement.appendTo(List, boolean)"})
+  void testAppendTo_given42_whenArrayListAdd42_thenArrayListSizeIsTwo() {
     // Arrange
     FilterElement filterElement = new FilterElement();
     filterElement.setName("Name");
@@ -66,10 +45,48 @@ class FilterElementDiffblueTest {
   }
 
   /**
+   * Test {@link FilterElement#appendTo(List, boolean)}.
+   * <ul>
+   *   <li>Given {@link FilterElement} (default constructor) Name is {@code Name}.</li>
+   *   <li>When {@link ArrayList#ArrayList()}.</li>
+   *   <li>Then {@link ArrayList#ArrayList()} size is one.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link FilterElement#appendTo(List, boolean)}
    */
   @Test
-  void testAppendTo4() {
+  @DisplayName("Test appendTo(List, boolean); given FilterElement (default constructor) Name is 'Name'; when ArrayList(); then ArrayList() size is one")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void FilterElement.appendTo(List, boolean)"})
+  void testAppendTo_givenFilterElementNameIsName_whenArrayList_thenArrayListSizeIsOne() {
+    // Arrange
+    FilterElement filterElement = new FilterElement();
+    filterElement.setName("Name");
+    ArrayList<Object> filter = new ArrayList<>();
+
+    // Act
+    filterElement.appendTo(filter, true);
+
+    // Assert
+    assertEquals(1, filter.size());
+    assertEquals("Name", filter.get(0));
+  }
+
+  /**
+   * Test {@link FilterElement#appendTo(List, boolean)}.
+   * <ul>
+   *   <li>Given {@link FilterElement} (default constructor) Name is {@code Name}.</li>
+   *   <li>When {@code false}.</li>
+   *   <li>Then {@link ArrayList#ArrayList()} size is one.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link FilterElement#appendTo(List, boolean)}
+   */
+  @Test
+  @DisplayName("Test appendTo(List, boolean); given FilterElement (default constructor) Name is 'Name'; when 'false'; then ArrayList() size is one")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void FilterElement.appendTo(List, boolean)"})
+  void testAppendTo_givenFilterElementNameIsName_whenFalse_thenArrayListSizeIsOne() {
     // Arrange
     FilterElement filterElement = new FilterElement();
     filterElement.setName("Name");
@@ -84,10 +101,40 @@ class FilterElementDiffblueTest {
   }
 
   /**
-   * Method under test: default or parameterless constructor of
-   * {@link FilterElement}
+   * Test {@link FilterElement#appendTo(List, boolean)}.
+   * <ul>
+   *   <li>Given {@link FilterElement} (default constructor).</li>
+   *   <li>When {@link ArrayList#ArrayList()}.</li>
+   *   <li>Then {@link ArrayList#ArrayList()} Empty.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link FilterElement#appendTo(List, boolean)}
    */
   @Test
+  @DisplayName("Test appendTo(List, boolean); given FilterElement (default constructor); when ArrayList(); then ArrayList() Empty")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void FilterElement.appendTo(List, boolean)"})
+  void testAppendTo_givenFilterElement_whenArrayList_thenArrayListEmpty() {
+    // Arrange
+    FilterElement filterElement = new FilterElement();
+    ArrayList<Object> filter = new ArrayList<>();
+
+    // Act
+    filterElement.appendTo(filter, true);
+
+    // Assert that nothing has changed
+    assertTrue(filter.isEmpty());
+  }
+
+  /**
+   * Test new {@link FilterElement} (default constructor).
+   * <p>
+   * Method under test: default or parameterless constructor of {@link FilterElement}
+   */
+  @Test
+  @DisplayName("Test new FilterElement (default constructor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void FilterElement.<init>()"})
   void testNewFilterElement() {
     // Arrange and Act
     FilterElement actualFilterElement = new FilterElement();

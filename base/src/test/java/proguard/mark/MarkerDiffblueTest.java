@@ -5,9 +5,12 @@ import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.net.MalformedURLException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.ClassPath;
@@ -17,17 +20,24 @@ import proguard.classfile.LibraryClass;
 import proguard.classfile.kotlin.KotlinClassKindMetadata;
 import proguard.classfile.kotlin.KotlinDeclarationContainerMetadata;
 import proguard.classfile.kotlin.KotlinSyntheticClassKindMetadata;
+import proguard.classfile.kotlin.KotlinSyntheticClassKindMetadata.Flavor;
 import proguard.classfile.kotlin.visitor.KotlinFunctionVisitor;
+import proguard.mark.Marker.KotlinDontOptimizeMarker;
 
 class MarkerDiffblueTest {
   /**
-   * Method under test:
-   * {@link Marker.KotlinDontOptimizeMarker#visitKotlinDeclarationContainerMetadata(Clazz, KotlinDeclarationContainerMetadata)}
+   * Test KotlinDontOptimizeMarker {@link KotlinDontOptimizeMarker#visitKotlinDeclarationContainerMetadata(Clazz, KotlinDeclarationContainerMetadata)}.
+   * <p>
+   * Method under test: {@link KotlinDontOptimizeMarker#visitKotlinDeclarationContainerMetadata(Clazz, KotlinDeclarationContainerMetadata)}
    */
   @Test
+  @DisplayName("Test KotlinDontOptimizeMarker visitKotlinDeclarationContainerMetadata(Clazz, KotlinDeclarationContainerMetadata)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void KotlinDontOptimizeMarker.visitKotlinDeclarationContainerMetadata(Clazz, KotlinDeclarationContainerMetadata)"})
   void testKotlinDontOptimizeMarkerVisitKotlinDeclarationContainerMetadata() {
     // Arrange
-    Marker.KotlinDontOptimizeMarker kotlinDontOptimizeMarker = new Marker.KotlinDontOptimizeMarker();
+    KotlinDontOptimizeMarker kotlinDontOptimizeMarker = new KotlinDontOptimizeMarker();
     LibraryClass clazz = new LibraryClass();
     KotlinClassKindMetadata kotlinDeclarationContainerMetadata = mock(KotlinClassKindMetadata.class);
     doNothing().when(kotlinDeclarationContainerMetadata)
@@ -41,28 +51,61 @@ class MarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link Marker.KotlinDontOptimizeMarker#visitKotlinSyntheticClassMetadata(Clazz, KotlinSyntheticClassKindMetadata)}
+   * Test KotlinDontOptimizeMarker {@link KotlinDontOptimizeMarker#visitKotlinSyntheticClassMetadata(Clazz, KotlinSyntheticClassKindMetadata)}.
+   * <p>
+   * Method under test: {@link KotlinDontOptimizeMarker#visitKotlinSyntheticClassMetadata(Clazz, KotlinSyntheticClassKindMetadata)}
    */
   @Test
+  @DisplayName("Test KotlinDontOptimizeMarker visitKotlinSyntheticClassMetadata(Clazz, KotlinSyntheticClassKindMetadata)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void KotlinDontOptimizeMarker.visitKotlinSyntheticClassMetadata(Clazz, KotlinSyntheticClassKindMetadata)"})
   void testKotlinDontOptimizeMarkerVisitKotlinSyntheticClassMetadata() {
     // Arrange
-    Marker.KotlinDontOptimizeMarker kotlinDontOptimizeMarker = new Marker.KotlinDontOptimizeMarker();
+    KotlinDontOptimizeMarker kotlinDontOptimizeMarker = new KotlinDontOptimizeMarker();
     LibraryClass clazz = new LibraryClass(1, "kotlin/jvm/internal/CallableReference",
         "kotlin/jvm/internal/CallableReference");
 
     // Act
-    kotlinDontOptimizeMarker.visitKotlinSyntheticClassMetadata(clazz, new KotlinSyntheticClassKindMetadata(
-        new int[]{1, -1, 1, -1}, 1, "Xs", "Pn", KotlinSyntheticClassKindMetadata.Flavor.REGULAR));
+    kotlinDontOptimizeMarker.visitKotlinSyntheticClassMetadata(clazz,
+        new KotlinSyntheticClassKindMetadata(new int[]{1, -1, 1, -1}, 1, "Xs", "Pn", Flavor.REGULAR));
 
     // Assert
     assertEquals(2097152, clazz.getProcessingFlags());
   }
 
   /**
+   * Test KotlinDontOptimizeMarker {@link KotlinDontOptimizeMarker#visitKotlinSyntheticClassMetadata(Clazz, KotlinSyntheticClassKindMetadata)}.
+   * <p>
+   * Method under test: {@link KotlinDontOptimizeMarker#visitKotlinSyntheticClassMetadata(Clazz, KotlinSyntheticClassKindMetadata)}
+   */
+  @Test
+  @DisplayName("Test KotlinDontOptimizeMarker visitKotlinSyntheticClassMetadata(Clazz, KotlinSyntheticClassKindMetadata)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void KotlinDontOptimizeMarker.visitKotlinSyntheticClassMetadata(Clazz, KotlinSyntheticClassKindMetadata)"})
+  void testKotlinDontOptimizeMarkerVisitKotlinSyntheticClassMetadata2() {
+    // Arrange
+    KotlinDontOptimizeMarker kotlinDontOptimizeMarker = new KotlinDontOptimizeMarker();
+    LibraryClass clazz = new LibraryClass(1, "Code", "kotlin/jvm/internal/CallableReference");
+
+    // Act
+    kotlinDontOptimizeMarker.visitKotlinSyntheticClassMetadata(clazz,
+        new KotlinSyntheticClassKindMetadata(new int[]{1, -1, 1, -1}, 1, "Xs", "Pn", Flavor.REGULAR));
+
+    // Assert that nothing has changed
+    assertEquals(0, clazz.getProcessingFlags());
+  }
+
+  /**
+   * Test {@link Marker#Marker(Configuration)}.
+   * <p>
    * Method under test: {@link Marker#Marker(Configuration)}
    */
   @Test
+  @DisplayName("Test new Marker(Configuration)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void Marker.<init>(Configuration)"})
   void testNewMarker() throws MalformedURLException {
     // Arrange
     Configuration configuration = new Configuration();

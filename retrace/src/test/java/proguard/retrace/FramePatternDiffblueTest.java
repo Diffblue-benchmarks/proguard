@@ -2,23 +2,58 @@ package proguard.retrace;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 class FramePatternDiffblueTest {
   /**
-   * Method under test: {@link FramePattern#parse(String)}
+   * Test {@link FramePattern#FramePattern(String, boolean)}.
+   * <p>
+   * Method under test: {@link FramePattern#FramePattern(String, boolean)}
    */
   @Test
-  void testParse() {
+  @DisplayName("Test new FramePattern(String, boolean)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void FramePattern.<init>(String, boolean)"})
+  void testNewFramePattern() {
     // Arrange, Act and Assert
     assertNull((new FramePattern("Regular Expression", true)).parse("Line"));
   }
 
   /**
+   * Test {@link FramePattern#parse(String)}.
+   * <ul>
+   *   <li>When {@code Line}.</li>
+   *   <li>Then return {@code null}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link FramePattern#parse(String)}
    */
   @Test
-  void testParse2() {
+  @DisplayName("Test parse(String); when 'Line'; then return 'null'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"FrameInfo FramePattern.parse(String)"})
+  void testParse_whenLine_thenReturnNull() {
+    // Arrange, Act and Assert
+    assertNull((new FramePattern("Regular Expression", true)).parse("Line"));
+  }
+
+  /**
+   * Test {@link FramePattern#parse(String)}.
+   * <ul>
+   *   <li>When {@code Regular Expression}.</li>
+   *   <li>Then return Arguments is {@code null}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link FramePattern#parse(String)}
+   */
+  @Test
+  @DisplayName("Test parse(String); when 'Regular Expression'; then return Arguments is 'null'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"FrameInfo FramePattern.parse(String)"})
+  void testParse_whenRegularExpression_thenReturnArgumentsIsNull() {
     // Arrange and Act
     FrameInfo actualParseResult = (new FramePattern("Regular Expression", true)).parse("Regular Expression");
 
@@ -33,10 +68,19 @@ class FramePatternDiffblueTest {
   }
 
   /**
+   * Test {@link FramePattern#format(String, FrameInfo)}.
+   * <ul>
+   *   <li>When {@code Line}.</li>
+   *   <li>Then return {@code null}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link FramePattern#format(String, FrameInfo)}
    */
   @Test
-  void testFormat() {
+  @DisplayName("Test format(String, FrameInfo); when 'Line'; then return 'null'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"String FramePattern.format(String, FrameInfo)"})
+  void testFormat_whenLine_thenReturnNull() {
     // Arrange
     FramePattern framePattern = new FramePattern("Regular Expression", true);
 
@@ -46,24 +90,24 @@ class FramePatternDiffblueTest {
   }
 
   /**
+   * Test {@link FramePattern#format(String, FrameInfo)}.
+   * <ul>
+   *   <li>When {@code Regular Expression}.</li>
+   *   <li>Then return {@code Regular Expression}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link FramePattern#format(String, FrameInfo)}
    */
   @Test
-  void testFormat2() {
+  @DisplayName("Test format(String, FrameInfo); when 'Regular Expression'; then return 'Regular Expression'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"String FramePattern.format(String, FrameInfo)"})
+  void testFormat_whenRegularExpression_thenReturnRegularExpression() {
     // Arrange
     FramePattern framePattern = new FramePattern("Regular Expression", true);
 
     // Act and Assert
     assertEquals("Regular Expression", framePattern.format("Regular Expression",
         new FrameInfo("Class Name", "Source File", 2, "Type", "Field Name", "Method Name", "Arguments")));
-  }
-
-  /**
-   * Method under test: {@link FramePattern#FramePattern(String, boolean)}
-   */
-  @Test
-  void testNewFramePattern() {
-    // Arrange, Act and Assert
-    assertNull((new FramePattern("Regular Expression", true)).parse("Line"));
   }
 }

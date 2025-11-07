@@ -3,19 +3,19 @@
     "reportVersion" : "2.6"
   },
   "run" : {
-    "version" : "2024.10.01-2ee2e3d-licensed",
-    "creationTimestamp" : "2025-11-05T13:23:12.16Z",
+    "version" : "2025.02.02-08b2a5a-licensed",
+    "creationTimestamp" : "2025-11-06T22:25:17.799Z",
     "command" : "dcover create --exclude-modules=proguard-app --coverage-reports --upload http://localhost:8080 --project-name proguard --name with-diffblue-tests",
-    "totalTime" : 2303.987,
-    "environmentDetectionTime" : 1.834,
-    "indexingTime" : 0.294,
-    "entryPointsTime" : 1.818,
-    "generationTime" : 2031.999,
-    "timeToFirstTest" : 155.397,
-    "timeToLastTest" : 2129.541,
-    "indexQueryTime" : 18.049,
-    "verificationTime" : 4.917,
-    "validationTime" : 91.691
+    "totalTime" : 1468.961,
+    "environmentDetectionTime" : 1.888,
+    "indexingTime" : 0.278,
+    "entryPointsTime" : 1.873,
+    "generationTime" : 1194.085,
+    "timeToFirstTest" : 168.872,
+    "timeToLastTest" : 1303.584,
+    "indexQueryTime" : 18.651,
+    "verificationTime" : 5.459,
+    "validationTime" : 87.985
   },
   "codes" : {
     "R000" : "Success",

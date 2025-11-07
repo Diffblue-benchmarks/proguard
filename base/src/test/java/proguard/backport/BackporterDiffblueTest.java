@@ -1,18 +1,26 @@
 package proguard.backport;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.net.MalformedURLException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import proguard.ClassPath;
 import proguard.Configuration;
 
 class BackporterDiffblueTest {
   /**
+   * Test {@link Backporter#Backporter(Configuration)}.
+   * <p>
    * Method under test: {@link Backporter#Backporter(Configuration)}
    */
   @Test
+  @DisplayName("Test new Backporter(Configuration)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void Backporter.<init>(Configuration)"})
   void testNewBackporter() throws MalformedURLException {
     // Arrange
     Configuration configuration = new Configuration();

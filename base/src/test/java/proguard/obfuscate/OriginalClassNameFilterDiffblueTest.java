@@ -4,6 +4,9 @@ import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.Clazz;
@@ -14,9 +17,14 @@ import proguard.testutils.cpa.NamedClass;
 
 class OriginalClassNameFilterDiffblueTest {
   /**
+   * Test {@link OriginalClassNameFilter#visitAnyClass(Clazz)}.
+   * <p>
    * Method under test: {@link OriginalClassNameFilter#visitAnyClass(Clazz)}
    */
   @Test
+  @DisplayName("Test visitAnyClass(Clazz)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void OriginalClassNameFilter.visitAnyClass(Clazz)"})
   void testVisitAnyClass() {
     // Arrange
     ClassVisitor rejectedClassVisitor = mock(ClassVisitor.class);
@@ -32,9 +40,14 @@ class OriginalClassNameFilterDiffblueTest {
   }
 
   /**
+   * Test {@link OriginalClassNameFilter#visitAnyClass(Clazz)}.
+   * <p>
    * Method under test: {@link OriginalClassNameFilter#visitAnyClass(Clazz)}
    */
   @Test
+  @DisplayName("Test visitAnyClass(Clazz)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void OriginalClassNameFilter.visitAnyClass(Clazz)"})
   void testVisitAnyClass2() {
     // Arrange
     ClassVisitor rejectedClassVisitor = mock(ClassVisitor.class);
@@ -53,9 +66,14 @@ class OriginalClassNameFilterDiffblueTest {
   }
 
   /**
+   * Test {@link OriginalClassNameFilter#visitAnyClass(Clazz)}.
+   * <p>
    * Method under test: {@link OriginalClassNameFilter#visitAnyClass(Clazz)}
    */
   @Test
+  @DisplayName("Test visitAnyClass(Clazz)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void OriginalClassNameFilter.visitAnyClass(Clazz)"})
   void testVisitAnyClass3() {
     // Arrange
     ClassVisitor acceptedClassVisitor = mock(ClassVisitor.class);
@@ -76,10 +94,18 @@ class OriginalClassNameFilterDiffblueTest {
   }
 
   /**
+   * Test {@link OriginalClassNameFilter#visitAnyClass(Clazz)}.
+   * <ul>
+   *   <li>Then calls {@link ClassVisitor#visitProgramClass(ProgramClass)}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link OriginalClassNameFilter#visitAnyClass(Clazz)}
    */
   @Test
-  void testVisitAnyClass4() {
+  @DisplayName("Test visitAnyClass(Clazz); then calls visitProgramClass(ProgramClass)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void OriginalClassNameFilter.visitAnyClass(Clazz)"})
+  void testVisitAnyClass_thenCallsVisitProgramClass() {
     // Arrange
     ClassVisitor rejectedClassVisitor = mock(ClassVisitor.class);
     doNothing().when(rejectedClassVisitor).visitProgramClass(Mockito.<ProgramClass>any());

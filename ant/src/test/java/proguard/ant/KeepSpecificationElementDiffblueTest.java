@@ -4,20 +4,27 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.tools.ant.Location;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import proguard.KeepClassSpecification;
 import proguard.MemberSpecification;
 
 class KeepSpecificationElementDiffblueTest {
   /**
-   * Method under test:
-   * {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
+   * Test {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)} with {@code keepSpecifications}, {@code markClasses}, {@code markClassMembers}, {@code markConditionally}.
+   * <p>
+   * Method under test: {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
    */
   @Test
-  void testAppendTo() {
+  @DisplayName("Test appendTo(List, boolean, boolean, boolean) with 'keepSpecifications', 'markClasses', 'markClassMembers', 'markConditionally'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void KeepSpecificationElement.appendTo(List, boolean, boolean, boolean)"})
+  void testAppendToWithKeepSpecificationsMarkClassesMarkClassMembersMarkConditionally() {
     // Arrange
     KeepSpecificationElement keepSpecificationElement = new KeepSpecificationElement();
     ArrayList<Object> keepSpecifications = new ArrayList<>();
@@ -29,34 +36,22 @@ class KeepSpecificationElementDiffblueTest {
     assertEquals(1, keepSpecifications.size());
     Object getResult = keepSpecifications.get(0);
     assertTrue(getResult instanceof KeepClassSpecification);
-    assertNull(((KeepClassSpecification) getResult).annotationType);
-    assertNull(((KeepClassSpecification) getResult).className);
-    assertNull(((KeepClassSpecification) getResult).comments);
-    assertNull(((KeepClassSpecification) getResult).extendsAnnotationType);
-    assertNull(((KeepClassSpecification) getResult).extendsClassName);
-    assertNull(((KeepClassSpecification) getResult).memberComments);
-    assertNull(((KeepClassSpecification) getResult).attributeNames);
     assertNull(((KeepClassSpecification) getResult).fieldSpecifications);
     assertNull(((KeepClassSpecification) getResult).methodSpecifications);
-    assertNull(((KeepClassSpecification) getResult).condition);
     assertEquals(0, ((KeepClassSpecification) getResult).requiredSetAccessFlags);
     assertEquals(0, ((KeepClassSpecification) getResult).requiredUnsetAccessFlags);
-    assertFalse(((KeepClassSpecification) getResult).allowObfuscation);
-    assertFalse(((KeepClassSpecification) getResult).allowOptimization);
-    assertFalse(((KeepClassSpecification) getResult).allowShrinking);
-    assertFalse(((KeepClassSpecification) getResult).markCodeAttributes);
-    assertFalse(((KeepClassSpecification) getResult).markDescriptorClasses);
-    assertTrue(((KeepClassSpecification) getResult).markClassMembers);
-    assertTrue(((KeepClassSpecification) getResult).markClasses);
-    assertTrue(((KeepClassSpecification) getResult).markConditionally);
   }
 
   /**
-   * Method under test:
-   * {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
+   * Test {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)} with {@code keepSpecifications}, {@code markClasses}, {@code markClassMembers}, {@code markConditionally}.
+   * <p>
+   * Method under test: {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
    */
   @Test
-  void testAppendTo2() {
+  @DisplayName("Test appendTo(List, boolean, boolean, boolean) with 'keepSpecifications', 'markClasses', 'markClassMembers', 'markConditionally'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void KeepSpecificationElement.appendTo(List, boolean, boolean, boolean)"})
+  void testAppendToWithKeepSpecificationsMarkClassesMarkClassMembersMarkConditionally2() {
     // Arrange
     KeepSpecificationElement keepSpecificationElement = new KeepSpecificationElement();
     keepSpecificationElement.addConfiguredField(new MemberSpecificationElement());
@@ -69,12 +64,6 @@ class KeepSpecificationElementDiffblueTest {
     assertEquals(1, keepSpecifications.size());
     Object getResult = keepSpecifications.get(0);
     assertTrue(getResult instanceof KeepClassSpecification);
-    assertNull(((KeepClassSpecification) getResult).annotationType);
-    assertNull(((KeepClassSpecification) getResult).className);
-    assertNull(((KeepClassSpecification) getResult).comments);
-    assertNull(((KeepClassSpecification) getResult).extendsAnnotationType);
-    assertNull(((KeepClassSpecification) getResult).extendsClassName);
-    assertNull(((KeepClassSpecification) getResult).memberComments);
     List<MemberSpecification> memberSpecificationList = ((KeepClassSpecification) getResult).fieldSpecifications;
     assertEquals(1, memberSpecificationList.size());
     MemberSpecification getResult2 = memberSpecificationList.get(0);
@@ -82,29 +71,21 @@ class KeepSpecificationElementDiffblueTest {
     assertNull(getResult2.descriptor);
     assertNull(getResult2.name);
     assertNull(getResult2.attributeNames);
-    assertNull(((KeepClassSpecification) getResult).attributeNames);
-    assertNull(((KeepClassSpecification) getResult).methodSpecifications);
-    assertNull(((KeepClassSpecification) getResult).condition);
     assertEquals(0, ((KeepClassSpecification) getResult).requiredSetAccessFlags);
-    assertEquals(0, ((KeepClassSpecification) getResult).requiredUnsetAccessFlags);
     assertEquals(0, getResult2.requiredSetAccessFlags);
     assertEquals(0, getResult2.requiredUnsetAccessFlags);
-    assertFalse(((KeepClassSpecification) getResult).allowObfuscation);
-    assertFalse(((KeepClassSpecification) getResult).allowOptimization);
-    assertFalse(((KeepClassSpecification) getResult).allowShrinking);
-    assertFalse(((KeepClassSpecification) getResult).markCodeAttributes);
-    assertFalse(((KeepClassSpecification) getResult).markDescriptorClasses);
-    assertTrue(((KeepClassSpecification) getResult).markClassMembers);
-    assertTrue(((KeepClassSpecification) getResult).markClasses);
-    assertTrue(((KeepClassSpecification) getResult).markConditionally);
   }
 
   /**
-   * Method under test:
-   * {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
+   * Test {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)} with {@code keepSpecifications}, {@code markClasses}, {@code markClassMembers}, {@code markConditionally}.
+   * <p>
+   * Method under test: {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
    */
   @Test
-  void testAppendTo3() {
+  @DisplayName("Test appendTo(List, boolean, boolean, boolean) with 'keepSpecifications', 'markClasses', 'markClassMembers', 'markConditionally'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void KeepSpecificationElement.appendTo(List, boolean, boolean, boolean)"})
+  void testAppendToWithKeepSpecificationsMarkClassesMarkClassMembersMarkConditionally3() {
     // Arrange
     KeepSpecificationElement keepSpecificationElement = new KeepSpecificationElement();
     keepSpecificationElement.addConfiguredMethod(new MemberSpecificationElement());
@@ -117,12 +98,6 @@ class KeepSpecificationElementDiffblueTest {
     assertEquals(1, keepSpecifications.size());
     Object getResult = keepSpecifications.get(0);
     assertTrue(getResult instanceof KeepClassSpecification);
-    assertNull(((KeepClassSpecification) getResult).annotationType);
-    assertNull(((KeepClassSpecification) getResult).className);
-    assertNull(((KeepClassSpecification) getResult).comments);
-    assertNull(((KeepClassSpecification) getResult).extendsAnnotationType);
-    assertNull(((KeepClassSpecification) getResult).extendsClassName);
-    assertNull(((KeepClassSpecification) getResult).memberComments);
     List<MemberSpecification> memberSpecificationList = ((KeepClassSpecification) getResult).methodSpecifications;
     assertEquals(1, memberSpecificationList.size());
     MemberSpecification getResult2 = memberSpecificationList.get(0);
@@ -130,29 +105,20 @@ class KeepSpecificationElementDiffblueTest {
     assertNull(getResult2.descriptor);
     assertNull(getResult2.name);
     assertNull(getResult2.attributeNames);
-    assertNull(((KeepClassSpecification) getResult).attributeNames);
-    assertNull(((KeepClassSpecification) getResult).fieldSpecifications);
-    assertNull(((KeepClassSpecification) getResult).condition);
-    assertEquals(0, ((KeepClassSpecification) getResult).requiredSetAccessFlags);
-    assertEquals(0, ((KeepClassSpecification) getResult).requiredUnsetAccessFlags);
     assertEquals(0, getResult2.requiredSetAccessFlags);
     assertEquals(0, getResult2.requiredUnsetAccessFlags);
-    assertFalse(((KeepClassSpecification) getResult).allowObfuscation);
-    assertFalse(((KeepClassSpecification) getResult).allowOptimization);
-    assertFalse(((KeepClassSpecification) getResult).allowShrinking);
-    assertFalse(((KeepClassSpecification) getResult).markCodeAttributes);
-    assertFalse(((KeepClassSpecification) getResult).markDescriptorClasses);
-    assertTrue(((KeepClassSpecification) getResult).markClassMembers);
-    assertTrue(((KeepClassSpecification) getResult).markClasses);
-    assertTrue(((KeepClassSpecification) getResult).markConditionally);
   }
 
   /**
-   * Method under test:
-   * {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
+   * Test {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)} with {@code keepSpecifications}, {@code markClasses}, {@code markClassMembers}, {@code markConditionally}.
+   * <p>
+   * Method under test: {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
    */
   @Test
-  void testAppendTo4() {
+  @DisplayName("Test appendTo(List, boolean, boolean, boolean) with 'keepSpecifications', 'markClasses', 'markClassMembers', 'markConditionally'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void KeepSpecificationElement.appendTo(List, boolean, boolean, boolean)"})
+  void testAppendToWithKeepSpecificationsMarkClassesMarkClassMembersMarkConditionally4() {
     // Arrange
     KeepSpecificationElement keepSpecificationElement = new KeepSpecificationElement();
     keepSpecificationElement.addConfiguredField(new MemberSpecificationElement());
@@ -166,12 +132,6 @@ class KeepSpecificationElementDiffblueTest {
     assertEquals(1, keepSpecifications.size());
     Object getResult = keepSpecifications.get(0);
     assertTrue(getResult instanceof KeepClassSpecification);
-    assertNull(((KeepClassSpecification) getResult).annotationType);
-    assertNull(((KeepClassSpecification) getResult).className);
-    assertNull(((KeepClassSpecification) getResult).comments);
-    assertNull(((KeepClassSpecification) getResult).extendsAnnotationType);
-    assertNull(((KeepClassSpecification) getResult).extendsClassName);
-    assertNull(((KeepClassSpecification) getResult).memberComments);
     List<MemberSpecification> memberSpecificationList = ((KeepClassSpecification) getResult).fieldSpecifications;
     assertEquals(2, memberSpecificationList.size());
     MemberSpecification getResult2 = memberSpecificationList.get(0);
@@ -179,29 +139,21 @@ class KeepSpecificationElementDiffblueTest {
     assertNull(getResult2.descriptor);
     assertNull(getResult2.name);
     assertNull(getResult2.attributeNames);
-    assertNull(((KeepClassSpecification) getResult).attributeNames);
-    assertNull(((KeepClassSpecification) getResult).methodSpecifications);
-    assertNull(((KeepClassSpecification) getResult).condition);
     assertEquals(0, ((KeepClassSpecification) getResult).requiredSetAccessFlags);
-    assertEquals(0, ((KeepClassSpecification) getResult).requiredUnsetAccessFlags);
     assertEquals(0, getResult2.requiredSetAccessFlags);
     assertEquals(0, getResult2.requiredUnsetAccessFlags);
-    assertFalse(((KeepClassSpecification) getResult).allowObfuscation);
-    assertFalse(((KeepClassSpecification) getResult).allowOptimization);
-    assertFalse(((KeepClassSpecification) getResult).allowShrinking);
-    assertFalse(((KeepClassSpecification) getResult).markCodeAttributes);
-    assertFalse(((KeepClassSpecification) getResult).markDescriptorClasses);
-    assertTrue(((KeepClassSpecification) getResult).markClassMembers);
-    assertTrue(((KeepClassSpecification) getResult).markClasses);
-    assertTrue(((KeepClassSpecification) getResult).markConditionally);
   }
 
   /**
-   * Method under test:
-   * {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
+   * Test {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)} with {@code keepSpecifications}, {@code markClasses}, {@code markClassMembers}, {@code markConditionally}.
+   * <p>
+   * Method under test: {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
    */
   @Test
-  void testAppendTo5() {
+  @DisplayName("Test appendTo(List, boolean, boolean, boolean) with 'keepSpecifications', 'markClasses', 'markClassMembers', 'markConditionally'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void KeepSpecificationElement.appendTo(List, boolean, boolean, boolean)"})
+  void testAppendToWithKeepSpecificationsMarkClassesMarkClassMembersMarkConditionally5() {
     // Arrange
     KeepSpecificationElement keepSpecificationElement = new KeepSpecificationElement();
     keepSpecificationElement.addConfiguredMethod(new MemberSpecificationElement());
@@ -215,12 +167,6 @@ class KeepSpecificationElementDiffblueTest {
     assertEquals(1, keepSpecifications.size());
     Object getResult = keepSpecifications.get(0);
     assertTrue(getResult instanceof KeepClassSpecification);
-    assertNull(((KeepClassSpecification) getResult).annotationType);
-    assertNull(((KeepClassSpecification) getResult).className);
-    assertNull(((KeepClassSpecification) getResult).comments);
-    assertNull(((KeepClassSpecification) getResult).extendsAnnotationType);
-    assertNull(((KeepClassSpecification) getResult).extendsClassName);
-    assertNull(((KeepClassSpecification) getResult).memberComments);
     List<MemberSpecification> memberSpecificationList = ((KeepClassSpecification) getResult).methodSpecifications;
     assertEquals(2, memberSpecificationList.size());
     MemberSpecification getResult2 = memberSpecificationList.get(0);
@@ -228,29 +174,20 @@ class KeepSpecificationElementDiffblueTest {
     assertNull(getResult2.descriptor);
     assertNull(getResult2.name);
     assertNull(getResult2.attributeNames);
-    assertNull(((KeepClassSpecification) getResult).attributeNames);
-    assertNull(((KeepClassSpecification) getResult).fieldSpecifications);
-    assertNull(((KeepClassSpecification) getResult).condition);
-    assertEquals(0, ((KeepClassSpecification) getResult).requiredSetAccessFlags);
-    assertEquals(0, ((KeepClassSpecification) getResult).requiredUnsetAccessFlags);
     assertEquals(0, getResult2.requiredSetAccessFlags);
     assertEquals(0, getResult2.requiredUnsetAccessFlags);
-    assertFalse(((KeepClassSpecification) getResult).allowObfuscation);
-    assertFalse(((KeepClassSpecification) getResult).allowOptimization);
-    assertFalse(((KeepClassSpecification) getResult).allowShrinking);
-    assertFalse(((KeepClassSpecification) getResult).markCodeAttributes);
-    assertFalse(((KeepClassSpecification) getResult).markDescriptorClasses);
-    assertTrue(((KeepClassSpecification) getResult).markClassMembers);
-    assertTrue(((KeepClassSpecification) getResult).markClasses);
-    assertTrue(((KeepClassSpecification) getResult).markConditionally);
   }
 
   /**
-   * Method under test:
-   * {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
+   * Test {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)} with {@code keepSpecifications}, {@code markClasses}, {@code markClassMembers}, {@code markConditionally}.
+   * <p>
+   * Method under test: {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
    */
   @Test
-  void testAppendTo6() {
+  @DisplayName("Test appendTo(List, boolean, boolean, boolean) with 'keepSpecifications', 'markClasses', 'markClassMembers', 'markConditionally'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void KeepSpecificationElement.appendTo(List, boolean, boolean, boolean)"})
+  void testAppendToWithKeepSpecificationsMarkClassesMarkClassMembersMarkConditionally6() {
     // Arrange
     KeepSpecificationElement keepSpecificationElement = new KeepSpecificationElement();
     keepSpecificationElement.setAnnotation("Annotation");
@@ -265,11 +202,6 @@ class KeepSpecificationElementDiffblueTest {
     Object getResult = keepSpecifications.get(0);
     assertTrue(getResult instanceof KeepClassSpecification);
     assertEquals("LAnnotation;", ((KeepClassSpecification) getResult).annotationType);
-    assertNull(((KeepClassSpecification) getResult).className);
-    assertNull(((KeepClassSpecification) getResult).comments);
-    assertNull(((KeepClassSpecification) getResult).extendsAnnotationType);
-    assertNull(((KeepClassSpecification) getResult).extendsClassName);
-    assertNull(((KeepClassSpecification) getResult).memberComments);
     List<MemberSpecification> memberSpecificationList = ((KeepClassSpecification) getResult).fieldSpecifications;
     assertEquals(1, memberSpecificationList.size());
     MemberSpecification getResult2 = memberSpecificationList.get(0);
@@ -277,29 +209,21 @@ class KeepSpecificationElementDiffblueTest {
     assertNull(getResult2.descriptor);
     assertNull(getResult2.name);
     assertNull(getResult2.attributeNames);
-    assertNull(((KeepClassSpecification) getResult).attributeNames);
-    assertNull(((KeepClassSpecification) getResult).methodSpecifications);
-    assertNull(((KeepClassSpecification) getResult).condition);
     assertEquals(0, ((KeepClassSpecification) getResult).requiredSetAccessFlags);
-    assertEquals(0, ((KeepClassSpecification) getResult).requiredUnsetAccessFlags);
     assertEquals(0, getResult2.requiredSetAccessFlags);
     assertEquals(0, getResult2.requiredUnsetAccessFlags);
-    assertFalse(((KeepClassSpecification) getResult).allowObfuscation);
-    assertFalse(((KeepClassSpecification) getResult).allowOptimization);
-    assertFalse(((KeepClassSpecification) getResult).allowShrinking);
-    assertFalse(((KeepClassSpecification) getResult).markCodeAttributes);
-    assertFalse(((KeepClassSpecification) getResult).markDescriptorClasses);
-    assertTrue(((KeepClassSpecification) getResult).markClassMembers);
-    assertTrue(((KeepClassSpecification) getResult).markClasses);
-    assertTrue(((KeepClassSpecification) getResult).markConditionally);
   }
 
   /**
-   * Method under test:
-   * {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
+   * Test {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)} with {@code keepSpecifications}, {@code markClasses}, {@code markClassMembers}, {@code markConditionally}.
+   * <p>
+   * Method under test: {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
    */
   @Test
-  void testAppendTo7() {
+  @DisplayName("Test appendTo(List, boolean, boolean, boolean) with 'keepSpecifications', 'markClasses', 'markClassMembers', 'markConditionally'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void KeepSpecificationElement.appendTo(List, boolean, boolean, boolean)"})
+  void testAppendToWithKeepSpecificationsMarkClassesMarkClassMembersMarkConditionally7() {
     // Arrange
     KeepSpecificationElement keepSpecificationElement = new KeepSpecificationElement();
     keepSpecificationElement.setName("Name");
@@ -314,11 +238,6 @@ class KeepSpecificationElementDiffblueTest {
     Object getResult = keepSpecifications.get(0);
     assertTrue(getResult instanceof KeepClassSpecification);
     assertEquals("Name", ((KeepClassSpecification) getResult).className);
-    assertNull(((KeepClassSpecification) getResult).annotationType);
-    assertNull(((KeepClassSpecification) getResult).comments);
-    assertNull(((KeepClassSpecification) getResult).extendsAnnotationType);
-    assertNull(((KeepClassSpecification) getResult).extendsClassName);
-    assertNull(((KeepClassSpecification) getResult).memberComments);
     List<MemberSpecification> memberSpecificationList = ((KeepClassSpecification) getResult).fieldSpecifications;
     assertEquals(1, memberSpecificationList.size());
     MemberSpecification getResult2 = memberSpecificationList.get(0);
@@ -326,29 +245,21 @@ class KeepSpecificationElementDiffblueTest {
     assertNull(getResult2.descriptor);
     assertNull(getResult2.name);
     assertNull(getResult2.attributeNames);
-    assertNull(((KeepClassSpecification) getResult).attributeNames);
-    assertNull(((KeepClassSpecification) getResult).methodSpecifications);
-    assertNull(((KeepClassSpecification) getResult).condition);
     assertEquals(0, ((KeepClassSpecification) getResult).requiredSetAccessFlags);
-    assertEquals(0, ((KeepClassSpecification) getResult).requiredUnsetAccessFlags);
     assertEquals(0, getResult2.requiredSetAccessFlags);
     assertEquals(0, getResult2.requiredUnsetAccessFlags);
-    assertFalse(((KeepClassSpecification) getResult).allowObfuscation);
-    assertFalse(((KeepClassSpecification) getResult).allowOptimization);
-    assertFalse(((KeepClassSpecification) getResult).allowShrinking);
-    assertFalse(((KeepClassSpecification) getResult).markCodeAttributes);
-    assertFalse(((KeepClassSpecification) getResult).markDescriptorClasses);
-    assertTrue(((KeepClassSpecification) getResult).markClassMembers);
-    assertTrue(((KeepClassSpecification) getResult).markClasses);
-    assertTrue(((KeepClassSpecification) getResult).markConditionally);
   }
 
   /**
-   * Method under test:
-   * {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
+   * Test {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)} with {@code keepSpecifications}, {@code markClasses}, {@code markClassMembers}, {@code markConditionally}.
+   * <p>
+   * Method under test: {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
    */
   @Test
-  void testAppendTo8() {
+  @DisplayName("Test appendTo(List, boolean, boolean, boolean) with 'keepSpecifications', 'markClasses', 'markClassMembers', 'markConditionally'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void KeepSpecificationElement.appendTo(List, boolean, boolean, boolean)"})
+  void testAppendToWithKeepSpecificationsMarkClassesMarkClassMembersMarkConditionally8() {
     // Arrange
     KeepSpecificationElement keepSpecificationElement = new KeepSpecificationElement();
     keepSpecificationElement.setExtendsannotation("Extends Annotation");
@@ -363,11 +274,6 @@ class KeepSpecificationElementDiffblueTest {
     Object getResult = keepSpecifications.get(0);
     assertTrue(getResult instanceof KeepClassSpecification);
     assertEquals("LExtends Annotation;", ((KeepClassSpecification) getResult).extendsAnnotationType);
-    assertNull(((KeepClassSpecification) getResult).annotationType);
-    assertNull(((KeepClassSpecification) getResult).className);
-    assertNull(((KeepClassSpecification) getResult).comments);
-    assertNull(((KeepClassSpecification) getResult).extendsClassName);
-    assertNull(((KeepClassSpecification) getResult).memberComments);
     List<MemberSpecification> memberSpecificationList = ((KeepClassSpecification) getResult).fieldSpecifications;
     assertEquals(1, memberSpecificationList.size());
     MemberSpecification getResult2 = memberSpecificationList.get(0);
@@ -375,29 +281,21 @@ class KeepSpecificationElementDiffblueTest {
     assertNull(getResult2.descriptor);
     assertNull(getResult2.name);
     assertNull(getResult2.attributeNames);
-    assertNull(((KeepClassSpecification) getResult).attributeNames);
-    assertNull(((KeepClassSpecification) getResult).methodSpecifications);
-    assertNull(((KeepClassSpecification) getResult).condition);
     assertEquals(0, ((KeepClassSpecification) getResult).requiredSetAccessFlags);
-    assertEquals(0, ((KeepClassSpecification) getResult).requiredUnsetAccessFlags);
     assertEquals(0, getResult2.requiredSetAccessFlags);
     assertEquals(0, getResult2.requiredUnsetAccessFlags);
-    assertFalse(((KeepClassSpecification) getResult).allowObfuscation);
-    assertFalse(((KeepClassSpecification) getResult).allowOptimization);
-    assertFalse(((KeepClassSpecification) getResult).allowShrinking);
-    assertFalse(((KeepClassSpecification) getResult).markCodeAttributes);
-    assertFalse(((KeepClassSpecification) getResult).markDescriptorClasses);
-    assertTrue(((KeepClassSpecification) getResult).markClassMembers);
-    assertTrue(((KeepClassSpecification) getResult).markClasses);
-    assertTrue(((KeepClassSpecification) getResult).markConditionally);
   }
 
   /**
-   * Method under test:
-   * {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
+   * Test {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)} with {@code keepSpecifications}, {@code markClasses}, {@code markClassMembers}, {@code markConditionally}.
+   * <p>
+   * Method under test: {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
    */
   @Test
-  void testAppendTo9() {
+  @DisplayName("Test appendTo(List, boolean, boolean, boolean) with 'keepSpecifications', 'markClasses', 'markClassMembers', 'markConditionally'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void KeepSpecificationElement.appendTo(List, boolean, boolean, boolean)"})
+  void testAppendToWithKeepSpecificationsMarkClassesMarkClassMembersMarkConditionally9() {
     // Arrange
     KeepSpecificationElement keepSpecificationElement = new KeepSpecificationElement();
     keepSpecificationElement.setExtends("Extends ");
@@ -412,11 +310,6 @@ class KeepSpecificationElementDiffblueTest {
     Object getResult = keepSpecifications.get(0);
     assertTrue(getResult instanceof KeepClassSpecification);
     assertEquals("Extends ", ((KeepClassSpecification) getResult).extendsClassName);
-    assertNull(((KeepClassSpecification) getResult).annotationType);
-    assertNull(((KeepClassSpecification) getResult).className);
-    assertNull(((KeepClassSpecification) getResult).comments);
-    assertNull(((KeepClassSpecification) getResult).extendsAnnotationType);
-    assertNull(((KeepClassSpecification) getResult).memberComments);
     List<MemberSpecification> memberSpecificationList = ((KeepClassSpecification) getResult).fieldSpecifications;
     assertEquals(1, memberSpecificationList.size());
     MemberSpecification getResult2 = memberSpecificationList.get(0);
@@ -424,29 +317,21 @@ class KeepSpecificationElementDiffblueTest {
     assertNull(getResult2.descriptor);
     assertNull(getResult2.name);
     assertNull(getResult2.attributeNames);
-    assertNull(((KeepClassSpecification) getResult).attributeNames);
-    assertNull(((KeepClassSpecification) getResult).methodSpecifications);
-    assertNull(((KeepClassSpecification) getResult).condition);
     assertEquals(0, ((KeepClassSpecification) getResult).requiredSetAccessFlags);
-    assertEquals(0, ((KeepClassSpecification) getResult).requiredUnsetAccessFlags);
     assertEquals(0, getResult2.requiredSetAccessFlags);
     assertEquals(0, getResult2.requiredUnsetAccessFlags);
-    assertFalse(((KeepClassSpecification) getResult).allowObfuscation);
-    assertFalse(((KeepClassSpecification) getResult).allowOptimization);
-    assertFalse(((KeepClassSpecification) getResult).allowShrinking);
-    assertFalse(((KeepClassSpecification) getResult).markCodeAttributes);
-    assertFalse(((KeepClassSpecification) getResult).markDescriptorClasses);
-    assertTrue(((KeepClassSpecification) getResult).markClassMembers);
-    assertTrue(((KeepClassSpecification) getResult).markClasses);
-    assertTrue(((KeepClassSpecification) getResult).markConditionally);
   }
 
   /**
-   * Method under test:
-   * {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
+   * Test {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)} with {@code keepSpecifications}, {@code markClasses}, {@code markClassMembers}, {@code markConditionally}.
+   * <p>
+   * Method under test: {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
    */
   @Test
-  void testAppendTo10() {
+  @DisplayName("Test appendTo(List, boolean, boolean, boolean) with 'keepSpecifications', 'markClasses', 'markClassMembers', 'markConditionally'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void KeepSpecificationElement.appendTo(List, boolean, boolean, boolean)"})
+  void testAppendToWithKeepSpecificationsMarkClassesMarkClassMembersMarkConditionally10() {
     // Arrange
     KeepSpecificationElement keepSpecificationElement = new KeepSpecificationElement();
 
@@ -458,37 +343,20 @@ class KeepSpecificationElementDiffblueTest {
 
     // Assert
     assertEquals(2, keepSpecifications.size());
-    Object getResult = keepSpecifications.get(1);
-    assertTrue(getResult instanceof KeepClassSpecification);
+    assertTrue(keepSpecifications.get(1) instanceof KeepClassSpecification);
     assertEquals("42", keepSpecifications.get(0));
-    assertNull(((KeepClassSpecification) getResult).annotationType);
-    assertNull(((KeepClassSpecification) getResult).className);
-    assertNull(((KeepClassSpecification) getResult).comments);
-    assertNull(((KeepClassSpecification) getResult).extendsAnnotationType);
-    assertNull(((KeepClassSpecification) getResult).extendsClassName);
-    assertNull(((KeepClassSpecification) getResult).memberComments);
-    assertNull(((KeepClassSpecification) getResult).attributeNames);
-    assertNull(((KeepClassSpecification) getResult).fieldSpecifications);
-    assertNull(((KeepClassSpecification) getResult).methodSpecifications);
-    assertNull(((KeepClassSpecification) getResult).condition);
-    assertEquals(0, ((KeepClassSpecification) getResult).requiredSetAccessFlags);
-    assertEquals(0, ((KeepClassSpecification) getResult).requiredUnsetAccessFlags);
-    assertFalse(((KeepClassSpecification) getResult).allowObfuscation);
-    assertFalse(((KeepClassSpecification) getResult).allowOptimization);
-    assertFalse(((KeepClassSpecification) getResult).allowShrinking);
-    assertFalse(((KeepClassSpecification) getResult).markCodeAttributes);
-    assertFalse(((KeepClassSpecification) getResult).markDescriptorClasses);
-    assertTrue(((KeepClassSpecification) getResult).markClassMembers);
-    assertTrue(((KeepClassSpecification) getResult).markClasses);
-    assertTrue(((KeepClassSpecification) getResult).markConditionally);
   }
 
   /**
-   * Method under test:
-   * {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
+   * Test {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)} with {@code keepSpecifications}, {@code markClasses}, {@code markClassMembers}, {@code markConditionally}.
+   * <p>
+   * Method under test: {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
    */
   @Test
-  void testAppendTo11() {
+  @DisplayName("Test appendTo(List, boolean, boolean, boolean) with 'keepSpecifications', 'markClasses', 'markClassMembers', 'markConditionally'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void KeepSpecificationElement.appendTo(List, boolean, boolean, boolean)"})
+  void testAppendToWithKeepSpecificationsMarkClassesMarkClassMembersMarkConditionally11() {
     // Arrange
     KeepSpecificationElement keepSpecificationElement = new KeepSpecificationElement();
     keepSpecificationElement.setAccess(" ,");
@@ -502,12 +370,6 @@ class KeepSpecificationElementDiffblueTest {
     assertEquals(1, keepSpecifications.size());
     Object getResult = keepSpecifications.get(0);
     assertTrue(getResult instanceof KeepClassSpecification);
-    assertNull(((KeepClassSpecification) getResult).annotationType);
-    assertNull(((KeepClassSpecification) getResult).className);
-    assertNull(((KeepClassSpecification) getResult).comments);
-    assertNull(((KeepClassSpecification) getResult).extendsAnnotationType);
-    assertNull(((KeepClassSpecification) getResult).extendsClassName);
-    assertNull(((KeepClassSpecification) getResult).memberComments);
     List<MemberSpecification> memberSpecificationList = ((KeepClassSpecification) getResult).fieldSpecifications;
     assertEquals(1, memberSpecificationList.size());
     MemberSpecification getResult2 = memberSpecificationList.get(0);
@@ -515,29 +377,21 @@ class KeepSpecificationElementDiffblueTest {
     assertNull(getResult2.descriptor);
     assertNull(getResult2.name);
     assertNull(getResult2.attributeNames);
-    assertNull(((KeepClassSpecification) getResult).attributeNames);
-    assertNull(((KeepClassSpecification) getResult).methodSpecifications);
-    assertNull(((KeepClassSpecification) getResult).condition);
     assertEquals(0, ((KeepClassSpecification) getResult).requiredSetAccessFlags);
-    assertEquals(0, ((KeepClassSpecification) getResult).requiredUnsetAccessFlags);
     assertEquals(0, getResult2.requiredSetAccessFlags);
     assertEquals(0, getResult2.requiredUnsetAccessFlags);
-    assertFalse(((KeepClassSpecification) getResult).allowObfuscation);
-    assertFalse(((KeepClassSpecification) getResult).allowOptimization);
-    assertFalse(((KeepClassSpecification) getResult).allowShrinking);
-    assertFalse(((KeepClassSpecification) getResult).markCodeAttributes);
-    assertFalse(((KeepClassSpecification) getResult).markDescriptorClasses);
-    assertTrue(((KeepClassSpecification) getResult).markClassMembers);
-    assertTrue(((KeepClassSpecification) getResult).markClasses);
-    assertTrue(((KeepClassSpecification) getResult).markConditionally);
   }
 
   /**
-   * Method under test:
-   * {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
+   * Test {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)} with {@code keepSpecifications}, {@code markClasses}, {@code markClassMembers}, {@code markConditionally}.
+   * <p>
+   * Method under test: {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
    */
   @Test
-  void testAppendTo12() {
+  @DisplayName("Test appendTo(List, boolean, boolean, boolean) with 'keepSpecifications', 'markClasses', 'markClassMembers', 'markConditionally'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void KeepSpecificationElement.appendTo(List, boolean, boolean, boolean)"})
+  void testAppendToWithKeepSpecificationsMarkClassesMarkClassMembersMarkConditionally12() {
     // Arrange
     KeepSpecificationElement keepSpecificationElement = new KeepSpecificationElement();
     keepSpecificationElement.setAccess("public");
@@ -551,12 +405,6 @@ class KeepSpecificationElementDiffblueTest {
     assertEquals(1, keepSpecifications.size());
     Object getResult = keepSpecifications.get(0);
     assertTrue(getResult instanceof KeepClassSpecification);
-    assertNull(((KeepClassSpecification) getResult).annotationType);
-    assertNull(((KeepClassSpecification) getResult).className);
-    assertNull(((KeepClassSpecification) getResult).comments);
-    assertNull(((KeepClassSpecification) getResult).extendsAnnotationType);
-    assertNull(((KeepClassSpecification) getResult).extendsClassName);
-    assertNull(((KeepClassSpecification) getResult).memberComments);
     List<MemberSpecification> memberSpecificationList = ((KeepClassSpecification) getResult).fieldSpecifications;
     assertEquals(1, memberSpecificationList.size());
     MemberSpecification getResult2 = memberSpecificationList.get(0);
@@ -564,29 +412,21 @@ class KeepSpecificationElementDiffblueTest {
     assertNull(getResult2.descriptor);
     assertNull(getResult2.name);
     assertNull(getResult2.attributeNames);
-    assertNull(((KeepClassSpecification) getResult).attributeNames);
-    assertNull(((KeepClassSpecification) getResult).methodSpecifications);
-    assertNull(((KeepClassSpecification) getResult).condition);
-    assertEquals(0, ((KeepClassSpecification) getResult).requiredUnsetAccessFlags);
     assertEquals(0, getResult2.requiredSetAccessFlags);
     assertEquals(0, getResult2.requiredUnsetAccessFlags);
     assertEquals(1, ((KeepClassSpecification) getResult).requiredSetAccessFlags);
-    assertFalse(((KeepClassSpecification) getResult).allowObfuscation);
-    assertFalse(((KeepClassSpecification) getResult).allowOptimization);
-    assertFalse(((KeepClassSpecification) getResult).allowShrinking);
-    assertFalse(((KeepClassSpecification) getResult).markCodeAttributes);
-    assertFalse(((KeepClassSpecification) getResult).markDescriptorClasses);
-    assertTrue(((KeepClassSpecification) getResult).markClassMembers);
-    assertTrue(((KeepClassSpecification) getResult).markClasses);
-    assertTrue(((KeepClassSpecification) getResult).markConditionally);
   }
 
   /**
-   * Method under test:
-   * {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
+   * Test {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)} with {@code keepSpecifications}, {@code markClasses}, {@code markClassMembers}, {@code markConditionally}.
+   * <p>
+   * Method under test: {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
    */
   @Test
-  void testAppendTo13() {
+  @DisplayName("Test appendTo(List, boolean, boolean, boolean) with 'keepSpecifications', 'markClasses', 'markClassMembers', 'markConditionally'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void KeepSpecificationElement.appendTo(List, boolean, boolean, boolean)"})
+  void testAppendToWithKeepSpecificationsMarkClassesMarkClassMembersMarkConditionally13() {
     // Arrange
     KeepSpecificationElement keepSpecificationElement = new KeepSpecificationElement();
     keepSpecificationElement.setAccess("final");
@@ -600,12 +440,6 @@ class KeepSpecificationElementDiffblueTest {
     assertEquals(1, keepSpecifications.size());
     Object getResult = keepSpecifications.get(0);
     assertTrue(getResult instanceof KeepClassSpecification);
-    assertNull(((KeepClassSpecification) getResult).annotationType);
-    assertNull(((KeepClassSpecification) getResult).className);
-    assertNull(((KeepClassSpecification) getResult).comments);
-    assertNull(((KeepClassSpecification) getResult).extendsAnnotationType);
-    assertNull(((KeepClassSpecification) getResult).extendsClassName);
-    assertNull(((KeepClassSpecification) getResult).memberComments);
     List<MemberSpecification> memberSpecificationList = ((KeepClassSpecification) getResult).fieldSpecifications;
     assertEquals(1, memberSpecificationList.size());
     MemberSpecification getResult2 = memberSpecificationList.get(0);
@@ -613,29 +447,21 @@ class KeepSpecificationElementDiffblueTest {
     assertNull(getResult2.descriptor);
     assertNull(getResult2.name);
     assertNull(getResult2.attributeNames);
-    assertNull(((KeepClassSpecification) getResult).attributeNames);
-    assertNull(((KeepClassSpecification) getResult).methodSpecifications);
-    assertNull(((KeepClassSpecification) getResult).condition);
-    assertEquals(0, ((KeepClassSpecification) getResult).requiredUnsetAccessFlags);
     assertEquals(0, getResult2.requiredSetAccessFlags);
     assertEquals(0, getResult2.requiredUnsetAccessFlags);
-    assertFalse(((KeepClassSpecification) getResult).allowObfuscation);
-    assertFalse(((KeepClassSpecification) getResult).allowOptimization);
-    assertFalse(((KeepClassSpecification) getResult).allowShrinking);
-    assertFalse(((KeepClassSpecification) getResult).markCodeAttributes);
-    assertFalse(((KeepClassSpecification) getResult).markDescriptorClasses);
-    assertTrue(((KeepClassSpecification) getResult).markClassMembers);
-    assertTrue(((KeepClassSpecification) getResult).markClasses);
-    assertTrue(((KeepClassSpecification) getResult).markConditionally);
     assertEquals(Short.SIZE, ((KeepClassSpecification) getResult).requiredSetAccessFlags);
   }
 
   /**
-   * Method under test:
-   * {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
+   * Test {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)} with {@code keepSpecifications}, {@code markClasses}, {@code markClassMembers}, {@code markConditionally}.
+   * <p>
+   * Method under test: {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
    */
   @Test
-  void testAppendTo14() {
+  @DisplayName("Test appendTo(List, boolean, boolean, boolean) with 'keepSpecifications', 'markClasses', 'markClassMembers', 'markConditionally'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void KeepSpecificationElement.appendTo(List, boolean, boolean, boolean)"})
+  void testAppendToWithKeepSpecificationsMarkClassesMarkClassMembersMarkConditionally14() {
     // Arrange
     KeepSpecificationElement keepSpecificationElement = new KeepSpecificationElement();
     keepSpecificationElement.setAccess("abstract");
@@ -649,12 +475,6 @@ class KeepSpecificationElementDiffblueTest {
     assertEquals(1, keepSpecifications.size());
     Object getResult = keepSpecifications.get(0);
     assertTrue(getResult instanceof KeepClassSpecification);
-    assertNull(((KeepClassSpecification) getResult).annotationType);
-    assertNull(((KeepClassSpecification) getResult).className);
-    assertNull(((KeepClassSpecification) getResult).comments);
-    assertNull(((KeepClassSpecification) getResult).extendsAnnotationType);
-    assertNull(((KeepClassSpecification) getResult).extendsClassName);
-    assertNull(((KeepClassSpecification) getResult).memberComments);
     List<MemberSpecification> memberSpecificationList = ((KeepClassSpecification) getResult).fieldSpecifications;
     assertEquals(1, memberSpecificationList.size());
     MemberSpecification getResult2 = memberSpecificationList.get(0);
@@ -662,29 +482,21 @@ class KeepSpecificationElementDiffblueTest {
     assertNull(getResult2.descriptor);
     assertNull(getResult2.name);
     assertNull(getResult2.attributeNames);
-    assertNull(((KeepClassSpecification) getResult).attributeNames);
-    assertNull(((KeepClassSpecification) getResult).methodSpecifications);
-    assertNull(((KeepClassSpecification) getResult).condition);
-    assertEquals(0, ((KeepClassSpecification) getResult).requiredUnsetAccessFlags);
     assertEquals(0, getResult2.requiredSetAccessFlags);
     assertEquals(0, getResult2.requiredUnsetAccessFlags);
     assertEquals(1024, ((KeepClassSpecification) getResult).requiredSetAccessFlags);
-    assertFalse(((KeepClassSpecification) getResult).allowObfuscation);
-    assertFalse(((KeepClassSpecification) getResult).allowOptimization);
-    assertFalse(((KeepClassSpecification) getResult).allowShrinking);
-    assertFalse(((KeepClassSpecification) getResult).markCodeAttributes);
-    assertFalse(((KeepClassSpecification) getResult).markDescriptorClasses);
-    assertTrue(((KeepClassSpecification) getResult).markClassMembers);
-    assertTrue(((KeepClassSpecification) getResult).markClasses);
-    assertTrue(((KeepClassSpecification) getResult).markConditionally);
   }
 
   /**
-   * Method under test:
-   * {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
+   * Test {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)} with {@code keepSpecifications}, {@code markClasses}, {@code markClassMembers}, {@code markConditionally}.
+   * <p>
+   * Method under test: {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
    */
   @Test
-  void testAppendTo15() {
+  @DisplayName("Test appendTo(List, boolean, boolean, boolean) with 'keepSpecifications', 'markClasses', 'markClassMembers', 'markConditionally'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void KeepSpecificationElement.appendTo(List, boolean, boolean, boolean)"})
+  void testAppendToWithKeepSpecificationsMarkClassesMarkClassMembersMarkConditionally15() {
     // Arrange
     KeepSpecificationElement keepSpecificationElement = new KeepSpecificationElement();
     keepSpecificationElement.setAccess("synthetic");
@@ -698,12 +510,6 @@ class KeepSpecificationElementDiffblueTest {
     assertEquals(1, keepSpecifications.size());
     Object getResult = keepSpecifications.get(0);
     assertTrue(getResult instanceof KeepClassSpecification);
-    assertNull(((KeepClassSpecification) getResult).annotationType);
-    assertNull(((KeepClassSpecification) getResult).className);
-    assertNull(((KeepClassSpecification) getResult).comments);
-    assertNull(((KeepClassSpecification) getResult).extendsAnnotationType);
-    assertNull(((KeepClassSpecification) getResult).extendsClassName);
-    assertNull(((KeepClassSpecification) getResult).memberComments);
     List<MemberSpecification> memberSpecificationList = ((KeepClassSpecification) getResult).fieldSpecifications;
     assertEquals(1, memberSpecificationList.size());
     MemberSpecification getResult2 = memberSpecificationList.get(0);
@@ -711,29 +517,21 @@ class KeepSpecificationElementDiffblueTest {
     assertNull(getResult2.descriptor);
     assertNull(getResult2.name);
     assertNull(getResult2.attributeNames);
-    assertNull(((KeepClassSpecification) getResult).attributeNames);
-    assertNull(((KeepClassSpecification) getResult).methodSpecifications);
-    assertNull(((KeepClassSpecification) getResult).condition);
-    assertEquals(0, ((KeepClassSpecification) getResult).requiredUnsetAccessFlags);
     assertEquals(0, getResult2.requiredSetAccessFlags);
     assertEquals(0, getResult2.requiredUnsetAccessFlags);
     assertEquals(4096, ((KeepClassSpecification) getResult).requiredSetAccessFlags);
-    assertFalse(((KeepClassSpecification) getResult).allowObfuscation);
-    assertFalse(((KeepClassSpecification) getResult).allowOptimization);
-    assertFalse(((KeepClassSpecification) getResult).allowShrinking);
-    assertFalse(((KeepClassSpecification) getResult).markCodeAttributes);
-    assertFalse(((KeepClassSpecification) getResult).markDescriptorClasses);
-    assertTrue(((KeepClassSpecification) getResult).markClassMembers);
-    assertTrue(((KeepClassSpecification) getResult).markClasses);
-    assertTrue(((KeepClassSpecification) getResult).markConditionally);
   }
 
   /**
-   * Method under test:
-   * {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
+   * Test {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)} with {@code keepSpecifications}, {@code markClasses}, {@code markClassMembers}, {@code markConditionally}.
+   * <p>
+   * Method under test: {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
    */
   @Test
-  void testAppendTo16() {
+  @DisplayName("Test appendTo(List, boolean, boolean, boolean) with 'keepSpecifications', 'markClasses', 'markClassMembers', 'markConditionally'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void KeepSpecificationElement.appendTo(List, boolean, boolean, boolean)"})
+  void testAppendToWithKeepSpecificationsMarkClassesMarkClassMembersMarkConditionally16() {
     // Arrange
     KeepSpecificationElement keepSpecificationElement = new KeepSpecificationElement();
     keepSpecificationElement.setAccess("@");
@@ -747,12 +545,6 @@ class KeepSpecificationElementDiffblueTest {
     assertEquals(1, keepSpecifications.size());
     Object getResult = keepSpecifications.get(0);
     assertTrue(getResult instanceof KeepClassSpecification);
-    assertNull(((KeepClassSpecification) getResult).annotationType);
-    assertNull(((KeepClassSpecification) getResult).className);
-    assertNull(((KeepClassSpecification) getResult).comments);
-    assertNull(((KeepClassSpecification) getResult).extendsAnnotationType);
-    assertNull(((KeepClassSpecification) getResult).extendsClassName);
-    assertNull(((KeepClassSpecification) getResult).memberComments);
     List<MemberSpecification> memberSpecificationList = ((KeepClassSpecification) getResult).fieldSpecifications;
     assertEquals(1, memberSpecificationList.size());
     MemberSpecification getResult2 = memberSpecificationList.get(0);
@@ -760,29 +552,21 @@ class KeepSpecificationElementDiffblueTest {
     assertNull(getResult2.descriptor);
     assertNull(getResult2.name);
     assertNull(getResult2.attributeNames);
-    assertNull(((KeepClassSpecification) getResult).attributeNames);
-    assertNull(((KeepClassSpecification) getResult).methodSpecifications);
-    assertNull(((KeepClassSpecification) getResult).condition);
-    assertEquals(0, ((KeepClassSpecification) getResult).requiredUnsetAccessFlags);
     assertEquals(0, getResult2.requiredSetAccessFlags);
     assertEquals(0, getResult2.requiredUnsetAccessFlags);
     assertEquals(8192, ((KeepClassSpecification) getResult).requiredSetAccessFlags);
-    assertFalse(((KeepClassSpecification) getResult).allowObfuscation);
-    assertFalse(((KeepClassSpecification) getResult).allowOptimization);
-    assertFalse(((KeepClassSpecification) getResult).allowShrinking);
-    assertFalse(((KeepClassSpecification) getResult).markCodeAttributes);
-    assertFalse(((KeepClassSpecification) getResult).markDescriptorClasses);
-    assertTrue(((KeepClassSpecification) getResult).markClassMembers);
-    assertTrue(((KeepClassSpecification) getResult).markClasses);
-    assertTrue(((KeepClassSpecification) getResult).markConditionally);
   }
 
   /**
-   * Method under test:
-   * {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
+   * Test {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)} with {@code keepSpecifications}, {@code markClasses}, {@code markClassMembers}, {@code markConditionally}.
+   * <p>
+   * Method under test: {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
    */
   @Test
-  void testAppendTo17() {
+  @DisplayName("Test appendTo(List, boolean, boolean, boolean) with 'keepSpecifications', 'markClasses', 'markClassMembers', 'markConditionally'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void KeepSpecificationElement.appendTo(List, boolean, boolean, boolean)"})
+  void testAppendToWithKeepSpecificationsMarkClassesMarkClassMembersMarkConditionally17() {
     // Arrange
     KeepSpecificationElement keepSpecificationElement = new KeepSpecificationElement();
     keepSpecificationElement.setType("class");
@@ -796,12 +580,6 @@ class KeepSpecificationElementDiffblueTest {
     assertEquals(1, keepSpecifications.size());
     Object getResult = keepSpecifications.get(0);
     assertTrue(getResult instanceof KeepClassSpecification);
-    assertNull(((KeepClassSpecification) getResult).annotationType);
-    assertNull(((KeepClassSpecification) getResult).className);
-    assertNull(((KeepClassSpecification) getResult).comments);
-    assertNull(((KeepClassSpecification) getResult).extendsAnnotationType);
-    assertNull(((KeepClassSpecification) getResult).extendsClassName);
-    assertNull(((KeepClassSpecification) getResult).memberComments);
     List<MemberSpecification> memberSpecificationList = ((KeepClassSpecification) getResult).fieldSpecifications;
     assertEquals(1, memberSpecificationList.size());
     MemberSpecification getResult2 = memberSpecificationList.get(0);
@@ -809,29 +587,21 @@ class KeepSpecificationElementDiffblueTest {
     assertNull(getResult2.descriptor);
     assertNull(getResult2.name);
     assertNull(getResult2.attributeNames);
-    assertNull(((KeepClassSpecification) getResult).attributeNames);
-    assertNull(((KeepClassSpecification) getResult).methodSpecifications);
-    assertNull(((KeepClassSpecification) getResult).condition);
     assertEquals(0, ((KeepClassSpecification) getResult).requiredSetAccessFlags);
-    assertEquals(0, ((KeepClassSpecification) getResult).requiredUnsetAccessFlags);
     assertEquals(0, getResult2.requiredSetAccessFlags);
     assertEquals(0, getResult2.requiredUnsetAccessFlags);
-    assertFalse(((KeepClassSpecification) getResult).allowObfuscation);
-    assertFalse(((KeepClassSpecification) getResult).allowOptimization);
-    assertFalse(((KeepClassSpecification) getResult).allowShrinking);
-    assertFalse(((KeepClassSpecification) getResult).markCodeAttributes);
-    assertFalse(((KeepClassSpecification) getResult).markDescriptorClasses);
-    assertTrue(((KeepClassSpecification) getResult).markClassMembers);
-    assertTrue(((KeepClassSpecification) getResult).markClasses);
-    assertTrue(((KeepClassSpecification) getResult).markConditionally);
   }
 
   /**
-   * Method under test:
-   * {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
+   * Test {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)} with {@code keepSpecifications}, {@code markClasses}, {@code markClassMembers}, {@code markConditionally}.
+   * <p>
+   * Method under test: {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
    */
   @Test
-  void testAppendTo18() {
+  @DisplayName("Test appendTo(List, boolean, boolean, boolean) with 'keepSpecifications', 'markClasses', 'markClassMembers', 'markConditionally'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void KeepSpecificationElement.appendTo(List, boolean, boolean, boolean)"})
+  void testAppendToWithKeepSpecificationsMarkClassesMarkClassMembersMarkConditionally18() {
     // Arrange
     KeepSpecificationElement keepSpecificationElement = new KeepSpecificationElement();
     keepSpecificationElement.setType("interface");
@@ -845,12 +615,6 @@ class KeepSpecificationElementDiffblueTest {
     assertEquals(1, keepSpecifications.size());
     Object getResult = keepSpecifications.get(0);
     assertTrue(getResult instanceof KeepClassSpecification);
-    assertNull(((KeepClassSpecification) getResult).annotationType);
-    assertNull(((KeepClassSpecification) getResult).className);
-    assertNull(((KeepClassSpecification) getResult).comments);
-    assertNull(((KeepClassSpecification) getResult).extendsAnnotationType);
-    assertNull(((KeepClassSpecification) getResult).extendsClassName);
-    assertNull(((KeepClassSpecification) getResult).memberComments);
     List<MemberSpecification> memberSpecificationList = ((KeepClassSpecification) getResult).fieldSpecifications;
     assertEquals(1, memberSpecificationList.size());
     MemberSpecification getResult2 = memberSpecificationList.get(0);
@@ -858,29 +622,21 @@ class KeepSpecificationElementDiffblueTest {
     assertNull(getResult2.descriptor);
     assertNull(getResult2.name);
     assertNull(getResult2.attributeNames);
-    assertNull(((KeepClassSpecification) getResult).attributeNames);
-    assertNull(((KeepClassSpecification) getResult).methodSpecifications);
-    assertNull(((KeepClassSpecification) getResult).condition);
-    assertEquals(0, ((KeepClassSpecification) getResult).requiredUnsetAccessFlags);
     assertEquals(0, getResult2.requiredSetAccessFlags);
     assertEquals(0, getResult2.requiredUnsetAccessFlags);
     assertEquals(512, ((KeepClassSpecification) getResult).requiredSetAccessFlags);
-    assertFalse(((KeepClassSpecification) getResult).allowObfuscation);
-    assertFalse(((KeepClassSpecification) getResult).allowOptimization);
-    assertFalse(((KeepClassSpecification) getResult).allowShrinking);
-    assertFalse(((KeepClassSpecification) getResult).markCodeAttributes);
-    assertFalse(((KeepClassSpecification) getResult).markDescriptorClasses);
-    assertTrue(((KeepClassSpecification) getResult).markClassMembers);
-    assertTrue(((KeepClassSpecification) getResult).markClasses);
-    assertTrue(((KeepClassSpecification) getResult).markConditionally);
   }
 
   /**
-   * Method under test:
-   * {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
+   * Test {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)} with {@code keepSpecifications}, {@code markClasses}, {@code markClassMembers}, {@code markConditionally}.
+   * <p>
+   * Method under test: {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
    */
   @Test
-  void testAppendTo19() {
+  @DisplayName("Test appendTo(List, boolean, boolean, boolean) with 'keepSpecifications', 'markClasses', 'markClassMembers', 'markConditionally'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void KeepSpecificationElement.appendTo(List, boolean, boolean, boolean)"})
+  void testAppendToWithKeepSpecificationsMarkClassesMarkClassMembersMarkConditionally19() {
     // Arrange
     KeepSpecificationElement keepSpecificationElement = new KeepSpecificationElement();
     keepSpecificationElement.setType("!interface");
@@ -894,12 +650,6 @@ class KeepSpecificationElementDiffblueTest {
     assertEquals(1, keepSpecifications.size());
     Object getResult = keepSpecifications.get(0);
     assertTrue(getResult instanceof KeepClassSpecification);
-    assertNull(((KeepClassSpecification) getResult).annotationType);
-    assertNull(((KeepClassSpecification) getResult).className);
-    assertNull(((KeepClassSpecification) getResult).comments);
-    assertNull(((KeepClassSpecification) getResult).extendsAnnotationType);
-    assertNull(((KeepClassSpecification) getResult).extendsClassName);
-    assertNull(((KeepClassSpecification) getResult).memberComments);
     List<MemberSpecification> memberSpecificationList = ((KeepClassSpecification) getResult).fieldSpecifications;
     assertEquals(1, memberSpecificationList.size());
     MemberSpecification getResult2 = memberSpecificationList.get(0);
@@ -907,29 +657,22 @@ class KeepSpecificationElementDiffblueTest {
     assertNull(getResult2.descriptor);
     assertNull(getResult2.name);
     assertNull(getResult2.attributeNames);
-    assertNull(((KeepClassSpecification) getResult).attributeNames);
-    assertNull(((KeepClassSpecification) getResult).methodSpecifications);
-    assertNull(((KeepClassSpecification) getResult).condition);
     assertEquals(0, ((KeepClassSpecification) getResult).requiredSetAccessFlags);
     assertEquals(0, getResult2.requiredSetAccessFlags);
     assertEquals(0, getResult2.requiredUnsetAccessFlags);
     assertEquals(512, ((KeepClassSpecification) getResult).requiredUnsetAccessFlags);
-    assertFalse(((KeepClassSpecification) getResult).allowObfuscation);
-    assertFalse(((KeepClassSpecification) getResult).allowOptimization);
-    assertFalse(((KeepClassSpecification) getResult).allowShrinking);
-    assertFalse(((KeepClassSpecification) getResult).markCodeAttributes);
-    assertFalse(((KeepClassSpecification) getResult).markDescriptorClasses);
-    assertTrue(((KeepClassSpecification) getResult).markClassMembers);
-    assertTrue(((KeepClassSpecification) getResult).markClasses);
-    assertTrue(((KeepClassSpecification) getResult).markConditionally);
   }
 
   /**
-   * Method under test:
-   * {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
+   * Test {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)} with {@code keepSpecifications}, {@code markClasses}, {@code markClassMembers}, {@code markConditionally}.
+   * <p>
+   * Method under test: {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
    */
   @Test
-  void testAppendTo20() {
+  @DisplayName("Test appendTo(List, boolean, boolean, boolean) with 'keepSpecifications', 'markClasses', 'markClassMembers', 'markConditionally'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void KeepSpecificationElement.appendTo(List, boolean, boolean, boolean)"})
+  void testAppendToWithKeepSpecificationsMarkClassesMarkClassMembersMarkConditionally20() {
     // Arrange
     KeepSpecificationElement keepSpecificationElement = new KeepSpecificationElement();
     keepSpecificationElement.setType("enum");
@@ -943,12 +686,6 @@ class KeepSpecificationElementDiffblueTest {
     assertEquals(1, keepSpecifications.size());
     Object getResult = keepSpecifications.get(0);
     assertTrue(getResult instanceof KeepClassSpecification);
-    assertNull(((KeepClassSpecification) getResult).annotationType);
-    assertNull(((KeepClassSpecification) getResult).className);
-    assertNull(((KeepClassSpecification) getResult).comments);
-    assertNull(((KeepClassSpecification) getResult).extendsAnnotationType);
-    assertNull(((KeepClassSpecification) getResult).extendsClassName);
-    assertNull(((KeepClassSpecification) getResult).memberComments);
     List<MemberSpecification> memberSpecificationList = ((KeepClassSpecification) getResult).fieldSpecifications;
     assertEquals(1, memberSpecificationList.size());
     MemberSpecification getResult2 = memberSpecificationList.get(0);
@@ -956,29 +693,21 @@ class KeepSpecificationElementDiffblueTest {
     assertNull(getResult2.descriptor);
     assertNull(getResult2.name);
     assertNull(getResult2.attributeNames);
-    assertNull(((KeepClassSpecification) getResult).attributeNames);
-    assertNull(((KeepClassSpecification) getResult).methodSpecifications);
-    assertNull(((KeepClassSpecification) getResult).condition);
-    assertEquals(0, ((KeepClassSpecification) getResult).requiredUnsetAccessFlags);
     assertEquals(0, getResult2.requiredSetAccessFlags);
     assertEquals(0, getResult2.requiredUnsetAccessFlags);
     assertEquals(16384, ((KeepClassSpecification) getResult).requiredSetAccessFlags);
-    assertFalse(((KeepClassSpecification) getResult).allowObfuscation);
-    assertFalse(((KeepClassSpecification) getResult).allowOptimization);
-    assertFalse(((KeepClassSpecification) getResult).allowShrinking);
-    assertFalse(((KeepClassSpecification) getResult).markCodeAttributes);
-    assertFalse(((KeepClassSpecification) getResult).markDescriptorClasses);
-    assertTrue(((KeepClassSpecification) getResult).markClassMembers);
-    assertTrue(((KeepClassSpecification) getResult).markClasses);
-    assertTrue(((KeepClassSpecification) getResult).markConditionally);
   }
 
   /**
-   * Method under test:
-   * {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
+   * Test {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)} with {@code keepSpecifications}, {@code markClasses}, {@code markClassMembers}, {@code markConditionally}.
+   * <p>
+   * Method under test: {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
    */
   @Test
-  void testAppendTo21() {
+  @DisplayName("Test appendTo(List, boolean, boolean, boolean) with 'keepSpecifications', 'markClasses', 'markClassMembers', 'markConditionally'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void KeepSpecificationElement.appendTo(List, boolean, boolean, boolean)"})
+  void testAppendToWithKeepSpecificationsMarkClassesMarkClassMembersMarkConditionally21() {
     // Arrange
     KeepSpecificationElement keepSpecificationElement = new KeepSpecificationElement();
     keepSpecificationElement.setType("!enum");
@@ -992,12 +721,6 @@ class KeepSpecificationElementDiffblueTest {
     assertEquals(1, keepSpecifications.size());
     Object getResult = keepSpecifications.get(0);
     assertTrue(getResult instanceof KeepClassSpecification);
-    assertNull(((KeepClassSpecification) getResult).annotationType);
-    assertNull(((KeepClassSpecification) getResult).className);
-    assertNull(((KeepClassSpecification) getResult).comments);
-    assertNull(((KeepClassSpecification) getResult).extendsAnnotationType);
-    assertNull(((KeepClassSpecification) getResult).extendsClassName);
-    assertNull(((KeepClassSpecification) getResult).memberComments);
     List<MemberSpecification> memberSpecificationList = ((KeepClassSpecification) getResult).fieldSpecifications;
     assertEquals(1, memberSpecificationList.size());
     MemberSpecification getResult2 = memberSpecificationList.get(0);
@@ -1005,29 +728,22 @@ class KeepSpecificationElementDiffblueTest {
     assertNull(getResult2.descriptor);
     assertNull(getResult2.name);
     assertNull(getResult2.attributeNames);
-    assertNull(((KeepClassSpecification) getResult).attributeNames);
-    assertNull(((KeepClassSpecification) getResult).methodSpecifications);
-    assertNull(((KeepClassSpecification) getResult).condition);
     assertEquals(0, ((KeepClassSpecification) getResult).requiredSetAccessFlags);
     assertEquals(0, getResult2.requiredSetAccessFlags);
     assertEquals(0, getResult2.requiredUnsetAccessFlags);
     assertEquals(16384, ((KeepClassSpecification) getResult).requiredUnsetAccessFlags);
-    assertFalse(((KeepClassSpecification) getResult).allowObfuscation);
-    assertFalse(((KeepClassSpecification) getResult).allowOptimization);
-    assertFalse(((KeepClassSpecification) getResult).allowShrinking);
-    assertFalse(((KeepClassSpecification) getResult).markCodeAttributes);
-    assertFalse(((KeepClassSpecification) getResult).markDescriptorClasses);
-    assertTrue(((KeepClassSpecification) getResult).markClassMembers);
-    assertTrue(((KeepClassSpecification) getResult).markClasses);
-    assertTrue(((KeepClassSpecification) getResult).markConditionally);
   }
 
   /**
-   * Method under test:
-   * {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
+   * Test {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)} with {@code keepSpecifications}, {@code markClasses}, {@code markClassMembers}, {@code markConditionally}.
+   * <p>
+   * Method under test: {@link KeepSpecificationElement#appendTo(List, boolean, boolean, boolean)}
    */
   @Test
-  void testAppendTo22() {
+  @DisplayName("Test appendTo(List, boolean, boolean, boolean) with 'keepSpecifications', 'markClasses', 'markClassMembers', 'markConditionally'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void KeepSpecificationElement.appendTo(List, boolean, boolean, boolean)"})
+  void testAppendToWithKeepSpecificationsMarkClassesMarkClassMembersMarkConditionally22() {
     // Arrange
     KeepSpecificationElement keepSpecificationElement = new KeepSpecificationElement();
     keepSpecificationElement.setName("*");
@@ -1041,12 +757,6 @@ class KeepSpecificationElementDiffblueTest {
     assertEquals(1, keepSpecifications.size());
     Object getResult = keepSpecifications.get(0);
     assertTrue(getResult instanceof KeepClassSpecification);
-    assertNull(((KeepClassSpecification) getResult).annotationType);
-    assertNull(((KeepClassSpecification) getResult).className);
-    assertNull(((KeepClassSpecification) getResult).comments);
-    assertNull(((KeepClassSpecification) getResult).extendsAnnotationType);
-    assertNull(((KeepClassSpecification) getResult).extendsClassName);
-    assertNull(((KeepClassSpecification) getResult).memberComments);
     List<MemberSpecification> memberSpecificationList = ((KeepClassSpecification) getResult).fieldSpecifications;
     assertEquals(1, memberSpecificationList.size());
     MemberSpecification getResult2 = memberSpecificationList.get(0);
@@ -1054,28 +764,20 @@ class KeepSpecificationElementDiffblueTest {
     assertNull(getResult2.descriptor);
     assertNull(getResult2.name);
     assertNull(getResult2.attributeNames);
-    assertNull(((KeepClassSpecification) getResult).attributeNames);
-    assertNull(((KeepClassSpecification) getResult).methodSpecifications);
-    assertNull(((KeepClassSpecification) getResult).condition);
     assertEquals(0, ((KeepClassSpecification) getResult).requiredSetAccessFlags);
-    assertEquals(0, ((KeepClassSpecification) getResult).requiredUnsetAccessFlags);
     assertEquals(0, getResult2.requiredSetAccessFlags);
     assertEquals(0, getResult2.requiredUnsetAccessFlags);
-    assertFalse(((KeepClassSpecification) getResult).allowObfuscation);
-    assertFalse(((KeepClassSpecification) getResult).allowOptimization);
-    assertFalse(((KeepClassSpecification) getResult).allowShrinking);
-    assertFalse(((KeepClassSpecification) getResult).markCodeAttributes);
-    assertFalse(((KeepClassSpecification) getResult).markDescriptorClasses);
-    assertTrue(((KeepClassSpecification) getResult).markClassMembers);
-    assertTrue(((KeepClassSpecification) getResult).markClasses);
-    assertTrue(((KeepClassSpecification) getResult).markConditionally);
   }
 
   /**
-   * Method under test: default or parameterless constructor of
-   * {@link KeepSpecificationElement}
+   * Test new {@link KeepSpecificationElement} (default constructor).
+   * <p>
+   * Method under test: default or parameterless constructor of {@link KeepSpecificationElement}
    */
   @Test
+  @DisplayName("Test new KeepSpecificationElement (default constructor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void KeepSpecificationElement.<init>()"})
   void testNewKeepSpecificationElement() {
     // Arrange and Act
     KeepSpecificationElement actualKeepSpecificationElement = new KeepSpecificationElement();

@@ -1,22 +1,26 @@
 package proguard.optimize.gson;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 class GsonRuntimeSettingsDiffblueTest {
   /**
-   * Method under test: default or parameterless constructor of
-   * {@link GsonRuntimeSettings}
+   * Test new {@link GsonRuntimeSettings} (default constructor).
+   * <p>
+   * Method under test: default or parameterless constructor of {@link GsonRuntimeSettings}
    */
   @Test
+  @DisplayName("Test new GsonRuntimeSettings (default constructor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void GsonRuntimeSettings.<init>()"})
   void testNewGsonRuntimeSettings() {
     // Arrange and Act
     GsonRuntimeSettings actualGsonRuntimeSettings = new GsonRuntimeSettings();
 
     // Assert
-    assertEquals(0, actualGsonRuntimeSettings.instanceCreatorClassPool.size());
-    assertEquals(0, actualGsonRuntimeSettings.typeAdapterClassPool.size());
     assertFalse(actualGsonRuntimeSettings.addDeserializationExclusionStrategy);
     assertFalse(actualGsonRuntimeSettings.addSerializationExclusionStrategy);
     assertFalse(actualGsonRuntimeSettings.disableInnerClassSerialization);

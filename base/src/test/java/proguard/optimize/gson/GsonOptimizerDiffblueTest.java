@@ -7,10 +7,13 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.AppView;
@@ -22,28 +25,14 @@ import proguard.classfile.visitor.ClassVisitor;
 
 class GsonOptimizerDiffblueTest {
   /**
-   * Method under test: {@link GsonOptimizer#execute(AppView)}
-   */
-  @Test
-  void testExecute() throws IOException {
-    // Arrange
-    GsonOptimizer gsonOptimizer = new GsonOptimizer(mock(Configuration.class));
-    ClassPool programClassPool = mock(ClassPool.class);
-    doNothing().when(programClassPool).classesAccept(Mockito.<ClassVisitor>any());
-    when(programClassPool.getClass(Mockito.<String>any())).thenReturn(new LibraryClass());
-
-    // Act
-    gsonOptimizer.execute(new AppView(programClassPool, new ClassPool()));
-
-    // Assert
-    verify(programClassPool, atLeast(1)).classesAccept(Mockito.<ClassVisitor>any());
-    verify(programClassPool).getClass(eq("com/google/gson/Gson"));
-  }
-
-  /**
+   * Test {@link GsonOptimizer#GsonOptimizer(Configuration)}.
+   * <p>
    * Method under test: {@link GsonOptimizer#GsonOptimizer(Configuration)}
    */
   @Test
+  @DisplayName("Test new GsonOptimizer(Configuration)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void GsonOptimizer.<init>(Configuration)"})
   void testNewGsonOptimizer() throws MalformedURLException {
     // Arrange
     Configuration configuration = new Configuration();
@@ -116,5 +105,33 @@ class GsonOptimizerDiffblueTest {
 
     // Act and Assert
     assertEquals("proguard.optimize.gson.GsonOptimizer", (new GsonOptimizer(configuration)).getName());
+  }
+
+  /**
+   * Test {@link GsonOptimizer#execute(AppView)}.
+   * <ul>
+   *   <li>Given {@link LibraryClass#LibraryClass()}.</li>
+   *   <li>Then calls {@link ClassPool#classesAccept(ClassVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link GsonOptimizer#execute(AppView)}
+   */
+  @Test
+  @DisplayName("Test execute(AppView); given LibraryClass(); then calls classesAccept(ClassVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void GsonOptimizer.execute(AppView)"})
+  void testExecute_givenLibraryClass_thenCallsClassesAccept() throws IOException {
+    // Arrange
+    GsonOptimizer gsonOptimizer = new GsonOptimizer(mock(Configuration.class));
+    ClassPool programClassPool = mock(ClassPool.class);
+    doNothing().when(programClassPool).classesAccept(Mockito.<ClassVisitor>any());
+    when(programClassPool.getClass(Mockito.<String>any())).thenReturn(new LibraryClass());
+
+    // Act
+    gsonOptimizer.execute(new AppView(programClassPool, new ClassPool()));
+
+    // Assert
+    verify(programClassPool, atLeast(1)).classesAccept(Mockito.<ClassVisitor>any());
+    verify(programClassPool).getClass(eq("com/google/gson/Gson"));
   }
 }

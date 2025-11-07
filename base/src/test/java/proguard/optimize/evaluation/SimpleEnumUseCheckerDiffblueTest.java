@@ -2,7 +2,6 @@ package proguard.optimize.evaluation;
 
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.ArgumentMatchers.isA;
-import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.anyBoolean;
 import static org.mockito.Mockito.anyInt;
 import static org.mockito.Mockito.atLeast;
@@ -10,6 +9,9 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.Clazz;
@@ -17,6 +19,7 @@ import proguard.classfile.LibraryClass;
 import proguard.classfile.LibraryMethod;
 import proguard.classfile.Method;
 import proguard.classfile.ProgramClass;
+import proguard.classfile.ProgramMember;
 import proguard.classfile.ProgramMethod;
 import proguard.classfile.attribute.BootstrapMethodInfo;
 import proguard.classfile.attribute.BootstrapMethodsAttribute;
@@ -32,44 +35,26 @@ import proguard.classfile.constant.RefConstant;
 import proguard.classfile.constant.StringConstant;
 import proguard.classfile.constant.visitor.ConstantVisitor;
 import proguard.classfile.instruction.ConstantInstruction;
-import proguard.classfile.instruction.SimpleInstruction;
 import proguard.classfile.visitor.ClassVisitor;
 import proguard.classfile.visitor.MemberVisitor;
-import proguard.evaluation.PartialEvaluator;
-import proguard.evaluation.TracedStack;
-import proguard.evaluation.value.ArrayReferenceValue;
 import proguard.optimize.info.ClassOptimizationInfo;
 import proguard.optimize.info.ProgramClassOptimizationInfo;
 
 class SimpleEnumUseCheckerDiffblueTest {
   /**
-   * Method under test:
-   * {@link SimpleEnumUseChecker#visitProgramClass(ProgramClass)}
+   * Test {@link SimpleEnumUseChecker#visitProgramClass(ProgramClass)}.
+   * <ul>
+   *   <li>Given {@code 8192}.</li>
+   *   <li>When {@link ProgramClass} {@link ProgramClass#getAccessFlags()} return {@code 8192}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SimpleEnumUseChecker#visitProgramClass(ProgramClass)}
    */
   @Test
-  void testVisitProgramClass() {
-    // Arrange
-    SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
-    ProgramClass programClass = mock(ProgramClass.class);
-    when(programClass.getAccessFlags()).thenReturn(1);
-    doNothing().when(programClass).attributesAccept(Mockito.<AttributeVisitor>any());
-    doNothing().when(programClass).methodsAccept(Mockito.<MemberVisitor>any());
-
-    // Act
-    simpleEnumUseChecker.visitProgramClass(programClass);
-
-    // Assert
-    verify(programClass).attributesAccept(isA(AttributeVisitor.class));
-    verify(programClass).getAccessFlags();
-    verify(programClass).methodsAccept(isA(MemberVisitor.class));
-  }
-
-  /**
-   * Method under test:
-   * {@link SimpleEnumUseChecker#visitProgramClass(ProgramClass)}
-   */
-  @Test
-  void testVisitProgramClass2() {
+  @DisplayName("Test visitProgramClass(ProgramClass); given '8192'; when ProgramClass getAccessFlags() return '8192'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SimpleEnumUseChecker.visitProgramClass(ProgramClass)"})
+  void testVisitProgramClass_given8192_whenProgramClassGetAccessFlagsReturn8192() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
     ProgramClass programClass = mock(ProgramClass.class);
@@ -87,11 +72,47 @@ class SimpleEnumUseCheckerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link SimpleEnumUseChecker#visitBootstrapMethodsAttribute(Clazz, BootstrapMethodsAttribute)}
+   * Test {@link SimpleEnumUseChecker#visitProgramClass(ProgramClass)}.
+   * <ul>
+   *   <li>When {@link ProgramClass} {@link ProgramClass#getAccessFlags()} return one.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SimpleEnumUseChecker#visitProgramClass(ProgramClass)}
    */
   @Test
-  void testVisitBootstrapMethodsAttribute() {
+  @DisplayName("Test visitProgramClass(ProgramClass); when ProgramClass getAccessFlags() return one")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SimpleEnumUseChecker.visitProgramClass(ProgramClass)"})
+  void testVisitProgramClass_whenProgramClassGetAccessFlagsReturnOne() {
+    // Arrange
+    SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
+    ProgramClass programClass = mock(ProgramClass.class);
+    when(programClass.getAccessFlags()).thenReturn(1);
+    doNothing().when(programClass).attributesAccept(Mockito.<AttributeVisitor>any());
+    doNothing().when(programClass).methodsAccept(Mockito.<MemberVisitor>any());
+
+    // Act
+    simpleEnumUseChecker.visitProgramClass(programClass);
+
+    // Assert
+    verify(programClass).attributesAccept(isA(AttributeVisitor.class));
+    verify(programClass).getAccessFlags();
+    verify(programClass).methodsAccept(isA(MemberVisitor.class));
+  }
+
+  /**
+   * Test {@link SimpleEnumUseChecker#visitBootstrapMethodsAttribute(Clazz, BootstrapMethodsAttribute)}.
+   * <ul>
+   *   <li>Then calls {@link BootstrapMethodsAttribute#bootstrapMethodEntriesAccept(Clazz, BootstrapMethodInfoVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SimpleEnumUseChecker#visitBootstrapMethodsAttribute(Clazz, BootstrapMethodsAttribute)}
+   */
+  @Test
+  @DisplayName("Test visitBootstrapMethodsAttribute(Clazz, BootstrapMethodsAttribute); then calls bootstrapMethodEntriesAccept(Clazz, BootstrapMethodInfoVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SimpleEnumUseChecker.visitBootstrapMethodsAttribute(Clazz, BootstrapMethodsAttribute)"})
+  void testVisitBootstrapMethodsAttribute_thenCallsBootstrapMethodEntriesAccept() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
     LibraryClass clazz = new LibraryClass();
@@ -108,50 +129,15 @@ class SimpleEnumUseCheckerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link SimpleEnumUseChecker#visitCodeAttribute(Clazz, Method, CodeAttribute)}
+   * Test {@link SimpleEnumUseChecker#visitBootstrapMethodInfo(Clazz, BootstrapMethodInfo)}.
+   * <p>
+   * Method under test: {@link SimpleEnumUseChecker#visitBootstrapMethodInfo(Clazz, BootstrapMethodInfo)}
    */
   @Test
-  void testVisitCodeAttribute() {
-    // Arrange
-    PartialEvaluator partialEvaluator = mock(PartialEvaluator.class);
-    doNothing().when(partialEvaluator)
-        .visitCodeAttribute(Mockito.<Clazz>any(), Mockito.<Method>any(), Mockito.<CodeAttribute>any());
-    SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker(partialEvaluator);
-    LibraryClass clazz = mock(LibraryClass.class);
-    ProgramMethod method = new ProgramMethod();
-
-    // Act
-    simpleEnumUseChecker.visitCodeAttribute(clazz, method, new CodeAttribute());
-
-    // Assert
-    verify(partialEvaluator).visitCodeAttribute(isA(Clazz.class), isA(Method.class), isA(CodeAttribute.class));
-  }
-
-  /**
-   * Method under test:
-   * {@link SimpleEnumUseChecker#visitBootstrapMethodInfo(Clazz, BootstrapMethodInfo)}
-   */
-  @Test
+  @DisplayName("Test visitBootstrapMethodInfo(Clazz, BootstrapMethodInfo)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SimpleEnumUseChecker.visitBootstrapMethodInfo(Clazz, BootstrapMethodInfo)"})
   void testVisitBootstrapMethodInfo() {
-    // Arrange
-    SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
-    LibraryClass clazz = mock(LibraryClass.class);
-    doNothing().when(clazz).constantPoolEntryAccept(anyInt(), Mockito.<ConstantVisitor>any());
-
-    // Act
-    simpleEnumUseChecker.visitBootstrapMethodInfo(clazz, new BootstrapMethodInfo());
-
-    // Assert
-    verify(clazz).constantPoolEntryAccept(eq(0), isA(ConstantVisitor.class));
-  }
-
-  /**
-   * Method under test:
-   * {@link SimpleEnumUseChecker#visitBootstrapMethodInfo(Clazz, BootstrapMethodInfo)}
-   */
-  @Test
-  void testVisitBootstrapMethodInfo2() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
     LibraryClass clazz = mock(LibraryClass.class);
@@ -165,11 +151,44 @@ class SimpleEnumUseCheckerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link SimpleEnumUseChecker#visitBootstrapMethodInfo(Clazz, BootstrapMethodInfo)}
+   * Test {@link SimpleEnumUseChecker#visitBootstrapMethodInfo(Clazz, BootstrapMethodInfo)}.
+   * <ul>
+   *   <li>Then calls {@link LibraryClass#constantPoolEntryAccept(int, ConstantVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SimpleEnumUseChecker#visitBootstrapMethodInfo(Clazz, BootstrapMethodInfo)}
    */
   @Test
-  void testVisitBootstrapMethodInfo3() {
+  @DisplayName("Test visitBootstrapMethodInfo(Clazz, BootstrapMethodInfo); then calls constantPoolEntryAccept(int, ConstantVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SimpleEnumUseChecker.visitBootstrapMethodInfo(Clazz, BootstrapMethodInfo)"})
+  void testVisitBootstrapMethodInfo_thenCallsConstantPoolEntryAccept() {
+    // Arrange
+    SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
+    LibraryClass clazz = mock(LibraryClass.class);
+    doNothing().when(clazz).constantPoolEntryAccept(anyInt(), Mockito.<ConstantVisitor>any());
+
+    // Act
+    simpleEnumUseChecker.visitBootstrapMethodInfo(clazz, new BootstrapMethodInfo());
+
+    // Assert
+    verify(clazz).constantPoolEntryAccept(eq(0), isA(ConstantVisitor.class));
+  }
+
+  /**
+   * Test {@link SimpleEnumUseChecker#visitBootstrapMethodInfo(Clazz, BootstrapMethodInfo)}.
+   * <ul>
+   *   <li>When {@link LibraryClass}.</li>
+   *   <li>Then calls {@link BootstrapMethodInfo#methodArgumentsAccept(Clazz, ConstantVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SimpleEnumUseChecker#visitBootstrapMethodInfo(Clazz, BootstrapMethodInfo)}
+   */
+  @Test
+  @DisplayName("Test visitBootstrapMethodInfo(Clazz, BootstrapMethodInfo); when LibraryClass; then calls methodArgumentsAccept(Clazz, ConstantVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SimpleEnumUseChecker.visitBootstrapMethodInfo(Clazz, BootstrapMethodInfo)"})
+  void testVisitBootstrapMethodInfo_whenLibraryClass_thenCallsMethodArgumentsAccept() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
     LibraryClass clazz = mock(LibraryClass.class);
@@ -186,30 +205,19 @@ class SimpleEnumUseCheckerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link SimpleEnumUseChecker#visitStringConstant(Clazz, StringConstant)}
+   * Test {@link SimpleEnumUseChecker#visitStringConstant(Clazz, StringConstant)}.
+   * <ul>
+   *   <li>Given {@link LibraryClass} {@link LibraryClass#accept(ClassVisitor)} does nothing.</li>
+   *   <li>Then calls {@link LibraryClass#accept(ClassVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SimpleEnumUseChecker#visitStringConstant(Clazz, StringConstant)}
    */
   @Test
-  void testVisitStringConstant() {
-    // Arrange
-    SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
-    LibraryClass clazz = new LibraryClass();
-    StringConstant stringConstant = mock(StringConstant.class);
-    doNothing().when(stringConstant).referencedClassAccept(Mockito.<ClassVisitor>any());
-
-    // Act
-    simpleEnumUseChecker.visitStringConstant(clazz, stringConstant);
-
-    // Assert
-    verify(stringConstant).referencedClassAccept(isA(ClassVisitor.class));
-  }
-
-  /**
-   * Method under test:
-   * {@link SimpleEnumUseChecker#visitStringConstant(Clazz, StringConstant)}
-   */
-  @Test
-  void testVisitStringConstant2() {
+  @DisplayName("Test visitStringConstant(Clazz, StringConstant); given LibraryClass accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SimpleEnumUseChecker.visitStringConstant(Clazz, StringConstant)"})
+  void testVisitStringConstant_givenLibraryClassAcceptDoesNothing_thenCallsAccept() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
     LibraryClass clazz = new LibraryClass();
@@ -227,11 +235,44 @@ class SimpleEnumUseCheckerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link SimpleEnumUseChecker#visitStringConstant(Clazz, StringConstant)}
+   * Test {@link SimpleEnumUseChecker#visitStringConstant(Clazz, StringConstant)}.
+   * <ul>
+   *   <li>Then calls {@link StringConstant#referencedClassAccept(ClassVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SimpleEnumUseChecker#visitStringConstant(Clazz, StringConstant)}
    */
   @Test
-  void testVisitStringConstant3() {
+  @DisplayName("Test visitStringConstant(Clazz, StringConstant); then calls referencedClassAccept(ClassVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SimpleEnumUseChecker.visitStringConstant(Clazz, StringConstant)"})
+  void testVisitStringConstant_thenCallsReferencedClassAccept() {
+    // Arrange
+    SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
+    LibraryClass clazz = new LibraryClass();
+    StringConstant stringConstant = mock(StringConstant.class);
+    doNothing().when(stringConstant).referencedClassAccept(Mockito.<ClassVisitor>any());
+
+    // Act
+    simpleEnumUseChecker.visitStringConstant(clazz, stringConstant);
+
+    // Assert
+    verify(stringConstant).referencedClassAccept(isA(ClassVisitor.class));
+  }
+
+  /**
+   * Test {@link SimpleEnumUseChecker#visitStringConstant(Clazz, StringConstant)}.
+   * <ul>
+   *   <li>Then calls {@link ProgramClassOptimizationInfo#setSimpleEnum(boolean)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SimpleEnumUseChecker#visitStringConstant(Clazz, StringConstant)}
+   */
+  @Test
+  @DisplayName("Test visitStringConstant(Clazz, StringConstant); then calls setSimpleEnum(boolean)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SimpleEnumUseChecker.visitStringConstant(Clazz, StringConstant)"})
+  void testVisitStringConstant_thenCallsSetSimpleEnum() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
     LibraryClass clazz = new LibraryClass();
@@ -252,11 +293,18 @@ class SimpleEnumUseCheckerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link SimpleEnumUseChecker#visitMethodHandleConstant(Clazz, MethodHandleConstant)}
+   * Test {@link SimpleEnumUseChecker#visitMethodHandleConstant(Clazz, MethodHandleConstant)}.
+   * <ul>
+   *   <li>Then calls {@link LibraryClass#constantPoolEntryAccept(int, ConstantVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SimpleEnumUseChecker#visitMethodHandleConstant(Clazz, MethodHandleConstant)}
    */
   @Test
-  void testVisitMethodHandleConstant() {
+  @DisplayName("Test visitMethodHandleConstant(Clazz, MethodHandleConstant); then calls constantPoolEntryAccept(int, ConstantVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SimpleEnumUseChecker.visitMethodHandleConstant(Clazz, MethodHandleConstant)"})
+  void testVisitMethodHandleConstant_thenCallsConstantPoolEntryAccept() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
     LibraryClass clazz = mock(LibraryClass.class);
@@ -270,11 +318,19 @@ class SimpleEnumUseCheckerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link SimpleEnumUseChecker#visitMethodHandleConstant(Clazz, MethodHandleConstant)}
+   * Test {@link SimpleEnumUseChecker#visitMethodHandleConstant(Clazz, MethodHandleConstant)}.
+   * <ul>
+   *   <li>When {@link LibraryClass}.</li>
+   *   <li>Then calls {@link MethodHandleConstant#referenceAccept(Clazz, ConstantVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SimpleEnumUseChecker#visitMethodHandleConstant(Clazz, MethodHandleConstant)}
    */
   @Test
-  void testVisitMethodHandleConstant2() {
+  @DisplayName("Test visitMethodHandleConstant(Clazz, MethodHandleConstant); when LibraryClass; then calls referenceAccept(Clazz, ConstantVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SimpleEnumUseChecker.visitMethodHandleConstant(Clazz, MethodHandleConstant)"})
+  void testVisitMethodHandleConstant_whenLibraryClass_thenCallsReferenceAccept() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
     LibraryClass clazz = mock(LibraryClass.class);
@@ -289,30 +345,19 @@ class SimpleEnumUseCheckerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link SimpleEnumUseChecker#visitMethodTypeConstant(Clazz, MethodTypeConstant)}
+   * Test {@link SimpleEnumUseChecker#visitMethodTypeConstant(Clazz, MethodTypeConstant)}.
+   * <ul>
+   *   <li>Given {@link LibraryClass} {@link LibraryClass#accept(ClassVisitor)} does nothing.</li>
+   *   <li>Then calls {@link LibraryClass#accept(ClassVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SimpleEnumUseChecker#visitMethodTypeConstant(Clazz, MethodTypeConstant)}
    */
   @Test
-  void testVisitMethodTypeConstant() {
-    // Arrange
-    SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
-    LibraryClass clazz = new LibraryClass();
-    MethodTypeConstant methodTypeConstant = mock(MethodTypeConstant.class);
-    doNothing().when(methodTypeConstant).referencedClassesAccept(Mockito.<ClassVisitor>any());
-
-    // Act
-    simpleEnumUseChecker.visitMethodTypeConstant(clazz, methodTypeConstant);
-
-    // Assert
-    verify(methodTypeConstant).referencedClassesAccept(isA(ClassVisitor.class));
-  }
-
-  /**
-   * Method under test:
-   * {@link SimpleEnumUseChecker#visitMethodTypeConstant(Clazz, MethodTypeConstant)}
-   */
-  @Test
-  void testVisitMethodTypeConstant2() {
+  @DisplayName("Test visitMethodTypeConstant(Clazz, MethodTypeConstant); given LibraryClass accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SimpleEnumUseChecker.visitMethodTypeConstant(Clazz, MethodTypeConstant)"})
+  void testVisitMethodTypeConstant_givenLibraryClassAcceptDoesNothing_thenCallsAccept() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
     LibraryClass clazz = new LibraryClass();
@@ -329,30 +374,45 @@ class SimpleEnumUseCheckerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link SimpleEnumUseChecker#visitAnyRefConstant(Clazz, RefConstant)}
+   * Test {@link SimpleEnumUseChecker#visitMethodTypeConstant(Clazz, MethodTypeConstant)}.
+   * <ul>
+   *   <li>Then calls {@link MethodTypeConstant#referencedClassesAccept(ClassVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SimpleEnumUseChecker#visitMethodTypeConstant(Clazz, MethodTypeConstant)}
    */
   @Test
-  void testVisitAnyRefConstant() {
+  @DisplayName("Test visitMethodTypeConstant(Clazz, MethodTypeConstant); then calls referencedClassesAccept(ClassVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SimpleEnumUseChecker.visitMethodTypeConstant(Clazz, MethodTypeConstant)"})
+  void testVisitMethodTypeConstant_thenCallsReferencedClassesAccept() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
     LibraryClass clazz = new LibraryClass();
-    FieldrefConstant refConstant = mock(FieldrefConstant.class);
-    doNothing().when(refConstant).referencedClassAccept(Mockito.<ClassVisitor>any());
+    MethodTypeConstant methodTypeConstant = mock(MethodTypeConstant.class);
+    doNothing().when(methodTypeConstant).referencedClassesAccept(Mockito.<ClassVisitor>any());
 
     // Act
-    simpleEnumUseChecker.visitAnyRefConstant(clazz, refConstant);
+    simpleEnumUseChecker.visitMethodTypeConstant(clazz, methodTypeConstant);
 
     // Assert
-    verify(refConstant).referencedClassAccept(isA(ClassVisitor.class));
+    verify(methodTypeConstant).referencedClassesAccept(isA(ClassVisitor.class));
   }
 
   /**
-   * Method under test:
-   * {@link SimpleEnumUseChecker#visitAnyRefConstant(Clazz, RefConstant)}
+   * Test {@link SimpleEnumUseChecker#visitAnyRefConstant(Clazz, RefConstant)}.
+   * <ul>
+   *   <li>Given {@link LibraryClass} {@link LibraryClass#accept(ClassVisitor)} does nothing.</li>
+   *   <li>Then calls {@link LibraryClass#accept(ClassVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SimpleEnumUseChecker#visitAnyRefConstant(Clazz, RefConstant)}
    */
   @Test
-  void testVisitAnyRefConstant2() {
+  @DisplayName("Test visitAnyRefConstant(Clazz, RefConstant); given LibraryClass accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SimpleEnumUseChecker.visitAnyRefConstant(Clazz, RefConstant)"})
+  void testVisitAnyRefConstant_givenLibraryClassAcceptDoesNothing_thenCallsAccept() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
     LibraryClass clazz = new LibraryClass();
@@ -369,30 +429,45 @@ class SimpleEnumUseCheckerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link SimpleEnumUseChecker#visitClassConstant(Clazz, ClassConstant)}
+   * Test {@link SimpleEnumUseChecker#visitAnyRefConstant(Clazz, RefConstant)}.
+   * <ul>
+   *   <li>Then calls {@link RefConstant#referencedClassAccept(ClassVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SimpleEnumUseChecker#visitAnyRefConstant(Clazz, RefConstant)}
    */
   @Test
-  void testVisitClassConstant() {
+  @DisplayName("Test visitAnyRefConstant(Clazz, RefConstant); then calls referencedClassAccept(ClassVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SimpleEnumUseChecker.visitAnyRefConstant(Clazz, RefConstant)"})
+  void testVisitAnyRefConstant_thenCallsReferencedClassAccept() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
     LibraryClass clazz = new LibraryClass();
-    ClassConstant classConstant = mock(ClassConstant.class);
-    doNothing().when(classConstant).referencedClassAccept(Mockito.<ClassVisitor>any());
+    FieldrefConstant refConstant = mock(FieldrefConstant.class);
+    doNothing().when(refConstant).referencedClassAccept(Mockito.<ClassVisitor>any());
 
     // Act
-    simpleEnumUseChecker.visitClassConstant(clazz, classConstant);
+    simpleEnumUseChecker.visitAnyRefConstant(clazz, refConstant);
 
     // Assert
-    verify(classConstant).referencedClassAccept(isA(ClassVisitor.class));
+    verify(refConstant).referencedClassAccept(isA(ClassVisitor.class));
   }
 
   /**
-   * Method under test:
-   * {@link SimpleEnumUseChecker#visitClassConstant(Clazz, ClassConstant)}
+   * Test {@link SimpleEnumUseChecker#visitClassConstant(Clazz, ClassConstant)}.
+   * <ul>
+   *   <li>Given {@link LibraryClass} {@link LibraryClass#accept(ClassVisitor)} does nothing.</li>
+   *   <li>Then calls {@link LibraryClass#accept(ClassVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SimpleEnumUseChecker#visitClassConstant(Clazz, ClassConstant)}
    */
   @Test
-  void testVisitClassConstant2() {
+  @DisplayName("Test visitClassConstant(Clazz, ClassConstant); given LibraryClass accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SimpleEnumUseChecker.visitClassConstant(Clazz, ClassConstant)"})
+  void testVisitClassConstant_givenLibraryClassAcceptDoesNothing_thenCallsAccept() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
     LibraryClass clazz = new LibraryClass();
@@ -409,71 +484,46 @@ class SimpleEnumUseCheckerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link SimpleEnumUseChecker#visitSimpleInstruction(Clazz, Method, CodeAttribute, int, SimpleInstruction)}
+   * Test {@link SimpleEnumUseChecker#visitClassConstant(Clazz, ClassConstant)}.
+   * <ul>
+   *   <li>Then calls {@link ClassConstant#referencedClassAccept(ClassVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SimpleEnumUseChecker#visitClassConstant(Clazz, ClassConstant)}
    */
   @Test
-  void testVisitSimpleInstruction() {
+  @DisplayName("Test visitClassConstant(Clazz, ClassConstant); then calls referencedClassAccept(ClassVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SimpleEnumUseChecker.visitClassConstant(Clazz, ClassConstant)"})
+  void testVisitClassConstant_thenCallsReferencedClassAccept() {
     // Arrange
-    ArrayReferenceValue arrayReferenceValue = mock(ArrayReferenceValue.class);
-    when(arrayReferenceValue.getReferencedClass()).thenReturn(null);
-    TracedStack tracedStack = mock(TracedStack.class);
-    when(tracedStack.getTop(anyInt())).thenReturn(arrayReferenceValue);
-    PartialEvaluator partialEvaluator = mock(PartialEvaluator.class);
-    when(partialEvaluator.getStackBefore(anyInt())).thenReturn(tracedStack);
-    SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker(partialEvaluator);
+    SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
     LibraryClass clazz = new LibraryClass();
-    ProgramMethod method = new ProgramMethod();
-    method.referencedClasses = null;
-    CodeAttribute codeAttribute = new CodeAttribute(1);
-    SimpleInstruction simpleInstruction = new SimpleInstruction((byte) 'A');
-    simpleInstruction.opcode = (byte) -62;
+    ClassConstant classConstant = mock(ClassConstant.class);
+    doNothing().when(classConstant).referencedClassAccept(Mockito.<ClassVisitor>any());
 
     // Act
-    simpleEnumUseChecker.visitSimpleInstruction(clazz, method, codeAttribute, 2, simpleInstruction);
+    simpleEnumUseChecker.visitClassConstant(clazz, classConstant);
 
     // Assert
-    verify(partialEvaluator, atLeast(1)).getStackBefore(eq(2));
-    verify(tracedStack, atLeast(1)).getTop(eq(0));
-    verify(arrayReferenceValue, atLeast(1)).getReferencedClass();
+    verify(classConstant).referencedClassAccept(isA(ClassVisitor.class));
   }
 
   /**
-   * Method under test:
-   * {@link SimpleEnumUseChecker#visitSimpleInstruction(Clazz, Method, CodeAttribute, int, SimpleInstruction)}
+   * Test {@link SimpleEnumUseChecker#visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction)}.
+   * <ul>
+   *   <li>Given {@link LibraryClass#LibraryClass()}.</li>
+   *   <li>Then calls {@link ProgramClass#addSubClass(Clazz)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SimpleEnumUseChecker#visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction)}
    */
   @Test
-  void testVisitSimpleInstruction2() {
-    // Arrange
-    ArrayReferenceValue arrayReferenceValue = mock(ArrayReferenceValue.class);
-    when(arrayReferenceValue.getReferencedClass()).thenReturn(null);
-    TracedStack tracedStack = mock(TracedStack.class);
-    when(tracedStack.getTop(anyInt())).thenReturn(arrayReferenceValue);
-    PartialEvaluator partialEvaluator = mock(PartialEvaluator.class);
-    when(partialEvaluator.getStackBefore(anyInt())).thenReturn(tracedStack);
-    SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker(partialEvaluator);
-    LibraryClass clazz = new LibraryClass();
-    ProgramMethod method = new ProgramMethod();
-    method.referencedClasses = null;
-    CodeAttribute codeAttribute = new CodeAttribute(1);
-    SimpleInstruction simpleInstruction = new SimpleInstruction((byte) 'A');
-    simpleInstruction.opcode = (byte) 'S';
-
-    // Act
-    simpleEnumUseChecker.visitSimpleInstruction(clazz, method, codeAttribute, 2, simpleInstruction);
-
-    // Assert
-    verify(partialEvaluator, atLeast(1)).getStackBefore(eq(2));
-    verify(tracedStack, atLeast(1)).getTop(anyInt());
-    verify(arrayReferenceValue, atLeast(1)).getReferencedClass();
-  }
-
-  /**
-   * Method under test:
-   * {@link SimpleEnumUseChecker#visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction)}
-   */
-  @Test
-  void testVisitConstantInstruction() {
+  @DisplayName("Test visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction); given LibraryClass(); then calls addSubClass(Clazz)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void SimpleEnumUseChecker.visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction)"})
+  void testVisitConstantInstruction_givenLibraryClass_thenCallsAddSubClass() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
     ProgramClass clazz = mock(ProgramClass.class);
@@ -496,11 +546,20 @@ class SimpleEnumUseCheckerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link SimpleEnumUseChecker#visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction)}
+   * Test {@link SimpleEnumUseChecker#visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction)}.
+   * <ul>
+   *   <li>Given {@link LibraryClass#LibraryClass()}.</li>
+   *   <li>Then calls {@link ProgramClass#addSubClass(Clazz)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SimpleEnumUseChecker#visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction)}
    */
   @Test
-  void testVisitConstantInstruction2() {
+  @DisplayName("Test visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction); given LibraryClass(); then calls addSubClass(Clazz)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void SimpleEnumUseChecker.visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction)"})
+  void testVisitConstantInstruction_givenLibraryClass_thenCallsAddSubClass2() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
     ProgramClass clazz = mock(ProgramClass.class);
@@ -523,15 +582,19 @@ class SimpleEnumUseCheckerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link SimpleEnumUseChecker#visitProgramMethod(ProgramClass, ProgramMethod)}
+   * Test {@link SimpleEnumUseChecker#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   * <p>
+   * Method under test: {@link SimpleEnumUseChecker#visitProgramMethod(ProgramClass, ProgramMethod)}
    */
   @Test
+  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SimpleEnumUseChecker.visitProgramMethod(ProgramClass, ProgramMethod)"})
   void testVisitProgramMethod() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
     Constant constant = mock(Constant.class);
-    doNothing().when(constant).addProcessingFlags((int[]) any());
+    doNothing().when(constant).addProcessingFlags((int[]) Mockito.any());
     constant.addProcessingFlags(2, 1, 2, 1);
     ProgramClass programClass = new ProgramClass(1, 3, new Constant[]{constant}, 1, 1, 1, "Feature Name", 1,
         new ClassOptimizationInfo());
@@ -539,20 +602,24 @@ class SimpleEnumUseCheckerDiffblueTest {
     // Act
     simpleEnumUseChecker.visitProgramMethod(programClass, new ProgramMethod());
 
-    // Assert that nothing has changed
-    verify(constant).addProcessingFlags((int[]) any());
+    // Assert
+    verify(constant).addProcessingFlags((int[]) Mockito.any());
   }
 
   /**
-   * Method under test:
-   * {@link SimpleEnumUseChecker#visitProgramMethod(ProgramClass, ProgramMethod)}
+   * Test {@link SimpleEnumUseChecker#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   * <p>
+   * Method under test: {@link SimpleEnumUseChecker#visitProgramMethod(ProgramClass, ProgramMethod)}
    */
   @Test
+  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SimpleEnumUseChecker.visitProgramMethod(ProgramClass, ProgramMethod)"})
   void testVisitProgramMethod2() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
     Constant constant = mock(Constant.class);
-    doNothing().when(constant).addProcessingFlags((int[]) any());
+    doNothing().when(constant).addProcessingFlags((int[]) Mockito.any());
     constant.addProcessingFlags(2, 1, 2, 1);
     ProgramClass programClass = new ProgramClass(1, 3, new Constant[]{constant}, 1, 1, 1, "Feature Name", 1,
         new ProgramClassOptimizationInfo());
@@ -560,16 +627,24 @@ class SimpleEnumUseCheckerDiffblueTest {
     // Act
     simpleEnumUseChecker.visitProgramMethod(programClass, new ProgramMethod());
 
-    // Assert that nothing has changed
-    verify(constant).addProcessingFlags((int[]) any());
+    // Assert
+    verify(constant).addProcessingFlags((int[]) Mockito.any());
   }
 
   /**
-   * Method under test:
-   * {@link SimpleEnumUseChecker#visitProgramMethod(ProgramClass, ProgramMethod)}
+   * Test {@link SimpleEnumUseChecker#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   * <ul>
+   *   <li>Given {@code String}.</li>
+   *   <li>When {@link ProgramClass} {@link ProgramClass#getString(int)} return {@code String}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SimpleEnumUseChecker#visitProgramMethod(ProgramClass, ProgramMethod)}
    */
   @Test
-  void testVisitProgramMethod3() {
+  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); given 'String'; when ProgramClass getString(int) return 'String'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SimpleEnumUseChecker.visitProgramMethod(ProgramClass, ProgramMethod)"})
+  void testVisitProgramMethod_givenString_whenProgramClassGetStringReturnString() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
     ClassOptimizationInfo classOptimizationInfo = mock(ClassOptimizationInfo.class);
@@ -588,11 +663,19 @@ class SimpleEnumUseCheckerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link SimpleEnumUseChecker#visitProgramMethod(ProgramClass, ProgramMethod)}
+   * Test {@link SimpleEnumUseChecker#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   * <ul>
+   *   <li>When {@link ProgramClass} {@link ProgramClass#getString(int)} return {@code valueOf}.</li>
+   *   <li>Then calls {@link ProgramClass#getName()}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SimpleEnumUseChecker#visitProgramMethod(ProgramClass, ProgramMethod)}
    */
   @Test
-  void testVisitProgramMethod4() {
+  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); when ProgramClass getString(int) return 'valueOf'; then calls getName()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SimpleEnumUseChecker.visitProgramMethod(ProgramClass, ProgramMethod)"})
+  void testVisitProgramMethod_whenProgramClassGetStringReturnValueOf_thenCallsGetName() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
     ClassOptimizationInfo classOptimizationInfo = mock(ClassOptimizationInfo.class);
@@ -613,11 +696,19 @@ class SimpleEnumUseCheckerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link SimpleEnumUseChecker#visitProgramMethod(ProgramClass, ProgramMethod)}
+   * Test {@link SimpleEnumUseChecker#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   * <ul>
+   *   <li>When {@link ProgramMethod} {@link ProgramMember#getName(Clazz)} return {@code Name}.</li>
+   *   <li>Then calls {@link ProgramMember#getDescriptor(Clazz)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SimpleEnumUseChecker#visitProgramMethod(ProgramClass, ProgramMethod)}
    */
   @Test
-  void testVisitProgramMethod5() {
+  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); when ProgramMethod getName(Clazz) return 'Name'; then calls getDescriptor(Clazz)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SimpleEnumUseChecker.visitProgramMethod(ProgramClass, ProgramMethod)"})
+  void testVisitProgramMethod_whenProgramMethodGetNameReturnName_thenCallsGetDescriptor() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
     ClassOptimizationInfo classOptimizationInfo = mock(ClassOptimizationInfo.class);
@@ -639,11 +730,19 @@ class SimpleEnumUseCheckerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link SimpleEnumUseChecker#visitProgramMethod(ProgramClass, ProgramMethod)}
+   * Test {@link SimpleEnumUseChecker#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   * <ul>
+   *   <li>When {@link ProgramMethod} {@link ProgramMember#getName(Clazz)} return {@code valueOf}.</li>
+   *   <li>Then calls {@link ProgramClass#getName()}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SimpleEnumUseChecker#visitProgramMethod(ProgramClass, ProgramMethod)}
    */
   @Test
-  void testVisitProgramMethod6() {
+  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); when ProgramMethod getName(Clazz) return 'valueOf'; then calls getName()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SimpleEnumUseChecker.visitProgramMethod(ProgramClass, ProgramMethod)"})
+  void testVisitProgramMethod_whenProgramMethodGetNameReturnValueOf_thenCallsGetName() {
     // Arrange
     SimpleEnumUseChecker simpleEnumUseChecker = new SimpleEnumUseChecker();
     ClassOptimizationInfo classOptimizationInfo = mock(ClassOptimizationInfo.class);

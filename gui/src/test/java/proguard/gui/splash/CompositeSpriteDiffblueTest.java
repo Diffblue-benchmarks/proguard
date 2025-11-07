@@ -6,16 +6,29 @@ import static org.mockito.Mockito.anyLong;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.awt.Graphics;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 class CompositeSpriteDiffblueTest {
   /**
+   * Test {@link CompositeSprite#paint(Graphics, long)}.
+   * <ul>
+   *   <li>Given {@link Sprite} {@link Sprite#paint(Graphics, long)} does nothing.</li>
+   *   <li>When {@code null}.</li>
+   *   <li>Then calls {@link Sprite#paint(Graphics, long)}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link CompositeSprite#paint(Graphics, long)}
    */
   @Test
-  void testPaint() {
+  @DisplayName("Test paint(Graphics, long); given Sprite paint(Graphics, long) does nothing; when 'null'; then calls paint(Graphics, long)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void CompositeSprite.paint(Graphics, long)"})
+  void testPaint_givenSpritePaintDoesNothing_whenNull_thenCallsPaint() {
     // Arrange
     Sprite sprite = mock(Sprite.class);
     doNothing().when(sprite).paint(Mockito.<Graphics>any(), anyLong());

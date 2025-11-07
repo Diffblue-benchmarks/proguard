@@ -8,6 +8,9 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.Clazz;
@@ -23,14 +26,23 @@ import proguard.classfile.constant.visitor.ConstantVisitor;
 import proguard.classfile.editor.CodeAttributeEditor;
 import proguard.classfile.instruction.ConstantInstruction;
 import proguard.classfile.visitor.ClassVisitor;
+import proguard.util.SimpleProcessable;
 
 class MemberReferenceGeneralizerDiffblueTest {
   /**
-   * Method under test:
-   * {@link MemberReferenceGeneralizer#visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction)}
+   * Test {@link MemberReferenceGeneralizer#visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction)}.
+   * <ul>
+   *   <li>Then calls {@link CodeAttributeEditor#isModified(int)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link MemberReferenceGeneralizer#visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction)}
    */
   @Test
-  void testVisitConstantInstruction() {
+  @DisplayName("Test visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction); then calls isModified(int)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void MemberReferenceGeneralizer.visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction)"})
+  void testVisitConstantInstruction_thenCallsIsModified() {
     // Arrange
     CodeAttributeEditor codeAttributeEditor = mock(CodeAttributeEditor.class);
     when(codeAttributeEditor.isModified(anyInt())).thenReturn(true);
@@ -50,11 +62,19 @@ class MemberReferenceGeneralizerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link MemberReferenceGeneralizer#visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction)}
+   * Test {@link MemberReferenceGeneralizer#visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction)}.
+   * <ul>
+   *   <li>Then calls {@link CodeAttributeEditor#isModified(int)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link MemberReferenceGeneralizer#visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction)}
    */
   @Test
-  void testVisitConstantInstruction2() {
+  @DisplayName("Test visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction); then calls isModified(int)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void MemberReferenceGeneralizer.visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction)"})
+  void testVisitConstantInstruction_thenCallsIsModified2() {
     // Arrange
     CodeAttributeEditor codeAttributeEditor = mock(CodeAttributeEditor.class);
     when(codeAttributeEditor.isModified(anyInt())).thenReturn(true);
@@ -74,11 +94,20 @@ class MemberReferenceGeneralizerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link MemberReferenceGeneralizer#visitAnyRefConstant(Clazz, RefConstant)}
+   * Test {@link MemberReferenceGeneralizer#visitAnyRefConstant(Clazz, RefConstant)}.
+   * <ul>
+   *   <li>Given {@code Name}.</li>
+   *   <li>When {@link FieldrefConstant#FieldrefConstant()}.</li>
+   *   <li>Then calls {@link LibraryClass#getName(int)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link MemberReferenceGeneralizer#visitAnyRefConstant(Clazz, RefConstant)}
    */
   @Test
-  void testVisitAnyRefConstant() {
+  @DisplayName("Test visitAnyRefConstant(Clazz, RefConstant); given 'Name'; when FieldrefConstant(); then calls getName(int)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void MemberReferenceGeneralizer.visitAnyRefConstant(Clazz, RefConstant)"})
+  void testVisitAnyRefConstant_givenName_whenFieldrefConstant_thenCallsGetName() {
     // Arrange
     MemberReferenceGeneralizer memberReferenceGeneralizer = new MemberReferenceGeneralizer(true, true,
         new CodeAttributeEditor());
@@ -95,11 +124,50 @@ class MemberReferenceGeneralizerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link MemberReferenceGeneralizer#visitAnyRefConstant(Clazz, RefConstant)}
+   * Test {@link MemberReferenceGeneralizer#visitAnyRefConstant(Clazz, RefConstant)}.
+   * <ul>
+   *   <li>Given {@code Name}.</li>
+   *   <li>When {@link LibraryClass}.</li>
+   *   <li>Then calls {@link RefConstant#getName(Clazz)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link MemberReferenceGeneralizer#visitAnyRefConstant(Clazz, RefConstant)}
    */
   @Test
-  void testVisitAnyRefConstant2() {
+  @DisplayName("Test visitAnyRefConstant(Clazz, RefConstant); given 'Name'; when LibraryClass; then calls getName(Clazz)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void MemberReferenceGeneralizer.visitAnyRefConstant(Clazz, RefConstant)"})
+  void testVisitAnyRefConstant_givenName_whenLibraryClass_thenCallsGetName() {
+    // Arrange
+    MemberReferenceGeneralizer memberReferenceGeneralizer = new MemberReferenceGeneralizer(true, true,
+        new CodeAttributeEditor());
+    LibraryClass clazz = mock(LibraryClass.class);
+    FieldrefConstant refConstant = mock(FieldrefConstant.class);
+    when(refConstant.getName(Mockito.<Clazz>any())).thenReturn("Name");
+    when(refConstant.getType(Mockito.<Clazz>any())).thenReturn("Type");
+
+    // Act
+    memberReferenceGeneralizer.visitAnyRefConstant(clazz, refConstant);
+
+    // Assert
+    verify(refConstant).getName(isA(Clazz.class));
+    verify(refConstant).getType(isA(Clazz.class));
+  }
+
+  /**
+   * Test {@link MemberReferenceGeneralizer#visitAnyRefConstant(Clazz, RefConstant)}.
+   * <ul>
+   *   <li>Given one.</li>
+   *   <li>Then calls {@link LibraryClass#constantPoolEntryAccept(int, ConstantVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link MemberReferenceGeneralizer#visitAnyRefConstant(Clazz, RefConstant)}
+   */
+  @Test
+  @DisplayName("Test visitAnyRefConstant(Clazz, RefConstant); given one; then calls constantPoolEntryAccept(int, ConstantVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void MemberReferenceGeneralizer.visitAnyRefConstant(Clazz, RefConstant)"})
+  void testVisitAnyRefConstant_givenOne_thenCallsConstantPoolEntryAccept() {
     // Arrange
     MemberReferenceGeneralizer memberReferenceGeneralizer = new MemberReferenceGeneralizer(true, true,
         new CodeAttributeEditor());
@@ -122,11 +190,19 @@ class MemberReferenceGeneralizerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link MemberReferenceGeneralizer#visitAnyRefConstant(Clazz, RefConstant)}
+   * Test {@link MemberReferenceGeneralizer#visitAnyRefConstant(Clazz, RefConstant)}.
+   * <ul>
+   *   <li>Given zero.</li>
+   *   <li>When {@link LibraryClass} {@link SimpleProcessable#getProcessingFlags()} return zero.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link MemberReferenceGeneralizer#visitAnyRefConstant(Clazz, RefConstant)}
    */
   @Test
-  void testVisitAnyRefConstant3() {
+  @DisplayName("Test visitAnyRefConstant(Clazz, RefConstant); given zero; when LibraryClass getProcessingFlags() return zero")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void MemberReferenceGeneralizer.visitAnyRefConstant(Clazz, RefConstant)"})
+  void testVisitAnyRefConstant_givenZero_whenLibraryClassGetProcessingFlagsReturnZero() {
     // Arrange
     MemberReferenceGeneralizer memberReferenceGeneralizer = new MemberReferenceGeneralizer(true, true,
         new CodeAttributeEditor());
@@ -147,53 +223,19 @@ class MemberReferenceGeneralizerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link MemberReferenceGeneralizer#visitAnyRefConstant(Clazz, RefConstant)}
+   * Test {@link MemberReferenceGeneralizer#visitClassConstant(Clazz, ClassConstant)}.
+   * <ul>
+   *   <li>Given {@link LibraryClass} {@link LibraryClass#accept(ClassVisitor)} does nothing.</li>
+   *   <li>Then calls {@link LibraryClass#accept(ClassVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link MemberReferenceGeneralizer#visitClassConstant(Clazz, ClassConstant)}
    */
   @Test
-  void testVisitAnyRefConstant4() {
-    // Arrange
-    MemberReferenceGeneralizer memberReferenceGeneralizer = new MemberReferenceGeneralizer(true, true,
-        new CodeAttributeEditor());
-    LibraryClass clazz = mock(LibraryClass.class);
-    FieldrefConstant refConstant = mock(FieldrefConstant.class);
-    when(refConstant.getName(Mockito.<Clazz>any())).thenReturn("Name");
-    when(refConstant.getType(Mockito.<Clazz>any())).thenReturn("Type");
-
-    // Act
-    memberReferenceGeneralizer.visitAnyRefConstant(clazz, refConstant);
-
-    // Assert
-    verify(refConstant).getName(isA(Clazz.class));
-    verify(refConstant).getType(isA(Clazz.class));
-  }
-
-  /**
-   * Method under test:
-   * {@link MemberReferenceGeneralizer#visitClassConstant(Clazz, ClassConstant)}
-   */
-  @Test
-  void testVisitClassConstant() {
-    // Arrange
-    MemberReferenceGeneralizer memberReferenceGeneralizer = new MemberReferenceGeneralizer(true, true,
-        new CodeAttributeEditor());
-    LibraryClass clazz = new LibraryClass();
-    ClassConstant classConstant = mock(ClassConstant.class);
-    doNothing().when(classConstant).referencedClassAccept(Mockito.<ClassVisitor>any());
-
-    // Act
-    memberReferenceGeneralizer.visitClassConstant(clazz, classConstant);
-
-    // Assert
-    verify(classConstant).referencedClassAccept(isA(ClassVisitor.class));
-  }
-
-  /**
-   * Method under test:
-   * {@link MemberReferenceGeneralizer#visitClassConstant(Clazz, ClassConstant)}
-   */
-  @Test
-  void testVisitClassConstant2() {
+  @DisplayName("Test visitClassConstant(Clazz, ClassConstant); given LibraryClass accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void MemberReferenceGeneralizer.visitClassConstant(Clazz, ClassConstant)"})
+  void testVisitClassConstant_givenLibraryClassAcceptDoesNothing_thenCallsAccept() {
     // Arrange
     MemberReferenceGeneralizer memberReferenceGeneralizer = new MemberReferenceGeneralizer(true, true,
         new CodeAttributeEditor());
@@ -211,31 +253,42 @@ class MemberReferenceGeneralizerDiffblueTest {
   }
 
   /**
-   * Method under test: {@link MemberReferenceGeneralizer#visitAnyClass(Clazz)}
+   * Test {@link MemberReferenceGeneralizer#visitClassConstant(Clazz, ClassConstant)}.
+   * <ul>
+   *   <li>Then calls {@link ClassConstant#referencedClassAccept(ClassVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link MemberReferenceGeneralizer#visitClassConstant(Clazz, ClassConstant)}
    */
   @Test
-  void testVisitAnyClass() {
+  @DisplayName("Test visitClassConstant(Clazz, ClassConstant); then calls referencedClassAccept(ClassVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void MemberReferenceGeneralizer.visitClassConstant(Clazz, ClassConstant)"})
+  void testVisitClassConstant_thenCallsReferencedClassAccept() {
     // Arrange
     MemberReferenceGeneralizer memberReferenceGeneralizer = new MemberReferenceGeneralizer(true, true,
         new CodeAttributeEditor());
-    LibraryClass clazz = mock(LibraryClass.class);
-    when(clazz.getProcessingFlags()).thenReturn(1);
-    when(clazz.findField(Mockito.<String>any(), Mockito.<String>any()))
-        .thenReturn(new LibraryField(1, "Name", "Descriptor"));
+    LibraryClass clazz = new LibraryClass();
+    ClassConstant classConstant = mock(ClassConstant.class);
+    doNothing().when(classConstant).referencedClassAccept(Mockito.<ClassVisitor>any());
 
     // Act
-    memberReferenceGeneralizer.visitAnyClass(clazz);
+    memberReferenceGeneralizer.visitClassConstant(clazz, classConstant);
 
     // Assert
-    verify(clazz).findField(isNull(), isNull());
-    verify(clazz).getProcessingFlags();
+    verify(classConstant).referencedClassAccept(isA(ClassVisitor.class));
   }
 
   /**
+   * Test {@link MemberReferenceGeneralizer#visitAnyClass(Clazz)}.
+   * <p>
    * Method under test: {@link MemberReferenceGeneralizer#visitAnyClass(Clazz)}
    */
   @Test
-  void testVisitAnyClass2() {
+  @DisplayName("Test visitAnyClass(Clazz)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void MemberReferenceGeneralizer.visitAnyClass(Clazz)"})
+  void testVisitAnyClass() {
     // Arrange
     MemberReferenceGeneralizer memberReferenceGeneralizer = new MemberReferenceGeneralizer(true, true,
         new CodeAttributeEditor());
@@ -255,10 +308,19 @@ class MemberReferenceGeneralizerDiffblueTest {
   }
 
   /**
+   * Test {@link MemberReferenceGeneralizer#visitAnyClass(Clazz)}.
+   * <ul>
+   *   <li>Given {@link LibraryClass} {@link LibraryClass#accept(ClassVisitor)} does nothing.</li>
+   *   <li>Then calls {@link LibraryClass#accept(ClassVisitor)}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link MemberReferenceGeneralizer#visitAnyClass(Clazz)}
    */
   @Test
-  void testVisitAnyClass3() {
+  @DisplayName("Test visitAnyClass(Clazz); given LibraryClass accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void MemberReferenceGeneralizer.visitAnyClass(Clazz)"})
+  void testVisitAnyClass_givenLibraryClassAcceptDoesNothing_thenCallsAccept() {
     // Arrange
     MemberReferenceGeneralizer memberReferenceGeneralizer = new MemberReferenceGeneralizer(true, true,
         new CodeAttributeEditor());
@@ -277,6 +339,36 @@ class MemberReferenceGeneralizerDiffblueTest {
     verify(libraryClass).accept(isA(ClassVisitor.class));
     verify(clazz).findField(isNull(), isNull());
     verify(clazz).getSuperClass();
+    verify(clazz).getProcessingFlags();
+  }
+
+  /**
+   * Test {@link MemberReferenceGeneralizer#visitAnyClass(Clazz)}.
+   * <ul>
+   *   <li>Given one.</li>
+   *   <li>When {@link LibraryClass} {@link SimpleProcessable#getProcessingFlags()} return one.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link MemberReferenceGeneralizer#visitAnyClass(Clazz)}
+   */
+  @Test
+  @DisplayName("Test visitAnyClass(Clazz); given one; when LibraryClass getProcessingFlags() return one")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void MemberReferenceGeneralizer.visitAnyClass(Clazz)"})
+  void testVisitAnyClass_givenOne_whenLibraryClassGetProcessingFlagsReturnOne() {
+    // Arrange
+    MemberReferenceGeneralizer memberReferenceGeneralizer = new MemberReferenceGeneralizer(true, true,
+        new CodeAttributeEditor());
+    LibraryClass clazz = mock(LibraryClass.class);
+    when(clazz.getProcessingFlags()).thenReturn(1);
+    when(clazz.findField(Mockito.<String>any(), Mockito.<String>any()))
+        .thenReturn(new LibraryField(1, "Name", "Descriptor"));
+
+    // Act
+    memberReferenceGeneralizer.visitAnyClass(clazz);
+
+    // Assert
+    verify(clazz).findField(isNull(), isNull());
     verify(clazz).getProcessingFlags();
   }
 }

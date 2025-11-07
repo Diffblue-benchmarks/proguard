@@ -1,14 +1,22 @@
 package proguard.gradle.plugin.android;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import com.diffblue.cover.annotations.MethodsUnderTest;
 import kotlin.enums.EnumEntries;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 class AndroidProjectTypeDiffblueTest {
   /**
+   * Test {@link AndroidProjectType#getEntries()}.
+   * <p>
    * Method under test: {@link AndroidProjectType#getEntries()}
    */
   @Test
+  @DisplayName("Test getEntries()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"EnumEntries AndroidProjectType.getEntries()"})
   void testGetEntries() {
     // Arrange and Act
     EnumEntries<AndroidProjectType> actualEntries = AndroidProjectType.valueOf("ANDROID_APPLICATION").getEntries();

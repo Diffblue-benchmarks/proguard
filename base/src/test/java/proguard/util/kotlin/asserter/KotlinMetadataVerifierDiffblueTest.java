@@ -1,19 +1,26 @@
 package proguard.util.kotlin.asserter;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.net.MalformedURLException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import proguard.ClassPath;
 import proguard.Configuration;
 
 class KotlinMetadataVerifierDiffblueTest {
   /**
-   * Method under test:
-   * {@link KotlinMetadataVerifier#KotlinMetadataVerifier(Configuration)}
+   * Test {@link KotlinMetadataVerifier#KotlinMetadataVerifier(Configuration)}.
+   * <p>
+   * Method under test: {@link KotlinMetadataVerifier#KotlinMetadataVerifier(Configuration)}
    */
   @Test
+  @DisplayName("Test new KotlinMetadataVerifier(Configuration)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void KotlinMetadataVerifier.<init>(Configuration)"})
   void testNewKotlinMetadataVerifier() throws MalformedURLException {
     // Arrange
     Configuration configuration = new Configuration();

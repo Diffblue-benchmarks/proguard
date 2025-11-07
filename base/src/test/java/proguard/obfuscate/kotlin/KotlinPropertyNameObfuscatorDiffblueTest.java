@@ -1,6 +1,9 @@
 package proguard.obfuscate.kotlin;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import proguard.classfile.Clazz;
 import proguard.classfile.LibraryClass;
@@ -17,10 +20,15 @@ import proguard.obfuscate.NumericNameFactory;
 
 class KotlinPropertyNameObfuscatorDiffblueTest {
   /**
-   * Method under test:
-   * {@link KotlinPropertyNameObfuscator#visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata)}
+   * Test {@link KotlinPropertyNameObfuscator#visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata)}.
+   * <p>
+   * Method under test: {@link KotlinPropertyNameObfuscator#visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata)}
    */
   @Test
+  @DisplayName("Test visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void KotlinPropertyNameObfuscator.visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata)"})
   void testVisitAnyProperty() {
     // Arrange
     KotlinPropertyNameObfuscator kotlinPropertyNameObfuscator = new KotlinPropertyNameObfuscator(
@@ -80,10 +88,15 @@ class KotlinPropertyNameObfuscatorDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link KotlinPropertyNameObfuscator#visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata)}
+   * Test {@link KotlinPropertyNameObfuscator#visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata)}.
+   * <p>
+   * Method under test: {@link KotlinPropertyNameObfuscator#visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata)}
    */
   @Test
+  @DisplayName("Test visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void KotlinPropertyNameObfuscator.visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata)"})
   void testVisitAnyProperty2() {
     // Arrange
     KotlinPropertyNameObfuscator kotlinPropertyNameObfuscator = new KotlinPropertyNameObfuscator(
@@ -147,10 +160,15 @@ class KotlinPropertyNameObfuscatorDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link KotlinPropertyNameObfuscator#visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata)}
+   * Test {@link KotlinPropertyNameObfuscator#visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata)}.
+   * <p>
+   * Method under test: {@link KotlinPropertyNameObfuscator#visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata)}
    */
   @Test
+  @DisplayName("Test visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void KotlinPropertyNameObfuscator.visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata)"})
   void testVisitAnyProperty3() {
     // Arrange
     KotlinPropertyNameObfuscator kotlinPropertyNameObfuscator = new KotlinPropertyNameObfuscator(
@@ -214,11 +232,19 @@ class KotlinPropertyNameObfuscatorDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link KotlinPropertyNameObfuscator#visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata)}
+   * Test {@link KotlinPropertyNameObfuscator#visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata)}.
+   * <ul>
+   *   <li>Given {@link LibraryField#LibraryField(int, String, String)} with u2accessFlags is one and {@code Name} and {@code Descriptor}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link KotlinPropertyNameObfuscator#visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata)}
    */
   @Test
-  void testVisitAnyProperty4() {
+  @DisplayName("Test visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata); given LibraryField(int, String, String) with u2accessFlags is one and 'Name' and 'Descriptor'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void KotlinPropertyNameObfuscator.visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata)"})
+  void testVisitAnyProperty_givenLibraryFieldWithU2accessFlagsIsOneAndNameAndDescriptor() {
     // Arrange
     KotlinPropertyNameObfuscator kotlinPropertyNameObfuscator = new KotlinPropertyNameObfuscator(
         new NumericNameFactory());

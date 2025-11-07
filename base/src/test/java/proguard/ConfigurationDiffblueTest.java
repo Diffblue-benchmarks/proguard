@@ -4,14 +4,21 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 class ConfigurationDiffblueTest {
   /**
-   * Method under test: default or parameterless constructor of
-   * {@link Configuration}
+   * Test new {@link Configuration} (default constructor).
+   * <p>
+   * Method under test: default or parameterless constructor of {@link Configuration}
    */
   @Test
+  @DisplayName("Test new Configuration (default constructor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void Configuration.<init>()"})
   void testNewConfiguration() {
     // Arrange and Act
     Configuration actualConfiguration = new Configuration();

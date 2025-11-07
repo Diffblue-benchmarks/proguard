@@ -6,6 +6,9 @@ import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.Clazz;
@@ -24,11 +27,19 @@ import proguard.util.Processable;
 
 class LocalVariableTypeUsageMarkerDiffblueTest {
   /**
-   * Method under test:
-   * {@link LocalVariableTypeUsageMarker#visitLocalVariableTableAttribute(Clazz, Method, CodeAttribute, LocalVariableTableAttribute)}
+   * Test {@link LocalVariableTypeUsageMarker#visitLocalVariableTableAttribute(Clazz, Method, CodeAttribute, LocalVariableTableAttribute)}.
+   * <ul>
+   *   <li>Then array length is one.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link LocalVariableTypeUsageMarker#visitLocalVariableTableAttribute(Clazz, Method, CodeAttribute, LocalVariableTableAttribute)}
    */
   @Test
-  void testVisitLocalVariableTableAttribute() {
+  @DisplayName("Test visitLocalVariableTableAttribute(Clazz, Method, CodeAttribute, LocalVariableTableAttribute); then array length is one")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void LocalVariableTypeUsageMarker.visitLocalVariableTableAttribute(Clazz, Method, CodeAttribute, LocalVariableTableAttribute)"})
+  void testVisitLocalVariableTableAttribute_thenArrayLengthIsOne() {
     // Arrange
     LocalVariableTypeUsageMarker localVariableTypeUsageMarker = new LocalVariableTypeUsageMarker(
         new ClassUsageMarker());
@@ -36,27 +47,31 @@ class LocalVariableTypeUsageMarkerDiffblueTest {
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
 
     CodeAttribute codeAttribute = new CodeAttribute(1);
-    LocalVariableInfo localVariableInfo = new LocalVariableInfo(1, 3, 1, 1, 1);
-
     LocalVariableTableAttribute localVariableTableAttribute = new LocalVariableTableAttribute(1, 1,
-        new LocalVariableInfo[]{localVariableInfo});
+        new LocalVariableInfo[]{new LocalVariableInfo(1, 3, 1, 1, 1)});
 
     // Act
     localVariableTypeUsageMarker.visitLocalVariableTableAttribute(clazz, method, codeAttribute,
         localVariableTableAttribute);
 
     // Assert
-    LocalVariableInfo[] localVariableInfoArray = localVariableTableAttribute.localVariableTable;
-    assertEquals(1, localVariableInfoArray.length);
-    assertSame(localVariableInfo, localVariableInfoArray[0]);
+    assertEquals(1, localVariableTableAttribute.localVariableTable.length);
   }
 
   /**
-   * Method under test:
-   * {@link LocalVariableTypeUsageMarker#visitLocalVariableTypeTableAttribute(Clazz, Method, CodeAttribute, LocalVariableTypeTableAttribute)}
+   * Test {@link LocalVariableTypeUsageMarker#visitLocalVariableTypeTableAttribute(Clazz, Method, CodeAttribute, LocalVariableTypeTableAttribute)}.
+   * <ul>
+   *   <li>Then array length is one.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link LocalVariableTypeUsageMarker#visitLocalVariableTypeTableAttribute(Clazz, Method, CodeAttribute, LocalVariableTypeTableAttribute)}
    */
   @Test
-  void testVisitLocalVariableTypeTableAttribute() {
+  @DisplayName("Test visitLocalVariableTypeTableAttribute(Clazz, Method, CodeAttribute, LocalVariableTypeTableAttribute); then array length is one")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void LocalVariableTypeUsageMarker.visitLocalVariableTypeTableAttribute(Clazz, Method, CodeAttribute, LocalVariableTypeTableAttribute)"})
+  void testVisitLocalVariableTypeTableAttribute_thenArrayLengthIsOne() {
     // Arrange
     LocalVariableTypeUsageMarker localVariableTypeUsageMarker = new LocalVariableTypeUsageMarker(
         new ClassUsageMarker());
@@ -64,26 +79,27 @@ class LocalVariableTypeUsageMarkerDiffblueTest {
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
 
     CodeAttribute codeAttribute = new CodeAttribute(1);
-    LocalVariableTypeInfo localVariableTypeInfo = new LocalVariableTypeInfo(1, 3, 1, 1, 1);
-
     LocalVariableTypeTableAttribute localVariableTypeTableAttribute = new LocalVariableTypeTableAttribute(1, 1,
-        new LocalVariableTypeInfo[]{localVariableTypeInfo});
+        new LocalVariableTypeInfo[]{new LocalVariableTypeInfo(1, 3, 1, 1, 1)});
 
     // Act
     localVariableTypeUsageMarker.visitLocalVariableTypeTableAttribute(clazz, method, codeAttribute,
         localVariableTypeTableAttribute);
 
     // Assert
-    LocalVariableTypeInfo[] localVariableTypeInfoArray = localVariableTypeTableAttribute.localVariableTypeTable;
-    assertEquals(1, localVariableTypeInfoArray.length);
-    assertSame(localVariableTypeInfo, localVariableTypeInfoArray[0]);
+    assertEquals(1, localVariableTypeTableAttribute.localVariableTypeTable.length);
   }
 
   /**
-   * Method under test:
-   * {@link LocalVariableTypeUsageMarker#visitLocalVariableInfo(Clazz, Method, CodeAttribute, LocalVariableInfo)}
+   * Test {@link LocalVariableTypeUsageMarker#visitLocalVariableInfo(Clazz, Method, CodeAttribute, LocalVariableInfo)}.
+   * <p>
+   * Method under test: {@link LocalVariableTypeUsageMarker#visitLocalVariableInfo(Clazz, Method, CodeAttribute, LocalVariableInfo)}
    */
   @Test
+  @DisplayName("Test visitLocalVariableInfo(Clazz, Method, CodeAttribute, LocalVariableInfo)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void LocalVariableTypeUsageMarker.visitLocalVariableInfo(Clazz, Method, CodeAttribute, LocalVariableInfo)"})
   void testVisitLocalVariableInfo() {
     // Arrange
     ShortestUsageMarker usageMarker = new ShortestUsageMarker();
@@ -104,10 +120,15 @@ class LocalVariableTypeUsageMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link LocalVariableTypeUsageMarker#visitLocalVariableTypeInfo(Clazz, Method, CodeAttribute, LocalVariableTypeInfo)}
+   * Test {@link LocalVariableTypeUsageMarker#visitLocalVariableTypeInfo(Clazz, Method, CodeAttribute, LocalVariableTypeInfo)}.
+   * <p>
+   * Method under test: {@link LocalVariableTypeUsageMarker#visitLocalVariableTypeInfo(Clazz, Method, CodeAttribute, LocalVariableTypeInfo)}
    */
   @Test
+  @DisplayName("Test visitLocalVariableTypeInfo(Clazz, Method, CodeAttribute, LocalVariableTypeInfo)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void LocalVariableTypeUsageMarker.visitLocalVariableTypeInfo(Clazz, Method, CodeAttribute, LocalVariableTypeInfo)"})
   void testVisitLocalVariableTypeInfo() {
     // Arrange
     ShortestUsageMarker usageMarker = new ShortestUsageMarker();
@@ -128,11 +149,19 @@ class LocalVariableTypeUsageMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link LocalVariableTypeUsageMarker#visitProgramClass(ProgramClass)}
+   * Test {@link LocalVariableTypeUsageMarker#visitProgramClass(ProgramClass)}.
+   * <ul>
+   *   <li>Given {@link ClassUsageMarker} {@link ClassUsageMarker#isUsed(Processable)} return {@code true}.</li>
+   *   <li>Then calls {@link ClassUsageMarker#isUsed(Processable)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link LocalVariableTypeUsageMarker#visitProgramClass(ProgramClass)}
    */
   @Test
-  void testVisitProgramClass() {
+  @DisplayName("Test visitProgramClass(ProgramClass); given ClassUsageMarker isUsed(Processable) return 'true'; then calls isUsed(Processable)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void LocalVariableTypeUsageMarker.visitProgramClass(ProgramClass)"})
+  void testVisitProgramClass_givenClassUsageMarkerIsUsedReturnTrue_thenCallsIsUsed() {
     // Arrange
     ClassUsageMarker classUsageMarker = mock(ClassUsageMarker.class);
     when(classUsageMarker.isUsed(Mockito.<Processable>any())).thenReturn(true);
@@ -146,10 +175,14 @@ class LocalVariableTypeUsageMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link LocalVariableTypeUsageMarker#visitAnyConstant(Clazz, Constant)}
+   * Test {@link LocalVariableTypeUsageMarker#visitAnyConstant(Clazz, Constant)}.
+   * <p>
+   * Method under test: {@link LocalVariableTypeUsageMarker#visitAnyConstant(Clazz, Constant)}
    */
   @Test
+  @DisplayName("Test visitAnyConstant(Clazz, Constant)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void LocalVariableTypeUsageMarker.visitAnyConstant(Clazz, Constant)"})
   void testVisitAnyConstant() {
     // Arrange
     ShortestUsageMarker usageMarker = new ShortestUsageMarker();

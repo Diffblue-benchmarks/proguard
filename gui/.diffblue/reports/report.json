@@ -3,26 +3,25 @@
     "reportVersion" : "2.6"
   },
   "run" : {
-    "version" : "2024.10.01-2ee2e3d-licensed",
-    "creationTimestamp" : "2025-11-05T13:23:12.16Z",
+    "version" : "2025.02.02-08b2a5a-licensed",
+    "creationTimestamp" : "2025-11-06T22:25:17.799Z",
     "command" : "dcover create --exclude-modules=proguard-app --coverage-reports --upload http://localhost:8080 --project-name proguard --name with-diffblue-tests",
-    "totalTime" : 3313.641,
-    "environmentDetectionTime" : 0.539,
-    "indexingTime" : 0.307,
-    "entryPointsTime" : 0.536,
-    "generationTime" : 2709.15,
-    "timeToFirstTest" : 155.397,
-    "timeToLastTest" : 2129.541,
-    "indexQueryTime" : 4.328,
-    "verificationTime" : 19.718,
-    "validationTime" : 20.496
+    "totalTime" : 445.565,
+    "environmentDetectionTime" : 0.559,
+    "indexingTime" : 0.289,
+    "entryPointsTime" : 0.556,
+    "generationTime" : 1919.769,
+    "timeToFirstTest" : 1225.537,
+    "timeToLastTest" : 2239.54,
+    "indexQueryTime" : 4.307,
+    "verificationTime" : 19.559,
+    "validationTime" : 21.153
   },
   "codes" : {
     "R000" : "Success",
     "R002" : "Missing observers",
     "R011" : "Sandboxing policy violation",
     "R013" : "No inputs found that don't throw a trivial exception",
-    "R015" : "Method may be nondeterministic",
     "R034" : "Diffblue Cover can't complete test",
     "R081" : "Exception in arrange section",
     "R082" : "Can't create a parameter for constructor",
@@ -35,15 +34,14 @@
     "T010" : "Abstract or interface method",
     "T012" : "Synthetic method",
     "T020" : "Other trivial method",
-    "V000" : "Validated successfully",
-    "W002" : "Test compiled, but did not pass"
+    "V000" : "Validated successfully"
   },
   "summary" : {
     "classesCount" : 105,
     "methodsCount" : 483,
-    "cumulativeDiffblueTestCount" : 42,
+    "cumulativeDiffblueTestCount" : 52,
     "cumulativeManualTestCount" : 0,
-    "completeTestCount" : 50,
+    "completeTestCount" : 52,
     "incompleteTestCount" : 0,
     "skeletonTestCount" : 0,
     "totalPhysicalLineCount" : 5317,
@@ -59,11 +57,10 @@
       "T020" : 1
     },
     "perMethodOutcome" : {
-      "R000" : 33,
+      "R000" : 36,
       "R002" : 23,
-      "R011" : 95,
+      "R011" : 96,
       "R013" : 102,
-      "R015" : 1,
       "R034" : 1,
       "R081" : 4,
       "R082" : 1,
@@ -72,17 +69,13 @@
       "T005" : 3,
       "T006" : 2,
       "T010" : 8,
-      "T012" : 52,
-      "W002" : 3
+      "T012" : 52
     },
     "perTestOutcome" : {
-      "R000" : 50
+      "R000" : 52
     },
     "perTestValidation" : {
-      "V000" : 50
-    },
-    "warnings" : {
-      "W002" : 3
+      "V000" : 52
     }
   },
   "classes" : {
@@ -847,7 +840,7 @@
       },
       "perMethodOutcome" : {
         "R000" : 1,
-        "R015" : 1,
+        "R011" : 1,
         "T005" : 1
       },
       "perTestOutcome" : {
@@ -856,7 +849,7 @@
     },
     "proguard.gui.TabbedPane" : {
       "methodsCount" : 10,
-      "completeTestCount" : 0,
+      "completeTestCount" : 1,
       "incompleteTestCount" : 0,
       "perMethodTestability" : {
         "T000" : 7,
@@ -864,13 +857,13 @@
         "T012" : 2
       },
       "perMethodOutcome" : {
+        "R000" : 1,
         "R011" : 6,
         "T003" : 1,
-        "T012" : 2,
-        "W002" : 1
+        "T012" : 2
       },
-      "warnings" : {
-        "W002" : 1
+      "perTestOutcome" : {
+        "R000" : 1
       }
     },
     "proguard.gui.TabbedPane$1" : {
@@ -1023,7 +1016,7 @@
     },
     "proguard.gui.splash.ConstantFont" : {
       "methodsCount" : 2,
-      "completeTestCount" : 2,
+      "completeTestCount" : 1,
       "incompleteTestCount" : 0,
       "perMethodTestability" : {
         "T000" : 1,
@@ -1034,7 +1027,7 @@
         "R002" : 1
       },
       "perTestOutcome" : {
-        "R000" : 2
+        "R000" : 1
       }
     },
     "proguard.gui.splash.ConstantInt" : {
@@ -1255,7 +1248,7 @@
     },
     "proguard.gui.splash.SplashPanel" : {
       "methodsCount" : 12,
-      "completeTestCount" : 0,
+      "completeTestCount" : 2,
       "incompleteTestCount" : 0,
       "perMethodTestability" : {
         "T000" : 5,
@@ -1263,13 +1256,13 @@
         "T012" : 6
       },
       "perMethodOutcome" : {
+        "R000" : 2,
         "R011" : 3,
         "T006" : 1,
-        "T012" : 6,
-        "W002" : 2
+        "T012" : 6
       },
-      "warnings" : {
-        "W002" : 2
+      "perTestOutcome" : {
+        "R000" : 2
       }
     },
     "proguard.gui.splash.SplashPanel$1" : {
@@ -6305,7 +6298,7 @@
       "completeTestCount" : 0,
       "incompleteTestCount" : 0,
       "perMethodTestability" : "T000",
-      "perMethodOutcome" : "R015",
+      "perMethodOutcome" : "R011",
       "lineNumbers" : [
         73,
         75,
@@ -6361,12 +6354,12 @@
       ]
     },
     "proguard.gui.TabbedPane.<init>:()V" : {
-      "completeTestCount" : 0,
+      "completeTestCount" : 1,
       "incompleteTestCount" : 0,
       "perMethodTestability" : "T000",
-      "perMethodOutcome" : "W002",
-      "warnings" : {
-        "W002" : 1
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
       },
       "lineNumbers" : [
         48,
@@ -6822,12 +6815,12 @@
       ]
     },
     "proguard.gui.splash.ConstantFont.getFont:(J)Ljava/awt/Font;" : {
-      "completeTestCount" : 2,
+      "completeTestCount" : 1,
       "incompleteTestCount" : 0,
       "perMethodTestability" : "T000",
       "perMethodOutcome" : "R000",
       "perTestOutcome" : {
-        "R000" : 2
+        "R000" : 1
       },
       "lineNumbers" : [
         44
@@ -8261,12 +8254,12 @@
       ]
     },
     "proguard.gui.splash.SplashPanel.<init>:(Lproguard/gui/splash/Sprite;D)V" : {
-      "completeTestCount" : 0,
+      "completeTestCount" : 1,
       "incompleteTestCount" : 0,
       "perMethodTestability" : "T000",
-      "perMethodOutcome" : "W002",
-      "warnings" : {
-        "W002" : 1
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
       },
       "lineNumbers" : [
         58,
@@ -8274,12 +8267,12 @@
       ]
     },
     "proguard.gui.splash.SplashPanel.<init>:(Lproguard/gui/splash/Sprite;DJ)V" : {
-      "completeTestCount" : 0,
+      "completeTestCount" : 1,
       "incompleteTestCount" : 0,
       "perMethodTestability" : "T000",
-      "perMethodOutcome" : "W002",
-      "warnings" : {
-        "W002" : 1
+      "perMethodOutcome" : "R000",
+      "perTestOutcome" : {
+        "R000" : 1
       },
       "lineNumbers" : [
         72,

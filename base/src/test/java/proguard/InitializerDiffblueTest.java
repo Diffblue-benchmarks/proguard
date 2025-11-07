@@ -1,16 +1,24 @@
 package proguard;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.net.MalformedURLException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 class InitializerDiffblueTest {
   /**
+   * Test {@link Initializer#Initializer(Configuration)}.
+   * <p>
    * Method under test: {@link Initializer#Initializer(Configuration)}
    */
   @Test
+  @DisplayName("Test new Initializer(Configuration)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void Initializer.<init>(Configuration)"})
   void testNewInitializer() throws MalformedURLException {
     // Arrange
     Configuration configuration = new Configuration();

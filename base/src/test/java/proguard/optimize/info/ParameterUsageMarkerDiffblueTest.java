@@ -12,6 +12,9 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.LibraryClass;
@@ -20,11 +23,43 @@ import proguard.classfile.Method;
 
 class ParameterUsageMarkerDiffblueTest {
   /**
-   * Method under test:
-   * {@link ParameterUsageMarker#visitLibraryMethod(LibraryClass, LibraryMethod)}
+   * Test {@link ParameterUsageMarker#visitLibraryMethod(LibraryClass, LibraryMethod)}.
+   * <ul>
+   *   <li>Given {@code false}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ParameterUsageMarker#visitLibraryMethod(LibraryClass, LibraryMethod)}
    */
   @Test
-  void testVisitLibraryMethod() {
+  @DisplayName("Test visitLibraryMethod(LibraryClass, LibraryMethod); given 'false'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ParameterUsageMarker.visitLibraryMethod(LibraryClass, LibraryMethod)"})
+  void testVisitLibraryMethod_givenFalse() {
+    // Arrange
+    ParameterUsageMarker parameterUsageMarker = new ParameterUsageMarker();
+    LibraryClass libraryClass = mock(LibraryClass.class);
+    when(libraryClass.mayHaveImplementations(Mockito.<Method>any())).thenReturn(false);
+
+    // Act
+    parameterUsageMarker.visitLibraryMethod(libraryClass, mock(LibraryMethod.class));
+
+    // Assert
+    verify(libraryClass).mayHaveImplementations(isA(Method.class));
+  }
+
+  /**
+   * Test {@link ParameterUsageMarker#visitLibraryMethod(LibraryClass, LibraryMethod)}.
+   * <ul>
+   *   <li>Then calls {@link ProgramMethodOptimizationInfo#updateUsedParameters(long)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ParameterUsageMarker#visitLibraryMethod(LibraryClass, LibraryMethod)}
+   */
+  @Test
+  @DisplayName("Test visitLibraryMethod(LibraryClass, LibraryMethod); then calls updateUsedParameters(long)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ParameterUsageMarker.visitLibraryMethod(LibraryClass, LibraryMethod)"})
+  void testVisitLibraryMethod_thenCallsUpdateUsedParameters() {
     // Arrange
     ParameterUsageMarker parameterUsageMarker = new ParameterUsageMarker();
     LibraryClass libraryClass = mock(LibraryClass.class);
@@ -44,28 +79,19 @@ class ParameterUsageMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ParameterUsageMarker#visitLibraryMethod(LibraryClass, LibraryMethod)}
-   */
-  @Test
-  void testVisitLibraryMethod2() {
-    // Arrange
-    ParameterUsageMarker parameterUsageMarker = new ParameterUsageMarker();
-    LibraryClass libraryClass = mock(LibraryClass.class);
-    when(libraryClass.mayHaveImplementations(Mockito.<Method>any())).thenReturn(false);
-
-    // Act
-    parameterUsageMarker.visitLibraryMethod(libraryClass, mock(LibraryMethod.class));
-
-    // Assert
-    verify(libraryClass).mayHaveImplementations(isA(Method.class));
-  }
-
-  /**
+   * Test {@link ParameterUsageMarker#getParameterSize(Method)}.
+   * <ul>
+   *   <li>Given {@link MethodOptimizationInfo} (default constructor).</li>
+   *   <li>Then return zero.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ParameterUsageMarker#getParameterSize(Method)}
    */
   @Test
-  void testGetParameterSize() {
+  @DisplayName("Test getParameterSize(Method); given MethodOptimizationInfo (default constructor); then return zero")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"int ParameterUsageMarker.getParameterSize(Method)"})
+  void testGetParameterSize_givenMethodOptimizationInfo_thenReturnZero() {
     // Arrange
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
     method.setProcessingInfo(new MethodOptimizationInfo());
@@ -75,11 +101,18 @@ class ParameterUsageMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ParameterUsageMarker#markParameterUsed(Method, int)}
+   * Test {@link ParameterUsageMarker#markParameterUsed(Method, int)}.
+   * <ul>
+   *   <li>Then calls {@link ProgramMethodOptimizationInfo#setParameterUsed(int)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ParameterUsageMarker#markParameterUsed(Method, int)}
    */
   @Test
-  void testMarkParameterUsed() {
+  @DisplayName("Test markParameterUsed(Method, int); then calls setParameterUsed(int)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ParameterUsageMarker.markParameterUsed(Method, int)"})
+  void testMarkParameterUsed_thenCallsSetParameterUsed() {
     // Arrange
     ProgramMethodOptimizationInfo programMethodOptimizationInfo = mock(ProgramMethodOptimizationInfo.class);
     doNothing().when(programMethodOptimizationInfo).setParameterUsed(anyInt());
@@ -95,10 +128,19 @@ class ParameterUsageMarkerDiffblueTest {
   }
 
   /**
+   * Test {@link ParameterUsageMarker#hasUnusedParameters(Method)}.
+   * <ul>
+   *   <li>Given {@link MethodOptimizationInfo} (default constructor).</li>
+   *   <li>Then return {@code false}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ParameterUsageMarker#hasUnusedParameters(Method)}
    */
   @Test
-  void testHasUnusedParameters() {
+  @DisplayName("Test hasUnusedParameters(Method); given MethodOptimizationInfo (default constructor); then return 'false'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ParameterUsageMarker.hasUnusedParameters(Method)"})
+  void testHasUnusedParameters_givenMethodOptimizationInfo_thenReturnFalse() {
     // Arrange
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
     method.setProcessingInfo(new MethodOptimizationInfo());
@@ -108,10 +150,19 @@ class ParameterUsageMarkerDiffblueTest {
   }
 
   /**
+   * Test {@link ParameterUsageMarker#isParameterUsed(Method, int)}.
+   * <ul>
+   *   <li>Given {@link MethodOptimizationInfo} (default constructor).</li>
+   *   <li>Then return {@code true}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ParameterUsageMarker#isParameterUsed(Method, int)}
    */
   @Test
-  void testIsParameterUsed() {
+  @DisplayName("Test isParameterUsed(Method, int); given MethodOptimizationInfo (default constructor); then return 'true'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ParameterUsageMarker.isParameterUsed(Method, int)"})
+  void testIsParameterUsed_givenMethodOptimizationInfo_thenReturnTrue() {
     // Arrange
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
     method.setProcessingInfo(new MethodOptimizationInfo());
@@ -121,10 +172,19 @@ class ParameterUsageMarkerDiffblueTest {
   }
 
   /**
+   * Test {@link ParameterUsageMarker#getUsedParameters(Method)}.
+   * <ul>
+   *   <li>Given {@link MethodOptimizationInfo} (default constructor).</li>
+   *   <li>Then return minus one.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ParameterUsageMarker#getUsedParameters(Method)}
    */
   @Test
-  void testGetUsedParameters() {
+  @DisplayName("Test getUsedParameters(Method); given MethodOptimizationInfo (default constructor); then return minus one")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"long ParameterUsageMarker.getUsedParameters(Method)"})
+  void testGetUsedParameters_givenMethodOptimizationInfo_thenReturnMinusOne() {
     // Arrange
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
     method.setProcessingInfo(new MethodOptimizationInfo());

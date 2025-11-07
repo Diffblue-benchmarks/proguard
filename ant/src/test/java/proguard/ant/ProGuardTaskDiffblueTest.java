@@ -6,57 +6,36 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import org.apache.tools.ant.AntClassLoader;
 import org.apache.tools.ant.BuildException;
-import org.apache.tools.ant.Location;
 import org.apache.tools.ant.Project;
-import org.apache.tools.ant.RuntimeConfigurable;
 import org.apache.tools.ant.Target;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import proguard.ClassPath;
 import proguard.Configuration;
 
 class ProGuardTaskDiffblueTest {
   /**
+   * Test {@link ProGuardTask#setConfiguration(File)}.
+   * <ul>
+   *   <li>Given {@code Object}.</li>
+   *   <li>Then throw {@link BuildException}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ProGuardTask#setConfiguration(File)}
    */
   @Test
-  void testSetConfiguration() throws BuildException {
-    // Arrange
-    ProGuardTask proGuardTask = new ProGuardTask();
-    proGuardTask.setProject(new Project());
-
-    // Act and Assert
-    assertThrows(BuildException.class,
-        () -> proGuardTask.setConfiguration(Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toFile()));
-  }
-
-  /**
-   * Method under test: {@link ProGuardTask#setConfiguration(File)}
-   */
-  @Test
-  void testSetConfiguration2() throws BuildException {
-    // Arrange
-    Project project = new Project();
-    project.addBuildListener(new AntClassLoader());
-
-    ProGuardTask proGuardTask = new ProGuardTask();
-    proGuardTask.setProject(project);
-
-    // Act and Assert
-    assertThrows(BuildException.class,
-        () -> proGuardTask.setConfiguration(Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toFile()));
-  }
-
-  /**
-   * Method under test: {@link ProGuardTask#setConfiguration(File)}
-   */
-  @Test
-  void testSetConfiguration3() throws BuildException {
+  @DisplayName("Test setConfiguration(File); given 'java.lang.Object'; then throw BuildException")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setConfiguration(File)"})
+  void testSetConfiguration_givenJavaLangObject_thenThrowBuildException() throws BuildException {
     // Arrange
     Project project = new Project();
     Class<Object> typeClass = Object.class;
@@ -72,10 +51,67 @@ class ProGuardTaskDiffblueTest {
   }
 
   /**
+   * Test {@link ProGuardTask#setConfiguration(File)}.
+   * <ul>
+   *   <li>Given {@link ProGuardTask} (default constructor) Project is {@link Project} (default constructor).</li>
+   *   <li>Then throw {@link BuildException}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ProGuardTask#setConfiguration(File)}
    */
   @Test
-  void testSetConfiguration4() throws BuildException {
+  @DisplayName("Test setConfiguration(File); given ProGuardTask (default constructor) Project is Project (default constructor); then throw BuildException")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setConfiguration(File)"})
+  void testSetConfiguration_givenProGuardTaskProjectIsProject_thenThrowBuildException() throws BuildException {
+    // Arrange
+    ProGuardTask proGuardTask = new ProGuardTask();
+    proGuardTask.setProject(new Project());
+
+    // Act and Assert
+    assertThrows(BuildException.class,
+        () -> proGuardTask.setConfiguration(Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toFile()));
+  }
+
+  /**
+   * Test {@link ProGuardTask#setConfiguration(File)}.
+   * <ul>
+   *   <li>Given {@link Project} (default constructor) addBuildListener {@link AntClassLoader#AntClassLoader()}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ProGuardTask#setConfiguration(File)}
+   */
+  @Test
+  @DisplayName("Test setConfiguration(File); given Project (default constructor) addBuildListener AntClassLoader()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setConfiguration(File)"})
+  void testSetConfiguration_givenProjectAddBuildListenerAntClassLoader() throws BuildException {
+    // Arrange
+    Project project = new Project();
+    project.addBuildListener(new AntClassLoader());
+
+    ProGuardTask proGuardTask = new ProGuardTask();
+    proGuardTask.setProject(project);
+
+    // Act and Assert
+    assertThrows(BuildException.class,
+        () -> proGuardTask.setConfiguration(Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toFile()));
+  }
+
+  /**
+   * Test {@link ProGuardTask#setConfiguration(File)}.
+   * <ul>
+   *   <li>Given {@link Project} (default constructor) addTarget {@code 42} and {@link Target#Target()}.</li>
+   *   <li>Then throw {@link BuildException}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ProGuardTask#setConfiguration(File)}
+   */
+  @Test
+  @DisplayName("Test setConfiguration(File); given Project (default constructor) addTarget '42' and Target(); then throw BuildException")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setConfiguration(File)"})
+  void testSetConfiguration_givenProjectAddTarget42AndTarget_thenThrowBuildException() throws BuildException {
     // Arrange
     Project project = new Project();
     project.addTarget("42", new Target());
@@ -90,103 +126,33 @@ class ProGuardTaskDiffblueTest {
   }
 
   /**
+   * Test {@link ProGuardTask#setOutjar(String)}.
+   * <p>
    * Method under test: {@link ProGuardTask#setOutjar(String)}
    */
   @Test
+  @DisplayName("Test setOutjar(String)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setOutjar(String)"})
   void testSetOutjar() {
     // Arrange, Act and Assert
     assertThrows(BuildException.class, () -> (new ProGuardTask()).setOutjar("Parameters"));
   }
 
   /**
+   * Test {@link ProGuardTask#setTarget(String)}.
+   * <ul>
+   *   <li>When {@code 5}.</li>
+   *   <li>Then {@link ProGuardTask} (default constructor) {@link ConfigurationTask#configuration} {@link Configuration#targetClassVersion} is {@code 3211264}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ProGuardTask#setTarget(String)}
    */
   @Test
-  void testSetTarget() {
-    // Arrange, Act and Assert
-    assertThrows(BuildException.class, () -> (new ProGuardTask()).setTarget("Target"));
-  }
-
-  /**
-   * Method under test: {@link ProGuardTask#setTarget(String)}
-   */
-  @Test
-  void testSetTarget2() {
-    // Arrange
-    ProGuardTask proGuardTask = new ProGuardTask();
-
-    // Act
-    proGuardTask.setTarget("1.0");
-
-    // Assert
-    assertEquals(2949123, proGuardTask.configuration.targetClassVersion);
-  }
-
-  /**
-   * Method under test: {@link ProGuardTask#setTarget(String)}
-   */
-  @Test
-  void testSetTarget3() {
-    // Arrange
-    ProGuardTask proGuardTask = new ProGuardTask();
-
-    // Act
-    proGuardTask.setTarget("1.1");
-
-    // Assert
-    assertEquals(2949123, proGuardTask.configuration.targetClassVersion);
-  }
-
-  /**
-   * Method under test: {@link ProGuardTask#setTarget(String)}
-   */
-  @Test
-  void testSetTarget4() {
-    // Arrange
-    ProGuardTask proGuardTask = new ProGuardTask();
-
-    // Act
-    proGuardTask.setTarget("1.2");
-
-    // Assert
-    assertEquals(3014656, proGuardTask.configuration.targetClassVersion);
-  }
-
-  /**
-   * Method under test: {@link ProGuardTask#setTarget(String)}
-   */
-  @Test
-  void testSetTarget5() {
-    // Arrange
-    ProGuardTask proGuardTask = new ProGuardTask();
-
-    // Act
-    proGuardTask.setTarget("1.3");
-
-    // Assert
-    assertEquals(3080192, proGuardTask.configuration.targetClassVersion);
-  }
-
-  /**
-   * Method under test: {@link ProGuardTask#setTarget(String)}
-   */
-  @Test
-  void testSetTarget6() {
-    // Arrange
-    ProGuardTask proGuardTask = new ProGuardTask();
-
-    // Act
-    proGuardTask.setTarget("1.4");
-
-    // Assert
-    assertEquals(3145728, proGuardTask.configuration.targetClassVersion);
-  }
-
-  /**
-   * Method under test: {@link ProGuardTask#setTarget(String)}
-   */
-  @Test
-  void testSetTarget7() {
+  @DisplayName("Test setTarget(String); when '5'; then ProGuardTask (default constructor) configuration targetClassVersion is '3211264'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setTarget(String)"})
+  void testSetTarget_when5_thenProGuardTaskConfigurationTargetClassVersionIs3211264() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
 
@@ -198,25 +164,19 @@ class ProGuardTaskDiffblueTest {
   }
 
   /**
+   * Test {@link ProGuardTask#setTarget(String)}.
+   * <ul>
+   *   <li>When {@code 6}.</li>
+   *   <li>Then {@link ProGuardTask} (default constructor) {@link ConfigurationTask#configuration} {@link Configuration#targetClassVersion} is {@code 3276800}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ProGuardTask#setTarget(String)}
    */
   @Test
-  void testSetTarget8() {
-    // Arrange
-    ProGuardTask proGuardTask = new ProGuardTask();
-
-    // Act
-    proGuardTask.setTarget("1.5");
-
-    // Assert
-    assertEquals(3211264, proGuardTask.configuration.targetClassVersion);
-  }
-
-  /**
-   * Method under test: {@link ProGuardTask#setTarget(String)}
-   */
-  @Test
-  void testSetTarget9() {
+  @DisplayName("Test setTarget(String); when '6'; then ProGuardTask (default constructor) configuration targetClassVersion is '3276800'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setTarget(String)"})
+  void testSetTarget_when6_thenProGuardTaskConfigurationTargetClassVersionIs3276800() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
 
@@ -228,25 +188,19 @@ class ProGuardTaskDiffblueTest {
   }
 
   /**
+   * Test {@link ProGuardTask#setTarget(String)}.
+   * <ul>
+   *   <li>When {@code 7}.</li>
+   *   <li>Then {@link ProGuardTask} (default constructor) {@link ConfigurationTask#configuration} {@link Configuration#targetClassVersion} is {@code 3342336}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ProGuardTask#setTarget(String)}
    */
   @Test
-  void testSetTarget10() {
-    // Arrange
-    ProGuardTask proGuardTask = new ProGuardTask();
-
-    // Act
-    proGuardTask.setTarget("1.6");
-
-    // Assert
-    assertEquals(3276800, proGuardTask.configuration.targetClassVersion);
-  }
-
-  /**
-   * Method under test: {@link ProGuardTask#setTarget(String)}
-   */
-  @Test
-  void testSetTarget11() {
+  @DisplayName("Test setTarget(String); when '7'; then ProGuardTask (default constructor) configuration targetClassVersion is '3342336'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setTarget(String)"})
+  void testSetTarget_when7_thenProGuardTaskConfigurationTargetClassVersionIs3342336() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
 
@@ -258,10 +212,204 @@ class ProGuardTaskDiffblueTest {
   }
 
   /**
+   * Test {@link ProGuardTask#setTarget(String)}.
+   * <ul>
+   *   <li>When {@code 1.0}.</li>
+   *   <li>Then {@link ProGuardTask} (default constructor) {@link ConfigurationTask#configuration} {@link Configuration#targetClassVersion} is {@code 2949123}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ProGuardTask#setTarget(String)}
+   */
+  @Test
+  @DisplayName("Test setTarget(String); when '1.0'; then ProGuardTask (default constructor) configuration targetClassVersion is '2949123'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setTarget(String)"})
+  void testSetTarget_when10_thenProGuardTaskConfigurationTargetClassVersionIs2949123() {
+    // Arrange
+    ProGuardTask proGuardTask = new ProGuardTask();
+
+    // Act
+    proGuardTask.setTarget("1.0");
+
+    // Assert
+    assertEquals(2949123, proGuardTask.configuration.targetClassVersion);
+  }
+
+  /**
+   * Test {@link ProGuardTask#setTarget(String)}.
+   * <ul>
+   *   <li>When {@code 1.1}.</li>
+   *   <li>Then {@link ProGuardTask} (default constructor) {@link ConfigurationTask#configuration} {@link Configuration#targetClassVersion} is {@code 2949123}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ProGuardTask#setTarget(String)}
+   */
+  @Test
+  @DisplayName("Test setTarget(String); when '1.1'; then ProGuardTask (default constructor) configuration targetClassVersion is '2949123'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setTarget(String)"})
+  void testSetTarget_when11_thenProGuardTaskConfigurationTargetClassVersionIs2949123() {
+    // Arrange
+    ProGuardTask proGuardTask = new ProGuardTask();
+
+    // Act
+    proGuardTask.setTarget("1.1");
+
+    // Assert
+    assertEquals(2949123, proGuardTask.configuration.targetClassVersion);
+  }
+
+  /**
+   * Test {@link ProGuardTask#setTarget(String)}.
+   * <ul>
+   *   <li>When {@code 1.2}.</li>
+   *   <li>Then {@link ProGuardTask} (default constructor) {@link ConfigurationTask#configuration} {@link Configuration#targetClassVersion} is {@code 3014656}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ProGuardTask#setTarget(String)}
+   */
+  @Test
+  @DisplayName("Test setTarget(String); when '1.2'; then ProGuardTask (default constructor) configuration targetClassVersion is '3014656'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setTarget(String)"})
+  void testSetTarget_when12_thenProGuardTaskConfigurationTargetClassVersionIs3014656() {
+    // Arrange
+    ProGuardTask proGuardTask = new ProGuardTask();
+
+    // Act
+    proGuardTask.setTarget("1.2");
+
+    // Assert
+    assertEquals(3014656, proGuardTask.configuration.targetClassVersion);
+  }
+
+  /**
+   * Test {@link ProGuardTask#setTarget(String)}.
+   * <ul>
+   *   <li>When {@code 1.3}.</li>
+   *   <li>Then {@link ProGuardTask} (default constructor) {@link ConfigurationTask#configuration} {@link Configuration#targetClassVersion} is {@code 3080192}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ProGuardTask#setTarget(String)}
+   */
+  @Test
+  @DisplayName("Test setTarget(String); when '1.3'; then ProGuardTask (default constructor) configuration targetClassVersion is '3080192'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setTarget(String)"})
+  void testSetTarget_when13_thenProGuardTaskConfigurationTargetClassVersionIs3080192() {
+    // Arrange
+    ProGuardTask proGuardTask = new ProGuardTask();
+
+    // Act
+    proGuardTask.setTarget("1.3");
+
+    // Assert
+    assertEquals(3080192, proGuardTask.configuration.targetClassVersion);
+  }
+
+  /**
+   * Test {@link ProGuardTask#setTarget(String)}.
+   * <ul>
+   *   <li>When {@code 1.4}.</li>
+   *   <li>Then {@link ProGuardTask} (default constructor) {@link ConfigurationTask#configuration} {@link Configuration#targetClassVersion} is {@code 3145728}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ProGuardTask#setTarget(String)}
+   */
+  @Test
+  @DisplayName("Test setTarget(String); when '1.4'; then ProGuardTask (default constructor) configuration targetClassVersion is '3145728'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setTarget(String)"})
+  void testSetTarget_when14_thenProGuardTaskConfigurationTargetClassVersionIs3145728() {
+    // Arrange
+    ProGuardTask proGuardTask = new ProGuardTask();
+
+    // Act
+    proGuardTask.setTarget("1.4");
+
+    // Assert
+    assertEquals(3145728, proGuardTask.configuration.targetClassVersion);
+  }
+
+  /**
+   * Test {@link ProGuardTask#setTarget(String)}.
+   * <ul>
+   *   <li>When {@code 1.5}.</li>
+   *   <li>Then {@link ProGuardTask} (default constructor) {@link ConfigurationTask#configuration} {@link Configuration#targetClassVersion} is {@code 3211264}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ProGuardTask#setTarget(String)}
+   */
+  @Test
+  @DisplayName("Test setTarget(String); when '1.5'; then ProGuardTask (default constructor) configuration targetClassVersion is '3211264'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setTarget(String)"})
+  void testSetTarget_when15_thenProGuardTaskConfigurationTargetClassVersionIs3211264() {
+    // Arrange
+    ProGuardTask proGuardTask = new ProGuardTask();
+
+    // Act
+    proGuardTask.setTarget("1.5");
+
+    // Assert
+    assertEquals(3211264, proGuardTask.configuration.targetClassVersion);
+  }
+
+  /**
+   * Test {@link ProGuardTask#setTarget(String)}.
+   * <ul>
+   *   <li>When {@code 1.6}.</li>
+   *   <li>Then {@link ProGuardTask} (default constructor) {@link ConfigurationTask#configuration} {@link Configuration#targetClassVersion} is {@code 3276800}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ProGuardTask#setTarget(String)}
+   */
+  @Test
+  @DisplayName("Test setTarget(String); when '1.6'; then ProGuardTask (default constructor) configuration targetClassVersion is '3276800'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setTarget(String)"})
+  void testSetTarget_when16_thenProGuardTaskConfigurationTargetClassVersionIs3276800() {
+    // Arrange
+    ProGuardTask proGuardTask = new ProGuardTask();
+
+    // Act
+    proGuardTask.setTarget("1.6");
+
+    // Assert
+    assertEquals(3276800, proGuardTask.configuration.targetClassVersion);
+  }
+
+  /**
+   * Test {@link ProGuardTask#setTarget(String)}.
+   * <ul>
+   *   <li>When {@code Target}.</li>
+   *   <li>Then throw {@link BuildException}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ProGuardTask#setTarget(String)}
+   */
+  @Test
+  @DisplayName("Test setTarget(String); when 'Target'; then throw BuildException")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setTarget(String)"})
+  void testSetTarget_whenTarget_thenThrowBuildException() {
+    // Arrange, Act and Assert
+    assertThrows(BuildException.class, () -> (new ProGuardTask()).setTarget("Target"));
+  }
+
+  /**
+   * Test {@link ProGuardTask#setForceprocessing(boolean)}.
+   * <ul>
+   *   <li>Then {@link ProGuardTask} (default constructor) {@link ConfigurationTask#configuration} {@link Configuration#lastModified} is {@link Long#MAX_VALUE}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ProGuardTask#setForceprocessing(boolean)}
    */
   @Test
-  void testSetForceprocessing() {
+  @DisplayName("Test setForceprocessing(boolean); then ProGuardTask (default constructor) configuration lastModified is MAX_VALUE")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setForceprocessing(boolean)"})
+  void testSetForceprocessing_thenProGuardTaskConfigurationLastModifiedIsMax_value() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
 
@@ -273,24 +421,38 @@ class ProGuardTaskDiffblueTest {
   }
 
   /**
+   * Test {@link ProGuardTask#setForceprocessing(boolean)}.
+   * <ul>
+   *   <li>When {@code false}.</li>
+   *   <li>Then {@link ProGuardTask} (default constructor) {@link ConfigurationTask#configuration} {@link Configuration#lastModified} is zero.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ProGuardTask#setForceprocessing(boolean)}
    */
   @Test
-  void testSetForceprocessing2() {
+  @DisplayName("Test setForceprocessing(boolean); when 'false'; then ProGuardTask (default constructor) configuration lastModified is zero")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setForceprocessing(boolean)"})
+  void testSetForceprocessing_whenFalse_thenProGuardTaskConfigurationLastModifiedIsZero() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
 
     // Act
     proGuardTask.setForceprocessing(false);
 
-    // Assert
+    // Assert that nothing has changed
     assertEquals(0L, proGuardTask.configuration.lastModified);
   }
 
   /**
+   * Test {@link ProGuardTask#setPrintseeds(File)}.
+   * <p>
    * Method under test: {@link ProGuardTask#setPrintseeds(File)}
    */
   @Test
+  @DisplayName("Test setPrintseeds(File)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setPrintseeds(File)"})
   void testSetPrintseeds() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
@@ -304,10 +466,18 @@ class ProGuardTaskDiffblueTest {
   }
 
   /**
+   * Test {@link ProGuardTask#setPrintseeds(File)}.
+   * <ul>
+   *   <li>When Property is {@code java.io.tmpdir} is {@link Boolean#FALSE} toString toFile.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ProGuardTask#setPrintseeds(File)}
    */
   @Test
-  void testSetPrintseeds2() {
+  @DisplayName("Test setPrintseeds(File); when Property is 'java.io.tmpdir' is FALSE toString toFile")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setPrintseeds(File)"})
+  void testSetPrintseeds_whenPropertyIsJavaIoTmpdirIsFalseToStringToFile() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
     String property = System.getProperty("java.io.tmpdir");
@@ -315,45 +485,94 @@ class ProGuardTaskDiffblueTest {
     // Act
     proGuardTask.setPrintseeds(Paths.get(property, Boolean.FALSE.toString()).toFile());
 
-    // Assert
+    // Assert that nothing has changed
     assertNull(proGuardTask.configuration.printSeeds);
   }
 
   /**
+   * Test {@link ProGuardTask#setPrintseeds(File)}.
+   * <ul>
+   *   <li>When Property is {@code java.io.tmpdir} is {@code no} toFile.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ProGuardTask#setPrintseeds(File)}
    */
   @Test
-  void testSetPrintseeds3() {
+  @DisplayName("Test setPrintseeds(File); when Property is 'java.io.tmpdir' is 'no' toFile")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setPrintseeds(File)"})
+  void testSetPrintseeds_whenPropertyIsJavaIoTmpdirIsNoToFile() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
 
     // Act
     proGuardTask.setPrintseeds(Paths.get(System.getProperty("java.io.tmpdir"), "no").toFile());
 
-    // Assert
+    // Assert that nothing has changed
     assertNull(proGuardTask.configuration.printSeeds);
   }
 
   /**
+   * Test {@link ProGuardTask#setPrintseeds(File)}.
+   * <ul>
+   *   <li>When Property is {@code java.io.tmpdir} is {@code off} toFile.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ProGuardTask#setPrintseeds(File)}
    */
   @Test
-  void testSetPrintseeds4() {
+  @DisplayName("Test setPrintseeds(File); when Property is 'java.io.tmpdir' is 'off' toFile")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setPrintseeds(File)"})
+  void testSetPrintseeds_whenPropertyIsJavaIoTmpdirIsOffToFile() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
 
     // Act
     proGuardTask.setPrintseeds(Paths.get(System.getProperty("java.io.tmpdir"), "off").toFile());
 
-    // Assert
+    // Assert that nothing has changed
     assertNull(proGuardTask.configuration.printSeeds);
   }
 
   /**
+   * Test {@link ProGuardTask#setPrintseeds(File)}.
+   * <ul>
+   *   <li>When Property is {@code java.io.tmpdir} is {@code on} toFile.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ProGuardTask#setPrintseeds(File)}
    */
   @Test
-  void testSetPrintseeds5() {
+  @DisplayName("Test setPrintseeds(File); when Property is 'java.io.tmpdir' is 'on' toFile")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setPrintseeds(File)"})
+  void testSetPrintseeds_whenPropertyIsJavaIoTmpdirIsOnToFile() {
+    // Arrange
+    ProGuardTask proGuardTask = new ProGuardTask();
+
+    // Act
+    proGuardTask.setPrintseeds(Paths.get(System.getProperty("java.io.tmpdir"), "on").toFile());
+
+    // Assert
+    File file = proGuardTask.configuration.printSeeds;
+    assertEquals("", file.getName());
+    assertFalse(file.isAbsolute());
+  }
+
+  /**
+   * Test {@link ProGuardTask#setPrintseeds(File)}.
+   * <ul>
+   *   <li>When Property is {@code java.io.tmpdir} is {@link Boolean#TRUE} toString toFile.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ProGuardTask#setPrintseeds(File)}
+   */
+  @Test
+  @DisplayName("Test setPrintseeds(File); when Property is 'java.io.tmpdir' is TRUE toString toFile")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setPrintseeds(File)"})
+  void testSetPrintseeds_whenPropertyIsJavaIoTmpdirIsTrueToStringToFile() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
     String property = System.getProperty("java.io.tmpdir");
@@ -368,10 +587,18 @@ class ProGuardTaskDiffblueTest {
   }
 
   /**
+   * Test {@link ProGuardTask#setPrintseeds(File)}.
+   * <ul>
+   *   <li>When Property is {@code java.io.tmpdir} is {@code yes} toFile.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ProGuardTask#setPrintseeds(File)}
    */
   @Test
-  void testSetPrintseeds6() {
+  @DisplayName("Test setPrintseeds(File); when Property is 'java.io.tmpdir' is 'yes' toFile")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setPrintseeds(File)"})
+  void testSetPrintseeds_whenPropertyIsJavaIoTmpdirIsYesToFile() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
 
@@ -385,26 +612,14 @@ class ProGuardTaskDiffblueTest {
   }
 
   /**
-   * Method under test: {@link ProGuardTask#setPrintseeds(File)}
-   */
-  @Test
-  void testSetPrintseeds7() {
-    // Arrange
-    ProGuardTask proGuardTask = new ProGuardTask();
-
-    // Act
-    proGuardTask.setPrintseeds(Paths.get(System.getProperty("java.io.tmpdir"), "on").toFile());
-
-    // Assert
-    File file = proGuardTask.configuration.printSeeds;
-    assertEquals("", file.getName());
-    assertFalse(file.isAbsolute());
-  }
-
-  /**
+   * Test {@link ProGuardTask#setPrintusage(File)}.
+   * <p>
    * Method under test: {@link ProGuardTask#setPrintusage(File)}
    */
   @Test
+  @DisplayName("Test setPrintusage(File)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setPrintusage(File)"})
   void testSetPrintusage() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
@@ -418,10 +633,18 @@ class ProGuardTaskDiffblueTest {
   }
 
   /**
+   * Test {@link ProGuardTask#setPrintusage(File)}.
+   * <ul>
+   *   <li>When Property is {@code java.io.tmpdir} is {@link Boolean#FALSE} toString toFile.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ProGuardTask#setPrintusage(File)}
    */
   @Test
-  void testSetPrintusage2() {
+  @DisplayName("Test setPrintusage(File); when Property is 'java.io.tmpdir' is FALSE toString toFile")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setPrintusage(File)"})
+  void testSetPrintusage_whenPropertyIsJavaIoTmpdirIsFalseToStringToFile() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
     String property = System.getProperty("java.io.tmpdir");
@@ -429,45 +652,94 @@ class ProGuardTaskDiffblueTest {
     // Act
     proGuardTask.setPrintusage(Paths.get(property, Boolean.FALSE.toString()).toFile());
 
-    // Assert
+    // Assert that nothing has changed
     assertNull(proGuardTask.configuration.printUsage);
   }
 
   /**
+   * Test {@link ProGuardTask#setPrintusage(File)}.
+   * <ul>
+   *   <li>When Property is {@code java.io.tmpdir} is {@code no} toFile.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ProGuardTask#setPrintusage(File)}
    */
   @Test
-  void testSetPrintusage3() {
+  @DisplayName("Test setPrintusage(File); when Property is 'java.io.tmpdir' is 'no' toFile")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setPrintusage(File)"})
+  void testSetPrintusage_whenPropertyIsJavaIoTmpdirIsNoToFile() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
 
     // Act
     proGuardTask.setPrintusage(Paths.get(System.getProperty("java.io.tmpdir"), "no").toFile());
 
-    // Assert
+    // Assert that nothing has changed
     assertNull(proGuardTask.configuration.printUsage);
   }
 
   /**
+   * Test {@link ProGuardTask#setPrintusage(File)}.
+   * <ul>
+   *   <li>When Property is {@code java.io.tmpdir} is {@code off} toFile.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ProGuardTask#setPrintusage(File)}
    */
   @Test
-  void testSetPrintusage4() {
+  @DisplayName("Test setPrintusage(File); when Property is 'java.io.tmpdir' is 'off' toFile")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setPrintusage(File)"})
+  void testSetPrintusage_whenPropertyIsJavaIoTmpdirIsOffToFile() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
 
     // Act
     proGuardTask.setPrintusage(Paths.get(System.getProperty("java.io.tmpdir"), "off").toFile());
 
-    // Assert
+    // Assert that nothing has changed
     assertNull(proGuardTask.configuration.printUsage);
   }
 
   /**
+   * Test {@link ProGuardTask#setPrintusage(File)}.
+   * <ul>
+   *   <li>When Property is {@code java.io.tmpdir} is {@code on} toFile.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ProGuardTask#setPrintusage(File)}
    */
   @Test
-  void testSetPrintusage5() {
+  @DisplayName("Test setPrintusage(File); when Property is 'java.io.tmpdir' is 'on' toFile")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setPrintusage(File)"})
+  void testSetPrintusage_whenPropertyIsJavaIoTmpdirIsOnToFile() {
+    // Arrange
+    ProGuardTask proGuardTask = new ProGuardTask();
+
+    // Act
+    proGuardTask.setPrintusage(Paths.get(System.getProperty("java.io.tmpdir"), "on").toFile());
+
+    // Assert
+    File file = proGuardTask.configuration.printUsage;
+    assertEquals("", file.getName());
+    assertFalse(file.isAbsolute());
+  }
+
+  /**
+   * Test {@link ProGuardTask#setPrintusage(File)}.
+   * <ul>
+   *   <li>When Property is {@code java.io.tmpdir} is {@link Boolean#TRUE} toString toFile.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ProGuardTask#setPrintusage(File)}
+   */
+  @Test
+  @DisplayName("Test setPrintusage(File); when Property is 'java.io.tmpdir' is TRUE toString toFile")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setPrintusage(File)"})
+  void testSetPrintusage_whenPropertyIsJavaIoTmpdirIsTrueToStringToFile() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
     String property = System.getProperty("java.io.tmpdir");
@@ -482,10 +754,18 @@ class ProGuardTaskDiffblueTest {
   }
 
   /**
+   * Test {@link ProGuardTask#setPrintusage(File)}.
+   * <ul>
+   *   <li>When Property is {@code java.io.tmpdir} is {@code yes} toFile.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ProGuardTask#setPrintusage(File)}
    */
   @Test
-  void testSetPrintusage6() {
+  @DisplayName("Test setPrintusage(File); when Property is 'java.io.tmpdir' is 'yes' toFile")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setPrintusage(File)"})
+  void testSetPrintusage_whenPropertyIsJavaIoTmpdirIsYesToFile() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
 
@@ -499,26 +779,14 @@ class ProGuardTaskDiffblueTest {
   }
 
   /**
-   * Method under test: {@link ProGuardTask#setPrintusage(File)}
-   */
-  @Test
-  void testSetPrintusage7() {
-    // Arrange
-    ProGuardTask proGuardTask = new ProGuardTask();
-
-    // Act
-    proGuardTask.setPrintusage(Paths.get(System.getProperty("java.io.tmpdir"), "on").toFile());
-
-    // Assert
-    File file = proGuardTask.configuration.printUsage;
-    assertEquals("", file.getName());
-    assertFalse(file.isAbsolute());
-  }
-
-  /**
+   * Test {@link ProGuardTask#setPrintmapping(File)}.
+   * <p>
    * Method under test: {@link ProGuardTask#setPrintmapping(File)}
    */
   @Test
+  @DisplayName("Test setPrintmapping(File)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setPrintmapping(File)"})
   void testSetPrintmapping() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
@@ -532,10 +800,18 @@ class ProGuardTaskDiffblueTest {
   }
 
   /**
+   * Test {@link ProGuardTask#setPrintmapping(File)}.
+   * <ul>
+   *   <li>When Property is {@code java.io.tmpdir} is {@link Boolean#FALSE} toString toFile.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ProGuardTask#setPrintmapping(File)}
    */
   @Test
-  void testSetPrintmapping2() {
+  @DisplayName("Test setPrintmapping(File); when Property is 'java.io.tmpdir' is FALSE toString toFile")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setPrintmapping(File)"})
+  void testSetPrintmapping_whenPropertyIsJavaIoTmpdirIsFalseToStringToFile() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
     String property = System.getProperty("java.io.tmpdir");
@@ -543,45 +819,94 @@ class ProGuardTaskDiffblueTest {
     // Act
     proGuardTask.setPrintmapping(Paths.get(property, Boolean.FALSE.toString()).toFile());
 
-    // Assert
+    // Assert that nothing has changed
     assertNull(proGuardTask.configuration.printMapping);
   }
 
   /**
+   * Test {@link ProGuardTask#setPrintmapping(File)}.
+   * <ul>
+   *   <li>When Property is {@code java.io.tmpdir} is {@code no} toFile.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ProGuardTask#setPrintmapping(File)}
    */
   @Test
-  void testSetPrintmapping3() {
+  @DisplayName("Test setPrintmapping(File); when Property is 'java.io.tmpdir' is 'no' toFile")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setPrintmapping(File)"})
+  void testSetPrintmapping_whenPropertyIsJavaIoTmpdirIsNoToFile() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
 
     // Act
     proGuardTask.setPrintmapping(Paths.get(System.getProperty("java.io.tmpdir"), "no").toFile());
 
-    // Assert
+    // Assert that nothing has changed
     assertNull(proGuardTask.configuration.printMapping);
   }
 
   /**
+   * Test {@link ProGuardTask#setPrintmapping(File)}.
+   * <ul>
+   *   <li>When Property is {@code java.io.tmpdir} is {@code off} toFile.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ProGuardTask#setPrintmapping(File)}
    */
   @Test
-  void testSetPrintmapping4() {
+  @DisplayName("Test setPrintmapping(File); when Property is 'java.io.tmpdir' is 'off' toFile")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setPrintmapping(File)"})
+  void testSetPrintmapping_whenPropertyIsJavaIoTmpdirIsOffToFile() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
 
     // Act
     proGuardTask.setPrintmapping(Paths.get(System.getProperty("java.io.tmpdir"), "off").toFile());
 
-    // Assert
+    // Assert that nothing has changed
     assertNull(proGuardTask.configuration.printMapping);
   }
 
   /**
+   * Test {@link ProGuardTask#setPrintmapping(File)}.
+   * <ul>
+   *   <li>When Property is {@code java.io.tmpdir} is {@code on} toFile.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ProGuardTask#setPrintmapping(File)}
    */
   @Test
-  void testSetPrintmapping5() {
+  @DisplayName("Test setPrintmapping(File); when Property is 'java.io.tmpdir' is 'on' toFile")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setPrintmapping(File)"})
+  void testSetPrintmapping_whenPropertyIsJavaIoTmpdirIsOnToFile() {
+    // Arrange
+    ProGuardTask proGuardTask = new ProGuardTask();
+
+    // Act
+    proGuardTask.setPrintmapping(Paths.get(System.getProperty("java.io.tmpdir"), "on").toFile());
+
+    // Assert
+    File file = proGuardTask.configuration.printMapping;
+    assertEquals("", file.getName());
+    assertFalse(file.isAbsolute());
+  }
+
+  /**
+   * Test {@link ProGuardTask#setPrintmapping(File)}.
+   * <ul>
+   *   <li>When Property is {@code java.io.tmpdir} is {@link Boolean#TRUE} toString toFile.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ProGuardTask#setPrintmapping(File)}
+   */
+  @Test
+  @DisplayName("Test setPrintmapping(File); when Property is 'java.io.tmpdir' is TRUE toString toFile")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setPrintmapping(File)"})
+  void testSetPrintmapping_whenPropertyIsJavaIoTmpdirIsTrueToStringToFile() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
     String property = System.getProperty("java.io.tmpdir");
@@ -596,10 +921,18 @@ class ProGuardTaskDiffblueTest {
   }
 
   /**
+   * Test {@link ProGuardTask#setPrintmapping(File)}.
+   * <ul>
+   *   <li>When Property is {@code java.io.tmpdir} is {@code yes} toFile.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ProGuardTask#setPrintmapping(File)}
    */
   @Test
-  void testSetPrintmapping6() {
+  @DisplayName("Test setPrintmapping(File); when Property is 'java.io.tmpdir' is 'yes' toFile")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setPrintmapping(File)"})
+  void testSetPrintmapping_whenPropertyIsJavaIoTmpdirIsYesToFile() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
 
@@ -613,26 +946,14 @@ class ProGuardTaskDiffblueTest {
   }
 
   /**
-   * Method under test: {@link ProGuardTask#setPrintmapping(File)}
-   */
-  @Test
-  void testSetPrintmapping7() {
-    // Arrange
-    ProGuardTask proGuardTask = new ProGuardTask();
-
-    // Act
-    proGuardTask.setPrintmapping(Paths.get(System.getProperty("java.io.tmpdir"), "on").toFile());
-
-    // Assert
-    File file = proGuardTask.configuration.printMapping;
-    assertEquals("", file.getName());
-    assertFalse(file.isAbsolute());
-  }
-
-  /**
+   * Test {@link ProGuardTask#setApplymapping(File)}.
+   * <p>
    * Method under test: {@link ProGuardTask#setApplymapping(File)}
    */
   @Test
+  @DisplayName("Test setApplymapping(File)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setApplymapping(File)"})
   void testSetApplymapping() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
@@ -646,9 +967,14 @@ class ProGuardTaskDiffblueTest {
   }
 
   /**
+   * Test {@link ProGuardTask#setObfuscationdictionary(File)}.
+   * <p>
    * Method under test: {@link ProGuardTask#setObfuscationdictionary(File)}
    */
   @Test
+  @DisplayName("Test setObfuscationdictionary(File)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setObfuscationdictionary(File)"})
   void testSetObfuscationdictionary() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
@@ -663,9 +989,14 @@ class ProGuardTaskDiffblueTest {
   }
 
   /**
+   * Test {@link ProGuardTask#setClassobfuscationdictionary(File)}.
+   * <p>
    * Method under test: {@link ProGuardTask#setClassobfuscationdictionary(File)}
    */
   @Test
+  @DisplayName("Test setClassobfuscationdictionary(File)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setClassobfuscationdictionary(File)"})
   void testSetClassobfuscationdictionary() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
@@ -680,9 +1011,14 @@ class ProGuardTaskDiffblueTest {
   }
 
   /**
+   * Test {@link ProGuardTask#setPackageobfuscationdictionary(File)}.
+   * <p>
    * Method under test: {@link ProGuardTask#setPackageobfuscationdictionary(File)}
    */
   @Test
+  @DisplayName("Test setPackageobfuscationdictionary(File)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setPackageobfuscationdictionary(File)"})
   void testSetPackageobfuscationdictionary() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
@@ -697,9 +1033,14 @@ class ProGuardTaskDiffblueTest {
   }
 
   /**
+   * Test {@link ProGuardTask#setFlattenpackagehierarchy(String)}.
+   * <p>
    * Method under test: {@link ProGuardTask#setFlattenpackagehierarchy(String)}
    */
   @Test
+  @DisplayName("Test setFlattenpackagehierarchy(String)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setFlattenpackagehierarchy(String)"})
   void testSetFlattenpackagehierarchy() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
@@ -712,9 +1053,14 @@ class ProGuardTaskDiffblueTest {
   }
 
   /**
+   * Test {@link ProGuardTask#setRepackageclasses(String)}.
+   * <p>
    * Method under test: {@link ProGuardTask#setRepackageclasses(String)}
    */
   @Test
+  @DisplayName("Test setRepackageclasses(String)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setRepackageclasses(String)"})
   void testSetRepackageclasses() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
@@ -727,9 +1073,14 @@ class ProGuardTaskDiffblueTest {
   }
 
   /**
+   * Test {@link ProGuardTask#setDefaultpackage(String)}.
+   * <p>
    * Method under test: {@link ProGuardTask#setDefaultpackage(String)}
    */
   @Test
+  @DisplayName("Test setDefaultpackage(String)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setDefaultpackage(String)"})
   void testSetDefaultpackage() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
@@ -742,10 +1093,45 @@ class ProGuardTaskDiffblueTest {
   }
 
   /**
+   * Test {@link ProGuardTask#setNote(boolean)}.
+   * <ul>
+   *   <li>Given {@link ProGuardTask} (default constructor).</li>
+   *   <li>When {@code false}.</li>
+   *   <li>Then {@link ProGuardTask} (default constructor) {@link ConfigurationTask#configuration} {@link Configuration#note} Empty.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ProGuardTask#setNote(boolean)}
    */
   @Test
-  void testSetNote() {
+  @DisplayName("Test setNote(boolean); given ProGuardTask (default constructor); when 'false'; then ProGuardTask (default constructor) configuration note Empty")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setNote(boolean)"})
+  void testSetNote_givenProGuardTask_whenFalse_thenProGuardTaskConfigurationNoteEmpty() {
+    // Arrange
+    ProGuardTask proGuardTask = new ProGuardTask();
+
+    // Act
+    proGuardTask.setNote(false);
+
+    // Assert
+    assertTrue(proGuardTask.configuration.note.isEmpty());
+  }
+
+  /**
+   * Test {@link ProGuardTask#setNote(boolean)}.
+   * <ul>
+   *   <li>Given {@link ProGuardTask} (default constructor).</li>
+   *   <li>When {@code true}.</li>
+   *   <li>Then {@link ProGuardTask} (default constructor) {@link ConfigurationTask#configuration} {@link Configuration#note} is {@code null}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ProGuardTask#setNote(boolean)}
+   */
+  @Test
+  @DisplayName("Test setNote(boolean); given ProGuardTask (default constructor); when 'true'; then ProGuardTask (default constructor) configuration note is 'null'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setNote(boolean)"})
+  void testSetNote_givenProGuardTask_whenTrue_thenProGuardTaskConfigurationNoteIsNull() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
 
@@ -757,10 +1143,18 @@ class ProGuardTaskDiffblueTest {
   }
 
   /**
+   * Test {@link ProGuardTask#setNote(boolean)}.
+   * <ul>
+   *   <li>Then {@link ProGuardTask} (default constructor) {@link ConfigurationTask#configuration} {@link Configuration#note} is {@code null}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ProGuardTask#setNote(boolean)}
    */
   @Test
-  void testSetNote2() {
+  @DisplayName("Test setNote(boolean); then ProGuardTask (default constructor) configuration note is 'null'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setNote(boolean)"})
+  void testSetNote_thenProGuardTaskConfigurationNoteIsNull() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
     proGuardTask.addConfiguredDontnote(new FilterElement());
@@ -773,25 +1167,18 @@ class ProGuardTaskDiffblueTest {
   }
 
   /**
+   * Test {@link ProGuardTask#setNote(boolean)}.
+   * <ul>
+   *   <li>Then {@link ProGuardTask} (default constructor) {@link ConfigurationTask#configuration} {@link Configuration#note} size is one.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ProGuardTask#setNote(boolean)}
    */
   @Test
-  void testSetNote3() {
-    // Arrange
-    ProGuardTask proGuardTask = new ProGuardTask();
-
-    // Act
-    proGuardTask.setNote(false);
-
-    // Assert
-    assertTrue(proGuardTask.configuration.note.isEmpty());
-  }
-
-  /**
-   * Method under test: {@link ProGuardTask#setNote(boolean)}
-   */
-  @Test
-  void testSetNote4() {
+  @DisplayName("Test setNote(boolean); then ProGuardTask (default constructor) configuration note size is one")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setNote(boolean)"})
+  void testSetNote_thenProGuardTaskConfigurationNoteSizeIsOne() {
     // Arrange
     FilterElement filterElement = new FilterElement();
     filterElement.setName("Name");
@@ -807,10 +1194,45 @@ class ProGuardTaskDiffblueTest {
   }
 
   /**
+   * Test {@link ProGuardTask#setWarn(boolean)}.
+   * <ul>
+   *   <li>Given {@link ProGuardTask} (default constructor).</li>
+   *   <li>When {@code false}.</li>
+   *   <li>Then {@link ProGuardTask} (default constructor) {@link ConfigurationTask#configuration} {@link Configuration#warn} Empty.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ProGuardTask#setWarn(boolean)}
    */
   @Test
-  void testSetWarn() {
+  @DisplayName("Test setWarn(boolean); given ProGuardTask (default constructor); when 'false'; then ProGuardTask (default constructor) configuration warn Empty")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setWarn(boolean)"})
+  void testSetWarn_givenProGuardTask_whenFalse_thenProGuardTaskConfigurationWarnEmpty() {
+    // Arrange
+    ProGuardTask proGuardTask = new ProGuardTask();
+
+    // Act
+    proGuardTask.setWarn(false);
+
+    // Assert
+    assertTrue(proGuardTask.configuration.warn.isEmpty());
+  }
+
+  /**
+   * Test {@link ProGuardTask#setWarn(boolean)}.
+   * <ul>
+   *   <li>Given {@link ProGuardTask} (default constructor).</li>
+   *   <li>When {@code true}.</li>
+   *   <li>Then {@link ProGuardTask} (default constructor) {@link ConfigurationTask#configuration} {@link Configuration#warn} is {@code null}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ProGuardTask#setWarn(boolean)}
+   */
+  @Test
+  @DisplayName("Test setWarn(boolean); given ProGuardTask (default constructor); when 'true'; then ProGuardTask (default constructor) configuration warn is 'null'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setWarn(boolean)"})
+  void testSetWarn_givenProGuardTask_whenTrue_thenProGuardTaskConfigurationWarnIsNull() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
 
@@ -822,10 +1244,18 @@ class ProGuardTaskDiffblueTest {
   }
 
   /**
+   * Test {@link ProGuardTask#setWarn(boolean)}.
+   * <ul>
+   *   <li>Then {@link ProGuardTask} (default constructor) {@link ConfigurationTask#configuration} {@link Configuration#warn} is {@code null}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ProGuardTask#setWarn(boolean)}
    */
   @Test
-  void testSetWarn2() {
+  @DisplayName("Test setWarn(boolean); then ProGuardTask (default constructor) configuration warn is 'null'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setWarn(boolean)"})
+  void testSetWarn_thenProGuardTaskConfigurationWarnIsNull() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
     proGuardTask.addConfiguredDontwarn(new FilterElement());
@@ -838,25 +1268,18 @@ class ProGuardTaskDiffblueTest {
   }
 
   /**
+   * Test {@link ProGuardTask#setWarn(boolean)}.
+   * <ul>
+   *   <li>Then {@link ProGuardTask} (default constructor) {@link ConfigurationTask#configuration} {@link Configuration#warn} size is one.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ProGuardTask#setWarn(boolean)}
    */
   @Test
-  void testSetWarn3() {
-    // Arrange
-    ProGuardTask proGuardTask = new ProGuardTask();
-
-    // Act
-    proGuardTask.setWarn(false);
-
-    // Assert
-    assertTrue(proGuardTask.configuration.warn.isEmpty());
-  }
-
-  /**
-   * Method under test: {@link ProGuardTask#setWarn(boolean)}
-   */
-  @Test
-  void testSetWarn4() {
+  @DisplayName("Test setWarn(boolean); then ProGuardTask (default constructor) configuration warn size is one")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setWarn(boolean)"})
+  void testSetWarn_thenProGuardTaskConfigurationWarnSizeIsOne() {
     // Arrange
     FilterElement filterElement = new FilterElement();
     filterElement.setName("Name");
@@ -872,9 +1295,14 @@ class ProGuardTaskDiffblueTest {
   }
 
   /**
+   * Test {@link ProGuardTask#setPrintconfiguration(File)}.
+   * <p>
    * Method under test: {@link ProGuardTask#setPrintconfiguration(File)}
    */
   @Test
+  @DisplayName("Test setPrintconfiguration(File)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setPrintconfiguration(File)"})
   void testSetPrintconfiguration() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
@@ -888,10 +1316,18 @@ class ProGuardTaskDiffblueTest {
   }
 
   /**
+   * Test {@link ProGuardTask#setPrintconfiguration(File)}.
+   * <ul>
+   *   <li>When Property is {@code java.io.tmpdir} is {@link Boolean#FALSE} toString toFile.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ProGuardTask#setPrintconfiguration(File)}
    */
   @Test
-  void testSetPrintconfiguration2() {
+  @DisplayName("Test setPrintconfiguration(File); when Property is 'java.io.tmpdir' is FALSE toString toFile")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setPrintconfiguration(File)"})
+  void testSetPrintconfiguration_whenPropertyIsJavaIoTmpdirIsFalseToStringToFile() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
     String property = System.getProperty("java.io.tmpdir");
@@ -899,45 +1335,94 @@ class ProGuardTaskDiffblueTest {
     // Act
     proGuardTask.setPrintconfiguration(Paths.get(property, Boolean.FALSE.toString()).toFile());
 
-    // Assert
+    // Assert that nothing has changed
     assertNull(proGuardTask.configuration.printConfiguration);
   }
 
   /**
+   * Test {@link ProGuardTask#setPrintconfiguration(File)}.
+   * <ul>
+   *   <li>When Property is {@code java.io.tmpdir} is {@code no} toFile.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ProGuardTask#setPrintconfiguration(File)}
    */
   @Test
-  void testSetPrintconfiguration3() {
+  @DisplayName("Test setPrintconfiguration(File); when Property is 'java.io.tmpdir' is 'no' toFile")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setPrintconfiguration(File)"})
+  void testSetPrintconfiguration_whenPropertyIsJavaIoTmpdirIsNoToFile() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
 
     // Act
     proGuardTask.setPrintconfiguration(Paths.get(System.getProperty("java.io.tmpdir"), "no").toFile());
 
-    // Assert
+    // Assert that nothing has changed
     assertNull(proGuardTask.configuration.printConfiguration);
   }
 
   /**
+   * Test {@link ProGuardTask#setPrintconfiguration(File)}.
+   * <ul>
+   *   <li>When Property is {@code java.io.tmpdir} is {@code off} toFile.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ProGuardTask#setPrintconfiguration(File)}
    */
   @Test
-  void testSetPrintconfiguration4() {
+  @DisplayName("Test setPrintconfiguration(File); when Property is 'java.io.tmpdir' is 'off' toFile")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setPrintconfiguration(File)"})
+  void testSetPrintconfiguration_whenPropertyIsJavaIoTmpdirIsOffToFile() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
 
     // Act
     proGuardTask.setPrintconfiguration(Paths.get(System.getProperty("java.io.tmpdir"), "off").toFile());
 
-    // Assert
+    // Assert that nothing has changed
     assertNull(proGuardTask.configuration.printConfiguration);
   }
 
   /**
+   * Test {@link ProGuardTask#setPrintconfiguration(File)}.
+   * <ul>
+   *   <li>When Property is {@code java.io.tmpdir} is {@code on} toFile.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ProGuardTask#setPrintconfiguration(File)}
    */
   @Test
-  void testSetPrintconfiguration5() {
+  @DisplayName("Test setPrintconfiguration(File); when Property is 'java.io.tmpdir' is 'on' toFile")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setPrintconfiguration(File)"})
+  void testSetPrintconfiguration_whenPropertyIsJavaIoTmpdirIsOnToFile() {
+    // Arrange
+    ProGuardTask proGuardTask = new ProGuardTask();
+
+    // Act
+    proGuardTask.setPrintconfiguration(Paths.get(System.getProperty("java.io.tmpdir"), "on").toFile());
+
+    // Assert
+    File file = proGuardTask.configuration.printConfiguration;
+    assertEquals("", file.getName());
+    assertFalse(file.isAbsolute());
+  }
+
+  /**
+   * Test {@link ProGuardTask#setPrintconfiguration(File)}.
+   * <ul>
+   *   <li>When Property is {@code java.io.tmpdir} is {@link Boolean#TRUE} toString toFile.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ProGuardTask#setPrintconfiguration(File)}
+   */
+  @Test
+  @DisplayName("Test setPrintconfiguration(File); when Property is 'java.io.tmpdir' is TRUE toString toFile")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setPrintconfiguration(File)"})
+  void testSetPrintconfiguration_whenPropertyIsJavaIoTmpdirIsTrueToStringToFile() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
     String property = System.getProperty("java.io.tmpdir");
@@ -952,10 +1437,18 @@ class ProGuardTaskDiffblueTest {
   }
 
   /**
+   * Test {@link ProGuardTask#setPrintconfiguration(File)}.
+   * <ul>
+   *   <li>When Property is {@code java.io.tmpdir} is {@code yes} toFile.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ProGuardTask#setPrintconfiguration(File)}
    */
   @Test
-  void testSetPrintconfiguration6() {
+  @DisplayName("Test setPrintconfiguration(File); when Property is 'java.io.tmpdir' is 'yes' toFile")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setPrintconfiguration(File)"})
+  void testSetPrintconfiguration_whenPropertyIsJavaIoTmpdirIsYesToFile() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
 
@@ -969,26 +1462,14 @@ class ProGuardTaskDiffblueTest {
   }
 
   /**
-   * Method under test: {@link ProGuardTask#setPrintconfiguration(File)}
-   */
-  @Test
-  void testSetPrintconfiguration7() {
-    // Arrange
-    ProGuardTask proGuardTask = new ProGuardTask();
-
-    // Act
-    proGuardTask.setPrintconfiguration(Paths.get(System.getProperty("java.io.tmpdir"), "on").toFile());
-
-    // Assert
-    File file = proGuardTask.configuration.printConfiguration;
-    assertEquals("", file.getName());
-    assertFalse(file.isAbsolute());
-  }
-
-  /**
+   * Test {@link ProGuardTask#setDump(File)}.
+   * <p>
    * Method under test: {@link ProGuardTask#setDump(File)}
    */
   @Test
+  @DisplayName("Test setDump(File)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setDump(File)"})
   void testSetDump() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
@@ -1002,10 +1483,18 @@ class ProGuardTaskDiffblueTest {
   }
 
   /**
+   * Test {@link ProGuardTask#setDump(File)}.
+   * <ul>
+   *   <li>When Property is {@code java.io.tmpdir} is {@link Boolean#FALSE} toString toFile.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ProGuardTask#setDump(File)}
    */
   @Test
-  void testSetDump2() {
+  @DisplayName("Test setDump(File); when Property is 'java.io.tmpdir' is FALSE toString toFile")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setDump(File)"})
+  void testSetDump_whenPropertyIsJavaIoTmpdirIsFalseToStringToFile() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
     String property = System.getProperty("java.io.tmpdir");
@@ -1013,45 +1502,94 @@ class ProGuardTaskDiffblueTest {
     // Act
     proGuardTask.setDump(Paths.get(property, Boolean.FALSE.toString()).toFile());
 
-    // Assert
+    // Assert that nothing has changed
     assertNull(proGuardTask.configuration.dump);
   }
 
   /**
+   * Test {@link ProGuardTask#setDump(File)}.
+   * <ul>
+   *   <li>When Property is {@code java.io.tmpdir} is {@code no} toFile.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ProGuardTask#setDump(File)}
    */
   @Test
-  void testSetDump3() {
+  @DisplayName("Test setDump(File); when Property is 'java.io.tmpdir' is 'no' toFile")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setDump(File)"})
+  void testSetDump_whenPropertyIsJavaIoTmpdirIsNoToFile() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
 
     // Act
     proGuardTask.setDump(Paths.get(System.getProperty("java.io.tmpdir"), "no").toFile());
 
-    // Assert
+    // Assert that nothing has changed
     assertNull(proGuardTask.configuration.dump);
   }
 
   /**
+   * Test {@link ProGuardTask#setDump(File)}.
+   * <ul>
+   *   <li>When Property is {@code java.io.tmpdir} is {@code off} toFile.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ProGuardTask#setDump(File)}
    */
   @Test
-  void testSetDump4() {
+  @DisplayName("Test setDump(File); when Property is 'java.io.tmpdir' is 'off' toFile")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setDump(File)"})
+  void testSetDump_whenPropertyIsJavaIoTmpdirIsOffToFile() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
 
     // Act
     proGuardTask.setDump(Paths.get(System.getProperty("java.io.tmpdir"), "off").toFile());
 
-    // Assert
+    // Assert that nothing has changed
     assertNull(proGuardTask.configuration.dump);
   }
 
   /**
+   * Test {@link ProGuardTask#setDump(File)}.
+   * <ul>
+   *   <li>When Property is {@code java.io.tmpdir} is {@code on} toFile.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ProGuardTask#setDump(File)}
    */
   @Test
-  void testSetDump5() {
+  @DisplayName("Test setDump(File); when Property is 'java.io.tmpdir' is 'on' toFile")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setDump(File)"})
+  void testSetDump_whenPropertyIsJavaIoTmpdirIsOnToFile() {
+    // Arrange
+    ProGuardTask proGuardTask = new ProGuardTask();
+
+    // Act
+    proGuardTask.setDump(Paths.get(System.getProperty("java.io.tmpdir"), "on").toFile());
+
+    // Assert
+    File file = proGuardTask.configuration.dump;
+    assertEquals("", file.getName());
+    assertFalse(file.isAbsolute());
+  }
+
+  /**
+   * Test {@link ProGuardTask#setDump(File)}.
+   * <ul>
+   *   <li>When Property is {@code java.io.tmpdir} is {@link Boolean#TRUE} toString toFile.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ProGuardTask#setDump(File)}
+   */
+  @Test
+  @DisplayName("Test setDump(File); when Property is 'java.io.tmpdir' is TRUE toString toFile")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setDump(File)"})
+  void testSetDump_whenPropertyIsJavaIoTmpdirIsTrueToStringToFile() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
     String property = System.getProperty("java.io.tmpdir");
@@ -1066,10 +1604,18 @@ class ProGuardTaskDiffblueTest {
   }
 
   /**
+   * Test {@link ProGuardTask#setDump(File)}.
+   * <ul>
+   *   <li>When Property is {@code java.io.tmpdir} is {@code yes} toFile.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ProGuardTask#setDump(File)}
    */
   @Test
-  void testSetDump6() {
+  @DisplayName("Test setDump(File); when Property is 'java.io.tmpdir' is 'yes' toFile")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.setDump(File)"})
+  void testSetDump_whenPropertyIsJavaIoTmpdirIsYesToFile() {
     // Arrange
     ProGuardTask proGuardTask = new ProGuardTask();
 
@@ -1083,36 +1629,18 @@ class ProGuardTaskDiffblueTest {
   }
 
   /**
-   * Method under test: {@link ProGuardTask#setDump(File)}
-   */
-  @Test
-  void testSetDump7() {
-    // Arrange
-    ProGuardTask proGuardTask = new ProGuardTask();
-
-    // Act
-    proGuardTask.setDump(Paths.get(System.getProperty("java.io.tmpdir"), "on").toFile());
-
-    // Assert
-    File file = proGuardTask.configuration.dump;
-    assertEquals("", file.getName());
-    assertFalse(file.isAbsolute());
-  }
-
-  /**
+   * Test {@link ProGuardTask#execute()}.
+   * <ul>
+   *   <li>Given {@link Configuration} (default constructor) {@link Configuration#adaptClassStrings} is {@link ArrayList#ArrayList()}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ProGuardTask#execute()}
    */
   @Test
-  void testExecute() throws BuildException {
-    // Arrange, Act and Assert
-    assertThrows(BuildException.class, () -> (new ProGuardTask()).execute());
-  }
-
-  /**
-   * Method under test: {@link ProGuardTask#execute()}
-   */
-  @Test
-  void testExecute2() throws MalformedURLException, BuildException {
+  @DisplayName("Test execute(); given Configuration (default constructor) adaptClassStrings is ArrayList()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.execute()"})
+  void testExecute_givenConfigurationAdaptClassStringsIsArrayList() throws MalformedURLException, BuildException {
     // Arrange
     Configuration configuration = new Configuration();
     configuration.adaptClassStrings = new ArrayList<>();
@@ -1190,10 +1718,36 @@ class ProGuardTaskDiffblueTest {
   }
 
   /**
+   * Test {@link ProGuardTask#execute()}.
+   * <ul>
+   *   <li>Given {@link ProGuardTask} (default constructor).</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ProGuardTask#execute()}
    */
   @Test
-  void testExecute3() throws MalformedURLException, BuildException {
+  @DisplayName("Test execute(); given ProGuardTask (default constructor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.execute()"})
+  void testExecute_givenProGuardTask() throws BuildException {
+    // Arrange, Act and Assert
+    assertThrows(BuildException.class, () -> (new ProGuardTask()).execute());
+  }
+
+  /**
+   * Test {@link ProGuardTask#execute()}.
+   * <ul>
+   *   <li>Given {@link ProGuardTask} (default constructor) addConfiguredKeep {@link KeepSpecificationElement} (default constructor).</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ProGuardTask#execute()}
+   */
+  @Test
+  @DisplayName("Test execute(); given ProGuardTask (default constructor) addConfiguredKeep KeepSpecificationElement (default constructor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.execute()"})
+  void testExecute_givenProGuardTaskAddConfiguredKeepKeepSpecificationElement()
+      throws MalformedURLException, BuildException {
     // Arrange
     Configuration configuration = new Configuration();
     configuration.adaptClassStrings = new ArrayList<>();
@@ -1272,10 +1826,111 @@ class ProGuardTaskDiffblueTest {
   }
 
   /**
+   * Test {@link ProGuardTask#execute()}.
+   * <ul>
+   *   <li>Given {@link ProGuardTask} (default constructor) addConfiguredKeep {@link KeepSpecificationElement} (default constructor).</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ProGuardTask#execute()}
    */
   @Test
-  void testExecute4() throws MalformedURLException, BuildException {
+  @DisplayName("Test execute(); given ProGuardTask (default constructor) addConfiguredKeep KeepSpecificationElement (default constructor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.execute()"})
+  void testExecute_givenProGuardTaskAddConfiguredKeepKeepSpecificationElement2()
+      throws MalformedURLException, BuildException {
+    // Arrange
+    Configuration configuration = new Configuration();
+    configuration.adaptClassStrings = new ArrayList<>();
+    configuration.adaptResourceFileContents = new ArrayList<>();
+    configuration.adaptResourceFileNames = new ArrayList<>();
+    configuration.addConfigurationDebugging = true;
+    configuration.allowAccessModification = true;
+    configuration.android = true;
+    configuration.applyMapping = Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toFile();
+    configuration.assumeNoEscapingParameters = new ArrayList<>();
+    configuration.assumeNoExternalReturnValues = new ArrayList<>();
+    configuration.assumeNoExternalSideEffects = new ArrayList<>();
+    configuration.assumeNoSideEffects = new ArrayList<>();
+    configuration.assumeValues = new ArrayList<>();
+    configuration.backport = true;
+    configuration.classObfuscationDictionary = Paths.get(System.getProperty("java.io.tmpdir"), "test.txt")
+        .toUri()
+        .toURL();
+    configuration.dontCompress = new ArrayList<>();
+    configuration.dontProcessKotlinMetadata = true;
+    configuration.dump = Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toFile();
+    configuration.enableKotlinAsserter = true;
+    configuration.extraJar = Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toFile();
+    configuration.flattenPackageHierarchy = "java.text";
+    configuration.ignoreWarnings = true;
+    configuration.keep = new ArrayList<>();
+    configuration.keepAttributes = new ArrayList<>();
+    configuration.keepDirectories = new ArrayList();
+    configuration.keepKotlinMetadata = true;
+    configuration.keepPackageNames = new ArrayList<>();
+    configuration.keepParameterNames = true;
+    configuration.keyAliases = new ArrayList<>();
+    configuration.keyPasswords = new ArrayList<>();
+    configuration.keyStorePasswords = new ArrayList<>();
+    configuration.keyStores = new ArrayList<>();
+    configuration.lastModified = 1L;
+    configuration.libraryJars = new ClassPath();
+    configuration.mergeInterfacesAggressively = true;
+    configuration.microEdition = true;
+    configuration.newSourceFileAttribute = "1.544*";
+    configuration.note = new ArrayList<>();
+    configuration.obfuscate = true;
+    configuration.obfuscationDictionary = Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toUri().toURL();
+    configuration.optimizationPasses = 1;
+    configuration.optimizations = new ArrayList<>();
+    configuration.optimize = true;
+    configuration.optimizeConservatively = true;
+    configuration.overloadAggressively = true;
+    configuration.packageObfuscationDictionary = Paths.get(System.getProperty("java.io.tmpdir"), "test.txt")
+        .toUri()
+        .toURL();
+    configuration.preverify = true;
+    configuration.printConfiguration = Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toFile();
+    configuration.printMapping = Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toFile();
+    configuration.printSeeds = Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toFile();
+    configuration.printUsage = Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toFile();
+    configuration.programJars = new ClassPath();
+    configuration.repackageClasses = "java.text";
+    configuration.shrink = true;
+    configuration.skipNonPublicLibraryClassMembers = true;
+    configuration.skipNonPublicLibraryClasses = true;
+    configuration.targetClassVersion = 1;
+    configuration.useMixedCaseClassNames = true;
+    configuration.useUniqueClassMemberNames = true;
+    configuration.verbose = true;
+    configuration.warn = new ArrayList<>();
+    configuration.whyAreYouKeeping = new ArrayList<>();
+    configuration.zipAlign = 1;
+
+    ProGuardTask proGuardTask = new ProGuardTask();
+    proGuardTask.addConfiguredKeep(new KeepSpecificationElement());
+    proGuardTask.addConfiguredKeep(new KeepSpecificationElement());
+    proGuardTask.appendTo(configuration);
+
+    // Act and Assert
+    assertThrows(BuildException.class, () -> proGuardTask.execute());
+  }
+
+  /**
+   * Test {@link ProGuardTask#execute()}.
+   * <ul>
+   *   <li>Given {@link ProGuardTask} (default constructor) addConfiguredKeepnames {@link KeepSpecificationElement} (default constructor).</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ProGuardTask#execute()}
+   */
+  @Test
+  @DisplayName("Test execute(); given ProGuardTask (default constructor) addConfiguredKeepnames KeepSpecificationElement (default constructor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.execute()"})
+  void testExecute_givenProGuardTaskAddConfiguredKeepnamesKeepSpecificationElement()
+      throws MalformedURLException, BuildException {
     // Arrange
     Configuration configuration = new Configuration();
     configuration.adaptClassStrings = new ArrayList<>();
@@ -1354,177 +2009,23 @@ class ProGuardTaskDiffblueTest {
   }
 
   /**
-   * Method under test: {@link ProGuardTask#execute()}
+   * Test new {@link ProGuardTask} (default constructor).
+   * <p>
+   * Method under test: default or parameterless constructor of {@link ProGuardTask}
    */
   @Test
-  void testExecute5() throws MalformedURLException, BuildException {
-    // Arrange
-    Configuration configuration = new Configuration();
-    configuration.adaptClassStrings = new ArrayList<>();
-    configuration.adaptResourceFileContents = new ArrayList<>();
-    configuration.adaptResourceFileNames = new ArrayList<>();
-    configuration.addConfigurationDebugging = true;
-    configuration.allowAccessModification = true;
-    configuration.android = true;
-    configuration.applyMapping = Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toFile();
-    configuration.assumeNoEscapingParameters = new ArrayList<>();
-    configuration.assumeNoExternalReturnValues = new ArrayList<>();
-    configuration.assumeNoExternalSideEffects = new ArrayList<>();
-    configuration.assumeNoSideEffects = new ArrayList<>();
-    configuration.assumeValues = new ArrayList<>();
-    configuration.backport = true;
-    configuration.classObfuscationDictionary = Paths.get(System.getProperty("java.io.tmpdir"), "test.txt")
-        .toUri()
-        .toURL();
-    configuration.dontCompress = new ArrayList<>();
-    configuration.dontProcessKotlinMetadata = true;
-    configuration.dump = Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toFile();
-    configuration.enableKotlinAsserter = true;
-    configuration.extraJar = Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toFile();
-    configuration.flattenPackageHierarchy = "java.text";
-    configuration.ignoreWarnings = true;
-    configuration.keep = new ArrayList<>();
-    configuration.keepAttributes = new ArrayList<>();
-    configuration.keepDirectories = new ArrayList();
-    configuration.keepKotlinMetadata = true;
-    configuration.keepPackageNames = new ArrayList<>();
-    configuration.keepParameterNames = true;
-    configuration.keyAliases = new ArrayList<>();
-    configuration.keyPasswords = new ArrayList<>();
-    configuration.keyStorePasswords = new ArrayList<>();
-    configuration.keyStores = new ArrayList<>();
-    configuration.lastModified = 1L;
-    configuration.libraryJars = new ClassPath();
-    configuration.mergeInterfacesAggressively = true;
-    configuration.microEdition = true;
-    configuration.newSourceFileAttribute = "1.544*";
-    configuration.note = new ArrayList<>();
-    configuration.obfuscate = true;
-    configuration.obfuscationDictionary = Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toUri().toURL();
-    configuration.optimizationPasses = 1;
-    configuration.optimizations = new ArrayList<>();
-    configuration.optimize = true;
-    configuration.optimizeConservatively = true;
-    configuration.overloadAggressively = true;
-    configuration.packageObfuscationDictionary = Paths.get(System.getProperty("java.io.tmpdir"), "test.txt")
-        .toUri()
-        .toURL();
-    configuration.preverify = true;
-    configuration.printConfiguration = Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toFile();
-    configuration.printMapping = Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toFile();
-    configuration.printSeeds = Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toFile();
-    configuration.printUsage = Paths.get(System.getProperty("java.io.tmpdir"), "test.txt").toFile();
-    configuration.programJars = new ClassPath();
-    configuration.repackageClasses = "java.text";
-    configuration.shrink = true;
-    configuration.skipNonPublicLibraryClassMembers = true;
-    configuration.skipNonPublicLibraryClasses = true;
-    configuration.targetClassVersion = 1;
-    configuration.useMixedCaseClassNames = true;
-    configuration.useUniqueClassMemberNames = true;
-    configuration.verbose = true;
-    configuration.warn = new ArrayList<>();
-    configuration.whyAreYouKeeping = new ArrayList<>();
-    configuration.zipAlign = 1;
-
-    ProGuardTask proGuardTask = new ProGuardTask();
-    proGuardTask.addConfiguredKeep(new KeepSpecificationElement());
-    proGuardTask.addConfiguredKeep(new KeepSpecificationElement());
-    proGuardTask.appendTo(configuration);
-
-    // Act and Assert
-    assertThrows(BuildException.class, () -> proGuardTask.execute());
-  }
-
-  /**
-   * Method under test: default or parameterless constructor of
-   * {@link ProGuardTask}
-   */
-  @Test
+  @DisplayName("Test new ProGuardTask (default constructor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProGuardTask.<init>()"})
   void testNewProGuardTask() {
     // Arrange and Act
     ProGuardTask actualProGuardTask = new ProGuardTask();
 
     // Assert
-    RuntimeConfigurable runtimeConfigurableWrapper = actualProGuardTask.getRuntimeConfigurableWrapper();
-    assertEquals("", runtimeConfigurableWrapper.getText().toString());
-    Configuration configuration = actualProGuardTask.configuration;
-    assertNull(configuration.applyMapping);
-    assertNull(configuration.dump);
-    assertNull(configuration.extraJar);
-    assertNull(configuration.printConfiguration);
-    assertNull(configuration.printMapping);
-    assertNull(configuration.printSeeds);
-    assertNull(configuration.printUsage);
-    Location location = actualProGuardTask.getLocation();
-    assertNull(location.getFileName());
     assertNull(actualProGuardTask.getDescription());
-    assertNull(runtimeConfigurableWrapper.getElementTag());
-    assertNull(runtimeConfigurableWrapper.getId());
-    assertNull(runtimeConfigurableWrapper.getPolyType());
     assertNull(actualProGuardTask.getTaskName());
     assertNull(actualProGuardTask.getTaskType());
-    assertNull(configuration.flattenPackageHierarchy);
-    assertNull(configuration.newSourceFileAttribute);
-    assertNull(configuration.repackageClasses);
-    assertNull(configuration.classObfuscationDictionary);
-    assertNull(configuration.obfuscationDictionary);
-    assertNull(configuration.packageObfuscationDictionary);
-    assertNull(configuration.keepDirectories);
-    assertNull(configuration.keyStores);
-    assertNull(configuration.adaptClassStrings);
-    assertNull(configuration.adaptResourceFileContents);
-    assertNull(configuration.adaptResourceFileNames);
-    assertNull(configuration.dontCompress);
-    assertNull(configuration.keepAttributes);
-    assertNull(configuration.keepPackageNames);
-    assertNull(configuration.keyAliases);
-    assertNull(configuration.keyPasswords);
-    assertNull(configuration.keyStorePasswords);
-    assertNull(configuration.note);
-    assertNull(configuration.optimizations);
-    assertNull(configuration.warn);
-    assertNull(configuration.assumeNoEscapingParameters);
-    assertNull(configuration.assumeNoExternalReturnValues);
-    assertNull(configuration.assumeNoExternalSideEffects);
-    assertNull(configuration.assumeNoSideEffects);
-    assertNull(configuration.assumeValues);
-    assertNull(configuration.whyAreYouKeeping);
-    assertNull(configuration.keep);
     assertNull(actualProGuardTask.getProject());
     assertNull(actualProGuardTask.getOwningTarget());
-    assertNull(runtimeConfigurableWrapper.getAttributes());
-    assertNull(configuration.libraryJars);
-    assertNull(configuration.programJars);
-    assertEquals(0, location.getColumnNumber());
-    assertEquals(0, location.getLineNumber());
-    assertEquals(0, configuration.targetClassVersion);
-    assertEquals(0L, configuration.lastModified);
-    assertEquals(1, configuration.optimizationPasses);
-    assertEquals(1, configuration.zipAlign);
-    assertFalse(configuration.addConfigurationDebugging);
-    assertFalse(configuration.allowAccessModification);
-    assertFalse(configuration.android);
-    assertFalse(configuration.backport);
-    assertFalse(configuration.dontProcessKotlinMetadata);
-    assertFalse(configuration.ignoreWarnings);
-    assertFalse(configuration.keepKotlinMetadata);
-    assertFalse(configuration.keepParameterNames);
-    assertFalse(configuration.mergeInterfacesAggressively);
-    assertFalse(configuration.microEdition);
-    assertFalse(configuration.overloadAggressively);
-    assertFalse(configuration.skipNonPublicLibraryClasses);
-    assertFalse(configuration.useUniqueClassMemberNames);
-    assertFalse(configuration.verbose);
-    assertTrue(runtimeConfigurableWrapper.getAttributeMap().isEmpty());
-    assertTrue(configuration.enableKotlinAsserter);
-    assertTrue(configuration.obfuscate);
-    assertTrue(configuration.optimize);
-    assertTrue(configuration.optimizeConservatively);
-    assertTrue(configuration.preverify);
-    assertTrue(configuration.shrink);
-    assertTrue(configuration.skipNonPublicLibraryClassMembers);
-    assertTrue(configuration.useMixedCaseClassNames);
-    assertSame(actualProGuardTask, runtimeConfigurableWrapper.getProxy());
   }
 }

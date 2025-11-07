@@ -1,16 +1,24 @@
 package proguard;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.net.MalformedURLException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 class OutputWriterDiffblueTest {
   /**
+   * Test {@link OutputWriter#OutputWriter(Configuration)}.
+   * <p>
    * Method under test: {@link OutputWriter#OutputWriter(Configuration)}
    */
   @Test
+  @DisplayName("Test new OutputWriter(Configuration)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void OutputWriter.<init>(Configuration)"})
   void testNewOutputWriter() throws MalformedURLException {
     // Arrange
     Configuration configuration = new Configuration();

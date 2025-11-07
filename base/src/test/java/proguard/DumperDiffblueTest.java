@@ -1,16 +1,24 @@
 package proguard;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.net.MalformedURLException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 class DumperDiffblueTest {
   /**
+   * Test {@link Dumper#Dumper(Configuration)}.
+   * <p>
    * Method under test: {@link Dumper#Dumper(Configuration)}
    */
   @Test
+  @DisplayName("Test new Dumper(Configuration)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void Dumper.<init>(Configuration)"})
   void testNewDumper() throws MalformedURLException {
     // Arrange
     Configuration configuration = new Configuration();

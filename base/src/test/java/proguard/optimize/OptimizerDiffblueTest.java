@@ -3,10 +3,13 @@ package proguard.optimize;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
+import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import proguard.AppView;
 import proguard.ClassPath;
@@ -14,21 +17,14 @@ import proguard.Configuration;
 
 class OptimizerDiffblueTest {
   /**
-   * Method under test: {@link Optimizer#execute(AppView)}
-   */
-  @Test
-  void testExecute() throws IOException {
-    // Arrange
-    Optimizer optimizer = new Optimizer(mock(Configuration.class));
-
-    // Act and Assert
-    assertThrows(IOException.class, () -> optimizer.execute(new AppView()));
-  }
-
-  /**
+   * Test {@link Optimizer#Optimizer(Configuration)}.
+   * <p>
    * Method under test: {@link Optimizer#Optimizer(Configuration)}
    */
   @Test
+  @DisplayName("Test new Optimizer(Configuration)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void Optimizer.<init>(Configuration)"})
   void testNewOptimizer() throws MalformedURLException {
     // Arrange
     Configuration configuration = new Configuration();
@@ -101,5 +97,27 @@ class OptimizerDiffblueTest {
 
     // Act and Assert
     assertEquals("proguard.optimize.Optimizer", (new Optimizer(configuration)).getName());
+  }
+
+  /**
+   * Test {@link Optimizer#execute(AppView)}.
+   * <ul>
+   *   <li>Given {@link Optimizer#Optimizer(Configuration)} with {@link Configuration}.</li>
+   *   <li>When {@link AppView#AppView()}.</li>
+   *   <li>Then throw {@link IOException}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link Optimizer#execute(AppView)}
+   */
+  @Test
+  @DisplayName("Test execute(AppView); given Optimizer(Configuration) with Configuration; when AppView(); then throw IOException")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void Optimizer.execute(AppView)"})
+  void testExecute_givenOptimizerWithConfiguration_whenAppView_thenThrowIOException() throws IOException {
+    // Arrange
+    Optimizer optimizer = new Optimizer(mock(Configuration.class));
+
+    // Act and Assert
+    assertThrows(IOException.class, () -> optimizer.execute(new AppView()));
   }
 }

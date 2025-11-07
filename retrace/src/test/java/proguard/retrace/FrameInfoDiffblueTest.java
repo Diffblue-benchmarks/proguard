@@ -1,14 +1,18 @@
 package proguard.retrace;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 class FrameInfoDiffblueTest {
   /**
+   * Test getters and setters.
+   * <p>
    * Methods under test:
    * <ul>
-   *   <li>
-   * {@link FrameInfo#FrameInfo(String, String, int, String, String, String, String)}
+   *   <li>{@link FrameInfo#FrameInfo(String, String, int, String, String, String, String)}
    *   <li>{@link FrameInfo#toString()}
    *   <li>{@link FrameInfo#getArguments()}
    *   <li>{@link FrameInfo#getClassName()}
@@ -20,6 +24,12 @@ class FrameInfoDiffblueTest {
    * </ul>
    */
   @Test
+  @DisplayName("Test getters and setters")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void FrameInfo.<init>(String, String, int, String, String, String, String)",
+      "String FrameInfo.getArguments()", "String FrameInfo.getClassName()", "String FrameInfo.getFieldName()",
+      "int FrameInfo.getLineNumber()", "String FrameInfo.getMethodName()", "String FrameInfo.getSourceFile()",
+      "String FrameInfo.getType()", "String FrameInfo.toString()"})
   void testGettersAndSetters() {
     // Arrange and Act
     FrameInfo actualFrameInfo = new FrameInfo("Class Name", "Source File", 2, "Type", "Field Name", "Method Name",

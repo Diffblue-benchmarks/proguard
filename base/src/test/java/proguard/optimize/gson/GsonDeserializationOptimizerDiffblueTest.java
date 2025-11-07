@@ -5,6 +5,9 @@ import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.ClassPool;
@@ -14,11 +17,19 @@ import proguard.io.ExtraDataEntryNameMap;
 
 class GsonDeserializationOptimizerDiffblueTest {
   /**
-   * Method under test:
-   * {@link GsonDeserializationOptimizer#visitProgramClass(ProgramClass)}
+   * Test {@link GsonDeserializationOptimizer#visitProgramClass(ProgramClass)}.
+   * <ul>
+   *   <li>Given {@link RuntimeException#RuntimeException(String)} with {@code <init>}.</li>
+   *   <li>Then throw {@link RuntimeException}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link GsonDeserializationOptimizer#visitProgramClass(ProgramClass)}
    */
   @Test
-  void testVisitProgramClass() {
+  @DisplayName("Test visitProgramClass(ProgramClass); given RuntimeException(String) with '<init>'; then throw RuntimeException")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void GsonDeserializationOptimizer.visitProgramClass(ProgramClass)"})
+  void testVisitProgramClass_givenRuntimeExceptionWithInit_thenThrowRuntimeException() {
     // Arrange
     GsonRuntimeSettings gsonRuntimeSettings = new GsonRuntimeSettings();
     gsonRuntimeSettings.addDeserializationExclusionStrategy = true;

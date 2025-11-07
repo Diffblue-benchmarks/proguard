@@ -6,6 +6,9 @@ import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.Clazz;
@@ -18,11 +21,18 @@ import proguard.classfile.attribute.visitor.RecordComponentInfoVisitor;
 
 class AttributeShrinkerDiffblueTest {
   /**
-   * Method under test:
-   * {@link AttributeShrinker#visitRecordAttribute(Clazz, RecordAttribute)}
+   * Test {@link AttributeShrinker#visitRecordAttribute(Clazz, RecordAttribute)}.
+   * <ul>
+   *   <li>Then calls {@link RecordAttribute#componentsAccept(Clazz, RecordComponentInfoVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link AttributeShrinker#visitRecordAttribute(Clazz, RecordAttribute)}
    */
   @Test
-  void testVisitRecordAttribute() {
+  @DisplayName("Test visitRecordAttribute(Clazz, RecordAttribute); then calls componentsAccept(Clazz, RecordComponentInfoVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void AttributeShrinker.visitRecordAttribute(Clazz, RecordAttribute)"})
+  void testVisitRecordAttribute_thenCallsComponentsAccept() {
     // Arrange
     AttributeShrinker attributeShrinker = new AttributeShrinker();
     LibraryClass clazz = new LibraryClass();
@@ -37,11 +47,18 @@ class AttributeShrinkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link AttributeShrinker#visitRecordComponentInfo(Clazz, RecordComponentInfo)}
+   * Test {@link AttributeShrinker#visitRecordComponentInfo(Clazz, RecordComponentInfo)}.
+   * <ul>
+   *   <li>Then first element is {@code null}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link AttributeShrinker#visitRecordComponentInfo(Clazz, RecordComponentInfo)}
    */
   @Test
-  void testVisitRecordComponentInfo() {
+  @DisplayName("Test visitRecordComponentInfo(Clazz, RecordComponentInfo); then first element is 'null'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void AttributeShrinker.visitRecordComponentInfo(Clazz, RecordComponentInfo)"})
+  void testVisitRecordComponentInfo_thenFirstElementIsNull() {
     // Arrange
     AttributeShrinker attributeShrinker = new AttributeShrinker();
     LibraryClass clazz = new LibraryClass();

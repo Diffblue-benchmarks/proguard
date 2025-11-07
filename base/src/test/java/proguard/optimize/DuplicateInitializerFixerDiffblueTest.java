@@ -6,6 +6,9 @@ import static org.mockito.Mockito.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import proguard.classfile.Clazz;
 import proguard.classfile.LibraryClass;
@@ -18,11 +21,19 @@ import proguard.classfile.attribute.annotation.RuntimeInvisibleParameterAnnotati
 
 class DuplicateInitializerFixerDiffblueTest {
   /**
-   * Method under test:
-   * {@link DuplicateInitializerFixer#visitProgramMethod(ProgramClass, ProgramMethod)}
+   * Test {@link DuplicateInitializerFixer#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   * <ul>
+   *   <li>Given {@code String}.</li>
+   *   <li>Then calls {@link ProgramClass#getString(int)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link DuplicateInitializerFixer#visitProgramMethod(ProgramClass, ProgramMethod)}
    */
   @Test
-  void testVisitProgramMethod() {
+  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); given 'String'; then calls getString(int)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void DuplicateInitializerFixer.visitProgramMethod(ProgramClass, ProgramMethod)"})
+  void testVisitProgramMethod_givenString_thenCallsGetString() {
     // Arrange
     DuplicateInitializerFixer duplicateInitializerFixer = new DuplicateInitializerFixer();
     ProgramClass programClass = mock(ProgramClass.class);
@@ -36,10 +47,15 @@ class DuplicateInitializerFixerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link DuplicateInitializerFixer#visitAnyParameterAnnotationsAttribute(Clazz, Method, ParameterAnnotationsAttribute)}
+   * Test {@link DuplicateInitializerFixer#visitAnyParameterAnnotationsAttribute(Clazz, Method, ParameterAnnotationsAttribute)}.
+   * <p>
+   * Method under test: {@link DuplicateInitializerFixer#visitAnyParameterAnnotationsAttribute(Clazz, Method, ParameterAnnotationsAttribute)}
    */
   @Test
+  @DisplayName("Test visitAnyParameterAnnotationsAttribute(Clazz, Method, ParameterAnnotationsAttribute)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void DuplicateInitializerFixer.visitAnyParameterAnnotationsAttribute(Clazz, Method, ParameterAnnotationsAttribute)"})
   void testVisitAnyParameterAnnotationsAttribute() {
     // Arrange
     DuplicateInitializerFixer duplicateInitializerFixer = new DuplicateInitializerFixer();

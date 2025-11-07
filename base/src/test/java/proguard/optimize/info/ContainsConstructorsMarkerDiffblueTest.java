@@ -8,6 +8,9 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import proguard.classfile.Clazz;
 import proguard.classfile.LibraryClass;
@@ -16,29 +19,18 @@ import proguard.classfile.ProgramMethod;
 
 class ContainsConstructorsMarkerDiffblueTest {
   /**
-   * Method under test:
-   * {@link ContainsConstructorsMarker#visitProgramMethod(ProgramClass, ProgramMethod)}
+   * Test {@link ContainsConstructorsMarker#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   * <ul>
+   *   <li>Given {@link ProgramClassOptimizationInfo} (default constructor).</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ContainsConstructorsMarker#visitProgramMethod(ProgramClass, ProgramMethod)}
    */
   @Test
-  void testVisitProgramMethod() {
-    // Arrange
-    ContainsConstructorsMarker containsConstructorsMarker = new ContainsConstructorsMarker();
-    ProgramClass programClass = mock(ProgramClass.class);
-    when(programClass.getString(anyInt())).thenReturn("String");
-
-    // Act
-    containsConstructorsMarker.visitProgramMethod(programClass, new ProgramMethod());
-
-    // Assert
-    verify(programClass).getString(eq(0));
-  }
-
-  /**
-   * Method under test:
-   * {@link ContainsConstructorsMarker#visitProgramMethod(ProgramClass, ProgramMethod)}
-   */
-  @Test
-  void testVisitProgramMethod2() {
+  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); given ProgramClassOptimizationInfo (default constructor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ContainsConstructorsMarker.visitProgramMethod(ProgramClass, ProgramMethod)"})
+  void testVisitProgramMethod_givenProgramClassOptimizationInfo() {
     // Arrange
     ContainsConstructorsMarker containsConstructorsMarker = new ContainsConstructorsMarker();
     ProgramClass programClass = mock(ProgramClass.class);
@@ -54,11 +46,44 @@ class ContainsConstructorsMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ContainsConstructorsMarker#visitProgramMethod(ProgramClass, ProgramMethod)}
+   * Test {@link ContainsConstructorsMarker#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   * <ul>
+   *   <li>Given {@code String}.</li>
+   *   <li>When {@link ProgramClass} {@link ProgramClass#getString(int)} return {@code String}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ContainsConstructorsMarker#visitProgramMethod(ProgramClass, ProgramMethod)}
    */
   @Test
-  void testVisitProgramMethod3() {
+  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); given 'String'; when ProgramClass getString(int) return 'String'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ContainsConstructorsMarker.visitProgramMethod(ProgramClass, ProgramMethod)"})
+  void testVisitProgramMethod_givenString_whenProgramClassGetStringReturnString() {
+    // Arrange
+    ContainsConstructorsMarker containsConstructorsMarker = new ContainsConstructorsMarker();
+    ProgramClass programClass = mock(ProgramClass.class);
+    when(programClass.getString(anyInt())).thenReturn("String");
+
+    // Act
+    containsConstructorsMarker.visitProgramMethod(programClass, new ProgramMethod());
+
+    // Assert
+    verify(programClass).getString(eq(0));
+  }
+
+  /**
+   * Test {@link ContainsConstructorsMarker#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   * <ul>
+   *   <li>Then calls {@link ProgramClassOptimizationInfo#setContainsConstructors()}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ContainsConstructorsMarker#visitProgramMethod(ProgramClass, ProgramMethod)}
+   */
+  @Test
+  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); then calls setContainsConstructors()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ContainsConstructorsMarker.visitProgramMethod(ProgramClass, ProgramMethod)"})
+  void testVisitProgramMethod_thenCallsSetContainsConstructors() {
     // Arrange
     ContainsConstructorsMarker containsConstructorsMarker = new ContainsConstructorsMarker();
     ProgramClassOptimizationInfo programClassOptimizationInfo = mock(ProgramClassOptimizationInfo.class);
@@ -77,11 +102,19 @@ class ContainsConstructorsMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ContainsConstructorsMarker#containsConstructors(Clazz)}
+   * Test {@link ContainsConstructorsMarker#containsConstructors(Clazz)}.
+   * <ul>
+   *   <li>Given {@link ClassOptimizationInfo} (default constructor).</li>
+   *   <li>Then return {@code true}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ContainsConstructorsMarker#containsConstructors(Clazz)}
    */
   @Test
-  void testContainsConstructors() {
+  @DisplayName("Test containsConstructors(Clazz); given ClassOptimizationInfo (default constructor); then return 'true'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ContainsConstructorsMarker.containsConstructors(Clazz)"})
+  void testContainsConstructors_givenClassOptimizationInfo_thenReturnTrue() {
     // Arrange
     LibraryClass clazz = new LibraryClass();
     clazz.setProcessingInfo(new ClassOptimizationInfo());
@@ -91,11 +124,19 @@ class ContainsConstructorsMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ContainsConstructorsMarker#containsConstructors(Clazz)}
+   * Test {@link ContainsConstructorsMarker#containsConstructors(Clazz)}.
+   * <ul>
+   *   <li>Given {@link ProgramClassOptimizationInfo} (default constructor).</li>
+   *   <li>Then return {@code false}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ContainsConstructorsMarker#containsConstructors(Clazz)}
    */
   @Test
-  void testContainsConstructors2() {
+  @DisplayName("Test containsConstructors(Clazz); given ProgramClassOptimizationInfo (default constructor); then return 'false'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ContainsConstructorsMarker.containsConstructors(Clazz)"})
+  void testContainsConstructors_givenProgramClassOptimizationInfo_thenReturnFalse() {
     // Arrange
     LibraryClass clazz = new LibraryClass();
     clazz.setProcessingInfo(new ProgramClassOptimizationInfo());

@@ -8,6 +8,9 @@ import static org.mockito.Mockito.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.Clazz;
@@ -20,30 +23,15 @@ import proguard.classfile.attribute.SignatureAttribute;
 
 class FieldSignatureCollectorDiffblueTest {
   /**
-   * Methods under test:
-   * <ul>
-   *   <li>default or parameterless constructor of {@link FieldSignatureCollector}
-   *   <li>{@link FieldSignatureCollector#visitAnyAttribute(Clazz, Attribute)}
-   *   <li>{@link FieldSignatureCollector#getFieldSignature()}
-   * </ul>
+   * Test {@link FieldSignatureCollector#visitSignatureAttribute(Clazz, Field, SignatureAttribute)} with {@code clazz}, {@code field}, {@code signatureAttribute}.
+   * <p>
+   * Method under test: {@link FieldSignatureCollector#visitSignatureAttribute(Clazz, Field, SignatureAttribute)}
    */
   @Test
-  void testGettersAndSetters() {
-    // Arrange and Act
-    FieldSignatureCollector actualFieldSignatureCollector = new FieldSignatureCollector();
-    LibraryClass clazz = new LibraryClass();
-    actualFieldSignatureCollector.visitAnyAttribute(clazz, new BootstrapMethodsAttribute());
-
-    // Assert that nothing has changed
-    assertNull(actualFieldSignatureCollector.getFieldSignature());
-  }
-
-  /**
-   * Method under test:
-   * {@link FieldSignatureCollector#visitSignatureAttribute(Clazz, Field, SignatureAttribute)}
-   */
-  @Test
-  void testVisitSignatureAttribute() {
+  @DisplayName("Test visitSignatureAttribute(Clazz, Field, SignatureAttribute) with 'clazz', 'field', 'signatureAttribute'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void FieldSignatureCollector.visitSignatureAttribute(Clazz, Field, SignatureAttribute)"})
+  void testVisitSignatureAttributeWithClazzFieldSignatureAttribute() {
     // Arrange
     FieldSignatureCollector fieldSignatureCollector = new FieldSignatureCollector();
     LibraryClass clazz = mock(LibraryClass.class);
@@ -59,11 +47,15 @@ class FieldSignatureCollectorDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link FieldSignatureCollector#visitSignatureAttribute(Clazz, Field, SignatureAttribute)}
+   * Test {@link FieldSignatureCollector#visitSignatureAttribute(Clazz, Field, SignatureAttribute)} with {@code clazz}, {@code field}, {@code signatureAttribute}.
+   * <p>
+   * Method under test: {@link FieldSignatureCollector#visitSignatureAttribute(Clazz, Field, SignatureAttribute)}
    */
   @Test
-  void testVisitSignatureAttribute2() {
+  @DisplayName("Test visitSignatureAttribute(Clazz, Field, SignatureAttribute) with 'clazz', 'field', 'signatureAttribute'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void FieldSignatureCollector.visitSignatureAttribute(Clazz, Field, SignatureAttribute)"})
+  void testVisitSignatureAttributeWithClazzFieldSignatureAttribute2() {
     // Arrange
     FieldSignatureCollector fieldSignatureCollector = new FieldSignatureCollector();
     LibraryClass clazz = mock(LibraryClass.class);
@@ -78,5 +70,31 @@ class FieldSignatureCollectorDiffblueTest {
     // Assert
     verify(signatureAttribute).getSignature(isA(Clazz.class));
     assertEquals("Signature", fieldSignatureCollector.getFieldSignature());
+  }
+
+  /**
+   * Test getters and setters.
+   * <p>
+   * Methods under test:
+   * <ul>
+   *   <li>default or parameterless constructor of {@link FieldSignatureCollector}
+   *   <li>{@link FieldSignatureCollector#visitAnyAttribute(Clazz, Attribute)}
+   *   <li>{@link FieldSignatureCollector#getFieldSignature()}
+   * </ul>
+   */
+  @Test
+  @DisplayName("Test getters and setters")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void FieldSignatureCollector.<init>()",
+      "java.lang.String FieldSignatureCollector.getFieldSignature()",
+      "void FieldSignatureCollector.visitAnyAttribute(Clazz, Attribute)"})
+  void testGettersAndSetters() {
+    // Arrange and Act
+    FieldSignatureCollector actualFieldSignatureCollector = new FieldSignatureCollector();
+    LibraryClass clazz = new LibraryClass();
+    actualFieldSignatureCollector.visitAnyAttribute(clazz, new BootstrapMethodsAttribute());
+
+    // Assert
+    assertNull(actualFieldSignatureCollector.getFieldSignature());
   }
 }

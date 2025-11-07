@@ -9,6 +9,9 @@ import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.Clazz;
@@ -21,10 +24,19 @@ import proguard.util.Processable;
 
 class InterfaceUsageMarkerDiffblueTest {
   /**
+   * Test {@link InterfaceUsageMarker#visitAnyClass(Clazz)}.
+   * <ul>
+   *   <li>When {@link LibraryClass#LibraryClass()}.</li>
+   *   <li>Then throw {@link UnsupportedOperationException}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link InterfaceUsageMarker#visitAnyClass(Clazz)}
    */
   @Test
-  void testVisitAnyClass() {
+  @DisplayName("Test visitAnyClass(Clazz); when LibraryClass(); then throw UnsupportedOperationException")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void InterfaceUsageMarker.visitAnyClass(Clazz)"})
+  void testVisitAnyClass_whenLibraryClass_thenThrowUnsupportedOperationException() {
     // Arrange
     InterfaceUsageMarker interfaceUsageMarker = new InterfaceUsageMarker(new ClassUsageMarker());
 
@@ -33,10 +45,14 @@ class InterfaceUsageMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link InterfaceUsageMarker#visitProgramClass(ProgramClass)}
+   * Test {@link InterfaceUsageMarker#visitProgramClass(ProgramClass)}.
+   * <p>
+   * Method under test: {@link InterfaceUsageMarker#visitProgramClass(ProgramClass)}
    */
   @Test
+  @DisplayName("Test visitProgramClass(ProgramClass)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void InterfaceUsageMarker.visitProgramClass(ProgramClass)"})
   void testVisitProgramClass() {
     // Arrange
     ClassUsageMarker classUsageMarker = mock(ClassUsageMarker.class);
@@ -53,11 +69,107 @@ class InterfaceUsageMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link InterfaceUsageMarker#visitProgramClass(ProgramClass)}
+   * Test {@link InterfaceUsageMarker#visitProgramClass(ProgramClass)}.
+   * <p>
+   * Method under test: {@link InterfaceUsageMarker#visitProgramClass(ProgramClass)}
    */
   @Test
+  @DisplayName("Test visitProgramClass(ProgramClass)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void InterfaceUsageMarker.visitProgramClass(ProgramClass)"})
   void testVisitProgramClass2() {
+    // Arrange
+    ClassUsageMarker classUsageMarker = mock(ClassUsageMarker.class);
+    doThrow(new UnsupportedOperationException("foo")).when(classUsageMarker).markAsUnused(Mockito.<Processable>any());
+    when(classUsageMarker.isPossiblyUsed(Mockito.<Processable>any())).thenReturn(true);
+    when(classUsageMarker.isUsed(Mockito.<Processable>any())).thenReturn(false);
+    InterfaceUsageMarker interfaceUsageMarker = new InterfaceUsageMarker(classUsageMarker);
+    ProgramClass programClass = mock(ProgramClass.class);
+    doNothing().when(programClass).interfaceConstantsAccept(Mockito.<ConstantVisitor>any());
+
+    // Act and Assert
+    assertThrows(UnsupportedOperationException.class, () -> interfaceUsageMarker.visitProgramClass(programClass));
+    verify(programClass).interfaceConstantsAccept(isA(ConstantVisitor.class));
+    verify(classUsageMarker).isPossiblyUsed(isA(Processable.class));
+    verify(classUsageMarker).isUsed(isA(Processable.class));
+    verify(classUsageMarker).markAsUnused(isA(Processable.class));
+  }
+
+  /**
+   * Test {@link InterfaceUsageMarker#visitProgramClass(ProgramClass)}.
+   * <ul>
+   *   <li>Given {@link ClassUsageMarker} {@link ClassUsageMarker#isPossiblyUsed(Processable)} return {@code false}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link InterfaceUsageMarker#visitProgramClass(ProgramClass)}
+   */
+  @Test
+  @DisplayName("Test visitProgramClass(ProgramClass); given ClassUsageMarker isPossiblyUsed(Processable) return 'false'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void InterfaceUsageMarker.visitProgramClass(ProgramClass)"})
+  void testVisitProgramClass_givenClassUsageMarkerIsPossiblyUsedReturnFalse() {
+    // Arrange
+    ClassUsageMarker classUsageMarker = mock(ClassUsageMarker.class);
+    when(classUsageMarker.isPossiblyUsed(Mockito.<Processable>any())).thenReturn(false);
+    when(classUsageMarker.isUsed(Mockito.<Processable>any())).thenReturn(true);
+    InterfaceUsageMarker interfaceUsageMarker = new InterfaceUsageMarker(classUsageMarker);
+    ProgramClass programClass = mock(ProgramClass.class);
+    doNothing().when(programClass).interfaceConstantsAccept(Mockito.<ConstantVisitor>any());
+
+    // Act
+    interfaceUsageMarker.visitProgramClass(programClass);
+
+    // Assert
+    verify(programClass).interfaceConstantsAccept(isA(ConstantVisitor.class));
+    verify(classUsageMarker).isPossiblyUsed(isA(Processable.class));
+    verify(classUsageMarker).isUsed(isA(Processable.class));
+  }
+
+  /**
+   * Test {@link InterfaceUsageMarker#visitProgramClass(ProgramClass)}.
+   * <ul>
+   *   <li>Given {@link ClassUsageMarker} {@link ClassUsageMarker#markAsUnused(Processable)} does nothing.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link InterfaceUsageMarker#visitProgramClass(ProgramClass)}
+   */
+  @Test
+  @DisplayName("Test visitProgramClass(ProgramClass); given ClassUsageMarker markAsUnused(Processable) does nothing")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void InterfaceUsageMarker.visitProgramClass(ProgramClass)"})
+  void testVisitProgramClass_givenClassUsageMarkerMarkAsUnusedDoesNothing() {
+    // Arrange
+    ClassUsageMarker classUsageMarker = mock(ClassUsageMarker.class);
+    doNothing().when(classUsageMarker).markAsUnused(Mockito.<Processable>any());
+    when(classUsageMarker.isPossiblyUsed(Mockito.<Processable>any())).thenReturn(true);
+    when(classUsageMarker.isUsed(Mockito.<Processable>any())).thenReturn(false);
+    InterfaceUsageMarker interfaceUsageMarker = new InterfaceUsageMarker(classUsageMarker);
+    ProgramClass programClass = mock(ProgramClass.class);
+    doNothing().when(programClass).interfaceConstantsAccept(Mockito.<ConstantVisitor>any());
+
+    // Act
+    interfaceUsageMarker.visitProgramClass(programClass);
+
+    // Assert
+    verify(programClass).interfaceConstantsAccept(isA(ConstantVisitor.class));
+    verify(classUsageMarker).isPossiblyUsed(isA(Processable.class));
+    verify(classUsageMarker).isUsed(isA(Processable.class));
+    verify(classUsageMarker).markAsUnused(isA(Processable.class));
+  }
+
+  /**
+   * Test {@link InterfaceUsageMarker#visitProgramClass(ProgramClass)}.
+   * <ul>
+   *   <li>Then calls {@link ProgramClass#superClassConstantAccept(ConstantVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link InterfaceUsageMarker#visitProgramClass(ProgramClass)}
+   */
+  @Test
+  @DisplayName("Test visitProgramClass(ProgramClass); then calls superClassConstantAccept(ConstantVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void InterfaceUsageMarker.visitProgramClass(ProgramClass)"})
+  void testVisitProgramClass_thenCallsSuperClassConstantAccept() {
     // Arrange
     ClassUsageMarker classUsageMarker = mock(ClassUsageMarker.class);
     doNothing().when(classUsageMarker).markAsUsed(Mockito.<Processable>any());
@@ -82,81 +194,14 @@ class InterfaceUsageMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link InterfaceUsageMarker#visitProgramClass(ProgramClass)}
+   * Test {@link InterfaceUsageMarker#visitClassConstant(Clazz, ClassConstant)}.
+   * <p>
+   * Method under test: {@link InterfaceUsageMarker#visitClassConstant(Clazz, ClassConstant)}
    */
   @Test
-  void testVisitProgramClass3() {
-    // Arrange
-    ClassUsageMarker classUsageMarker = mock(ClassUsageMarker.class);
-    when(classUsageMarker.isPossiblyUsed(Mockito.<Processable>any())).thenReturn(false);
-    when(classUsageMarker.isUsed(Mockito.<Processable>any())).thenReturn(true);
-    InterfaceUsageMarker interfaceUsageMarker = new InterfaceUsageMarker(classUsageMarker);
-    ProgramClass programClass = mock(ProgramClass.class);
-    doNothing().when(programClass).interfaceConstantsAccept(Mockito.<ConstantVisitor>any());
-
-    // Act
-    interfaceUsageMarker.visitProgramClass(programClass);
-
-    // Assert
-    verify(programClass).interfaceConstantsAccept(isA(ConstantVisitor.class));
-    verify(classUsageMarker).isPossiblyUsed(isA(Processable.class));
-    verify(classUsageMarker).isUsed(isA(Processable.class));
-  }
-
-  /**
-   * Method under test:
-   * {@link InterfaceUsageMarker#visitProgramClass(ProgramClass)}
-   */
-  @Test
-  void testVisitProgramClass4() {
-    // Arrange
-    ClassUsageMarker classUsageMarker = mock(ClassUsageMarker.class);
-    doNothing().when(classUsageMarker).markAsUnused(Mockito.<Processable>any());
-    when(classUsageMarker.isPossiblyUsed(Mockito.<Processable>any())).thenReturn(true);
-    when(classUsageMarker.isUsed(Mockito.<Processable>any())).thenReturn(false);
-    InterfaceUsageMarker interfaceUsageMarker = new InterfaceUsageMarker(classUsageMarker);
-    ProgramClass programClass = mock(ProgramClass.class);
-    doNothing().when(programClass).interfaceConstantsAccept(Mockito.<ConstantVisitor>any());
-
-    // Act
-    interfaceUsageMarker.visitProgramClass(programClass);
-
-    // Assert
-    verify(programClass).interfaceConstantsAccept(isA(ConstantVisitor.class));
-    verify(classUsageMarker).isPossiblyUsed(isA(Processable.class));
-    verify(classUsageMarker).isUsed(isA(Processable.class));
-    verify(classUsageMarker).markAsUnused(isA(Processable.class));
-  }
-
-  /**
-   * Method under test:
-   * {@link InterfaceUsageMarker#visitProgramClass(ProgramClass)}
-   */
-  @Test
-  void testVisitProgramClass5() {
-    // Arrange
-    ClassUsageMarker classUsageMarker = mock(ClassUsageMarker.class);
-    doThrow(new UnsupportedOperationException("foo")).when(classUsageMarker).markAsUnused(Mockito.<Processable>any());
-    when(classUsageMarker.isPossiblyUsed(Mockito.<Processable>any())).thenReturn(true);
-    when(classUsageMarker.isUsed(Mockito.<Processable>any())).thenReturn(false);
-    InterfaceUsageMarker interfaceUsageMarker = new InterfaceUsageMarker(classUsageMarker);
-    ProgramClass programClass = mock(ProgramClass.class);
-    doNothing().when(programClass).interfaceConstantsAccept(Mockito.<ConstantVisitor>any());
-
-    // Act and Assert
-    assertThrows(UnsupportedOperationException.class, () -> interfaceUsageMarker.visitProgramClass(programClass));
-    verify(programClass).interfaceConstantsAccept(isA(ConstantVisitor.class));
-    verify(classUsageMarker).isPossiblyUsed(isA(Processable.class));
-    verify(classUsageMarker).isUsed(isA(Processable.class));
-    verify(classUsageMarker).markAsUnused(isA(Processable.class));
-  }
-
-  /**
-   * Method under test:
-   * {@link InterfaceUsageMarker#visitClassConstant(Clazz, ClassConstant)}
-   */
-  @Test
+  @DisplayName("Test visitClassConstant(Clazz, ClassConstant)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void InterfaceUsageMarker.visitClassConstant(Clazz, ClassConstant)"})
   void testVisitClassConstant() {
     // Arrange
     ShortestUsageMarker usageMarker = new ShortestUsageMarker();
@@ -174,10 +219,111 @@ class InterfaceUsageMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link InterfaceUsageMarker#visitUtf8Constant(Clazz, Utf8Constant)}
+   * Test {@link InterfaceUsageMarker#visitClassConstant(Clazz, ClassConstant)}.
+   * <p>
+   * Method under test: {@link InterfaceUsageMarker#visitClassConstant(Clazz, ClassConstant)}
    */
   @Test
+  @DisplayName("Test visitClassConstant(Clazz, ClassConstant)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void InterfaceUsageMarker.visitClassConstant(Clazz, ClassConstant)"})
+  void testVisitClassConstant2() {
+    // Arrange
+    InterfaceUsageMarker interfaceUsageMarker = new InterfaceUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    ClassConstant classConstant = new ClassConstant(1, new ProgramClass());
+
+    // Act
+    interfaceUsageMarker.visitClassConstant(clazz, classConstant);
+
+    // Assert that nothing has changed
+    assertNull(classConstant.getProcessingInfo());
+  }
+
+  /**
+   * Test {@link InterfaceUsageMarker#visitClassConstant(Clazz, ClassConstant)}.
+   * <p>
+   * Method under test: {@link InterfaceUsageMarker#visitClassConstant(Clazz, ClassConstant)}
+   */
+  @Test
+  @DisplayName("Test visitClassConstant(Clazz, ClassConstant)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void InterfaceUsageMarker.visitClassConstant(Clazz, ClassConstant)"})
+  void testVisitClassConstant3() {
+    // Arrange
+    InterfaceUsageMarker interfaceUsageMarker = new InterfaceUsageMarker(
+        new ShortestClassUsageMarker(new ShortestUsageMarker(), "Just cause"));
+    LibraryClass clazz = new LibraryClass();
+    ClassConstant classConstant = new ClassConstant(1, new ProgramClass());
+
+    // Act
+    interfaceUsageMarker.visitClassConstant(clazz, classConstant);
+
+    // Assert that nothing has changed
+    assertNull(classConstant.getProcessingInfo());
+  }
+
+  /**
+   * Test {@link InterfaceUsageMarker#visitClassConstant(Clazz, ClassConstant)}.
+   * <ul>
+   *   <li>Then {@link ClassConstant#ClassConstant()} ProcessingInfo is {@code null}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link InterfaceUsageMarker#visitClassConstant(Clazz, ClassConstant)}
+   */
+  @Test
+  @DisplayName("Test visitClassConstant(Clazz, ClassConstant); then ClassConstant() ProcessingInfo is 'null'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void InterfaceUsageMarker.visitClassConstant(Clazz, ClassConstant)"})
+  void testVisitClassConstant_thenClassConstantProcessingInfoIsNull() {
+    // Arrange
+    InterfaceUsageMarker interfaceUsageMarker = new InterfaceUsageMarker(
+        new ShortestClassUsageMarker(new ShortestUsageMarker(), "Just cause"));
+    LibraryClass clazz = new LibraryClass();
+    ClassConstant classConstant = new ClassConstant();
+
+    // Act
+    interfaceUsageMarker.visitClassConstant(clazz, classConstant);
+
+    // Assert that nothing has changed
+    assertNull(classConstant.getProcessingInfo());
+  }
+
+  /**
+   * Test {@link InterfaceUsageMarker#visitClassConstant(Clazz, ClassConstant)}.
+   * <ul>
+   *   <li>When {@link ClassConstant#ClassConstant()}.</li>
+   *   <li>Then {@link ClassConstant#ClassConstant()} ProcessingInfo is {@code null}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link InterfaceUsageMarker#visitClassConstant(Clazz, ClassConstant)}
+   */
+  @Test
+  @DisplayName("Test visitClassConstant(Clazz, ClassConstant); when ClassConstant(); then ClassConstant() ProcessingInfo is 'null'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void InterfaceUsageMarker.visitClassConstant(Clazz, ClassConstant)"})
+  void testVisitClassConstant_whenClassConstant_thenClassConstantProcessingInfoIsNull() {
+    // Arrange
+    InterfaceUsageMarker interfaceUsageMarker = new InterfaceUsageMarker(new ClassUsageMarker());
+    LibraryClass clazz = new LibraryClass();
+    ClassConstant classConstant = new ClassConstant();
+
+    // Act
+    interfaceUsageMarker.visitClassConstant(clazz, classConstant);
+
+    // Assert that nothing has changed
+    assertNull(classConstant.getProcessingInfo());
+  }
+
+  /**
+   * Test {@link InterfaceUsageMarker#visitUtf8Constant(Clazz, Utf8Constant)}.
+   * <p>
+   * Method under test: {@link InterfaceUsageMarker#visitUtf8Constant(Clazz, Utf8Constant)}
+   */
+  @Test
+  @DisplayName("Test visitUtf8Constant(Clazz, Utf8Constant)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void InterfaceUsageMarker.visitUtf8Constant(Clazz, Utf8Constant)"})
   void testVisitUtf8Constant() {
     // Arrange
     ShortestUsageMarker usageMarker = new ShortestUsageMarker();
@@ -195,11 +341,18 @@ class InterfaceUsageMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link InterfaceUsageMarker#visitUtf8Constant(Clazz, Utf8Constant)}
+   * Test {@link InterfaceUsageMarker#visitUtf8Constant(Clazz, Utf8Constant)}.
+   * <ul>
+   *   <li>Then {@link Utf8Constant#Utf8Constant(String)} with {@code String} ProcessingInfo is {@code null}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link InterfaceUsageMarker#visitUtf8Constant(Clazz, Utf8Constant)}
    */
   @Test
-  void testVisitUtf8Constant2() {
+  @DisplayName("Test visitUtf8Constant(Clazz, Utf8Constant); then Utf8Constant(String) with 'String' ProcessingInfo is 'null'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void InterfaceUsageMarker.visitUtf8Constant(Clazz, Utf8Constant)"})
+  void testVisitUtf8Constant_thenUtf8ConstantWithStringProcessingInfoIsNull() {
     // Arrange
     InterfaceUsageMarker interfaceUsageMarker = new InterfaceUsageMarker(
         new ClassUsageMarker(new ShortestUsageMarker()));
@@ -209,7 +362,7 @@ class InterfaceUsageMarkerDiffblueTest {
     // Act
     interfaceUsageMarker.visitUtf8Constant(clazz, utf8Constant);
 
-    // Assert
+    // Assert that nothing has changed
     assertNull(utf8Constant.getProcessingInfo());
   }
 }

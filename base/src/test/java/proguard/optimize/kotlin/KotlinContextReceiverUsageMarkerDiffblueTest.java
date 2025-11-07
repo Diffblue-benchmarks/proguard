@@ -4,6 +4,9 @@ import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.Clazz;
@@ -13,11 +16,18 @@ import proguard.classfile.kotlin.visitor.KotlinConstructorVisitor;
 
 class KotlinContextReceiverUsageMarkerDiffblueTest {
   /**
-   * Method under test:
-   * {@link KotlinContextReceiverUsageMarker#visitKotlinClassMetadata(Clazz, KotlinClassKindMetadata)}
+   * Test {@link KotlinContextReceiverUsageMarker#visitKotlinClassMetadata(Clazz, KotlinClassKindMetadata)}.
+   * <ul>
+   *   <li>Then calls {@link KotlinClassKindMetadata#constructorsAccept(Clazz, KotlinConstructorVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link KotlinContextReceiverUsageMarker#visitKotlinClassMetadata(Clazz, KotlinClassKindMetadata)}
    */
   @Test
-  void testVisitKotlinClassMetadata() {
+  @DisplayName("Test visitKotlinClassMetadata(Clazz, KotlinClassKindMetadata); then calls constructorsAccept(Clazz, KotlinConstructorVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void KotlinContextReceiverUsageMarker.visitKotlinClassMetadata(Clazz, KotlinClassKindMetadata)"})
+  void testVisitKotlinClassMetadata_thenCallsConstructorsAccept() {
     // Arrange
     KotlinContextReceiverUsageMarker kotlinContextReceiverUsageMarker = new KotlinContextReceiverUsageMarker();
     LibraryClass clazz = new LibraryClass();

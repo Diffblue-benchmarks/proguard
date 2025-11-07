@@ -4,6 +4,9 @@ import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.Clazz;
@@ -13,20 +16,25 @@ import proguard.classfile.kotlin.KotlinDeclarationContainerMetadata;
 import proguard.classfile.kotlin.KotlinTypeAliasMetadata;
 import proguard.classfile.kotlin.visitor.KotlinTypeAliasVisitor;
 import proguard.classfile.kotlin.visitor.KotlinTypeVisitor;
-import proguard.obfuscate.DictionaryNameFactory;
 import proguard.obfuscate.NumericNameFactory;
 
 class KotlinAliasNameObfuscatorDiffblueTest {
   /**
-   * Method under test:
-   * {@link KotlinAliasNameObfuscator#visitKotlinDeclarationContainerMetadata(Clazz, KotlinDeclarationContainerMetadata)}
+   * Test {@link KotlinAliasNameObfuscator#visitKotlinDeclarationContainerMetadata(Clazz, KotlinDeclarationContainerMetadata)}.
+   * <ul>
+   *   <li>Then calls {@link KotlinDeclarationContainerMetadata#typeAliasesAccept(Clazz, KotlinTypeAliasVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link KotlinAliasNameObfuscator#visitKotlinDeclarationContainerMetadata(Clazz, KotlinDeclarationContainerMetadata)}
    */
   @Test
-  void testVisitKotlinDeclarationContainerMetadata() {
+  @DisplayName("Test visitKotlinDeclarationContainerMetadata(Clazz, KotlinDeclarationContainerMetadata); then calls typeAliasesAccept(Clazz, KotlinTypeAliasVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void KotlinAliasNameObfuscator.visitKotlinDeclarationContainerMetadata(Clazz, KotlinDeclarationContainerMetadata)"})
+  void testVisitKotlinDeclarationContainerMetadata_thenCallsTypeAliasesAccept() {
     // Arrange
-    DictionaryNameFactory nameFactory = mock(DictionaryNameFactory.class);
-    doNothing().when(nameFactory).reset();
-    KotlinAliasNameObfuscator kotlinAliasNameObfuscator = new KotlinAliasNameObfuscator(nameFactory);
+    KotlinAliasNameObfuscator kotlinAliasNameObfuscator = new KotlinAliasNameObfuscator(new NumericNameFactory());
     LibraryClass clazz = new LibraryClass();
     KotlinClassKindMetadata kotlinDeclarationContainerMetadata = mock(KotlinClassKindMetadata.class);
     doNothing().when(kotlinDeclarationContainerMetadata)
@@ -37,15 +45,22 @@ class KotlinAliasNameObfuscatorDiffblueTest {
 
     // Assert
     verify(kotlinDeclarationContainerMetadata).typeAliasesAccept(isA(Clazz.class), isA(KotlinTypeAliasVisitor.class));
-    verify(nameFactory).reset();
   }
 
   /**
-   * Method under test:
-   * {@link KotlinAliasNameObfuscator#visitTypeAlias(Clazz, KotlinDeclarationContainerMetadata, KotlinTypeAliasMetadata)}
+   * Test {@link KotlinAliasNameObfuscator#visitTypeAlias(Clazz, KotlinDeclarationContainerMetadata, KotlinTypeAliasMetadata)}.
+   * <ul>
+   *   <li>Then calls {@link KotlinTypeAliasMetadata#expandedTypeAccept(Clazz, KotlinDeclarationContainerMetadata, KotlinTypeVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link KotlinAliasNameObfuscator#visitTypeAlias(Clazz, KotlinDeclarationContainerMetadata, KotlinTypeAliasMetadata)}
    */
   @Test
-  void testVisitTypeAlias() {
+  @DisplayName("Test visitTypeAlias(Clazz, KotlinDeclarationContainerMetadata, KotlinTypeAliasMetadata); then calls expandedTypeAccept(Clazz, KotlinDeclarationContainerMetadata, KotlinTypeVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void KotlinAliasNameObfuscator.visitTypeAlias(Clazz, KotlinDeclarationContainerMetadata, KotlinTypeAliasMetadata)"})
+  void testVisitTypeAlias_thenCallsExpandedTypeAccept() {
     // Arrange
     KotlinAliasNameObfuscator kotlinAliasNameObfuscator = new KotlinAliasNameObfuscator(new NumericNameFactory());
     LibraryClass clazz = new LibraryClass();

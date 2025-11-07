@@ -11,10 +11,13 @@ import static org.mockito.Mockito.anyBoolean;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Location;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.ClassSpecification;
@@ -22,20 +25,32 @@ import proguard.MemberSpecification;
 
 class ClassSpecificationElementDiffblueTest {
   /**
+   * Test {@link ClassSpecificationElement#appendTo(List)}.
+   * <ul>
+   *   <li>Given {@code 42}.</li>
+   *   <li>When {@link ArrayList#ArrayList()} add {@code 42}.</li>
+   *   <li>Then {@link ArrayList#ArrayList()} size is two.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ClassSpecificationElement#appendTo(List)}
    */
   @Test
-  void testAppendTo() {
+  @DisplayName("Test appendTo(List); given '42'; when ArrayList() add '42'; then ArrayList() size is two")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ClassSpecificationElement.appendTo(List)"})
+  void testAppendTo_given42_whenArrayListAdd42_thenArrayListSizeIsTwo() {
     // Arrange
     ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
+
     ArrayList<Object> classSpecifications = new ArrayList<>();
+    classSpecifications.add("42");
 
     // Act
     classSpecificationElement.appendTo(classSpecifications);
 
     // Assert
-    assertEquals(1, classSpecifications.size());
-    Object getResult = classSpecifications.get(0);
+    assertEquals(2, classSpecifications.size());
+    Object getResult = classSpecifications.get(1);
     assertTrue(getResult instanceof ClassSpecification);
     assertNull(((ClassSpecification) getResult).annotationType);
     assertNull(((ClassSpecification) getResult).className);
@@ -51,86 +66,18 @@ class ClassSpecificationElementDiffblueTest {
   }
 
   /**
+   * Test {@link ClassSpecificationElement#appendTo(List)}.
+   * <ul>
+   *   <li>Given {@link ClassSpecificationElement} (default constructor) Access is {@code Access}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ClassSpecificationElement#appendTo(List)}
    */
   @Test
-  void testAppendTo2() {
-    // Arrange
-    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
-    classSpecificationElement.addConfiguredField(new MemberSpecificationElement());
-    ArrayList<Object> classSpecifications = new ArrayList<>();
-
-    // Act
-    classSpecificationElement.appendTo(classSpecifications);
-
-    // Assert
-    assertEquals(1, classSpecifications.size());
-    Object getResult = classSpecifications.get(0);
-    assertTrue(getResult instanceof ClassSpecification);
-    assertNull(((ClassSpecification) getResult).annotationType);
-    assertNull(((ClassSpecification) getResult).className);
-    assertNull(((ClassSpecification) getResult).comments);
-    assertNull(((ClassSpecification) getResult).extendsAnnotationType);
-    assertNull(((ClassSpecification) getResult).extendsClassName);
-    assertNull(((ClassSpecification) getResult).memberComments);
-    List<MemberSpecification> memberSpecificationList = ((ClassSpecification) getResult).fieldSpecifications;
-    assertEquals(1, memberSpecificationList.size());
-    MemberSpecification getResult2 = memberSpecificationList.get(0);
-    assertNull(getResult2.annotationType);
-    assertNull(getResult2.descriptor);
-    assertNull(getResult2.name);
-    assertNull(getResult2.attributeNames);
-    assertNull(((ClassSpecification) getResult).attributeNames);
-    assertNull(((ClassSpecification) getResult).methodSpecifications);
-    assertEquals(0, ((ClassSpecification) getResult).requiredSetAccessFlags);
-    assertEquals(0, ((ClassSpecification) getResult).requiredUnsetAccessFlags);
-    assertEquals(0, getResult2.requiredSetAccessFlags);
-    assertEquals(0, getResult2.requiredUnsetAccessFlags);
-  }
-
-  /**
-   * Method under test: {@link ClassSpecificationElement#appendTo(List)}
-   */
-  @Test
-  void testAppendTo3() {
-    // Arrange
-    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
-    classSpecificationElement.addConfiguredMethod(new MemberSpecificationElement());
-    ArrayList<Object> classSpecifications = new ArrayList<>();
-
-    // Act
-    classSpecificationElement.appendTo(classSpecifications);
-
-    // Assert
-    assertEquals(1, classSpecifications.size());
-    Object getResult = classSpecifications.get(0);
-    assertTrue(getResult instanceof ClassSpecification);
-    assertNull(((ClassSpecification) getResult).annotationType);
-    assertNull(((ClassSpecification) getResult).className);
-    assertNull(((ClassSpecification) getResult).comments);
-    assertNull(((ClassSpecification) getResult).extendsAnnotationType);
-    assertNull(((ClassSpecification) getResult).extendsClassName);
-    assertNull(((ClassSpecification) getResult).memberComments);
-    List<MemberSpecification> memberSpecificationList = ((ClassSpecification) getResult).methodSpecifications;
-    assertEquals(1, memberSpecificationList.size());
-    MemberSpecification getResult2 = memberSpecificationList.get(0);
-    assertNull(getResult2.annotationType);
-    assertNull(getResult2.descriptor);
-    assertNull(getResult2.name);
-    assertNull(getResult2.attributeNames);
-    assertNull(((ClassSpecification) getResult).attributeNames);
-    assertNull(((ClassSpecification) getResult).fieldSpecifications);
-    assertEquals(0, ((ClassSpecification) getResult).requiredSetAccessFlags);
-    assertEquals(0, ((ClassSpecification) getResult).requiredUnsetAccessFlags);
-    assertEquals(0, getResult2.requiredSetAccessFlags);
-    assertEquals(0, getResult2.requiredUnsetAccessFlags);
-  }
-
-  /**
-   * Method under test: {@link ClassSpecificationElement#appendTo(List)}
-   */
-  @Test
-  void testAppendTo4() {
+  @DisplayName("Test appendTo(List); given ClassSpecificationElement (default constructor) Access is 'Access'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ClassSpecificationElement.appendTo(List)"})
+  void testAppendTo_givenClassSpecificationElementAccessIsAccess() {
     // Arrange
     ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
     classSpecificationElement.setAccess("Access");
@@ -141,10 +88,202 @@ class ClassSpecificationElementDiffblueTest {
   }
 
   /**
+   * Test {@link ClassSpecificationElement#appendTo(List)}.
+   * <ul>
+   *   <li>Given {@link ClassSpecificationElement} (default constructor) Access is {@code ,}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ClassSpecificationElement#appendTo(List)}
    */
   @Test
-  void testAppendTo5() {
+  @DisplayName("Test appendTo(List); given ClassSpecificationElement (default constructor) Access is ','")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ClassSpecificationElement.appendTo(List)"})
+  void testAppendTo_givenClassSpecificationElementAccessIsComma() {
+    // Arrange
+    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
+    classSpecificationElement.setAccess(" ,");
+    classSpecificationElement.addConfiguredField(new MemberSpecificationElement());
+    ArrayList<Object> classSpecifications = new ArrayList<>();
+
+    // Act
+    classSpecificationElement.appendTo(classSpecifications);
+
+    // Assert
+    assertEquals(1, classSpecifications.size());
+    Object getResult = classSpecifications.get(0);
+    assertTrue(getResult instanceof ClassSpecification);
+    List<MemberSpecification> memberSpecificationList = ((ClassSpecification) getResult).fieldSpecifications;
+    assertEquals(1, memberSpecificationList.size());
+    MemberSpecification getResult2 = memberSpecificationList.get(0);
+    assertNull(getResult2.annotationType);
+    assertNull(getResult2.descriptor);
+    assertNull(getResult2.name);
+    assertNull(getResult2.attributeNames);
+    assertEquals(0, ((ClassSpecification) getResult).requiredSetAccessFlags);
+    assertEquals(0, ((ClassSpecification) getResult).requiredUnsetAccessFlags);
+    assertEquals(0, getResult2.requiredSetAccessFlags);
+    assertEquals(0, getResult2.requiredUnsetAccessFlags);
+  }
+
+  /**
+   * Test {@link ClassSpecificationElement#appendTo(List)}.
+   * <ul>
+   *   <li>Given {@link ClassSpecificationElement} (default constructor) Access is {@code !}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassSpecificationElement#appendTo(List)}
+   */
+  @Test
+  @DisplayName("Test appendTo(List); given ClassSpecificationElement (default constructor) Access is '!'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ClassSpecificationElement.appendTo(List)"})
+  void testAppendTo_givenClassSpecificationElementAccessIsExclamationMark() {
+    // Arrange
+    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
+    classSpecificationElement.setAccess("!");
+    classSpecificationElement.addConfiguredField(new MemberSpecificationElement());
+
+    // Act and Assert
+    assertThrows(BuildException.class, () -> classSpecificationElement.appendTo(new ArrayList<>()));
+  }
+
+  /**
+   * Test {@link ClassSpecificationElement#appendTo(List)}.
+   * <ul>
+   *   <li>Given {@link ClassSpecificationElement} (default constructor) Name is {@code *}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassSpecificationElement#appendTo(List)}
+   */
+  @Test
+  @DisplayName("Test appendTo(List); given ClassSpecificationElement (default constructor) Name is '*'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ClassSpecificationElement.appendTo(List)"})
+  void testAppendTo_givenClassSpecificationElementNameIsAsterisk() {
+    // Arrange
+    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
+    classSpecificationElement.setName("*");
+    classSpecificationElement.addConfiguredField(new MemberSpecificationElement());
+    ArrayList<Object> classSpecifications = new ArrayList<>();
+
+    // Act
+    classSpecificationElement.appendTo(classSpecifications);
+
+    // Assert
+    assertEquals(1, classSpecifications.size());
+    Object getResult = classSpecifications.get(0);
+    assertTrue(getResult instanceof ClassSpecification);
+    List<MemberSpecification> memberSpecificationList = ((ClassSpecification) getResult).fieldSpecifications;
+    assertEquals(1, memberSpecificationList.size());
+    MemberSpecification getResult2 = memberSpecificationList.get(0);
+    assertNull(getResult2.annotationType);
+    assertNull(getResult2.descriptor);
+    assertNull(getResult2.name);
+    assertNull(getResult2.attributeNames);
+    assertEquals(0, ((ClassSpecification) getResult).requiredSetAccessFlags);
+    assertEquals(0, ((ClassSpecification) getResult).requiredUnsetAccessFlags);
+    assertEquals(0, getResult2.requiredSetAccessFlags);
+    assertEquals(0, getResult2.requiredUnsetAccessFlags);
+  }
+
+  /**
+   * Test {@link ClassSpecificationElement#appendTo(List)}.
+   * <ul>
+   *   <li>Given {@link ClassSpecificationElement} (default constructor) Type is {@code class}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassSpecificationElement#appendTo(List)}
+   */
+  @Test
+  @DisplayName("Test appendTo(List); given ClassSpecificationElement (default constructor) Type is 'class'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ClassSpecificationElement.appendTo(List)"})
+  void testAppendTo_givenClassSpecificationElementTypeIsClass() {
+    // Arrange
+    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
+    classSpecificationElement.setType("class");
+    classSpecificationElement.addConfiguredField(new MemberSpecificationElement());
+    ArrayList<Object> classSpecifications = new ArrayList<>();
+
+    // Act
+    classSpecificationElement.appendTo(classSpecifications);
+
+    // Assert
+    assertEquals(1, classSpecifications.size());
+    Object getResult = classSpecifications.get(0);
+    assertTrue(getResult instanceof ClassSpecification);
+    List<MemberSpecification> memberSpecificationList = ((ClassSpecification) getResult).fieldSpecifications;
+    assertEquals(1, memberSpecificationList.size());
+    MemberSpecification getResult2 = memberSpecificationList.get(0);
+    assertNull(getResult2.annotationType);
+    assertNull(getResult2.descriptor);
+    assertNull(getResult2.name);
+    assertNull(getResult2.attributeNames);
+    assertEquals(0, ((ClassSpecification) getResult).requiredSetAccessFlags);
+    assertEquals(0, ((ClassSpecification) getResult).requiredUnsetAccessFlags);
+    assertEquals(0, getResult2.requiredSetAccessFlags);
+    assertEquals(0, getResult2.requiredUnsetAccessFlags);
+  }
+
+  /**
+   * Test {@link ClassSpecificationElement#appendTo(List)}.
+   * <ul>
+   *   <li>Given {@link ClassSpecificationElement} (default constructor) Type is {@code !}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassSpecificationElement#appendTo(List)}
+   */
+  @Test
+  @DisplayName("Test appendTo(List); given ClassSpecificationElement (default constructor) Type is '!'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ClassSpecificationElement.appendTo(List)"})
+  void testAppendTo_givenClassSpecificationElementTypeIsExclamationMark() {
+    // Arrange
+    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
+    classSpecificationElement.setType("!");
+    classSpecificationElement.addConfiguredField(new MemberSpecificationElement());
+
+    // Act and Assert
+    assertThrows(BuildException.class, () -> classSpecificationElement.appendTo(new ArrayList<>()));
+  }
+
+  /**
+   * Test {@link ClassSpecificationElement#appendTo(List)}.
+   * <ul>
+   *   <li>Given {@link ClassSpecificationElement} (default constructor) Type is {@code Type}.</li>
+   *   <li>Then throw {@link BuildException}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassSpecificationElement#appendTo(List)}
+   */
+  @Test
+  @DisplayName("Test appendTo(List); given ClassSpecificationElement (default constructor) Type is 'Type'; then throw BuildException")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ClassSpecificationElement.appendTo(List)"})
+  void testAppendTo_givenClassSpecificationElementTypeIsType_thenThrowBuildException() {
+    // Arrange
+    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
+    classSpecificationElement.setType("Type");
+    classSpecificationElement.addConfiguredField(new MemberSpecificationElement());
+
+    // Act and Assert
+    assertThrows(BuildException.class, () -> classSpecificationElement.appendTo(new ArrayList<>()));
+  }
+
+  /**
+   * Test {@link ClassSpecificationElement#appendTo(List)}.
+   * <ul>
+   *   <li>Then {@link ArrayList#ArrayList()} first {@link ClassSpecification#annotationType} is {@code LAnnotation;}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassSpecificationElement#appendTo(List)}
+   */
+  @Test
+  @DisplayName("Test appendTo(List); then ArrayList() first annotationType is 'LAnnotation;'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ClassSpecificationElement.appendTo(List)"})
+  void testAppendTo_thenArrayListFirstAnnotationTypeIsLAnnotation() {
     // Arrange
     ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
     classSpecificationElement.setAnnotation("Annotation");
@@ -159,11 +298,6 @@ class ClassSpecificationElementDiffblueTest {
     Object getResult = classSpecifications.get(0);
     assertTrue(getResult instanceof ClassSpecification);
     assertEquals("LAnnotation;", ((ClassSpecification) getResult).annotationType);
-    assertNull(((ClassSpecification) getResult).className);
-    assertNull(((ClassSpecification) getResult).comments);
-    assertNull(((ClassSpecification) getResult).extendsAnnotationType);
-    assertNull(((ClassSpecification) getResult).extendsClassName);
-    assertNull(((ClassSpecification) getResult).memberComments);
     List<MemberSpecification> memberSpecificationList = ((ClassSpecification) getResult).fieldSpecifications;
     assertEquals(1, memberSpecificationList.size());
     MemberSpecification getResult2 = memberSpecificationList.get(0);
@@ -171,8 +305,6 @@ class ClassSpecificationElementDiffblueTest {
     assertNull(getResult2.descriptor);
     assertNull(getResult2.name);
     assertNull(getResult2.attributeNames);
-    assertNull(((ClassSpecification) getResult).attributeNames);
-    assertNull(((ClassSpecification) getResult).methodSpecifications);
     assertEquals(0, ((ClassSpecification) getResult).requiredSetAccessFlags);
     assertEquals(0, ((ClassSpecification) getResult).requiredUnsetAccessFlags);
     assertEquals(0, getResult2.requiredSetAccessFlags);
@@ -180,24 +312,50 @@ class ClassSpecificationElementDiffblueTest {
   }
 
   /**
+   * Test {@link ClassSpecificationElement#appendTo(List)}.
+   * <ul>
+   *   <li>Then {@link ArrayList#ArrayList()} first {@link ClassSpecification#annotationType} is {@code null}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ClassSpecificationElement#appendTo(List)}
    */
   @Test
-  void testAppendTo6() {
+  @DisplayName("Test appendTo(List); then ArrayList() first annotationType is 'null'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ClassSpecificationElement.appendTo(List)"})
+  void testAppendTo_thenArrayListFirstAnnotationTypeIsNull() {
     // Arrange
     ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
-    classSpecificationElement.setType("Type");
-    classSpecificationElement.addConfiguredField(new MemberSpecificationElement());
+    ArrayList<Object> classSpecifications = new ArrayList<>();
 
-    // Act and Assert
-    assertThrows(BuildException.class, () -> classSpecificationElement.appendTo(new ArrayList<>()));
+    // Act
+    classSpecificationElement.appendTo(classSpecifications);
+
+    // Assert
+    assertEquals(1, classSpecifications.size());
+    Object getResult = classSpecifications.get(0);
+    assertTrue(getResult instanceof ClassSpecification);
+    assertNull(((ClassSpecification) getResult).annotationType);
+    assertNull(((ClassSpecification) getResult).className);
+    assertNull(((ClassSpecification) getResult).extendsAnnotationType);
+    assertNull(((ClassSpecification) getResult).extendsClassName);
+    assertNull(((ClassSpecification) getResult).fieldSpecifications);
+    assertNull(((ClassSpecification) getResult).methodSpecifications);
   }
 
   /**
+   * Test {@link ClassSpecificationElement#appendTo(List)}.
+   * <ul>
+   *   <li>Then {@link ArrayList#ArrayList()} first {@link ClassSpecification#className} is {@code Name}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ClassSpecificationElement#appendTo(List)}
    */
   @Test
-  void testAppendTo7() {
+  @DisplayName("Test appendTo(List); then ArrayList() first className is 'Name'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ClassSpecificationElement.appendTo(List)"})
+  void testAppendTo_thenArrayListFirstClassNameIsName() {
     // Arrange
     ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
     classSpecificationElement.setName("Name");
@@ -212,11 +370,6 @@ class ClassSpecificationElementDiffblueTest {
     Object getResult = classSpecifications.get(0);
     assertTrue(getResult instanceof ClassSpecification);
     assertEquals("Name", ((ClassSpecification) getResult).className);
-    assertNull(((ClassSpecification) getResult).annotationType);
-    assertNull(((ClassSpecification) getResult).comments);
-    assertNull(((ClassSpecification) getResult).extendsAnnotationType);
-    assertNull(((ClassSpecification) getResult).extendsClassName);
-    assertNull(((ClassSpecification) getResult).memberComments);
     List<MemberSpecification> memberSpecificationList = ((ClassSpecification) getResult).fieldSpecifications;
     assertEquals(1, memberSpecificationList.size());
     MemberSpecification getResult2 = memberSpecificationList.get(0);
@@ -224,8 +377,6 @@ class ClassSpecificationElementDiffblueTest {
     assertNull(getResult2.descriptor);
     assertNull(getResult2.name);
     assertNull(getResult2.attributeNames);
-    assertNull(((ClassSpecification) getResult).attributeNames);
-    assertNull(((ClassSpecification) getResult).methodSpecifications);
     assertEquals(0, ((ClassSpecification) getResult).requiredSetAccessFlags);
     assertEquals(0, ((ClassSpecification) getResult).requiredUnsetAccessFlags);
     assertEquals(0, getResult2.requiredSetAccessFlags);
@@ -233,10 +384,18 @@ class ClassSpecificationElementDiffblueTest {
   }
 
   /**
+   * Test {@link ClassSpecificationElement#appendTo(List)}.
+   * <ul>
+   *   <li>Then {@link ArrayList#ArrayList()} first {@link ClassSpecification#extendsAnnotationType} is {@code LExtends Annotation;}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ClassSpecificationElement#appendTo(List)}
    */
   @Test
-  void testAppendTo8() {
+  @DisplayName("Test appendTo(List); then ArrayList() first extendsAnnotationType is 'LExtends Annotation;'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ClassSpecificationElement.appendTo(List)"})
+  void testAppendTo_thenArrayListFirstExtendsAnnotationTypeIsLExtendsAnnotation() {
     // Arrange
     ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
     classSpecificationElement.setExtendsannotation("Extends Annotation");
@@ -251,11 +410,6 @@ class ClassSpecificationElementDiffblueTest {
     Object getResult = classSpecifications.get(0);
     assertTrue(getResult instanceof ClassSpecification);
     assertEquals("LExtends Annotation;", ((ClassSpecification) getResult).extendsAnnotationType);
-    assertNull(((ClassSpecification) getResult).annotationType);
-    assertNull(((ClassSpecification) getResult).className);
-    assertNull(((ClassSpecification) getResult).comments);
-    assertNull(((ClassSpecification) getResult).extendsClassName);
-    assertNull(((ClassSpecification) getResult).memberComments);
     List<MemberSpecification> memberSpecificationList = ((ClassSpecification) getResult).fieldSpecifications;
     assertEquals(1, memberSpecificationList.size());
     MemberSpecification getResult2 = memberSpecificationList.get(0);
@@ -263,8 +417,6 @@ class ClassSpecificationElementDiffblueTest {
     assertNull(getResult2.descriptor);
     assertNull(getResult2.name);
     assertNull(getResult2.attributeNames);
-    assertNull(((ClassSpecification) getResult).attributeNames);
-    assertNull(((ClassSpecification) getResult).methodSpecifications);
     assertEquals(0, ((ClassSpecification) getResult).requiredSetAccessFlags);
     assertEquals(0, ((ClassSpecification) getResult).requiredUnsetAccessFlags);
     assertEquals(0, getResult2.requiredSetAccessFlags);
@@ -272,10 +424,18 @@ class ClassSpecificationElementDiffblueTest {
   }
 
   /**
+   * Test {@link ClassSpecificationElement#appendTo(List)}.
+   * <ul>
+   *   <li>Then {@link ArrayList#ArrayList()} first {@link ClassSpecification#extendsClassName} is {@code Extends}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ClassSpecificationElement#appendTo(List)}
    */
   @Test
-  void testAppendTo9() {
+  @DisplayName("Test appendTo(List); then ArrayList() first extendsClassName is 'Extends'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ClassSpecificationElement.appendTo(List)"})
+  void testAppendTo_thenArrayListFirstExtendsClassNameIsExtends() {
     // Arrange
     ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
     classSpecificationElement.setExtends("Extends ");
@@ -290,11 +450,6 @@ class ClassSpecificationElementDiffblueTest {
     Object getResult = classSpecifications.get(0);
     assertTrue(getResult instanceof ClassSpecification);
     assertEquals("Extends ", ((ClassSpecification) getResult).extendsClassName);
-    assertNull(((ClassSpecification) getResult).annotationType);
-    assertNull(((ClassSpecification) getResult).className);
-    assertNull(((ClassSpecification) getResult).comments);
-    assertNull(((ClassSpecification) getResult).extendsAnnotationType);
-    assertNull(((ClassSpecification) getResult).memberComments);
     List<MemberSpecification> memberSpecificationList = ((ClassSpecification) getResult).fieldSpecifications;
     assertEquals(1, memberSpecificationList.size());
     MemberSpecification getResult2 = memberSpecificationList.get(0);
@@ -302,8 +457,6 @@ class ClassSpecificationElementDiffblueTest {
     assertNull(getResult2.descriptor);
     assertNull(getResult2.name);
     assertNull(getResult2.attributeNames);
-    assertNull(((ClassSpecification) getResult).attributeNames);
-    assertNull(((ClassSpecification) getResult).methodSpecifications);
     assertEquals(0, ((ClassSpecification) getResult).requiredSetAccessFlags);
     assertEquals(0, ((ClassSpecification) getResult).requiredUnsetAccessFlags);
     assertEquals(0, getResult2.requiredSetAccessFlags);
@@ -311,46 +464,21 @@ class ClassSpecificationElementDiffblueTest {
   }
 
   /**
+   * Test {@link ClassSpecificationElement#appendTo(List)}.
+   * <ul>
+   *   <li>Then {@link ArrayList#ArrayList()} first {@link ClassSpecification#methodSpecifications} size is one.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ClassSpecificationElement#appendTo(List)}
    */
   @Test
-  void testAppendTo10() {
+  @DisplayName("Test appendTo(List); then ArrayList() first methodSpecifications size is one")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ClassSpecificationElement.appendTo(List)"})
+  void testAppendTo_thenArrayListFirstMethodSpecificationsSizeIsOne() {
     // Arrange
     ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
-
-    ArrayList<Object> classSpecifications = new ArrayList<>();
-    classSpecifications.add("42");
-
-    // Act
-    classSpecificationElement.appendTo(classSpecifications);
-
-    // Assert
-    assertEquals(2, classSpecifications.size());
-    Object getResult = classSpecifications.get(1);
-    assertTrue(getResult instanceof ClassSpecification);
-    assertEquals("42", classSpecifications.get(0));
-    assertNull(((ClassSpecification) getResult).annotationType);
-    assertNull(((ClassSpecification) getResult).className);
-    assertNull(((ClassSpecification) getResult).comments);
-    assertNull(((ClassSpecification) getResult).extendsAnnotationType);
-    assertNull(((ClassSpecification) getResult).extendsClassName);
-    assertNull(((ClassSpecification) getResult).memberComments);
-    assertNull(((ClassSpecification) getResult).attributeNames);
-    assertNull(((ClassSpecification) getResult).fieldSpecifications);
-    assertNull(((ClassSpecification) getResult).methodSpecifications);
-    assertEquals(0, ((ClassSpecification) getResult).requiredSetAccessFlags);
-    assertEquals(0, ((ClassSpecification) getResult).requiredUnsetAccessFlags);
-  }
-
-  /**
-   * Method under test: {@link ClassSpecificationElement#appendTo(List)}
-   */
-  @Test
-  void testAppendTo11() {
-    // Arrange
-    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
-    classSpecificationElement.setAccess(" ,");
-    classSpecificationElement.addConfiguredField(new MemberSpecificationElement());
+    classSpecificationElement.addConfiguredMethod(new MemberSpecificationElement());
     ArrayList<Object> classSpecifications = new ArrayList<>();
 
     // Act
@@ -360,124 +488,30 @@ class ClassSpecificationElementDiffblueTest {
     assertEquals(1, classSpecifications.size());
     Object getResult = classSpecifications.get(0);
     assertTrue(getResult instanceof ClassSpecification);
-    assertNull(((ClassSpecification) getResult).annotationType);
-    assertNull(((ClassSpecification) getResult).className);
-    assertNull(((ClassSpecification) getResult).comments);
-    assertNull(((ClassSpecification) getResult).extendsAnnotationType);
-    assertNull(((ClassSpecification) getResult).extendsClassName);
-    assertNull(((ClassSpecification) getResult).memberComments);
-    List<MemberSpecification> memberSpecificationList = ((ClassSpecification) getResult).fieldSpecifications;
+    List<MemberSpecification> memberSpecificationList = ((ClassSpecification) getResult).methodSpecifications;
     assertEquals(1, memberSpecificationList.size());
     MemberSpecification getResult2 = memberSpecificationList.get(0);
     assertNull(getResult2.annotationType);
     assertNull(getResult2.descriptor);
     assertNull(getResult2.name);
     assertNull(getResult2.attributeNames);
-    assertNull(((ClassSpecification) getResult).attributeNames);
-    assertNull(((ClassSpecification) getResult).methodSpecifications);
-    assertEquals(0, ((ClassSpecification) getResult).requiredSetAccessFlags);
-    assertEquals(0, ((ClassSpecification) getResult).requiredUnsetAccessFlags);
     assertEquals(0, getResult2.requiredSetAccessFlags);
     assertEquals(0, getResult2.requiredUnsetAccessFlags);
   }
 
   /**
+   * Test {@link ClassSpecificationElement#appendTo(List)}.
+   * <ul>
+   *   <li>Then {@link ArrayList#ArrayList()} first {@link ClassSpecification#requiredSetAccessFlags} is {@code 1024}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ClassSpecificationElement#appendTo(List)}
    */
   @Test
-  void testAppendTo12() {
-    // Arrange
-    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
-    classSpecificationElement.setAccess("!");
-    classSpecificationElement.addConfiguredField(new MemberSpecificationElement());
-
-    // Act and Assert
-    assertThrows(BuildException.class, () -> classSpecificationElement.appendTo(new ArrayList<>()));
-  }
-
-  /**
-   * Method under test: {@link ClassSpecificationElement#appendTo(List)}
-   */
-  @Test
-  void testAppendTo13() {
-    // Arrange
-    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
-    classSpecificationElement.setAccess("public");
-    classSpecificationElement.addConfiguredField(new MemberSpecificationElement());
-    ArrayList<Object> classSpecifications = new ArrayList<>();
-
-    // Act
-    classSpecificationElement.appendTo(classSpecifications);
-
-    // Assert
-    assertEquals(1, classSpecifications.size());
-    Object getResult = classSpecifications.get(0);
-    assertTrue(getResult instanceof ClassSpecification);
-    assertNull(((ClassSpecification) getResult).annotationType);
-    assertNull(((ClassSpecification) getResult).className);
-    assertNull(((ClassSpecification) getResult).comments);
-    assertNull(((ClassSpecification) getResult).extendsAnnotationType);
-    assertNull(((ClassSpecification) getResult).extendsClassName);
-    assertNull(((ClassSpecification) getResult).memberComments);
-    List<MemberSpecification> memberSpecificationList = ((ClassSpecification) getResult).fieldSpecifications;
-    assertEquals(1, memberSpecificationList.size());
-    MemberSpecification getResult2 = memberSpecificationList.get(0);
-    assertNull(getResult2.annotationType);
-    assertNull(getResult2.descriptor);
-    assertNull(getResult2.name);
-    assertNull(getResult2.attributeNames);
-    assertNull(((ClassSpecification) getResult).attributeNames);
-    assertNull(((ClassSpecification) getResult).methodSpecifications);
-    assertEquals(0, ((ClassSpecification) getResult).requiredUnsetAccessFlags);
-    assertEquals(0, getResult2.requiredSetAccessFlags);
-    assertEquals(0, getResult2.requiredUnsetAccessFlags);
-    assertEquals(1, ((ClassSpecification) getResult).requiredSetAccessFlags);
-  }
-
-  /**
-   * Method under test: {@link ClassSpecificationElement#appendTo(List)}
-   */
-  @Test
-  void testAppendTo14() {
-    // Arrange
-    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
-    classSpecificationElement.setAccess("final");
-    classSpecificationElement.addConfiguredField(new MemberSpecificationElement());
-    ArrayList<Object> classSpecifications = new ArrayList<>();
-
-    // Act
-    classSpecificationElement.appendTo(classSpecifications);
-
-    // Assert
-    assertEquals(1, classSpecifications.size());
-    Object getResult = classSpecifications.get(0);
-    assertTrue(getResult instanceof ClassSpecification);
-    assertNull(((ClassSpecification) getResult).annotationType);
-    assertNull(((ClassSpecification) getResult).className);
-    assertNull(((ClassSpecification) getResult).comments);
-    assertNull(((ClassSpecification) getResult).extendsAnnotationType);
-    assertNull(((ClassSpecification) getResult).extendsClassName);
-    assertNull(((ClassSpecification) getResult).memberComments);
-    List<MemberSpecification> memberSpecificationList = ((ClassSpecification) getResult).fieldSpecifications;
-    assertEquals(1, memberSpecificationList.size());
-    MemberSpecification getResult2 = memberSpecificationList.get(0);
-    assertNull(getResult2.annotationType);
-    assertNull(getResult2.descriptor);
-    assertNull(getResult2.name);
-    assertNull(getResult2.attributeNames);
-    assertNull(((ClassSpecification) getResult).attributeNames);
-    assertNull(((ClassSpecification) getResult).methodSpecifications);
-    assertEquals(0, ((ClassSpecification) getResult).requiredUnsetAccessFlags);
-    assertEquals(0, getResult2.requiredSetAccessFlags);
-    assertEquals(0, getResult2.requiredUnsetAccessFlags);
-    assertEquals(Short.SIZE, ((ClassSpecification) getResult).requiredSetAccessFlags);
-  }
-
-  /**
-   * Method under test: {@link ClassSpecificationElement#appendTo(List)}
-   */
-  @Test
-  void testAppendTo15() {
+  @DisplayName("Test appendTo(List); then ArrayList() first requiredSetAccessFlags is '1024'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ClassSpecificationElement.appendTo(List)"})
+  void testAppendTo_thenArrayListFirstRequiredSetAccessFlagsIs1024() {
     // Arrange
     ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
     classSpecificationElement.setAccess("abstract");
@@ -491,12 +525,6 @@ class ClassSpecificationElementDiffblueTest {
     assertEquals(1, classSpecifications.size());
     Object getResult = classSpecifications.get(0);
     assertTrue(getResult instanceof ClassSpecification);
-    assertNull(((ClassSpecification) getResult).annotationType);
-    assertNull(((ClassSpecification) getResult).className);
-    assertNull(((ClassSpecification) getResult).comments);
-    assertNull(((ClassSpecification) getResult).extendsAnnotationType);
-    assertNull(((ClassSpecification) getResult).extendsClassName);
-    assertNull(((ClassSpecification) getResult).memberComments);
     List<MemberSpecification> memberSpecificationList = ((ClassSpecification) getResult).fieldSpecifications;
     assertEquals(1, memberSpecificationList.size());
     MemberSpecification getResult2 = memberSpecificationList.get(0);
@@ -504,8 +532,6 @@ class ClassSpecificationElementDiffblueTest {
     assertNull(getResult2.descriptor);
     assertNull(getResult2.name);
     assertNull(getResult2.attributeNames);
-    assertNull(((ClassSpecification) getResult).attributeNames);
-    assertNull(((ClassSpecification) getResult).methodSpecifications);
     assertEquals(0, ((ClassSpecification) getResult).requiredUnsetAccessFlags);
     assertEquals(0, getResult2.requiredSetAccessFlags);
     assertEquals(0, getResult2.requiredUnsetAccessFlags);
@@ -513,10 +539,18 @@ class ClassSpecificationElementDiffblueTest {
   }
 
   /**
+   * Test {@link ClassSpecificationElement#appendTo(List)}.
+   * <ul>
+   *   <li>Then {@link ArrayList#ArrayList()} first {@link ClassSpecification#requiredSetAccessFlags} is {@code 4096}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ClassSpecificationElement#appendTo(List)}
    */
   @Test
-  void testAppendTo16() {
+  @DisplayName("Test appendTo(List); then ArrayList() first requiredSetAccessFlags is '4096'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ClassSpecificationElement.appendTo(List)"})
+  void testAppendTo_thenArrayListFirstRequiredSetAccessFlagsIs4096() {
     // Arrange
     ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
     classSpecificationElement.setAccess("synthetic");
@@ -530,12 +564,6 @@ class ClassSpecificationElementDiffblueTest {
     assertEquals(1, classSpecifications.size());
     Object getResult = classSpecifications.get(0);
     assertTrue(getResult instanceof ClassSpecification);
-    assertNull(((ClassSpecification) getResult).annotationType);
-    assertNull(((ClassSpecification) getResult).className);
-    assertNull(((ClassSpecification) getResult).comments);
-    assertNull(((ClassSpecification) getResult).extendsAnnotationType);
-    assertNull(((ClassSpecification) getResult).extendsClassName);
-    assertNull(((ClassSpecification) getResult).memberComments);
     List<MemberSpecification> memberSpecificationList = ((ClassSpecification) getResult).fieldSpecifications;
     assertEquals(1, memberSpecificationList.size());
     MemberSpecification getResult2 = memberSpecificationList.get(0);
@@ -543,8 +571,6 @@ class ClassSpecificationElementDiffblueTest {
     assertNull(getResult2.descriptor);
     assertNull(getResult2.name);
     assertNull(getResult2.attributeNames);
-    assertNull(((ClassSpecification) getResult).attributeNames);
-    assertNull(((ClassSpecification) getResult).methodSpecifications);
     assertEquals(0, ((ClassSpecification) getResult).requiredUnsetAccessFlags);
     assertEquals(0, getResult2.requiredSetAccessFlags);
     assertEquals(0, getResult2.requiredUnsetAccessFlags);
@@ -552,10 +578,18 @@ class ClassSpecificationElementDiffblueTest {
   }
 
   /**
+   * Test {@link ClassSpecificationElement#appendTo(List)}.
+   * <ul>
+   *   <li>Then {@link ArrayList#ArrayList()} first {@link ClassSpecification#requiredSetAccessFlags} is {@code 8192}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ClassSpecificationElement#appendTo(List)}
    */
   @Test
-  void testAppendTo17() {
+  @DisplayName("Test appendTo(List); then ArrayList() first requiredSetAccessFlags is '8192'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ClassSpecificationElement.appendTo(List)"})
+  void testAppendTo_thenArrayListFirstRequiredSetAccessFlagsIs8192() {
     // Arrange
     ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
     classSpecificationElement.setAccess("@");
@@ -569,12 +603,6 @@ class ClassSpecificationElementDiffblueTest {
     assertEquals(1, classSpecifications.size());
     Object getResult = classSpecifications.get(0);
     assertTrue(getResult instanceof ClassSpecification);
-    assertNull(((ClassSpecification) getResult).annotationType);
-    assertNull(((ClassSpecification) getResult).className);
-    assertNull(((ClassSpecification) getResult).comments);
-    assertNull(((ClassSpecification) getResult).extendsAnnotationType);
-    assertNull(((ClassSpecification) getResult).extendsClassName);
-    assertNull(((ClassSpecification) getResult).memberComments);
     List<MemberSpecification> memberSpecificationList = ((ClassSpecification) getResult).fieldSpecifications;
     assertEquals(1, memberSpecificationList.size());
     MemberSpecification getResult2 = memberSpecificationList.get(0);
@@ -582,8 +610,6 @@ class ClassSpecificationElementDiffblueTest {
     assertNull(getResult2.descriptor);
     assertNull(getResult2.name);
     assertNull(getResult2.attributeNames);
-    assertNull(((ClassSpecification) getResult).attributeNames);
-    assertNull(((ClassSpecification) getResult).methodSpecifications);
     assertEquals(0, ((ClassSpecification) getResult).requiredUnsetAccessFlags);
     assertEquals(0, getResult2.requiredSetAccessFlags);
     assertEquals(0, getResult2.requiredUnsetAccessFlags);
@@ -591,141 +617,18 @@ class ClassSpecificationElementDiffblueTest {
   }
 
   /**
+   * Test {@link ClassSpecificationElement#appendTo(List)}.
+   * <ul>
+   *   <li>Then {@link ArrayList#ArrayList()} first {@link ClassSpecification#requiredSetAccessFlags} is {@code 16384}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ClassSpecificationElement#appendTo(List)}
    */
   @Test
-  void testAppendTo18() {
-    // Arrange
-    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
-    classSpecificationElement.setType("!");
-    classSpecificationElement.addConfiguredField(new MemberSpecificationElement());
-
-    // Act and Assert
-    assertThrows(BuildException.class, () -> classSpecificationElement.appendTo(new ArrayList<>()));
-  }
-
-  /**
-   * Method under test: {@link ClassSpecificationElement#appendTo(List)}
-   */
-  @Test
-  void testAppendTo19() {
-    // Arrange
-    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
-    classSpecificationElement.setType("class");
-    classSpecificationElement.addConfiguredField(new MemberSpecificationElement());
-    ArrayList<Object> classSpecifications = new ArrayList<>();
-
-    // Act
-    classSpecificationElement.appendTo(classSpecifications);
-
-    // Assert
-    assertEquals(1, classSpecifications.size());
-    Object getResult = classSpecifications.get(0);
-    assertTrue(getResult instanceof ClassSpecification);
-    assertNull(((ClassSpecification) getResult).annotationType);
-    assertNull(((ClassSpecification) getResult).className);
-    assertNull(((ClassSpecification) getResult).comments);
-    assertNull(((ClassSpecification) getResult).extendsAnnotationType);
-    assertNull(((ClassSpecification) getResult).extendsClassName);
-    assertNull(((ClassSpecification) getResult).memberComments);
-    List<MemberSpecification> memberSpecificationList = ((ClassSpecification) getResult).fieldSpecifications;
-    assertEquals(1, memberSpecificationList.size());
-    MemberSpecification getResult2 = memberSpecificationList.get(0);
-    assertNull(getResult2.annotationType);
-    assertNull(getResult2.descriptor);
-    assertNull(getResult2.name);
-    assertNull(getResult2.attributeNames);
-    assertNull(((ClassSpecification) getResult).attributeNames);
-    assertNull(((ClassSpecification) getResult).methodSpecifications);
-    assertEquals(0, ((ClassSpecification) getResult).requiredSetAccessFlags);
-    assertEquals(0, ((ClassSpecification) getResult).requiredUnsetAccessFlags);
-    assertEquals(0, getResult2.requiredSetAccessFlags);
-    assertEquals(0, getResult2.requiredUnsetAccessFlags);
-  }
-
-  /**
-   * Method under test: {@link ClassSpecificationElement#appendTo(List)}
-   */
-  @Test
-  void testAppendTo20() {
-    // Arrange
-    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
-    classSpecificationElement.setType("interface");
-    classSpecificationElement.addConfiguredField(new MemberSpecificationElement());
-    ArrayList<Object> classSpecifications = new ArrayList<>();
-
-    // Act
-    classSpecificationElement.appendTo(classSpecifications);
-
-    // Assert
-    assertEquals(1, classSpecifications.size());
-    Object getResult = classSpecifications.get(0);
-    assertTrue(getResult instanceof ClassSpecification);
-    assertNull(((ClassSpecification) getResult).annotationType);
-    assertNull(((ClassSpecification) getResult).className);
-    assertNull(((ClassSpecification) getResult).comments);
-    assertNull(((ClassSpecification) getResult).extendsAnnotationType);
-    assertNull(((ClassSpecification) getResult).extendsClassName);
-    assertNull(((ClassSpecification) getResult).memberComments);
-    List<MemberSpecification> memberSpecificationList = ((ClassSpecification) getResult).fieldSpecifications;
-    assertEquals(1, memberSpecificationList.size());
-    MemberSpecification getResult2 = memberSpecificationList.get(0);
-    assertNull(getResult2.annotationType);
-    assertNull(getResult2.descriptor);
-    assertNull(getResult2.name);
-    assertNull(getResult2.attributeNames);
-    assertNull(((ClassSpecification) getResult).attributeNames);
-    assertNull(((ClassSpecification) getResult).methodSpecifications);
-    assertEquals(0, ((ClassSpecification) getResult).requiredUnsetAccessFlags);
-    assertEquals(0, getResult2.requiredSetAccessFlags);
-    assertEquals(0, getResult2.requiredUnsetAccessFlags);
-    assertEquals(512, ((ClassSpecification) getResult).requiredSetAccessFlags);
-  }
-
-  /**
-   * Method under test: {@link ClassSpecificationElement#appendTo(List)}
-   */
-  @Test
-  void testAppendTo21() {
-    // Arrange
-    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
-    classSpecificationElement.setType("!interface");
-    classSpecificationElement.addConfiguredField(new MemberSpecificationElement());
-    ArrayList<Object> classSpecifications = new ArrayList<>();
-
-    // Act
-    classSpecificationElement.appendTo(classSpecifications);
-
-    // Assert
-    assertEquals(1, classSpecifications.size());
-    Object getResult = classSpecifications.get(0);
-    assertTrue(getResult instanceof ClassSpecification);
-    assertNull(((ClassSpecification) getResult).annotationType);
-    assertNull(((ClassSpecification) getResult).className);
-    assertNull(((ClassSpecification) getResult).comments);
-    assertNull(((ClassSpecification) getResult).extendsAnnotationType);
-    assertNull(((ClassSpecification) getResult).extendsClassName);
-    assertNull(((ClassSpecification) getResult).memberComments);
-    List<MemberSpecification> memberSpecificationList = ((ClassSpecification) getResult).fieldSpecifications;
-    assertEquals(1, memberSpecificationList.size());
-    MemberSpecification getResult2 = memberSpecificationList.get(0);
-    assertNull(getResult2.annotationType);
-    assertNull(getResult2.descriptor);
-    assertNull(getResult2.name);
-    assertNull(getResult2.attributeNames);
-    assertNull(((ClassSpecification) getResult).attributeNames);
-    assertNull(((ClassSpecification) getResult).methodSpecifications);
-    assertEquals(0, ((ClassSpecification) getResult).requiredSetAccessFlags);
-    assertEquals(0, getResult2.requiredSetAccessFlags);
-    assertEquals(0, getResult2.requiredUnsetAccessFlags);
-    assertEquals(512, ((ClassSpecification) getResult).requiredUnsetAccessFlags);
-  }
-
-  /**
-   * Method under test: {@link ClassSpecificationElement#appendTo(List)}
-   */
-  @Test
-  void testAppendTo22() {
+  @DisplayName("Test appendTo(List); then ArrayList() first requiredSetAccessFlags is '16384'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ClassSpecificationElement.appendTo(List)"})
+  void testAppendTo_thenArrayListFirstRequiredSetAccessFlagsIs16384() {
     // Arrange
     ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
     classSpecificationElement.setType("enum");
@@ -739,12 +642,6 @@ class ClassSpecificationElementDiffblueTest {
     assertEquals(1, classSpecifications.size());
     Object getResult = classSpecifications.get(0);
     assertTrue(getResult instanceof ClassSpecification);
-    assertNull(((ClassSpecification) getResult).annotationType);
-    assertNull(((ClassSpecification) getResult).className);
-    assertNull(((ClassSpecification) getResult).comments);
-    assertNull(((ClassSpecification) getResult).extendsAnnotationType);
-    assertNull(((ClassSpecification) getResult).extendsClassName);
-    assertNull(((ClassSpecification) getResult).memberComments);
     List<MemberSpecification> memberSpecificationList = ((ClassSpecification) getResult).fieldSpecifications;
     assertEquals(1, memberSpecificationList.size());
     MemberSpecification getResult2 = memberSpecificationList.get(0);
@@ -752,8 +649,6 @@ class ClassSpecificationElementDiffblueTest {
     assertNull(getResult2.descriptor);
     assertNull(getResult2.name);
     assertNull(getResult2.attributeNames);
-    assertNull(((ClassSpecification) getResult).attributeNames);
-    assertNull(((ClassSpecification) getResult).methodSpecifications);
     assertEquals(0, ((ClassSpecification) getResult).requiredUnsetAccessFlags);
     assertEquals(0, getResult2.requiredSetAccessFlags);
     assertEquals(0, getResult2.requiredUnsetAccessFlags);
@@ -761,10 +656,173 @@ class ClassSpecificationElementDiffblueTest {
   }
 
   /**
+   * Test {@link ClassSpecificationElement#appendTo(List)}.
+   * <ul>
+   *   <li>Then {@link ArrayList#ArrayList()} first {@link ClassSpecification#requiredSetAccessFlags} is five hundred twelve.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ClassSpecificationElement#appendTo(List)}
    */
   @Test
-  void testAppendTo23() {
+  @DisplayName("Test appendTo(List); then ArrayList() first requiredSetAccessFlags is five hundred twelve")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ClassSpecificationElement.appendTo(List)"})
+  void testAppendTo_thenArrayListFirstRequiredSetAccessFlagsIsFiveHundredTwelve() {
+    // Arrange
+    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
+    classSpecificationElement.setType("interface");
+    classSpecificationElement.addConfiguredField(new MemberSpecificationElement());
+    ArrayList<Object> classSpecifications = new ArrayList<>();
+
+    // Act
+    classSpecificationElement.appendTo(classSpecifications);
+
+    // Assert
+    assertEquals(1, classSpecifications.size());
+    Object getResult = classSpecifications.get(0);
+    assertTrue(getResult instanceof ClassSpecification);
+    List<MemberSpecification> memberSpecificationList = ((ClassSpecification) getResult).fieldSpecifications;
+    assertEquals(1, memberSpecificationList.size());
+    MemberSpecification getResult2 = memberSpecificationList.get(0);
+    assertNull(getResult2.annotationType);
+    assertNull(getResult2.descriptor);
+    assertNull(getResult2.name);
+    assertNull(getResult2.attributeNames);
+    assertEquals(0, ((ClassSpecification) getResult).requiredUnsetAccessFlags);
+    assertEquals(0, getResult2.requiredSetAccessFlags);
+    assertEquals(0, getResult2.requiredUnsetAccessFlags);
+    assertEquals(512, ((ClassSpecification) getResult).requiredSetAccessFlags);
+  }
+
+  /**
+   * Test {@link ClassSpecificationElement#appendTo(List)}.
+   * <ul>
+   *   <li>Then {@link ArrayList#ArrayList()} first {@link ClassSpecification#requiredSetAccessFlags} is one.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassSpecificationElement#appendTo(List)}
+   */
+  @Test
+  @DisplayName("Test appendTo(List); then ArrayList() first requiredSetAccessFlags is one")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ClassSpecificationElement.appendTo(List)"})
+  void testAppendTo_thenArrayListFirstRequiredSetAccessFlagsIsOne() {
+    // Arrange
+    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
+    classSpecificationElement.setAccess("public");
+    classSpecificationElement.addConfiguredField(new MemberSpecificationElement());
+    ArrayList<Object> classSpecifications = new ArrayList<>();
+
+    // Act
+    classSpecificationElement.appendTo(classSpecifications);
+
+    // Assert
+    assertEquals(1, classSpecifications.size());
+    Object getResult = classSpecifications.get(0);
+    assertTrue(getResult instanceof ClassSpecification);
+    List<MemberSpecification> memberSpecificationList = ((ClassSpecification) getResult).fieldSpecifications;
+    assertEquals(1, memberSpecificationList.size());
+    MemberSpecification getResult2 = memberSpecificationList.get(0);
+    assertNull(getResult2.annotationType);
+    assertNull(getResult2.descriptor);
+    assertNull(getResult2.name);
+    assertNull(getResult2.attributeNames);
+    assertEquals(0, ((ClassSpecification) getResult).requiredUnsetAccessFlags);
+    assertEquals(0, getResult2.requiredSetAccessFlags);
+    assertEquals(0, getResult2.requiredUnsetAccessFlags);
+    assertEquals(1, ((ClassSpecification) getResult).requiredSetAccessFlags);
+  }
+
+  /**
+   * Test {@link ClassSpecificationElement#appendTo(List)}.
+   * <ul>
+   *   <li>Then {@link ArrayList#ArrayList()} first {@link ClassSpecification#requiredSetAccessFlags} is {@link Short#SIZE}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassSpecificationElement#appendTo(List)}
+   */
+  @Test
+  @DisplayName("Test appendTo(List); then ArrayList() first requiredSetAccessFlags is SIZE")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ClassSpecificationElement.appendTo(List)"})
+  void testAppendTo_thenArrayListFirstRequiredSetAccessFlagsIsSize() {
+    // Arrange
+    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
+    classSpecificationElement.setAccess("final");
+    classSpecificationElement.addConfiguredField(new MemberSpecificationElement());
+    ArrayList<Object> classSpecifications = new ArrayList<>();
+
+    // Act
+    classSpecificationElement.appendTo(classSpecifications);
+
+    // Assert
+    assertEquals(1, classSpecifications.size());
+    Object getResult = classSpecifications.get(0);
+    assertTrue(getResult instanceof ClassSpecification);
+    List<MemberSpecification> memberSpecificationList = ((ClassSpecification) getResult).fieldSpecifications;
+    assertEquals(1, memberSpecificationList.size());
+    MemberSpecification getResult2 = memberSpecificationList.get(0);
+    assertNull(getResult2.annotationType);
+    assertNull(getResult2.descriptor);
+    assertNull(getResult2.name);
+    assertNull(getResult2.attributeNames);
+    assertEquals(0, ((ClassSpecification) getResult).requiredUnsetAccessFlags);
+    assertEquals(0, getResult2.requiredSetAccessFlags);
+    assertEquals(0, getResult2.requiredUnsetAccessFlags);
+    assertEquals(Short.SIZE, ((ClassSpecification) getResult).requiredSetAccessFlags);
+  }
+
+  /**
+   * Test {@link ClassSpecificationElement#appendTo(List)}.
+   * <ul>
+   *   <li>Then {@link ArrayList#ArrayList()} first {@link ClassSpecification#requiredSetAccessFlags} is zero.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassSpecificationElement#appendTo(List)}
+   */
+  @Test
+  @DisplayName("Test appendTo(List); then ArrayList() first requiredSetAccessFlags is zero")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ClassSpecificationElement.appendTo(List)"})
+  void testAppendTo_thenArrayListFirstRequiredSetAccessFlagsIsZero() {
+    // Arrange
+    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
+    classSpecificationElement.addConfiguredField(new MemberSpecificationElement());
+    ArrayList<Object> classSpecifications = new ArrayList<>();
+
+    // Act
+    classSpecificationElement.appendTo(classSpecifications);
+
+    // Assert
+    assertEquals(1, classSpecifications.size());
+    Object getResult = classSpecifications.get(0);
+    assertTrue(getResult instanceof ClassSpecification);
+    List<MemberSpecification> memberSpecificationList = ((ClassSpecification) getResult).fieldSpecifications;
+    assertEquals(1, memberSpecificationList.size());
+    MemberSpecification getResult2 = memberSpecificationList.get(0);
+    assertNull(getResult2.annotationType);
+    assertNull(getResult2.descriptor);
+    assertNull(getResult2.name);
+    assertNull(getResult2.attributeNames);
+    assertEquals(0, ((ClassSpecification) getResult).requiredSetAccessFlags);
+    assertEquals(0, ((ClassSpecification) getResult).requiredUnsetAccessFlags);
+    assertEquals(0, getResult2.requiredSetAccessFlags);
+    assertEquals(0, getResult2.requiredUnsetAccessFlags);
+  }
+
+  /**
+   * Test {@link ClassSpecificationElement#appendTo(List)}.
+   * <ul>
+   *   <li>Then {@link ArrayList#ArrayList()} first {@link ClassSpecification#requiredUnsetAccessFlags} is {@code 16384}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassSpecificationElement#appendTo(List)}
+   */
+  @Test
+  @DisplayName("Test appendTo(List); then ArrayList() first requiredUnsetAccessFlags is '16384'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ClassSpecificationElement.appendTo(List)"})
+  void testAppendTo_thenArrayListFirstRequiredUnsetAccessFlagsIs16384() {
     // Arrange
     ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
     classSpecificationElement.setType("!enum");
@@ -778,12 +836,6 @@ class ClassSpecificationElementDiffblueTest {
     assertEquals(1, classSpecifications.size());
     Object getResult = classSpecifications.get(0);
     assertTrue(getResult instanceof ClassSpecification);
-    assertNull(((ClassSpecification) getResult).annotationType);
-    assertNull(((ClassSpecification) getResult).className);
-    assertNull(((ClassSpecification) getResult).comments);
-    assertNull(((ClassSpecification) getResult).extendsAnnotationType);
-    assertNull(((ClassSpecification) getResult).extendsClassName);
-    assertNull(((ClassSpecification) getResult).memberComments);
     List<MemberSpecification> memberSpecificationList = ((ClassSpecification) getResult).fieldSpecifications;
     assertEquals(1, memberSpecificationList.size());
     MemberSpecification getResult2 = memberSpecificationList.get(0);
@@ -791,8 +843,6 @@ class ClassSpecificationElementDiffblueTest {
     assertNull(getResult2.descriptor);
     assertNull(getResult2.name);
     assertNull(getResult2.attributeNames);
-    assertNull(((ClassSpecification) getResult).attributeNames);
-    assertNull(((ClassSpecification) getResult).methodSpecifications);
     assertEquals(0, ((ClassSpecification) getResult).requiredSetAccessFlags);
     assertEquals(0, getResult2.requiredSetAccessFlags);
     assertEquals(0, getResult2.requiredUnsetAccessFlags);
@@ -800,13 +850,21 @@ class ClassSpecificationElementDiffblueTest {
   }
 
   /**
+   * Test {@link ClassSpecificationElement#appendTo(List)}.
+   * <ul>
+   *   <li>Then {@link ArrayList#ArrayList()} first {@link ClassSpecification#requiredUnsetAccessFlags} is five hundred twelve.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link ClassSpecificationElement#appendTo(List)}
    */
   @Test
-  void testAppendTo24() {
+  @DisplayName("Test appendTo(List); then ArrayList() first requiredUnsetAccessFlags is five hundred twelve")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ClassSpecificationElement.appendTo(List)"})
+  void testAppendTo_thenArrayListFirstRequiredUnsetAccessFlagsIsFiveHundredTwelve() {
     // Arrange
     ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
-    classSpecificationElement.setName("*");
+    classSpecificationElement.setType("!interface");
     classSpecificationElement.addConfiguredField(new MemberSpecificationElement());
     ArrayList<Object> classSpecifications = new ArrayList<>();
 
@@ -817,12 +875,6 @@ class ClassSpecificationElementDiffblueTest {
     assertEquals(1, classSpecifications.size());
     Object getResult = classSpecifications.get(0);
     assertTrue(getResult instanceof ClassSpecification);
-    assertNull(((ClassSpecification) getResult).annotationType);
-    assertNull(((ClassSpecification) getResult).className);
-    assertNull(((ClassSpecification) getResult).comments);
-    assertNull(((ClassSpecification) getResult).extendsAnnotationType);
-    assertNull(((ClassSpecification) getResult).extendsClassName);
-    assertNull(((ClassSpecification) getResult).memberComments);
     List<MemberSpecification> memberSpecificationList = ((ClassSpecification) getResult).fieldSpecifications;
     assertEquals(1, memberSpecificationList.size());
     MemberSpecification getResult2 = memberSpecificationList.get(0);
@@ -830,119 +882,78 @@ class ClassSpecificationElementDiffblueTest {
     assertNull(getResult2.descriptor);
     assertNull(getResult2.name);
     assertNull(getResult2.attributeNames);
-    assertNull(((ClassSpecification) getResult).attributeNames);
-    assertNull(((ClassSpecification) getResult).methodSpecifications);
     assertEquals(0, ((ClassSpecification) getResult).requiredSetAccessFlags);
-    assertEquals(0, ((ClassSpecification) getResult).requiredUnsetAccessFlags);
     assertEquals(0, getResult2.requiredSetAccessFlags);
     assertEquals(0, getResult2.requiredUnsetAccessFlags);
+    assertEquals(512, ((ClassSpecification) getResult).requiredUnsetAccessFlags);
   }
 
   /**
-   * Method under test:
-   * {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
+   * Test {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}.
+   * <p>
+   * Method under test: {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
    */
   @Test
+  @DisplayName("Test createClassSpecification(ClassSpecificationElement)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "ClassSpecification ClassSpecificationElement.createClassSpecification(ClassSpecificationElement)"})
   void testCreateClassSpecification() {
     // Arrange
     ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
 
-    // Act
-    ClassSpecification actualCreateClassSpecificationResult = classSpecificationElement
-        .createClassSpecification(new ClassSpecificationElement());
+    ClassSpecificationElement classSpecificationElement2 = new ClassSpecificationElement();
+    classSpecificationElement2.setAccess("!");
 
-    // Assert
-    assertNull(actualCreateClassSpecificationResult.annotationType);
-    assertNull(actualCreateClassSpecificationResult.className);
-    assertNull(actualCreateClassSpecificationResult.comments);
-    assertNull(actualCreateClassSpecificationResult.extendsAnnotationType);
-    assertNull(actualCreateClassSpecificationResult.extendsClassName);
-    assertNull(actualCreateClassSpecificationResult.memberComments);
-    assertNull(actualCreateClassSpecificationResult.attributeNames);
-    assertNull(actualCreateClassSpecificationResult.fieldSpecifications);
-    assertNull(actualCreateClassSpecificationResult.methodSpecifications);
-    assertEquals(0, actualCreateClassSpecificationResult.requiredSetAccessFlags);
-    assertEquals(0, actualCreateClassSpecificationResult.requiredUnsetAccessFlags);
+    // Act and Assert
+    assertThrows(BuildException.class,
+        () -> classSpecificationElement.createClassSpecification(classSpecificationElement2));
   }
 
   /**
-   * Method under test:
-   * {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
+   * Test {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}.
+   * <p>
+   * Method under test: {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
    */
   @Test
+  @DisplayName("Test createClassSpecification(ClassSpecificationElement)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "ClassSpecification ClassSpecificationElement.createClassSpecification(ClassSpecificationElement)"})
   void testCreateClassSpecification2() {
     // Arrange
     ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
-    classSpecificationElement.addConfiguredField(new MemberSpecificationElement());
+
+    ClassSpecificationElement classSpecificationElement2 = new ClassSpecificationElement();
+    classSpecificationElement2.setType("!interface");
 
     // Act
     ClassSpecification actualCreateClassSpecificationResult = classSpecificationElement
-        .createClassSpecification(new ClassSpecificationElement());
+        .createClassSpecification(classSpecificationElement2);
 
     // Assert
     assertNull(actualCreateClassSpecificationResult.annotationType);
     assertNull(actualCreateClassSpecificationResult.className);
-    assertNull(actualCreateClassSpecificationResult.comments);
     assertNull(actualCreateClassSpecificationResult.extendsAnnotationType);
     assertNull(actualCreateClassSpecificationResult.extendsClassName);
-    assertNull(actualCreateClassSpecificationResult.memberComments);
-    List<MemberSpecification> memberSpecificationList = actualCreateClassSpecificationResult.fieldSpecifications;
-    assertEquals(1, memberSpecificationList.size());
-    MemberSpecification getResult = memberSpecificationList.get(0);
-    assertNull(getResult.annotationType);
-    assertNull(getResult.descriptor);
-    assertNull(getResult.name);
-    assertNull(getResult.attributeNames);
-    assertNull(actualCreateClassSpecificationResult.attributeNames);
-    assertNull(actualCreateClassSpecificationResult.methodSpecifications);
     assertEquals(0, actualCreateClassSpecificationResult.requiredSetAccessFlags);
-    assertEquals(0, actualCreateClassSpecificationResult.requiredUnsetAccessFlags);
-    assertEquals(0, getResult.requiredSetAccessFlags);
-    assertEquals(0, getResult.requiredUnsetAccessFlags);
+    assertEquals(512, actualCreateClassSpecificationResult.requiredUnsetAccessFlags);
   }
 
   /**
-   * Method under test:
-   * {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
+   * Test {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}.
+   * <ul>
+   *   <li>Given {@code Access}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
    */
   @Test
-  void testCreateClassSpecification3() {
-    // Arrange
-    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
-    classSpecificationElement.addConfiguredMethod(new MemberSpecificationElement());
-
-    // Act
-    ClassSpecification actualCreateClassSpecificationResult = classSpecificationElement
-        .createClassSpecification(new ClassSpecificationElement());
-
-    // Assert
-    assertNull(actualCreateClassSpecificationResult.annotationType);
-    assertNull(actualCreateClassSpecificationResult.className);
-    assertNull(actualCreateClassSpecificationResult.comments);
-    assertNull(actualCreateClassSpecificationResult.extendsAnnotationType);
-    assertNull(actualCreateClassSpecificationResult.extendsClassName);
-    assertNull(actualCreateClassSpecificationResult.memberComments);
-    List<MemberSpecification> memberSpecificationList = actualCreateClassSpecificationResult.methodSpecifications;
-    assertEquals(1, memberSpecificationList.size());
-    MemberSpecification getResult = memberSpecificationList.get(0);
-    assertNull(getResult.annotationType);
-    assertNull(getResult.descriptor);
-    assertNull(getResult.name);
-    assertNull(getResult.attributeNames);
-    assertNull(actualCreateClassSpecificationResult.attributeNames);
-    assertNull(actualCreateClassSpecificationResult.fieldSpecifications);
-    assertEquals(0, actualCreateClassSpecificationResult.requiredSetAccessFlags);
-    assertEquals(0, actualCreateClassSpecificationResult.requiredUnsetAccessFlags);
-    assertEquals(0, getResult.requiredSetAccessFlags);
-    assertEquals(0, getResult.requiredUnsetAccessFlags);
-  }
-
-  /**
-   * Method under test:
-   * {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
-   */
-  @Test
-  void testCreateClassSpecification4() {
+  @DisplayName("Test createClassSpecification(ClassSpecificationElement); given 'Access'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "ClassSpecification ClassSpecificationElement.createClassSpecification(ClassSpecificationElement)"})
+  void testCreateClassSpecification_givenAccess() {
     // Arrange
     ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
 
@@ -955,118 +966,188 @@ class ClassSpecificationElementDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
+   * Test {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}.
+   * <ul>
+   *   <li>Given {@code *}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
    */
   @Test
-  void testCreateClassSpecification5() {
+  @DisplayName("Test createClassSpecification(ClassSpecificationElement); given '*'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "ClassSpecification ClassSpecificationElement.createClassSpecification(ClassSpecificationElement)"})
+  void testCreateClassSpecification_givenAsterisk() {
     // Arrange
     ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
 
     ClassSpecificationElement classSpecificationElement2 = new ClassSpecificationElement();
-    classSpecificationElement2.setAnnotation("Annotation");
+    classSpecificationElement2.setName("*");
 
     // Act
     ClassSpecification actualCreateClassSpecificationResult = classSpecificationElement
         .createClassSpecification(classSpecificationElement2);
 
     // Assert
-    assertEquals("LAnnotation;", actualCreateClassSpecificationResult.annotationType);
-    assertNull(actualCreateClassSpecificationResult.className);
-    assertNull(actualCreateClassSpecificationResult.comments);
-    assertNull(actualCreateClassSpecificationResult.extendsAnnotationType);
-    assertNull(actualCreateClassSpecificationResult.extendsClassName);
-    assertNull(actualCreateClassSpecificationResult.memberComments);
-    assertNull(actualCreateClassSpecificationResult.attributeNames);
-    assertNull(actualCreateClassSpecificationResult.fieldSpecifications);
-    assertNull(actualCreateClassSpecificationResult.methodSpecifications);
-    assertEquals(0, actualCreateClassSpecificationResult.requiredSetAccessFlags);
-    assertEquals(0, actualCreateClassSpecificationResult.requiredUnsetAccessFlags);
-  }
-
-  /**
-   * Method under test:
-   * {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
-   */
-  @Test
-  void testCreateClassSpecification6() {
-    // Arrange
-    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
-
-    ClassSpecificationElement classSpecificationElement2 = new ClassSpecificationElement();
-    classSpecificationElement2.setType("Type");
-
-    // Act and Assert
-    assertThrows(BuildException.class,
-        () -> classSpecificationElement.createClassSpecification(classSpecificationElement2));
-  }
-
-  /**
-   * Method under test:
-   * {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
-   */
-  @Test
-  void testCreateClassSpecification7() {
-    // Arrange
-    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
-
-    ClassSpecificationElement classSpecificationElement2 = new ClassSpecificationElement();
-    classSpecificationElement2.setName("Name");
-
-    // Act
-    ClassSpecification actualCreateClassSpecificationResult = classSpecificationElement
-        .createClassSpecification(classSpecificationElement2);
-
-    // Assert
-    assertEquals("Name", actualCreateClassSpecificationResult.className);
-    assertNull(actualCreateClassSpecificationResult.annotationType);
-    assertNull(actualCreateClassSpecificationResult.comments);
-    assertNull(actualCreateClassSpecificationResult.extendsAnnotationType);
-    assertNull(actualCreateClassSpecificationResult.extendsClassName);
-    assertNull(actualCreateClassSpecificationResult.memberComments);
-    assertNull(actualCreateClassSpecificationResult.attributeNames);
-    assertNull(actualCreateClassSpecificationResult.fieldSpecifications);
-    assertNull(actualCreateClassSpecificationResult.methodSpecifications);
-    assertEquals(0, actualCreateClassSpecificationResult.requiredSetAccessFlags);
-    assertEquals(0, actualCreateClassSpecificationResult.requiredUnsetAccessFlags);
-  }
-
-  /**
-   * Method under test:
-   * {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
-   */
-  @Test
-  void testCreateClassSpecification8() {
-    // Arrange
-    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
-
-    ClassSpecificationElement classSpecificationElement2 = new ClassSpecificationElement();
-    classSpecificationElement2.setExtendsannotation("Extends Annotation");
-
-    // Act
-    ClassSpecification actualCreateClassSpecificationResult = classSpecificationElement
-        .createClassSpecification(classSpecificationElement2);
-
-    // Assert
-    assertEquals("LExtends Annotation;", actualCreateClassSpecificationResult.extendsAnnotationType);
     assertNull(actualCreateClassSpecificationResult.annotationType);
     assertNull(actualCreateClassSpecificationResult.className);
-    assertNull(actualCreateClassSpecificationResult.comments);
+    assertNull(actualCreateClassSpecificationResult.extendsAnnotationType);
     assertNull(actualCreateClassSpecificationResult.extendsClassName);
-    assertNull(actualCreateClassSpecificationResult.memberComments);
-    assertNull(actualCreateClassSpecificationResult.attributeNames);
-    assertNull(actualCreateClassSpecificationResult.fieldSpecifications);
-    assertNull(actualCreateClassSpecificationResult.methodSpecifications);
     assertEquals(0, actualCreateClassSpecificationResult.requiredSetAccessFlags);
     assertEquals(0, actualCreateClassSpecificationResult.requiredUnsetAccessFlags);
   }
 
   /**
-   * Method under test:
-   * {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
+   * Test {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}.
+   * <ul>
+   *   <li>Given {@code class}.</li>
+   *   <li>When {@link ClassSpecificationElement} (default constructor) Type is {@code class}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
    */
   @Test
-  void testCreateClassSpecification9() {
+  @DisplayName("Test createClassSpecification(ClassSpecificationElement); given 'class'; when ClassSpecificationElement (default constructor) Type is 'class'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "ClassSpecification ClassSpecificationElement.createClassSpecification(ClassSpecificationElement)"})
+  void testCreateClassSpecification_givenClass_whenClassSpecificationElementTypeIsClass() {
+    // Arrange
+    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
+
+    ClassSpecificationElement classSpecificationElement2 = new ClassSpecificationElement();
+    classSpecificationElement2.setType("class");
+
+    // Act
+    ClassSpecification actualCreateClassSpecificationResult = classSpecificationElement
+        .createClassSpecification(classSpecificationElement2);
+
+    // Assert
+    assertNull(actualCreateClassSpecificationResult.annotationType);
+    assertNull(actualCreateClassSpecificationResult.className);
+    assertNull(actualCreateClassSpecificationResult.extendsAnnotationType);
+    assertNull(actualCreateClassSpecificationResult.extendsClassName);
+    assertEquals(0, actualCreateClassSpecificationResult.requiredSetAccessFlags);
+    assertEquals(0, actualCreateClassSpecificationResult.requiredUnsetAccessFlags);
+  }
+
+  /**
+   * Test {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}.
+   * <ul>
+   *   <li>Given {@code ,}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
+   */
+  @Test
+  @DisplayName("Test createClassSpecification(ClassSpecificationElement); given ','")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "ClassSpecification ClassSpecificationElement.createClassSpecification(ClassSpecificationElement)"})
+  void testCreateClassSpecification_givenComma() {
+    // Arrange
+    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
+
+    ClassSpecificationElement classSpecificationElement2 = new ClassSpecificationElement();
+    classSpecificationElement2.setAccess(" ,");
+
+    // Act
+    ClassSpecification actualCreateClassSpecificationResult = classSpecificationElement
+        .createClassSpecification(classSpecificationElement2);
+
+    // Assert
+    assertNull(actualCreateClassSpecificationResult.annotationType);
+    assertNull(actualCreateClassSpecificationResult.className);
+    assertNull(actualCreateClassSpecificationResult.extendsAnnotationType);
+    assertNull(actualCreateClassSpecificationResult.extendsClassName);
+    assertEquals(0, actualCreateClassSpecificationResult.requiredSetAccessFlags);
+    assertEquals(0, actualCreateClassSpecificationResult.requiredUnsetAccessFlags);
+  }
+
+  /**
+   * Test {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}.
+   * <ul>
+   *   <li>Given {@code enum}.</li>
+   *   <li>Then return {@link ClassSpecification#requiredSetAccessFlags} is {@code 16384}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
+   */
+  @Test
+  @DisplayName("Test createClassSpecification(ClassSpecificationElement); given 'enum'; then return requiredSetAccessFlags is '16384'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "ClassSpecification ClassSpecificationElement.createClassSpecification(ClassSpecificationElement)"})
+  void testCreateClassSpecification_givenEnum_thenReturnRequiredSetAccessFlagsIs16384() {
+    // Arrange
+    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
+
+    ClassSpecificationElement classSpecificationElement2 = new ClassSpecificationElement();
+    classSpecificationElement2.setType("enum");
+
+    // Act
+    ClassSpecification actualCreateClassSpecificationResult = classSpecificationElement
+        .createClassSpecification(classSpecificationElement2);
+
+    // Assert
+    assertNull(actualCreateClassSpecificationResult.annotationType);
+    assertNull(actualCreateClassSpecificationResult.className);
+    assertNull(actualCreateClassSpecificationResult.extendsAnnotationType);
+    assertNull(actualCreateClassSpecificationResult.extendsClassName);
+    assertEquals(0, actualCreateClassSpecificationResult.requiredUnsetAccessFlags);
+    assertEquals(16384, actualCreateClassSpecificationResult.requiredSetAccessFlags);
+  }
+
+  /**
+   * Test {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}.
+   * <ul>
+   *   <li>Given {@code !enum}.</li>
+   *   <li>Then return {@link ClassSpecification#requiredUnsetAccessFlags} is {@code 16384}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
+   */
+  @Test
+  @DisplayName("Test createClassSpecification(ClassSpecificationElement); given '!enum'; then return requiredUnsetAccessFlags is '16384'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "ClassSpecification ClassSpecificationElement.createClassSpecification(ClassSpecificationElement)"})
+  void testCreateClassSpecification_givenEnum_thenReturnRequiredUnsetAccessFlagsIs16384() {
+    // Arrange
+    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
+
+    ClassSpecificationElement classSpecificationElement2 = new ClassSpecificationElement();
+    classSpecificationElement2.setType("!enum");
+
+    // Act
+    ClassSpecification actualCreateClassSpecificationResult = classSpecificationElement
+        .createClassSpecification(classSpecificationElement2);
+
+    // Assert
+    assertNull(actualCreateClassSpecificationResult.annotationType);
+    assertNull(actualCreateClassSpecificationResult.className);
+    assertNull(actualCreateClassSpecificationResult.extendsAnnotationType);
+    assertNull(actualCreateClassSpecificationResult.extendsClassName);
+    assertEquals(0, actualCreateClassSpecificationResult.requiredSetAccessFlags);
+    assertEquals(16384, actualCreateClassSpecificationResult.requiredUnsetAccessFlags);
+  }
+
+  /**
+   * Test {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}.
+   * <ul>
+   *   <li>Given {@code Extends}.</li>
+   *   <li>Then return {@link ClassSpecification#extendsClassName} is {@code Extends}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
+   */
+  @Test
+  @DisplayName("Test createClassSpecification(ClassSpecificationElement); given 'Extends'; then return extendsClassName is 'Extends'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "ClassSpecification ClassSpecificationElement.createClassSpecification(ClassSpecificationElement)"})
+  void testCreateClassSpecification_givenExtends_thenReturnExtendsClassNameIsExtends() {
     // Arrange
     ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
 
@@ -1081,99 +1162,26 @@ class ClassSpecificationElementDiffblueTest {
     assertEquals("Extends ", actualCreateClassSpecificationResult.extendsClassName);
     assertNull(actualCreateClassSpecificationResult.annotationType);
     assertNull(actualCreateClassSpecificationResult.className);
-    assertNull(actualCreateClassSpecificationResult.comments);
     assertNull(actualCreateClassSpecificationResult.extendsAnnotationType);
-    assertNull(actualCreateClassSpecificationResult.memberComments);
-    assertNull(actualCreateClassSpecificationResult.attributeNames);
-    assertNull(actualCreateClassSpecificationResult.fieldSpecifications);
-    assertNull(actualCreateClassSpecificationResult.methodSpecifications);
     assertEquals(0, actualCreateClassSpecificationResult.requiredSetAccessFlags);
     assertEquals(0, actualCreateClassSpecificationResult.requiredUnsetAccessFlags);
   }
 
   /**
-   * Method under test:
-   * {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
+   * Test {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}.
+   * <ul>
+   *   <li>Given {@code final}.</li>
+   *   <li>Then return {@link ClassSpecification#requiredSetAccessFlags} is {@link Short#SIZE}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
    */
   @Test
-  void testCreateClassSpecification10() {
-    // Arrange
-    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
-
-    ClassSpecificationElement classSpecificationElement2 = new ClassSpecificationElement();
-    classSpecificationElement2.setAccess(" ,");
-
-    // Act
-    ClassSpecification actualCreateClassSpecificationResult = classSpecificationElement
-        .createClassSpecification(classSpecificationElement2);
-
-    // Assert
-    assertNull(actualCreateClassSpecificationResult.annotationType);
-    assertNull(actualCreateClassSpecificationResult.className);
-    assertNull(actualCreateClassSpecificationResult.comments);
-    assertNull(actualCreateClassSpecificationResult.extendsAnnotationType);
-    assertNull(actualCreateClassSpecificationResult.extendsClassName);
-    assertNull(actualCreateClassSpecificationResult.memberComments);
-    assertNull(actualCreateClassSpecificationResult.attributeNames);
-    assertNull(actualCreateClassSpecificationResult.fieldSpecifications);
-    assertNull(actualCreateClassSpecificationResult.methodSpecifications);
-    assertEquals(0, actualCreateClassSpecificationResult.requiredSetAccessFlags);
-    assertEquals(0, actualCreateClassSpecificationResult.requiredUnsetAccessFlags);
-  }
-
-  /**
-   * Method under test:
-   * {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
-   */
-  @Test
-  void testCreateClassSpecification11() {
-    // Arrange
-    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
-
-    ClassSpecificationElement classSpecificationElement2 = new ClassSpecificationElement();
-    classSpecificationElement2.setAccess("!");
-
-    // Act and Assert
-    assertThrows(BuildException.class,
-        () -> classSpecificationElement.createClassSpecification(classSpecificationElement2));
-  }
-
-  /**
-   * Method under test:
-   * {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
-   */
-  @Test
-  void testCreateClassSpecification12() {
-    // Arrange
-    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
-
-    ClassSpecificationElement classSpecificationElement2 = new ClassSpecificationElement();
-    classSpecificationElement2.setAccess("public");
-
-    // Act
-    ClassSpecification actualCreateClassSpecificationResult = classSpecificationElement
-        .createClassSpecification(classSpecificationElement2);
-
-    // Assert
-    assertNull(actualCreateClassSpecificationResult.annotationType);
-    assertNull(actualCreateClassSpecificationResult.className);
-    assertNull(actualCreateClassSpecificationResult.comments);
-    assertNull(actualCreateClassSpecificationResult.extendsAnnotationType);
-    assertNull(actualCreateClassSpecificationResult.extendsClassName);
-    assertNull(actualCreateClassSpecificationResult.memberComments);
-    assertNull(actualCreateClassSpecificationResult.attributeNames);
-    assertNull(actualCreateClassSpecificationResult.fieldSpecifications);
-    assertNull(actualCreateClassSpecificationResult.methodSpecifications);
-    assertEquals(0, actualCreateClassSpecificationResult.requiredUnsetAccessFlags);
-    assertEquals(1, actualCreateClassSpecificationResult.requiredSetAccessFlags);
-  }
-
-  /**
-   * Method under test:
-   * {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
-   */
-  @Test
-  void testCreateClassSpecification13() {
+  @DisplayName("Test createClassSpecification(ClassSpecificationElement); given 'final'; then return requiredSetAccessFlags is SIZE")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "ClassSpecification ClassSpecificationElement.createClassSpecification(ClassSpecificationElement)"})
+  void testCreateClassSpecification_givenFinal_thenReturnRequiredSetAccessFlagsIsSize() {
     // Arrange
     ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
 
@@ -1187,23 +1195,248 @@ class ClassSpecificationElementDiffblueTest {
     // Assert
     assertNull(actualCreateClassSpecificationResult.annotationType);
     assertNull(actualCreateClassSpecificationResult.className);
-    assertNull(actualCreateClassSpecificationResult.comments);
     assertNull(actualCreateClassSpecificationResult.extendsAnnotationType);
     assertNull(actualCreateClassSpecificationResult.extendsClassName);
-    assertNull(actualCreateClassSpecificationResult.memberComments);
-    assertNull(actualCreateClassSpecificationResult.attributeNames);
-    assertNull(actualCreateClassSpecificationResult.fieldSpecifications);
-    assertNull(actualCreateClassSpecificationResult.methodSpecifications);
     assertEquals(0, actualCreateClassSpecificationResult.requiredUnsetAccessFlags);
     assertEquals(Short.SIZE, actualCreateClassSpecificationResult.requiredSetAccessFlags);
   }
 
   /**
-   * Method under test:
-   * {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
+   * Test {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}.
+   * <ul>
+   *   <li>Given {@code Name}.</li>
+   *   <li>Then return {@link ClassSpecification#className} is {@code Name}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
    */
   @Test
-  void testCreateClassSpecification14() {
+  @DisplayName("Test createClassSpecification(ClassSpecificationElement); given 'Name'; then return className is 'Name'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "ClassSpecification ClassSpecificationElement.createClassSpecification(ClassSpecificationElement)"})
+  void testCreateClassSpecification_givenName_thenReturnClassNameIsName() {
+    // Arrange
+    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
+
+    ClassSpecificationElement classSpecificationElement2 = new ClassSpecificationElement();
+    classSpecificationElement2.setName("Name");
+
+    // Act
+    ClassSpecification actualCreateClassSpecificationResult = classSpecificationElement
+        .createClassSpecification(classSpecificationElement2);
+
+    // Assert
+    assertEquals("Name", actualCreateClassSpecificationResult.className);
+    assertNull(actualCreateClassSpecificationResult.annotationType);
+    assertNull(actualCreateClassSpecificationResult.extendsAnnotationType);
+    assertNull(actualCreateClassSpecificationResult.extendsClassName);
+    assertEquals(0, actualCreateClassSpecificationResult.requiredSetAccessFlags);
+    assertEquals(0, actualCreateClassSpecificationResult.requiredUnsetAccessFlags);
+  }
+
+  /**
+   * Test {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}.
+   * <ul>
+   *   <li>Given {@code public}.</li>
+   *   <li>Then return {@link ClassSpecification#requiredSetAccessFlags} is one.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
+   */
+  @Test
+  @DisplayName("Test createClassSpecification(ClassSpecificationElement); given 'public'; then return requiredSetAccessFlags is one")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "ClassSpecification ClassSpecificationElement.createClassSpecification(ClassSpecificationElement)"})
+  void testCreateClassSpecification_givenPublic_thenReturnRequiredSetAccessFlagsIsOne() {
+    // Arrange
+    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
+
+    ClassSpecificationElement classSpecificationElement2 = new ClassSpecificationElement();
+    classSpecificationElement2.setAccess("public");
+
+    // Act
+    ClassSpecification actualCreateClassSpecificationResult = classSpecificationElement
+        .createClassSpecification(classSpecificationElement2);
+
+    // Assert
+    assertNull(actualCreateClassSpecificationResult.annotationType);
+    assertNull(actualCreateClassSpecificationResult.className);
+    assertNull(actualCreateClassSpecificationResult.extendsAnnotationType);
+    assertNull(actualCreateClassSpecificationResult.extendsClassName);
+    assertEquals(0, actualCreateClassSpecificationResult.requiredUnsetAccessFlags);
+    assertEquals(1, actualCreateClassSpecificationResult.requiredSetAccessFlags);
+  }
+
+  /**
+   * Test {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}.
+   * <ul>
+   *   <li>Given {@code Type}.</li>
+   *   <li>When {@link ClassSpecificationElement} (default constructor) Type is {@code Type}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
+   */
+  @Test
+  @DisplayName("Test createClassSpecification(ClassSpecificationElement); given 'Type'; when ClassSpecificationElement (default constructor) Type is 'Type'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "ClassSpecification ClassSpecificationElement.createClassSpecification(ClassSpecificationElement)"})
+  void testCreateClassSpecification_givenType_whenClassSpecificationElementTypeIsType() {
+    // Arrange
+    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
+
+    ClassSpecificationElement classSpecificationElement2 = new ClassSpecificationElement();
+    classSpecificationElement2.setType("Type");
+
+    // Act and Assert
+    assertThrows(BuildException.class,
+        () -> classSpecificationElement.createClassSpecification(classSpecificationElement2));
+  }
+
+  /**
+   * Test {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}.
+   * <ul>
+   *   <li>Then return {@link ClassSpecification#annotationType} is {@code LAnnotation;}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
+   */
+  @Test
+  @DisplayName("Test createClassSpecification(ClassSpecificationElement); then return annotationType is 'LAnnotation;'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "ClassSpecification ClassSpecificationElement.createClassSpecification(ClassSpecificationElement)"})
+  void testCreateClassSpecification_thenReturnAnnotationTypeIsLAnnotation() {
+    // Arrange
+    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
+
+    ClassSpecificationElement classSpecificationElement2 = new ClassSpecificationElement();
+    classSpecificationElement2.setAnnotation("Annotation");
+
+    // Act
+    ClassSpecification actualCreateClassSpecificationResult = classSpecificationElement
+        .createClassSpecification(classSpecificationElement2);
+
+    // Assert
+    assertEquals("LAnnotation;", actualCreateClassSpecificationResult.annotationType);
+    assertNull(actualCreateClassSpecificationResult.className);
+    assertNull(actualCreateClassSpecificationResult.extendsAnnotationType);
+    assertNull(actualCreateClassSpecificationResult.extendsClassName);
+    assertEquals(0, actualCreateClassSpecificationResult.requiredSetAccessFlags);
+    assertEquals(0, actualCreateClassSpecificationResult.requiredUnsetAccessFlags);
+  }
+
+  /**
+   * Test {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}.
+   * <ul>
+   *   <li>Then return {@link ClassSpecification#extendsAnnotationType} is {@code LExtends Annotation;}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
+   */
+  @Test
+  @DisplayName("Test createClassSpecification(ClassSpecificationElement); then return extendsAnnotationType is 'LExtends Annotation;'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "ClassSpecification ClassSpecificationElement.createClassSpecification(ClassSpecificationElement)"})
+  void testCreateClassSpecification_thenReturnExtendsAnnotationTypeIsLExtendsAnnotation() {
+    // Arrange
+    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
+
+    ClassSpecificationElement classSpecificationElement2 = new ClassSpecificationElement();
+    classSpecificationElement2.setExtendsannotation("Extends Annotation");
+
+    // Act
+    ClassSpecification actualCreateClassSpecificationResult = classSpecificationElement
+        .createClassSpecification(classSpecificationElement2);
+
+    // Assert
+    assertEquals("LExtends Annotation;", actualCreateClassSpecificationResult.extendsAnnotationType);
+    assertNull(actualCreateClassSpecificationResult.annotationType);
+    assertNull(actualCreateClassSpecificationResult.className);
+    assertNull(actualCreateClassSpecificationResult.extendsClassName);
+    assertEquals(0, actualCreateClassSpecificationResult.requiredSetAccessFlags);
+    assertEquals(0, actualCreateClassSpecificationResult.requiredUnsetAccessFlags);
+  }
+
+  /**
+   * Test {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}.
+   * <ul>
+   *   <li>Then return {@link ClassSpecification#fieldSpecifications} size is one.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
+   */
+  @Test
+  @DisplayName("Test createClassSpecification(ClassSpecificationElement); then return fieldSpecifications size is one")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "ClassSpecification ClassSpecificationElement.createClassSpecification(ClassSpecificationElement)"})
+  void testCreateClassSpecification_thenReturnFieldSpecificationsSizeIsOne() {
+    // Arrange
+    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
+    classSpecificationElement.addConfiguredField(new MemberSpecificationElement());
+
+    // Act and Assert
+    List<MemberSpecification> memberSpecificationList = classSpecificationElement
+        .createClassSpecification(new ClassSpecificationElement()).fieldSpecifications;
+    assertEquals(1, memberSpecificationList.size());
+    MemberSpecification getResult = memberSpecificationList.get(0);
+    assertNull(getResult.annotationType);
+    assertNull(getResult.descriptor);
+    assertNull(getResult.name);
+    assertNull(getResult.attributeNames);
+    assertEquals(0, getResult.requiredSetAccessFlags);
+    assertEquals(0, getResult.requiredUnsetAccessFlags);
+  }
+
+  /**
+   * Test {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}.
+   * <ul>
+   *   <li>Then return {@link ClassSpecification#methodSpecifications} size is one.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
+   */
+  @Test
+  @DisplayName("Test createClassSpecification(ClassSpecificationElement); then return methodSpecifications size is one")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "ClassSpecification ClassSpecificationElement.createClassSpecification(ClassSpecificationElement)"})
+  void testCreateClassSpecification_thenReturnMethodSpecificationsSizeIsOne() {
+    // Arrange
+    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
+    classSpecificationElement.addConfiguredMethod(new MemberSpecificationElement());
+
+    // Act and Assert
+    List<MemberSpecification> memberSpecificationList = classSpecificationElement
+        .createClassSpecification(new ClassSpecificationElement()).methodSpecifications;
+    assertEquals(1, memberSpecificationList.size());
+    MemberSpecification getResult = memberSpecificationList.get(0);
+    assertNull(getResult.annotationType);
+    assertNull(getResult.descriptor);
+    assertNull(getResult.name);
+    assertNull(getResult.attributeNames);
+    assertEquals(0, getResult.requiredSetAccessFlags);
+    assertEquals(0, getResult.requiredUnsetAccessFlags);
+  }
+
+  /**
+   * Test {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}.
+   * <ul>
+   *   <li>Then return {@link ClassSpecification#requiredSetAccessFlags} is {@code 1024}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
+   */
+  @Test
+  @DisplayName("Test createClassSpecification(ClassSpecificationElement); then return requiredSetAccessFlags is '1024'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "ClassSpecification ClassSpecificationElement.createClassSpecification(ClassSpecificationElement)"})
+  void testCreateClassSpecification_thenReturnRequiredSetAccessFlagsIs1024() {
     // Arrange
     ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
 
@@ -1217,23 +1450,26 @@ class ClassSpecificationElementDiffblueTest {
     // Assert
     assertNull(actualCreateClassSpecificationResult.annotationType);
     assertNull(actualCreateClassSpecificationResult.className);
-    assertNull(actualCreateClassSpecificationResult.comments);
     assertNull(actualCreateClassSpecificationResult.extendsAnnotationType);
     assertNull(actualCreateClassSpecificationResult.extendsClassName);
-    assertNull(actualCreateClassSpecificationResult.memberComments);
-    assertNull(actualCreateClassSpecificationResult.attributeNames);
-    assertNull(actualCreateClassSpecificationResult.fieldSpecifications);
-    assertNull(actualCreateClassSpecificationResult.methodSpecifications);
     assertEquals(0, actualCreateClassSpecificationResult.requiredUnsetAccessFlags);
     assertEquals(1024, actualCreateClassSpecificationResult.requiredSetAccessFlags);
   }
 
   /**
-   * Method under test:
-   * {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
+   * Test {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}.
+   * <ul>
+   *   <li>Then return {@link ClassSpecification#requiredSetAccessFlags} is {@code 4096}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
    */
   @Test
-  void testCreateClassSpecification15() {
+  @DisplayName("Test createClassSpecification(ClassSpecificationElement); then return requiredSetAccessFlags is '4096'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "ClassSpecification ClassSpecificationElement.createClassSpecification(ClassSpecificationElement)"})
+  void testCreateClassSpecification_thenReturnRequiredSetAccessFlagsIs4096() {
     // Arrange
     ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
 
@@ -1247,23 +1483,26 @@ class ClassSpecificationElementDiffblueTest {
     // Assert
     assertNull(actualCreateClassSpecificationResult.annotationType);
     assertNull(actualCreateClassSpecificationResult.className);
-    assertNull(actualCreateClassSpecificationResult.comments);
     assertNull(actualCreateClassSpecificationResult.extendsAnnotationType);
     assertNull(actualCreateClassSpecificationResult.extendsClassName);
-    assertNull(actualCreateClassSpecificationResult.memberComments);
-    assertNull(actualCreateClassSpecificationResult.attributeNames);
-    assertNull(actualCreateClassSpecificationResult.fieldSpecifications);
-    assertNull(actualCreateClassSpecificationResult.methodSpecifications);
     assertEquals(0, actualCreateClassSpecificationResult.requiredUnsetAccessFlags);
     assertEquals(4096, actualCreateClassSpecificationResult.requiredSetAccessFlags);
   }
 
   /**
-   * Method under test:
-   * {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
+   * Test {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}.
+   * <ul>
+   *   <li>Then return {@link ClassSpecification#requiredSetAccessFlags} is {@code 8192}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
    */
   @Test
-  void testCreateClassSpecification16() {
+  @DisplayName("Test createClassSpecification(ClassSpecificationElement); then return requiredSetAccessFlags is '8192'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "ClassSpecification ClassSpecificationElement.createClassSpecification(ClassSpecificationElement)"})
+  void testCreateClassSpecification_thenReturnRequiredSetAccessFlagsIs8192() {
     // Arrange
     ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
 
@@ -1277,70 +1516,26 @@ class ClassSpecificationElementDiffblueTest {
     // Assert
     assertNull(actualCreateClassSpecificationResult.annotationType);
     assertNull(actualCreateClassSpecificationResult.className);
-    assertNull(actualCreateClassSpecificationResult.comments);
     assertNull(actualCreateClassSpecificationResult.extendsAnnotationType);
     assertNull(actualCreateClassSpecificationResult.extendsClassName);
-    assertNull(actualCreateClassSpecificationResult.memberComments);
-    assertNull(actualCreateClassSpecificationResult.attributeNames);
-    assertNull(actualCreateClassSpecificationResult.fieldSpecifications);
-    assertNull(actualCreateClassSpecificationResult.methodSpecifications);
     assertEquals(0, actualCreateClassSpecificationResult.requiredUnsetAccessFlags);
     assertEquals(8192, actualCreateClassSpecificationResult.requiredSetAccessFlags);
   }
 
   /**
-   * Method under test:
-   * {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
+   * Test {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}.
+   * <ul>
+   *   <li>Then return {@link ClassSpecification#requiredSetAccessFlags} is five hundred twelve.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
    */
   @Test
-  void testCreateClassSpecification17() {
-    // Arrange
-    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
-
-    ClassSpecificationElement classSpecificationElement2 = new ClassSpecificationElement();
-    classSpecificationElement2.setType("!");
-
-    // Act and Assert
-    assertThrows(BuildException.class,
-        () -> classSpecificationElement.createClassSpecification(classSpecificationElement2));
-  }
-
-  /**
-   * Method under test:
-   * {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
-   */
-  @Test
-  void testCreateClassSpecification18() {
-    // Arrange
-    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
-
-    ClassSpecificationElement classSpecificationElement2 = new ClassSpecificationElement();
-    classSpecificationElement2.setType("class");
-
-    // Act
-    ClassSpecification actualCreateClassSpecificationResult = classSpecificationElement
-        .createClassSpecification(classSpecificationElement2);
-
-    // Assert
-    assertNull(actualCreateClassSpecificationResult.annotationType);
-    assertNull(actualCreateClassSpecificationResult.className);
-    assertNull(actualCreateClassSpecificationResult.comments);
-    assertNull(actualCreateClassSpecificationResult.extendsAnnotationType);
-    assertNull(actualCreateClassSpecificationResult.extendsClassName);
-    assertNull(actualCreateClassSpecificationResult.memberComments);
-    assertNull(actualCreateClassSpecificationResult.attributeNames);
-    assertNull(actualCreateClassSpecificationResult.fieldSpecifications);
-    assertNull(actualCreateClassSpecificationResult.methodSpecifications);
-    assertEquals(0, actualCreateClassSpecificationResult.requiredSetAccessFlags);
-    assertEquals(0, actualCreateClassSpecificationResult.requiredUnsetAccessFlags);
-  }
-
-  /**
-   * Method under test:
-   * {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
-   */
-  @Test
-  void testCreateClassSpecification19() {
+  @DisplayName("Test createClassSpecification(ClassSpecificationElement); then return requiredSetAccessFlags is five hundred twelve")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "ClassSpecification ClassSpecificationElement.createClassSpecification(ClassSpecificationElement)"})
+  void testCreateClassSpecification_thenReturnRequiredSetAccessFlagsIsFiveHundredTwelve() {
     // Arrange
     ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
 
@@ -1354,143 +1549,80 @@ class ClassSpecificationElementDiffblueTest {
     // Assert
     assertNull(actualCreateClassSpecificationResult.annotationType);
     assertNull(actualCreateClassSpecificationResult.className);
-    assertNull(actualCreateClassSpecificationResult.comments);
     assertNull(actualCreateClassSpecificationResult.extendsAnnotationType);
     assertNull(actualCreateClassSpecificationResult.extendsClassName);
-    assertNull(actualCreateClassSpecificationResult.memberComments);
-    assertNull(actualCreateClassSpecificationResult.attributeNames);
-    assertNull(actualCreateClassSpecificationResult.fieldSpecifications);
-    assertNull(actualCreateClassSpecificationResult.methodSpecifications);
     assertEquals(0, actualCreateClassSpecificationResult.requiredUnsetAccessFlags);
     assertEquals(512, actualCreateClassSpecificationResult.requiredSetAccessFlags);
   }
 
   /**
-   * Method under test:
-   * {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
+   * Test {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}.
+   * <ul>
+   *   <li>When {@link ClassSpecificationElement} (default constructor).</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
    */
   @Test
-  void testCreateClassSpecification20() {
+  @DisplayName("Test createClassSpecification(ClassSpecificationElement); when ClassSpecificationElement (default constructor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "ClassSpecification ClassSpecificationElement.createClassSpecification(ClassSpecificationElement)"})
+  void testCreateClassSpecification_whenClassSpecificationElement() {
     // Arrange
     ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
 
-    ClassSpecificationElement classSpecificationElement2 = new ClassSpecificationElement();
-    classSpecificationElement2.setType("!interface");
-
     // Act
     ClassSpecification actualCreateClassSpecificationResult = classSpecificationElement
-        .createClassSpecification(classSpecificationElement2);
+        .createClassSpecification(new ClassSpecificationElement());
 
     // Assert
     assertNull(actualCreateClassSpecificationResult.annotationType);
     assertNull(actualCreateClassSpecificationResult.className);
-    assertNull(actualCreateClassSpecificationResult.comments);
     assertNull(actualCreateClassSpecificationResult.extendsAnnotationType);
     assertNull(actualCreateClassSpecificationResult.extendsClassName);
-    assertNull(actualCreateClassSpecificationResult.memberComments);
-    assertNull(actualCreateClassSpecificationResult.attributeNames);
-    assertNull(actualCreateClassSpecificationResult.fieldSpecifications);
-    assertNull(actualCreateClassSpecificationResult.methodSpecifications);
-    assertEquals(0, actualCreateClassSpecificationResult.requiredSetAccessFlags);
-    assertEquals(512, actualCreateClassSpecificationResult.requiredUnsetAccessFlags);
-  }
-
-  /**
-   * Method under test:
-   * {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
-   */
-  @Test
-  void testCreateClassSpecification21() {
-    // Arrange
-    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
-
-    ClassSpecificationElement classSpecificationElement2 = new ClassSpecificationElement();
-    classSpecificationElement2.setType("enum");
-
-    // Act
-    ClassSpecification actualCreateClassSpecificationResult = classSpecificationElement
-        .createClassSpecification(classSpecificationElement2);
-
-    // Assert
-    assertNull(actualCreateClassSpecificationResult.annotationType);
-    assertNull(actualCreateClassSpecificationResult.className);
-    assertNull(actualCreateClassSpecificationResult.comments);
-    assertNull(actualCreateClassSpecificationResult.extendsAnnotationType);
-    assertNull(actualCreateClassSpecificationResult.extendsClassName);
-    assertNull(actualCreateClassSpecificationResult.memberComments);
-    assertNull(actualCreateClassSpecificationResult.attributeNames);
-    assertNull(actualCreateClassSpecificationResult.fieldSpecifications);
-    assertNull(actualCreateClassSpecificationResult.methodSpecifications);
-    assertEquals(0, actualCreateClassSpecificationResult.requiredUnsetAccessFlags);
-    assertEquals(16384, actualCreateClassSpecificationResult.requiredSetAccessFlags);
-  }
-
-  /**
-   * Method under test:
-   * {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
-   */
-  @Test
-  void testCreateClassSpecification22() {
-    // Arrange
-    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
-
-    ClassSpecificationElement classSpecificationElement2 = new ClassSpecificationElement();
-    classSpecificationElement2.setType("!enum");
-
-    // Act
-    ClassSpecification actualCreateClassSpecificationResult = classSpecificationElement
-        .createClassSpecification(classSpecificationElement2);
-
-    // Assert
-    assertNull(actualCreateClassSpecificationResult.annotationType);
-    assertNull(actualCreateClassSpecificationResult.className);
-    assertNull(actualCreateClassSpecificationResult.comments);
-    assertNull(actualCreateClassSpecificationResult.extendsAnnotationType);
-    assertNull(actualCreateClassSpecificationResult.extendsClassName);
-    assertNull(actualCreateClassSpecificationResult.memberComments);
-    assertNull(actualCreateClassSpecificationResult.attributeNames);
-    assertNull(actualCreateClassSpecificationResult.fieldSpecifications);
-    assertNull(actualCreateClassSpecificationResult.methodSpecifications);
-    assertEquals(0, actualCreateClassSpecificationResult.requiredSetAccessFlags);
-    assertEquals(16384, actualCreateClassSpecificationResult.requiredUnsetAccessFlags);
-  }
-
-  /**
-   * Method under test:
-   * {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
-   */
-  @Test
-  void testCreateClassSpecification23() {
-    // Arrange
-    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
-
-    ClassSpecificationElement classSpecificationElement2 = new ClassSpecificationElement();
-    classSpecificationElement2.setName("*");
-
-    // Act
-    ClassSpecification actualCreateClassSpecificationResult = classSpecificationElement
-        .createClassSpecification(classSpecificationElement2);
-
-    // Assert
-    assertNull(actualCreateClassSpecificationResult.annotationType);
-    assertNull(actualCreateClassSpecificationResult.className);
-    assertNull(actualCreateClassSpecificationResult.comments);
-    assertNull(actualCreateClassSpecificationResult.extendsAnnotationType);
-    assertNull(actualCreateClassSpecificationResult.extendsClassName);
-    assertNull(actualCreateClassSpecificationResult.memberComments);
-    assertNull(actualCreateClassSpecificationResult.attributeNames);
-    assertNull(actualCreateClassSpecificationResult.fieldSpecifications);
-    assertNull(actualCreateClassSpecificationResult.methodSpecifications);
     assertEquals(0, actualCreateClassSpecificationResult.requiredSetAccessFlags);
     assertEquals(0, actualCreateClassSpecificationResult.requiredUnsetAccessFlags);
   }
 
   /**
-   * Method under test:
-   * {@link ClassSpecificationElement#addConfiguredField(MemberSpecificationElement)}
+   * Test {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}.
+   * <ul>
+   *   <li>When {@link ClassSpecificationElement} (default constructor) Type is {@code !}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassSpecificationElement#createClassSpecification(ClassSpecificationElement)}
    */
   @Test
-  void testAddConfiguredField() {
+  @DisplayName("Test createClassSpecification(ClassSpecificationElement); when ClassSpecificationElement (default constructor) Type is '!'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "ClassSpecification ClassSpecificationElement.createClassSpecification(ClassSpecificationElement)"})
+  void testCreateClassSpecification_whenClassSpecificationElementTypeIsExclamationMark() {
+    // Arrange
+    ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
+
+    ClassSpecificationElement classSpecificationElement2 = new ClassSpecificationElement();
+    classSpecificationElement2.setType("!");
+
+    // Act and Assert
+    assertThrows(BuildException.class,
+        () -> classSpecificationElement.createClassSpecification(classSpecificationElement2));
+  }
+
+  /**
+   * Test {@link ClassSpecificationElement#addConfiguredField(MemberSpecificationElement)}.
+   * <ul>
+   *   <li>Then calls {@link MemberSpecificationElement#appendTo(List, boolean, boolean)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassSpecificationElement#addConfiguredField(MemberSpecificationElement)}
+   */
+  @Test
+  @DisplayName("Test addConfiguredField(MemberSpecificationElement); then calls appendTo(List, boolean, boolean)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ClassSpecificationElement.addConfiguredField(MemberSpecificationElement)"})
+  void testAddConfiguredField_thenCallsAppendTo() {
     // Arrange
     ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
     MemberSpecificationElement memberSpecificationElement = mock(MemberSpecificationElement.class);
@@ -1504,11 +1636,18 @@ class ClassSpecificationElementDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ClassSpecificationElement#addConfiguredMethod(MemberSpecificationElement)}
+   * Test {@link ClassSpecificationElement#addConfiguredMethod(MemberSpecificationElement)}.
+   * <ul>
+   *   <li>Then calls {@link MemberSpecificationElement#appendTo(List, boolean, boolean)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassSpecificationElement#addConfiguredMethod(MemberSpecificationElement)}
    */
   @Test
-  void testAddConfiguredMethod() {
+  @DisplayName("Test addConfiguredMethod(MemberSpecificationElement); then calls appendTo(List, boolean, boolean)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ClassSpecificationElement.addConfiguredMethod(MemberSpecificationElement)"})
+  void testAddConfiguredMethod_thenCallsAppendTo() {
     // Arrange
     ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
     MemberSpecificationElement memberSpecificationElement = mock(MemberSpecificationElement.class);
@@ -1522,11 +1661,18 @@ class ClassSpecificationElementDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ClassSpecificationElement#addConfiguredConstructor(MemberSpecificationElement)}
+   * Test {@link ClassSpecificationElement#addConfiguredConstructor(MemberSpecificationElement)}.
+   * <ul>
+   *   <li>Then calls {@link MemberSpecificationElement#appendTo(List, boolean, boolean)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ClassSpecificationElement#addConfiguredConstructor(MemberSpecificationElement)}
    */
   @Test
-  void testAddConfiguredConstructor() {
+  @DisplayName("Test addConfiguredConstructor(MemberSpecificationElement); then calls appendTo(List, boolean, boolean)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ClassSpecificationElement.addConfiguredConstructor(MemberSpecificationElement)"})
+  void testAddConfiguredConstructor_thenCallsAppendTo() {
     // Arrange
     ClassSpecificationElement classSpecificationElement = new ClassSpecificationElement();
     MemberSpecificationElement memberSpecificationElement = mock(MemberSpecificationElement.class);
@@ -1540,10 +1686,14 @@ class ClassSpecificationElementDiffblueTest {
   }
 
   /**
-   * Method under test: default or parameterless constructor of
-   * {@link ClassSpecificationElement}
+   * Test new {@link ClassSpecificationElement} (default constructor).
+   * <p>
+   * Method under test: default or parameterless constructor of {@link ClassSpecificationElement}
    */
   @Test
+  @DisplayName("Test new ClassSpecificationElement (default constructor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ClassSpecificationElement.<init>()"})
   void testNewClassSpecificationElement() {
     // Arrange and Act
     ClassSpecificationElement actualClassSpecificationElement = new ClassSpecificationElement();

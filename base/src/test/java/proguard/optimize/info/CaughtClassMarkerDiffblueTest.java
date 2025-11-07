@@ -2,58 +2,28 @@ package proguard.optimize.info;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import proguard.classfile.Clazz;
 import proguard.classfile.LibraryClass;
-import proguard.classfile.ProgramClass;
 
 class CaughtClassMarkerDiffblueTest {
   /**
-   * Method under test: {@link CaughtClassMarker#visitProgramClass(ProgramClass)}
-   */
-  @Test
-  void testVisitProgramClass() {
-    // Arrange
-    CaughtClassMarker caughtClassMarker = new CaughtClassMarker();
-    ProgramClass programClass = mock(ProgramClass.class);
-    when(programClass.getProcessingInfo()).thenReturn(new ProgramClassOptimizationInfo());
-
-    // Act
-    caughtClassMarker.visitProgramClass(programClass);
-
-    // Assert
-    verify(programClass).getProcessingInfo();
-  }
-
-  /**
-   * Method under test: {@link CaughtClassMarker#visitProgramClass(ProgramClass)}
-   */
-  @Test
-  void testVisitProgramClass2() {
-    // Arrange
-    CaughtClassMarker caughtClassMarker = new CaughtClassMarker();
-    ProgramClassOptimizationInfo programClassOptimizationInfo = mock(ProgramClassOptimizationInfo.class);
-    doNothing().when(programClassOptimizationInfo).setCaught();
-    ProgramClass programClass = mock(ProgramClass.class);
-    when(programClass.getProcessingInfo()).thenReturn(programClassOptimizationInfo);
-
-    // Act
-    caughtClassMarker.visitProgramClass(programClass);
-
-    // Assert
-    verify(programClassOptimizationInfo).setCaught();
-    verify(programClass).getProcessingInfo();
-  }
-
-  /**
+   * Test {@link CaughtClassMarker#isCaught(Clazz)}.
+   * <ul>
+   *   <li>Given {@link ClassOptimizationInfo} (default constructor).</li>
+   *   <li>Then return {@code true}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link CaughtClassMarker#isCaught(Clazz)}
    */
   @Test
-  void testIsCaught() {
+  @DisplayName("Test isCaught(Clazz); given ClassOptimizationInfo (default constructor); then return 'true'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean CaughtClassMarker.isCaught(Clazz)"})
+  void testIsCaught_givenClassOptimizationInfo_thenReturnTrue() {
     // Arrange
     LibraryClass clazz = new LibraryClass();
     clazz.setProcessingInfo(new ClassOptimizationInfo());
@@ -63,10 +33,19 @@ class CaughtClassMarkerDiffblueTest {
   }
 
   /**
+   * Test {@link CaughtClassMarker#isCaught(Clazz)}.
+   * <ul>
+   *   <li>Given {@link ProgramClassOptimizationInfo} (default constructor).</li>
+   *   <li>Then return {@code false}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link CaughtClassMarker#isCaught(Clazz)}
    */
   @Test
-  void testIsCaught2() {
+  @DisplayName("Test isCaught(Clazz); given ProgramClassOptimizationInfo (default constructor); then return 'false'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean CaughtClassMarker.isCaught(Clazz)"})
+  void testIsCaught_givenProgramClassOptimizationInfo_thenReturnFalse() {
     // Arrange
     LibraryClass clazz = new LibraryClass();
     clazz.setProcessingInfo(new ProgramClassOptimizationInfo());

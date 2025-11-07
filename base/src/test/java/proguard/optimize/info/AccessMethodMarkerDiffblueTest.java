@@ -9,21 +9,31 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.Clazz;
 import proguard.classfile.LibraryClass;
 import proguard.classfile.LibraryField;
+import proguard.classfile.LibraryMember;
 import proguard.classfile.LibraryMethod;
 import proguard.classfile.Member;
 import proguard.classfile.Method;
+import proguard.classfile.ProgramClass;
 import proguard.classfile.attribute.CodeAttribute;
-import proguard.classfile.attribute.visitor.AttributeVisitor;
 import proguard.classfile.constant.ClassConstant;
+import proguard.classfile.constant.Constant;
+import proguard.classfile.constant.DoubleConstant;
 import proguard.classfile.constant.DynamicConstant;
 import proguard.classfile.constant.FieldrefConstant;
+import proguard.classfile.constant.FloatConstant;
+import proguard.classfile.constant.IntegerConstant;
 import proguard.classfile.constant.InvokeDynamicConstant;
+import proguard.classfile.constant.LongConstant;
 import proguard.classfile.constant.MethodHandleConstant;
+import proguard.classfile.constant.MethodTypeConstant;
 import proguard.classfile.constant.RefConstant;
 import proguard.classfile.constant.StringConstant;
 import proguard.classfile.constant.visitor.ConstantVisitor;
@@ -33,54 +43,19 @@ import proguard.classfile.visitor.MemberVisitor;
 
 class AccessMethodMarkerDiffblueTest {
   /**
-   * Method under test:
-   * {@link AccessMethodMarker#visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction)}
+   * Test {@link AccessMethodMarker#visitStringConstant(Clazz, StringConstant)}.
+   * <ul>
+   *   <li>Given {@link LibraryClass} {@link LibraryClass#accept(ClassVisitor)} does nothing.</li>
+   *   <li>Then calls {@link LibraryClass#accept(ClassVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link AccessMethodMarker#visitStringConstant(Clazz, StringConstant)}
    */
   @Test
-  void testVisitConstantInstruction() {
-    // Arrange
-    AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
-    LibraryClass clazz = mock(LibraryClass.class);
-    doNothing().when(clazz).constantPoolEntryAccept(anyInt(), Mockito.<ConstantVisitor>any());
-    LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
-
-    CodeAttribute codeAttribute = new CodeAttribute(1);
-
-    // Act
-    accessMethodMarker.visitConstantInstruction(clazz, method, codeAttribute, 2,
-        new ConstantInstruction((byte) 'A', 1));
-
-    // Assert
-    verify(clazz).constantPoolEntryAccept(eq(1), isA(ConstantVisitor.class));
-  }
-
-  /**
-   * Method under test:
-   * {@link AccessMethodMarker#visitStringConstant(Clazz, StringConstant)}
-   */
-  @Test
-  void testVisitStringConstant() {
-    // Arrange
-    AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
-    LibraryClass clazz = new LibraryClass();
-    StringConstant stringConstant = mock(StringConstant.class);
-    doNothing().when(stringConstant).referencedClassAccept(Mockito.<ClassVisitor>any());
-    doNothing().when(stringConstant).referencedMemberAccept(Mockito.<MemberVisitor>any());
-
-    // Act
-    accessMethodMarker.visitStringConstant(clazz, stringConstant);
-
-    // Assert
-    verify(stringConstant).referencedClassAccept(isA(ClassVisitor.class));
-    verify(stringConstant).referencedMemberAccept(isA(MemberVisitor.class));
-  }
-
-  /**
-   * Method under test:
-   * {@link AccessMethodMarker#visitStringConstant(Clazz, StringConstant)}
-   */
-  @Test
-  void testVisitStringConstant2() {
+  @DisplayName("Test visitStringConstant(Clazz, StringConstant); given LibraryClass accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void AccessMethodMarker.visitStringConstant(Clazz, StringConstant)"})
+  void testVisitStringConstant_givenLibraryClassAcceptDoesNothing_thenCallsAccept() {
     // Arrange
     AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
     LibraryClass clazz = new LibraryClass();
@@ -98,11 +73,19 @@ class AccessMethodMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link AccessMethodMarker#visitStringConstant(Clazz, StringConstant)}
+   * Test {@link AccessMethodMarker#visitStringConstant(Clazz, StringConstant)}.
+   * <ul>
+   *   <li>Given {@link LibraryField} {@link LibraryMember#accept(Clazz, MemberVisitor)} does nothing.</li>
+   *   <li>Then calls {@link LibraryMember#accept(Clazz, MemberVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link AccessMethodMarker#visitStringConstant(Clazz, StringConstant)}
    */
   @Test
-  void testVisitStringConstant3() {
+  @DisplayName("Test visitStringConstant(Clazz, StringConstant); given LibraryField accept(Clazz, MemberVisitor) does nothing; then calls accept(Clazz, MemberVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void AccessMethodMarker.visitStringConstant(Clazz, StringConstant)"})
+  void testVisitStringConstant_givenLibraryFieldAcceptDoesNothing_thenCallsAccept() {
     // Arrange
     AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
     LibraryClass clazz = new LibraryClass();
@@ -120,11 +103,46 @@ class AccessMethodMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link AccessMethodMarker#visitStringConstant(Clazz, StringConstant)}
+   * Test {@link AccessMethodMarker#visitStringConstant(Clazz, StringConstant)}.
+   * <ul>
+   *   <li>Then calls {@link StringConstant#referencedClassAccept(ClassVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link AccessMethodMarker#visitStringConstant(Clazz, StringConstant)}
    */
   @Test
-  void testVisitStringConstant4() {
+  @DisplayName("Test visitStringConstant(Clazz, StringConstant); then calls referencedClassAccept(ClassVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void AccessMethodMarker.visitStringConstant(Clazz, StringConstant)"})
+  void testVisitStringConstant_thenCallsReferencedClassAccept() {
+    // Arrange
+    AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
+    LibraryClass clazz = new LibraryClass();
+    StringConstant stringConstant = mock(StringConstant.class);
+    doNothing().when(stringConstant).referencedClassAccept(Mockito.<ClassVisitor>any());
+    doNothing().when(stringConstant).referencedMemberAccept(Mockito.<MemberVisitor>any());
+
+    // Act
+    accessMethodMarker.visitStringConstant(clazz, stringConstant);
+
+    // Assert
+    verify(stringConstant).referencedClassAccept(isA(ClassVisitor.class));
+    verify(stringConstant).referencedMemberAccept(isA(MemberVisitor.class));
+  }
+
+  /**
+   * Test {@link AccessMethodMarker#visitStringConstant(Clazz, StringConstant)}.
+   * <ul>
+   *   <li>Then calls {@link ProgramMethodOptimizationInfo#setAccessesPackageCode()}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link AccessMethodMarker#visitStringConstant(Clazz, StringConstant)}
+   */
+  @Test
+  @DisplayName("Test visitStringConstant(Clazz, StringConstant); then calls setAccessesPackageCode()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void AccessMethodMarker.visitStringConstant(Clazz, StringConstant)"})
+  void testVisitStringConstant_thenCallsSetAccessesPackageCode() {
     // Arrange
     Clazz clazz = mock(Clazz.class);
     doNothing().when(clazz).constantPoolEntryAccept(anyInt(), Mockito.<ConstantVisitor>any());
@@ -152,165 +170,18 @@ class AccessMethodMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link AccessMethodMarker#visitDynamicConstant(Clazz, DynamicConstant)}
+   * Test {@link AccessMethodMarker#visitStringConstant(Clazz, StringConstant)}.
+   * <ul>
+   *   <li>Then calls {@link ProgramMethodOptimizationInfo#setAccessesPrivateCode()}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link AccessMethodMarker#visitStringConstant(Clazz, StringConstant)}
    */
   @Test
-  void testVisitDynamicConstant() {
-    // Arrange
-    AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
-    LibraryClass clazz = mock(LibraryClass.class);
-    doNothing().when(clazz).attributesAccept(Mockito.<AttributeVisitor>any());
-
-    // Act
-    accessMethodMarker.visitDynamicConstant(clazz, new DynamicConstant());
-
-    // Assert
-    verify(clazz).attributesAccept(isA(AttributeVisitor.class));
-  }
-
-  /**
-   * Method under test:
-   * {@link AccessMethodMarker#visitDynamicConstant(Clazz, DynamicConstant)}
-   */
-  @Test
-  void testVisitDynamicConstant2() {
-    // Arrange
-    AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
-    LibraryClass clazz = mock(LibraryClass.class);
-    DynamicConstant dynamicConstant = mock(DynamicConstant.class);
-    doNothing().when(dynamicConstant).bootstrapMethodHandleAccept(Mockito.<Clazz>any(), Mockito.<ConstantVisitor>any());
-
-    // Act
-    accessMethodMarker.visitDynamicConstant(clazz, dynamicConstant);
-
-    // Assert
-    verify(dynamicConstant).bootstrapMethodHandleAccept(isA(Clazz.class), isA(ConstantVisitor.class));
-  }
-
-  /**
-   * Method under test:
-   * {@link AccessMethodMarker#visitInvokeDynamicConstant(Clazz, InvokeDynamicConstant)}
-   */
-  @Test
-  void testVisitInvokeDynamicConstant() {
-    // Arrange
-    AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
-    LibraryClass clazz = mock(LibraryClass.class);
-    doNothing().when(clazz).attributesAccept(Mockito.<AttributeVisitor>any());
-
-    // Act
-    accessMethodMarker.visitInvokeDynamicConstant(clazz, new InvokeDynamicConstant());
-
-    // Assert
-    verify(clazz).attributesAccept(isA(AttributeVisitor.class));
-  }
-
-  /**
-   * Method under test:
-   * {@link AccessMethodMarker#visitInvokeDynamicConstant(Clazz, InvokeDynamicConstant)}
-   */
-  @Test
-  void testVisitInvokeDynamicConstant2() {
-    // Arrange
-    AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
-    LibraryClass clazz = mock(LibraryClass.class);
-    InvokeDynamicConstant invokeDynamicConstant = mock(InvokeDynamicConstant.class);
-    doNothing().when(invokeDynamicConstant)
-        .bootstrapMethodHandleAccept(Mockito.<Clazz>any(), Mockito.<ConstantVisitor>any());
-
-    // Act
-    accessMethodMarker.visitInvokeDynamicConstant(clazz, invokeDynamicConstant);
-
-    // Assert
-    verify(invokeDynamicConstant).bootstrapMethodHandleAccept(isA(Clazz.class), isA(ConstantVisitor.class));
-  }
-
-  /**
-   * Method under test:
-   * {@link AccessMethodMarker#visitMethodHandleConstant(Clazz, MethodHandleConstant)}
-   */
-  @Test
-  void testVisitMethodHandleConstant() {
-    // Arrange
-    AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
-    LibraryClass clazz = mock(LibraryClass.class);
-    doNothing().when(clazz).constantPoolEntryAccept(anyInt(), Mockito.<ConstantVisitor>any());
-
-    // Act
-    accessMethodMarker.visitMethodHandleConstant(clazz, new MethodHandleConstant(1, 1));
-
-    // Assert
-    verify(clazz).constantPoolEntryAccept(eq(1), isA(ConstantVisitor.class));
-  }
-
-  /**
-   * Method under test:
-   * {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}
-   */
-  @Test
-  void testVisitAnyRefConstant() {
-    // Arrange
-    AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
-    LibraryClass clazz = mock(LibraryClass.class);
-    doNothing().when(clazz).constantPoolEntryAccept(anyInt(), Mockito.<ConstantVisitor>any());
-
-    // Act
-    accessMethodMarker.visitAnyRefConstant(clazz, new FieldrefConstant());
-
-    // Assert
-    verify(clazz).constantPoolEntryAccept(eq(0), isA(ConstantVisitor.class));
-  }
-
-  /**
-   * Method under test:
-   * {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}
-   */
-  @Test
-  void testVisitAnyRefConstant2() {
-    // Arrange
-    AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
-    LibraryClass clazz = mock(LibraryClass.class);
-    doNothing().when(clazz).constantPoolEntryAccept(anyInt(), Mockito.<ConstantVisitor>any());
-    FieldrefConstant refConstant = mock(FieldrefConstant.class);
-    doNothing().when(refConstant).referencedMemberAccept(Mockito.<MemberVisitor>any());
-    doNothing().when(refConstant).referencedClassAccept(Mockito.<ClassVisitor>any());
-
-    // Act
-    accessMethodMarker.visitAnyRefConstant(clazz, refConstant);
-
-    // Assert
-    verify(clazz).constantPoolEntryAccept(eq(0), isA(ConstantVisitor.class));
-    verify(refConstant).referencedMemberAccept(isA(MemberVisitor.class));
-    verify(refConstant).referencedClassAccept(isA(ClassVisitor.class));
-  }
-
-  /**
-   * Method under test:
-   * {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}
-   */
-  @Test
-  void testVisitAnyRefConstant3() {
-    // Arrange
-    AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
-    LibraryClass clazz = mock(LibraryClass.class);
-    doNothing().when(clazz).constantPoolEntryAccept(anyInt(), Mockito.<ConstantVisitor>any());
-    LibraryClass referencedClass = new LibraryClass(1, "This Class Name", "Super Class Name");
-
-    // Act
-    accessMethodMarker.visitAnyRefConstant(clazz,
-        new FieldrefConstant(1, 1, referencedClass, new LibraryField(1, "Name", "Descriptor")));
-
-    // Assert
-    verify(clazz).constantPoolEntryAccept(eq(1), isA(ConstantVisitor.class));
-  }
-
-  /**
-   * Method under test:
-   * {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}
-   */
-  @Test
-  void testVisitAnyRefConstant4() {
+  @DisplayName("Test visitStringConstant(Clazz, StringConstant); then calls setAccessesPrivateCode()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void AccessMethodMarker.visitStringConstant(Clazz, StringConstant)"})
+  void testVisitStringConstant_thenCallsSetAccessesPrivateCode() {
     // Arrange
     Clazz clazz = mock(Clazz.class);
     doNothing().when(clazz).constantPoolEntryAccept(anyInt(), Mockito.<ConstantVisitor>any());
@@ -323,151 +194,396 @@ class AccessMethodMarkerDiffblueTest {
     CodeAttribute codeAttribute = new CodeAttribute(1);
     accessMethodMarker.visitConstantInstruction(clazz, method, codeAttribute, 2,
         new ConstantInstruction((byte) 'A', 1));
-    LibraryClass clazz2 = mock(LibraryClass.class);
-    doNothing().when(clazz2).constantPoolEntryAccept(anyInt(), Mockito.<ConstantVisitor>any());
-    LibraryClass referencedClass = mock(LibraryClass.class);
-    doNothing().when(referencedClass).accept(Mockito.<ClassVisitor>any());
+    LibraryClass clazz2 = new LibraryClass();
+    StringConstant stringConstant = new StringConstant();
+    stringConstant.referencedMember = new LibraryField(2, "Name", "Descriptor");
+    stringConstant.referencedClass = null;
 
     // Act
-    accessMethodMarker.visitAnyRefConstant(clazz2,
-        new FieldrefConstant(1, 1, referencedClass, new LibraryField(2, "Name", "Descriptor")));
+    accessMethodMarker.visitStringConstant(clazz2, stringConstant);
 
     // Assert
     verify(clazz).constantPoolEntryAccept(eq(1), isA(ConstantVisitor.class));
-    verify(referencedClass).accept(isA(ClassVisitor.class));
-    verify(clazz2).constantPoolEntryAccept(eq(1), isA(ConstantVisitor.class));
     verify(programMethodOptimizationInfo).setAccessesPrivateCode();
     verify(method, atLeast(1)).getProcessingInfo();
   }
 
   /**
-   * Method under test:
-   * {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}
+   * Test {@link AccessMethodMarker#visitDynamicConstant(Clazz, DynamicConstant)}.
+   * <ul>
+   *   <li>Then calls {@link DynamicConstant#bootstrapMethodHandleAccept(Clazz, ConstantVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link AccessMethodMarker#visitDynamicConstant(Clazz, DynamicConstant)}
    */
   @Test
-  void testVisitAnyRefConstant5() {
-    // Arrange
-    Clazz clazz = mock(Clazz.class);
-    doNothing().when(clazz).constantPoolEntryAccept(anyInt(), Mockito.<ConstantVisitor>any());
-    ProgramMethodOptimizationInfo programMethodOptimizationInfo = mock(ProgramMethodOptimizationInfo.class);
-    doNothing().when(programMethodOptimizationInfo).setAccessesPackageCode();
-    Method method = mock(Method.class);
-    when(method.getProcessingInfo()).thenReturn(programMethodOptimizationInfo);
-
-    AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
-    CodeAttribute codeAttribute = new CodeAttribute(1);
-    accessMethodMarker.visitConstantInstruction(clazz, method, codeAttribute, 2,
-        new ConstantInstruction((byte) 'A', 1));
-    LibraryClass clazz2 = mock(LibraryClass.class);
-    doNothing().when(clazz2).constantPoolEntryAccept(anyInt(), Mockito.<ConstantVisitor>any());
-    LibraryClass referencedClass = mock(LibraryClass.class);
-    doNothing().when(referencedClass).accept(Mockito.<ClassVisitor>any());
-
-    // Act
-    accessMethodMarker.visitAnyRefConstant(clazz2,
-        new FieldrefConstant(1, 1, referencedClass, new LibraryField(0, "Name", "Descriptor")));
-
-    // Assert
-    verify(clazz).constantPoolEntryAccept(eq(1), isA(ConstantVisitor.class));
-    verify(referencedClass).accept(isA(ClassVisitor.class));
-    verify(clazz2).constantPoolEntryAccept(eq(1), isA(ConstantVisitor.class));
-    verify(programMethodOptimizationInfo).setAccessesPackageCode();
-    verify(method, atLeast(1)).getProcessingInfo();
-  }
-
-  /**
-   * Method under test:
-   * {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}
-   */
-  @Test
-  void testVisitAnyRefConstant6() {
-    // Arrange
-    Clazz clazz = mock(Clazz.class);
-    doNothing().when(clazz).constantPoolEntryAccept(anyInt(), Mockito.<ConstantVisitor>any());
-    ProgramMethodOptimizationInfo programMethodOptimizationInfo = mock(ProgramMethodOptimizationInfo.class);
-    doNothing().when(programMethodOptimizationInfo).setAccessesProtectedCode();
-    Method method = mock(Method.class);
-    when(method.getProcessingInfo()).thenReturn(programMethodOptimizationInfo);
-
-    AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
-    CodeAttribute codeAttribute = new CodeAttribute(1);
-    accessMethodMarker.visitConstantInstruction(clazz, method, codeAttribute, 2,
-        new ConstantInstruction((byte) 'A', 1));
-    LibraryClass clazz2 = mock(LibraryClass.class);
-    doNothing().when(clazz2).constantPoolEntryAccept(anyInt(), Mockito.<ConstantVisitor>any());
-    LibraryClass referencedClass = mock(LibraryClass.class);
-    doNothing().when(referencedClass).accept(Mockito.<ClassVisitor>any());
-
-    // Act
-    accessMethodMarker.visitAnyRefConstant(clazz2,
-        new FieldrefConstant(1, 1, referencedClass, new LibraryField(4, "Name", "Descriptor")));
-
-    // Assert
-    verify(clazz).constantPoolEntryAccept(eq(1), isA(ConstantVisitor.class));
-    verify(referencedClass).accept(isA(ClassVisitor.class));
-    verify(clazz2).constantPoolEntryAccept(eq(1), isA(ConstantVisitor.class));
-    verify(programMethodOptimizationInfo).setAccessesProtectedCode();
-    verify(method, atLeast(1)).getProcessingInfo();
-  }
-
-  /**
-   * Method under test:
-   * {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}
-   */
-  @Test
-  void testVisitAnyRefConstant7() {
-    // Arrange
-    Clazz clazz = mock(Clazz.class);
-    doNothing().when(clazz).constantPoolEntryAccept(anyInt(), Mockito.<ConstantVisitor>any());
-    ProgramMethodOptimizationInfo programMethodOptimizationInfo = mock(ProgramMethodOptimizationInfo.class);
-    doNothing().when(programMethodOptimizationInfo).setAccessesPackageCode();
-    Method method = mock(Method.class);
-    when(method.getProcessingInfo()).thenReturn(programMethodOptimizationInfo);
-
-    AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
-    CodeAttribute codeAttribute = new CodeAttribute(1);
-    accessMethodMarker.visitConstantInstruction(clazz, method, codeAttribute, 2,
-        new ConstantInstruction((byte) 'A', 1));
-    LibraryClass clazz2 = mock(LibraryClass.class);
-    doNothing().when(clazz2).constantPoolEntryAccept(anyInt(), Mockito.<ConstantVisitor>any());
-    FieldrefConstant refConstant = new FieldrefConstant();
-    refConstant.referencedClass = new LibraryClass();
-
-    // Act
-    accessMethodMarker.visitAnyRefConstant(clazz2, refConstant);
-
-    // Assert
-    verify(clazz).constantPoolEntryAccept(eq(1), isA(ConstantVisitor.class));
-    verify(clazz2).constantPoolEntryAccept(eq(0), isA(ConstantVisitor.class));
-    verify(programMethodOptimizationInfo).setAccessesPackageCode();
-    verify(method, atLeast(1)).getProcessingInfo();
-  }
-
-  /**
-   * Method under test:
-   * {@link AccessMethodMarker#visitClassConstant(Clazz, ClassConstant)}
-   */
-  @Test
-  void testVisitClassConstant() {
+  @DisplayName("Test visitDynamicConstant(Clazz, DynamicConstant); then calls bootstrapMethodHandleAccept(Clazz, ConstantVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void AccessMethodMarker.visitDynamicConstant(Clazz, DynamicConstant)"})
+  void testVisitDynamicConstant_thenCallsBootstrapMethodHandleAccept() {
     // Arrange
     AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
     LibraryClass clazz = new LibraryClass();
-    ClassConstant classConstant = mock(ClassConstant.class);
-    doNothing().when(classConstant).referencedClassAccept(Mockito.<ClassVisitor>any());
+    DynamicConstant dynamicConstant = mock(DynamicConstant.class);
+    doNothing().when(dynamicConstant).bootstrapMethodHandleAccept(Mockito.<Clazz>any(), Mockito.<ConstantVisitor>any());
 
     // Act
-    accessMethodMarker.visitClassConstant(clazz, classConstant);
+    accessMethodMarker.visitDynamicConstant(clazz, dynamicConstant);
 
     // Assert
-    verify(classConstant).referencedClassAccept(isA(ClassVisitor.class));
+    verify(dynamicConstant).bootstrapMethodHandleAccept(isA(Clazz.class), isA(ConstantVisitor.class));
   }
 
   /**
-   * Method under test:
-   * {@link AccessMethodMarker#visitClassConstant(Clazz, ClassConstant)}
+   * Test {@link AccessMethodMarker#visitInvokeDynamicConstant(Clazz, InvokeDynamicConstant)}.
+   * <ul>
+   *   <li>Then calls {@link InvokeDynamicConstant#bootstrapMethodHandleAccept(Clazz, ConstantVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link AccessMethodMarker#visitInvokeDynamicConstant(Clazz, InvokeDynamicConstant)}
    */
   @Test
-  void testVisitClassConstant2() {
+  @DisplayName("Test visitInvokeDynamicConstant(Clazz, InvokeDynamicConstant); then calls bootstrapMethodHandleAccept(Clazz, ConstantVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void AccessMethodMarker.visitInvokeDynamicConstant(Clazz, InvokeDynamicConstant)"})
+  void testVisitInvokeDynamicConstant_thenCallsBootstrapMethodHandleAccept() {
+    // Arrange
+    AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
+    LibraryClass clazz = new LibraryClass();
+    InvokeDynamicConstant invokeDynamicConstant = mock(InvokeDynamicConstant.class);
+    doNothing().when(invokeDynamicConstant)
+        .bootstrapMethodHandleAccept(Mockito.<Clazz>any(), Mockito.<ConstantVisitor>any());
+
+    // Act
+    accessMethodMarker.visitInvokeDynamicConstant(clazz, invokeDynamicConstant);
+
+    // Assert
+    verify(invokeDynamicConstant).bootstrapMethodHandleAccept(isA(Clazz.class), isA(ConstantVisitor.class));
+  }
+
+  /**
+   * Test {@link AccessMethodMarker#visitMethodHandleConstant(Clazz, MethodHandleConstant)}.
+   * <ul>
+   *   <li>When {@link LibraryClass} {@link LibraryClass#accept(ClassVisitor)} does nothing.</li>
+   *   <li>Then calls {@link LibraryClass#accept(ClassVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link AccessMethodMarker#visitMethodHandleConstant(Clazz, MethodHandleConstant)}
+   */
+  @Test
+  @DisplayName("Test visitMethodHandleConstant(Clazz, MethodHandleConstant); when LibraryClass accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void AccessMethodMarker.visitMethodHandleConstant(Clazz, MethodHandleConstant)"})
+  void testVisitMethodHandleConstant_whenLibraryClassAcceptDoesNothing_thenCallsAccept() {
+    // Arrange
+    AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
+    LibraryClass referencedClass = mock(LibraryClass.class);
+    doNothing().when(referencedClass).accept(Mockito.<ClassVisitor>any());
+    ClassConstant classConstant = new ClassConstant(1, referencedClass);
+
+    ProgramClass clazz = new ProgramClass(1, 3, new Constant[]{new ClassConstant(), classConstant}, 1, 1, 1);
+
+    // Act
+    accessMethodMarker.visitMethodHandleConstant(clazz, new MethodHandleConstant(1, 1));
+
+    // Assert
+    verify(referencedClass).accept(isA(ClassVisitor.class));
+  }
+
+  /**
+   * Test {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}.
+   * <p>
+   * Method under test: {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}
+   */
+  @Test
+  @DisplayName("Test visitAnyRefConstant(Clazz, RefConstant)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void AccessMethodMarker.visitAnyRefConstant(Clazz, RefConstant)"})
+  void testVisitAnyRefConstant() {
+    // Arrange
+    AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
+    ProgramClass clazz = new ProgramClass(1, 3,
+        new Constant[]{new ClassConstant(1, new LibraryClass(1, "This Class Name", "Super Class Name"))}, 1, 1, 1);
+
+    FieldrefConstant refConstant = mock(FieldrefConstant.class);
+    doNothing().when(refConstant).referencedMemberAccept(Mockito.<MemberVisitor>any());
+    doNothing().when(refConstant).referencedClassAccept(Mockito.<ClassVisitor>any());
+
+    // Act
+    accessMethodMarker.visitAnyRefConstant(clazz, refConstant);
+
+    // Assert
+    verify(refConstant).referencedMemberAccept(isA(MemberVisitor.class));
+    verify(refConstant).referencedClassAccept(isA(ClassVisitor.class));
+  }
+
+  /**
+   * Test {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}.
+   * <p>
+   * Method under test: {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}
+   */
+  @Test
+  @DisplayName("Test visitAnyRefConstant(Clazz, RefConstant)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void AccessMethodMarker.visitAnyRefConstant(Clazz, RefConstant)"})
+  void testVisitAnyRefConstant2() {
+    // Arrange
+    AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
+    ProgramClass clazz = new ProgramClass(1, 3, new Constant[]{new DynamicConstant()}, 1, 1, 1);
+
+    FieldrefConstant refConstant = mock(FieldrefConstant.class);
+    doNothing().when(refConstant).referencedMemberAccept(Mockito.<MemberVisitor>any());
+    doNothing().when(refConstant).referencedClassAccept(Mockito.<ClassVisitor>any());
+
+    // Act
+    accessMethodMarker.visitAnyRefConstant(clazz, refConstant);
+
+    // Assert
+    verify(refConstant).referencedMemberAccept(isA(MemberVisitor.class));
+    verify(refConstant).referencedClassAccept(isA(ClassVisitor.class));
+  }
+
+  /**
+   * Test {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}.
+   * <p>
+   * Method under test: {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}
+   */
+  @Test
+  @DisplayName("Test visitAnyRefConstant(Clazz, RefConstant)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void AccessMethodMarker.visitAnyRefConstant(Clazz, RefConstant)"})
+  void testVisitAnyRefConstant3() {
+    // Arrange
+    AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
+    ProgramClass clazz = new ProgramClass(1, 3, new Constant[]{new IntegerConstant(42)}, 1, 1, 1);
+
+    FieldrefConstant refConstant = mock(FieldrefConstant.class);
+    doNothing().when(refConstant).referencedMemberAccept(Mockito.<MemberVisitor>any());
+    doNothing().when(refConstant).referencedClassAccept(Mockito.<ClassVisitor>any());
+
+    // Act
+    accessMethodMarker.visitAnyRefConstant(clazz, refConstant);
+
+    // Assert
+    verify(refConstant).referencedMemberAccept(isA(MemberVisitor.class));
+    verify(refConstant).referencedClassAccept(isA(ClassVisitor.class));
+  }
+
+  /**
+   * Test {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}.
+   * <p>
+   * Method under test: {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}
+   */
+  @Test
+  @DisplayName("Test visitAnyRefConstant(Clazz, RefConstant)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void AccessMethodMarker.visitAnyRefConstant(Clazz, RefConstant)"})
+  void testVisitAnyRefConstant4() {
+    // Arrange
+    AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
+    ProgramClass clazz = new ProgramClass(1, 3, new Constant[]{new InvokeDynamicConstant()}, 1, 1, 1);
+
+    FieldrefConstant refConstant = mock(FieldrefConstant.class);
+    doNothing().when(refConstant).referencedMemberAccept(Mockito.<MemberVisitor>any());
+    doNothing().when(refConstant).referencedClassAccept(Mockito.<ClassVisitor>any());
+
+    // Act
+    accessMethodMarker.visitAnyRefConstant(clazz, refConstant);
+
+    // Assert
+    verify(refConstant).referencedMemberAccept(isA(MemberVisitor.class));
+    verify(refConstant).referencedClassAccept(isA(ClassVisitor.class));
+  }
+
+  /**
+   * Test {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}.
+   * <p>
+   * Method under test: {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}
+   */
+  @Test
+  @DisplayName("Test visitAnyRefConstant(Clazz, RefConstant)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void AccessMethodMarker.visitAnyRefConstant(Clazz, RefConstant)"})
+  void testVisitAnyRefConstant5() {
+    // Arrange
+    AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
+    ProgramClass clazz = new ProgramClass(1, 3, new Constant[]{new MethodTypeConstant()}, 1, 1, 1);
+
+    FieldrefConstant refConstant = mock(FieldrefConstant.class);
+    doNothing().when(refConstant).referencedMemberAccept(Mockito.<MemberVisitor>any());
+    doNothing().when(refConstant).referencedClassAccept(Mockito.<ClassVisitor>any());
+
+    // Act
+    accessMethodMarker.visitAnyRefConstant(clazz, refConstant);
+
+    // Assert
+    verify(refConstant).referencedMemberAccept(isA(MemberVisitor.class));
+    verify(refConstant).referencedClassAccept(isA(ClassVisitor.class));
+  }
+
+  /**
+   * Test {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}.
+   * <ul>
+   *   <li>When array of {@link Constant} with {@link DoubleConstant#DoubleConstant(double)} with value is ten.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}
+   */
+  @Test
+  @DisplayName("Test visitAnyRefConstant(Clazz, RefConstant); when array of Constant with DoubleConstant(double) with value is ten")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void AccessMethodMarker.visitAnyRefConstant(Clazz, RefConstant)"})
+  void testVisitAnyRefConstant_whenArrayOfConstantWithDoubleConstantWithValueIsTen() {
+    // Arrange
+    AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
+    ProgramClass clazz = new ProgramClass(1, 3, new Constant[]{new DoubleConstant(10.0d)}, 1, 1, 1);
+
+    FieldrefConstant refConstant = mock(FieldrefConstant.class);
+    doNothing().when(refConstant).referencedMemberAccept(Mockito.<MemberVisitor>any());
+    doNothing().when(refConstant).referencedClassAccept(Mockito.<ClassVisitor>any());
+
+    // Act
+    accessMethodMarker.visitAnyRefConstant(clazz, refConstant);
+
+    // Assert
+    verify(refConstant).referencedMemberAccept(isA(MemberVisitor.class));
+    verify(refConstant).referencedClassAccept(isA(ClassVisitor.class));
+  }
+
+  /**
+   * Test {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}.
+   * <ul>
+   *   <li>When array of {@link Constant} with {@link FloatConstant#FloatConstant(float)} with value is ten.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}
+   */
+  @Test
+  @DisplayName("Test visitAnyRefConstant(Clazz, RefConstant); when array of Constant with FloatConstant(float) with value is ten")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void AccessMethodMarker.visitAnyRefConstant(Clazz, RefConstant)"})
+  void testVisitAnyRefConstant_whenArrayOfConstantWithFloatConstantWithValueIsTen() {
+    // Arrange
+    AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
+    ProgramClass clazz = new ProgramClass(1, 3, new Constant[]{new FloatConstant(10.0f)}, 1, 1, 1);
+
+    FieldrefConstant refConstant = mock(FieldrefConstant.class);
+    doNothing().when(refConstant).referencedMemberAccept(Mockito.<MemberVisitor>any());
+    doNothing().when(refConstant).referencedClassAccept(Mockito.<ClassVisitor>any());
+
+    // Act
+    accessMethodMarker.visitAnyRefConstant(clazz, refConstant);
+
+    // Assert
+    verify(refConstant).referencedMemberAccept(isA(MemberVisitor.class));
+    verify(refConstant).referencedClassAccept(isA(ClassVisitor.class));
+  }
+
+  /**
+   * Test {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}.
+   * <ul>
+   *   <li>When array of {@link Constant} with {@link LongConstant#LongConstant(long)} with value is forty-two.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}
+   */
+  @Test
+  @DisplayName("Test visitAnyRefConstant(Clazz, RefConstant); when array of Constant with LongConstant(long) with value is forty-two")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void AccessMethodMarker.visitAnyRefConstant(Clazz, RefConstant)"})
+  void testVisitAnyRefConstant_whenArrayOfConstantWithLongConstantWithValueIsFortyTwo() {
+    // Arrange
+    AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
+    ProgramClass clazz = new ProgramClass(1, 3, new Constant[]{new LongConstant(42L)}, 1, 1, 1);
+
+    FieldrefConstant refConstant = mock(FieldrefConstant.class);
+    doNothing().when(refConstant).referencedMemberAccept(Mockito.<MemberVisitor>any());
+    doNothing().when(refConstant).referencedClassAccept(Mockito.<ClassVisitor>any());
+
+    // Act
+    accessMethodMarker.visitAnyRefConstant(clazz, refConstant);
+
+    // Assert
+    verify(refConstant).referencedMemberAccept(isA(MemberVisitor.class));
+    verify(refConstant).referencedClassAccept(isA(ClassVisitor.class));
+  }
+
+  /**
+   * Test {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}.
+   * <ul>
+   *   <li>When {@link LibraryClass} {@link LibraryClass#accept(ClassVisitor)} does nothing.</li>
+   *   <li>Then calls {@link LibraryClass#accept(ClassVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}
+   */
+  @Test
+  @DisplayName("Test visitAnyRefConstant(Clazz, RefConstant); when LibraryClass accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void AccessMethodMarker.visitAnyRefConstant(Clazz, RefConstant)"})
+  void testVisitAnyRefConstant_whenLibraryClassAcceptDoesNothing_thenCallsAccept() {
+    // Arrange
+    AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
+    LibraryClass referencedClass = mock(LibraryClass.class);
+    doNothing().when(referencedClass).accept(Mockito.<ClassVisitor>any());
+    ProgramClass clazz = new ProgramClass(1, 3, new Constant[]{new ClassConstant(1, referencedClass)}, 1, 1, 1);
+
+    FieldrefConstant refConstant = mock(FieldrefConstant.class);
+    doNothing().when(refConstant).referencedMemberAccept(Mockito.<MemberVisitor>any());
+    doNothing().when(refConstant).referencedClassAccept(Mockito.<ClassVisitor>any());
+
+    // Act
+    accessMethodMarker.visitAnyRefConstant(clazz, refConstant);
+
+    // Assert
+    verify(referencedClass).accept(isA(ClassVisitor.class));
+    verify(refConstant).referencedMemberAccept(isA(MemberVisitor.class));
+    verify(refConstant).referencedClassAccept(isA(ClassVisitor.class));
+  }
+
+  /**
+   * Test {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}.
+   * <ul>
+   *   <li>When {@link LibraryClass#LibraryClass()}.</li>
+   *   <li>Then calls {@link FieldrefConstant#referencedMemberAccept(MemberVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link AccessMethodMarker#visitAnyRefConstant(Clazz, RefConstant)}
+   */
+  @Test
+  @DisplayName("Test visitAnyRefConstant(Clazz, RefConstant); when LibraryClass(); then calls referencedMemberAccept(MemberVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void AccessMethodMarker.visitAnyRefConstant(Clazz, RefConstant)"})
+  void testVisitAnyRefConstant_whenLibraryClass_thenCallsReferencedMemberAccept() {
+    // Arrange
+    AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
+    LibraryClass clazz = new LibraryClass();
+    FieldrefConstant refConstant = mock(FieldrefConstant.class);
+    doNothing().when(refConstant).referencedMemberAccept(Mockito.<MemberVisitor>any());
+    doNothing().when(refConstant).referencedClassAccept(Mockito.<ClassVisitor>any());
+
+    // Act
+    accessMethodMarker.visitAnyRefConstant(clazz, refConstant);
+
+    // Assert
+    verify(refConstant).referencedMemberAccept(isA(MemberVisitor.class));
+    verify(refConstant).referencedClassAccept(isA(ClassVisitor.class));
+  }
+
+  /**
+   * Test {@link AccessMethodMarker#visitClassConstant(Clazz, ClassConstant)}.
+   * <ul>
+   *   <li>Given {@link LibraryClass} {@link LibraryClass#accept(ClassVisitor)} does nothing.</li>
+   *   <li>Then calls {@link LibraryClass#accept(ClassVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link AccessMethodMarker#visitClassConstant(Clazz, ClassConstant)}
+   */
+  @Test
+  @DisplayName("Test visitClassConstant(Clazz, ClassConstant); given LibraryClass accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void AccessMethodMarker.visitClassConstant(Clazz, ClassConstant)"})
+  void testVisitClassConstant_givenLibraryClassAcceptDoesNothing_thenCallsAccept() {
     // Arrange
     AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
     LibraryClass clazz = new LibraryClass();
@@ -484,11 +600,18 @@ class AccessMethodMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link AccessMethodMarker#visitClassConstant(Clazz, ClassConstant)}
+   * Test {@link AccessMethodMarker#visitClassConstant(Clazz, ClassConstant)}.
+   * <ul>
+   *   <li>Then calls {@link Clazz#constantPoolEntryAccept(int, ConstantVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link AccessMethodMarker#visitClassConstant(Clazz, ClassConstant)}
    */
   @Test
-  void testVisitClassConstant3() {
+  @DisplayName("Test visitClassConstant(Clazz, ClassConstant); then calls constantPoolEntryAccept(int, ConstantVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void AccessMethodMarker.visitClassConstant(Clazz, ClassConstant)"})
+  void testVisitClassConstant_thenCallsConstantPoolEntryAccept() {
     // Arrange
     Clazz clazz = mock(Clazz.class);
     doNothing().when(clazz).constantPoolEntryAccept(anyInt(), Mockito.<ConstantVisitor>any());
@@ -515,27 +638,44 @@ class AccessMethodMarkerDiffblueTest {
   }
 
   /**
-   * Method under test: {@link AccessMethodMarker#visitAnyClass(Clazz)}
+   * Test {@link AccessMethodMarker#visitClassConstant(Clazz, ClassConstant)}.
+   * <ul>
+   *   <li>Then calls {@link ClassConstant#referencedClassAccept(ClassVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link AccessMethodMarker#visitClassConstant(Clazz, ClassConstant)}
    */
   @Test
-  void testVisitAnyClass() {
+  @DisplayName("Test visitClassConstant(Clazz, ClassConstant); then calls referencedClassAccept(ClassVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void AccessMethodMarker.visitClassConstant(Clazz, ClassConstant)"})
+  void testVisitClassConstant_thenCallsReferencedClassAccept() {
     // Arrange
     AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
-    LibraryClass clazz = mock(LibraryClass.class);
-    when(clazz.getAccessFlags()).thenReturn(1);
+    LibraryClass clazz = new LibraryClass();
+    ClassConstant classConstant = mock(ClassConstant.class);
+    doNothing().when(classConstant).referencedClassAccept(Mockito.<ClassVisitor>any());
 
     // Act
-    accessMethodMarker.visitAnyClass(clazz);
+    accessMethodMarker.visitClassConstant(clazz, classConstant);
 
     // Assert
-    verify(clazz).getAccessFlags();
+    verify(classConstant).referencedClassAccept(isA(ClassVisitor.class));
   }
 
   /**
+   * Test {@link AccessMethodMarker#visitAnyClass(Clazz)}.
+   * <ul>
+   *   <li>Then calls {@link Clazz#constantPoolEntryAccept(int, ConstantVisitor)}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link AccessMethodMarker#visitAnyClass(Clazz)}
    */
   @Test
-  void testVisitAnyClass2() {
+  @DisplayName("Test visitAnyClass(Clazz); then calls constantPoolEntryAccept(int, ConstantVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void AccessMethodMarker.visitAnyClass(Clazz)"})
+  void testVisitAnyClass_thenCallsConstantPoolEntryAccept() {
     // Arrange
     Clazz clazz = mock(Clazz.class);
     doNothing().when(clazz).constantPoolEntryAccept(anyInt(), Mockito.<ConstantVisitor>any());
@@ -548,52 +688,29 @@ class AccessMethodMarkerDiffblueTest {
     CodeAttribute codeAttribute = new CodeAttribute(1);
     accessMethodMarker.visitConstantInstruction(clazz, method, codeAttribute, 2,
         new ConstantInstruction((byte) 'A', 1));
-    LibraryClass clazz2 = mock(LibraryClass.class);
-    when(clazz2.getAccessFlags()).thenReturn(Integer.MIN_VALUE);
 
     // Act
-    accessMethodMarker.visitAnyClass(clazz2);
+    accessMethodMarker.visitAnyClass(new LibraryClass());
 
     // Assert
     verify(clazz).constantPoolEntryAccept(eq(1), isA(ConstantVisitor.class));
-    verify(clazz2).getAccessFlags();
     verify(programMethodOptimizationInfo).setAccessesPackageCode();
     verify(method, atLeast(1)).getProcessingInfo();
   }
 
   /**
+   * Test {@link AccessMethodMarker#visitAnyMember(Clazz, Member)}.
+   * <ul>
+   *   <li>Then calls {@link ProgramMethodOptimizationInfo#setAccessesPackageCode()}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link AccessMethodMarker#visitAnyMember(Clazz, Member)}
    */
   @Test
-  void testVisitAnyMember() {
-    // Arrange
-    Clazz clazz = mock(Clazz.class);
-    doNothing().when(clazz).constantPoolEntryAccept(anyInt(), Mockito.<ConstantVisitor>any());
-    ProgramMethodOptimizationInfo programMethodOptimizationInfo = mock(ProgramMethodOptimizationInfo.class);
-    doNothing().when(programMethodOptimizationInfo).setAccessesPrivateCode();
-    Method method = mock(Method.class);
-    when(method.getProcessingInfo()).thenReturn(programMethodOptimizationInfo);
-
-    AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
-    CodeAttribute codeAttribute = new CodeAttribute(1);
-    accessMethodMarker.visitConstantInstruction(clazz, method, codeAttribute, 2,
-        new ConstantInstruction((byte) 'A', 1));
-    LibraryClass clazz2 = new LibraryClass();
-
-    // Act
-    accessMethodMarker.visitAnyMember(clazz2, new LibraryField(2, "Name", "Descriptor"));
-
-    // Assert
-    verify(clazz).constantPoolEntryAccept(eq(1), isA(ConstantVisitor.class));
-    verify(programMethodOptimizationInfo).setAccessesPrivateCode();
-    verify(method, atLeast(1)).getProcessingInfo();
-  }
-
-  /**
-   * Method under test: {@link AccessMethodMarker#visitAnyMember(Clazz, Member)}
-   */
-  @Test
-  void testVisitAnyMember2() {
+  @DisplayName("Test visitAnyMember(Clazz, Member); then calls setAccessesPackageCode()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void AccessMethodMarker.visitAnyMember(Clazz, Member)"})
+  void testVisitAnyMember_thenCallsSetAccessesPackageCode() {
     // Arrange
     Clazz clazz = mock(Clazz.class);
     doNothing().when(clazz).constantPoolEntryAccept(anyInt(), Mockito.<ConstantVisitor>any());
@@ -618,10 +735,54 @@ class AccessMethodMarkerDiffblueTest {
   }
 
   /**
+   * Test {@link AccessMethodMarker#visitAnyMember(Clazz, Member)}.
+   * <ul>
+   *   <li>Then calls {@link ProgramMethodOptimizationInfo#setAccessesPrivateCode()}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link AccessMethodMarker#visitAnyMember(Clazz, Member)}
    */
   @Test
-  void testVisitAnyMember3() {
+  @DisplayName("Test visitAnyMember(Clazz, Member); then calls setAccessesPrivateCode()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void AccessMethodMarker.visitAnyMember(Clazz, Member)"})
+  void testVisitAnyMember_thenCallsSetAccessesPrivateCode() {
+    // Arrange
+    Clazz clazz = mock(Clazz.class);
+    doNothing().when(clazz).constantPoolEntryAccept(anyInt(), Mockito.<ConstantVisitor>any());
+    ProgramMethodOptimizationInfo programMethodOptimizationInfo = mock(ProgramMethodOptimizationInfo.class);
+    doNothing().when(programMethodOptimizationInfo).setAccessesPrivateCode();
+    Method method = mock(Method.class);
+    when(method.getProcessingInfo()).thenReturn(programMethodOptimizationInfo);
+
+    AccessMethodMarker accessMethodMarker = new AccessMethodMarker();
+    CodeAttribute codeAttribute = new CodeAttribute(1);
+    accessMethodMarker.visitConstantInstruction(clazz, method, codeAttribute, 2,
+        new ConstantInstruction((byte) 'A', 1));
+    LibraryClass clazz2 = new LibraryClass();
+
+    // Act
+    accessMethodMarker.visitAnyMember(clazz2, new LibraryField(2, "Name", "Descriptor"));
+
+    // Assert
+    verify(clazz).constantPoolEntryAccept(eq(1), isA(ConstantVisitor.class));
+    verify(programMethodOptimizationInfo).setAccessesPrivateCode();
+    verify(method, atLeast(1)).getProcessingInfo();
+  }
+
+  /**
+   * Test {@link AccessMethodMarker#visitAnyMember(Clazz, Member)}.
+   * <ul>
+   *   <li>Then calls {@link ProgramMethodOptimizationInfo#setAccessesProtectedCode()}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link AccessMethodMarker#visitAnyMember(Clazz, Member)}
+   */
+  @Test
+  @DisplayName("Test visitAnyMember(Clazz, Member); then calls setAccessesProtectedCode()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void AccessMethodMarker.visitAnyMember(Clazz, Member)"})
+  void testVisitAnyMember_thenCallsSetAccessesProtectedCode() {
     // Arrange
     Clazz clazz = mock(Clazz.class);
     doNothing().when(clazz).constantPoolEntryAccept(anyInt(), Mockito.<ConstantVisitor>any());
@@ -646,10 +807,19 @@ class AccessMethodMarkerDiffblueTest {
   }
 
   /**
+   * Test {@link AccessMethodMarker#accessesPrivateCode(Method)}.
+   * <ul>
+   *   <li>Given {@link MethodOptimizationInfo} (default constructor).</li>
+   *   <li>Then return {@code true}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link AccessMethodMarker#accessesPrivateCode(Method)}
    */
   @Test
-  void testAccessesPrivateCode() {
+  @DisplayName("Test accessesPrivateCode(Method); given MethodOptimizationInfo (default constructor); then return 'true'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean AccessMethodMarker.accessesPrivateCode(Method)"})
+  void testAccessesPrivateCode_givenMethodOptimizationInfo_thenReturnTrue() {
     // Arrange
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
     method.setProcessingInfo(new MethodOptimizationInfo());
@@ -659,10 +829,19 @@ class AccessMethodMarkerDiffblueTest {
   }
 
   /**
+   * Test {@link AccessMethodMarker#accessesPackageCode(Method)}.
+   * <ul>
+   *   <li>Given {@link MethodOptimizationInfo} (default constructor).</li>
+   *   <li>Then return {@code true}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link AccessMethodMarker#accessesPackageCode(Method)}
    */
   @Test
-  void testAccessesPackageCode() {
+  @DisplayName("Test accessesPackageCode(Method); given MethodOptimizationInfo (default constructor); then return 'true'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean AccessMethodMarker.accessesPackageCode(Method)"})
+  void testAccessesPackageCode_givenMethodOptimizationInfo_thenReturnTrue() {
     // Arrange
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
     method.setProcessingInfo(new MethodOptimizationInfo());
@@ -672,10 +851,19 @@ class AccessMethodMarkerDiffblueTest {
   }
 
   /**
+   * Test {@link AccessMethodMarker#accessesProtectedCode(Method)}.
+   * <ul>
+   *   <li>Given {@link MethodOptimizationInfo} (default constructor).</li>
+   *   <li>Then return {@code true}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link AccessMethodMarker#accessesProtectedCode(Method)}
    */
   @Test
-  void testAccessesProtectedCode() {
+  @DisplayName("Test accessesProtectedCode(Method); given MethodOptimizationInfo (default constructor); then return 'true'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean AccessMethodMarker.accessesProtectedCode(Method)"})
+  void testAccessesProtectedCode_givenMethodOptimizationInfo_thenReturnTrue() {
     // Arrange
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
     method.setProcessingInfo(new MethodOptimizationInfo());

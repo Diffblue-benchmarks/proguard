@@ -3,16 +3,16 @@
     "reportVersion" : "2.6"
   },
   "run" : {
-    "version" : "2024.10.01-2ee2e3d-licensed",
-    "creationTimestamp" : "2025-11-05T13:17:57.612Z",
+    "version" : "2025.02.02-08b2a5a-licensed",
+    "creationTimestamp" : "2025-11-06T22:18:50.132Z",
     "command" : "dcover coverage-reports --exclude-modules=proguard-app",
-    "totalTime" : 45.304,
-    "environmentDetectionTime" : 27.496,
+    "totalTime" : 47.228,
+    "environmentDetectionTime" : 29.133,
     "indexingTime" : 0.0,
     "entryPointsTime" : 0.0,
     "generationTime" : 0.0,
-    "timeToFirstTest" : 45.304,
-    "timeToLastTest" : 45.304,
+    "timeToFirstTest" : 47.228,
+    "timeToLastTest" : 47.228,
     "indexQueryTime" : 0.0,
     "verificationTime" : 0.0,
     "validationTime" : 0.0

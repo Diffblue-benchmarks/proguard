@@ -8,6 +8,9 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.ClassPool;
@@ -26,11 +29,19 @@ import proguard.io.ExtraDataEntryNameMap;
 
 class LambdaExpressionConverterDiffblueTest {
   /**
-   * Method under test:
-   * {@link LambdaExpressionConverter#visitProgramClass(ProgramClass)}
+   * Test {@link LambdaExpressionConverter#visitProgramClass(ProgramClass)}.
+   * <ul>
+   *   <li>When {@link ProgramClass} {@link ProgramClass#accept(ClassVisitor)} does nothing.</li>
+   *   <li>Then calls {@link ProgramClass#accept(ClassVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link LambdaExpressionConverter#visitProgramClass(ProgramClass)}
    */
   @Test
-  void testVisitProgramClass() {
+  @DisplayName("Test visitProgramClass(ProgramClass); when ProgramClass accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void LambdaExpressionConverter.visitProgramClass(ProgramClass)"})
+  void testVisitProgramClass_whenProgramClassAcceptDoesNothing_thenCallsAccept() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
@@ -47,11 +58,18 @@ class LambdaExpressionConverterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link LambdaExpressionConverter#visitCodeAttribute(Clazz, Method, CodeAttribute)}
+   * Test {@link LambdaExpressionConverter#visitCodeAttribute(Clazz, Method, CodeAttribute)}.
+   * <ul>
+   *   <li>Then calls {@link CodeAttribute#instructionsAccept(Clazz, Method, InstructionVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link LambdaExpressionConverter#visitCodeAttribute(Clazz, Method, CodeAttribute)}
    */
   @Test
-  void testVisitCodeAttribute() {
+  @DisplayName("Test visitCodeAttribute(Clazz, Method, CodeAttribute); then calls instructionsAccept(Clazz, Method, InstructionVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void LambdaExpressionConverter.visitCodeAttribute(Clazz, Method, CodeAttribute)"})
+  void testVisitCodeAttribute_thenCallsInstructionsAccept() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
@@ -72,11 +90,19 @@ class LambdaExpressionConverterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link LambdaExpressionConverter#visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction)}
+   * Test {@link LambdaExpressionConverter#visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction)}.
+   * <ul>
+   *   <li>Given {@link InvokeDynamicConstant#InvokeDynamicConstant()}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link LambdaExpressionConverter#visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction)}
    */
   @Test
-  void testVisitConstantInstruction() {
+  @DisplayName("Test visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction); given InvokeDynamicConstant()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void LambdaExpressionConverter.visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction)"})
+  void testVisitConstantInstruction_givenInvokeDynamicConstant() {
     // Arrange
     ClassPool programClassPool = mock(ClassPool.class);
     doNothing().when(programClassPool).addClass(Mockito.<Clazz>any());
@@ -100,11 +126,19 @@ class LambdaExpressionConverterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link LambdaExpressionConverter#visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction)}
+   * Test {@link LambdaExpressionConverter#visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction)}.
+   * <ul>
+   *   <li>Then calls {@link InvokeDynamicConstant#getBootstrapMethodAttributeIndex()}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link LambdaExpressionConverter#visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction)}
    */
   @Test
-  void testVisitConstantInstruction2() {
+  @DisplayName("Test visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction); then calls getBootstrapMethodAttributeIndex()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void LambdaExpressionConverter.visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction)"})
+  void testVisitConstantInstruction_thenCallsGetBootstrapMethodAttributeIndex() {
     // Arrange
     ClassPool programClassPool = mock(ClassPool.class);
     doNothing().when(programClassPool).addClass(Mockito.<Clazz>any());
@@ -131,32 +165,18 @@ class LambdaExpressionConverterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link LambdaExpressionConverter#visitProgramMethod(ProgramClass, ProgramMethod)}
+   * Test {@link LambdaExpressionConverter#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   * <ul>
+   *   <li>Given {@code $deserializeLambda$}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link LambdaExpressionConverter#visitProgramMethod(ProgramClass, ProgramMethod)}
    */
   @Test
-  void testVisitProgramMethod() {
-    // Arrange
-    ClassPool programClassPool = new ClassPool();
-    ClassPool libraryClassPool = new ClassPool();
-    LambdaExpressionConverter lambdaExpressionConverter = new LambdaExpressionConverter(programClassPool,
-        libraryClassPool, new ExtraDataEntryNameMap(), mock(ClassVisitor.class));
-    ProgramClass programClass = mock(ProgramClass.class);
-    when(programClass.getString(anyInt())).thenReturn("String");
-
-    // Act
-    lambdaExpressionConverter.visitProgramMethod(programClass, new ProgramMethod());
-
-    // Assert
-    verify(programClass).getString(eq(0));
-  }
-
-  /**
-   * Method under test:
-   * {@link LambdaExpressionConverter#visitProgramMethod(ProgramClass, ProgramMethod)}
-   */
-  @Test
-  void testVisitProgramMethod2() {
+  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); given '$deserializeLambda$'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void LambdaExpressionConverter.visitProgramMethod(ProgramClass, ProgramMethod)"})
+  void testVisitProgramMethod_givenDeserializeLambda() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();
@@ -170,5 +190,34 @@ class LambdaExpressionConverterDiffblueTest {
 
     // Assert
     verify(programClass, atLeast(1)).getString(eq(0));
+  }
+
+  /**
+   * Test {@link LambdaExpressionConverter#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   * <ul>
+   *   <li>Given {@code String}.</li>
+   *   <li>When {@link ProgramClass} {@link ProgramClass#getString(int)} return {@code String}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link LambdaExpressionConverter#visitProgramMethod(ProgramClass, ProgramMethod)}
+   */
+  @Test
+  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); given 'String'; when ProgramClass getString(int) return 'String'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void LambdaExpressionConverter.visitProgramMethod(ProgramClass, ProgramMethod)"})
+  void testVisitProgramMethod_givenString_whenProgramClassGetStringReturnString() {
+    // Arrange
+    ClassPool programClassPool = new ClassPool();
+    ClassPool libraryClassPool = new ClassPool();
+    LambdaExpressionConverter lambdaExpressionConverter = new LambdaExpressionConverter(programClassPool,
+        libraryClassPool, new ExtraDataEntryNameMap(), mock(ClassVisitor.class));
+    ProgramClass programClass = mock(ProgramClass.class);
+    when(programClass.getString(anyInt())).thenReturn("String");
+
+    // Act
+    lambdaExpressionConverter.visitProgramMethod(programClass, new ProgramMethod());
+
+    // Assert
+    verify(programClass).getString(eq(0));
   }
 }

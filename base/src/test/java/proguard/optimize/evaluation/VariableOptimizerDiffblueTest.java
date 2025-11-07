@@ -1,81 +1,28 @@
 package proguard.optimize.evaluation;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.isA;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import proguard.classfile.Clazz;
 import proguard.classfile.LibraryClass;
 import proguard.classfile.LibraryMethod;
 import proguard.classfile.Method;
 import proguard.classfile.attribute.CodeAttribute;
 import proguard.classfile.attribute.LocalVariableInfo;
-import proguard.classfile.attribute.LocalVariableTableAttribute;
 import proguard.classfile.attribute.LocalVariableTypeInfo;
-import proguard.classfile.attribute.LocalVariableTypeTableAttribute;
-import proguard.classfile.attribute.visitor.LocalVariableInfoVisitor;
-import proguard.classfile.attribute.visitor.LocalVariableTypeInfoVisitor;
 
 class VariableOptimizerDiffblueTest {
   /**
-   * Method under test:
-   * {@link VariableOptimizer#visitLocalVariableTableAttribute(Clazz, Method, CodeAttribute, LocalVariableTableAttribute)}
+   * Test {@link VariableOptimizer#visitLocalVariableInfo(Clazz, Method, CodeAttribute, LocalVariableInfo)}.
+   * <p>
+   * Method under test: {@link VariableOptimizer#visitLocalVariableInfo(Clazz, Method, CodeAttribute, LocalVariableInfo)}
    */
   @Test
-  void testVisitLocalVariableTableAttribute() {
-    // Arrange
-    VariableOptimizer variableOptimizer = new VariableOptimizer(true);
-    LibraryClass clazz = new LibraryClass();
-    LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
-
-    CodeAttribute codeAttribute = new CodeAttribute(1);
-    LocalVariableTableAttribute localVariableTableAttribute = mock(LocalVariableTableAttribute.class);
-    doNothing().when(localVariableTableAttribute)
-        .localVariablesAccept(Mockito.<Clazz>any(), Mockito.<Method>any(), Mockito.<CodeAttribute>any(),
-            Mockito.<LocalVariableInfoVisitor>any());
-
-    // Act
-    variableOptimizer.visitLocalVariableTableAttribute(clazz, method, codeAttribute, localVariableTableAttribute);
-
-    // Assert
-    verify(localVariableTableAttribute).localVariablesAccept(isA(Clazz.class), isA(Method.class),
-        isA(CodeAttribute.class), isA(LocalVariableInfoVisitor.class));
-  }
-
-  /**
-   * Method under test:
-   * {@link VariableOptimizer#visitLocalVariableTypeTableAttribute(Clazz, Method, CodeAttribute, LocalVariableTypeTableAttribute)}
-   */
-  @Test
-  void testVisitLocalVariableTypeTableAttribute() {
-    // Arrange
-    VariableOptimizer variableOptimizer = new VariableOptimizer(true);
-    LibraryClass clazz = new LibraryClass();
-    LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
-
-    CodeAttribute codeAttribute = new CodeAttribute(1);
-    LocalVariableTypeTableAttribute localVariableTypeTableAttribute = mock(LocalVariableTypeTableAttribute.class);
-    doNothing().when(localVariableTypeTableAttribute)
-        .localVariablesAccept(Mockito.<Clazz>any(), Mockito.<Method>any(), Mockito.<CodeAttribute>any(),
-            Mockito.<LocalVariableTypeInfoVisitor>any());
-
-    // Act
-    variableOptimizer.visitLocalVariableTypeTableAttribute(clazz, method, codeAttribute,
-        localVariableTypeTableAttribute);
-
-    // Assert
-    verify(localVariableTypeTableAttribute).localVariablesAccept(isA(Clazz.class), isA(Method.class),
-        isA(CodeAttribute.class), isA(LocalVariableTypeInfoVisitor.class));
-  }
-
-  /**
-   * Method under test:
-   * {@link VariableOptimizer#visitLocalVariableInfo(Clazz, Method, CodeAttribute, LocalVariableInfo)}
-   */
-  @Test
+  @DisplayName("Test visitLocalVariableInfo(Clazz, Method, CodeAttribute, LocalVariableInfo)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void VariableOptimizer.visitLocalVariableInfo(Clazz, Method, CodeAttribute, LocalVariableInfo)"})
   void testVisitLocalVariableInfo() {
     // Arrange
     VariableOptimizer variableOptimizer = new VariableOptimizer(true);
@@ -93,10 +40,15 @@ class VariableOptimizerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link VariableOptimizer#visitLocalVariableTypeInfo(Clazz, Method, CodeAttribute, LocalVariableTypeInfo)}
+   * Test {@link VariableOptimizer#visitLocalVariableTypeInfo(Clazz, Method, CodeAttribute, LocalVariableTypeInfo)}.
+   * <p>
+   * Method under test: {@link VariableOptimizer#visitLocalVariableTypeInfo(Clazz, Method, CodeAttribute, LocalVariableTypeInfo)}
    */
   @Test
+  @DisplayName("Test visitLocalVariableTypeInfo(Clazz, Method, CodeAttribute, LocalVariableTypeInfo)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void VariableOptimizer.visitLocalVariableTypeInfo(Clazz, Method, CodeAttribute, LocalVariableTypeInfo)"})
   void testVisitLocalVariableTypeInfo() {
     // Arrange
     VariableOptimizer variableOptimizer = new VariableOptimizer(true);

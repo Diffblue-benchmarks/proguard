@@ -6,7 +6,10 @@ import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.io.UnsupportedEncodingException;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.Clazz;
@@ -47,18 +50,24 @@ import proguard.classfile.attribute.module.ModulePackagesAttribute;
 import proguard.classfile.attribute.preverification.StackMapAttribute;
 import proguard.classfile.attribute.preverification.StackMapTableAttribute;
 import proguard.classfile.attribute.visitor.AllAttributeVisitor;
-import proguard.classfile.attribute.visitor.AllBootstrapMethodInfoVisitor;
-import proguard.classfile.attribute.visitor.BootstrapMethodInfoVisitor;
+import proguard.classfile.attribute.visitor.AttributeVisitor;
 import proguard.fixer.kotlin.KotlinAnnotationCounter;
 import proguard.obfuscate.kotlin.KotlinSourceDebugExtensionAttributeObfuscator;
 
 class ChangedCodePrinterDiffblueTest {
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitUnknownAttribute(Clazz, UnknownAttribute)}
+   * Test {@link ChangedCodePrinter#visitUnknownAttribute(Clazz, UnknownAttribute)}.
+   * <ul>
+   *   <li>Then calls {@link AttributeVisitor#visitUnknownAttribute(Clazz, UnknownAttribute)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitUnknownAttribute(Clazz, UnknownAttribute)}
    */
   @Test
-  void testVisitUnknownAttribute() {
+  @DisplayName("Test visitUnknownAttribute(Clazz, UnknownAttribute); then calls visitUnknownAttribute(Clazz, UnknownAttribute)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ChangedCodePrinter.visitUnknownAttribute(Clazz, UnknownAttribute)"})
+  void testVisitUnknownAttribute_thenCallsVisitUnknownAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
     doNothing().when(attributeVisitor).visitUnknownAttribute(Mockito.<Clazz>any(), Mockito.<UnknownAttribute>any());
@@ -73,10 +82,15 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitSourceDebugExtensionAttribute(Clazz, SourceDebugExtensionAttribute)}
+   * Test {@link ChangedCodePrinter#visitSourceDebugExtensionAttribute(Clazz, SourceDebugExtensionAttribute)}.
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitSourceDebugExtensionAttribute(Clazz, SourceDebugExtensionAttribute)}
    */
   @Test
+  @DisplayName("Test visitSourceDebugExtensionAttribute(Clazz, SourceDebugExtensionAttribute)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void ChangedCodePrinter.visitSourceDebugExtensionAttribute(Clazz, SourceDebugExtensionAttribute)"})
   void testVisitSourceDebugExtensionAttribute() {
     // Arrange
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(new KotlinAnnotationCounter());
@@ -91,30 +105,16 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitSourceDebugExtensionAttribute(Clazz, SourceDebugExtensionAttribute)}
+   * Test {@link ChangedCodePrinter#visitSourceDebugExtensionAttribute(Clazz, SourceDebugExtensionAttribute)}.
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitSourceDebugExtensionAttribute(Clazz, SourceDebugExtensionAttribute)}
    */
   @Test
-  void testVisitSourceDebugExtensionAttribute2() {
-    // Arrange
-    ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(
-        new AllBootstrapMethodInfoVisitor(mock(BootstrapMethodInfoVisitor.class)));
-    LibraryClass clazz = new LibraryClass();
-    SourceDebugExtensionAttribute sourceDebugExtensionAttribute = new SourceDebugExtensionAttribute();
-
-    // Act
-    changedCodePrinter.visitSourceDebugExtensionAttribute(clazz, sourceDebugExtensionAttribute);
-
-    // Assert that nothing has changed
-    assertEquals(0, sourceDebugExtensionAttribute.u4attributeLength);
-  }
-
-  /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitSourceDebugExtensionAttribute(Clazz, SourceDebugExtensionAttribute)}
-   */
-  @Test
-  void testVisitSourceDebugExtensionAttribute3() throws UnsupportedEncodingException {
+  @DisplayName("Test visitSourceDebugExtensionAttribute(Clazz, SourceDebugExtensionAttribute)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void ChangedCodePrinter.visitSourceDebugExtensionAttribute(Clazz, SourceDebugExtensionAttribute)"})
+  void testVisitSourceDebugExtensionAttribute2() throws UnsupportedEncodingException {
     // Arrange
     ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(new KotlinSourceDebugExtensionAttributeObfuscator());
     LibraryClass clazz = new LibraryClass();
@@ -130,11 +130,18 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitSourceFileAttribute(Clazz, SourceFileAttribute)}
+   * Test {@link ChangedCodePrinter#visitSourceFileAttribute(Clazz, SourceFileAttribute)}.
+   * <ul>
+   *   <li>Then calls {@link AttributeVisitor#visitSourceFileAttribute(Clazz, SourceFileAttribute)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitSourceFileAttribute(Clazz, SourceFileAttribute)}
    */
   @Test
-  void testVisitSourceFileAttribute() {
+  @DisplayName("Test visitSourceFileAttribute(Clazz, SourceFileAttribute); then calls visitSourceFileAttribute(Clazz, SourceFileAttribute)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ChangedCodePrinter.visitSourceFileAttribute(Clazz, SourceFileAttribute)"})
+  void testVisitSourceFileAttribute_thenCallsVisitSourceFileAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
     doNothing().when(attributeVisitor)
@@ -150,11 +157,18 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitSourceDirAttribute(Clazz, SourceDirAttribute)}
+   * Test {@link ChangedCodePrinter#visitSourceDirAttribute(Clazz, SourceDirAttribute)}.
+   * <ul>
+   *   <li>Then calls {@link AttributeVisitor#visitSourceDirAttribute(Clazz, SourceDirAttribute)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitSourceDirAttribute(Clazz, SourceDirAttribute)}
    */
   @Test
-  void testVisitSourceDirAttribute() {
+  @DisplayName("Test visitSourceDirAttribute(Clazz, SourceDirAttribute); then calls visitSourceDirAttribute(Clazz, SourceDirAttribute)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ChangedCodePrinter.visitSourceDirAttribute(Clazz, SourceDirAttribute)"})
+  void testVisitSourceDirAttribute_thenCallsVisitSourceDirAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
     doNothing().when(attributeVisitor).visitSourceDirAttribute(Mockito.<Clazz>any(), Mockito.<SourceDirAttribute>any());
@@ -169,11 +183,18 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitInnerClassesAttribute(Clazz, InnerClassesAttribute)}
+   * Test {@link ChangedCodePrinter#visitInnerClassesAttribute(Clazz, InnerClassesAttribute)}.
+   * <ul>
+   *   <li>Then calls {@link AttributeVisitor#visitInnerClassesAttribute(Clazz, InnerClassesAttribute)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitInnerClassesAttribute(Clazz, InnerClassesAttribute)}
    */
   @Test
-  void testVisitInnerClassesAttribute() {
+  @DisplayName("Test visitInnerClassesAttribute(Clazz, InnerClassesAttribute); then calls visitInnerClassesAttribute(Clazz, InnerClassesAttribute)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ChangedCodePrinter.visitInnerClassesAttribute(Clazz, InnerClassesAttribute)"})
+  void testVisitInnerClassesAttribute_thenCallsVisitInnerClassesAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
     doNothing().when(attributeVisitor)
@@ -189,11 +210,18 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitEnclosingMethodAttribute(Clazz, EnclosingMethodAttribute)}
+   * Test {@link ChangedCodePrinter#visitEnclosingMethodAttribute(Clazz, EnclosingMethodAttribute)}.
+   * <ul>
+   *   <li>Then calls {@link AttributeVisitor#visitEnclosingMethodAttribute(Clazz, EnclosingMethodAttribute)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitEnclosingMethodAttribute(Clazz, EnclosingMethodAttribute)}
    */
   @Test
-  void testVisitEnclosingMethodAttribute() {
+  @DisplayName("Test visitEnclosingMethodAttribute(Clazz, EnclosingMethodAttribute); then calls visitEnclosingMethodAttribute(Clazz, EnclosingMethodAttribute)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ChangedCodePrinter.visitEnclosingMethodAttribute(Clazz, EnclosingMethodAttribute)"})
+  void testVisitEnclosingMethodAttribute_thenCallsVisitEnclosingMethodAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
     doNothing().when(attributeVisitor)
@@ -209,11 +237,18 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitNestHostAttribute(Clazz, NestHostAttribute)}
+   * Test {@link ChangedCodePrinter#visitNestHostAttribute(Clazz, NestHostAttribute)}.
+   * <ul>
+   *   <li>Then calls {@link AttributeVisitor#visitNestHostAttribute(Clazz, NestHostAttribute)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitNestHostAttribute(Clazz, NestHostAttribute)}
    */
   @Test
-  void testVisitNestHostAttribute() {
+  @DisplayName("Test visitNestHostAttribute(Clazz, NestHostAttribute); then calls visitNestHostAttribute(Clazz, NestHostAttribute)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ChangedCodePrinter.visitNestHostAttribute(Clazz, NestHostAttribute)"})
+  void testVisitNestHostAttribute_thenCallsVisitNestHostAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
     doNothing().when(attributeVisitor).visitNestHostAttribute(Mockito.<Clazz>any(), Mockito.<NestHostAttribute>any());
@@ -228,11 +263,18 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitNestMembersAttribute(Clazz, NestMembersAttribute)}
+   * Test {@link ChangedCodePrinter#visitNestMembersAttribute(Clazz, NestMembersAttribute)}.
+   * <ul>
+   *   <li>Then calls {@link AttributeVisitor#visitNestMembersAttribute(Clazz, NestMembersAttribute)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitNestMembersAttribute(Clazz, NestMembersAttribute)}
    */
   @Test
-  void testVisitNestMembersAttribute() {
+  @DisplayName("Test visitNestMembersAttribute(Clazz, NestMembersAttribute); then calls visitNestMembersAttribute(Clazz, NestMembersAttribute)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ChangedCodePrinter.visitNestMembersAttribute(Clazz, NestMembersAttribute)"})
+  void testVisitNestMembersAttribute_thenCallsVisitNestMembersAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
     doNothing().when(attributeVisitor)
@@ -248,11 +290,18 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitPermittedSubclassesAttribute(Clazz, PermittedSubclassesAttribute)}
+   * Test {@link ChangedCodePrinter#visitPermittedSubclassesAttribute(Clazz, PermittedSubclassesAttribute)}.
+   * <ul>
+   *   <li>Then calls {@link AttributeVisitor#visitPermittedSubclassesAttribute(Clazz, PermittedSubclassesAttribute)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitPermittedSubclassesAttribute(Clazz, PermittedSubclassesAttribute)}
    */
   @Test
-  void testVisitPermittedSubclassesAttribute() {
+  @DisplayName("Test visitPermittedSubclassesAttribute(Clazz, PermittedSubclassesAttribute); then calls visitPermittedSubclassesAttribute(Clazz, PermittedSubclassesAttribute)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ChangedCodePrinter.visitPermittedSubclassesAttribute(Clazz, PermittedSubclassesAttribute)"})
+  void testVisitPermittedSubclassesAttribute_thenCallsVisitPermittedSubclassesAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
     doNothing().when(attributeVisitor)
@@ -269,11 +318,18 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitModuleAttribute(Clazz, ModuleAttribute)}
+   * Test {@link ChangedCodePrinter#visitModuleAttribute(Clazz, ModuleAttribute)}.
+   * <ul>
+   *   <li>Then calls {@link AttributeVisitor#visitModuleAttribute(Clazz, ModuleAttribute)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitModuleAttribute(Clazz, ModuleAttribute)}
    */
   @Test
-  void testVisitModuleAttribute() {
+  @DisplayName("Test visitModuleAttribute(Clazz, ModuleAttribute); then calls visitModuleAttribute(Clazz, ModuleAttribute)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ChangedCodePrinter.visitModuleAttribute(Clazz, ModuleAttribute)"})
+  void testVisitModuleAttribute_thenCallsVisitModuleAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
     doNothing().when(attributeVisitor).visitModuleAttribute(Mockito.<Clazz>any(), Mockito.<ModuleAttribute>any());
@@ -288,11 +344,18 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitModuleMainClassAttribute(Clazz, ModuleMainClassAttribute)}
+   * Test {@link ChangedCodePrinter#visitModuleMainClassAttribute(Clazz, ModuleMainClassAttribute)}.
+   * <ul>
+   *   <li>Then calls {@link AttributeVisitor#visitModuleMainClassAttribute(Clazz, ModuleMainClassAttribute)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitModuleMainClassAttribute(Clazz, ModuleMainClassAttribute)}
    */
   @Test
-  void testVisitModuleMainClassAttribute() {
+  @DisplayName("Test visitModuleMainClassAttribute(Clazz, ModuleMainClassAttribute); then calls visitModuleMainClassAttribute(Clazz, ModuleMainClassAttribute)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ChangedCodePrinter.visitModuleMainClassAttribute(Clazz, ModuleMainClassAttribute)"})
+  void testVisitModuleMainClassAttribute_thenCallsVisitModuleMainClassAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
     doNothing().when(attributeVisitor)
@@ -308,11 +371,18 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitModulePackagesAttribute(Clazz, ModulePackagesAttribute)}
+   * Test {@link ChangedCodePrinter#visitModulePackagesAttribute(Clazz, ModulePackagesAttribute)}.
+   * <ul>
+   *   <li>Then calls {@link AttributeVisitor#visitModulePackagesAttribute(Clazz, ModulePackagesAttribute)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitModulePackagesAttribute(Clazz, ModulePackagesAttribute)}
    */
   @Test
-  void testVisitModulePackagesAttribute() {
+  @DisplayName("Test visitModulePackagesAttribute(Clazz, ModulePackagesAttribute); then calls visitModulePackagesAttribute(Clazz, ModulePackagesAttribute)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ChangedCodePrinter.visitModulePackagesAttribute(Clazz, ModulePackagesAttribute)"})
+  void testVisitModulePackagesAttribute_thenCallsVisitModulePackagesAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
     doNothing().when(attributeVisitor)
@@ -328,11 +398,39 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitDeprecatedAttribute(Clazz, Field, DeprecatedAttribute)}
+   * Test {@link ChangedCodePrinter#visitDeprecatedAttribute(Clazz, DeprecatedAttribute)} with {@code clazz}, {@code deprecatedAttribute}.
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitDeprecatedAttribute(Clazz, DeprecatedAttribute)}
    */
   @Test
-  void testVisitDeprecatedAttribute() {
+  @DisplayName("Test visitDeprecatedAttribute(Clazz, DeprecatedAttribute) with 'clazz', 'deprecatedAttribute'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ChangedCodePrinter.visitDeprecatedAttribute(Clazz, DeprecatedAttribute)"})
+  void testVisitDeprecatedAttributeWithClazzDeprecatedAttribute() {
+    // Arrange
+    AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
+    doNothing().when(attributeVisitor)
+        .visitDeprecatedAttribute(Mockito.<Clazz>any(), Mockito.<DeprecatedAttribute>any());
+    ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
+    LibraryClass clazz = new LibraryClass();
+
+    // Act
+    changedCodePrinter.visitDeprecatedAttribute(clazz, new DeprecatedAttribute(1));
+
+    // Assert
+    verify(attributeVisitor).visitDeprecatedAttribute(isA(Clazz.class), isA(DeprecatedAttribute.class));
+  }
+
+  /**
+   * Test {@link ChangedCodePrinter#visitDeprecatedAttribute(Clazz, Field, DeprecatedAttribute)} with {@code clazz}, {@code field}, {@code deprecatedAttribute}.
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitDeprecatedAttribute(Clazz, Field, DeprecatedAttribute)}
+   */
+  @Test
+  @DisplayName("Test visitDeprecatedAttribute(Clazz, Field, DeprecatedAttribute) with 'clazz', 'field', 'deprecatedAttribute'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ChangedCodePrinter.visitDeprecatedAttribute(Clazz, Field, DeprecatedAttribute)"})
+  void testVisitDeprecatedAttributeWithClazzFieldDeprecatedAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
     doNothing().when(attributeVisitor)
@@ -350,11 +448,15 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitDeprecatedAttribute(Clazz, Method, DeprecatedAttribute)}
+   * Test {@link ChangedCodePrinter#visitDeprecatedAttribute(Clazz, Method, DeprecatedAttribute)} with {@code clazz}, {@code method}, {@code deprecatedAttribute}.
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitDeprecatedAttribute(Clazz, Method, DeprecatedAttribute)}
    */
   @Test
-  void testVisitDeprecatedAttribute2() {
+  @DisplayName("Test visitDeprecatedAttribute(Clazz, Method, DeprecatedAttribute) with 'clazz', 'method', 'deprecatedAttribute'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ChangedCodePrinter.visitDeprecatedAttribute(Clazz, Method, DeprecatedAttribute)"})
+  void testVisitDeprecatedAttributeWithClazzMethodDeprecatedAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
     doNothing().when(attributeVisitor)
@@ -372,31 +474,15 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitDeprecatedAttribute(Clazz, DeprecatedAttribute)}
+   * Test {@link ChangedCodePrinter#visitSyntheticAttribute(Clazz, Field, SyntheticAttribute)} with {@code clazz}, {@code field}, {@code syntheticAttribute}.
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitSyntheticAttribute(Clazz, Field, SyntheticAttribute)}
    */
   @Test
-  void testVisitDeprecatedAttribute3() {
-    // Arrange
-    AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
-    doNothing().when(attributeVisitor)
-        .visitDeprecatedAttribute(Mockito.<Clazz>any(), Mockito.<DeprecatedAttribute>any());
-    ChangedCodePrinter changedCodePrinter = new ChangedCodePrinter(attributeVisitor);
-    LibraryClass clazz = new LibraryClass();
-
-    // Act
-    changedCodePrinter.visitDeprecatedAttribute(clazz, new DeprecatedAttribute(1));
-
-    // Assert
-    verify(attributeVisitor).visitDeprecatedAttribute(isA(Clazz.class), isA(DeprecatedAttribute.class));
-  }
-
-  /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitSyntheticAttribute(Clazz, Field, SyntheticAttribute)}
-   */
-  @Test
-  void testVisitSyntheticAttribute() {
+  @DisplayName("Test visitSyntheticAttribute(Clazz, Field, SyntheticAttribute) with 'clazz', 'field', 'syntheticAttribute'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ChangedCodePrinter.visitSyntheticAttribute(Clazz, Field, SyntheticAttribute)"})
+  void testVisitSyntheticAttributeWithClazzFieldSyntheticAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
     doNothing().when(attributeVisitor)
@@ -413,11 +499,15 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitSyntheticAttribute(Clazz, Method, SyntheticAttribute)}
+   * Test {@link ChangedCodePrinter#visitSyntheticAttribute(Clazz, Method, SyntheticAttribute)} with {@code clazz}, {@code method}, {@code syntheticAttribute}.
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitSyntheticAttribute(Clazz, Method, SyntheticAttribute)}
    */
   @Test
-  void testVisitSyntheticAttribute2() {
+  @DisplayName("Test visitSyntheticAttribute(Clazz, Method, SyntheticAttribute) with 'clazz', 'method', 'syntheticAttribute'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ChangedCodePrinter.visitSyntheticAttribute(Clazz, Method, SyntheticAttribute)"})
+  void testVisitSyntheticAttributeWithClazzMethodSyntheticAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
     doNothing().when(attributeVisitor)
@@ -435,11 +525,15 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitSyntheticAttribute(Clazz, SyntheticAttribute)}
+   * Test {@link ChangedCodePrinter#visitSyntheticAttribute(Clazz, SyntheticAttribute)} with {@code clazz}, {@code syntheticAttribute}.
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitSyntheticAttribute(Clazz, SyntheticAttribute)}
    */
   @Test
-  void testVisitSyntheticAttribute3() {
+  @DisplayName("Test visitSyntheticAttribute(Clazz, SyntheticAttribute) with 'clazz', 'syntheticAttribute'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ChangedCodePrinter.visitSyntheticAttribute(Clazz, SyntheticAttribute)"})
+  void testVisitSyntheticAttributeWithClazzSyntheticAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
     doNothing().when(attributeVisitor).visitSyntheticAttribute(Mockito.<Clazz>any(), Mockito.<SyntheticAttribute>any());
@@ -454,11 +548,15 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitSignatureAttribute(Clazz, Field, SignatureAttribute)}
+   * Test {@link ChangedCodePrinter#visitSignatureAttribute(Clazz, Field, SignatureAttribute)} with {@code clazz}, {@code field}, {@code syntheticAttribute}.
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitSignatureAttribute(Clazz, Field, SignatureAttribute)}
    */
   @Test
-  void testVisitSignatureAttribute() {
+  @DisplayName("Test visitSignatureAttribute(Clazz, Field, SignatureAttribute) with 'clazz', 'field', 'syntheticAttribute'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ChangedCodePrinter.visitSignatureAttribute(Clazz, Field, SignatureAttribute)"})
+  void testVisitSignatureAttributeWithClazzFieldSyntheticAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
     doNothing().when(attributeVisitor)
@@ -475,11 +573,15 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitSignatureAttribute(Clazz, Method, SignatureAttribute)}
+   * Test {@link ChangedCodePrinter#visitSignatureAttribute(Clazz, Method, SignatureAttribute)} with {@code clazz}, {@code method}, {@code syntheticAttribute}.
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitSignatureAttribute(Clazz, Method, SignatureAttribute)}
    */
   @Test
-  void testVisitSignatureAttribute2() {
+  @DisplayName("Test visitSignatureAttribute(Clazz, Method, SignatureAttribute) with 'clazz', 'method', 'syntheticAttribute'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ChangedCodePrinter.visitSignatureAttribute(Clazz, Method, SignatureAttribute)"})
+  void testVisitSignatureAttributeWithClazzMethodSyntheticAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
     doNothing().when(attributeVisitor)
@@ -497,11 +599,15 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitSignatureAttribute(Clazz, SignatureAttribute)}
+   * Test {@link ChangedCodePrinter#visitSignatureAttribute(Clazz, SignatureAttribute)} with {@code clazz}, {@code syntheticAttribute}.
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitSignatureAttribute(Clazz, SignatureAttribute)}
    */
   @Test
-  void testVisitSignatureAttribute3() {
+  @DisplayName("Test visitSignatureAttribute(Clazz, SignatureAttribute) with 'clazz', 'syntheticAttribute'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ChangedCodePrinter.visitSignatureAttribute(Clazz, SignatureAttribute)"})
+  void testVisitSignatureAttributeWithClazzSyntheticAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
     doNothing().when(attributeVisitor).visitSignatureAttribute(Mockito.<Clazz>any(), Mockito.<SignatureAttribute>any());
@@ -516,11 +622,18 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitConstantValueAttribute(Clazz, Field, ConstantValueAttribute)}
+   * Test {@link ChangedCodePrinter#visitConstantValueAttribute(Clazz, Field, ConstantValueAttribute)}.
+   * <ul>
+   *   <li>Then calls {@link AttributeVisitor#visitConstantValueAttribute(Clazz, Field, ConstantValueAttribute)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitConstantValueAttribute(Clazz, Field, ConstantValueAttribute)}
    */
   @Test
-  void testVisitConstantValueAttribute() {
+  @DisplayName("Test visitConstantValueAttribute(Clazz, Field, ConstantValueAttribute); then calls visitConstantValueAttribute(Clazz, Field, ConstantValueAttribute)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ChangedCodePrinter.visitConstantValueAttribute(Clazz, Field, ConstantValueAttribute)"})
+  void testVisitConstantValueAttribute_thenCallsVisitConstantValueAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
     doNothing().when(attributeVisitor)
@@ -538,11 +651,19 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitMethodParametersAttribute(Clazz, Method, MethodParametersAttribute)}
+   * Test {@link ChangedCodePrinter#visitMethodParametersAttribute(Clazz, Method, MethodParametersAttribute)}.
+   * <ul>
+   *   <li>Then calls {@link AttributeVisitor#visitMethodParametersAttribute(Clazz, Method, MethodParametersAttribute)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitMethodParametersAttribute(Clazz, Method, MethodParametersAttribute)}
    */
   @Test
-  void testVisitMethodParametersAttribute() {
+  @DisplayName("Test visitMethodParametersAttribute(Clazz, Method, MethodParametersAttribute); then calls visitMethodParametersAttribute(Clazz, Method, MethodParametersAttribute)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void ChangedCodePrinter.visitMethodParametersAttribute(Clazz, Method, MethodParametersAttribute)"})
+  void testVisitMethodParametersAttribute_thenCallsVisitMethodParametersAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
     doNothing().when(attributeVisitor)
@@ -561,11 +682,18 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitExceptionsAttribute(Clazz, Method, ExceptionsAttribute)}
+   * Test {@link ChangedCodePrinter#visitExceptionsAttribute(Clazz, Method, ExceptionsAttribute)}.
+   * <ul>
+   *   <li>Then calls {@link AttributeVisitor#visitExceptionsAttribute(Clazz, Method, ExceptionsAttribute)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitExceptionsAttribute(Clazz, Method, ExceptionsAttribute)}
    */
   @Test
-  void testVisitExceptionsAttribute() {
+  @DisplayName("Test visitExceptionsAttribute(Clazz, Method, ExceptionsAttribute); then calls visitExceptionsAttribute(Clazz, Method, ExceptionsAttribute)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ChangedCodePrinter.visitExceptionsAttribute(Clazz, Method, ExceptionsAttribute)"})
+  void testVisitExceptionsAttribute_thenCallsVisitExceptionsAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
     doNothing().when(attributeVisitor)
@@ -583,11 +711,18 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitStackMapAttribute(Clazz, Method, CodeAttribute, StackMapAttribute)}
+   * Test {@link ChangedCodePrinter#visitStackMapAttribute(Clazz, Method, CodeAttribute, StackMapAttribute)}.
+   * <ul>
+   *   <li>Then calls {@link AttributeVisitor#visitStackMapAttribute(Clazz, Method, CodeAttribute, StackMapAttribute)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitStackMapAttribute(Clazz, Method, CodeAttribute, StackMapAttribute)}
    */
   @Test
-  void testVisitStackMapAttribute() {
+  @DisplayName("Test visitStackMapAttribute(Clazz, Method, CodeAttribute, StackMapAttribute); then calls visitStackMapAttribute(Clazz, Method, CodeAttribute, StackMapAttribute)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ChangedCodePrinter.visitStackMapAttribute(Clazz, Method, CodeAttribute, StackMapAttribute)"})
+  void testVisitStackMapAttribute_thenCallsVisitStackMapAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
     doNothing().when(attributeVisitor)
@@ -608,11 +743,19 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitStackMapTableAttribute(Clazz, Method, CodeAttribute, StackMapTableAttribute)}
+   * Test {@link ChangedCodePrinter#visitStackMapTableAttribute(Clazz, Method, CodeAttribute, StackMapTableAttribute)}.
+   * <ul>
+   *   <li>Then calls {@link AttributeVisitor#visitStackMapTableAttribute(Clazz, Method, CodeAttribute, StackMapTableAttribute)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitStackMapTableAttribute(Clazz, Method, CodeAttribute, StackMapTableAttribute)}
    */
   @Test
-  void testVisitStackMapTableAttribute() {
+  @DisplayName("Test visitStackMapTableAttribute(Clazz, Method, CodeAttribute, StackMapTableAttribute); then calls visitStackMapTableAttribute(Clazz, Method, CodeAttribute, StackMapTableAttribute)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void ChangedCodePrinter.visitStackMapTableAttribute(Clazz, Method, CodeAttribute, StackMapTableAttribute)"})
+  void testVisitStackMapTableAttribute_thenCallsVisitStackMapTableAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
     doNothing().when(attributeVisitor)
@@ -633,11 +776,19 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitLineNumberTableAttribute(Clazz, Method, CodeAttribute, LineNumberTableAttribute)}
+   * Test {@link ChangedCodePrinter#visitLineNumberTableAttribute(Clazz, Method, CodeAttribute, LineNumberTableAttribute)}.
+   * <ul>
+   *   <li>Then calls {@link AttributeVisitor#visitLineNumberTableAttribute(Clazz, Method, CodeAttribute, LineNumberTableAttribute)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitLineNumberTableAttribute(Clazz, Method, CodeAttribute, LineNumberTableAttribute)}
    */
   @Test
-  void testVisitLineNumberTableAttribute() {
+  @DisplayName("Test visitLineNumberTableAttribute(Clazz, Method, CodeAttribute, LineNumberTableAttribute); then calls visitLineNumberTableAttribute(Clazz, Method, CodeAttribute, LineNumberTableAttribute)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void ChangedCodePrinter.visitLineNumberTableAttribute(Clazz, Method, CodeAttribute, LineNumberTableAttribute)"})
+  void testVisitLineNumberTableAttribute_thenCallsVisitLineNumberTableAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
     doNothing().when(attributeVisitor)
@@ -658,11 +809,19 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitLocalVariableTableAttribute(Clazz, Method, CodeAttribute, LocalVariableTableAttribute)}
+   * Test {@link ChangedCodePrinter#visitLocalVariableTableAttribute(Clazz, Method, CodeAttribute, LocalVariableTableAttribute)}.
+   * <ul>
+   *   <li>Then calls {@link AttributeVisitor#visitLocalVariableTableAttribute(Clazz, Method, CodeAttribute, LocalVariableTableAttribute)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitLocalVariableTableAttribute(Clazz, Method, CodeAttribute, LocalVariableTableAttribute)}
    */
   @Test
-  void testVisitLocalVariableTableAttribute() {
+  @DisplayName("Test visitLocalVariableTableAttribute(Clazz, Method, CodeAttribute, LocalVariableTableAttribute); then calls visitLocalVariableTableAttribute(Clazz, Method, CodeAttribute, LocalVariableTableAttribute)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void ChangedCodePrinter.visitLocalVariableTableAttribute(Clazz, Method, CodeAttribute, LocalVariableTableAttribute)"})
+  void testVisitLocalVariableTableAttribute_thenCallsVisitLocalVariableTableAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
     doNothing().when(attributeVisitor)
@@ -684,10 +843,15 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitLocalVariableTypeTableAttribute(Clazz, Method, CodeAttribute, LocalVariableTypeTableAttribute)}
+   * Test {@link ChangedCodePrinter#visitLocalVariableTypeTableAttribute(Clazz, Method, CodeAttribute, LocalVariableTypeTableAttribute)}.
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitLocalVariableTypeTableAttribute(Clazz, Method, CodeAttribute, LocalVariableTypeTableAttribute)}
    */
   @Test
+  @DisplayName("Test visitLocalVariableTypeTableAttribute(Clazz, Method, CodeAttribute, LocalVariableTypeTableAttribute)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void ChangedCodePrinter.visitLocalVariableTypeTableAttribute(Clazz, Method, CodeAttribute, LocalVariableTypeTableAttribute)"})
   void testVisitLocalVariableTypeTableAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
@@ -710,11 +874,16 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitRuntimeVisibleAnnotationsAttribute(Clazz, Field, RuntimeVisibleAnnotationsAttribute)}
+   * Test {@link ChangedCodePrinter#visitRuntimeVisibleAnnotationsAttribute(Clazz, Field, RuntimeVisibleAnnotationsAttribute)} with {@code clazz}, {@code field}, {@code runtimeVisibleAnnotationsAttribute}.
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitRuntimeVisibleAnnotationsAttribute(Clazz, Field, RuntimeVisibleAnnotationsAttribute)}
    */
   @Test
-  void testVisitRuntimeVisibleAnnotationsAttribute() {
+  @DisplayName("Test visitRuntimeVisibleAnnotationsAttribute(Clazz, Field, RuntimeVisibleAnnotationsAttribute) with 'clazz', 'field', 'runtimeVisibleAnnotationsAttribute'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void ChangedCodePrinter.visitRuntimeVisibleAnnotationsAttribute(Clazz, Field, RuntimeVisibleAnnotationsAttribute)"})
+  void testVisitRuntimeVisibleAnnotationsAttributeWithClazzFieldRuntimeVisibleAnnotationsAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
     doNothing().when(attributeVisitor)
@@ -734,11 +903,16 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitRuntimeVisibleAnnotationsAttribute(Clazz, Method, RuntimeVisibleAnnotationsAttribute)}
+   * Test {@link ChangedCodePrinter#visitRuntimeVisibleAnnotationsAttribute(Clazz, Method, RuntimeVisibleAnnotationsAttribute)} with {@code clazz}, {@code method}, {@code runtimeVisibleAnnotationsAttribute}.
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitRuntimeVisibleAnnotationsAttribute(Clazz, Method, RuntimeVisibleAnnotationsAttribute)}
    */
   @Test
-  void testVisitRuntimeVisibleAnnotationsAttribute2() {
+  @DisplayName("Test visitRuntimeVisibleAnnotationsAttribute(Clazz, Method, RuntimeVisibleAnnotationsAttribute) with 'clazz', 'method', 'runtimeVisibleAnnotationsAttribute'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void ChangedCodePrinter.visitRuntimeVisibleAnnotationsAttribute(Clazz, Method, RuntimeVisibleAnnotationsAttribute)"})
+  void testVisitRuntimeVisibleAnnotationsAttributeWithClazzMethodRuntimeVisibleAnnotationsAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
     doNothing().when(attributeVisitor)
@@ -758,11 +932,16 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitRuntimeVisibleAnnotationsAttribute(Clazz, RuntimeVisibleAnnotationsAttribute)}
+   * Test {@link ChangedCodePrinter#visitRuntimeVisibleAnnotationsAttribute(Clazz, RuntimeVisibleAnnotationsAttribute)} with {@code clazz}, {@code runtimeVisibleAnnotationsAttribute}.
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitRuntimeVisibleAnnotationsAttribute(Clazz, RuntimeVisibleAnnotationsAttribute)}
    */
   @Test
-  void testVisitRuntimeVisibleAnnotationsAttribute3() {
+  @DisplayName("Test visitRuntimeVisibleAnnotationsAttribute(Clazz, RuntimeVisibleAnnotationsAttribute) with 'clazz', 'runtimeVisibleAnnotationsAttribute'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void ChangedCodePrinter.visitRuntimeVisibleAnnotationsAttribute(Clazz, RuntimeVisibleAnnotationsAttribute)"})
+  void testVisitRuntimeVisibleAnnotationsAttributeWithClazzRuntimeVisibleAnnotationsAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
     doNothing().when(attributeVisitor)
@@ -780,11 +959,16 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitRuntimeInvisibleAnnotationsAttribute(Clazz, Field, RuntimeInvisibleAnnotationsAttribute)}
+   * Test {@link ChangedCodePrinter#visitRuntimeInvisibleAnnotationsAttribute(Clazz, Field, RuntimeInvisibleAnnotationsAttribute)} with {@code clazz}, {@code field}, {@code runtimeInvisibleAnnotationsAttribute}.
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitRuntimeInvisibleAnnotationsAttribute(Clazz, Field, RuntimeInvisibleAnnotationsAttribute)}
    */
   @Test
-  void testVisitRuntimeInvisibleAnnotationsAttribute() {
+  @DisplayName("Test visitRuntimeInvisibleAnnotationsAttribute(Clazz, Field, RuntimeInvisibleAnnotationsAttribute) with 'clazz', 'field', 'runtimeInvisibleAnnotationsAttribute'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void ChangedCodePrinter.visitRuntimeInvisibleAnnotationsAttribute(Clazz, Field, RuntimeInvisibleAnnotationsAttribute)"})
+  void testVisitRuntimeInvisibleAnnotationsAttributeWithClazzFieldRuntimeInvisibleAnnotationsAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
     doNothing().when(attributeVisitor)
@@ -804,11 +988,16 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitRuntimeInvisibleAnnotationsAttribute(Clazz, Method, RuntimeInvisibleAnnotationsAttribute)}
+   * Test {@link ChangedCodePrinter#visitRuntimeInvisibleAnnotationsAttribute(Clazz, Method, RuntimeInvisibleAnnotationsAttribute)} with {@code clazz}, {@code method}, {@code runtimeInvisibleAnnotationsAttribute}.
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitRuntimeInvisibleAnnotationsAttribute(Clazz, Method, RuntimeInvisibleAnnotationsAttribute)}
    */
   @Test
-  void testVisitRuntimeInvisibleAnnotationsAttribute2() {
+  @DisplayName("Test visitRuntimeInvisibleAnnotationsAttribute(Clazz, Method, RuntimeInvisibleAnnotationsAttribute) with 'clazz', 'method', 'runtimeInvisibleAnnotationsAttribute'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void ChangedCodePrinter.visitRuntimeInvisibleAnnotationsAttribute(Clazz, Method, RuntimeInvisibleAnnotationsAttribute)"})
+  void testVisitRuntimeInvisibleAnnotationsAttributeWithClazzMethodRuntimeInvisibleAnnotationsAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
     doNothing().when(attributeVisitor)
@@ -828,11 +1017,16 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitRuntimeInvisibleAnnotationsAttribute(Clazz, RuntimeInvisibleAnnotationsAttribute)}
+   * Test {@link ChangedCodePrinter#visitRuntimeInvisibleAnnotationsAttribute(Clazz, RuntimeInvisibleAnnotationsAttribute)} with {@code clazz}, {@code runtimeInvisibleAnnotationsAttribute}.
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitRuntimeInvisibleAnnotationsAttribute(Clazz, RuntimeInvisibleAnnotationsAttribute)}
    */
   @Test
-  void testVisitRuntimeInvisibleAnnotationsAttribute3() {
+  @DisplayName("Test visitRuntimeInvisibleAnnotationsAttribute(Clazz, RuntimeInvisibleAnnotationsAttribute) with 'clazz', 'runtimeInvisibleAnnotationsAttribute'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void ChangedCodePrinter.visitRuntimeInvisibleAnnotationsAttribute(Clazz, RuntimeInvisibleAnnotationsAttribute)"})
+  void testVisitRuntimeInvisibleAnnotationsAttributeWithClazzRuntimeInvisibleAnnotationsAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
     doNothing().when(attributeVisitor)
@@ -850,10 +1044,15 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitRuntimeVisibleParameterAnnotationsAttribute(Clazz, Method, RuntimeVisibleParameterAnnotationsAttribute)}
+   * Test {@link ChangedCodePrinter#visitRuntimeVisibleParameterAnnotationsAttribute(Clazz, Method, RuntimeVisibleParameterAnnotationsAttribute)}.
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitRuntimeVisibleParameterAnnotationsAttribute(Clazz, Method, RuntimeVisibleParameterAnnotationsAttribute)}
    */
   @Test
+  @DisplayName("Test visitRuntimeVisibleParameterAnnotationsAttribute(Clazz, Method, RuntimeVisibleParameterAnnotationsAttribute)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void ChangedCodePrinter.visitRuntimeVisibleParameterAnnotationsAttribute(Clazz, Method, RuntimeVisibleParameterAnnotationsAttribute)"})
   void testVisitRuntimeVisibleParameterAnnotationsAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
@@ -874,10 +1073,15 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitRuntimeInvisibleParameterAnnotationsAttribute(Clazz, Method, RuntimeInvisibleParameterAnnotationsAttribute)}
+   * Test {@link ChangedCodePrinter#visitRuntimeInvisibleParameterAnnotationsAttribute(Clazz, Method, RuntimeInvisibleParameterAnnotationsAttribute)}.
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitRuntimeInvisibleParameterAnnotationsAttribute(Clazz, Method, RuntimeInvisibleParameterAnnotationsAttribute)}
    */
   @Test
+  @DisplayName("Test visitRuntimeInvisibleParameterAnnotationsAttribute(Clazz, Method, RuntimeInvisibleParameterAnnotationsAttribute)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void ChangedCodePrinter.visitRuntimeInvisibleParameterAnnotationsAttribute(Clazz, Method, RuntimeInvisibleParameterAnnotationsAttribute)"})
   void testVisitRuntimeInvisibleParameterAnnotationsAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
@@ -898,11 +1102,16 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, Field, RuntimeVisibleTypeAnnotationsAttribute)}
+   * Test {@link ChangedCodePrinter#visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, Field, RuntimeVisibleTypeAnnotationsAttribute)} with {@code clazz}, {@code field}, {@code runtimeVisibleTypeAnnotationsAttribute}.
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, Field, RuntimeVisibleTypeAnnotationsAttribute)}
    */
   @Test
-  void testVisitRuntimeVisibleTypeAnnotationsAttribute() {
+  @DisplayName("Test visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, Field, RuntimeVisibleTypeAnnotationsAttribute) with 'clazz', 'field', 'runtimeVisibleTypeAnnotationsAttribute'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void ChangedCodePrinter.visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, Field, RuntimeVisibleTypeAnnotationsAttribute)"})
+  void testVisitRuntimeVisibleTypeAnnotationsAttributeWithClazzFieldRuntimeVisibleTypeAnnotationsAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
     doNothing().when(attributeVisitor)
@@ -922,11 +1131,16 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, Method, CodeAttribute, RuntimeVisibleTypeAnnotationsAttribute)}
+   * Test {@link ChangedCodePrinter#visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, Method, CodeAttribute, RuntimeVisibleTypeAnnotationsAttribute)} with {@code clazz}, {@code method}, {@code codeAttribute}, {@code runtimeVisibleTypeAnnotationsAttribute}.
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, Method, CodeAttribute, RuntimeVisibleTypeAnnotationsAttribute)}
    */
   @Test
-  void testVisitRuntimeVisibleTypeAnnotationsAttribute2() {
+  @DisplayName("Test visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, Method, CodeAttribute, RuntimeVisibleTypeAnnotationsAttribute) with 'clazz', 'method', 'codeAttribute', 'runtimeVisibleTypeAnnotationsAttribute'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void ChangedCodePrinter.visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, Method, CodeAttribute, RuntimeVisibleTypeAnnotationsAttribute)"})
+  void testVisitRuntimeVisibleTypeAnnotationsAttributeWithClazzMethodCodeAttributeRuntimeVisibleTypeAnnotationsAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
     doNothing().when(attributeVisitor)
@@ -948,11 +1162,16 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, Method, RuntimeVisibleTypeAnnotationsAttribute)}
+   * Test {@link ChangedCodePrinter#visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, Method, RuntimeVisibleTypeAnnotationsAttribute)} with {@code clazz}, {@code method}, {@code runtimeVisibleTypeAnnotationsAttribute}.
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, Method, RuntimeVisibleTypeAnnotationsAttribute)}
    */
   @Test
-  void testVisitRuntimeVisibleTypeAnnotationsAttribute3() {
+  @DisplayName("Test visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, Method, RuntimeVisibleTypeAnnotationsAttribute) with 'clazz', 'method', 'runtimeVisibleTypeAnnotationsAttribute'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void ChangedCodePrinter.visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, Method, RuntimeVisibleTypeAnnotationsAttribute)"})
+  void testVisitRuntimeVisibleTypeAnnotationsAttributeWithClazzMethodRuntimeVisibleTypeAnnotationsAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
     doNothing().when(attributeVisitor)
@@ -972,11 +1191,16 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, RuntimeVisibleTypeAnnotationsAttribute)}
+   * Test {@link ChangedCodePrinter#visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, RuntimeVisibleTypeAnnotationsAttribute)} with {@code clazz}, {@code runtimeVisibleTypeAnnotationsAttribute}.
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, RuntimeVisibleTypeAnnotationsAttribute)}
    */
   @Test
-  void testVisitRuntimeVisibleTypeAnnotationsAttribute4() {
+  @DisplayName("Test visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, RuntimeVisibleTypeAnnotationsAttribute) with 'clazz', 'runtimeVisibleTypeAnnotationsAttribute'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void ChangedCodePrinter.visitRuntimeVisibleTypeAnnotationsAttribute(Clazz, RuntimeVisibleTypeAnnotationsAttribute)"})
+  void testVisitRuntimeVisibleTypeAnnotationsAttributeWithClazzRuntimeVisibleTypeAnnotationsAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
     doNothing().when(attributeVisitor)
@@ -994,11 +1218,16 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, Field, RuntimeInvisibleTypeAnnotationsAttribute)}
+   * Test {@link ChangedCodePrinter#visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, Field, RuntimeInvisibleTypeAnnotationsAttribute)} with {@code clazz}, {@code field}, {@code runtimeInvisibleTypeAnnotationsAttribute}.
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, Field, RuntimeInvisibleTypeAnnotationsAttribute)}
    */
   @Test
-  void testVisitRuntimeInvisibleTypeAnnotationsAttribute() {
+  @DisplayName("Test visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, Field, RuntimeInvisibleTypeAnnotationsAttribute) with 'clazz', 'field', 'runtimeInvisibleTypeAnnotationsAttribute'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void ChangedCodePrinter.visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, Field, RuntimeInvisibleTypeAnnotationsAttribute)"})
+  void testVisitRuntimeInvisibleTypeAnnotationsAttributeWithClazzFieldRuntimeInvisibleTypeAnnotationsAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
     doNothing().when(attributeVisitor)
@@ -1018,11 +1247,16 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, Method, CodeAttribute, RuntimeInvisibleTypeAnnotationsAttribute)}
+   * Test {@link ChangedCodePrinter#visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, Method, CodeAttribute, RuntimeInvisibleTypeAnnotationsAttribute)} with {@code clazz}, {@code method}, {@code codeAttribute}, {@code runtimeInvisibleTypeAnnotationsAttribute}.
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, Method, CodeAttribute, RuntimeInvisibleTypeAnnotationsAttribute)}
    */
   @Test
-  void testVisitRuntimeInvisibleTypeAnnotationsAttribute2() {
+  @DisplayName("Test visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, Method, CodeAttribute, RuntimeInvisibleTypeAnnotationsAttribute) with 'clazz', 'method', 'codeAttribute', 'runtimeInvisibleTypeAnnotationsAttribute'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void ChangedCodePrinter.visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, Method, CodeAttribute, RuntimeInvisibleTypeAnnotationsAttribute)"})
+  void testVisitRuntimeInvisibleTypeAnnotationsAttributeWithClazzMethodCodeAttributeRuntimeInvisibleTypeAnnotationsAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
     doNothing().when(attributeVisitor)
@@ -1044,11 +1278,16 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, Method, RuntimeInvisibleTypeAnnotationsAttribute)}
+   * Test {@link ChangedCodePrinter#visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, Method, RuntimeInvisibleTypeAnnotationsAttribute)} with {@code clazz}, {@code method}, {@code runtimeInvisibleTypeAnnotationsAttribute}.
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, Method, RuntimeInvisibleTypeAnnotationsAttribute)}
    */
   @Test
-  void testVisitRuntimeInvisibleTypeAnnotationsAttribute3() {
+  @DisplayName("Test visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, Method, RuntimeInvisibleTypeAnnotationsAttribute) with 'clazz', 'method', 'runtimeInvisibleTypeAnnotationsAttribute'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void ChangedCodePrinter.visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, Method, RuntimeInvisibleTypeAnnotationsAttribute)"})
+  void testVisitRuntimeInvisibleTypeAnnotationsAttributeWithClazzMethodRuntimeInvisibleTypeAnnotationsAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
     doNothing().when(attributeVisitor)
@@ -1068,11 +1307,16 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, RuntimeInvisibleTypeAnnotationsAttribute)}
+   * Test {@link ChangedCodePrinter#visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, RuntimeInvisibleTypeAnnotationsAttribute)} with {@code clazz}, {@code runtimeInvisibleTypeAnnotationsAttribute}.
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, RuntimeInvisibleTypeAnnotationsAttribute)}
    */
   @Test
-  void testVisitRuntimeInvisibleTypeAnnotationsAttribute4() {
+  @DisplayName("Test visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, RuntimeInvisibleTypeAnnotationsAttribute) with 'clazz', 'runtimeInvisibleTypeAnnotationsAttribute'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void ChangedCodePrinter.visitRuntimeInvisibleTypeAnnotationsAttribute(Clazz, RuntimeInvisibleTypeAnnotationsAttribute)"})
+  void testVisitRuntimeInvisibleTypeAnnotationsAttributeWithClazzRuntimeInvisibleTypeAnnotationsAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
     doNothing().when(attributeVisitor)
@@ -1091,11 +1335,19 @@ class ChangedCodePrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ChangedCodePrinter#visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)}
+   * Test {@link ChangedCodePrinter#visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)}.
+   * <ul>
+   *   <li>Then calls {@link AttributeVisitor#visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ChangedCodePrinter#visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)}
    */
   @Test
-  void testVisitAnnotationDefaultAttribute() {
+  @DisplayName("Test visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute); then calls visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void ChangedCodePrinter.visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)"})
+  void testVisitAnnotationDefaultAttribute_thenCallsVisitAnnotationDefaultAttribute() {
     // Arrange
     AllAttributeVisitor attributeVisitor = mock(AllAttributeVisitor.class);
     doNothing().when(attributeVisitor)

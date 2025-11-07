@@ -7,20 +7,30 @@ import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.io.IOException;
 import java.io.OutputStream;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.Configuration;
-import proguard.classfile.ClassPool;
-import proguard.classfile.visitor.ClassVisitor;
 
 class UniqueDataEntryWriterDiffblueTest {
   /**
+   * Test {@link UniqueDataEntryWriter#createDirectory(DataEntry)}.
+   * <ul>
+   *   <li>Given {@link DataEntryFilter} {@link DataEntryFilter#accepts(DataEntry)} return {@code false}.</li>
+   *   <li>Then return {@code false}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link UniqueDataEntryWriter#createDirectory(DataEntry)}
    */
   @Test
-  void testCreateDirectory() throws IOException {
+  @DisplayName("Test createDirectory(DataEntry); given DataEntryFilter accepts(DataEntry) return 'false'; then return 'false'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean UniqueDataEntryWriter.createDirectory(DataEntry)"})
+  void testCreateDirectory_givenDataEntryFilterAcceptsReturnFalse_thenReturnFalse() throws IOException {
     // Arrange
     DataEntryFilter dataEntryFilter = mock(DataEntryFilter.class);
     when(dataEntryFilter.accepts(Mockito.<DataEntry>any())).thenReturn(false);
@@ -36,10 +46,19 @@ class UniqueDataEntryWriterDiffblueTest {
   }
 
   /**
+   * Test {@link UniqueDataEntryWriter#createDirectory(DataEntry)}.
+   * <ul>
+   *   <li>Given {@link DataEntryFilter} {@link DataEntryFilter#accepts(DataEntry)} return {@code false}.</li>
+   *   <li>Then return {@code false}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link UniqueDataEntryWriter#createDirectory(DataEntry)}
    */
   @Test
-  void testCreateDirectory2() throws IOException {
+  @DisplayName("Test createDirectory(DataEntry); given DataEntryFilter accepts(DataEntry) return 'false'; then return 'false'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean UniqueDataEntryWriter.createDirectory(DataEntry)"})
+  void testCreateDirectory_givenDataEntryFilterAcceptsReturnFalse_thenReturnFalse2() throws IOException {
     // Arrange
     DataEntryFilter dataEntryFilter = mock(DataEntryFilter.class);
     when(dataEntryFilter.accepts(Mockito.<DataEntry>any())).thenReturn(true);
@@ -59,10 +78,19 @@ class UniqueDataEntryWriterDiffblueTest {
   }
 
   /**
+   * Test {@link UniqueDataEntryWriter#createDirectory(DataEntry)}.
+   * <ul>
+   *   <li>When {@link ClassPathDataEntry#ClassPathDataEntry(String)} with name is empty string.</li>
+   *   <li>Then return {@code true}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link UniqueDataEntryWriter#createDirectory(DataEntry)}
    */
   @Test
-  void testCreateDirectory3() throws IOException {
+  @DisplayName("Test createDirectory(DataEntry); when ClassPathDataEntry(String) with name is empty string; then return 'true'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean UniqueDataEntryWriter.createDirectory(DataEntry)"})
+  void testCreateDirectory_whenClassPathDataEntryWithNameIsEmptyString_thenReturnTrue() throws IOException {
     // Arrange
     DataEntryFilter dataEntryFilter = mock(DataEntryFilter.class);
     when(dataEntryFilter.accepts(Mockito.<DataEntry>any())).thenReturn(true);
@@ -82,71 +110,18 @@ class UniqueDataEntryWriterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link UniqueDataEntryWriter#sameOutputStream(DataEntry, DataEntry)}
+   * Test {@link UniqueDataEntryWriter#sameOutputStream(DataEntry, DataEntry)}.
+   * <ul>
+   *   <li>Then return {@code false}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link UniqueDataEntryWriter#sameOutputStream(DataEntry, DataEntry)}
    */
   @Test
-  void testSameOutputStream() throws IOException {
-    // Arrange
-    UniqueDataEntryWriter uniqueDataEntryWriter = new UniqueDataEntryWriter(new DirectoryWriter(Configuration.STD_OUT));
-    ClassPathDataEntry dataEntry1 = new ClassPathDataEntry("Name");
-
-    // Act and Assert
-    assertTrue(uniqueDataEntryWriter.sameOutputStream(dataEntry1, new ClassPathDataEntry("Name")));
-  }
-
-  /**
-   * Method under test:
-   * {@link UniqueDataEntryWriter#sameOutputStream(DataEntry, DataEntry)}
-   */
-  @Test
-  void testSameOutputStream2() throws IOException {
-    // Arrange
-    UniqueDataEntryWriter dataEntryWriter1 = new UniqueDataEntryWriter(new DirectoryWriter(Configuration.STD_OUT));
-    UniqueDataEntryWriter uniqueDataEntryWriter = new UniqueDataEntryWriter(new CascadingDataEntryWriter(
-        dataEntryWriter1, new UniqueDataEntryWriter(new DirectoryWriter(Configuration.STD_OUT))));
-    ClassPathDataEntry dataEntry1 = new ClassPathDataEntry("Name");
-
-    // Act and Assert
-    assertTrue(uniqueDataEntryWriter.sameOutputStream(dataEntry1, new ClassPathDataEntry("Name")));
-  }
-
-  /**
-   * Method under test:
-   * {@link UniqueDataEntryWriter#sameOutputStream(DataEntry, DataEntry)}
-   */
-  @Test
-  void testSameOutputStream3() throws IOException {
-    // Arrange
-    ClassPool classPool = new ClassPool();
-    UniqueDataEntryWriter uniqueDataEntryWriter = new UniqueDataEntryWriter(new ClassDataEntryWriter(classPool,
-        new UniqueDataEntryWriter(new DirectoryWriter(Configuration.STD_OUT)), mock(ClassVisitor.class)));
-    ClassPathDataEntry dataEntry1 = new ClassPathDataEntry("Name");
-
-    // Act and Assert
-    assertTrue(uniqueDataEntryWriter.sameOutputStream(dataEntry1, new ClassPathDataEntry("Name")));
-  }
-
-  /**
-   * Method under test:
-   * {@link UniqueDataEntryWriter#sameOutputStream(DataEntry, DataEntry)}
-   */
-  @Test
-  void testSameOutputStream4() throws IOException {
-    // Arrange
-    UniqueDataEntryWriter uniqueDataEntryWriter = new UniqueDataEntryWriter(new DirectoryWriter(Configuration.STD_OUT));
-    ClassPathDataEntry dataEntry1 = new ClassPathDataEntry("42");
-
-    // Act and Assert
-    assertFalse(uniqueDataEntryWriter.sameOutputStream(dataEntry1, new ClassPathDataEntry("Name")));
-  }
-
-  /**
-   * Method under test:
-   * {@link UniqueDataEntryWriter#sameOutputStream(DataEntry, DataEntry)}
-   */
-  @Test
-  void testSameOutputStream5() throws IOException {
+  @DisplayName("Test sameOutputStream(DataEntry, DataEntry); then return 'false'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean UniqueDataEntryWriter.sameOutputStream(DataEntry, DataEntry)"})
+  void testSameOutputStream_thenReturnFalse() throws IOException {
     // Arrange
     UniqueDataEntryWriter dataEntryWriter1 = new UniqueDataEntryWriter(new DirectoryWriter(Configuration.STD_OUT));
     UniqueDataEntryWriter uniqueDataEntryWriter = new UniqueDataEntryWriter(new CascadingDataEntryWriter(
@@ -158,11 +133,85 @@ class UniqueDataEntryWriterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link UniqueDataEntryWriter#createOutputStream(DataEntry)}
+   * Test {@link UniqueDataEntryWriter#sameOutputStream(DataEntry, DataEntry)}.
+   * <ul>
+   *   <li>Then return {@code true}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link UniqueDataEntryWriter#sameOutputStream(DataEntry, DataEntry)}
    */
   @Test
-  void testCreateOutputStream() throws IOException {
+  @DisplayName("Test sameOutputStream(DataEntry, DataEntry); then return 'true'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean UniqueDataEntryWriter.sameOutputStream(DataEntry, DataEntry)"})
+  void testSameOutputStream_thenReturnTrue() throws IOException {
+    // Arrange
+    UniqueDataEntryWriter uniqueDataEntryWriter = new UniqueDataEntryWriter(new DirectoryWriter(Configuration.STD_OUT));
+    ClassPathDataEntry dataEntry1 = new ClassPathDataEntry("Name");
+
+    // Act and Assert
+    assertTrue(uniqueDataEntryWriter.sameOutputStream(dataEntry1, new ClassPathDataEntry("Name")));
+  }
+
+  /**
+   * Test {@link UniqueDataEntryWriter#sameOutputStream(DataEntry, DataEntry)}.
+   * <ul>
+   *   <li>Then return {@code true}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link UniqueDataEntryWriter#sameOutputStream(DataEntry, DataEntry)}
+   */
+  @Test
+  @DisplayName("Test sameOutputStream(DataEntry, DataEntry); then return 'true'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean UniqueDataEntryWriter.sameOutputStream(DataEntry, DataEntry)"})
+  void testSameOutputStream_thenReturnTrue2() throws IOException {
+    // Arrange
+    UniqueDataEntryWriter dataEntryWriter1 = new UniqueDataEntryWriter(new DirectoryWriter(Configuration.STD_OUT));
+    UniqueDataEntryWriter uniqueDataEntryWriter = new UniqueDataEntryWriter(new CascadingDataEntryWriter(
+        dataEntryWriter1, new UniqueDataEntryWriter(new DirectoryWriter(Configuration.STD_OUT))));
+    ClassPathDataEntry dataEntry1 = new ClassPathDataEntry("Name");
+
+    // Act and Assert
+    assertTrue(uniqueDataEntryWriter.sameOutputStream(dataEntry1, new ClassPathDataEntry("Name")));
+  }
+
+  /**
+   * Test {@link UniqueDataEntryWriter#sameOutputStream(DataEntry, DataEntry)}.
+   * <ul>
+   *   <li>When {@link ClassPathDataEntry#ClassPathDataEntry(String)} with name is {@code 42}.</li>
+   *   <li>Then return {@code false}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link UniqueDataEntryWriter#sameOutputStream(DataEntry, DataEntry)}
+   */
+  @Test
+  @DisplayName("Test sameOutputStream(DataEntry, DataEntry); when ClassPathDataEntry(String) with name is '42'; then return 'false'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean UniqueDataEntryWriter.sameOutputStream(DataEntry, DataEntry)"})
+  void testSameOutputStream_whenClassPathDataEntryWithNameIs42_thenReturnFalse() throws IOException {
+    // Arrange
+    UniqueDataEntryWriter uniqueDataEntryWriter = new UniqueDataEntryWriter(new DirectoryWriter(Configuration.STD_OUT));
+    ClassPathDataEntry dataEntry1 = new ClassPathDataEntry("42");
+
+    // Act and Assert
+    assertFalse(uniqueDataEntryWriter.sameOutputStream(dataEntry1, new ClassPathDataEntry("Name")));
+  }
+
+  /**
+   * Test {@link UniqueDataEntryWriter#createOutputStream(DataEntry)}.
+   * <ul>
+   *   <li>Given {@link DataEntryFilter} {@link DataEntryFilter#accepts(DataEntry)} return {@code false}.</li>
+   *   <li>Then return {@code null}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link UniqueDataEntryWriter#createOutputStream(DataEntry)}
+   */
+  @Test
+  @DisplayName("Test createOutputStream(DataEntry); given DataEntryFilter accepts(DataEntry) return 'false'; then return 'null'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"OutputStream UniqueDataEntryWriter.createOutputStream(DataEntry)"})
+  void testCreateOutputStream_givenDataEntryFilterAcceptsReturnFalse_thenReturnNull() throws IOException {
     // Arrange
     DataEntryFilter dataEntryFilter = mock(DataEntryFilter.class);
     when(dataEntryFilter.accepts(Mockito.<DataEntry>any())).thenReturn(false);
@@ -179,11 +228,19 @@ class UniqueDataEntryWriterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link UniqueDataEntryWriter#createOutputStream(DataEntry)}
+   * Test {@link UniqueDataEntryWriter#createOutputStream(DataEntry)}.
+   * <ul>
+   *   <li>Given {@link DataEntryFilter} {@link DataEntryFilter#accepts(DataEntry)} return {@code false}.</li>
+   *   <li>Then return {@code null}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link UniqueDataEntryWriter#createOutputStream(DataEntry)}
    */
   @Test
-  void testCreateOutputStream2() throws IOException {
+  @DisplayName("Test createOutputStream(DataEntry); given DataEntryFilter accepts(DataEntry) return 'false'; then return 'null'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"OutputStream UniqueDataEntryWriter.createOutputStream(DataEntry)"})
+  void testCreateOutputStream_givenDataEntryFilterAcceptsReturnFalse_thenReturnNull2() throws IOException {
     // Arrange
     DataEntryFilter dataEntryFilter = mock(DataEntryFilter.class);
     when(dataEntryFilter.accepts(Mockito.<DataEntry>any())).thenReturn(true);

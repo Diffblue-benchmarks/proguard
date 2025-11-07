@@ -1,35 +1,25 @@
 package proguard.gui.splash;
 
 import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.mockito.Mockito.mock;
+import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.awt.Font;
-import java.text.AttributedCharacterIterator;
-import java.util.HashMap;
-import java.util.function.BiFunction;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 class ConstantFontDiffblueTest {
   /**
+   * Test {@link ConstantFont#getFont(long)}.
+   * <p>
    * Method under test: {@link ConstantFont#getFont(long)}
    */
   @Test
+  @DisplayName("Test getFont(long)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"Font ConstantFont.getFont(long)"})
   void testGetFont() {
     // Arrange
     Font value = Font.decode("foo");
-
-    // Act and Assert
-    assertSame(value, (new ConstantFont(value)).getFont(10L));
-  }
-
-  /**
-   * Method under test: {@link ConstantFont#getFont(long)}
-   */
-  @Test
-  void testGetFont2() {
-    // Arrange
-    HashMap<AttributedCharacterIterator.Attribute, Object> attributeObjectMap = new HashMap<>();
-    attributeObjectMap.computeIfPresent(null, mock(BiFunction.class));
-    Font value = new Font(attributeObjectMap);
 
     // Act and Assert
     assertSame(value, (new ConstantFont(value)).getFont(10L));

@@ -7,8 +7,11 @@ import static org.mockito.Mockito.atLeast;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.ClassPool;
@@ -25,11 +28,20 @@ import proguard.classfile.visitor.ClassVisitor;
 
 class GsonSerializationInvocationFinderDiffblueTest {
   /**
-   * Method under test:
-   * {@link GsonSerializationInvocationFinder#visitAnyInstruction(Clazz, Method, CodeAttribute, int, Instruction)}
+   * Test {@link GsonSerializationInvocationFinder#visitAnyInstruction(Clazz, Method, CodeAttribute, int, Instruction)}.
+   * <ul>
+   *   <li>When {@link BranchInstruction} {@link BranchInstruction#accept(Clazz, Method, CodeAttribute, int, InstructionVisitor)} does nothing.</li>
+   *   <li>Then calls {@link BranchInstruction#accept(Clazz, Method, CodeAttribute, int, InstructionVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link GsonSerializationInvocationFinder#visitAnyInstruction(Clazz, Method, CodeAttribute, int, Instruction)}
    */
   @Test
-  void testVisitAnyInstruction() {
+  @DisplayName("Test visitAnyInstruction(Clazz, Method, CodeAttribute, int, Instruction); when BranchInstruction accept(Clazz, Method, CodeAttribute, int, InstructionVisitor) does nothing; then calls accept(Clazz, Method, CodeAttribute, int, InstructionVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void GsonSerializationInvocationFinder.visitAnyInstruction(Clazz, Method, CodeAttribute, int, Instruction)"})
+  void testVisitAnyInstruction_whenBranchInstructionAcceptDoesNothing_thenCallsAccept() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();

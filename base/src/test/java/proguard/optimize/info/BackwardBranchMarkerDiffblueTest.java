@@ -6,6 +6,9 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import proguard.classfile.Clazz;
 import proguard.classfile.LibraryClass;
@@ -18,11 +21,19 @@ import proguard.classfile.instruction.SwitchInstruction;
 
 class BackwardBranchMarkerDiffblueTest {
   /**
-   * Method under test:
-   * {@link BackwardBranchMarker#visitBranchInstruction(Clazz, Method, CodeAttribute, int, BranchInstruction)}
+   * Test {@link BackwardBranchMarker#visitBranchInstruction(Clazz, Method, CodeAttribute, int, BranchInstruction)}.
+   * <ul>
+   *   <li>Then calls {@link ProgramMethodOptimizationInfo#setBranchesBackward()}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link BackwardBranchMarker#visitBranchInstruction(Clazz, Method, CodeAttribute, int, BranchInstruction)}
    */
   @Test
-  void testVisitBranchInstruction() {
+  @DisplayName("Test visitBranchInstruction(Clazz, Method, CodeAttribute, int, BranchInstruction); then calls setBranchesBackward()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void BackwardBranchMarker.visitBranchInstruction(Clazz, Method, CodeAttribute, int, BranchInstruction)"})
+  void testVisitBranchInstruction_thenCallsSetBranchesBackward() {
     // Arrange
     BackwardBranchMarker backwardBranchMarker = new BackwardBranchMarker();
     LibraryClass clazz = new LibraryClass();
@@ -41,11 +52,19 @@ class BackwardBranchMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link BackwardBranchMarker#visitAnySwitchInstruction(Clazz, Method, CodeAttribute, int, SwitchInstruction)}
+   * Test {@link BackwardBranchMarker#visitAnySwitchInstruction(Clazz, Method, CodeAttribute, int, SwitchInstruction)}.
+   * <ul>
+   *   <li>Then calls {@link ProgramMethodOptimizationInfo#setBranchesBackward()}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link BackwardBranchMarker#visitAnySwitchInstruction(Clazz, Method, CodeAttribute, int, SwitchInstruction)}
    */
   @Test
-  void testVisitAnySwitchInstruction() {
+  @DisplayName("Test visitAnySwitchInstruction(Clazz, Method, CodeAttribute, int, SwitchInstruction); then calls setBranchesBackward()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void BackwardBranchMarker.visitAnySwitchInstruction(Clazz, Method, CodeAttribute, int, SwitchInstruction)"})
+  void testVisitAnySwitchInstruction_thenCallsSetBranchesBackward() {
     // Arrange
     BackwardBranchMarker backwardBranchMarker = new BackwardBranchMarker();
     LibraryClass clazz = new LibraryClass();
@@ -65,10 +84,19 @@ class BackwardBranchMarkerDiffblueTest {
   }
 
   /**
+   * Test {@link BackwardBranchMarker#branchesBackward(Method)}.
+   * <ul>
+   *   <li>Given {@link MethodOptimizationInfo} (default constructor).</li>
+   *   <li>Then return {@code true}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link BackwardBranchMarker#branchesBackward(Method)}
    */
   @Test
-  void testBranchesBackward() {
+  @DisplayName("Test branchesBackward(Method); given MethodOptimizationInfo (default constructor); then return 'true'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean BackwardBranchMarker.branchesBackward(Method)"})
+  void testBranchesBackward_givenMethodOptimizationInfo_thenReturnTrue() {
     // Arrange
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
     method.setProcessingInfo(new MethodOptimizationInfo());

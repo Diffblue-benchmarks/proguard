@@ -4,29 +4,50 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import proguard.classfile.Clazz;
 import proguard.classfile.Field;
 import proguard.classfile.LibraryClass;
 import proguard.classfile.LibraryField;
+import proguard.evaluation.value.ReferenceValue;
 import proguard.evaluation.value.TopValue;
 import proguard.evaluation.value.Value;
 
 class FieldOptimizationInfoDiffblueTest {
   /**
+   * Test {@link FieldOptimizationInfo#canBeMadePrivate()}.
+   * <ul>
+   *   <li>Given {@link FieldOptimizationInfo} (default constructor).</li>
+   *   <li>Then return {@code false}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link FieldOptimizationInfo#canBeMadePrivate()}
    */
   @Test
-  void testCanBeMadePrivate() {
+  @DisplayName("Test canBeMadePrivate(); given FieldOptimizationInfo (default constructor); then return 'false'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean FieldOptimizationInfo.canBeMadePrivate()"})
+  void testCanBeMadePrivate_givenFieldOptimizationInfo_thenReturnFalse() {
     // Arrange, Act and Assert
     assertFalse((new FieldOptimizationInfo()).canBeMadePrivate());
   }
 
   /**
+   * Test {@link FieldOptimizationInfo#canBeMadePrivate()}.
+   * <ul>
+   *   <li>Then return {@code true}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link FieldOptimizationInfo#canBeMadePrivate()}
    */
   @Test
-  void testCanBeMadePrivate2() {
+  @DisplayName("Test canBeMadePrivate(); then return 'true'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean FieldOptimizationInfo.canBeMadePrivate()"})
+  void testCanBeMadePrivate_thenReturnTrue() {
     // Arrange
     LibraryClass clazz = new LibraryClass();
 
@@ -36,10 +57,14 @@ class FieldOptimizationInfoDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link FieldOptimizationInfo#setFieldOptimizationInfo(Clazz, Field)}
+   * Test {@link FieldOptimizationInfo#setFieldOptimizationInfo(Clazz, Field)}.
+   * <p>
+   * Method under test: {@link FieldOptimizationInfo#setFieldOptimizationInfo(Clazz, Field)}
    */
   @Test
+  @DisplayName("Test setFieldOptimizationInfo(Clazz, Field)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void FieldOptimizationInfo.setFieldOptimizationInfo(Clazz, Field)"})
   void testSetFieldOptimizationInfo() {
     // Arrange
     LibraryClass clazz = new LibraryClass();
@@ -59,16 +84,25 @@ class FieldOptimizationInfoDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link FieldOptimizationInfo#getFieldOptimizationInfo(Field)}
+   * Test {@link FieldOptimizationInfo#getFieldOptimizationInfo(Field)}.
+   * <ul>
+   *   <li>Then return {@code null}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link FieldOptimizationInfo#getFieldOptimizationInfo(Field)}
    */
   @Test
-  void testGetFieldOptimizationInfo() {
+  @DisplayName("Test getFieldOptimizationInfo(Field); then return 'null'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"FieldOptimizationInfo FieldOptimizationInfo.getFieldOptimizationInfo(Field)"})
+  void testGetFieldOptimizationInfo_thenReturnNull() {
     // Arrange, Act and Assert
     assertNull(FieldOptimizationInfo.getFieldOptimizationInfo(new LibraryField(1, "Name", "Descriptor")));
   }
 
   /**
+   * Test getters and setters.
+   * <p>
    * Methods under test:
    * <ul>
    *   <li>default or parameterless constructor of {@link FieldOptimizationInfo}
@@ -81,17 +115,24 @@ class FieldOptimizationInfoDiffblueTest {
    * </ul>
    */
   @Test
+  @DisplayName("Test getters and setters")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void FieldOptimizationInfo.<init>()", "ReferenceValue FieldOptimizationInfo.getReferencedClass()",
+      "Value FieldOptimizationInfo.getValue()", "boolean FieldOptimizationInfo.isKept()",
+      "boolean FieldOptimizationInfo.isRead()", "boolean FieldOptimizationInfo.isWritten()",
+      "void FieldOptimizationInfo.setValue(Value)"})
   void testGettersAndSetters() {
     // Arrange and Act
     FieldOptimizationInfo actualFieldOptimizationInfo = new FieldOptimizationInfo();
     TopValue value = new TopValue();
     actualFieldOptimizationInfo.setValue(value);
-    actualFieldOptimizationInfo.getReferencedClass();
+    ReferenceValue actualReferencedClass = actualFieldOptimizationInfo.getReferencedClass();
     Value actualValue = actualFieldOptimizationInfo.getValue();
     boolean actualIsKeptResult = actualFieldOptimizationInfo.isKept();
     boolean actualIsReadResult = actualFieldOptimizationInfo.isRead();
 
-    // Assert that nothing has changed
+    // Assert
+    assertNull(actualReferencedClass);
     assertTrue(actualIsKeptResult);
     assertTrue(actualIsReadResult);
     assertTrue(actualFieldOptimizationInfo.isWritten());

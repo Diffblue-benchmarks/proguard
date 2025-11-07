@@ -4,6 +4,9 @@ import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.ClassPool;
@@ -14,11 +17,19 @@ import proguard.io.ExtraDataEntryNameMap;
 
 class StaticInterfaceMethodConverterDiffblueTest {
   /**
-   * Method under test:
-   * {@link StaticInterfaceMethodConverter#visitProgramClass(ProgramClass)}
+   * Test {@link StaticInterfaceMethodConverter#visitProgramClass(ProgramClass)}.
+   * <ul>
+   *   <li>When {@link ProgramClass} {@link ProgramClass#accept(ClassVisitor)} does nothing.</li>
+   *   <li>Then calls {@link ProgramClass#accept(ClassVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link StaticInterfaceMethodConverter#visitProgramClass(ProgramClass)}
    */
   @Test
-  void testVisitProgramClass() {
+  @DisplayName("Test visitProgramClass(ProgramClass); when ProgramClass accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void StaticInterfaceMethodConverter.visitProgramClass(ProgramClass)"})
+  void testVisitProgramClass_whenProgramClassAcceptDoesNothing_thenCallsAccept() {
     // Arrange
     ClassPool programClassPool = new ClassPool();
     ClassPool libraryClassPool = new ClassPool();

@@ -1,16 +1,17 @@
 package proguard.optimize.peephole;
 
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.isA;
-import static org.mockito.Mockito.atLeast;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.Clazz;
@@ -22,8 +23,6 @@ import proguard.classfile.ProgramField;
 import proguard.classfile.ProgramMethod;
 import proguard.classfile.attribute.CodeAttribute;
 import proguard.classfile.attribute.LocalVariableInfo;
-import proguard.classfile.attribute.LocalVariableTableAttribute;
-import proguard.classfile.attribute.LocalVariableTypeTableAttribute;
 import proguard.classfile.attribute.RecordComponentInfo;
 import proguard.classfile.attribute.SignatureAttribute;
 import proguard.classfile.attribute.annotation.Annotation;
@@ -33,14 +32,10 @@ import proguard.classfile.attribute.annotation.AnnotationsAttribute;
 import proguard.classfile.attribute.annotation.ArrayElementValue;
 import proguard.classfile.attribute.annotation.ConstantElementValue;
 import proguard.classfile.attribute.annotation.ElementValue;
-import proguard.classfile.attribute.annotation.ParameterAnnotationsAttribute;
 import proguard.classfile.attribute.annotation.RuntimeInvisibleAnnotationsAttribute;
-import proguard.classfile.attribute.annotation.RuntimeInvisibleParameterAnnotationsAttribute;
 import proguard.classfile.attribute.annotation.visitor.AnnotationVisitor;
 import proguard.classfile.attribute.annotation.visitor.ElementValueVisitor;
 import proguard.classfile.attribute.visitor.AttributeVisitor;
-import proguard.classfile.attribute.visitor.LocalVariableInfoVisitor;
-import proguard.classfile.attribute.visitor.LocalVariableTypeInfoVisitor;
 import proguard.classfile.constant.AnyMethodrefConstant;
 import proguard.classfile.constant.ClassConstant;
 import proguard.classfile.constant.FieldrefConstant;
@@ -48,13 +43,24 @@ import proguard.classfile.constant.InterfaceMethodrefConstant;
 import proguard.classfile.constant.StringConstant;
 import proguard.optimize.info.ClassOptimizationInfo;
 import proguard.optimize.info.ProgramClassOptimizationInfo;
+import proguard.util.Processable;
+import proguard.util.SimpleProcessable;
 
 class TargetClassChangerDiffblueTest {
   /**
+   * Test {@link TargetClassChanger#visitAnyClass(Clazz)}.
+   * <ul>
+   *   <li>When {@link LibraryClass#LibraryClass()}.</li>
+   *   <li>Then throw {@link UnsupportedOperationException}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link TargetClassChanger#visitAnyClass(Clazz)}
    */
   @Test
-  void testVisitAnyClass() {
+  @DisplayName("Test visitAnyClass(Clazz); when LibraryClass(); then throw UnsupportedOperationException")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void TargetClassChanger.visitAnyClass(Clazz)"})
+  void testVisitAnyClass_whenLibraryClass_thenThrowUnsupportedOperationException() {
     // Arrange
     TargetClassChanger targetClassChanger = new TargetClassChanger();
 
@@ -63,30 +69,15 @@ class TargetClassChangerDiffblueTest {
   }
 
   /**
+   * Test {@link TargetClassChanger#visitLibraryClass(LibraryClass)}.
+   * <p>
    * Method under test: {@link TargetClassChanger#visitLibraryClass(LibraryClass)}
    */
   @Test
+  @DisplayName("Test visitLibraryClass(LibraryClass)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void TargetClassChanger.visitLibraryClass(LibraryClass)"})
   void testVisitLibraryClass() {
-    // Arrange
-    TargetClassChanger targetClassChanger = new TargetClassChanger();
-    Clazz clazz = mock(Clazz.class);
-    when(clazz.getProcessingInfo()).thenReturn(new ClassOptimizationInfo());
-
-    LibraryClass libraryClass = new LibraryClass();
-    libraryClass.addSubClass(clazz);
-
-    // Act
-    targetClassChanger.visitLibraryClass(libraryClass);
-
-    // Assert
-    verify(clazz).getProcessingInfo();
-  }
-
-  /**
-   * Method under test: {@link TargetClassChanger#visitLibraryClass(LibraryClass)}
-   */
-  @Test
-  void testVisitLibraryClass2() {
     // Arrange
     TargetClassChanger targetClassChanger = new TargetClassChanger();
     Clazz clazz = mock(Clazz.class);
@@ -103,10 +94,46 @@ class TargetClassChangerDiffblueTest {
   }
 
   /**
+   * Test {@link TargetClassChanger#visitLibraryClass(LibraryClass)}.
+   * <ul>
+   *   <li>Given {@link Clazz} {@link Processable#getProcessingInfo()} return {@link ClassOptimizationInfo} (default constructor).</li>
+   * </ul>
+   * <p>
    * Method under test: {@link TargetClassChanger#visitLibraryClass(LibraryClass)}
    */
   @Test
-  void testVisitLibraryClass3() {
+  @DisplayName("Test visitLibraryClass(LibraryClass); given Clazz getProcessingInfo() return ClassOptimizationInfo (default constructor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void TargetClassChanger.visitLibraryClass(LibraryClass)"})
+  void testVisitLibraryClass_givenClazzGetProcessingInfoReturnClassOptimizationInfo() {
+    // Arrange
+    TargetClassChanger targetClassChanger = new TargetClassChanger();
+    Clazz clazz = mock(Clazz.class);
+    when(clazz.getProcessingInfo()).thenReturn(new ClassOptimizationInfo());
+
+    LibraryClass libraryClass = new LibraryClass();
+    libraryClass.addSubClass(clazz);
+
+    // Act
+    targetClassChanger.visitLibraryClass(libraryClass);
+
+    // Assert
+    verify(clazz).getProcessingInfo();
+  }
+
+  /**
+   * Test {@link TargetClassChanger#visitLibraryClass(LibraryClass)}.
+   * <ul>
+   *   <li>Then calls {@link ClassOptimizationInfo#getTargetClass()}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link TargetClassChanger#visitLibraryClass(LibraryClass)}
+   */
+  @Test
+  @DisplayName("Test visitLibraryClass(LibraryClass); then calls getTargetClass()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void TargetClassChanger.visitLibraryClass(LibraryClass)"})
+  void testVisitLibraryClass_thenCallsGetTargetClass() {
     // Arrange
     TargetClassChanger targetClassChanger = new TargetClassChanger();
     LibraryClass libraryClass = mock(LibraryClass.class);
@@ -129,60 +156,15 @@ class TargetClassChangerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link TargetClassChanger#visitProgramField(ProgramClass, ProgramField)}
+   * Test {@link TargetClassChanger#visitProgramField(ProgramClass, ProgramField)}.
+   * <p>
+   * Method under test: {@link TargetClassChanger#visitProgramField(ProgramClass, ProgramField)}
    */
   @Test
+  @DisplayName("Test visitProgramField(ProgramClass, ProgramField)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void TargetClassChanger.visitProgramField(ProgramClass, ProgramField)"})
   void testVisitProgramField() {
-    // Arrange
-    TargetClassChanger targetClassChanger = new TargetClassChanger();
-    ProgramClass programClass = new ProgramClass();
-    ProgramField programField = new ProgramField();
-
-    // Act
-    targetClassChanger.visitProgramField(programClass, programField);
-
-    // Assert
-    assertNull(programField.referencedClass);
-  }
-
-  /**
-   * Method under test:
-   * {@link TargetClassChanger#visitProgramField(ProgramClass, ProgramField)}
-   */
-  @Test
-  void testVisitProgramField2() {
-    // Arrange
-    TargetClassChanger targetClassChanger = new TargetClassChanger();
-    ProgramClass programClass = new ProgramClass();
-
-    ProgramClassOptimizationInfo programClassOptimizationInfo = new ProgramClassOptimizationInfo();
-    programClassOptimizationInfo.setTargetClass(null);
-
-    LibraryClass libraryClass = new LibraryClass();
-    libraryClass.setProcessingInfo(programClassOptimizationInfo);
-    ProgramField programField = new ProgramField();
-    programField.u2attributesCount = 0;
-    programField.referencedClass = libraryClass;
-
-    // Act
-    targetClassChanger.visitProgramField(programClass, programField);
-
-    // Assert
-    Clazz clazz = programField.referencedClass;
-    assertTrue(clazz instanceof LibraryClass);
-    Object processingInfo = clazz.getProcessingInfo();
-    assertTrue(processingInfo instanceof ProgramClassOptimizationInfo);
-    assertNull(((ProgramClassOptimizationInfo) processingInfo).getTargetClass());
-    assertSame(programClassOptimizationInfo, processingInfo);
-  }
-
-  /**
-   * Method under test:
-   * {@link TargetClassChanger#visitProgramField(ProgramClass, ProgramField)}
-   */
-  @Test
-  void testVisitProgramField3() {
     // Arrange
     TargetClassChanger targetClassChanger = new TargetClassChanger();
     ProgramClass programClass = new ProgramClass();
@@ -211,22 +193,30 @@ class TargetClassChangerDiffblueTest {
     Object processingInfo = clazz.getProcessingInfo();
     assertTrue(processingInfo instanceof ProgramClassOptimizationInfo);
     assertNull(((ProgramClassOptimizationInfo) processingInfo).getTargetClass());
-    assertSame(programClassOptimizationInfo, processingInfo);
   }
 
   /**
-   * Method under test:
-   * {@link TargetClassChanger#visitProgramField(ProgramClass, ProgramField)}
+   * Test {@link TargetClassChanger#visitProgramField(ProgramClass, ProgramField)}.
+   * <ul>
+   *   <li>Then {@link ProgramField#ProgramField()} {@link ProgramField#referencedClass} {@link LibraryClass}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link TargetClassChanger#visitProgramField(ProgramClass, ProgramField)}
    */
   @Test
-  void testVisitProgramField4() {
+  @DisplayName("Test visitProgramField(ProgramClass, ProgramField); then ProgramField() referencedClass LibraryClass")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void TargetClassChanger.visitProgramField(ProgramClass, ProgramField)"})
+  void testVisitProgramField_thenProgramFieldReferencedClassLibraryClass() {
     // Arrange
     TargetClassChanger targetClassChanger = new TargetClassChanger();
     ProgramClass programClass = new ProgramClass();
 
+    ProgramClassOptimizationInfo programClassOptimizationInfo = new ProgramClassOptimizationInfo();
+    programClassOptimizationInfo.setTargetClass(null);
+
     LibraryClass libraryClass = new LibraryClass();
-    ClassOptimizationInfo classOptimizationInfo = new ClassOptimizationInfo();
-    libraryClass.setProcessingInfo(classOptimizationInfo);
+    libraryClass.setProcessingInfo(programClassOptimizationInfo);
     ProgramField programField = new ProgramField();
     programField.u2attributesCount = 0;
     programField.referencedClass = libraryClass;
@@ -234,20 +224,25 @@ class TargetClassChangerDiffblueTest {
     // Act
     targetClassChanger.visitProgramField(programClass, programField);
 
-    // Assert
+    // Assert that nothing has changed
     Clazz clazz = programField.referencedClass;
     assertTrue(clazz instanceof LibraryClass);
-    Object processingInfo = clazz.getProcessingInfo();
-    assertTrue(processingInfo instanceof ClassOptimizationInfo);
-    assertSame(classOptimizationInfo, processingInfo);
+    assertTrue(clazz.getProcessingInfo() instanceof ProgramClassOptimizationInfo);
   }
 
   /**
-   * Method under test:
-   * {@link TargetClassChanger#visitProgramMethod(ProgramClass, ProgramMethod)}
+   * Test {@link TargetClassChanger#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   * <ul>
+   *   <li>Then throw {@link UnsupportedOperationException}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link TargetClassChanger#visitProgramMethod(ProgramClass, ProgramMethod)}
    */
   @Test
-  void testVisitProgramMethod() {
+  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); then throw UnsupportedOperationException")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void TargetClassChanger.visitProgramMethod(ProgramClass, ProgramMethod)"})
+  void testVisitProgramMethod_thenThrowUnsupportedOperationException() {
     // Arrange
     TargetClassChanger targetClassChanger = new TargetClassChanger();
     ProgramClass programClass = new ProgramClass();
@@ -262,11 +257,18 @@ class TargetClassChangerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link TargetClassChanger#visitStringConstant(Clazz, StringConstant)}
+   * Test {@link TargetClassChanger#visitStringConstant(Clazz, StringConstant)}.
+   * <ul>
+   *   <li>Then calls {@link SimpleProcessable#getProcessingInfo()}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link TargetClassChanger#visitStringConstant(Clazz, StringConstant)}
    */
   @Test
-  void testVisitStringConstant() {
+  @DisplayName("Test visitStringConstant(Clazz, StringConstant); then calls getProcessingInfo()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void TargetClassChanger.visitStringConstant(Clazz, StringConstant)"})
+  void testVisitStringConstant_thenCallsGetProcessingInfo() {
     // Arrange
     TargetClassChanger targetClassChanger = new TargetClassChanger();
     LibraryClass clazz = new LibraryClass();
@@ -344,11 +346,18 @@ class TargetClassChangerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link TargetClassChanger#visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant)}
+   * Test {@link TargetClassChanger#visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant)}.
+   * <ul>
+   *   <li>Then calls {@link SimpleProcessable#getProcessingInfo()}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link TargetClassChanger#visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant)}
    */
   @Test
-  void testVisitAnyMethodrefConstant() {
+  @DisplayName("Test visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant); then calls getProcessingInfo()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void TargetClassChanger.visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant)"})
+  void testVisitAnyMethodrefConstant_thenCallsGetProcessingInfo() {
     // Arrange
     TargetClassChanger targetClassChanger = new TargetClassChanger();
     LibraryClass clazz = new LibraryClass();
@@ -450,11 +459,18 @@ class TargetClassChangerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link TargetClassChanger#visitFieldrefConstant(Clazz, FieldrefConstant)}
+   * Test {@link TargetClassChanger#visitFieldrefConstant(Clazz, FieldrefConstant)}.
+   * <ul>
+   *   <li>Then calls {@link SimpleProcessable#getProcessingInfo()}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link TargetClassChanger#visitFieldrefConstant(Clazz, FieldrefConstant)}
    */
   @Test
-  void testVisitFieldrefConstant() {
+  @DisplayName("Test visitFieldrefConstant(Clazz, FieldrefConstant); then calls getProcessingInfo()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void TargetClassChanger.visitFieldrefConstant(Clazz, FieldrefConstant)"})
+  void testVisitFieldrefConstant_thenCallsGetProcessingInfo() {
     // Arrange
     TargetClassChanger targetClassChanger = new TargetClassChanger();
     LibraryClass clazz = new LibraryClass();
@@ -580,29 +596,15 @@ class TargetClassChangerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link TargetClassChanger#visitClassConstant(Clazz, ClassConstant)}
+   * Test {@link TargetClassChanger#visitClassConstant(Clazz, ClassConstant)}.
+   * <p>
+   * Method under test: {@link TargetClassChanger#visitClassConstant(Clazz, ClassConstant)}
    */
   @Test
+  @DisplayName("Test visitClassConstant(Clazz, ClassConstant)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void TargetClassChanger.visitClassConstant(Clazz, ClassConstant)"})
   void testVisitClassConstant() {
-    // Arrange
-    TargetClassChanger targetClassChanger = new TargetClassChanger();
-    LibraryClass clazz = new LibraryClass();
-    ClassConstant classConstant = new ClassConstant();
-
-    // Act
-    targetClassChanger.visitClassConstant(clazz, classConstant);
-
-    // Assert
-    assertNull(classConstant.referencedClass);
-  }
-
-  /**
-   * Method under test:
-   * {@link TargetClassChanger#visitClassConstant(Clazz, ClassConstant)}
-   */
-  @Test
-  void testVisitClassConstant2() {
     // Arrange
     TargetClassChanger targetClassChanger = new TargetClassChanger();
     LibraryClass clazz = new LibraryClass();
@@ -636,15 +638,21 @@ class TargetClassChangerDiffblueTest {
     Object processingInfo = clazz2.getProcessingInfo();
     assertTrue(processingInfo instanceof ProgramClassOptimizationInfo);
     assertNull(((ProgramClassOptimizationInfo) processingInfo).getTargetClass());
-    assertSame(programClassOptimizationInfo, processingInfo);
   }
 
   /**
-   * Method under test:
-   * {@link TargetClassChanger#visitClassConstant(Clazz, ClassConstant)}
+   * Test {@link TargetClassChanger#visitClassConstant(Clazz, ClassConstant)}.
+   * <ul>
+   *   <li>Then {@link ClassConstant#ClassConstant()} {@link ClassConstant#referencedClass} {@link LibraryClass}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link TargetClassChanger#visitClassConstant(Clazz, ClassConstant)}
    */
   @Test
-  void testVisitClassConstant3() {
+  @DisplayName("Test visitClassConstant(Clazz, ClassConstant); then ClassConstant() referencedClass LibraryClass")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void TargetClassChanger.visitClassConstant(Clazz, ClassConstant)"})
+  void testVisitClassConstant_thenClassConstantReferencedClassLibraryClass() {
     // Arrange
     TargetClassChanger targetClassChanger = new TargetClassChanger();
     LibraryClass clazz = new LibraryClass();
@@ -660,100 +668,29 @@ class TargetClassChangerDiffblueTest {
     // Act
     targetClassChanger.visitClassConstant(clazz, classConstant);
 
-    // Assert
+    // Assert that nothing has changed
     Clazz clazz2 = classConstant.referencedClass;
     assertTrue(clazz2 instanceof LibraryClass);
-    Object processingInfo = clazz2.getProcessingInfo();
-    assertTrue(processingInfo instanceof ProgramClassOptimizationInfo);
-    assertNull(((ProgramClassOptimizationInfo) processingInfo).getTargetClass());
-    assertSame(programClassOptimizationInfo, processingInfo);
+    assertTrue(clazz2.getProcessingInfo() instanceof ProgramClassOptimizationInfo);
   }
 
   /**
-   * Method under test:
-   * {@link TargetClassChanger#visitCodeAttribute(Clazz, Method, CodeAttribute)}
+   * Test {@link TargetClassChanger#visitSignatureAttribute(Clazz, SignatureAttribute)} with {@code clazz}, {@code signatureAttribute}.
+   * <p>
+   * Method under test: {@link TargetClassChanger#visitSignatureAttribute(Clazz, SignatureAttribute)}
    */
   @Test
-  void testVisitCodeAttribute() {
+  @DisplayName("Test visitSignatureAttribute(Clazz, SignatureAttribute) with 'clazz', 'signatureAttribute'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void TargetClassChanger.visitSignatureAttribute(Clazz, SignatureAttribute)"})
+  void testVisitSignatureAttributeWithClazzSignatureAttribute() {
     // Arrange
     TargetClassChanger targetClassChanger = new TargetClassChanger();
     LibraryClass clazz = new LibraryClass();
-    LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
-
-    CodeAttribute codeAttribute = mock(CodeAttribute.class);
-    doNothing().when(codeAttribute)
-        .attributesAccept(Mockito.<Clazz>any(), Mockito.<Method>any(), Mockito.<AttributeVisitor>any());
-
-    // Act
-    targetClassChanger.visitCodeAttribute(clazz, method, codeAttribute);
-
-    // Assert
-    verify(codeAttribute).attributesAccept(isA(Clazz.class), isA(Method.class), isA(AttributeVisitor.class));
-  }
-
-  /**
-   * Method under test:
-   * {@link TargetClassChanger#visitLocalVariableTableAttribute(Clazz, Method, CodeAttribute, LocalVariableTableAttribute)}
-   */
-  @Test
-  void testVisitLocalVariableTableAttribute() {
-    // Arrange
-    TargetClassChanger targetClassChanger = new TargetClassChanger();
-    LibraryClass clazz = new LibraryClass();
-    LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
-
-    CodeAttribute codeAttribute = new CodeAttribute(1);
-    LocalVariableTableAttribute localVariableTableAttribute = mock(LocalVariableTableAttribute.class);
-    doNothing().when(localVariableTableAttribute)
-        .localVariablesAccept(Mockito.<Clazz>any(), Mockito.<Method>any(), Mockito.<CodeAttribute>any(),
-            Mockito.<LocalVariableInfoVisitor>any());
-
-    // Act
-    targetClassChanger.visitLocalVariableTableAttribute(clazz, method, codeAttribute, localVariableTableAttribute);
-
-    // Assert
-    verify(localVariableTableAttribute).localVariablesAccept(isA(Clazz.class), isA(Method.class),
-        isA(CodeAttribute.class), isA(LocalVariableInfoVisitor.class));
-  }
-
-  /**
-   * Method under test:
-   * {@link TargetClassChanger#visitLocalVariableTypeTableAttribute(Clazz, Method, CodeAttribute, LocalVariableTypeTableAttribute)}
-   */
-  @Test
-  void testVisitLocalVariableTypeTableAttribute() {
-    // Arrange
-    TargetClassChanger targetClassChanger = new TargetClassChanger();
-    LibraryClass clazz = new LibraryClass();
-    LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
-
-    CodeAttribute codeAttribute = new CodeAttribute(1);
-    LocalVariableTypeTableAttribute localVariableTypeTableAttribute = mock(LocalVariableTypeTableAttribute.class);
-    doNothing().when(localVariableTypeTableAttribute)
-        .localVariablesAccept(Mockito.<Clazz>any(), Mockito.<Method>any(), Mockito.<CodeAttribute>any(),
-            Mockito.<LocalVariableTypeInfoVisitor>any());
-
-    // Act
-    targetClassChanger.visitLocalVariableTypeTableAttribute(clazz, method, codeAttribute,
-        localVariableTypeTableAttribute);
-
-    // Assert
-    verify(localVariableTypeTableAttribute).localVariablesAccept(isA(Clazz.class), isA(Method.class),
-        isA(CodeAttribute.class), isA(LocalVariableTypeInfoVisitor.class));
-  }
-
-  /**
-   * Method under test:
-   * {@link TargetClassChanger#visitSignatureAttribute(Clazz, SignatureAttribute)}
-   */
-  @Test
-  void testVisitSignatureAttribute() {
-    // Arrange
-    TargetClassChanger targetClassChanger = new TargetClassChanger();
-    LibraryClass clazz = mock(LibraryClass.class);
     Clazz clazz2 = mock(Clazz.class);
     when(clazz2.getProcessingInfo()).thenReturn(new ClassOptimizationInfo());
-    SignatureAttribute signatureAttribute = mock(SignatureAttribute.class);
+    SignatureAttribute signatureAttribute = new SignatureAttribute(1, 1);
+
     signatureAttribute.referencedClasses = new Clazz[]{clazz2};
 
     // Act
@@ -764,17 +701,22 @@ class TargetClassChangerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link TargetClassChanger#visitSignatureAttribute(Clazz, SignatureAttribute)}
+   * Test {@link TargetClassChanger#visitSignatureAttribute(Clazz, SignatureAttribute)} with {@code clazz}, {@code signatureAttribute}.
+   * <p>
+   * Method under test: {@link TargetClassChanger#visitSignatureAttribute(Clazz, SignatureAttribute)}
    */
   @Test
-  void testVisitSignatureAttribute2() {
+  @DisplayName("Test visitSignatureAttribute(Clazz, SignatureAttribute) with 'clazz', 'signatureAttribute'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void TargetClassChanger.visitSignatureAttribute(Clazz, SignatureAttribute)"})
+  void testVisitSignatureAttributeWithClazzSignatureAttribute2() {
     // Arrange
     TargetClassChanger targetClassChanger = new TargetClassChanger();
-    LibraryClass clazz = mock(LibraryClass.class);
+    LibraryClass clazz = new LibraryClass();
     Clazz clazz2 = mock(Clazz.class);
     when(clazz2.getProcessingInfo()).thenReturn(new ProgramClassOptimizationInfo());
-    SignatureAttribute signatureAttribute = mock(SignatureAttribute.class);
+    SignatureAttribute signatureAttribute = new SignatureAttribute(1, 1);
+
     signatureAttribute.referencedClasses = new Clazz[]{clazz2};
 
     // Act
@@ -785,69 +727,49 @@ class TargetClassChangerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link TargetClassChanger#visitSignatureAttribute(Clazz, SignatureAttribute)}
+   * Test {@link TargetClassChanger#visitSignatureAttribute(Clazz, SignatureAttribute)} with {@code clazz}, {@code signatureAttribute}.
+   * <p>
+   * Method under test: {@link TargetClassChanger#visitSignatureAttribute(Clazz, SignatureAttribute)}
    */
   @Test
-  void testVisitSignatureAttribute3() {
+  @DisplayName("Test visitSignatureAttribute(Clazz, SignatureAttribute) with 'clazz', 'signatureAttribute'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void TargetClassChanger.visitSignatureAttribute(Clazz, SignatureAttribute)"})
+  void testVisitSignatureAttributeWithClazzSignatureAttribute3() {
     // Arrange
     TargetClassChanger targetClassChanger = new TargetClassChanger();
-    LibraryClass clazz = mock(LibraryClass.class);
+    LibraryClass clazz = new LibraryClass();
     LibraryClass libraryClass = mock(LibraryClass.class);
-    when(libraryClass.getProcessingInfo()).thenReturn(new ClassOptimizationInfo());
+    when(libraryClass.getProcessingInfo()).thenThrow(new UnsupportedOperationException("foo"));
     ClassOptimizationInfo classOptimizationInfo = mock(ClassOptimizationInfo.class);
     when(classOptimizationInfo.getTargetClass()).thenReturn(libraryClass);
     Clazz clazz2 = mock(Clazz.class);
     when(clazz2.getProcessingInfo()).thenReturn(classOptimizationInfo);
-    SignatureAttribute signatureAttribute = mock(SignatureAttribute.class);
+    SignatureAttribute signatureAttribute = new SignatureAttribute(1, 1);
+
     signatureAttribute.referencedClasses = new Clazz[]{clazz2};
 
-    // Act
-    targetClassChanger.visitSignatureAttribute(clazz, signatureAttribute);
-
-    // Assert
+    // Act and Assert
+    assertThrows(UnsupportedOperationException.class,
+        () -> targetClassChanger.visitSignatureAttribute(clazz, signatureAttribute));
     verify(classOptimizationInfo).getTargetClass();
     verify(clazz2).getProcessingInfo();
     verify(libraryClass).getProcessingInfo();
   }
 
   /**
-   * Method under test:
-   * {@link TargetClassChanger#visitSignatureAttribute(Clazz, SignatureAttribute)}
+   * Test {@link TargetClassChanger#visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)}.
+   * <ul>
+   *   <li>Then calls {@link AnnotationsAttribute#annotationsAccept(Clazz, AnnotationVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link TargetClassChanger#visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)}
    */
   @Test
-  void testVisitSignatureAttribute4() {
-    // Arrange
-    TargetClassChanger targetClassChanger = new TargetClassChanger();
-    LibraryClass clazz = mock(LibraryClass.class);
-    when(clazz.getName()).thenReturn("Name");
-    LibraryClass libraryClass = mock(LibraryClass.class);
-    when(libraryClass.getProcessingInfo())
-        .thenThrow(new UnsupportedOperationException("Unexpected error while adapting signatures for merged classes:"));
-    ClassOptimizationInfo classOptimizationInfo = mock(ClassOptimizationInfo.class);
-    when(classOptimizationInfo.getTargetClass()).thenReturn(libraryClass);
-    Clazz clazz2 = mock(Clazz.class);
-    when(clazz2.getProcessingInfo()).thenReturn(classOptimizationInfo);
-    SignatureAttribute signatureAttribute = mock(SignatureAttribute.class);
-    when(signatureAttribute.getSignature(Mockito.<Clazz>any())).thenReturn("Signature");
-    signatureAttribute.referencedClasses = new Clazz[]{clazz2};
-
-    // Act and Assert
-    assertThrows(UnsupportedOperationException.class,
-        () -> targetClassChanger.visitSignatureAttribute(clazz, signatureAttribute));
-    verify(clazz).getName();
-    verify(signatureAttribute).getSignature(isA(Clazz.class));
-    verify(classOptimizationInfo, atLeast(1)).getTargetClass();
-    verify(clazz2, atLeast(1)).getProcessingInfo();
-    verify(libraryClass).getProcessingInfo();
-  }
-
-  /**
-   * Method under test:
-   * {@link TargetClassChanger#visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)}
-   */
-  @Test
-  void testVisitAnyAnnotationsAttribute() {
+  @DisplayName("Test visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute); then calls annotationsAccept(Clazz, AnnotationVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void TargetClassChanger.visitAnyAnnotationsAttribute(Clazz, AnnotationsAttribute)"})
+  void testVisitAnyAnnotationsAttribute_thenCallsAnnotationsAccept() {
     // Arrange
     TargetClassChanger targetClassChanger = new TargetClassChanger();
     LibraryClass clazz = new LibraryClass();
@@ -862,35 +784,19 @@ class TargetClassChangerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link TargetClassChanger#visitAnyParameterAnnotationsAttribute(Clazz, Method, ParameterAnnotationsAttribute)}
+   * Test {@link TargetClassChanger#visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)}.
+   * <ul>
+   *   <li>Then calls {@link AnnotationDefaultAttribute#defaultValueAccept(Clazz, ElementValueVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link TargetClassChanger#visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)}
    */
   @Test
-  void testVisitAnyParameterAnnotationsAttribute() {
-    // Arrange
-    TargetClassChanger targetClassChanger = new TargetClassChanger();
-    LibraryClass clazz = new LibraryClass();
-    LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
-
-    RuntimeInvisibleParameterAnnotationsAttribute parameterAnnotationsAttribute = mock(
-        RuntimeInvisibleParameterAnnotationsAttribute.class);
-    doNothing().when(parameterAnnotationsAttribute)
-        .annotationsAccept(Mockito.<Clazz>any(), Mockito.<Method>any(), Mockito.<AnnotationVisitor>any());
-
-    // Act
-    targetClassChanger.visitAnyParameterAnnotationsAttribute(clazz, method, parameterAnnotationsAttribute);
-
-    // Assert
-    verify(parameterAnnotationsAttribute).annotationsAccept(isA(Clazz.class), isA(Method.class),
-        isA(AnnotationVisitor.class));
-  }
-
-  /**
-   * Method under test:
-   * {@link TargetClassChanger#visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)}
-   */
-  @Test
-  void testVisitAnnotationDefaultAttribute() {
+  @DisplayName("Test visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute); then calls defaultValueAccept(Clazz, ElementValueVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void TargetClassChanger.visitAnnotationDefaultAttribute(Clazz, Method, AnnotationDefaultAttribute)"})
+  void testVisitAnnotationDefaultAttribute_thenCallsDefaultValueAccept() {
     // Arrange
     TargetClassChanger targetClassChanger = new TargetClassChanger();
     LibraryClass clazz = new LibraryClass();
@@ -908,11 +814,18 @@ class TargetClassChangerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link TargetClassChanger#visitRecordComponentInfo(Clazz, RecordComponentInfo)}
+   * Test {@link TargetClassChanger#visitRecordComponentInfo(Clazz, RecordComponentInfo)}.
+   * <ul>
+   *   <li>Then calls {@link RecordComponentInfo#attributesAccept(Clazz, AttributeVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link TargetClassChanger#visitRecordComponentInfo(Clazz, RecordComponentInfo)}
    */
   @Test
-  void testVisitRecordComponentInfo() {
+  @DisplayName("Test visitRecordComponentInfo(Clazz, RecordComponentInfo); then calls attributesAccept(Clazz, AttributeVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void TargetClassChanger.visitRecordComponentInfo(Clazz, RecordComponentInfo)"})
+  void testVisitRecordComponentInfo_thenCallsAttributesAccept() {
     // Arrange
     TargetClassChanger targetClassChanger = new TargetClassChanger();
     LibraryClass clazz = new LibraryClass();
@@ -927,32 +840,15 @@ class TargetClassChangerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link TargetClassChanger#visitLocalVariableInfo(Clazz, Method, CodeAttribute, LocalVariableInfo)}
+   * Test {@link TargetClassChanger#visitLocalVariableInfo(Clazz, Method, CodeAttribute, LocalVariableInfo)}.
+   * <p>
+   * Method under test: {@link TargetClassChanger#visitLocalVariableInfo(Clazz, Method, CodeAttribute, LocalVariableInfo)}
    */
   @Test
+  @DisplayName("Test visitLocalVariableInfo(Clazz, Method, CodeAttribute, LocalVariableInfo)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void TargetClassChanger.visitLocalVariableInfo(Clazz, Method, CodeAttribute, LocalVariableInfo)"})
   void testVisitLocalVariableInfo() {
-    // Arrange
-    TargetClassChanger targetClassChanger = new TargetClassChanger();
-    LibraryClass clazz = new LibraryClass();
-    LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
-
-    CodeAttribute codeAttribute = new CodeAttribute(1);
-    LocalVariableInfo localVariableInfo = new LocalVariableInfo(1, 3, 1, 1, 1);
-
-    // Act
-    targetClassChanger.visitLocalVariableInfo(clazz, method, codeAttribute, localVariableInfo);
-
-    // Assert
-    assertNull(localVariableInfo.referencedClass);
-  }
-
-  /**
-   * Method under test:
-   * {@link TargetClassChanger#visitLocalVariableInfo(Clazz, Method, CodeAttribute, LocalVariableInfo)}
-   */
-  @Test
-  void testVisitLocalVariableInfo2() {
     // Arrange
     TargetClassChanger targetClassChanger = new TargetClassChanger();
     LibraryClass clazz = new LibraryClass();
@@ -996,15 +892,18 @@ class TargetClassChangerDiffblueTest {
     Object processingInfo = clazz2.getProcessingInfo();
     assertTrue(processingInfo instanceof ProgramClassOptimizationInfo);
     assertNull(((ProgramClassOptimizationInfo) processingInfo).getTargetClass());
-    assertSame(programClassOptimizationInfo, processingInfo);
   }
 
   /**
-   * Method under test:
-   * {@link TargetClassChanger#visitLocalVariableInfo(Clazz, Method, CodeAttribute, LocalVariableInfo)}
+   * Test {@link TargetClassChanger#visitLocalVariableInfo(Clazz, Method, CodeAttribute, LocalVariableInfo)}.
+   * <p>
+   * Method under test: {@link TargetClassChanger#visitLocalVariableInfo(Clazz, Method, CodeAttribute, LocalVariableInfo)}
    */
   @Test
-  void testVisitLocalVariableInfo3() {
+  @DisplayName("Test visitLocalVariableInfo(Clazz, Method, CodeAttribute, LocalVariableInfo)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void TargetClassChanger.visitLocalVariableInfo(Clazz, Method, CodeAttribute, LocalVariableInfo)"})
+  void testVisitLocalVariableInfo2() {
     // Arrange
     TargetClassChanger targetClassChanger = new TargetClassChanger();
     LibraryClass clazz = new LibraryClass();
@@ -1024,21 +923,25 @@ class TargetClassChangerDiffblueTest {
     // Act
     targetClassChanger.visitLocalVariableInfo(clazz, method, codeAttribute, localVariableInfo);
 
-    // Assert
+    // Assert that nothing has changed
     Clazz clazz2 = localVariableInfo.referencedClass;
     assertTrue(clazz2 instanceof LibraryClass);
-    Object processingInfo = clazz2.getProcessingInfo();
-    assertTrue(processingInfo instanceof ProgramClassOptimizationInfo);
-    assertNull(((ProgramClassOptimizationInfo) processingInfo).getTargetClass());
-    assertSame(programClassOptimizationInfo, processingInfo);
+    assertTrue(clazz2.getProcessingInfo() instanceof ProgramClassOptimizationInfo);
   }
 
   /**
-   * Method under test:
-   * {@link TargetClassChanger#visitAnnotation(Clazz, Annotation)}
+   * Test {@link TargetClassChanger#visitAnnotation(Clazz, Annotation)} with {@code clazz}, {@code annotation}.
+   * <ul>
+   *   <li>Then calls {@link Annotation#elementValuesAccept(Clazz, ElementValueVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link TargetClassChanger#visitAnnotation(Clazz, Annotation)}
    */
   @Test
-  void testVisitAnnotation() {
+  @DisplayName("Test visitAnnotation(Clazz, Annotation) with 'clazz', 'annotation'; then calls elementValuesAccept(Clazz, ElementValueVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void TargetClassChanger.visitAnnotation(Clazz, Annotation)"})
+  void testVisitAnnotationWithClazzAnnotation_thenCallsElementValuesAccept() {
     // Arrange
     TargetClassChanger targetClassChanger = new TargetClassChanger();
     LibraryClass clazz = new LibraryClass();
@@ -1053,11 +956,18 @@ class TargetClassChangerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link TargetClassChanger#visitAnyElementValue(Clazz, Annotation, ElementValue)}
+   * Test {@link TargetClassChanger#visitAnyElementValue(Clazz, Annotation, ElementValue)}.
+   * <ul>
+   *   <li>Then calls {@link SimpleProcessable#getProcessingInfo()}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link TargetClassChanger#visitAnyElementValue(Clazz, Annotation, ElementValue)}
    */
   @Test
-  void testVisitAnyElementValue() {
+  @DisplayName("Test visitAnyElementValue(Clazz, Annotation, ElementValue); then calls getProcessingInfo()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void TargetClassChanger.visitAnyElementValue(Clazz, Annotation, ElementValue)"})
+  void testVisitAnyElementValue_thenCallsGetProcessingInfo() {
     // Arrange
     TargetClassChanger targetClassChanger = new TargetClassChanger();
     LibraryClass clazz = new LibraryClass();
@@ -1184,11 +1094,18 @@ class TargetClassChangerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link TargetClassChanger#visitConstantElementValue(Clazz, Annotation, ConstantElementValue)}
+   * Test {@link TargetClassChanger#visitConstantElementValue(Clazz, Annotation, ConstantElementValue)}.
+   * <ul>
+   *   <li>Then calls {@link SimpleProcessable#getProcessingInfo()}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link TargetClassChanger#visitConstantElementValue(Clazz, Annotation, ConstantElementValue)}
    */
   @Test
-  void testVisitConstantElementValue() {
+  @DisplayName("Test visitConstantElementValue(Clazz, Annotation, ConstantElementValue); then calls getProcessingInfo()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void TargetClassChanger.visitConstantElementValue(Clazz, Annotation, ConstantElementValue)"})
+  void testVisitConstantElementValue_thenCallsGetProcessingInfo() {
     // Arrange
     TargetClassChanger targetClassChanger = new TargetClassChanger();
     LibraryClass clazz = new LibraryClass();
@@ -1315,11 +1232,18 @@ class TargetClassChangerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link TargetClassChanger#visitAnnotationElementValue(Clazz, Annotation, AnnotationElementValue)}
+   * Test {@link TargetClassChanger#visitAnnotationElementValue(Clazz, Annotation, AnnotationElementValue)}.
+   * <ul>
+   *   <li>Then calls {@link AnnotationElementValue#annotationAccept(Clazz, AnnotationVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link TargetClassChanger#visitAnnotationElementValue(Clazz, Annotation, AnnotationElementValue)}
    */
   @Test
-  void testVisitAnnotationElementValue() {
+  @DisplayName("Test visitAnnotationElementValue(Clazz, Annotation, AnnotationElementValue); then calls annotationAccept(Clazz, AnnotationVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void TargetClassChanger.visitAnnotationElementValue(Clazz, Annotation, AnnotationElementValue)"})
+  void testVisitAnnotationElementValue_thenCallsAnnotationAccept() {
     // Arrange
     TargetClassChanger targetClassChanger = new TargetClassChanger();
     LibraryClass clazz = new LibraryClass();
@@ -1335,11 +1259,18 @@ class TargetClassChangerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link TargetClassChanger#visitArrayElementValue(Clazz, Annotation, ArrayElementValue)}
+   * Test {@link TargetClassChanger#visitArrayElementValue(Clazz, Annotation, ArrayElementValue)}.
+   * <ul>
+   *   <li>Then calls {@link ArrayElementValue#elementValuesAccept(Clazz, Annotation, ElementValueVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link TargetClassChanger#visitArrayElementValue(Clazz, Annotation, ArrayElementValue)}
    */
   @Test
-  void testVisitArrayElementValue() {
+  @DisplayName("Test visitArrayElementValue(Clazz, Annotation, ArrayElementValue); then calls elementValuesAccept(Clazz, Annotation, ElementValueVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void TargetClassChanger.visitArrayElementValue(Clazz, Annotation, ArrayElementValue)"})
+  void testVisitArrayElementValue_thenCallsElementValuesAccept() {
     // Arrange
     TargetClassChanger targetClassChanger = new TargetClassChanger();
     LibraryClass clazz = new LibraryClass();
@@ -1357,11 +1288,18 @@ class TargetClassChangerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link TargetClassChanger#visitArrayElementValue(Clazz, Annotation, ArrayElementValue)}
+   * Test {@link TargetClassChanger#visitArrayElementValue(Clazz, Annotation, ArrayElementValue)}.
+   * <ul>
+   *   <li>Then calls {@link ProgramClassOptimizationInfo#getTargetClass()}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link TargetClassChanger#visitArrayElementValue(Clazz, Annotation, ArrayElementValue)}
    */
   @Test
-  void testVisitArrayElementValue2() {
+  @DisplayName("Test visitArrayElementValue(Clazz, Annotation, ArrayElementValue); then calls getTargetClass()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void TargetClassChanger.visitArrayElementValue(Clazz, Annotation, ArrayElementValue)"})
+  void testVisitArrayElementValue_thenCallsGetTargetClass() {
     // Arrange
     TargetClassChanger targetClassChanger = new TargetClassChanger();
     LibraryClass clazz = new LibraryClass();

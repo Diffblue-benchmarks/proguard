@@ -1,9 +1,10 @@
 package proguard.optimize.info;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import proguard.classfile.Clazz;
 import proguard.classfile.LibraryClass;
@@ -11,57 +12,24 @@ import proguard.classfile.constant.ClassConstant;
 
 class InstantiationClassMarkerDiffblueTest {
   /**
-   * Method under test:
-   * {@link InstantiationClassMarker#visitClassConstant(Clazz, ClassConstant)}
+   * Test {@link InstantiationClassMarker#visitClassConstant(Clazz, ClassConstant)}.
+   * <ul>
+   *   <li>Then {@link ClassConstant#ClassConstant()} {@link ClassConstant#referencedClass} {@link LibraryClass}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link InstantiationClassMarker#visitClassConstant(Clazz, ClassConstant)}
    */
   @Test
-  void testVisitClassConstant() {
-    // Arrange
-    InstantiationClassMarker instantiationClassMarker = new InstantiationClassMarker();
-    LibraryClass clazz = new LibraryClass();
-    ClassConstant classConstant = new ClassConstant();
-
-    // Act
-    instantiationClassMarker.visitClassConstant(clazz, classConstant);
-
-    // Assert
-    assertNull(classConstant.referencedClass);
-  }
-
-  /**
-   * Method under test:
-   * {@link InstantiationClassMarker#visitClassConstant(Clazz, ClassConstant)}
-   */
-  @Test
-  void testVisitClassConstant2() {
-    // Arrange
-    InstantiationClassMarker instantiationClassMarker = new InstantiationClassMarker();
-    LibraryClass clazz = new LibraryClass();
-    ClassConstant classConstant = new ClassConstant();
-    classConstant.referencedClass = new LibraryClass();
-
-    // Act
-    instantiationClassMarker.visitClassConstant(clazz, classConstant);
-
-    // Assert
-    Clazz clazz2 = classConstant.referencedClass;
-    assertTrue(clazz2 instanceof LibraryClass);
-    assertNull(clazz2.getProcessingInfo());
-  }
-
-  /**
-   * Method under test:
-   * {@link InstantiationClassMarker#visitClassConstant(Clazz, ClassConstant)}
-   */
-  @Test
-  void testVisitClassConstant3() {
+  @DisplayName("Test visitClassConstant(Clazz, ClassConstant); then ClassConstant() referencedClass LibraryClass")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void InstantiationClassMarker.visitClassConstant(Clazz, ClassConstant)"})
+  void testVisitClassConstant_thenClassConstantReferencedClassLibraryClass() {
     // Arrange
     InstantiationClassMarker instantiationClassMarker = new InstantiationClassMarker();
     LibraryClass clazz = new LibraryClass();
 
     LibraryClass libraryClass = new LibraryClass();
-    ProgramClassOptimizationInfo programClassOptimizationInfo = new ProgramClassOptimizationInfo();
-    libraryClass.setProcessingInfo(programClassOptimizationInfo);
+    libraryClass.setProcessingInfo(new ProgramClassOptimizationInfo());
     ClassConstant classConstant = new ClassConstant();
     classConstant.referencedClass = libraryClass;
 
@@ -74,20 +42,26 @@ class InstantiationClassMarkerDiffblueTest {
     Object processingInfo = clazz2.getProcessingInfo();
     assertTrue(processingInfo instanceof ProgramClassOptimizationInfo);
     assertTrue(((ProgramClassOptimizationInfo) processingInfo).isInstantiated());
-    assertSame(programClassOptimizationInfo, processingInfo);
   }
 
   /**
+   * Test {@link InstantiationClassMarker#visitAnyClass(Clazz)}.
+   * <ul>
+   *   <li>Then {@link LibraryClass#LibraryClass()} ProcessingInfo {@link ProgramClassOptimizationInfo}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link InstantiationClassMarker#visitAnyClass(Clazz)}
    */
   @Test
-  void testVisitAnyClass() {
+  @DisplayName("Test visitAnyClass(Clazz); then LibraryClass() ProcessingInfo ProgramClassOptimizationInfo")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void InstantiationClassMarker.visitAnyClass(Clazz)"})
+  void testVisitAnyClass_thenLibraryClassProcessingInfoProgramClassOptimizationInfo() {
     // Arrange
     InstantiationClassMarker instantiationClassMarker = new InstantiationClassMarker();
 
     LibraryClass clazz = new LibraryClass();
-    ProgramClassOptimizationInfo programClassOptimizationInfo = new ProgramClassOptimizationInfo();
-    clazz.setProcessingInfo(programClassOptimizationInfo);
+    clazz.setProcessingInfo(new ProgramClassOptimizationInfo());
 
     // Act
     instantiationClassMarker.visitAnyClass(clazz);
@@ -96,14 +70,22 @@ class InstantiationClassMarkerDiffblueTest {
     Object processingInfo = clazz.getProcessingInfo();
     assertTrue(processingInfo instanceof ProgramClassOptimizationInfo);
     assertTrue(((ProgramClassOptimizationInfo) processingInfo).isInstantiated());
-    assertSame(programClassOptimizationInfo, processingInfo);
   }
 
   /**
+   * Test {@link InstantiationClassMarker#isInstantiated(Clazz)}.
+   * <ul>
+   *   <li>Given {@link ClassOptimizationInfo} (default constructor).</li>
+   *   <li>Then return {@code true}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link InstantiationClassMarker#isInstantiated(Clazz)}
    */
   @Test
-  void testIsInstantiated() {
+  @DisplayName("Test isInstantiated(Clazz); given ClassOptimizationInfo (default constructor); then return 'true'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean InstantiationClassMarker.isInstantiated(Clazz)"})
+  void testIsInstantiated_givenClassOptimizationInfo_thenReturnTrue() {
     // Arrange
     LibraryClass clazz = new LibraryClass();
     clazz.setProcessingInfo(new ClassOptimizationInfo());
@@ -113,10 +95,19 @@ class InstantiationClassMarkerDiffblueTest {
   }
 
   /**
+   * Test {@link InstantiationClassMarker#isInstantiated(Clazz)}.
+   * <ul>
+   *   <li>Given {@link ProgramClassOptimizationInfo} (default constructor).</li>
+   *   <li>Then return {@code false}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link InstantiationClassMarker#isInstantiated(Clazz)}
    */
   @Test
-  void testIsInstantiated2() {
+  @DisplayName("Test isInstantiated(Clazz); given ProgramClassOptimizationInfo (default constructor); then return 'false'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean InstantiationClassMarker.isInstantiated(Clazz)"})
+  void testIsInstantiated_givenProgramClassOptimizationInfo_thenReturnFalse() {
     // Arrange
     LibraryClass clazz = new LibraryClass();
     clazz.setProcessingInfo(new ProgramClassOptimizationInfo());

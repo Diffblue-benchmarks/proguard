@@ -10,6 +10,9 @@ import static org.mockito.Mockito.atLeast;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.ClassPool;
@@ -19,46 +22,26 @@ import proguard.classfile.LibraryClass;
 import proguard.classfile.ProgramClass;
 import proguard.classfile.ProgramField;
 import proguard.classfile.editor.CompactCodeAttributeComposer;
+import proguard.classfile.editor.CompactCodeAttributeComposer.Label;
+import proguard.optimize.gson.InlineDeserializers.InlinePrimitiveIntegerDeserializer;
+import proguard.optimize.gson.InlineDeserializers.InlineStringDeserializer;
 
 class InlineDeserializersDiffblueTest {
   /**
-   * Method under test:
-   * {@link InlineDeserializers.InlinePrimitiveIntegerDeserializer#canDeserialize(GsonRuntimeSettings)}
+   * Test InlinePrimitiveIntegerDeserializer {@link InlinePrimitiveIntegerDeserializer#canDeserialize(GsonRuntimeSettings)}.
+   * <ul>
+   *   <li>Then return {@code false}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link InlinePrimitiveIntegerDeserializer#canDeserialize(GsonRuntimeSettings)}
    */
   @Test
-  void testInlinePrimitiveIntegerDeserializerCanDeserialize() {
+  @DisplayName("Test InlinePrimitiveIntegerDeserializer canDeserialize(GsonRuntimeSettings); then return 'false'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean InlinePrimitiveIntegerDeserializer.canDeserialize(GsonRuntimeSettings)"})
+  void testInlinePrimitiveIntegerDeserializerCanDeserialize_thenReturnFalse() {
     // Arrange
-    InlineDeserializers.InlinePrimitiveIntegerDeserializer inlinePrimitiveIntegerDeserializer = new InlineDeserializers.InlinePrimitiveIntegerDeserializer();
-    GsonRuntimeSettings gsonRuntimeSettings = new GsonRuntimeSettings();
-    gsonRuntimeSettings.addDeserializationExclusionStrategy = true;
-    gsonRuntimeSettings.addSerializationExclusionStrategy = true;
-    gsonRuntimeSettings.disableInnerClassSerialization = true;
-    gsonRuntimeSettings.excludeFieldsWithModifiers = true;
-    gsonRuntimeSettings.excludeFieldsWithoutExposeAnnotation = true;
-    gsonRuntimeSettings.generateNonExecutableJson = true;
-    gsonRuntimeSettings.instanceCreatorClassPool = new ClassPool();
-    gsonRuntimeSettings.registerTypeAdapterFactory = true;
-    gsonRuntimeSettings.serializeNulls = true;
-    gsonRuntimeSettings.serializeSpecialFloatingPointValues = true;
-    gsonRuntimeSettings.setExclusionStrategies = true;
-    gsonRuntimeSettings.setFieldNamingPolicy = true;
-    gsonRuntimeSettings.setFieldNamingStrategy = true;
-    gsonRuntimeSettings.setLongSerializationPolicy = true;
-    gsonRuntimeSettings.setVersion = true;
-    gsonRuntimeSettings.typeAdapterClassPool = new ClassPool();
-
-    // Act and Assert
-    assertTrue(inlinePrimitiveIntegerDeserializer.canDeserialize(gsonRuntimeSettings));
-  }
-
-  /**
-   * Method under test:
-   * {@link InlineDeserializers.InlinePrimitiveIntegerDeserializer#canDeserialize(GsonRuntimeSettings)}
-   */
-  @Test
-  void testInlinePrimitiveIntegerDeserializerCanDeserialize2() {
-    // Arrange
-    InlineDeserializers.InlinePrimitiveIntegerDeserializer inlinePrimitiveIntegerDeserializer = new InlineDeserializers.InlinePrimitiveIntegerDeserializer();
+    InlinePrimitiveIntegerDeserializer inlinePrimitiveIntegerDeserializer = new InlinePrimitiveIntegerDeserializer();
 
     ClassPool classPool = new ClassPool();
     classPool.addClass("java/lang/Integer", new LibraryClass());
@@ -85,13 +68,58 @@ class InlineDeserializersDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link InlineDeserializers.InlinePrimitiveIntegerDeserializer#deserialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)}
+   * Test InlinePrimitiveIntegerDeserializer {@link InlinePrimitiveIntegerDeserializer#canDeserialize(GsonRuntimeSettings)}.
+   * <ul>
+   *   <li>Then return {@code true}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link InlinePrimitiveIntegerDeserializer#canDeserialize(GsonRuntimeSettings)}
    */
   @Test
-  void testInlinePrimitiveIntegerDeserializerDeserialize() {
+  @DisplayName("Test InlinePrimitiveIntegerDeserializer canDeserialize(GsonRuntimeSettings); then return 'true'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean InlinePrimitiveIntegerDeserializer.canDeserialize(GsonRuntimeSettings)"})
+  void testInlinePrimitiveIntegerDeserializerCanDeserialize_thenReturnTrue() {
     // Arrange
-    InlineDeserializers.InlinePrimitiveIntegerDeserializer inlinePrimitiveIntegerDeserializer = new InlineDeserializers.InlinePrimitiveIntegerDeserializer();
+    InlinePrimitiveIntegerDeserializer inlinePrimitiveIntegerDeserializer = new InlinePrimitiveIntegerDeserializer();
+    GsonRuntimeSettings gsonRuntimeSettings = new GsonRuntimeSettings();
+    gsonRuntimeSettings.addDeserializationExclusionStrategy = true;
+    gsonRuntimeSettings.addSerializationExclusionStrategy = true;
+    gsonRuntimeSettings.disableInnerClassSerialization = true;
+    gsonRuntimeSettings.excludeFieldsWithModifiers = true;
+    gsonRuntimeSettings.excludeFieldsWithoutExposeAnnotation = true;
+    gsonRuntimeSettings.generateNonExecutableJson = true;
+    gsonRuntimeSettings.instanceCreatorClassPool = new ClassPool();
+    gsonRuntimeSettings.registerTypeAdapterFactory = true;
+    gsonRuntimeSettings.serializeNulls = true;
+    gsonRuntimeSettings.serializeSpecialFloatingPointValues = true;
+    gsonRuntimeSettings.setExclusionStrategies = true;
+    gsonRuntimeSettings.setFieldNamingPolicy = true;
+    gsonRuntimeSettings.setFieldNamingStrategy = true;
+    gsonRuntimeSettings.setLongSerializationPolicy = true;
+    gsonRuntimeSettings.setVersion = true;
+    gsonRuntimeSettings.typeAdapterClassPool = new ClassPool();
+
+    // Act and Assert
+    assertTrue(inlinePrimitiveIntegerDeserializer.canDeserialize(gsonRuntimeSettings));
+  }
+
+  /**
+   * Test InlinePrimitiveIntegerDeserializer {@link InlinePrimitiveIntegerDeserializer#deserialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)}.
+   * <ul>
+   *   <li>Then calls {@link CompactCodeAttributeComposer#aload(int)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link InlinePrimitiveIntegerDeserializer#deserialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)}
+   */
+  @Test
+  @DisplayName("Test InlinePrimitiveIntegerDeserializer deserialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings); then calls aload(int)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void InlinePrimitiveIntegerDeserializer.deserialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)"})
+  void testInlinePrimitiveIntegerDeserializerDeserialize_thenCallsAload() {
+    // Arrange
+    InlinePrimitiveIntegerDeserializer inlinePrimitiveIntegerDeserializer = new InlinePrimitiveIntegerDeserializer();
     ProgramClass programClass = new ProgramClass();
     ProgramField programField = new ProgramField();
     CompactCodeAttributeComposer compactCodeAttributeComposer = mock(CompactCodeAttributeComposer.class);
@@ -103,13 +131,12 @@ class InlineDeserializersDiffblueTest {
     CompactCodeAttributeComposer compactCodeAttributeComposer3 = mock(CompactCodeAttributeComposer.class);
     when(compactCodeAttributeComposer3.aload(anyInt())).thenReturn(compactCodeAttributeComposer2);
     CompactCodeAttributeComposer compactCodeAttributeComposer4 = mock(CompactCodeAttributeComposer.class);
-    when(compactCodeAttributeComposer4.label(Mockito.<CompactCodeAttributeComposer.Label>any()))
+    when(compactCodeAttributeComposer4.label(Mockito.<Label>any()))
         .thenReturn(new CompactCodeAttributeComposer(new ProgramClass()));
     CompactCodeAttributeComposer compactCodeAttributeComposer5 = mock(CompactCodeAttributeComposer.class);
-    when(compactCodeAttributeComposer5.goto_(Mockito.<CompactCodeAttributeComposer.Label>any()))
-        .thenReturn(compactCodeAttributeComposer4);
+    when(compactCodeAttributeComposer5.goto_(Mockito.<Label>any())).thenReturn(compactCodeAttributeComposer4);
     CompactCodeAttributeComposer compactCodeAttributeComposer6 = mock(CompactCodeAttributeComposer.class);
-    when(compactCodeAttributeComposer6.label(Mockito.<CompactCodeAttributeComposer.Label>any()))
+    when(compactCodeAttributeComposer6.label(Mockito.<Label>any()))
         .thenReturn(new CompactCodeAttributeComposer(new ProgramClass()));
     CompactCodeAttributeComposer compactCodeAttributeComposer7 = mock(CompactCodeAttributeComposer.class);
     when(compactCodeAttributeComposer7.athrow()).thenReturn(compactCodeAttributeComposer6);
@@ -125,11 +152,10 @@ class InlineDeserializersDiffblueTest {
     CompactCodeAttributeComposer compactCodeAttributeComposer12 = mock(CompactCodeAttributeComposer.class);
     when(compactCodeAttributeComposer12.astore(anyInt())).thenReturn(compactCodeAttributeComposer11);
     CompactCodeAttributeComposer ____ = mock(CompactCodeAttributeComposer.class);
-    when(____.catch_(Mockito.<CompactCodeAttributeComposer.Label>any(),
-        Mockito.<CompactCodeAttributeComposer.Label>any(), Mockito.<String>any(), Mockito.<Clazz>any()))
-            .thenReturn(compactCodeAttributeComposer12);
+    when(____.catch_(Mockito.<Label>any(), Mockito.<Label>any(), Mockito.<String>any(), Mockito.<Clazz>any()))
+        .thenReturn(compactCodeAttributeComposer12);
     when(____.putfield(Mockito.<Clazz>any(), Mockito.<Field>any())).thenReturn(compactCodeAttributeComposer5);
-    when(____.label(Mockito.<CompactCodeAttributeComposer.Label>any())).thenReturn(compactCodeAttributeComposer3);
+    when(____.label(Mockito.<Label>any())).thenReturn(compactCodeAttributeComposer3);
     when(____.createLabel()).thenReturn(null);
     GsonRuntimeSettings gsonRuntimeSettings = new GsonRuntimeSettings();
     gsonRuntimeSettings.addDeserializationExclusionStrategy = true;
@@ -174,43 +200,20 @@ class InlineDeserializersDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link InlineDeserializers.InlineStringDeserializer#canDeserialize(GsonRuntimeSettings)}
+   * Test InlineStringDeserializer {@link InlineStringDeserializer#canDeserialize(GsonRuntimeSettings)}.
+   * <ul>
+   *   <li>Then return {@code false}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link InlineStringDeserializer#canDeserialize(GsonRuntimeSettings)}
    */
   @Test
-  void testInlineStringDeserializerCanDeserialize() {
+  @DisplayName("Test InlineStringDeserializer canDeserialize(GsonRuntimeSettings); then return 'false'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean InlineStringDeserializer.canDeserialize(GsonRuntimeSettings)"})
+  void testInlineStringDeserializerCanDeserialize_thenReturnFalse() {
     // Arrange
-    InlineDeserializers.InlineStringDeserializer inlineStringDeserializer = new InlineDeserializers.InlineStringDeserializer();
-    GsonRuntimeSettings gsonRuntimeSettings = new GsonRuntimeSettings();
-    gsonRuntimeSettings.addDeserializationExclusionStrategy = true;
-    gsonRuntimeSettings.addSerializationExclusionStrategy = true;
-    gsonRuntimeSettings.disableInnerClassSerialization = true;
-    gsonRuntimeSettings.excludeFieldsWithModifiers = true;
-    gsonRuntimeSettings.excludeFieldsWithoutExposeAnnotation = true;
-    gsonRuntimeSettings.generateNonExecutableJson = true;
-    gsonRuntimeSettings.instanceCreatorClassPool = new ClassPool();
-    gsonRuntimeSettings.registerTypeAdapterFactory = true;
-    gsonRuntimeSettings.serializeNulls = true;
-    gsonRuntimeSettings.serializeSpecialFloatingPointValues = true;
-    gsonRuntimeSettings.setExclusionStrategies = true;
-    gsonRuntimeSettings.setFieldNamingPolicy = true;
-    gsonRuntimeSettings.setFieldNamingStrategy = true;
-    gsonRuntimeSettings.setLongSerializationPolicy = true;
-    gsonRuntimeSettings.setVersion = true;
-    gsonRuntimeSettings.typeAdapterClassPool = new ClassPool();
-
-    // Act and Assert
-    assertTrue(inlineStringDeserializer.canDeserialize(gsonRuntimeSettings));
-  }
-
-  /**
-   * Method under test:
-   * {@link InlineDeserializers.InlineStringDeserializer#canDeserialize(GsonRuntimeSettings)}
-   */
-  @Test
-  void testInlineStringDeserializerCanDeserialize2() {
-    // Arrange
-    InlineDeserializers.InlineStringDeserializer inlineStringDeserializer = new InlineDeserializers.InlineStringDeserializer();
+    InlineStringDeserializer inlineStringDeserializer = new InlineStringDeserializer();
 
     ClassPool classPool = new ClassPool();
     classPool.addClass("java/lang/String", new LibraryClass());
@@ -237,23 +240,68 @@ class InlineDeserializersDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link InlineDeserializers.InlineStringDeserializer#deserialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)}
+   * Test InlineStringDeserializer {@link InlineStringDeserializer#canDeserialize(GsonRuntimeSettings)}.
+   * <ul>
+   *   <li>Then return {@code true}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link InlineStringDeserializer#canDeserialize(GsonRuntimeSettings)}
    */
   @Test
-  void testInlineStringDeserializerDeserialize() {
+  @DisplayName("Test InlineStringDeserializer canDeserialize(GsonRuntimeSettings); then return 'true'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean InlineStringDeserializer.canDeserialize(GsonRuntimeSettings)"})
+  void testInlineStringDeserializerCanDeserialize_thenReturnTrue() {
     // Arrange
-    InlineDeserializers.InlineStringDeserializer inlineStringDeserializer = new InlineDeserializers.InlineStringDeserializer();
+    InlineStringDeserializer inlineStringDeserializer = new InlineStringDeserializer();
+    GsonRuntimeSettings gsonRuntimeSettings = new GsonRuntimeSettings();
+    gsonRuntimeSettings.addDeserializationExclusionStrategy = true;
+    gsonRuntimeSettings.addSerializationExclusionStrategy = true;
+    gsonRuntimeSettings.disableInnerClassSerialization = true;
+    gsonRuntimeSettings.excludeFieldsWithModifiers = true;
+    gsonRuntimeSettings.excludeFieldsWithoutExposeAnnotation = true;
+    gsonRuntimeSettings.generateNonExecutableJson = true;
+    gsonRuntimeSettings.instanceCreatorClassPool = new ClassPool();
+    gsonRuntimeSettings.registerTypeAdapterFactory = true;
+    gsonRuntimeSettings.serializeNulls = true;
+    gsonRuntimeSettings.serializeSpecialFloatingPointValues = true;
+    gsonRuntimeSettings.setExclusionStrategies = true;
+    gsonRuntimeSettings.setFieldNamingPolicy = true;
+    gsonRuntimeSettings.setFieldNamingStrategy = true;
+    gsonRuntimeSettings.setLongSerializationPolicy = true;
+    gsonRuntimeSettings.setVersion = true;
+    gsonRuntimeSettings.typeAdapterClassPool = new ClassPool();
+
+    // Act and Assert
+    assertTrue(inlineStringDeserializer.canDeserialize(gsonRuntimeSettings));
+  }
+
+  /**
+   * Test InlineStringDeserializer {@link InlineStringDeserializer#deserialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)}.
+   * <ul>
+   *   <li>Then calls {@link CompactCodeAttributeComposer#aload(int)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link InlineStringDeserializer#deserialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)}
+   */
+  @Test
+  @DisplayName("Test InlineStringDeserializer deserialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings); then calls aload(int)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void InlineStringDeserializer.deserialize(ProgramClass, ProgramField, CompactCodeAttributeComposer, GsonRuntimeSettings)"})
+  void testInlineStringDeserializerDeserialize_thenCallsAload() {
+    // Arrange
+    InlineStringDeserializer inlineStringDeserializer = new InlineStringDeserializer();
     ProgramClass programClass = mock(ProgramClass.class);
     ProgramField programField = mock(ProgramField.class);
     CompactCodeAttributeComposer compactCodeAttributeComposer = mock(CompactCodeAttributeComposer.class);
-    when(compactCodeAttributeComposer.ifacmpeq(Mockito.<CompactCodeAttributeComposer.Label>any()))
+    when(compactCodeAttributeComposer.ifacmpeq(Mockito.<Label>any()))
         .thenReturn(new CompactCodeAttributeComposer(new ProgramClass()));
     CompactCodeAttributeComposer compactCodeAttributeComposer2 = mock(CompactCodeAttributeComposer.class);
     when(compactCodeAttributeComposer2.getstatic(Mockito.<String>any(), Mockito.<String>any(), Mockito.<String>any()))
         .thenReturn(compactCodeAttributeComposer);
     CompactCodeAttributeComposer compactCodeAttributeComposer3 = mock(CompactCodeAttributeComposer.class);
-    when(compactCodeAttributeComposer3.goto_(Mockito.<CompactCodeAttributeComposer.Label>any()))
+    when(compactCodeAttributeComposer3.goto_(Mockito.<Label>any()))
         .thenReturn(new CompactCodeAttributeComposer(new ProgramClass()));
     CompactCodeAttributeComposer compactCodeAttributeComposer4 = mock(CompactCodeAttributeComposer.class);
     when(compactCodeAttributeComposer4.putfield(Mockito.<Clazz>any(), Mockito.<Field>any()))
@@ -266,7 +314,7 @@ class InlineDeserializersDiffblueTest {
     when(compactCodeAttributeComposer6.invokevirtual(Mockito.<String>any(), Mockito.<String>any(),
         Mockito.<String>any())).thenReturn(compactCodeAttributeComposer2);
     CompactCodeAttributeComposer compactCodeAttributeComposer7 = mock(CompactCodeAttributeComposer.class);
-    when(compactCodeAttributeComposer7.label(Mockito.<CompactCodeAttributeComposer.Label>any()))
+    when(compactCodeAttributeComposer7.label(Mockito.<Label>any()))
         .thenReturn(new CompactCodeAttributeComposer(new ProgramClass()));
     CompactCodeAttributeComposer compactCodeAttributeComposer8 = mock(CompactCodeAttributeComposer.class);
     when(compactCodeAttributeComposer8.putfield(Mockito.<Clazz>any(), Mockito.<Field>any()))
@@ -283,7 +331,7 @@ class InlineDeserializersDiffblueTest {
     CompactCodeAttributeComposer compactCodeAttributeComposer12 = mock(CompactCodeAttributeComposer.class);
     when(compactCodeAttributeComposer12.aload(anyInt())).thenReturn(compactCodeAttributeComposer11);
     CompactCodeAttributeComposer ____ = mock(CompactCodeAttributeComposer.class);
-    when(____.label(Mockito.<CompactCodeAttributeComposer.Label>any())).thenReturn(compactCodeAttributeComposer12);
+    when(____.label(Mockito.<Label>any())).thenReturn(compactCodeAttributeComposer12);
     when(____.aload(anyInt())).thenReturn(compactCodeAttributeComposer6);
     when(____.createLabel()).thenReturn(null);
     GsonRuntimeSettings gsonRuntimeSettings = new GsonRuntimeSettings();

@@ -1,19 +1,26 @@
 package proguard.obfuscate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.net.MalformedURLException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import proguard.ClassPath;
 import proguard.Configuration;
 
 class ResourceFileNameAdapterDiffblueTest {
   /**
-   * Method under test:
-   * {@link ResourceFileNameAdapter#ResourceFileNameAdapter(Configuration)}
+   * Test {@link ResourceFileNameAdapter#ResourceFileNameAdapter(Configuration)}.
+   * <p>
+   * Method under test: {@link ResourceFileNameAdapter#ResourceFileNameAdapter(Configuration)}
    */
   @Test
+  @DisplayName("Test new ResourceFileNameAdapter(Configuration)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ResourceFileNameAdapter.<init>(Configuration)"})
   void testNewResourceFileNameAdapter() throws MalformedURLException {
     // Arrange
     Configuration configuration = new Configuration();

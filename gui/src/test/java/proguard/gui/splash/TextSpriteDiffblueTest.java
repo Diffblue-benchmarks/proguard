@@ -5,15 +5,26 @@ import static org.mockito.Mockito.anyLong;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.awt.Graphics;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 class TextSpriteDiffblueTest {
   /**
+   * Test {@link TextSprite#paint(Graphics, long)}.
+   * <ul>
+   *   <li>Then calls {@link VariableInt#getInt(long)}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link TextSprite#paint(Graphics, long)}
    */
   @Test
-  void testPaint() {
+  @DisplayName("Test paint(Graphics, long); then calls getInt(long)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void TextSprite.paint(Graphics, long)"})
+  void testPaint_thenCallsGetInt() {
     // Arrange
     VariableInt spacing = mock(VariableInt.class);
     when(spacing.getInt(anyLong())).thenReturn(1);

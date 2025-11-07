@@ -7,6 +7,9 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.Clazz;
@@ -15,6 +18,7 @@ import proguard.classfile.LibraryMethod;
 import proguard.classfile.Method;
 import proguard.classfile.attribute.CodeAttribute;
 import proguard.classfile.constant.AnyMethodrefConstant;
+import proguard.classfile.constant.FieldrefConstant;
 import proguard.classfile.constant.InterfaceMethodrefConstant;
 import proguard.classfile.editor.CodeAttributeEditor;
 import proguard.classfile.instruction.ConstantInstruction;
@@ -23,11 +27,19 @@ import proguard.optimize.info.ClassOptimizationInfo;
 
 class NoConstructorReferenceReplacerDiffblueTest {
   /**
-   * Method under test:
-   * {@link NoConstructorReferenceReplacer#visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction)}
+   * Test {@link NoConstructorReferenceReplacer#visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction)}.
+   * <ul>
+   *   <li>Then calls {@link CodeAttributeEditor#replaceInstruction(int, Instruction[])}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link NoConstructorReferenceReplacer#visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction)}
    */
   @Test
-  void testVisitConstantInstruction() {
+  @DisplayName("Test visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction); then calls replaceInstruction(int, Instruction[])")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void NoConstructorReferenceReplacer.visitConstantInstruction(Clazz, Method, CodeAttribute, int, ConstantInstruction)"})
+  void testVisitConstantInstruction_thenCallsReplaceInstruction() {
     // Arrange
     CodeAttributeEditor codeAttributeEditor = mock(CodeAttributeEditor.class);
     doNothing().when(codeAttributeEditor).replaceInstruction(anyInt(), Mockito.<Instruction[]>any());
@@ -47,11 +59,50 @@ class NoConstructorReferenceReplacerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link NoConstructorReferenceReplacer#visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant)}
+   * Test {@link NoConstructorReferenceReplacer#visitFieldrefConstant(Clazz, FieldrefConstant)}.
+   * <ul>
+   *   <li>Then calls {@link ClassOptimizationInfo#containsConstructors()}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link NoConstructorReferenceReplacer#visitFieldrefConstant(Clazz, FieldrefConstant)}
    */
   @Test
-  void testVisitAnyMethodrefConstant() {
+  @DisplayName("Test visitFieldrefConstant(Clazz, FieldrefConstant); then calls containsConstructors()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void NoConstructorReferenceReplacer.visitFieldrefConstant(Clazz, FieldrefConstant)"})
+  void testVisitFieldrefConstant_thenCallsContainsConstructors() {
+    // Arrange
+    NoConstructorReferenceReplacer noConstructorReferenceReplacer = new NoConstructorReferenceReplacer(
+        new CodeAttributeEditor());
+    LibraryClass clazz = new LibraryClass();
+    ClassOptimizationInfo classOptimizationInfo = mock(ClassOptimizationInfo.class);
+    when(classOptimizationInfo.containsConstructors()).thenReturn(true);
+
+    LibraryClass libraryClass = new LibraryClass();
+    libraryClass.setProcessingInfo(classOptimizationInfo);
+    FieldrefConstant fieldrefConstant = new FieldrefConstant();
+    fieldrefConstant.referencedClass = libraryClass;
+
+    // Act
+    noConstructorReferenceReplacer.visitFieldrefConstant(clazz, fieldrefConstant);
+
+    // Assert
+    verify(classOptimizationInfo).containsConstructors();
+  }
+
+  /**
+   * Test {@link NoConstructorReferenceReplacer#visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant)}.
+   * <ul>
+   *   <li>Then calls {@link ClassOptimizationInfo#containsConstructors()}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link NoConstructorReferenceReplacer#visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant)}
+   */
+  @Test
+  @DisplayName("Test visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant); then calls containsConstructors()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void NoConstructorReferenceReplacer.visitAnyMethodrefConstant(Clazz, AnyMethodrefConstant)"})
+  void testVisitAnyMethodrefConstant_thenCallsContainsConstructors() {
     // Arrange
     NoConstructorReferenceReplacer noConstructorReferenceReplacer = new NoConstructorReferenceReplacer(
         new CodeAttributeEditor());

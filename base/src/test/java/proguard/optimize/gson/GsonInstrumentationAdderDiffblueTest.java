@@ -6,6 +6,9 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.ClassPool;
@@ -18,11 +21,21 @@ import proguard.classfile.instruction.Instruction;
 
 class GsonInstrumentationAdderDiffblueTest {
   /**
-   * Method under test:
-   * {@link GsonInstrumentationAdder#visitAnyInstruction(Clazz, Method, CodeAttribute, int, Instruction)}
+   * Test {@link GsonInstrumentationAdder#visitAnyInstruction(Clazz, Method, CodeAttribute, int, Instruction)}.
+   * <ul>
+   *   <li>Given {@code A}.</li>
+   *   <li>When {@link Clazz}.</li>
+   *   <li>Then calls {@link ClassPool#addClass(Clazz)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link GsonInstrumentationAdder#visitAnyInstruction(Clazz, Method, CodeAttribute, int, Instruction)}
    */
   @Test
-  void testVisitAnyInstruction() {
+  @DisplayName("Test visitAnyInstruction(Clazz, Method, CodeAttribute, int, Instruction); given 'A'; when Clazz; then calls addClass(Clazz)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void GsonInstrumentationAdder.visitAnyInstruction(Clazz, Method, CodeAttribute, int, Instruction)"})
+  void testVisitAnyInstruction_givenA_whenClazz_thenCallsAddClass() {
     // Arrange
     ClassPool programClassPool = mock(ClassPool.class);
     doNothing().when(programClassPool).addClass(Mockito.<Clazz>any());

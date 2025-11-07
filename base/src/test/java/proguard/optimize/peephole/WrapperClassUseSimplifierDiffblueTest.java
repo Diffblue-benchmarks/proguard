@@ -7,42 +7,32 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.Clazz;
 import proguard.classfile.LibraryClass;
-import proguard.classfile.ProgramClass;
 import proguard.classfile.constant.ClassConstant;
 import proguard.classfile.constant.MethodrefConstant;
 import proguard.classfile.visitor.ClassVisitor;
-import proguard.optimize.info.ClassOptimizationInfo;
-import proguard.optimize.info.ProgramClassOptimizationInfo;
 
 class WrapperClassUseSimplifierDiffblueTest {
   /**
-   * Method under test:
-   * {@link WrapperClassUseSimplifier#visitMethodrefConstant(Clazz, MethodrefConstant)}
+   * Test {@link WrapperClassUseSimplifier#visitMethodrefConstant(Clazz, MethodrefConstant)}.
+   * <ul>
+   *   <li>Given {@code <init>}.</li>
+   *   <li>When {@link LibraryClass} {@link LibraryClass#getName(int)} return {@code <init>}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link WrapperClassUseSimplifier#visitMethodrefConstant(Clazz, MethodrefConstant)}
    */
   @Test
-  void testVisitMethodrefConstant() {
-    // Arrange
-    WrapperClassUseSimplifier wrapperClassUseSimplifier = new WrapperClassUseSimplifier();
-    LibraryClass clazz = mock(LibraryClass.class);
-    when(clazz.getName(anyInt())).thenReturn("Name");
-
-    // Act
-    wrapperClassUseSimplifier.visitMethodrefConstant(clazz, new MethodrefConstant());
-
-    // Assert
-    verify(clazz).getName(eq(0));
-  }
-
-  /**
-   * Method under test:
-   * {@link WrapperClassUseSimplifier#visitMethodrefConstant(Clazz, MethodrefConstant)}
-   */
-  @Test
-  void testVisitMethodrefConstant2() {
+  @DisplayName("Test visitMethodrefConstant(Clazz, MethodrefConstant); given '<init>'; when LibraryClass getName(int) return '<init>'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void WrapperClassUseSimplifier.visitMethodrefConstant(Clazz, MethodrefConstant)"})
+  void testVisitMethodrefConstant_givenInit_whenLibraryClassGetNameReturnInit() {
     // Arrange
     WrapperClassUseSimplifier wrapperClassUseSimplifier = new WrapperClassUseSimplifier();
     LibraryClass clazz = mock(LibraryClass.class);
@@ -56,30 +46,45 @@ class WrapperClassUseSimplifierDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link WrapperClassUseSimplifier#visitClassConstant(Clazz, ClassConstant)}
+   * Test {@link WrapperClassUseSimplifier#visitMethodrefConstant(Clazz, MethodrefConstant)}.
+   * <ul>
+   *   <li>Given {@code Name}.</li>
+   *   <li>When {@link LibraryClass} {@link LibraryClass#getName(int)} return {@code Name}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link WrapperClassUseSimplifier#visitMethodrefConstant(Clazz, MethodrefConstant)}
    */
   @Test
-  void testVisitClassConstant() {
+  @DisplayName("Test visitMethodrefConstant(Clazz, MethodrefConstant); given 'Name'; when LibraryClass getName(int) return 'Name'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void WrapperClassUseSimplifier.visitMethodrefConstant(Clazz, MethodrefConstant)"})
+  void testVisitMethodrefConstant_givenName_whenLibraryClassGetNameReturnName() {
     // Arrange
     WrapperClassUseSimplifier wrapperClassUseSimplifier = new WrapperClassUseSimplifier();
-    LibraryClass clazz = new LibraryClass();
-    ClassConstant classConstant = mock(ClassConstant.class);
-    doNothing().when(classConstant).referencedClassAccept(Mockito.<ClassVisitor>any());
+    LibraryClass clazz = mock(LibraryClass.class);
+    when(clazz.getName(anyInt())).thenReturn("Name");
 
     // Act
-    wrapperClassUseSimplifier.visitClassConstant(clazz, classConstant);
+    wrapperClassUseSimplifier.visitMethodrefConstant(clazz, new MethodrefConstant());
 
     // Assert
-    verify(classConstant).referencedClassAccept(isA(ClassVisitor.class));
+    verify(clazz).getName(eq(0));
   }
 
   /**
-   * Method under test:
-   * {@link WrapperClassUseSimplifier#visitClassConstant(Clazz, ClassConstant)}
+   * Test {@link WrapperClassUseSimplifier#visitClassConstant(Clazz, ClassConstant)}.
+   * <ul>
+   *   <li>Given {@link LibraryClass} {@link LibraryClass#accept(ClassVisitor)} does nothing.</li>
+   *   <li>Then calls {@link LibraryClass#accept(ClassVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link WrapperClassUseSimplifier#visitClassConstant(Clazz, ClassConstant)}
    */
   @Test
-  void testVisitClassConstant2() {
+  @DisplayName("Test visitClassConstant(Clazz, ClassConstant); given LibraryClass accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void WrapperClassUseSimplifier.visitClassConstant(Clazz, ClassConstant)"})
+  void testVisitClassConstant_givenLibraryClassAcceptDoesNothing_thenCallsAccept() {
     // Arrange
     WrapperClassUseSimplifier wrapperClassUseSimplifier = new WrapperClassUseSimplifier();
     LibraryClass clazz = new LibraryClass();
@@ -96,38 +101,28 @@ class WrapperClassUseSimplifierDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link WrapperClassUseSimplifier#visitProgramClass(ProgramClass)}
+   * Test {@link WrapperClassUseSimplifier#visitClassConstant(Clazz, ClassConstant)}.
+   * <ul>
+   *   <li>Then calls {@link ClassConstant#referencedClassAccept(ClassVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link WrapperClassUseSimplifier#visitClassConstant(Clazz, ClassConstant)}
    */
   @Test
-  void testVisitProgramClass() {
+  @DisplayName("Test visitClassConstant(Clazz, ClassConstant); then calls referencedClassAccept(ClassVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void WrapperClassUseSimplifier.visitClassConstant(Clazz, ClassConstant)"})
+  void testVisitClassConstant_thenCallsReferencedClassAccept() {
     // Arrange
     WrapperClassUseSimplifier wrapperClassUseSimplifier = new WrapperClassUseSimplifier();
-    ProgramClass programClass = mock(ProgramClass.class);
-    when(programClass.getProcessingInfo()).thenReturn(new ClassOptimizationInfo());
+    LibraryClass clazz = new LibraryClass();
+    ClassConstant classConstant = mock(ClassConstant.class);
+    doNothing().when(classConstant).referencedClassAccept(Mockito.<ClassVisitor>any());
 
     // Act
-    wrapperClassUseSimplifier.visitProgramClass(programClass);
+    wrapperClassUseSimplifier.visitClassConstant(clazz, classConstant);
 
     // Assert
-    verify(programClass).getProcessingInfo();
-  }
-
-  /**
-   * Method under test:
-   * {@link WrapperClassUseSimplifier#visitProgramClass(ProgramClass)}
-   */
-  @Test
-  void testVisitProgramClass2() {
-    // Arrange
-    WrapperClassUseSimplifier wrapperClassUseSimplifier = new WrapperClassUseSimplifier();
-    ProgramClass programClass = mock(ProgramClass.class);
-    when(programClass.getProcessingInfo()).thenReturn(new ProgramClassOptimizationInfo());
-
-    // Act
-    wrapperClassUseSimplifier.visitProgramClass(programClass);
-
-    // Assert
-    verify(programClass).getProcessingInfo();
+    verify(classConstant).referencedClassAccept(isA(ClassVisitor.class));
   }
 }

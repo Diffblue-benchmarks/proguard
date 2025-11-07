@@ -14,6 +14,9 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.Clazz;
@@ -29,15 +32,42 @@ import proguard.classfile.constant.Constant;
 import proguard.classfile.constant.visitor.ConstantVisitor;
 import proguard.classfile.visitor.ClassVisitor;
 import proguard.classfile.visitor.MemberVisitor;
-import proguard.fixer.kotlin.KotlinAnnotationCounter;
-import proguard.obfuscate.ClassRenamer;
 import proguard.util.Processable;
 
 class ShortestClassUsageMarkerDiffblueTest {
   /**
+   * Test {@link ShortestClassUsageMarker#ShortestClassUsageMarker(ShortestUsageMarker, String)}.
+   * <p>
+   * Method under test: {@link ShortestClassUsageMarker#ShortestClassUsageMarker(ShortestUsageMarker, String)}
+   */
+  @Test
+  @DisplayName("Test new ShortestClassUsageMarker(ShortestUsageMarker, String)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ShortestClassUsageMarker.<init>(ShortestUsageMarker, String)"})
+  void testNewShortestClassUsageMarker() {
+    // Arrange
+    ShortestUsageMarker usageMarker = new ShortestUsageMarker();
+
+    // Act
+    ShortestClassUsageMarker actualShortestClassUsageMarker = new ShortestClassUsageMarker(usageMarker, "Just cause");
+
+    // Assert
+    ShortestUsageMark shortestUsageMark = usageMarker.currentUsageMark;
+    assertEquals("Just cause", shortestUsageMark.getReason());
+    assertNull(actualShortestClassUsageMarker.getExtraConstantVisitor());
+    assertTrue(shortestUsageMark.isCertain());
+    assertSame(usageMarker, actualShortestClassUsageMarker.getUsageMarker());
+  }
+
+  /**
+   * Test {@link ShortestClassUsageMarker#getUsageMarker()}.
+   * <p>
    * Method under test: {@link ShortestClassUsageMarker#getUsageMarker()}
    */
   @Test
+  @DisplayName("Test getUsageMarker()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"ShortestUsageMarker ShortestClassUsageMarker.getUsageMarker()"})
   void testGetUsageMarker() {
     // Arrange
     ShortestUsageMarker usageMarker = new ShortestUsageMarker();
@@ -47,28 +77,18 @@ class ShortestClassUsageMarkerDiffblueTest {
   }
 
   /**
-   * Method under test: {@link ShortestClassUsageMarker#getUsageMarker()}
+   * Test {@link ShortestClassUsageMarker#markProgramClassBody(ProgramClass)}.
+   * <ul>
+   *   <li>Then calls {@link ProgramClass#attributesAccept(AttributeVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ShortestClassUsageMarker#markProgramClassBody(ProgramClass)}
    */
   @Test
-  void testGetUsageMarker2() {
-    // Arrange
-    ShortestUsageMarker usageMarker = new ShortestUsageMarker();
-
-    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(usageMarker, "Just cause");
-    ClassVisitor extraClassVisitor = mock(ClassVisitor.class);
-    shortestClassUsageMarker
-        .setExtraConstantVisitor(new ClassRenamer(extraClassVisitor, new KotlinAnnotationCounter()));
-
-    // Act and Assert
-    assertSame(usageMarker, shortestClassUsageMarker.getUsageMarker());
-  }
-
-  /**
-   * Method under test:
-   * {@link ShortestClassUsageMarker#markProgramClassBody(ProgramClass)}
-   */
-  @Test
-  void testMarkProgramClassBody() {
+  @DisplayName("Test markProgramClassBody(ProgramClass); then calls attributesAccept(AttributeVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ShortestClassUsageMarker.markProgramClassBody(ProgramClass)"})
+  void testMarkProgramClassBody_thenCallsAttributesAccept() {
     // Arrange
     ShortestUsageMarker usageMarker = mock(ShortestUsageMarker.class);
     when(usageMarker.getShortestUsageMark(Mockito.<Processable>any())).thenReturn(new ShortestUsageMark("Just cause"));
@@ -99,11 +119,18 @@ class ShortestClassUsageMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ShortestClassUsageMarker#markProgramFieldBody(ProgramClass, ProgramField)}
+   * Test {@link ShortestClassUsageMarker#markProgramFieldBody(ProgramClass, ProgramField)}.
+   * <ul>
+   *   <li>Then calls {@link ShortestUsageMarker#getShortestUsageMark(Processable)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ShortestClassUsageMarker#markProgramFieldBody(ProgramClass, ProgramField)}
    */
   @Test
-  void testMarkProgramFieldBody() {
+  @DisplayName("Test markProgramFieldBody(ProgramClass, ProgramField); then calls getShortestUsageMark(Processable)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ShortestClassUsageMarker.markProgramFieldBody(ProgramClass, ProgramField)"})
+  void testMarkProgramFieldBody_thenCallsGetShortestUsageMark() {
     // Arrange
     ShortestUsageMarker usageMarker = mock(ShortestUsageMarker.class);
     when(usageMarker.shouldBeMarkedAsUsed(Mockito.<Processable>any())).thenReturn(false);
@@ -122,10 +149,14 @@ class ShortestClassUsageMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ShortestClassUsageMarker#markMethodHierarchy(Clazz, Method)}
+   * Test {@link ShortestClassUsageMarker#markMethodHierarchy(Clazz, Method)}.
+   * <p>
+   * Method under test: {@link ShortestClassUsageMarker#markMethodHierarchy(Clazz, Method)}
    */
   @Test
+  @DisplayName("Test markMethodHierarchy(Clazz, Method)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ShortestClassUsageMarker.markMethodHierarchy(Clazz, Method)"})
   void testMarkMethodHierarchy() {
     // Arrange
     ShortestUsageMarker usageMarker = mock(ShortestUsageMarker.class);
@@ -143,55 +174,15 @@ class ShortestClassUsageMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ShortestClassUsageMarker#markMethodHierarchy(Clazz, Method)}
+   * Test {@link ShortestClassUsageMarker#markMethodHierarchy(Clazz, Method)}.
+   * <p>
+   * Method under test: {@link ShortestClassUsageMarker#markMethodHierarchy(Clazz, Method)}
    */
   @Test
+  @DisplayName("Test markMethodHierarchy(Clazz, Method)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ShortestClassUsageMarker.markMethodHierarchy(Clazz, Method)"})
   void testMarkMethodHierarchy2() {
-    // Arrange
-    ShortestUsageMarker usageMarker = mock(ShortestUsageMarker.class);
-    when(usageMarker.getShortestUsageMark(Mockito.<Processable>any())).thenReturn(new ShortestUsageMark("Just cause"));
-    doNothing().when(usageMarker).setCurrentUsageMark(Mockito.<ShortestUsageMark>any());
-    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(usageMarker, "Just cause");
-    ProgramClass clazz = new ProgramClass();
-
-    // Act
-    shortestClassUsageMarker.markMethodHierarchy(clazz, new LibraryMethod(1, "Name", "Descriptor"));
-
-    // Assert
-    verify(usageMarker).getShortestUsageMark(isA(Processable.class));
-    verify(usageMarker, atLeast(1)).setCurrentUsageMark(Mockito.<ShortestUsageMark>any());
-  }
-
-  /**
-   * Method under test:
-   * {@link ShortestClassUsageMarker#markMethodHierarchy(Clazz, Method)}
-   */
-  @Test
-  void testMarkMethodHierarchy3() {
-    // Arrange
-    ShortestUsageMarker usageMarker = mock(ShortestUsageMarker.class);
-    when(usageMarker.getShortestUsageMark(Mockito.<Processable>any())).thenReturn(new ShortestUsageMark("Just cause"));
-    doNothing().when(usageMarker).setCurrentUsageMark(Mockito.<ShortestUsageMark>any());
-    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(usageMarker, "Just cause");
-    Clazz clazz = mock(Clazz.class);
-    doNothing().when(clazz).accept(Mockito.<ClassVisitor>any());
-
-    // Act
-    shortestClassUsageMarker.markMethodHierarchy(clazz, new LibraryMethod(1, "Name", "Descriptor"));
-
-    // Assert
-    verify(clazz, atLeast(1)).accept(Mockito.<ClassVisitor>any());
-    verify(usageMarker).getShortestUsageMark(isA(Processable.class));
-    verify(usageMarker, atLeast(1)).setCurrentUsageMark(Mockito.<ShortestUsageMark>any());
-  }
-
-  /**
-   * Method under test:
-   * {@link ShortestClassUsageMarker#markMethodHierarchy(Clazz, Method)}
-   */
-  @Test
-  void testMarkMethodHierarchy4() {
     // Arrange
     ShortestUsageMarker usageMarker = mock(ShortestUsageMarker.class);
     when(usageMarker.getShortestUsageMark(Mockito.<Processable>any())).thenReturn(new ShortestUsageMark("Just cause"));
@@ -210,11 +201,50 @@ class ShortestClassUsageMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ShortestClassUsageMarker#markMethodHierarchy(Clazz, Method)}
+   * Test {@link ShortestClassUsageMarker#markMethodHierarchy(Clazz, Method)}.
+   * <ul>
+   *   <li>When {@link Clazz} {@link Clazz#accept(ClassVisitor)} does nothing.</li>
+   *   <li>Then calls {@link Clazz#accept(ClassVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ShortestClassUsageMarker#markMethodHierarchy(Clazz, Method)}
    */
   @Test
-  void testMarkMethodHierarchy5() {
+  @DisplayName("Test markMethodHierarchy(Clazz, Method); when Clazz accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ShortestClassUsageMarker.markMethodHierarchy(Clazz, Method)"})
+  void testMarkMethodHierarchy_whenClazzAcceptDoesNothing_thenCallsAccept() {
+    // Arrange
+    ShortestUsageMarker usageMarker = mock(ShortestUsageMarker.class);
+    when(usageMarker.getShortestUsageMark(Mockito.<Processable>any())).thenReturn(new ShortestUsageMark("Just cause"));
+    doNothing().when(usageMarker).setCurrentUsageMark(Mockito.<ShortestUsageMark>any());
+    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(usageMarker, "Just cause");
+    Clazz clazz = mock(Clazz.class);
+    doNothing().when(clazz).accept(Mockito.<ClassVisitor>any());
+
+    // Act
+    shortestClassUsageMarker.markMethodHierarchy(clazz, new LibraryMethod(1, "Name", "Descriptor"));
+
+    // Assert
+    verify(clazz, atLeast(1)).accept(Mockito.<ClassVisitor>any());
+    verify(usageMarker).getShortestUsageMark(isA(Processable.class));
+    verify(usageMarker, atLeast(1)).setCurrentUsageMark(Mockito.<ShortestUsageMark>any());
+  }
+
+  /**
+   * Test {@link ShortestClassUsageMarker#markMethodHierarchy(Clazz, Method)}.
+   * <ul>
+   *   <li>When {@link Clazz}.</li>
+   *   <li>Then calls {@link ShortestUsageMarker#getShortestUsageMark(Processable)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ShortestClassUsageMarker#markMethodHierarchy(Clazz, Method)}
+   */
+  @Test
+  @DisplayName("Test markMethodHierarchy(Clazz, Method); when Clazz; then calls getShortestUsageMark(Processable)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ShortestClassUsageMarker.markMethodHierarchy(Clazz, Method)"})
+  void testMarkMethodHierarchy_whenClazz_thenCallsGetShortestUsageMark() {
     // Arrange
     ShortestUsageMarker usageMarker = mock(ShortestUsageMarker.class);
     when(usageMarker.getShortestUsageMark(Mockito.<Processable>any())).thenReturn(new ShortestUsageMark("Just cause"));
@@ -231,195 +261,44 @@ class ShortestClassUsageMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ShortestClassUsageMarker#shouldBeMarkedAsUsed(ProgramClass)}
+   * Test {@link ShortestClassUsageMarker#markMethodHierarchy(Clazz, Method)}.
+   * <ul>
+   *   <li>When {@link ProgramClass#ProgramClass()}.</li>
+   *   <li>Then calls {@link ShortestUsageMarker#getShortestUsageMark(Processable)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ShortestClassUsageMarker#markMethodHierarchy(Clazz, Method)}
    */
   @Test
-  void testShouldBeMarkedAsUsed() {
+  @DisplayName("Test markMethodHierarchy(Clazz, Method); when ProgramClass(); then calls getShortestUsageMark(Processable)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ShortestClassUsageMarker.markMethodHierarchy(Clazz, Method)"})
+  void testMarkMethodHierarchy_whenProgramClass_thenCallsGetShortestUsageMark() {
     // Arrange
-    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
-        "Just cause");
-
-    // Act and Assert
-    assertTrue(shortestClassUsageMarker.shouldBeMarkedAsUsed(new ProgramClass()));
-  }
-
-  /**
-   * Method under test:
-   * {@link ShortestClassUsageMarker#shouldBeMarkedAsUsed(ProgramClass)}
-   */
-  @Test
-  void testShouldBeMarkedAsUsed2() {
-    // Arrange
-    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
-        "Just cause");
-
-    // Act and Assert
-    assertTrue(shortestClassUsageMarker.shouldBeMarkedAsUsed(
-        new ProgramClass(1, 3, new Constant[]{new ClassConstant()}, 1, 1, 1, "Feature Name", 1, "Processing Info")));
-  }
-
-  /**
-   * Method under test:
-   * {@link ShortestClassUsageMarker#shouldBeMarkedAsUsed(ProgramClass)}
-   */
-  @Test
-  void testShouldBeMarkedAsUsed3() {
-    // Arrange
-    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
-        "Just cause");
-
-    // Act and Assert
-    assertFalse(shortestClassUsageMarker.shouldBeMarkedAsUsed(new ProgramClass(1, 3,
-        new Constant[]{new ClassConstant()}, 1, 1, 1, "Feature Name", 1, new ShortestUsageMark("Just cause"))));
-  }
-
-  /**
-   * Method under test:
-   * {@link ShortestClassUsageMarker#shouldBeMarkedAsUsed(ProgramClass)}
-   */
-  @Test
-  void testShouldBeMarkedAsUsed4() {
-    // Arrange
-    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
-        "Just cause");
-    ShortestUsageMark previousUsageMark = new ShortestUsageMark("Just cause");
-
-    // Act and Assert
-    assertTrue(shortestClassUsageMarker.shouldBeMarkedAsUsed(new ProgramClass(1, 3, new Constant[]{new ClassConstant()},
-        1, 1, 1, "Feature Name", 1, new ShortestUsageMark(previousUsageMark, "Just cause", 1, new LibraryClass()))));
-  }
-
-  /**
-   * Method under test:
-   * {@link ShortestClassUsageMarker#shouldBeMarkedAsUsed(ProgramClass, ProgramMember)}
-   */
-  @Test
-  void testShouldBeMarkedAsUsed5() {
-    // Arrange
-    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
-        "Just cause");
-    ProgramClass programClass = new ProgramClass();
-
-    // Act and Assert
-    assertTrue(shortestClassUsageMarker.shouldBeMarkedAsUsed(programClass, new ProgramField()));
-  }
-
-  /**
-   * Method under test:
-   * {@link ShortestClassUsageMarker#shouldBeMarkedAsUsed(ProgramClass, ProgramMember)}
-   */
-  @Test
-  void testShouldBeMarkedAsUsed6() {
-    // Arrange
-    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
-        "Just cause");
-    ProgramClass programClass = new ProgramClass();
-
-    ProgramField programMember = new ProgramField();
-    programMember.setProcessingInfo("Processing Info");
-
-    // Act and Assert
-    assertTrue(shortestClassUsageMarker.shouldBeMarkedAsUsed(programClass, programMember));
-  }
-
-  /**
-   * Method under test:
-   * {@link ShortestClassUsageMarker#shouldBeMarkedAsUsed(ProgramClass, ProgramMember)}
-   */
-  @Test
-  void testShouldBeMarkedAsUsed7() {
-    // Arrange
-    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
-        "Just cause");
-    ProgramClass programClass = new ProgramClass();
-
-    ProgramField programMember = new ProgramField();
-    programMember.setProcessingInfo(new ShortestUsageMark("Just cause"));
-
-    // Act and Assert
-    assertFalse(shortestClassUsageMarker.shouldBeMarkedAsUsed(programClass, programMember));
-  }
-
-  /**
-   * Method under test:
-   * {@link ShortestClassUsageMarker#shouldBeMarkedAsUsed(ProgramClass, ProgramMember)}
-   */
-  @Test
-  void testShouldBeMarkedAsUsed8() {
-    // Arrange
-    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
-        "Just cause");
-    ProgramClass programClass = new ProgramClass();
-
-    ProgramField programMember = new ProgramField();
-    ShortestUsageMark previousUsageMark = new ShortestUsageMark("Just cause");
-    programMember.setProcessingInfo(new ShortestUsageMark(previousUsageMark, "Just cause", 1, new LibraryClass()));
-
-    // Act and Assert
-    assertTrue(shortestClassUsageMarker.shouldBeMarkedAsUsed(programClass, programMember));
-  }
-
-  /**
-   * Method under test:
-   * {@link ShortestClassUsageMarker#shouldBeMarkedAsUsed(Processable)}
-   */
-  @Test
-  void testShouldBeMarkedAsUsed9() {
-    // Arrange
-    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
-        "Just cause");
-
-    // Act and Assert
-    assertTrue(shortestClassUsageMarker.shouldBeMarkedAsUsed(new LibraryClass()));
-  }
-
-  /**
-   * Method under test:
-   * {@link ShortestClassUsageMarker#shouldBeMarkedAsUsed(Processable)}
-   */
-  @Test
-  void testShouldBeMarkedAsUsed10() {
-    // Arrange
-    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
-        "Just cause");
-    Processable processable = mock(Processable.class);
-    when(processable.getProcessingInfo()).thenReturn("Processing Info");
+    ShortestUsageMarker usageMarker = mock(ShortestUsageMarker.class);
+    when(usageMarker.getShortestUsageMark(Mockito.<Processable>any())).thenReturn(new ShortestUsageMark("Just cause"));
+    doNothing().when(usageMarker).setCurrentUsageMark(Mockito.<ShortestUsageMark>any());
+    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(usageMarker, "Just cause");
+    ProgramClass clazz = new ProgramClass();
 
     // Act
-    boolean actualShouldBeMarkedAsUsedResult = shortestClassUsageMarker.shouldBeMarkedAsUsed(processable);
+    shortestClassUsageMarker.markMethodHierarchy(clazz, new LibraryMethod(1, "Name", "Descriptor"));
 
     // Assert
-    verify(processable).getProcessingInfo();
-    assertTrue(actualShouldBeMarkedAsUsedResult);
+    verify(usageMarker).getShortestUsageMark(isA(Processable.class));
+    verify(usageMarker, atLeast(1)).setCurrentUsageMark(Mockito.<ShortestUsageMark>any());
   }
 
   /**
-   * Method under test:
-   * {@link ShortestClassUsageMarker#shouldBeMarkedAsUsed(Processable)}
+   * Test {@link ShortestClassUsageMarker#shouldBeMarkedAsUsed(Processable)} with {@code processable}.
+   * <p>
+   * Method under test: {@link ShortestClassUsageMarker#shouldBeMarkedAsUsed(Processable)}
    */
   @Test
-  void testShouldBeMarkedAsUsed11() {
-    // Arrange
-    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
-        "Just cause");
-    Processable processable = mock(Processable.class);
-    when(processable.getProcessingInfo()).thenReturn(new ShortestUsageMark("Just cause"));
-
-    // Act
-    boolean actualShouldBeMarkedAsUsedResult = shortestClassUsageMarker.shouldBeMarkedAsUsed(processable);
-
-    // Assert
-    verify(processable).getProcessingInfo();
-    assertFalse(actualShouldBeMarkedAsUsedResult);
-  }
-
-  /**
-   * Method under test:
-   * {@link ShortestClassUsageMarker#shouldBeMarkedAsUsed(Processable)}
-   */
-  @Test
-  void testShouldBeMarkedAsUsed12() {
+  @DisplayName("Test shouldBeMarkedAsUsed(Processable) with 'processable'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ShortestClassUsageMarker.shouldBeMarkedAsUsed(Processable)"})
+  void testShouldBeMarkedAsUsedWithProcessable() {
     // Arrange
     ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
         "Just cause");
@@ -437,11 +316,15 @@ class ShortestClassUsageMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ShortestClassUsageMarker#shouldBeMarkedAsUsed(Processable)}
+   * Test {@link ShortestClassUsageMarker#shouldBeMarkedAsUsed(Processable)} with {@code processable}.
+   * <p>
+   * Method under test: {@link ShortestClassUsageMarker#shouldBeMarkedAsUsed(Processable)}
    */
   @Test
-  void testShouldBeMarkedAsUsed13() {
+  @DisplayName("Test shouldBeMarkedAsUsed(Processable) with 'processable'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ShortestClassUsageMarker.shouldBeMarkedAsUsed(Processable)"})
+  void testShouldBeMarkedAsUsedWithProcessable2() {
     // Arrange
     ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
         "Just cause");
@@ -457,23 +340,18 @@ class ShortestClassUsageMarkerDiffblueTest {
   }
 
   /**
-   * Method under test: {@link ShortestClassUsageMarker#isUsed(Processable)}
+   * Test {@link ShortestClassUsageMarker#shouldBeMarkedAsUsed(Processable)} with {@code processable}.
+   * <ul>
+   *   <li>Given {@code Processing Info}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ShortestClassUsageMarker#shouldBeMarkedAsUsed(Processable)}
    */
   @Test
-  void testIsUsed() {
-    // Arrange
-    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
-        "Just cause");
-
-    // Act and Assert
-    assertFalse(shortestClassUsageMarker.isUsed(new LibraryClass()));
-  }
-
-  /**
-   * Method under test: {@link ShortestClassUsageMarker#isUsed(Processable)}
-   */
-  @Test
-  void testIsUsed2() {
+  @DisplayName("Test shouldBeMarkedAsUsed(Processable) with 'processable'; given 'Processing Info'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ShortestClassUsageMarker.shouldBeMarkedAsUsed(Processable)"})
+  void testShouldBeMarkedAsUsedWithProcessable_givenProcessingInfo() {
     // Arrange
     ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
         "Just cause");
@@ -481,18 +359,26 @@ class ShortestClassUsageMarkerDiffblueTest {
     when(processable.getProcessingInfo()).thenReturn("Processing Info");
 
     // Act
-    boolean actualIsUsedResult = shortestClassUsageMarker.isUsed(processable);
+    boolean actualShouldBeMarkedAsUsedResult = shortestClassUsageMarker.shouldBeMarkedAsUsed(processable);
 
     // Assert
     verify(processable).getProcessingInfo();
-    assertFalse(actualIsUsedResult);
+    assertTrue(actualShouldBeMarkedAsUsedResult);
   }
 
   /**
-   * Method under test: {@link ShortestClassUsageMarker#isUsed(Processable)}
+   * Test {@link ShortestClassUsageMarker#shouldBeMarkedAsUsed(Processable)} with {@code processable}.
+   * <ul>
+   *   <li>Then return {@code false}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ShortestClassUsageMarker#shouldBeMarkedAsUsed(Processable)}
    */
   @Test
-  void testIsUsed3() {
+  @DisplayName("Test shouldBeMarkedAsUsed(Processable) with 'processable'; then return 'false'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ShortestClassUsageMarker.shouldBeMarkedAsUsed(Processable)"})
+  void testShouldBeMarkedAsUsedWithProcessable_thenReturnFalse() {
     // Arrange
     ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
         "Just cause");
@@ -500,18 +386,223 @@ class ShortestClassUsageMarkerDiffblueTest {
     when(processable.getProcessingInfo()).thenReturn(new ShortestUsageMark("Just cause"));
 
     // Act
-    boolean actualIsUsedResult = shortestClassUsageMarker.isUsed(processable);
+    boolean actualShouldBeMarkedAsUsedResult = shortestClassUsageMarker.shouldBeMarkedAsUsed(processable);
 
     // Assert
     verify(processable).getProcessingInfo();
-    assertTrue(actualIsUsedResult);
+    assertFalse(actualShouldBeMarkedAsUsedResult);
   }
 
   /**
+   * Test {@link ShortestClassUsageMarker#shouldBeMarkedAsUsed(Processable)} with {@code processable}.
+   * <ul>
+   *   <li>When {@link LibraryClass#LibraryClass()}.</li>
+   *   <li>Then return {@code true}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ShortestClassUsageMarker#shouldBeMarkedAsUsed(Processable)}
+   */
+  @Test
+  @DisplayName("Test shouldBeMarkedAsUsed(Processable) with 'processable'; when LibraryClass(); then return 'true'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ShortestClassUsageMarker.shouldBeMarkedAsUsed(Processable)"})
+  void testShouldBeMarkedAsUsedWithProcessable_whenLibraryClass_thenReturnTrue() {
+    // Arrange
+    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
+        "Just cause");
+
+    // Act and Assert
+    assertTrue(shortestClassUsageMarker.shouldBeMarkedAsUsed(new LibraryClass()));
+  }
+
+  /**
+   * Test {@link ShortestClassUsageMarker#shouldBeMarkedAsUsed(ProgramClass)} with {@code programClass}.
+   * <p>
+   * Method under test: {@link ShortestClassUsageMarker#shouldBeMarkedAsUsed(ProgramClass)}
+   */
+  @Test
+  @DisplayName("Test shouldBeMarkedAsUsed(ProgramClass) with 'programClass'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ShortestClassUsageMarker.shouldBeMarkedAsUsed(ProgramClass)"})
+  void testShouldBeMarkedAsUsedWithProgramClass() {
+    // Arrange
+    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
+        "Just cause");
+
+    // Act and Assert
+    assertTrue(shortestClassUsageMarker.shouldBeMarkedAsUsed(
+        new ProgramClass(1, 3, new Constant[]{new ClassConstant()}, 1, 1, 1, "Feature Name", 1, "Processing Info")));
+  }
+
+  /**
+   * Test {@link ShortestClassUsageMarker#shouldBeMarkedAsUsed(ProgramClass)} with {@code programClass}.
+   * <p>
+   * Method under test: {@link ShortestClassUsageMarker#shouldBeMarkedAsUsed(ProgramClass)}
+   */
+  @Test
+  @DisplayName("Test shouldBeMarkedAsUsed(ProgramClass) with 'programClass'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ShortestClassUsageMarker.shouldBeMarkedAsUsed(ProgramClass)"})
+  void testShouldBeMarkedAsUsedWithProgramClass2() {
+    // Arrange
+    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
+        "Just cause");
+    ShortestUsageMark previousUsageMark = new ShortestUsageMark("Just cause");
+
+    // Act and Assert
+    assertTrue(shortestClassUsageMarker.shouldBeMarkedAsUsed(new ProgramClass(1, 3, new Constant[]{new ClassConstant()},
+        1, 1, 1, "Feature Name", 1, new ShortestUsageMark(previousUsageMark, "Just cause", 1, new LibraryClass()))));
+  }
+
+  /**
+   * Test {@link ShortestClassUsageMarker#shouldBeMarkedAsUsed(ProgramClass, ProgramMember)} with {@code programClass}, {@code programMember}.
+   * <p>
+   * Method under test: {@link ShortestClassUsageMarker#shouldBeMarkedAsUsed(ProgramClass, ProgramMember)}
+   */
+  @Test
+  @DisplayName("Test shouldBeMarkedAsUsed(ProgramClass, ProgramMember) with 'programClass', 'programMember'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ShortestClassUsageMarker.shouldBeMarkedAsUsed(ProgramClass, ProgramMember)"})
+  void testShouldBeMarkedAsUsedWithProgramClassProgramMember() {
+    // Arrange
+    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
+        "Just cause");
+    ProgramClass programClass = new ProgramClass();
+
+    ProgramField programMember = new ProgramField();
+    ShortestUsageMark previousUsageMark = new ShortestUsageMark("Just cause");
+    programMember.setProcessingInfo(new ShortestUsageMark(previousUsageMark, "Just cause", 1, new LibraryClass()));
+
+    // Act and Assert
+    assertTrue(shortestClassUsageMarker.shouldBeMarkedAsUsed(programClass, programMember));
+  }
+
+  /**
+   * Test {@link ShortestClassUsageMarker#shouldBeMarkedAsUsed(ProgramClass, ProgramMember)} with {@code programClass}, {@code programMember}.
+   * <ul>
+   *   <li>Given {@code Processing Info}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ShortestClassUsageMarker#shouldBeMarkedAsUsed(ProgramClass, ProgramMember)}
+   */
+  @Test
+  @DisplayName("Test shouldBeMarkedAsUsed(ProgramClass, ProgramMember) with 'programClass', 'programMember'; given 'Processing Info'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ShortestClassUsageMarker.shouldBeMarkedAsUsed(ProgramClass, ProgramMember)"})
+  void testShouldBeMarkedAsUsedWithProgramClassProgramMember_givenProcessingInfo() {
+    // Arrange
+    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
+        "Just cause");
+    ProgramClass programClass = new ProgramClass();
+
+    ProgramField programMember = new ProgramField();
+    programMember.setProcessingInfo("Processing Info");
+
+    // Act and Assert
+    assertTrue(shortestClassUsageMarker.shouldBeMarkedAsUsed(programClass, programMember));
+  }
+
+  /**
+   * Test {@link ShortestClassUsageMarker#shouldBeMarkedAsUsed(ProgramClass, ProgramMember)} with {@code programClass}, {@code programMember}.
+   * <ul>
+   *   <li>Then return {@code false}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ShortestClassUsageMarker#shouldBeMarkedAsUsed(ProgramClass, ProgramMember)}
+   */
+  @Test
+  @DisplayName("Test shouldBeMarkedAsUsed(ProgramClass, ProgramMember) with 'programClass', 'programMember'; then return 'false'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ShortestClassUsageMarker.shouldBeMarkedAsUsed(ProgramClass, ProgramMember)"})
+  void testShouldBeMarkedAsUsedWithProgramClassProgramMember_thenReturnFalse() {
+    // Arrange
+    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
+        "Just cause");
+    ProgramClass programClass = new ProgramClass();
+
+    ProgramField programMember = new ProgramField();
+    programMember.setProcessingInfo(new ShortestUsageMark("Just cause"));
+
+    // Act and Assert
+    assertFalse(shortestClassUsageMarker.shouldBeMarkedAsUsed(programClass, programMember));
+  }
+
+  /**
+   * Test {@link ShortestClassUsageMarker#shouldBeMarkedAsUsed(ProgramClass, ProgramMember)} with {@code programClass}, {@code programMember}.
+   * <ul>
+   *   <li>When {@link ProgramField#ProgramField()}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ShortestClassUsageMarker#shouldBeMarkedAsUsed(ProgramClass, ProgramMember)}
+   */
+  @Test
+  @DisplayName("Test shouldBeMarkedAsUsed(ProgramClass, ProgramMember) with 'programClass', 'programMember'; when ProgramField()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ShortestClassUsageMarker.shouldBeMarkedAsUsed(ProgramClass, ProgramMember)"})
+  void testShouldBeMarkedAsUsedWithProgramClassProgramMember_whenProgramField() {
+    // Arrange
+    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
+        "Just cause");
+    ProgramClass programClass = new ProgramClass();
+
+    // Act and Assert
+    assertTrue(shortestClassUsageMarker.shouldBeMarkedAsUsed(programClass, new ProgramField()));
+  }
+
+  /**
+   * Test {@link ShortestClassUsageMarker#shouldBeMarkedAsUsed(ProgramClass)} with {@code programClass}.
+   * <ul>
+   *   <li>Then return {@code false}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ShortestClassUsageMarker#shouldBeMarkedAsUsed(ProgramClass)}
+   */
+  @Test
+  @DisplayName("Test shouldBeMarkedAsUsed(ProgramClass) with 'programClass'; then return 'false'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ShortestClassUsageMarker.shouldBeMarkedAsUsed(ProgramClass)"})
+  void testShouldBeMarkedAsUsedWithProgramClass_thenReturnFalse() {
+    // Arrange
+    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
+        "Just cause");
+
+    // Act and Assert
+    assertFalse(shortestClassUsageMarker.shouldBeMarkedAsUsed(new ProgramClass(1, 3,
+        new Constant[]{new ClassConstant()}, 1, 1, 1, "Feature Name", 1, new ShortestUsageMark("Just cause"))));
+  }
+
+  /**
+   * Test {@link ShortestClassUsageMarker#shouldBeMarkedAsUsed(ProgramClass)} with {@code programClass}.
+   * <ul>
+   *   <li>When {@link ProgramClass#ProgramClass()}.</li>
+   *   <li>Then return {@code true}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ShortestClassUsageMarker#shouldBeMarkedAsUsed(ProgramClass)}
+   */
+  @Test
+  @DisplayName("Test shouldBeMarkedAsUsed(ProgramClass) with 'programClass'; when ProgramClass(); then return 'true'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ShortestClassUsageMarker.shouldBeMarkedAsUsed(ProgramClass)"})
+  void testShouldBeMarkedAsUsedWithProgramClass_whenProgramClass_thenReturnTrue() {
+    // Arrange
+    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
+        "Just cause");
+
+    // Act and Assert
+    assertTrue(shortestClassUsageMarker.shouldBeMarkedAsUsed(new ProgramClass()));
+  }
+
+  /**
+   * Test {@link ShortestClassUsageMarker#isUsed(Processable)}.
+   * <p>
    * Method under test: {@link ShortestClassUsageMarker#isUsed(Processable)}
    */
   @Test
-  void testIsUsed4() {
+  @DisplayName("Test isUsed(Processable)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ShortestClassUsageMarker.isUsed(Processable)"})
+  void testIsUsed() {
     // Arrange
     ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
         "Just cause");
@@ -527,11 +618,94 @@ class ShortestClassUsageMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ShortestClassUsageMarker#markAsPossiblyUsed(Processable)}
+   * Test {@link ShortestClassUsageMarker#isUsed(Processable)}.
+   * <ul>
+   *   <li>Given {@code Processing Info}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ShortestClassUsageMarker#isUsed(Processable)}
    */
   @Test
-  void testMarkAsPossiblyUsed() {
+  @DisplayName("Test isUsed(Processable); given 'Processing Info'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ShortestClassUsageMarker.isUsed(Processable)"})
+  void testIsUsed_givenProcessingInfo() {
+    // Arrange
+    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
+        "Just cause");
+    Processable processable = mock(Processable.class);
+    when(processable.getProcessingInfo()).thenReturn("Processing Info");
+
+    // Act
+    boolean actualIsUsedResult = shortestClassUsageMarker.isUsed(processable);
+
+    // Assert
+    verify(processable).getProcessingInfo();
+    assertFalse(actualIsUsedResult);
+  }
+
+  /**
+   * Test {@link ShortestClassUsageMarker#isUsed(Processable)}.
+   * <ul>
+   *   <li>Then return {@code true}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ShortestClassUsageMarker#isUsed(Processable)}
+   */
+  @Test
+  @DisplayName("Test isUsed(Processable); then return 'true'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ShortestClassUsageMarker.isUsed(Processable)"})
+  void testIsUsed_thenReturnTrue() {
+    // Arrange
+    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
+        "Just cause");
+    Processable processable = mock(Processable.class);
+    when(processable.getProcessingInfo()).thenReturn(new ShortestUsageMark("Just cause"));
+
+    // Act
+    boolean actualIsUsedResult = shortestClassUsageMarker.isUsed(processable);
+
+    // Assert
+    verify(processable).getProcessingInfo();
+    assertTrue(actualIsUsedResult);
+  }
+
+  /**
+   * Test {@link ShortestClassUsageMarker#isUsed(Processable)}.
+   * <ul>
+   *   <li>When {@link LibraryClass#LibraryClass()}.</li>
+   *   <li>Then return {@code false}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ShortestClassUsageMarker#isUsed(Processable)}
+   */
+  @Test
+  @DisplayName("Test isUsed(Processable); when LibraryClass(); then return 'false'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ShortestClassUsageMarker.isUsed(Processable)"})
+  void testIsUsed_whenLibraryClass_thenReturnFalse() {
+    // Arrange
+    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
+        "Just cause");
+
+    // Act and Assert
+    assertFalse(shortestClassUsageMarker.isUsed(new LibraryClass()));
+  }
+
+  /**
+   * Test {@link ShortestClassUsageMarker#markAsPossiblyUsed(Processable)}.
+   * <ul>
+   *   <li>Then {@link LibraryClass#LibraryClass()} ProcessingInfo {@link ShortestUsageMark}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ShortestClassUsageMarker#markAsPossiblyUsed(Processable)}
+   */
+  @Test
+  @DisplayName("Test markAsPossiblyUsed(Processable); then LibraryClass() ProcessingInfo ShortestUsageMark")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ShortestClassUsageMarker.markAsPossiblyUsed(Processable)"})
+  void testMarkAsPossiblyUsed_thenLibraryClassProcessingInfoShortestUsageMark() {
     // Arrange
     ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
         "Just cause");
@@ -548,135 +722,15 @@ class ShortestClassUsageMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ShortestClassUsageMarker#markAsPossiblyUsed(Processable)}
+   * Test {@link ShortestClassUsageMarker#shouldBeMarkedAsPossiblyUsed(Processable)} with {@code processable}.
+   * <p>
+   * Method under test: {@link ShortestClassUsageMarker#shouldBeMarkedAsPossiblyUsed(Processable)}
    */
   @Test
-  void testMarkAsPossiblyUsed2() {
-    // Arrange
-    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
-        "Just cause");
-    Processable processable = mock(Processable.class);
-    doNothing().when(processable).setProcessingInfo(Mockito.<Object>any());
-
-    // Act
-    shortestClassUsageMarker.markAsPossiblyUsed(processable);
-
-    // Assert
-    verify(processable).setProcessingInfo(isA(Object.class));
-  }
-
-  /**
-   * Method under test:
-   * {@link ShortestClassUsageMarker#shouldBeMarkedAsPossiblyUsed(ProgramClass, ProgramMember)}
-   */
-  @Test
-  void testShouldBeMarkedAsPossiblyUsed() {
-    // Arrange
-    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
-        "Just cause");
-    ProgramClass programClass = new ProgramClass();
-
-    // Act and Assert
-    assertTrue(shortestClassUsageMarker.shouldBeMarkedAsPossiblyUsed(programClass, new ProgramField()));
-  }
-
-  /**
-   * Method under test:
-   * {@link ShortestClassUsageMarker#shouldBeMarkedAsPossiblyUsed(ProgramClass, ProgramMember)}
-   */
-  @Test
-  void testShouldBeMarkedAsPossiblyUsed2() {
-    // Arrange
-    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
-        "Just cause");
-    ProgramClass programClass = new ProgramClass();
-
-    ProgramField programMember = new ProgramField();
-    programMember.setProcessingInfo("Processing Info");
-
-    // Act and Assert
-    assertTrue(shortestClassUsageMarker.shouldBeMarkedAsPossiblyUsed(programClass, programMember));
-  }
-
-  /**
-   * Method under test:
-   * {@link ShortestClassUsageMarker#shouldBeMarkedAsPossiblyUsed(ProgramClass, ProgramMember)}
-   */
-  @Test
-  void testShouldBeMarkedAsPossiblyUsed3() {
-    // Arrange
-    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
-        "Just cause");
-    ProgramClass programClass = new ProgramClass();
-
-    ProgramField programMember = new ProgramField();
-    programMember.setProcessingInfo(new ShortestUsageMark("Just cause"));
-
-    // Act and Assert
-    assertFalse(shortestClassUsageMarker.shouldBeMarkedAsPossiblyUsed(programClass, programMember));
-  }
-
-  /**
-   * Method under test:
-   * {@link ShortestClassUsageMarker#shouldBeMarkedAsPossiblyUsed(ProgramClass, ProgramMember)}
-   */
-  @Test
-  void testShouldBeMarkedAsPossiblyUsed4() {
-    // Arrange
-    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
-        "Just cause");
-    ProgramClass programClass = new ProgramClass();
-
-    ProgramField programMember = new ProgramField();
-    ShortestUsageMark previousUsageMark = new ShortestUsageMark("Just cause");
-    programMember.setProcessingInfo(new ShortestUsageMark(previousUsageMark, "Just cause", 1, new LibraryClass()));
-
-    // Act and Assert
-    assertFalse(shortestClassUsageMarker.shouldBeMarkedAsPossiblyUsed(programClass, programMember));
-  }
-
-  /**
-   * Method under test:
-   * {@link ShortestClassUsageMarker#shouldBeMarkedAsPossiblyUsed(Processable)}
-   */
-  @Test
-  void testShouldBeMarkedAsPossiblyUsed5() {
-    // Arrange
-    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
-        "Just cause");
-
-    // Act and Assert
-    assertTrue(shortestClassUsageMarker.shouldBeMarkedAsPossiblyUsed(new LibraryClass()));
-  }
-
-  /**
-   * Method under test:
-   * {@link ShortestClassUsageMarker#shouldBeMarkedAsPossiblyUsed(Processable)}
-   */
-  @Test
-  void testShouldBeMarkedAsPossiblyUsed6() {
-    // Arrange
-    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
-        "Just cause");
-    Processable processable = mock(Processable.class);
-    when(processable.getProcessingInfo()).thenReturn("Processing Info");
-
-    // Act
-    boolean actualShouldBeMarkedAsPossiblyUsedResult = shortestClassUsageMarker
-        .shouldBeMarkedAsPossiblyUsed(processable);
-
-    // Assert
-    verify(processable).getProcessingInfo();
-    assertTrue(actualShouldBeMarkedAsPossiblyUsedResult);
-  }
-
-  /**
-   * Method under test:
-   * {@link ShortestClassUsageMarker#shouldBeMarkedAsPossiblyUsed(Processable)}
-   */
-  @Test
-  void testShouldBeMarkedAsPossiblyUsed7() {
+  @DisplayName("Test shouldBeMarkedAsPossiblyUsed(Processable) with 'processable'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ShortestClassUsageMarker.shouldBeMarkedAsPossiblyUsed(Processable)"})
+  void testShouldBeMarkedAsPossiblyUsedWithProcessable() {
     // Arrange
     ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
         "Just cause");
@@ -693,11 +747,15 @@ class ShortestClassUsageMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ShortestClassUsageMarker#shouldBeMarkedAsPossiblyUsed(Processable)}
+   * Test {@link ShortestClassUsageMarker#shouldBeMarkedAsPossiblyUsed(Processable)} with {@code processable}.
+   * <p>
+   * Method under test: {@link ShortestClassUsageMarker#shouldBeMarkedAsPossiblyUsed(Processable)}
    */
   @Test
-  void testShouldBeMarkedAsPossiblyUsed8() {
+  @DisplayName("Test shouldBeMarkedAsPossiblyUsed(Processable) with 'processable'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ShortestClassUsageMarker.shouldBeMarkedAsPossiblyUsed(Processable)"})
+  void testShouldBeMarkedAsPossiblyUsedWithProcessable2() {
     // Arrange
     ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
         "Just cause");
@@ -716,25 +774,18 @@ class ShortestClassUsageMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ShortestClassUsageMarker#isPossiblyUsed(Processable)}
+   * Test {@link ShortestClassUsageMarker#shouldBeMarkedAsPossiblyUsed(Processable)} with {@code processable}.
+   * <ul>
+   *   <li>Given {@code Processing Info}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ShortestClassUsageMarker#shouldBeMarkedAsPossiblyUsed(Processable)}
    */
   @Test
-  void testIsPossiblyUsed() {
-    // Arrange
-    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
-        "Just cause");
-
-    // Act and Assert
-    assertFalse(shortestClassUsageMarker.isPossiblyUsed(new LibraryClass()));
-  }
-
-  /**
-   * Method under test:
-   * {@link ShortestClassUsageMarker#isPossiblyUsed(Processable)}
-   */
-  @Test
-  void testIsPossiblyUsed2() {
+  @DisplayName("Test shouldBeMarkedAsPossiblyUsed(Processable) with 'processable'; given 'Processing Info'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ShortestClassUsageMarker.shouldBeMarkedAsPossiblyUsed(Processable)"})
+  void testShouldBeMarkedAsPossiblyUsedWithProcessable_givenProcessingInfo() {
     // Arrange
     ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
         "Just cause");
@@ -742,19 +793,135 @@ class ShortestClassUsageMarkerDiffblueTest {
     when(processable.getProcessingInfo()).thenReturn("Processing Info");
 
     // Act
-    boolean actualIsPossiblyUsedResult = shortestClassUsageMarker.isPossiblyUsed(processable);
+    boolean actualShouldBeMarkedAsPossiblyUsedResult = shortestClassUsageMarker
+        .shouldBeMarkedAsPossiblyUsed(processable);
 
     // Assert
     verify(processable).getProcessingInfo();
-    assertFalse(actualIsPossiblyUsedResult);
+    assertTrue(actualShouldBeMarkedAsPossiblyUsedResult);
   }
 
   /**
-   * Method under test:
-   * {@link ShortestClassUsageMarker#isPossiblyUsed(Processable)}
+   * Test {@link ShortestClassUsageMarker#shouldBeMarkedAsPossiblyUsed(Processable)} with {@code processable}.
+   * <ul>
+   *   <li>When {@link LibraryClass#LibraryClass()}.</li>
+   *   <li>Then return {@code true}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ShortestClassUsageMarker#shouldBeMarkedAsPossiblyUsed(Processable)}
    */
   @Test
-  void testIsPossiblyUsed3() {
+  @DisplayName("Test shouldBeMarkedAsPossiblyUsed(Processable) with 'processable'; when LibraryClass(); then return 'true'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ShortestClassUsageMarker.shouldBeMarkedAsPossiblyUsed(Processable)"})
+  void testShouldBeMarkedAsPossiblyUsedWithProcessable_whenLibraryClass_thenReturnTrue() {
+    // Arrange
+    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
+        "Just cause");
+
+    // Act and Assert
+    assertTrue(shortestClassUsageMarker.shouldBeMarkedAsPossiblyUsed(new LibraryClass()));
+  }
+
+  /**
+   * Test {@link ShortestClassUsageMarker#shouldBeMarkedAsPossiblyUsed(ProgramClass, ProgramMember)} with {@code programClass}, {@code programMember}.
+   * <p>
+   * Method under test: {@link ShortestClassUsageMarker#shouldBeMarkedAsPossiblyUsed(ProgramClass, ProgramMember)}
+   */
+  @Test
+  @DisplayName("Test shouldBeMarkedAsPossiblyUsed(ProgramClass, ProgramMember) with 'programClass', 'programMember'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ShortestClassUsageMarker.shouldBeMarkedAsPossiblyUsed(ProgramClass, ProgramMember)"})
+  void testShouldBeMarkedAsPossiblyUsedWithProgramClassProgramMember() {
+    // Arrange
+    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
+        "Just cause");
+    ProgramClass programClass = new ProgramClass();
+
+    ProgramField programMember = new ProgramField();
+    programMember.setProcessingInfo("Processing Info");
+
+    // Act and Assert
+    assertTrue(shortestClassUsageMarker.shouldBeMarkedAsPossiblyUsed(programClass, programMember));
+  }
+
+  /**
+   * Test {@link ShortestClassUsageMarker#shouldBeMarkedAsPossiblyUsed(ProgramClass, ProgramMember)} with {@code programClass}, {@code programMember}.
+   * <p>
+   * Method under test: {@link ShortestClassUsageMarker#shouldBeMarkedAsPossiblyUsed(ProgramClass, ProgramMember)}
+   */
+  @Test
+  @DisplayName("Test shouldBeMarkedAsPossiblyUsed(ProgramClass, ProgramMember) with 'programClass', 'programMember'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ShortestClassUsageMarker.shouldBeMarkedAsPossiblyUsed(ProgramClass, ProgramMember)"})
+  void testShouldBeMarkedAsPossiblyUsedWithProgramClassProgramMember2() {
+    // Arrange
+    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
+        "Just cause");
+    ProgramClass programClass = new ProgramClass();
+
+    ProgramField programMember = new ProgramField();
+    programMember.setProcessingInfo(new ShortestUsageMark("Just cause"));
+
+    // Act and Assert
+    assertFalse(shortestClassUsageMarker.shouldBeMarkedAsPossiblyUsed(programClass, programMember));
+  }
+
+  /**
+   * Test {@link ShortestClassUsageMarker#shouldBeMarkedAsPossiblyUsed(ProgramClass, ProgramMember)} with {@code programClass}, {@code programMember}.
+   * <p>
+   * Method under test: {@link ShortestClassUsageMarker#shouldBeMarkedAsPossiblyUsed(ProgramClass, ProgramMember)}
+   */
+  @Test
+  @DisplayName("Test shouldBeMarkedAsPossiblyUsed(ProgramClass, ProgramMember) with 'programClass', 'programMember'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ShortestClassUsageMarker.shouldBeMarkedAsPossiblyUsed(ProgramClass, ProgramMember)"})
+  void testShouldBeMarkedAsPossiblyUsedWithProgramClassProgramMember3() {
+    // Arrange
+    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
+        "Just cause");
+    ProgramClass programClass = new ProgramClass();
+
+    ProgramField programMember = new ProgramField();
+    ShortestUsageMark previousUsageMark = new ShortestUsageMark("Just cause");
+    programMember.setProcessingInfo(new ShortestUsageMark(previousUsageMark, "Just cause", 1, new LibraryClass()));
+
+    // Act and Assert
+    assertFalse(shortestClassUsageMarker.shouldBeMarkedAsPossiblyUsed(programClass, programMember));
+  }
+
+  /**
+   * Test {@link ShortestClassUsageMarker#shouldBeMarkedAsPossiblyUsed(ProgramClass, ProgramMember)} with {@code programClass}, {@code programMember}.
+   * <ul>
+   *   <li>When {@link ProgramField#ProgramField()}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ShortestClassUsageMarker#shouldBeMarkedAsPossiblyUsed(ProgramClass, ProgramMember)}
+   */
+  @Test
+  @DisplayName("Test shouldBeMarkedAsPossiblyUsed(ProgramClass, ProgramMember) with 'programClass', 'programMember'; when ProgramField()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ShortestClassUsageMarker.shouldBeMarkedAsPossiblyUsed(ProgramClass, ProgramMember)"})
+  void testShouldBeMarkedAsPossiblyUsedWithProgramClassProgramMember_whenProgramField() {
+    // Arrange
+    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
+        "Just cause");
+    ProgramClass programClass = new ProgramClass();
+
+    // Act and Assert
+    assertTrue(shortestClassUsageMarker.shouldBeMarkedAsPossiblyUsed(programClass, new ProgramField()));
+  }
+
+  /**
+   * Test {@link ShortestClassUsageMarker#isPossiblyUsed(Processable)}.
+   * <p>
+   * Method under test: {@link ShortestClassUsageMarker#isPossiblyUsed(Processable)}
+   */
+  @Test
+  @DisplayName("Test isPossiblyUsed(Processable)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ShortestClassUsageMarker.isPossiblyUsed(Processable)"})
+  void testIsPossiblyUsed() {
     // Arrange
     ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
         "Just cause");
@@ -770,11 +937,45 @@ class ShortestClassUsageMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ShortestClassUsageMarker#isPossiblyUsed(Processable)}
+   * Test {@link ShortestClassUsageMarker#isPossiblyUsed(Processable)}.
+   * <ul>
+   *   <li>Given {@code Processing Info}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ShortestClassUsageMarker#isPossiblyUsed(Processable)}
    */
   @Test
-  void testIsPossiblyUsed4() {
+  @DisplayName("Test isPossiblyUsed(Processable); given 'Processing Info'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ShortestClassUsageMarker.isPossiblyUsed(Processable)"})
+  void testIsPossiblyUsed_givenProcessingInfo() {
+    // Arrange
+    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
+        "Just cause");
+    Processable processable = mock(Processable.class);
+    when(processable.getProcessingInfo()).thenReturn("Processing Info");
+
+    // Act
+    boolean actualIsPossiblyUsedResult = shortestClassUsageMarker.isPossiblyUsed(processable);
+
+    // Assert
+    verify(processable).getProcessingInfo();
+    assertFalse(actualIsPossiblyUsedResult);
+  }
+
+  /**
+   * Test {@link ShortestClassUsageMarker#isPossiblyUsed(Processable)}.
+   * <ul>
+   *   <li>Then return {@code true}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ShortestClassUsageMarker#isPossiblyUsed(Processable)}
+   */
+  @Test
+  @DisplayName("Test isPossiblyUsed(Processable); then return 'true'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ShortestClassUsageMarker.isPossiblyUsed(Processable)"})
+  void testIsPossiblyUsed_thenReturnTrue() {
     // Arrange
     ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
         "Just cause");
@@ -790,10 +991,36 @@ class ShortestClassUsageMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ShortestClassUsageMarker#getShortestUsageMark(Processable)}
+   * Test {@link ShortestClassUsageMarker#isPossiblyUsed(Processable)}.
+   * <ul>
+   *   <li>When {@link LibraryClass#LibraryClass()}.</li>
+   *   <li>Then return {@code false}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ShortestClassUsageMarker#isPossiblyUsed(Processable)}
    */
   @Test
+  @DisplayName("Test isPossiblyUsed(Processable); when LibraryClass(); then return 'false'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ShortestClassUsageMarker.isPossiblyUsed(Processable)"})
+  void testIsPossiblyUsed_whenLibraryClass_thenReturnFalse() {
+    // Arrange
+    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
+        "Just cause");
+
+    // Act and Assert
+    assertFalse(shortestClassUsageMarker.isPossiblyUsed(new LibraryClass()));
+  }
+
+  /**
+   * Test {@link ShortestClassUsageMarker#getShortestUsageMark(Processable)}.
+   * <p>
+   * Method under test: {@link ShortestClassUsageMarker#getShortestUsageMark(Processable)}
+   */
+  @Test
+  @DisplayName("Test getShortestUsageMark(Processable)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"ShortestUsageMark ShortestClassUsageMarker.getShortestUsageMark(Processable)"})
   void testGetShortestUsageMark() {
     // Arrange
     ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
@@ -801,46 +1028,5 @@ class ShortestClassUsageMarkerDiffblueTest {
 
     // Act and Assert
     assertNull(shortestClassUsageMarker.getShortestUsageMark(new LibraryClass()));
-  }
-
-  /**
-   * Method under test:
-   * {@link ShortestClassUsageMarker#getShortestUsageMark(Processable)}
-   */
-  @Test
-  void testGetShortestUsageMark2() {
-    // Arrange
-    ShortestClassUsageMarker shortestClassUsageMarker = new ShortestClassUsageMarker(new ShortestUsageMarker(),
-        "Just cause");
-    Processable processable = mock(Processable.class);
-    ShortestUsageMark shortestUsageMark = new ShortestUsageMark("Just cause");
-    when(processable.getProcessingInfo()).thenReturn(shortestUsageMark);
-
-    // Act
-    ShortestUsageMark actualShortestUsageMark = shortestClassUsageMarker.getShortestUsageMark(processable);
-
-    // Assert
-    verify(processable).getProcessingInfo();
-    assertSame(shortestUsageMark, actualShortestUsageMark);
-  }
-
-  /**
-   * Method under test:
-   * {@link ShortestClassUsageMarker#ShortestClassUsageMarker(ShortestUsageMarker, String)}
-   */
-  @Test
-  void testNewShortestClassUsageMarker() {
-    // Arrange
-    ShortestUsageMarker usageMarker = new ShortestUsageMarker();
-
-    // Act
-    ShortestClassUsageMarker actualShortestClassUsageMarker = new ShortestClassUsageMarker(usageMarker, "Just cause");
-
-    // Assert
-    ShortestUsageMark shortestUsageMark = usageMarker.currentUsageMark;
-    assertEquals("Just cause", shortestUsageMark.getReason());
-    assertNull(actualShortestClassUsageMarker.getExtraConstantVisitor());
-    assertTrue(shortestUsageMark.isCertain());
-    assertSame(usageMarker, actualShortestClassUsageMarker.getUsageMarker());
   }
 }

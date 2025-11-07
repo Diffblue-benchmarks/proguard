@@ -5,6 +5,9 @@ import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.Clazz;
@@ -23,11 +26,19 @@ import proguard.util.Processable;
 
 class KotlinValueParameterUsageMarkerDiffblueTest {
   /**
-   * Method under test:
-   * {@link KotlinValueParameterUsageMarker#visitKotlinDeclarationContainerMetadata(Clazz, KotlinDeclarationContainerMetadata)}
+   * Test {@link KotlinValueParameterUsageMarker#visitKotlinDeclarationContainerMetadata(Clazz, KotlinDeclarationContainerMetadata)}.
+   * <ul>
+   *   <li>Then calls {@link KotlinClassKindMetadata#accept(Clazz, KotlinMetadataVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link KotlinValueParameterUsageMarker#visitKotlinDeclarationContainerMetadata(Clazz, KotlinDeclarationContainerMetadata)}
    */
   @Test
-  void testVisitKotlinDeclarationContainerMetadata() {
+  @DisplayName("Test visitKotlinDeclarationContainerMetadata(Clazz, KotlinDeclarationContainerMetadata); then calls accept(Clazz, KotlinMetadataVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void KotlinValueParameterUsageMarker.visitKotlinDeclarationContainerMetadata(Clazz, KotlinDeclarationContainerMetadata)"})
+  void testVisitKotlinDeclarationContainerMetadata_thenCallsAccept() {
     // Arrange
     KotlinValueParameterUsageMarker kotlinValueParameterUsageMarker = new KotlinValueParameterUsageMarker();
     LibraryClass clazz = new LibraryClass();
@@ -46,11 +57,18 @@ class KotlinValueParameterUsageMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link KotlinValueParameterUsageMarker#visitKotlinClassMetadata(Clazz, KotlinClassKindMetadata)}
+   * Test {@link KotlinValueParameterUsageMarker#visitKotlinClassMetadata(Clazz, KotlinClassKindMetadata)}.
+   * <ul>
+   *   <li>Then calls {@link KotlinClassKindMetadata#accept(Clazz, KotlinMetadataVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link KotlinValueParameterUsageMarker#visitKotlinClassMetadata(Clazz, KotlinClassKindMetadata)}
    */
   @Test
-  void testVisitKotlinClassMetadata() {
+  @DisplayName("Test visitKotlinClassMetadata(Clazz, KotlinClassKindMetadata); then calls accept(Clazz, KotlinMetadataVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void KotlinValueParameterUsageMarker.visitKotlinClassMetadata(Clazz, KotlinClassKindMetadata)"})
+  void testVisitKotlinClassMetadata_thenCallsAccept() {
     // Arrange
     KotlinValueParameterUsageMarker kotlinValueParameterUsageMarker = new KotlinValueParameterUsageMarker();
     LibraryClass clazz = new LibraryClass();
@@ -71,11 +89,19 @@ class KotlinValueParameterUsageMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link KotlinValueParameterUsageMarker#visitKotlinSyntheticClassMetadata(Clazz, KotlinSyntheticClassKindMetadata)}
+   * Test {@link KotlinValueParameterUsageMarker#visitKotlinSyntheticClassMetadata(Clazz, KotlinSyntheticClassKindMetadata)}.
+   * <ul>
+   *   <li>Then calls {@link KotlinSyntheticClassKindMetadata#functionsAccept(Clazz, KotlinFunctionVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link KotlinValueParameterUsageMarker#visitKotlinSyntheticClassMetadata(Clazz, KotlinSyntheticClassKindMetadata)}
    */
   @Test
-  void testVisitKotlinSyntheticClassMetadata() {
+  @DisplayName("Test visitKotlinSyntheticClassMetadata(Clazz, KotlinSyntheticClassKindMetadata); then calls functionsAccept(Clazz, KotlinFunctionVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void KotlinValueParameterUsageMarker.visitKotlinSyntheticClassMetadata(Clazz, KotlinSyntheticClassKindMetadata)"})
+  void testVisitKotlinSyntheticClassMetadata_thenCallsFunctionsAccept() {
     // Arrange
     KotlinValueParameterUsageMarker kotlinValueParameterUsageMarker = new KotlinValueParameterUsageMarker();
     LibraryClass clazz = new LibraryClass();
@@ -91,11 +117,19 @@ class KotlinValueParameterUsageMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link KotlinValueParameterUsageMarker#visitConstructor(Clazz, KotlinClassKindMetadata, KotlinConstructorMetadata)}
+   * Test {@link KotlinValueParameterUsageMarker#visitConstructor(Clazz, KotlinClassKindMetadata, KotlinConstructorMetadata)}.
+   * <ul>
+   *   <li>Then calls {@link KotlinConstructorMetadata#referencedMethodAccept(Clazz, MemberVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link KotlinValueParameterUsageMarker#visitConstructor(Clazz, KotlinClassKindMetadata, KotlinConstructorMetadata)}
    */
   @Test
-  void testVisitConstructor() {
+  @DisplayName("Test visitConstructor(Clazz, KotlinClassKindMetadata, KotlinConstructorMetadata); then calls referencedMethodAccept(Clazz, MemberVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void KotlinValueParameterUsageMarker.visitConstructor(Clazz, KotlinClassKindMetadata, KotlinConstructorMetadata)"})
+  void testVisitConstructor_thenCallsReferencedMethodAccept() {
     // Arrange
     KotlinValueParameterUsageMarker kotlinValueParameterUsageMarker = new KotlinValueParameterUsageMarker();
     LibraryClass clazz = new LibraryClass();
@@ -114,11 +148,19 @@ class KotlinValueParameterUsageMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link KotlinValueParameterUsageMarker#visitAnyFunction(Clazz, KotlinMetadata, KotlinFunctionMetadata)}
+   * Test {@link KotlinValueParameterUsageMarker#visitAnyFunction(Clazz, KotlinMetadata, KotlinFunctionMetadata)}.
+   * <ul>
+   *   <li>Then calls {@link KotlinFunctionMetadata#referencedMethodAccept(MemberVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link KotlinValueParameterUsageMarker#visitAnyFunction(Clazz, KotlinMetadata, KotlinFunctionMetadata)}
    */
   @Test
-  void testVisitAnyFunction() {
+  @DisplayName("Test visitAnyFunction(Clazz, KotlinMetadata, KotlinFunctionMetadata); then calls referencedMethodAccept(MemberVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void KotlinValueParameterUsageMarker.visitAnyFunction(Clazz, KotlinMetadata, KotlinFunctionMetadata)"})
+  void testVisitAnyFunction_thenCallsReferencedMethodAccept() {
     // Arrange
     KotlinValueParameterUsageMarker kotlinValueParameterUsageMarker = new KotlinValueParameterUsageMarker();
     LibraryClass clazz = new LibraryClass();
@@ -135,11 +177,19 @@ class KotlinValueParameterUsageMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link KotlinValueParameterUsageMarker#isUsed(Processable)}
+   * Test {@link KotlinValueParameterUsageMarker#isUsed(Processable)}.
+   * <ul>
+   *   <li>When {@link LibraryClass#LibraryClass()}.</li>
+   *   <li>Then return {@code false}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link KotlinValueParameterUsageMarker#isUsed(Processable)}
    */
   @Test
-  void testIsUsed() {
+  @DisplayName("Test isUsed(Processable); when LibraryClass(); then return 'false'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean KotlinValueParameterUsageMarker.isUsed(Processable)"})
+  void testIsUsed_whenLibraryClass_thenReturnFalse() {
     // Arrange, Act and Assert
     assertFalse(KotlinValueParameterUsageMarker.isUsed(new LibraryClass()));
   }

@@ -4,10 +4,14 @@ import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.Clazz;
 import proguard.classfile.LibraryClass;
+import proguard.classfile.LibraryMember;
 import proguard.classfile.LibraryMethod;
 import proguard.classfile.ProgramClass;
 import proguard.classfile.kotlin.KotlinClassKindMetadata;
@@ -30,11 +34,19 @@ import proguard.classfile.visitor.MemberVisitor;
 
 class KotlinAnnotationFlagFixerDiffblueTest {
   /**
-   * Method under test:
-   * {@link KotlinAnnotationFlagFixer#visitKotlinDeclarationContainerMetadata(Clazz, KotlinDeclarationContainerMetadata)}
+   * Test {@link KotlinAnnotationFlagFixer#visitKotlinDeclarationContainerMetadata(Clazz, KotlinDeclarationContainerMetadata)}.
+   * <ul>
+   *   <li>Then calls {@link KotlinDeclarationContainerMetadata#delegatedPropertiesAccept(Clazz, KotlinPropertyVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link KotlinAnnotationFlagFixer#visitKotlinDeclarationContainerMetadata(Clazz, KotlinDeclarationContainerMetadata)}
    */
   @Test
-  void testVisitKotlinDeclarationContainerMetadata() {
+  @DisplayName("Test visitKotlinDeclarationContainerMetadata(Clazz, KotlinDeclarationContainerMetadata); then calls delegatedPropertiesAccept(Clazz, KotlinPropertyVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void KotlinAnnotationFlagFixer.visitKotlinDeclarationContainerMetadata(Clazz, KotlinDeclarationContainerMetadata)"})
+  void testVisitKotlinDeclarationContainerMetadata_thenCallsDelegatedPropertiesAccept() {
     // Arrange
     KotlinAnnotationFlagFixer kotlinAnnotationFlagFixer = new KotlinAnnotationFlagFixer();
     LibraryClass clazz = new LibraryClass();
@@ -60,11 +72,19 @@ class KotlinAnnotationFlagFixerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link KotlinAnnotationFlagFixer#visitKotlinFileFacadeMetadata(Clazz, KotlinFileFacadeKindMetadata)}
+   * Test {@link KotlinAnnotationFlagFixer#visitKotlinFileFacadeMetadata(Clazz, KotlinFileFacadeKindMetadata)}.
+   * <ul>
+   *   <li>Then calls {@link KotlinDeclarationContainerMetadata#delegatedPropertiesAccept(Clazz, KotlinPropertyVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link KotlinAnnotationFlagFixer#visitKotlinFileFacadeMetadata(Clazz, KotlinFileFacadeKindMetadata)}
    */
   @Test
-  void testVisitKotlinFileFacadeMetadata() {
+  @DisplayName("Test visitKotlinFileFacadeMetadata(Clazz, KotlinFileFacadeKindMetadata); then calls delegatedPropertiesAccept(Clazz, KotlinPropertyVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void KotlinAnnotationFlagFixer.visitKotlinFileFacadeMetadata(Clazz, KotlinFileFacadeKindMetadata)"})
+  void testVisitKotlinFileFacadeMetadata_thenCallsDelegatedPropertiesAccept() {
     // Arrange
     KotlinAnnotationFlagFixer kotlinAnnotationFlagFixer = new KotlinAnnotationFlagFixer();
     LibraryClass clazz = new LibraryClass();
@@ -89,11 +109,19 @@ class KotlinAnnotationFlagFixerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link KotlinAnnotationFlagFixer#visitKotlinSyntheticClassMetadata(Clazz, KotlinSyntheticClassKindMetadata)}
+   * Test {@link KotlinAnnotationFlagFixer#visitKotlinSyntheticClassMetadata(Clazz, KotlinSyntheticClassKindMetadata)}.
+   * <ul>
+   *   <li>Then calls {@link KotlinSyntheticClassKindMetadata#functionsAccept(Clazz, KotlinFunctionVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link KotlinAnnotationFlagFixer#visitKotlinSyntheticClassMetadata(Clazz, KotlinSyntheticClassKindMetadata)}
    */
   @Test
-  void testVisitKotlinSyntheticClassMetadata() {
+  @DisplayName("Test visitKotlinSyntheticClassMetadata(Clazz, KotlinSyntheticClassKindMetadata); then calls functionsAccept(Clazz, KotlinFunctionVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void KotlinAnnotationFlagFixer.visitKotlinSyntheticClassMetadata(Clazz, KotlinSyntheticClassKindMetadata)"})
+  void testVisitKotlinSyntheticClassMetadata_thenCallsFunctionsAccept() {
     // Arrange
     KotlinAnnotationFlagFixer kotlinAnnotationFlagFixer = new KotlinAnnotationFlagFixer();
     LibraryClass clazz = new LibraryClass();
@@ -109,11 +137,19 @@ class KotlinAnnotationFlagFixerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link KotlinAnnotationFlagFixer#visitKotlinMultiFilePartMetadata(Clazz, KotlinMultiFilePartKindMetadata)}
+   * Test {@link KotlinAnnotationFlagFixer#visitKotlinMultiFilePartMetadata(Clazz, KotlinMultiFilePartKindMetadata)}.
+   * <ul>
+   *   <li>Then calls {@link KotlinDeclarationContainerMetadata#delegatedPropertiesAccept(Clazz, KotlinPropertyVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link KotlinAnnotationFlagFixer#visitKotlinMultiFilePartMetadata(Clazz, KotlinMultiFilePartKindMetadata)}
    */
   @Test
-  void testVisitKotlinMultiFilePartMetadata() {
+  @DisplayName("Test visitKotlinMultiFilePartMetadata(Clazz, KotlinMultiFilePartKindMetadata); then calls delegatedPropertiesAccept(Clazz, KotlinPropertyVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void KotlinAnnotationFlagFixer.visitKotlinMultiFilePartMetadata(Clazz, KotlinMultiFilePartKindMetadata)"})
+  void testVisitKotlinMultiFilePartMetadata_thenCallsDelegatedPropertiesAccept() {
     // Arrange
     KotlinAnnotationFlagFixer kotlinAnnotationFlagFixer = new KotlinAnnotationFlagFixer();
     LibraryClass clazz = new LibraryClass();
@@ -139,33 +175,19 @@ class KotlinAnnotationFlagFixerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link KotlinAnnotationFlagFixer#visitFunctionReceiverType(Clazz, KotlinMetadata, KotlinFunctionMetadata, KotlinTypeMetadata)}
+   * Test {@link KotlinAnnotationFlagFixer#visitFunctionReceiverType(Clazz, KotlinMetadata, KotlinFunctionMetadata, KotlinTypeMetadata)}.
+   * <ul>
+   *   <li>Then calls {@link LibraryMember#accept(Clazz, MemberVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link KotlinAnnotationFlagFixer#visitFunctionReceiverType(Clazz, KotlinMetadata, KotlinFunctionMetadata, KotlinTypeMetadata)}
    */
   @Test
-  void testVisitFunctionReceiverType() {
-    // Arrange
-    KotlinAnnotationFlagFixer kotlinAnnotationFlagFixer = new KotlinAnnotationFlagFixer();
-    LibraryClass clazz = new LibraryClass();
-    KotlinClassKindMetadata kotlinMetadata = new KotlinClassKindMetadata(new int[]{1, -1, 1, -1}, 1, "Xs", "Pn");
-
-    KotlinFunctionMetadata kotlinFunctionMetadata = mock(KotlinFunctionMetadata.class);
-    doNothing().when(kotlinFunctionMetadata).referencedMethodAccept(Mockito.<MemberVisitor>any());
-
-    // Act
-    kotlinAnnotationFlagFixer.visitFunctionReceiverType(clazz, kotlinMetadata, kotlinFunctionMetadata,
-        KotlinTypeMetadata.starProjection());
-
-    // Assert
-    verify(kotlinFunctionMetadata).referencedMethodAccept(isA(MemberVisitor.class));
-  }
-
-  /**
-   * Method under test:
-   * {@link KotlinAnnotationFlagFixer#visitFunctionReceiverType(Clazz, KotlinMetadata, KotlinFunctionMetadata, KotlinTypeMetadata)}
-   */
-  @Test
-  void testVisitFunctionReceiverType2() {
+  @DisplayName("Test visitFunctionReceiverType(Clazz, KotlinMetadata, KotlinFunctionMetadata, KotlinTypeMetadata); then calls accept(Clazz, MemberVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void KotlinAnnotationFlagFixer.visitFunctionReceiverType(Clazz, KotlinMetadata, KotlinFunctionMetadata, KotlinTypeMetadata)"})
+  void testVisitFunctionReceiverType_thenCallsAccept() {
     // Arrange
     KotlinAnnotationFlagFixer kotlinAnnotationFlagFixer = new KotlinAnnotationFlagFixer();
     LibraryClass clazz = new LibraryClass();
@@ -201,11 +223,48 @@ class KotlinAnnotationFlagFixerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link KotlinAnnotationFlagFixer#visitAnyTypeParameter(Clazz, KotlinTypeParameterMetadata)}
+   * Test {@link KotlinAnnotationFlagFixer#visitFunctionReceiverType(Clazz, KotlinMetadata, KotlinFunctionMetadata, KotlinTypeMetadata)}.
+   * <ul>
+   *   <li>Then calls {@link KotlinFunctionMetadata#referencedMethodAccept(MemberVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link KotlinAnnotationFlagFixer#visitFunctionReceiverType(Clazz, KotlinMetadata, KotlinFunctionMetadata, KotlinTypeMetadata)}
    */
   @Test
-  void testVisitAnyTypeParameter() {
+  @DisplayName("Test visitFunctionReceiverType(Clazz, KotlinMetadata, KotlinFunctionMetadata, KotlinTypeMetadata); then calls referencedMethodAccept(MemberVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void KotlinAnnotationFlagFixer.visitFunctionReceiverType(Clazz, KotlinMetadata, KotlinFunctionMetadata, KotlinTypeMetadata)"})
+  void testVisitFunctionReceiverType_thenCallsReferencedMethodAccept() {
+    // Arrange
+    KotlinAnnotationFlagFixer kotlinAnnotationFlagFixer = new KotlinAnnotationFlagFixer();
+    LibraryClass clazz = new LibraryClass();
+    KotlinClassKindMetadata kotlinMetadata = new KotlinClassKindMetadata(new int[]{1, -1, 1, -1}, 1, "Xs", "Pn");
+
+    KotlinFunctionMetadata kotlinFunctionMetadata = mock(KotlinFunctionMetadata.class);
+    doNothing().when(kotlinFunctionMetadata).referencedMethodAccept(Mockito.<MemberVisitor>any());
+
+    // Act
+    kotlinAnnotationFlagFixer.visitFunctionReceiverType(clazz, kotlinMetadata, kotlinFunctionMetadata,
+        KotlinTypeMetadata.starProjection());
+
+    // Assert
+    verify(kotlinFunctionMetadata).referencedMethodAccept(isA(MemberVisitor.class));
+  }
+
+  /**
+   * Test {@link KotlinAnnotationFlagFixer#visitAnyTypeParameter(Clazz, KotlinTypeParameterMetadata)}.
+   * <ul>
+   *   <li>Then calls {@link KotlinTypeParameterMetadata#upperBoundsAccept(Clazz, KotlinTypeVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link KotlinAnnotationFlagFixer#visitAnyTypeParameter(Clazz, KotlinTypeParameterMetadata)}
+   */
+  @Test
+  @DisplayName("Test visitAnyTypeParameter(Clazz, KotlinTypeParameterMetadata); then calls upperBoundsAccept(Clazz, KotlinTypeVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void KotlinAnnotationFlagFixer.visitAnyTypeParameter(Clazz, KotlinTypeParameterMetadata)"})
+  void testVisitAnyTypeParameter_thenCallsUpperBoundsAccept() {
     // Arrange
     KotlinAnnotationFlagFixer kotlinAnnotationFlagFixer = new KotlinAnnotationFlagFixer();
     LibraryClass clazz = new LibraryClass();

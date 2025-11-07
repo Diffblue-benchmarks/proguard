@@ -3,10 +3,13 @@ package proguard.shrink;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
+import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import proguard.AppView;
 import proguard.ClassPath;
@@ -14,21 +17,14 @@ import proguard.Configuration;
 
 class ShrinkerDiffblueTest {
   /**
-   * Method under test: {@link Shrinker#execute(AppView)}
-   */
-  @Test
-  void testExecute() throws IOException {
-    // Arrange
-    Shrinker shrinker = new Shrinker(mock(Configuration.class), true);
-
-    // Act and Assert
-    assertThrows(IOException.class, () -> shrinker.execute(new AppView()));
-  }
-
-  /**
+   * Test {@link Shrinker#Shrinker(Configuration, boolean)}.
+   * <p>
    * Method under test: {@link Shrinker#Shrinker(Configuration, boolean)}
    */
   @Test
+  @DisplayName("Test new Shrinker(Configuration, boolean)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void Shrinker.<init>(Configuration, boolean)"})
   void testNewShrinker() throws MalformedURLException {
     // Arrange
     Configuration configuration = new Configuration();
@@ -101,5 +97,25 @@ class ShrinkerDiffblueTest {
 
     // Act and Assert
     assertEquals("proguard.shrink.Shrinker", (new Shrinker(configuration, true)).getName());
+  }
+
+  /**
+   * Test {@link Shrinker#execute(AppView)}.
+   * <ul>
+   *   <li>Then throw {@link IOException}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link Shrinker#execute(AppView)}
+   */
+  @Test
+  @DisplayName("Test execute(AppView); then throw IOException")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void Shrinker.execute(AppView)"})
+  void testExecute_thenThrowIOException() throws IOException {
+    // Arrange
+    Shrinker shrinker = new Shrinker(mock(Configuration.class), true);
+
+    // Act and Assert
+    assertThrows(IOException.class, () -> shrinker.execute(new AppView()));
   }
 }

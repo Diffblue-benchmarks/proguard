@@ -6,6 +6,9 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.LibraryMethod;
@@ -15,11 +18,19 @@ import proguard.optimize.info.ClassOptimizationInfo;
 
 class SimpleEnumClassCheckerDiffblueTest {
   /**
-   * Method under test:
-   * {@link SimpleEnumClassChecker#visitProgramClass(ProgramClass)}
+   * Test {@link SimpleEnumClassChecker#visitProgramClass(ProgramClass)}.
+   * <ul>
+   *   <li>Given {@link ClassOptimizationInfo} (default constructor).</li>
+   *   <li>Then calls {@link ProgramClass#fieldsAccept(MemberVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SimpleEnumClassChecker#visitProgramClass(ProgramClass)}
    */
   @Test
-  void testVisitProgramClass() {
+  @DisplayName("Test visitProgramClass(ProgramClass); given ClassOptimizationInfo (default constructor); then calls fieldsAccept(MemberVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SimpleEnumClassChecker.visitProgramClass(ProgramClass)"})
+  void testVisitProgramClass_givenClassOptimizationInfo_thenCallsFieldsAccept() {
     // Arrange
     SimpleEnumClassChecker simpleEnumClassChecker = new SimpleEnumClassChecker();
     ProgramClass programClass = mock(ProgramClass.class);

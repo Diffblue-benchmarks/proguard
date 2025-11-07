@@ -2,8 +2,11 @@ package proguard;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
+import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.util.ArrayList;
 import java.util.List;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import proguard.classfile.ClassPool;
 import proguard.classfile.attribute.visitor.AttributeVisitor;
@@ -15,34 +18,16 @@ import proguard.fixer.kotlin.KotlinAnnotationCounter;
 
 class KeepClassSpecificationVisitorFactoryDiffblueTest {
   /**
-   * Method under test:
-   * {@link KeepClassSpecificationVisitorFactory#createClassPoolVisitor(List, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor)}
+   * Test {@link KeepClassSpecificationVisitorFactory#createClassPoolVisitor(KeepClassSpecification, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor)} with {@code keepClassSpecification}, {@code classVisitor}, {@code fieldVisitor}, {@code methodVisitor}, {@code attributeVisitor}.
+   * <p>
+   * Method under test: {@link KeepClassSpecificationVisitorFactory#createClassPoolVisitor(KeepClassSpecification, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor)}
    */
   @Test
-  void testCreateClassPoolVisitor() {
-    // Arrange
-    KeepClassSpecificationVisitorFactory keepClassSpecificationVisitorFactory = new KeepClassSpecificationVisitorFactory(
-        true, true, true);
-    ArrayList<Object> keepClassSpecifications = new ArrayList<>();
-    ClassVisitor classVisitor = mock(ClassVisitor.class);
-    KotlinAnnotationCounter fieldVisitor = new KotlinAnnotationCounter();
-    KotlinAnnotationCounter methodVisitor = new KotlinAnnotationCounter();
-
-    // Act
-    ClassPoolVisitor actualCreateClassPoolVisitorResult = keepClassSpecificationVisitorFactory.createClassPoolVisitor(
-        keepClassSpecifications, classVisitor, fieldVisitor, methodVisitor, new KotlinAnnotationCounter());
-    actualCreateClassPoolVisitorResult.visitClassPool(new ClassPool());
-
-    // Assert that nothing has changed
-    assertTrue(actualCreateClassPoolVisitorResult instanceof MultiClassPoolVisitor);
-  }
-
-  /**
-   * Method under test:
-   * {@link KeepClassSpecificationVisitorFactory#createClassPoolVisitor(KeepClassSpecification, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor)}
-   */
-  @Test
-  void testCreateClassPoolVisitor2() {
+  @DisplayName("Test createClassPoolVisitor(KeepClassSpecification, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor) with 'keepClassSpecification', 'classVisitor', 'fieldVisitor', 'methodVisitor', 'attributeVisitor'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "ClassPoolVisitor KeepClassSpecificationVisitorFactory.createClassPoolVisitor(KeepClassSpecification, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor)"})
+  void testCreateClassPoolVisitorWithKeepClassSpecificationClassVisitorFieldVisitorMethodVisitorAttributeVisitor() {
     // Arrange
     KeepClassSpecificationVisitorFactory keepClassSpecificationVisitorFactory = new KeepClassSpecificationVisitorFactory(
         true, true, true);
@@ -60,6 +45,34 @@ class KeepClassSpecificationVisitorFactoryDiffblueTest {
     // Act
     ClassPoolVisitor actualCreateClassPoolVisitorResult = keepClassSpecificationVisitorFactory.createClassPoolVisitor(
         keepClassSpecification, classVisitor, fieldVisitor, methodVisitor, new KotlinAnnotationCounter());
+    actualCreateClassPoolVisitorResult.visitClassPool(new ClassPool());
+
+    // Assert
+    assertTrue(actualCreateClassPoolVisitorResult instanceof MultiClassPoolVisitor);
+  }
+
+  /**
+   * Test {@link KeepClassSpecificationVisitorFactory#createClassPoolVisitor(List, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor)} with {@code keepClassSpecifications}, {@code classVisitor}, {@code fieldVisitor}, {@code methodVisitor}, {@code attributeVisitor}.
+   * <p>
+   * Method under test: {@link KeepClassSpecificationVisitorFactory#createClassPoolVisitor(List, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor)}
+   */
+  @Test
+  @DisplayName("Test createClassPoolVisitor(List, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor) with 'keepClassSpecifications', 'classVisitor', 'fieldVisitor', 'methodVisitor', 'attributeVisitor'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "ClassPoolVisitor KeepClassSpecificationVisitorFactory.createClassPoolVisitor(List, ClassVisitor, MemberVisitor, MemberVisitor, AttributeVisitor)"})
+  void testCreateClassPoolVisitorWithKeepClassSpecificationsClassVisitorFieldVisitorMethodVisitorAttributeVisitor() {
+    // Arrange
+    KeepClassSpecificationVisitorFactory keepClassSpecificationVisitorFactory = new KeepClassSpecificationVisitorFactory(
+        true, true, true);
+    ArrayList<Object> keepClassSpecifications = new ArrayList<>();
+    ClassVisitor classVisitor = mock(ClassVisitor.class);
+    KotlinAnnotationCounter fieldVisitor = new KotlinAnnotationCounter();
+    KotlinAnnotationCounter methodVisitor = new KotlinAnnotationCounter();
+
+    // Act
+    ClassPoolVisitor actualCreateClassPoolVisitorResult = keepClassSpecificationVisitorFactory.createClassPoolVisitor(
+        keepClassSpecifications, classVisitor, fieldVisitor, methodVisitor, new KotlinAnnotationCounter());
     actualCreateClassPoolVisitorResult.visitClassPool(new ClassPool());
 
     // Assert

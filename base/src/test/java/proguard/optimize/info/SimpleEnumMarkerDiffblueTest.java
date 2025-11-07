@@ -2,60 +2,27 @@ package proguard.optimize.info;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.anyBoolean;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import proguard.classfile.Clazz;
 import proguard.classfile.LibraryClass;
-import proguard.classfile.ProgramClass;
 
 class SimpleEnumMarkerDiffblueTest {
   /**
-   * Method under test: {@link SimpleEnumMarker#visitProgramClass(ProgramClass)}
-   */
-  @Test
-  void testVisitProgramClass() {
-    // Arrange
-    SimpleEnumMarker simpleEnumMarker = new SimpleEnumMarker(true);
-    ProgramClass programClass = mock(ProgramClass.class);
-    when(programClass.getProcessingInfo()).thenReturn(new ProgramClassOptimizationInfo());
-
-    // Act
-    simpleEnumMarker.visitProgramClass(programClass);
-
-    // Assert
-    verify(programClass).getProcessingInfo();
-  }
-
-  /**
-   * Method under test: {@link SimpleEnumMarker#visitProgramClass(ProgramClass)}
-   */
-  @Test
-  void testVisitProgramClass2() {
-    // Arrange
-    SimpleEnumMarker simpleEnumMarker = new SimpleEnumMarker(true);
-    ProgramClassOptimizationInfo programClassOptimizationInfo = mock(ProgramClassOptimizationInfo.class);
-    doNothing().when(programClassOptimizationInfo).setSimpleEnum(anyBoolean());
-    ProgramClass programClass = mock(ProgramClass.class);
-    when(programClass.getProcessingInfo()).thenReturn(programClassOptimizationInfo);
-
-    // Act
-    simpleEnumMarker.visitProgramClass(programClass);
-
-    // Assert
-    verify(programClassOptimizationInfo).setSimpleEnum(eq(true));
-    verify(programClass).getProcessingInfo();
-  }
-
-  /**
+   * Test {@link SimpleEnumMarker#isSimpleEnum(Clazz)}.
+   * <ul>
+   *   <li>Given {@link ClassOptimizationInfo} (default constructor).</li>
+   * </ul>
+   * <p>
    * Method under test: {@link SimpleEnumMarker#isSimpleEnum(Clazz)}
    */
   @Test
-  void testIsSimpleEnum() {
+  @DisplayName("Test isSimpleEnum(Clazz); given ClassOptimizationInfo (default constructor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean SimpleEnumMarker.isSimpleEnum(Clazz)"})
+  void testIsSimpleEnum_givenClassOptimizationInfo() {
     // Arrange
     LibraryClass clazz = new LibraryClass();
     clazz.setProcessingInfo(new ClassOptimizationInfo());
@@ -65,10 +32,19 @@ class SimpleEnumMarkerDiffblueTest {
   }
 
   /**
+   * Test {@link SimpleEnumMarker#isSimpleEnum(Clazz)}.
+   * <ul>
+   *   <li>Given {@link ProgramClassOptimizationInfo} (default constructor).</li>
+   *   <li>Then return {@code false}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link SimpleEnumMarker#isSimpleEnum(Clazz)}
    */
   @Test
-  void testIsSimpleEnum2() {
+  @DisplayName("Test isSimpleEnum(Clazz); given ProgramClassOptimizationInfo (default constructor); then return 'false'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean SimpleEnumMarker.isSimpleEnum(Clazz)"})
+  void testIsSimpleEnum_givenProgramClassOptimizationInfo_thenReturnFalse() {
     // Arrange
     LibraryClass clazz = new LibraryClass();
     clazz.setProcessingInfo(new ProgramClassOptimizationInfo());
@@ -78,10 +54,18 @@ class SimpleEnumMarkerDiffblueTest {
   }
 
   /**
+   * Test {@link SimpleEnumMarker#isSimpleEnum(Clazz)}.
+   * <ul>
+   *   <li>Then return {@code true}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link SimpleEnumMarker#isSimpleEnum(Clazz)}
    */
   @Test
-  void testIsSimpleEnum3() {
+  @DisplayName("Test isSimpleEnum(Clazz); then return 'true'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean SimpleEnumMarker.isSimpleEnum(Clazz)"})
+  void testIsSimpleEnum_thenReturnTrue() {
     // Arrange
     ProgramClassOptimizationInfo programClassOptimizationInfo = new ProgramClassOptimizationInfo();
     programClassOptimizationInfo.setSimpleEnum(true);

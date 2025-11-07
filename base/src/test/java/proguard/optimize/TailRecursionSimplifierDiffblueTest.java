@@ -4,6 +4,9 @@ import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.Clazz;
@@ -15,11 +18,18 @@ import proguard.classfile.instruction.visitor.InstructionVisitor;
 
 class TailRecursionSimplifierDiffblueTest {
   /**
-   * Method under test:
-   * {@link TailRecursionSimplifier#visitCodeAttribute(Clazz, Method, CodeAttribute)}
+   * Test {@link TailRecursionSimplifier#visitCodeAttribute(Clazz, Method, CodeAttribute)}.
+   * <ul>
+   *   <li>Then calls {@link CodeAttribute#instructionsAccept(Clazz, Method, InstructionVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link TailRecursionSimplifier#visitCodeAttribute(Clazz, Method, CodeAttribute)}
    */
   @Test
-  void testVisitCodeAttribute() {
+  @DisplayName("Test visitCodeAttribute(Clazz, Method, CodeAttribute); then calls instructionsAccept(Clazz, Method, InstructionVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void TailRecursionSimplifier.visitCodeAttribute(Clazz, Method, CodeAttribute)"})
+  void testVisitCodeAttribute_thenCallsInstructionsAccept() {
     // Arrange
     TailRecursionSimplifier tailRecursionSimplifier = new TailRecursionSimplifier();
     LibraryClass clazz = new LibraryClass();

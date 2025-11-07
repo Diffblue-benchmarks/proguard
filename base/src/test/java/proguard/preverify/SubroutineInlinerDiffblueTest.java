@@ -1,18 +1,26 @@
 package proguard.preverify;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.net.MalformedURLException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import proguard.ClassPath;
 import proguard.Configuration;
 
 class SubroutineInlinerDiffblueTest {
   /**
+   * Test {@link SubroutineInliner#SubroutineInliner(Configuration)}.
+   * <p>
    * Method under test: {@link SubroutineInliner#SubroutineInliner(Configuration)}
    */
   @Test
+  @DisplayName("Test new SubroutineInliner(Configuration)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SubroutineInliner.<init>(Configuration)"})
   void testNewSubroutineInliner() throws MalformedURLException {
     // Arrange
     Configuration configuration = new Configuration();

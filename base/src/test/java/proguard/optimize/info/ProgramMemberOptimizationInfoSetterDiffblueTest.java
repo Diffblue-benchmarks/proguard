@@ -8,6 +8,9 @@ import static org.mockito.Mockito.atLeast;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import proguard.classfile.ProgramClass;
 import proguard.classfile.ProgramField;
@@ -15,13 +18,18 @@ import proguard.classfile.ProgramMethod;
 import proguard.evaluation.value.ParticularFloatValue;
 import proguard.evaluation.value.Value;
 import proguard.testutils.cpa.NamedField;
+import proguard.util.SimpleProcessable;
 
 class ProgramMemberOptimizationInfoSetterDiffblueTest {
   /**
-   * Method under test:
-   * {@link ProgramMemberOptimizationInfoSetter#visitProgramField(ProgramClass, ProgramField)}
+   * Test {@link ProgramMemberOptimizationInfoSetter#visitProgramField(ProgramClass, ProgramField)}.
+   * <p>
+   * Method under test: {@link ProgramMemberOptimizationInfoSetter#visitProgramField(ProgramClass, ProgramField)}
    */
   @Test
+  @DisplayName("Test visitProgramField(ProgramClass, ProgramField)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProgramMemberOptimizationInfoSetter.visitProgramField(ProgramClass, ProgramField)"})
   void testVisitProgramField() {
     // Arrange
     ProgramMemberOptimizationInfoSetter programMemberOptimizationInfoSetter = new ProgramMemberOptimizationInfoSetter(
@@ -49,11 +57,45 @@ class ProgramMemberOptimizationInfoSetterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ProgramMemberOptimizationInfoSetter#visitProgramMethod(ProgramClass, ProgramMethod)}
+   * Test {@link ProgramMemberOptimizationInfoSetter#visitProgramField(ProgramClass, ProgramField)}.
+   * <ul>
+   *   <li>Then {@link ProgramField#ProgramField()} ProcessingInfo is {@code Processing Info}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ProgramMemberOptimizationInfoSetter#visitProgramField(ProgramClass, ProgramField)}
    */
   @Test
-  void testVisitProgramMethod() {
+  @DisplayName("Test visitProgramField(ProgramClass, ProgramField); then ProgramField() ProcessingInfo is 'Processing Info'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProgramMemberOptimizationInfoSetter.visitProgramField(ProgramClass, ProgramField)"})
+  void testVisitProgramField_thenProgramFieldProcessingInfoIsProcessingInfo() {
+    // Arrange
+    ProgramMemberOptimizationInfoSetter programMemberOptimizationInfoSetter = new ProgramMemberOptimizationInfoSetter();
+    ProgramClass programClass = new ProgramClass();
+
+    ProgramField programField = new ProgramField();
+    programField.setProcessingInfo("Processing Info");
+
+    // Act
+    programMemberOptimizationInfoSetter.visitProgramField(programClass, programField);
+
+    // Assert that nothing has changed
+    assertEquals("Processing Info", programField.getProcessingInfo());
+  }
+
+  /**
+   * Test {@link ProgramMemberOptimizationInfoSetter#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   * <ul>
+   *   <li>Then calls {@link SimpleProcessable#getProcessingInfo()}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ProgramMemberOptimizationInfoSetter#visitProgramMethod(ProgramClass, ProgramMethod)}
+   */
+  @Test
+  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); then calls getProcessingInfo()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProgramMemberOptimizationInfoSetter.visitProgramMethod(ProgramClass, ProgramMethod)"})
+  void testVisitProgramMethod_thenCallsGetProcessingInfo() {
     // Arrange
     ProgramMemberOptimizationInfoSetter programMemberOptimizationInfoSetter = new ProgramMemberOptimizationInfoSetter(
         false);

@@ -2,12 +2,14 @@ package proguard.obfuscate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.resources.file.ResourceFile;
@@ -19,10 +21,14 @@ import proguard.util.StringFunction;
 
 class ResourceFileNameObfuscatorDiffblueTest {
   /**
-   * Method under test:
-   * {@link ResourceFileNameObfuscator#visitAnyResourceFile(ResourceFile)}
+   * Test {@link ResourceFileNameObfuscator#visitAnyResourceFile(ResourceFile)}.
+   * <p>
+   * Method under test: {@link ResourceFileNameObfuscator#visitAnyResourceFile(ResourceFile)}
    */
   @Test
+  @DisplayName("Test visitAnyResourceFile(ResourceFile)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ResourceFileNameObfuscator.visitAnyResourceFile(ResourceFile)"})
   void testVisitAnyResourceFile() {
     // Arrange
     StringFunction nameObfuscationFunction = mock(StringFunction.class);
@@ -41,10 +47,14 @@ class ResourceFileNameObfuscatorDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ResourceFileNameObfuscator#visitAnyResourceFile(ResourceFile)}
+   * Test {@link ResourceFileNameObfuscator#visitAnyResourceFile(ResourceFile)}.
+   * <p>
+   * Method under test: {@link ResourceFileNameObfuscator#visitAnyResourceFile(ResourceFile)}
    */
   @Test
+  @DisplayName("Test visitAnyResourceFile(ResourceFile)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ResourceFileNameObfuscator.visitAnyResourceFile(ResourceFile)"})
   void testVisitAnyResourceFile2() {
     // Arrange
     StringFunction nameObfuscationFunction = mock(StringFunction.class);
@@ -56,17 +66,20 @@ class ResourceFileNameObfuscatorDiffblueTest {
     // Act
     resourceFileNameObfuscator.visitAnyResourceFile(resourceFile);
 
-    // Assert
+    // Assert that nothing has changed
     verify(nameObfuscationFunction).transform(eq("foo.txt"));
     assertEquals("foo.txt", resourceFile.getFileName());
-    assertNull(resourceFile.getProcessingInfo());
   }
 
   /**
-   * Method under test:
-   * {@link ResourceFileNameObfuscator#visitAnyResourceFile(ResourceFile)}
+   * Test {@link ResourceFileNameObfuscator#visitAnyResourceFile(ResourceFile)}.
+   * <p>
+   * Method under test: {@link ResourceFileNameObfuscator#visitAnyResourceFile(ResourceFile)}
    */
   @Test
+  @DisplayName("Test visitAnyResourceFile(ResourceFile)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ResourceFileNameObfuscator.visitAnyResourceFile(ResourceFile)"})
   void testVisitAnyResourceFile3() {
     // Arrange
     StringFunction nameObfuscationFunction = mock(StringFunction.class);
@@ -85,10 +98,14 @@ class ResourceFileNameObfuscatorDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ResourceFileNameObfuscator#visitAnyResourceFile(ResourceFile)}
+   * Test {@link ResourceFileNameObfuscator#visitAnyResourceFile(ResourceFile)}.
+   * <p>
+   * Method under test: {@link ResourceFileNameObfuscator#visitAnyResourceFile(ResourceFile)}
    */
   @Test
+  @DisplayName("Test visitAnyResourceFile(ResourceFile)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ResourceFileNameObfuscator.visitAnyResourceFile(ResourceFile)"})
   void testVisitAnyResourceFile4() {
     // Arrange
     StringFunction nameObfuscationFunction = mock(StringFunction.class);
@@ -107,10 +124,14 @@ class ResourceFileNameObfuscatorDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ResourceFileNameObfuscator#visitAnyResourceFile(ResourceFile)}
+   * Test {@link ResourceFileNameObfuscator#visitAnyResourceFile(ResourceFile)}.
+   * <p>
+   * Method under test: {@link ResourceFileNameObfuscator#visitAnyResourceFile(ResourceFile)}
    */
   @Test
+  @DisplayName("Test visitAnyResourceFile(ResourceFile)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ResourceFileNameObfuscator.visitAnyResourceFile(ResourceFile)"})
   void testVisitAnyResourceFile5() {
     // Arrange
     StringFunction nameObfuscationFunction = mock(StringFunction.class);
@@ -129,10 +150,14 @@ class ResourceFileNameObfuscatorDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ResourceFileNameObfuscator#visitAnyResourceFile(ResourceFile)}
+   * Test {@link ResourceFileNameObfuscator#visitAnyResourceFile(ResourceFile)}.
+   * <p>
+   * Method under test: {@link ResourceFileNameObfuscator#visitAnyResourceFile(ResourceFile)}
    */
   @Test
+  @DisplayName("Test visitAnyResourceFile(ResourceFile)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ResourceFileNameObfuscator.visitAnyResourceFile(ResourceFile)"})
   void testVisitAnyResourceFile6() {
     // Arrange
     StringFunction nameObfuscationFunction = mock(StringFunction.class);
@@ -151,10 +176,14 @@ class ResourceFileNameObfuscatorDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ResourceFileNameObfuscator#visitAnyResourceFile(ResourceFile)}
+   * Test {@link ResourceFileNameObfuscator#visitAnyResourceFile(ResourceFile)}.
+   * <p>
+   * Method under test: {@link ResourceFileNameObfuscator#visitAnyResourceFile(ResourceFile)}
    */
   @Test
+  @DisplayName("Test visitAnyResourceFile(ResourceFile)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ResourceFileNameObfuscator.visitAnyResourceFile(ResourceFile)"})
   void testVisitAnyResourceFile7() {
     // Arrange
     StringFunction nameObfuscationFunction = mock(StringFunction.class);
@@ -173,21 +202,19 @@ class ResourceFileNameObfuscatorDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ResourceFileNameObfuscator#isObfuscated(ResourceFile)}
+   * Test {@link ResourceFileNameObfuscator#isObfuscated(ResourceFile)}.
+   * <ul>
+   *   <li>Given {@code Processing Info}.</li>
+   *   <li>Then return {@code true}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ResourceFileNameObfuscator#isObfuscated(ResourceFile)}
    */
   @Test
-  void testIsObfuscated() {
-    // Arrange, Act and Assert
-    assertFalse(ResourceFileNameObfuscator.isObfuscated(new ResourceFile("foo.txt", 3L)));
-  }
-
-  /**
-   * Method under test:
-   * {@link ResourceFileNameObfuscator#isObfuscated(ResourceFile)}
-   */
-  @Test
-  void testIsObfuscated2() {
+  @DisplayName("Test isObfuscated(ResourceFile); given 'Processing Info'; then return 'true'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ResourceFileNameObfuscator.isObfuscated(ResourceFile)"})
+  void testIsObfuscated_givenProcessingInfo_thenReturnTrue() {
     // Arrange
     ResourceFile resourceFile = new ResourceFile("foo.txt", 3L);
     resourceFile.setProcessingInfo("Processing Info");
@@ -197,26 +224,58 @@ class ResourceFileNameObfuscatorDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ResourceFileNameObfuscator#getOriginalResourceFileName(ResourceFile)}
+   * Test {@link ResourceFileNameObfuscator#isObfuscated(ResourceFile)}.
+   * <ul>
+   *   <li>Then return {@code false}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ResourceFileNameObfuscator#isObfuscated(ResourceFile)}
    */
   @Test
-  void testGetOriginalResourceFileName() {
+  @DisplayName("Test isObfuscated(ResourceFile); then return 'false'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ResourceFileNameObfuscator.isObfuscated(ResourceFile)"})
+  void testIsObfuscated_thenReturnFalse() {
     // Arrange, Act and Assert
-    assertEquals("foo.txt", ResourceFileNameObfuscator.getOriginalResourceFileName(new ResourceFile("foo.txt", 3L)));
+    assertFalse(ResourceFileNameObfuscator.isObfuscated(new ResourceFile("foo.txt", 3L)));
   }
 
   /**
-   * Method under test:
-   * {@link ResourceFileNameObfuscator#getOriginalResourceFileName(ResourceFile)}
+   * Test {@link ResourceFileNameObfuscator#getOriginalResourceFileName(ResourceFile)}.
+   * <ul>
+   *   <li>Given {@code Resource File}.</li>
+   *   <li>Then return {@code Resource File}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ResourceFileNameObfuscator#getOriginalResourceFileName(ResourceFile)}
    */
   @Test
-  void testGetOriginalResourceFileName2() {
+  @DisplayName("Test getOriginalResourceFileName(ResourceFile); given 'Resource File'; then return 'Resource File'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"String ResourceFileNameObfuscator.getOriginalResourceFileName(ResourceFile)"})
+  void testGetOriginalResourceFileName_givenResourceFile_thenReturnResourceFile() {
     // Arrange
     ResourceFile resourceFile = new ResourceFile("foo.txt", 3L);
     resourceFile.setProcessingInfo("Resource File");
 
     // Act and Assert
     assertEquals("Resource File", ResourceFileNameObfuscator.getOriginalResourceFileName(resourceFile));
+  }
+
+  /**
+   * Test {@link ResourceFileNameObfuscator#getOriginalResourceFileName(ResourceFile)}.
+   * <ul>
+   *   <li>Then return {@code foo.txt}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ResourceFileNameObfuscator#getOriginalResourceFileName(ResourceFile)}
+   */
+  @Test
+  @DisplayName("Test getOriginalResourceFileName(ResourceFile); then return 'foo.txt'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"String ResourceFileNameObfuscator.getOriginalResourceFileName(ResourceFile)"})
+  void testGetOriginalResourceFileName_thenReturnFooTxt() {
+    // Arrange, Act and Assert
+    assertEquals("foo.txt", ResourceFileNameObfuscator.getOriginalResourceFileName(new ResourceFile("foo.txt", 3L)));
   }
 }

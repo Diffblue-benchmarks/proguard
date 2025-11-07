@@ -5,6 +5,9 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.ClassPool;
@@ -17,11 +20,19 @@ import proguard.testutils.cpa.NamedClass;
 
 class OptimizedTypeAdapterInitializerDiffblueTest {
   /**
-   * Method under test:
-   * {@link OptimizedTypeAdapterInitializer#visitProgramClass(ProgramClass)}
+   * Test {@link OptimizedTypeAdapterInitializer#visitProgramClass(ProgramClass)}.
+   * <ul>
+   *   <li>Given {@link NamedClass#NamedClass(String)} with {@code Member Name}.</li>
+   *   <li>Then calls {@link ProgramClass#methodsAccept(MemberVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link OptimizedTypeAdapterInitializer#visitProgramClass(ProgramClass)}
    */
   @Test
-  void testVisitProgramClass() {
+  @DisplayName("Test visitProgramClass(ProgramClass); given NamedClass(String) with 'Member Name'; then calls methodsAccept(MemberVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void OptimizedTypeAdapterInitializer.visitProgramClass(ProgramClass)"})
+  void testVisitProgramClass_givenNamedClassWithMemberName_thenCallsMethodsAccept() {
     // Arrange
     ClassVisitor classVisitor = mock(ClassVisitor.class);
     doNothing().when(classVisitor).visitProgramClass(Mockito.<ProgramClass>any());
@@ -46,14 +57,21 @@ class OptimizedTypeAdapterInitializerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link OptimizedTypeAdapterInitializer#visitProgramClass(ProgramClass)}
+   * Test {@link OptimizedTypeAdapterInitializer#visitProgramClass(ProgramClass)}.
+   * <ul>
+   *   <li>Given {@link ProgramClass} {@link ProgramClass#getAccessFlags()} return {@code 16384}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link OptimizedTypeAdapterInitializer#visitProgramClass(ProgramClass)}
    */
   @Test
-  void testVisitProgramClass2() {
+  @DisplayName("Test visitProgramClass(ProgramClass); given ProgramClass getAccessFlags() return '16384'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void OptimizedTypeAdapterInitializer.visitProgramClass(ProgramClass)"})
+  void testVisitProgramClass_givenProgramClassGetAccessFlagsReturn16384() {
     // Arrange
     ProgramClass objectProgramClass = mock(ProgramClass.class);
-    when(objectProgramClass.getAccessFlags()).thenReturn(1);
+    when(objectProgramClass.getAccessFlags()).thenReturn(16384);
     when(objectProgramClass.getName()).thenReturn("Name");
     ClassVisitor classVisitor = mock(ClassVisitor.class);
     doNothing().when(classVisitor).visitProgramClass(Mockito.<ProgramClass>any());
@@ -79,14 +97,21 @@ class OptimizedTypeAdapterInitializerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link OptimizedTypeAdapterInitializer#visitProgramClass(ProgramClass)}
+   * Test {@link OptimizedTypeAdapterInitializer#visitProgramClass(ProgramClass)}.
+   * <ul>
+   *   <li>Then calls {@link ProgramClass#getAccessFlags()}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link OptimizedTypeAdapterInitializer#visitProgramClass(ProgramClass)}
    */
   @Test
-  void testVisitProgramClass3() {
+  @DisplayName("Test visitProgramClass(ProgramClass); then calls getAccessFlags()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void OptimizedTypeAdapterInitializer.visitProgramClass(ProgramClass)"})
+  void testVisitProgramClass_thenCallsGetAccessFlags() {
     // Arrange
     ProgramClass objectProgramClass = mock(ProgramClass.class);
-    when(objectProgramClass.getAccessFlags()).thenReturn(16384);
+    when(objectProgramClass.getAccessFlags()).thenReturn(1);
     when(objectProgramClass.getName()).thenReturn("Name");
     ClassVisitor classVisitor = mock(ClassVisitor.class);
     doNothing().when(classVisitor).visitProgramClass(Mockito.<ProgramClass>any());

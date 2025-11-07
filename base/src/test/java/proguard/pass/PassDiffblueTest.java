@@ -1,35 +1,24 @@
 package proguard.pass;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import proguard.KotlinMetadataAdapter;
 
 class PassDiffblueTest {
   /**
+   * Test {@link Pass#getName()}.
+   * <p>
    * Method under test: {@link Pass#getName()}
    */
   @Test
+  @DisplayName("Test getName()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"java.lang.String Pass.getName()"})
   void testGetName() {
     // Arrange, Act and Assert
     assertEquals("proguard.KotlinMetadataAdapter", (new KotlinMetadataAdapter()).getName());
-  }
-
-  /**
-   * Method under test: {@link Pass#getName()}
-   */
-  @Test
-  void testGetName2() {
-    // Arrange
-    Pass pass = mock(Pass.class);
-    when(pass.getName()).thenReturn("Name");
-
-    // Act
-    pass.getName();
-
-    // Assert
-    verify(pass).getName();
   }
 }

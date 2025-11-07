@@ -8,12 +8,16 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.Clazz;
 import proguard.classfile.LibraryClass;
+import proguard.classfile.Member;
 import proguard.classfile.Method;
 import proguard.classfile.ProgramClass;
 import proguard.classfile.attribute.CodeAttribute;
@@ -23,10 +27,19 @@ import proguard.classfile.visitor.MemberVisitor;
 
 class MappingPrinterDiffblueTest {
   /**
+   * Test {@link MappingPrinter#visitProgramClass(ProgramClass)}.
+   * <ul>
+   *   <li>Given {@code Processing Info}.</li>
+   *   <li>Then calls {@link ProgramClass#attributesAccept(AttributeVisitor)}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link MappingPrinter#visitProgramClass(ProgramClass)}
    */
   @Test
-  void testVisitProgramClass() {
+  @DisplayName("Test visitProgramClass(ProgramClass); given 'Processing Info'; then calls attributesAccept(AttributeVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void MappingPrinter.visitProgramClass(ProgramClass)"})
+  void testVisitProgramClass_givenProcessingInfo_thenCallsAttributesAccept() {
     // Arrange
     MappingPrinter mappingPrinter = new MappingPrinter(new PrintWriter(new StringWriter()));
     ProgramClass programClass = mock(ProgramClass.class);
@@ -48,11 +61,20 @@ class MappingPrinterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link MappingPrinter#visitLineNumberTableAttribute(Clazz, Method, CodeAttribute, LineNumberTableAttribute)}
+   * Test {@link MappingPrinter#visitLineNumberTableAttribute(Clazz, Method, CodeAttribute, LineNumberTableAttribute)}.
+   * <ul>
+   *   <li>Given {@code Source}.</li>
+   *   <li>Then calls {@link Member#getDescriptor(Clazz)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link MappingPrinter#visitLineNumberTableAttribute(Clazz, Method, CodeAttribute, LineNumberTableAttribute)}
    */
   @Test
-  void testVisitLineNumberTableAttribute() {
+  @DisplayName("Test visitLineNumberTableAttribute(Clazz, Method, CodeAttribute, LineNumberTableAttribute); given 'Source'; then calls getDescriptor(Clazz)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void MappingPrinter.visitLineNumberTableAttribute(Clazz, Method, CodeAttribute, LineNumberTableAttribute)"})
+  void testVisitLineNumberTableAttribute_givenSource_thenCallsGetDescriptor() {
     // Arrange
     MappingPrinter mappingPrinter = new MappingPrinter(new PrintWriter(new StringWriter()));
     LibraryClass clazz = new LibraryClass();

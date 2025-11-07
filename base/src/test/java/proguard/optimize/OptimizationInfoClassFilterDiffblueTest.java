@@ -2,11 +2,13 @@ package proguard.optimize;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.isA;
-import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.Clazz;
@@ -18,10 +20,19 @@ import proguard.optimize.info.ProgramClassOptimizationInfo;
 
 class OptimizationInfoClassFilterDiffblueTest {
   /**
+   * Test {@link OptimizationInfoClassFilter#visitAnyClass(Clazz)}.
+   * <ul>
+   *   <li>When {@link LibraryClass#LibraryClass()}.</li>
+   *   <li>Then throw {@link UnsupportedOperationException}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link OptimizationInfoClassFilter#visitAnyClass(Clazz)}
    */
   @Test
-  void testVisitAnyClass() {
+  @DisplayName("Test visitAnyClass(Clazz); when LibraryClass(); then throw UnsupportedOperationException")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void OptimizationInfoClassFilter.visitAnyClass(Clazz)"})
+  void testVisitAnyClass_whenLibraryClass_thenThrowUnsupportedOperationException() {
     // Arrange
     OptimizationInfoClassFilter optimizationInfoClassFilter = new OptimizationInfoClassFilter(mock(ClassVisitor.class));
 
@@ -31,17 +42,24 @@ class OptimizationInfoClassFilterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link OptimizationInfoClassFilter#visitProgramClass(ProgramClass)}
+   * Test {@link OptimizationInfoClassFilter#visitProgramClass(ProgramClass)}.
+   * <ul>
+   *   <li>Given {@link ClassVisitor} {@link ClassVisitor#visitProgramClass(ProgramClass)} does nothing.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link OptimizationInfoClassFilter#visitProgramClass(ProgramClass)}
    */
   @Test
-  void testVisitProgramClass() {
+  @DisplayName("Test visitProgramClass(ProgramClass); given ClassVisitor visitProgramClass(ProgramClass) does nothing")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void OptimizationInfoClassFilter.visitProgramClass(ProgramClass)"})
+  void testVisitProgramClass_givenClassVisitorVisitProgramClassDoesNothing() {
     // Arrange
     ClassVisitor classVisitor = mock(ClassVisitor.class);
     doNothing().when(classVisitor).visitProgramClass(Mockito.<ProgramClass>any());
     OptimizationInfoClassFilter optimizationInfoClassFilter = new OptimizationInfoClassFilter(classVisitor);
     Constant constant = mock(Constant.class);
-    doNothing().when(constant).addProcessingFlags((int[]) any());
+    doNothing().when(constant).addProcessingFlags((int[]) Mockito.any());
     constant.addProcessingFlags(2, 1, 2, 1);
 
     // Act
@@ -50,21 +68,28 @@ class OptimizationInfoClassFilterDiffblueTest {
 
     // Assert
     verify(classVisitor).visitProgramClass(isA(ProgramClass.class));
-    verify(constant).addProcessingFlags((int[]) any());
+    verify(constant).addProcessingFlags((int[]) Mockito.any());
   }
 
   /**
-   * Method under test:
-   * {@link OptimizationInfoClassFilter#visitProgramClass(ProgramClass)}
+   * Test {@link OptimizationInfoClassFilter#visitProgramClass(ProgramClass)}.
+   * <ul>
+   *   <li>Then throw {@link UnsupportedOperationException}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link OptimizationInfoClassFilter#visitProgramClass(ProgramClass)}
    */
   @Test
-  void testVisitProgramClass2() {
+  @DisplayName("Test visitProgramClass(ProgramClass); then throw UnsupportedOperationException")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void OptimizationInfoClassFilter.visitProgramClass(ProgramClass)"})
+  void testVisitProgramClass_thenThrowUnsupportedOperationException() {
     // Arrange
     ClassVisitor classVisitor = mock(ClassVisitor.class);
     doThrow(new UnsupportedOperationException("foo")).when(classVisitor).visitProgramClass(Mockito.<ProgramClass>any());
     OptimizationInfoClassFilter optimizationInfoClassFilter = new OptimizationInfoClassFilter(classVisitor);
     Constant constant = mock(Constant.class);
-    doNothing().when(constant).addProcessingFlags((int[]) any());
+    doNothing().when(constant).addProcessingFlags((int[]) Mockito.any());
     constant.addProcessingFlags(2, 1, 2, 1);
 
     // Act and Assert
@@ -72,15 +97,22 @@ class OptimizationInfoClassFilterDiffblueTest {
         () -> optimizationInfoClassFilter.visitProgramClass(new ProgramClass(1, 3, new Constant[]{constant}, 1, 1, 1,
             "Feature Name", 1, new ProgramClassOptimizationInfo())));
     verify(classVisitor).visitProgramClass(isA(ProgramClass.class));
-    verify(constant).addProcessingFlags((int[]) any());
+    verify(constant).addProcessingFlags((int[]) Mockito.any());
   }
 
   /**
-   * Method under test:
-   * {@link OptimizationInfoClassFilter#visitLibraryClass(LibraryClass)}
+   * Test {@link OptimizationInfoClassFilter#visitLibraryClass(LibraryClass)}.
+   * <ul>
+   *   <li>Given {@link ClassVisitor} {@link ClassVisitor#visitLibraryClass(LibraryClass)} does nothing.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link OptimizationInfoClassFilter#visitLibraryClass(LibraryClass)}
    */
   @Test
-  void testVisitLibraryClass() {
+  @DisplayName("Test visitLibraryClass(LibraryClass); given ClassVisitor visitLibraryClass(LibraryClass) does nothing")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void OptimizationInfoClassFilter.visitLibraryClass(LibraryClass)"})
+  void testVisitLibraryClass_givenClassVisitorVisitLibraryClassDoesNothing() {
     // Arrange
     ClassVisitor classVisitor = mock(ClassVisitor.class);
     doNothing().when(classVisitor).visitLibraryClass(Mockito.<LibraryClass>any());
@@ -97,11 +129,18 @@ class OptimizationInfoClassFilterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link OptimizationInfoClassFilter#visitLibraryClass(LibraryClass)}
+   * Test {@link OptimizationInfoClassFilter#visitLibraryClass(LibraryClass)}.
+   * <ul>
+   *   <li>Then throw {@link UnsupportedOperationException}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link OptimizationInfoClassFilter#visitLibraryClass(LibraryClass)}
    */
   @Test
-  void testVisitLibraryClass2() {
+  @DisplayName("Test visitLibraryClass(LibraryClass); then throw UnsupportedOperationException")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void OptimizationInfoClassFilter.visitLibraryClass(LibraryClass)"})
+  void testVisitLibraryClass_thenThrowUnsupportedOperationException() {
     // Arrange
     ClassVisitor classVisitor = mock(ClassVisitor.class);
     doThrow(new UnsupportedOperationException("foo")).when(classVisitor).visitLibraryClass(Mockito.<LibraryClass>any());

@@ -4,26 +4,73 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import proguard.classfile.Clazz;
 import proguard.classfile.LibraryClass;
 
 class ProgramClassOptimizationInfoDiffblueTest {
   /**
+   * Test {@link ProgramClassOptimizationInfo#hasSideEffects()}.
+   * <p>
    * Method under test: {@link ProgramClassOptimizationInfo#hasSideEffects()}
    */
   @Test
+  @DisplayName("Test hasSideEffects()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean ProgramClassOptimizationInfo.hasSideEffects()"})
   void testHasSideEffects() {
     // Arrange, Act and Assert
     assertFalse((new ProgramClassOptimizationInfo()).hasSideEffects());
   }
 
   /**
-   * Method under test:
-   * {@link ProgramClassOptimizationInfo#merge(ClassOptimizationInfo)}
+   * Test {@link ProgramClassOptimizationInfo#merge(ClassOptimizationInfo)}.
+   * <ul>
+   *   <li>Then not {@link ProgramClassOptimizationInfo} (default constructor) containsConstructors.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ProgramClassOptimizationInfo#merge(ClassOptimizationInfo)}
    */
   @Test
-  void testMerge() {
+  @DisplayName("Test merge(ClassOptimizationInfo); then not ProgramClassOptimizationInfo (default constructor) containsConstructors")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProgramClassOptimizationInfo.merge(ClassOptimizationInfo)"})
+  void testMerge_thenNotProgramClassOptimizationInfoContainsConstructors() {
+    // Arrange
+    ProgramClassOptimizationInfo programClassOptimizationInfo = new ProgramClassOptimizationInfo();
+    ProgramClassOptimizationInfo other = new ProgramClassOptimizationInfo();
+
+    // Act
+    programClassOptimizationInfo.merge(other);
+
+    // Assert that nothing has changed
+    assertFalse(other.containsConstructors());
+    assertFalse(other.containsPackageVisibleMembers());
+    assertFalse(other.hasSideEffects());
+    assertFalse(other.invokesPackageVisibleMembers());
+    assertFalse(other.isCaught());
+    assertFalse(other.isDotClassed());
+    assertFalse(other.isEscaping());
+    assertFalse(other.isInstanceofed());
+    assertFalse(other.isInstantiated());
+  }
+
+  /**
+   * Test {@link ProgramClassOptimizationInfo#merge(ClassOptimizationInfo)}.
+   * <ul>
+   *   <li>Then {@link ProgramClassOptimizationInfo} (default constructor) containsConstructors.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ProgramClassOptimizationInfo#merge(ClassOptimizationInfo)}
+   */
+  @Test
+  @DisplayName("Test merge(ClassOptimizationInfo); then ProgramClassOptimizationInfo (default constructor) containsConstructors")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProgramClassOptimizationInfo.merge(ClassOptimizationInfo)"})
+  void testMerge_thenProgramClassOptimizationInfoContainsConstructors() {
     // Arrange
     ProgramClassOptimizationInfo programClassOptimizationInfo = new ProgramClassOptimizationInfo();
 
@@ -43,35 +90,14 @@ class ProgramClassOptimizationInfoDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ProgramClassOptimizationInfo#merge(ClassOptimizationInfo)}
+   * Test {@link ProgramClassOptimizationInfo#setProgramClassOptimizationInfo(Clazz)}.
+   * <p>
+   * Method under test: {@link ProgramClassOptimizationInfo#setProgramClassOptimizationInfo(Clazz)}
    */
   @Test
-  void testMerge2() {
-    // Arrange
-    ProgramClassOptimizationInfo programClassOptimizationInfo = new ProgramClassOptimizationInfo();
-    ProgramClassOptimizationInfo other = new ProgramClassOptimizationInfo();
-
-    // Act
-    programClassOptimizationInfo.merge(other);
-
-    // Assert
-    assertFalse(other.containsConstructors());
-    assertFalse(other.containsPackageVisibleMembers());
-    assertFalse(other.hasSideEffects());
-    assertFalse(other.invokesPackageVisibleMembers());
-    assertFalse(other.isCaught());
-    assertFalse(other.isDotClassed());
-    assertFalse(other.isEscaping());
-    assertFalse(other.isInstanceofed());
-    assertFalse(other.isInstantiated());
-  }
-
-  /**
-   * Method under test:
-   * {@link ProgramClassOptimizationInfo#setProgramClassOptimizationInfo(Clazz)}
-   */
-  @Test
+  @DisplayName("Test setProgramClassOptimizationInfo(Clazz)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProgramClassOptimizationInfo.setProgramClassOptimizationInfo(Clazz)"})
   void testSetProgramClassOptimizationInfo() {
     // Arrange
     LibraryClass clazz = new LibraryClass();
@@ -100,20 +126,30 @@ class ProgramClassOptimizationInfoDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link ProgramClassOptimizationInfo#getProgramClassOptimizationInfo(Clazz)}
+   * Test {@link ProgramClassOptimizationInfo#getProgramClassOptimizationInfo(Clazz)}.
+   * <ul>
+   *   <li>When {@link LibraryClass#LibraryClass()}.</li>
+   *   <li>Then return {@code null}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ProgramClassOptimizationInfo#getProgramClassOptimizationInfo(Clazz)}
    */
   @Test
-  void testGetProgramClassOptimizationInfo() {
+  @DisplayName("Test getProgramClassOptimizationInfo(Clazz); when LibraryClass(); then return 'null'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "ProgramClassOptimizationInfo ProgramClassOptimizationInfo.getProgramClassOptimizationInfo(Clazz)"})
+  void testGetProgramClassOptimizationInfo_whenLibraryClass_thenReturnNull() {
     // Arrange, Act and Assert
     assertNull(ProgramClassOptimizationInfo.getProgramClassOptimizationInfo(new LibraryClass()));
   }
 
   /**
+   * Test getters and setters.
+   * <p>
    * Methods under test:
    * <ul>
-   *   <li>default or parameterless constructor of
-   * {@link ProgramClassOptimizationInfo}
+   *   <li>default or parameterless constructor of {@link ProgramClassOptimizationInfo}
    *   <li>{@link ProgramClassOptimizationInfo#setSimpleEnum(boolean)}
    *   <li>{@link ProgramClassOptimizationInfo#setTargetClass(Clazz)}
    *   <li>{@link ProgramClassOptimizationInfo#setWrappedClass(Clazz)}
@@ -143,6 +179,26 @@ class ProgramClassOptimizationInfoDiffblueTest {
    * </ul>
    */
   @Test
+  @DisplayName("Test getters and setters")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ProgramClassOptimizationInfo.<init>()",
+      "boolean ProgramClassOptimizationInfo.containsConstructors()",
+      "boolean ProgramClassOptimizationInfo.containsPackageVisibleMembers()",
+      "Clazz ProgramClassOptimizationInfo.getTargetClass()", "Clazz ProgramClassOptimizationInfo.getWrappedClass()",
+      "boolean ProgramClassOptimizationInfo.invokesPackageVisibleMembers()",
+      "boolean ProgramClassOptimizationInfo.isCaught()", "boolean ProgramClassOptimizationInfo.isDotClassed()",
+      "boolean ProgramClassOptimizationInfo.isEscaping()", "boolean ProgramClassOptimizationInfo.isInstanceofed()",
+      "boolean ProgramClassOptimizationInfo.isInstantiated()", "boolean ProgramClassOptimizationInfo.isKept()",
+      "boolean ProgramClassOptimizationInfo.isSimpleEnum()", "boolean ProgramClassOptimizationInfo.mayBeMerged()",
+      "void ProgramClassOptimizationInfo.setCaught()", "void ProgramClassOptimizationInfo.setContainsConstructors()",
+      "void ProgramClassOptimizationInfo.setContainsPackageVisibleMembers()",
+      "void ProgramClassOptimizationInfo.setDotClassed()", "void ProgramClassOptimizationInfo.setEscaping()",
+      "void ProgramClassOptimizationInfo.setInstanceofed()", "void ProgramClassOptimizationInfo.setInstantiated()",
+      "void ProgramClassOptimizationInfo.setInvokesPackageVisibleMembers()",
+      "void ProgramClassOptimizationInfo.setMayNotBeMerged()", "void ProgramClassOptimizationInfo.setSideEffects()",
+      "void ProgramClassOptimizationInfo.setSimpleEnum(boolean)",
+      "void ProgramClassOptimizationInfo.setTargetClass(Clazz)",
+      "void ProgramClassOptimizationInfo.setWrappedClass(Clazz)"})
   void testGettersAndSetters() {
     // Arrange and Act
     ProgramClassOptimizationInfo actualProgramClassOptimizationInfo = new ProgramClassOptimizationInfo();
@@ -177,7 +233,7 @@ class ProgramClassOptimizationInfoDiffblueTest {
     boolean actualIsSimpleEnumResult = actualProgramClassOptimizationInfo.isSimpleEnum();
     boolean actualMayBeMergedResult = actualProgramClassOptimizationInfo.mayBeMerged();
 
-    // Assert that nothing has changed
+    // Assert
     assertFalse(actualProgramClassOptimizationInfo.hasNoSideEffects());
     assertFalse(actualIsKeptResult);
     assertFalse(actualMayBeMergedResult);

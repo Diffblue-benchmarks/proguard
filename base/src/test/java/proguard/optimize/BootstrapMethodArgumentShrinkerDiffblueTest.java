@@ -8,6 +8,9 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.Clazz;
@@ -21,29 +24,15 @@ import proguard.optimize.info.MethodOptimizationInfo;
 
 class BootstrapMethodArgumentShrinkerDiffblueTest {
   /**
-   * Method under test:
-   * {@link BootstrapMethodArgumentShrinker#visitBootstrapMethodInfo(Clazz, BootstrapMethodInfo)}
+   * Test {@link BootstrapMethodArgumentShrinker#visitBootstrapMethodInfo(Clazz, BootstrapMethodInfo)}.
+   * <p>
+   * Method under test: {@link BootstrapMethodArgumentShrinker#visitBootstrapMethodInfo(Clazz, BootstrapMethodInfo)}
    */
   @Test
+  @DisplayName("Test visitBootstrapMethodInfo(Clazz, BootstrapMethodInfo)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void BootstrapMethodArgumentShrinker.visitBootstrapMethodInfo(Clazz, BootstrapMethodInfo)"})
   void testVisitBootstrapMethodInfo() {
-    // Arrange
-    BootstrapMethodArgumentShrinker bootstrapMethodArgumentShrinker = new BootstrapMethodArgumentShrinker();
-    LibraryClass clazz = mock(LibraryClass.class);
-    doNothing().when(clazz).constantPoolEntryAccept(anyInt(), Mockito.<ConstantVisitor>any());
-
-    // Act
-    bootstrapMethodArgumentShrinker.visitBootstrapMethodInfo(clazz, new BootstrapMethodInfo());
-
-    // Assert
-    verify(clazz).constantPoolEntryAccept(eq(0), isA(ConstantVisitor.class));
-  }
-
-  /**
-   * Method under test:
-   * {@link BootstrapMethodArgumentShrinker#visitBootstrapMethodInfo(Clazz, BootstrapMethodInfo)}
-   */
-  @Test
-  void testVisitBootstrapMethodInfo2() {
     // Arrange
     BootstrapMethodArgumentShrinker bootstrapMethodArgumentShrinker = new BootstrapMethodArgumentShrinker();
     LibraryClass clazz = mock(LibraryClass.class);
@@ -58,11 +47,43 @@ class BootstrapMethodArgumentShrinkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link BootstrapMethodArgumentShrinker#visitMethodHandleConstant(Clazz, MethodHandleConstant)}
+   * Test {@link BootstrapMethodArgumentShrinker#visitBootstrapMethodInfo(Clazz, BootstrapMethodInfo)}.
+   * <ul>
+   *   <li>Then calls {@link LibraryClass#constantPoolEntryAccept(int, ConstantVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link BootstrapMethodArgumentShrinker#visitBootstrapMethodInfo(Clazz, BootstrapMethodInfo)}
    */
   @Test
-  void testVisitMethodHandleConstant() {
+  @DisplayName("Test visitBootstrapMethodInfo(Clazz, BootstrapMethodInfo); then calls constantPoolEntryAccept(int, ConstantVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void BootstrapMethodArgumentShrinker.visitBootstrapMethodInfo(Clazz, BootstrapMethodInfo)"})
+  void testVisitBootstrapMethodInfo_thenCallsConstantPoolEntryAccept() {
+    // Arrange
+    BootstrapMethodArgumentShrinker bootstrapMethodArgumentShrinker = new BootstrapMethodArgumentShrinker();
+    LibraryClass clazz = mock(LibraryClass.class);
+    doNothing().when(clazz).constantPoolEntryAccept(anyInt(), Mockito.<ConstantVisitor>any());
+
+    // Act
+    bootstrapMethodArgumentShrinker.visitBootstrapMethodInfo(clazz, new BootstrapMethodInfo());
+
+    // Assert
+    verify(clazz).constantPoolEntryAccept(eq(0), isA(ConstantVisitor.class));
+  }
+
+  /**
+   * Test {@link BootstrapMethodArgumentShrinker#visitMethodHandleConstant(Clazz, MethodHandleConstant)}.
+   * <ul>
+   *   <li>Then calls {@link LibraryClass#constantPoolEntryAccept(int, ConstantVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link BootstrapMethodArgumentShrinker#visitMethodHandleConstant(Clazz, MethodHandleConstant)}
+   */
+  @Test
+  @DisplayName("Test visitMethodHandleConstant(Clazz, MethodHandleConstant); then calls constantPoolEntryAccept(int, ConstantVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void BootstrapMethodArgumentShrinker.visitMethodHandleConstant(Clazz, MethodHandleConstant)"})
+  void testVisitMethodHandleConstant_thenCallsConstantPoolEntryAccept() {
     // Arrange
     BootstrapMethodArgumentShrinker bootstrapMethodArgumentShrinker = new BootstrapMethodArgumentShrinker();
     LibraryClass clazz = mock(LibraryClass.class);
@@ -76,11 +97,18 @@ class BootstrapMethodArgumentShrinkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link BootstrapMethodArgumentShrinker#visitProgramMethod(ProgramClass, ProgramMethod)}
+   * Test {@link BootstrapMethodArgumentShrinker#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   * <ul>
+   *   <li>Given {@link MethodOptimizationInfo} (default constructor).</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link BootstrapMethodArgumentShrinker#visitProgramMethod(ProgramClass, ProgramMethod)}
    */
   @Test
-  void testVisitProgramMethod() {
+  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); given MethodOptimizationInfo (default constructor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void BootstrapMethodArgumentShrinker.visitProgramMethod(ProgramClass, ProgramMethod)"})
+  void testVisitProgramMethod_givenMethodOptimizationInfo() {
     // Arrange
     BootstrapMethodArgumentShrinker bootstrapMethodArgumentShrinker = new BootstrapMethodArgumentShrinker();
     ProgramClass programClass = new ProgramClass();
@@ -95,11 +123,18 @@ class BootstrapMethodArgumentShrinkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link BootstrapMethodArgumentShrinker#visitProgramMethod(ProgramClass, ProgramMethod)}
+   * Test {@link BootstrapMethodArgumentShrinker#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   * <ul>
+   *   <li>Then calls {@link MethodOptimizationInfo#getUsedParameters()}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link BootstrapMethodArgumentShrinker#visitProgramMethod(ProgramClass, ProgramMethod)}
    */
   @Test
-  void testVisitProgramMethod2() {
+  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); then calls getUsedParameters()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void BootstrapMethodArgumentShrinker.visitProgramMethod(ProgramClass, ProgramMethod)"})
+  void testVisitProgramMethod_thenCallsGetUsedParameters() {
     // Arrange
     BootstrapMethodArgumentShrinker bootstrapMethodArgumentShrinker = new BootstrapMethodArgumentShrinker();
     ProgramClass programClass = new ProgramClass();

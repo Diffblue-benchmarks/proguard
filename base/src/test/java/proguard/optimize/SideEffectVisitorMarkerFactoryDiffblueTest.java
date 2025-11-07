@@ -1,16 +1,23 @@
 package proguard.optimize;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import proguard.classfile.visitor.MemberVisitor;
 import proguard.fixer.kotlin.KotlinAnnotationCounter;
 
 class SideEffectVisitorMarkerFactoryDiffblueTest {
   /**
-   * Method under test:
-   * {@link SideEffectVisitorMarkerFactory#createMemberVisitor(MemberVisitor)}
+   * Test {@link SideEffectVisitorMarkerFactory#createMemberVisitor(MemberVisitor)}.
+   * <p>
+   * Method under test: {@link SideEffectVisitorMarkerFactory#createMemberVisitor(MemberVisitor)}
    */
   @Test
+  @DisplayName("Test createMemberVisitor(MemberVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"MemberVisitor SideEffectVisitorMarkerFactory.createMemberVisitor(MemberVisitor)"})
   void testCreateMemberVisitor() {
     // Arrange
     SideEffectVisitorMarkerFactory sideEffectVisitorMarkerFactory = new SideEffectVisitorMarkerFactory(true);
@@ -21,10 +28,14 @@ class SideEffectVisitorMarkerFactoryDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link SideEffectVisitorMarkerFactory#createMemberVisitor(MemberVisitor)}
+   * Test {@link SideEffectVisitorMarkerFactory#createMemberVisitor(MemberVisitor)}.
+   * <p>
+   * Method under test: {@link SideEffectVisitorMarkerFactory#createMemberVisitor(MemberVisitor)}
    */
   @Test
+  @DisplayName("Test createMemberVisitor(MemberVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"MemberVisitor SideEffectVisitorMarkerFactory.createMemberVisitor(MemberVisitor)"})
   void testCreateMemberVisitor2() {
     // Arrange
     SideEffectVisitorMarkerFactory sideEffectVisitorMarkerFactory = new SideEffectVisitorMarkerFactory(false);

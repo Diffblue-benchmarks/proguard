@@ -1,16 +1,24 @@
 package proguard;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.net.MalformedURLException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 class SeedPrinterDiffblueTest {
   /**
+   * Test {@link SeedPrinter#SeedPrinter(Configuration)}.
+   * <p>
    * Method under test: {@link SeedPrinter#SeedPrinter(Configuration)}
    */
   @Test
+  @DisplayName("Test new SeedPrinter(Configuration)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SeedPrinter.<init>(Configuration)"})
   void testNewSeedPrinter() throws MalformedURLException {
     // Arrange
     Configuration configuration = new Configuration();

@@ -6,12 +6,15 @@ import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.Clazz;
 import proguard.classfile.LibraryClass;
 import proguard.classfile.LibraryField;
+import proguard.classfile.LibraryMember;
 import proguard.classfile.constant.ClassConstant;
 import proguard.classfile.constant.FieldrefConstant;
 import proguard.classfile.constant.RefConstant;
@@ -21,32 +24,19 @@ import proguard.classfile.visitor.MemberVisitor;
 
 class PackageVisibleMemberInvokingClassMarkerDiffblueTest {
   /**
-   * Method under test:
-   * {@link PackageVisibleMemberInvokingClassMarker#visitStringConstant(Clazz, StringConstant)}
+   * Test {@link PackageVisibleMemberInvokingClassMarker#visitStringConstant(Clazz, StringConstant)}.
+   * <ul>
+   *   <li>Given {@link LibraryClass} {@link LibraryClass#accept(ClassVisitor)} does nothing.</li>
+   *   <li>Then calls {@link LibraryClass#accept(ClassVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link PackageVisibleMemberInvokingClassMarker#visitStringConstant(Clazz, StringConstant)}
    */
   @Test
-  void testVisitStringConstant() {
-    // Arrange
-    PackageVisibleMemberInvokingClassMarker packageVisibleMemberInvokingClassMarker = new PackageVisibleMemberInvokingClassMarker();
-    LibraryClass clazz = new LibraryClass();
-    StringConstant stringConstant = mock(StringConstant.class);
-    doNothing().when(stringConstant).referencedClassAccept(Mockito.<ClassVisitor>any());
-    doNothing().when(stringConstant).referencedMemberAccept(Mockito.<MemberVisitor>any());
-
-    // Act
-    packageVisibleMemberInvokingClassMarker.visitStringConstant(clazz, stringConstant);
-
-    // Assert
-    verify(stringConstant).referencedClassAccept(isA(ClassVisitor.class));
-    verify(stringConstant).referencedMemberAccept(isA(MemberVisitor.class));
-  }
-
-  /**
-   * Method under test:
-   * {@link PackageVisibleMemberInvokingClassMarker#visitStringConstant(Clazz, StringConstant)}
-   */
-  @Test
-  void testVisitStringConstant2() {
+  @DisplayName("Test visitStringConstant(Clazz, StringConstant); given LibraryClass accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void PackageVisibleMemberInvokingClassMarker.visitStringConstant(Clazz, StringConstant)"})
+  void testVisitStringConstant_givenLibraryClassAcceptDoesNothing_thenCallsAccept() {
     // Arrange
     PackageVisibleMemberInvokingClassMarker packageVisibleMemberInvokingClassMarker = new PackageVisibleMemberInvokingClassMarker();
     LibraryClass clazz = new LibraryClass();
@@ -64,11 +54,19 @@ class PackageVisibleMemberInvokingClassMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link PackageVisibleMemberInvokingClassMarker#visitStringConstant(Clazz, StringConstant)}
+   * Test {@link PackageVisibleMemberInvokingClassMarker#visitStringConstant(Clazz, StringConstant)}.
+   * <ul>
+   *   <li>Given {@link LibraryField} {@link LibraryMember#accept(Clazz, MemberVisitor)} does nothing.</li>
+   *   <li>Then calls {@link LibraryMember#accept(Clazz, MemberVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link PackageVisibleMemberInvokingClassMarker#visitStringConstant(Clazz, StringConstant)}
    */
   @Test
-  void testVisitStringConstant3() {
+  @DisplayName("Test visitStringConstant(Clazz, StringConstant); given LibraryField accept(Clazz, MemberVisitor) does nothing; then calls accept(Clazz, MemberVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void PackageVisibleMemberInvokingClassMarker.visitStringConstant(Clazz, StringConstant)"})
+  void testVisitStringConstant_givenLibraryFieldAcceptDoesNothing_thenCallsAccept() {
     // Arrange
     PackageVisibleMemberInvokingClassMarker packageVisibleMemberInvokingClassMarker = new PackageVisibleMemberInvokingClassMarker();
     LibraryClass clazz = new LibraryClass();
@@ -86,11 +84,75 @@ class PackageVisibleMemberInvokingClassMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link PackageVisibleMemberInvokingClassMarker#visitAnyRefConstant(Clazz, RefConstant)}
+   * Test {@link PackageVisibleMemberInvokingClassMarker#visitStringConstant(Clazz, StringConstant)}.
+   * <ul>
+   *   <li>Then calls {@link StringConstant#referencedClassAccept(ClassVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link PackageVisibleMemberInvokingClassMarker#visitStringConstant(Clazz, StringConstant)}
    */
   @Test
-  void testVisitAnyRefConstant() {
+  @DisplayName("Test visitStringConstant(Clazz, StringConstant); then calls referencedClassAccept(ClassVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void PackageVisibleMemberInvokingClassMarker.visitStringConstant(Clazz, StringConstant)"})
+  void testVisitStringConstant_thenCallsReferencedClassAccept() {
+    // Arrange
+    PackageVisibleMemberInvokingClassMarker packageVisibleMemberInvokingClassMarker = new PackageVisibleMemberInvokingClassMarker();
+    LibraryClass clazz = new LibraryClass();
+    StringConstant stringConstant = mock(StringConstant.class);
+    doNothing().when(stringConstant).referencedClassAccept(Mockito.<ClassVisitor>any());
+    doNothing().when(stringConstant).referencedMemberAccept(Mockito.<MemberVisitor>any());
+
+    // Act
+    packageVisibleMemberInvokingClassMarker.visitStringConstant(clazz, stringConstant);
+
+    // Assert
+    verify(stringConstant).referencedClassAccept(isA(ClassVisitor.class));
+    verify(stringConstant).referencedMemberAccept(isA(MemberVisitor.class));
+  }
+
+  /**
+   * Test {@link PackageVisibleMemberInvokingClassMarker#visitAnyRefConstant(Clazz, RefConstant)}.
+   * <ul>
+   *   <li>Given {@link LibraryClass} {@link LibraryClass#accept(ClassVisitor)} does nothing.</li>
+   *   <li>Then calls {@link LibraryClass#accept(ClassVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link PackageVisibleMemberInvokingClassMarker#visitAnyRefConstant(Clazz, RefConstant)}
+   */
+  @Test
+  @DisplayName("Test visitAnyRefConstant(Clazz, RefConstant); given LibraryClass accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void PackageVisibleMemberInvokingClassMarker.visitAnyRefConstant(Clazz, RefConstant)"})
+  void testVisitAnyRefConstant_givenLibraryClassAcceptDoesNothing_thenCallsAccept() {
+    // Arrange
+    PackageVisibleMemberInvokingClassMarker packageVisibleMemberInvokingClassMarker = new PackageVisibleMemberInvokingClassMarker();
+    LibraryClass clazz = new LibraryClass();
+    LibraryClass libraryClass = mock(LibraryClass.class);
+    doNothing().when(libraryClass).accept(Mockito.<ClassVisitor>any());
+    FieldrefConstant refConstant = new FieldrefConstant();
+    refConstant.referencedClass = libraryClass;
+
+    // Act
+    packageVisibleMemberInvokingClassMarker.visitAnyRefConstant(clazz, refConstant);
+
+    // Assert
+    verify(libraryClass).accept(isA(ClassVisitor.class));
+  }
+
+  /**
+   * Test {@link PackageVisibleMemberInvokingClassMarker#visitAnyRefConstant(Clazz, RefConstant)}.
+   * <ul>
+   *   <li>Then calls {@link FieldrefConstant#referencedMemberAccept(MemberVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link PackageVisibleMemberInvokingClassMarker#visitAnyRefConstant(Clazz, RefConstant)}
+   */
+  @Test
+  @DisplayName("Test visitAnyRefConstant(Clazz, RefConstant); then calls referencedMemberAccept(MemberVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void PackageVisibleMemberInvokingClassMarker.visitAnyRefConstant(Clazz, RefConstant)"})
+  void testVisitAnyRefConstant_thenCallsReferencedMemberAccept() {
     // Arrange
     PackageVisibleMemberInvokingClassMarker packageVisibleMemberInvokingClassMarker = new PackageVisibleMemberInvokingClassMarker();
     LibraryClass clazz = new LibraryClass();
@@ -107,11 +169,47 @@ class PackageVisibleMemberInvokingClassMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link PackageVisibleMemberInvokingClassMarker#visitClassConstant(Clazz, ClassConstant)}
+   * Test {@link PackageVisibleMemberInvokingClassMarker#visitClassConstant(Clazz, ClassConstant)}.
+   * <ul>
+   *   <li>Given {@link LibraryClass} {@link LibraryClass#accept(ClassVisitor)} does nothing.</li>
+   *   <li>Then calls {@link LibraryClass#accept(ClassVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link PackageVisibleMemberInvokingClassMarker#visitClassConstant(Clazz, ClassConstant)}
    */
   @Test
-  void testVisitClassConstant() {
+  @DisplayName("Test visitClassConstant(Clazz, ClassConstant); given LibraryClass accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void PackageVisibleMemberInvokingClassMarker.visitClassConstant(Clazz, ClassConstant)"})
+  void testVisitClassConstant_givenLibraryClassAcceptDoesNothing_thenCallsAccept() {
+    // Arrange
+    PackageVisibleMemberInvokingClassMarker packageVisibleMemberInvokingClassMarker = new PackageVisibleMemberInvokingClassMarker();
+    LibraryClass clazz = new LibraryClass();
+    LibraryClass libraryClass = mock(LibraryClass.class);
+    doNothing().when(libraryClass).accept(Mockito.<ClassVisitor>any());
+    ClassConstant classConstant = new ClassConstant();
+    classConstant.referencedClass = libraryClass;
+
+    // Act
+    packageVisibleMemberInvokingClassMarker.visitClassConstant(clazz, classConstant);
+
+    // Assert
+    verify(libraryClass).accept(isA(ClassVisitor.class));
+  }
+
+  /**
+   * Test {@link PackageVisibleMemberInvokingClassMarker#visitClassConstant(Clazz, ClassConstant)}.
+   * <ul>
+   *   <li>Then calls {@link ClassConstant#referencedClassAccept(ClassVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link PackageVisibleMemberInvokingClassMarker#visitClassConstant(Clazz, ClassConstant)}
+   */
+  @Test
+  @DisplayName("Test visitClassConstant(Clazz, ClassConstant); then calls referencedClassAccept(ClassVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void PackageVisibleMemberInvokingClassMarker.visitClassConstant(Clazz, ClassConstant)"})
+  void testVisitClassConstant_thenCallsReferencedClassAccept() {
     // Arrange
     PackageVisibleMemberInvokingClassMarker packageVisibleMemberInvokingClassMarker = new PackageVisibleMemberInvokingClassMarker();
     LibraryClass clazz = new LibraryClass();
@@ -126,29 +224,19 @@ class PackageVisibleMemberInvokingClassMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link PackageVisibleMemberInvokingClassMarker#visitAnyClass(Clazz)}
+   * Test {@link PackageVisibleMemberInvokingClassMarker#invokesPackageVisibleMembers(Clazz)}.
+   * <ul>
+   *   <li>Given {@link ClassOptimizationInfo} (default constructor).</li>
+   *   <li>Then return {@code true}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link PackageVisibleMemberInvokingClassMarker#invokesPackageVisibleMembers(Clazz)}
    */
   @Test
-  void testVisitAnyClass() {
-    // Arrange
-    PackageVisibleMemberInvokingClassMarker packageVisibleMemberInvokingClassMarker = new PackageVisibleMemberInvokingClassMarker();
-    LibraryClass clazz = mock(LibraryClass.class);
-    when(clazz.getAccessFlags()).thenReturn(1);
-
-    // Act
-    packageVisibleMemberInvokingClassMarker.visitAnyClass(clazz);
-
-    // Assert
-    verify(clazz).getAccessFlags();
-  }
-
-  /**
-   * Method under test:
-   * {@link PackageVisibleMemberInvokingClassMarker#invokesPackageVisibleMembers(Clazz)}
-   */
-  @Test
-  void testInvokesPackageVisibleMembers() {
+  @DisplayName("Test invokesPackageVisibleMembers(Clazz); given ClassOptimizationInfo (default constructor); then return 'true'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean PackageVisibleMemberInvokingClassMarker.invokesPackageVisibleMembers(Clazz)"})
+  void testInvokesPackageVisibleMembers_givenClassOptimizationInfo_thenReturnTrue() {
     // Arrange
     LibraryClass clazz = new LibraryClass();
     clazz.setProcessingInfo(new ClassOptimizationInfo());
@@ -158,11 +246,18 @@ class PackageVisibleMemberInvokingClassMarkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link PackageVisibleMemberInvokingClassMarker#invokesPackageVisibleMembers(Clazz)}
+   * Test {@link PackageVisibleMemberInvokingClassMarker#invokesPackageVisibleMembers(Clazz)}.
+   * <ul>
+   *   <li>Then return {@code false}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link PackageVisibleMemberInvokingClassMarker#invokesPackageVisibleMembers(Clazz)}
    */
   @Test
-  void testInvokesPackageVisibleMembers2() {
+  @DisplayName("Test invokesPackageVisibleMembers(Clazz); then return 'false'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean PackageVisibleMemberInvokingClassMarker.invokesPackageVisibleMembers(Clazz)"})
+  void testInvokesPackageVisibleMembers_thenReturnFalse() {
     // Arrange
     LibraryClass clazz = new LibraryClass();
     clazz.setProcessingInfo(new ProgramClassOptimizationInfo());

@@ -1,6 +1,9 @@
 package proguard.obfuscate.kotlin;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import proguard.classfile.Clazz;
 import proguard.classfile.LibraryClass;
@@ -12,10 +15,14 @@ import proguard.classfile.kotlin.flags.KotlinVisibilityFlags;
 
 class KotlinAliasReferenceFixerDiffblueTest {
   /**
-   * Method under test:
-   * {@link KotlinAliasReferenceFixer#visitAnyType(Clazz, KotlinTypeMetadata)}
+   * Test {@link KotlinAliasReferenceFixer#visitAnyType(Clazz, KotlinTypeMetadata)}.
+   * <p>
+   * Method under test: {@link KotlinAliasReferenceFixer#visitAnyType(Clazz, KotlinTypeMetadata)}
    */
   @Test
+  @DisplayName("Test visitAnyType(Clazz, KotlinTypeMetadata)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void KotlinAliasReferenceFixer.visitAnyType(Clazz, KotlinTypeMetadata)"})
   void testVisitAnyType() {
     // Arrange
     KotlinAliasReferenceFixer kotlinAliasReferenceFixer = new KotlinAliasReferenceFixer();

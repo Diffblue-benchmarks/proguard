@@ -8,6 +8,9 @@ import static org.mockito.Mockito.atLeast;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import proguard.classfile.Clazz;
 import proguard.classfile.Field;
@@ -20,9 +23,9 @@ import proguard.classfile.constant.FieldrefConstant;
 import proguard.classfile.constant.InterfaceMethodrefConstant;
 import proguard.evaluation.ParticularReferenceValueFactory;
 import proguard.evaluation.value.IdentifiedReferenceValue;
-import proguard.evaluation.value.ParticularReferenceValue;
 import proguard.evaluation.value.ReferenceValue;
 import proguard.evaluation.value.TopValue;
+import proguard.evaluation.value.UnknownReferenceValue;
 import proguard.evaluation.value.Value;
 import proguard.evaluation.value.ValueFactory;
 import proguard.evaluation.value.object.AnalyzedObject;
@@ -32,226 +35,14 @@ import proguard.optimize.info.ProgramFieldOptimizationInfo;
 
 class StoringInvocationUnitDiffblueTest {
   /**
-   * Method under test:
-   * {@link StoringInvocationUnit#setFieldClassValue(Clazz, FieldrefConstant, ReferenceValue)}
+   * Test {@link StoringInvocationUnit#StoringInvocationUnit(ValueFactory)}.
+   * <p>
+   * Method under test: {@link StoringInvocationUnit#StoringInvocationUnit(ValueFactory)}
    */
   @Test
-  void testSetFieldClassValue() {
-    // Arrange
-    StoringInvocationUnit storingInvocationUnit = new StoringInvocationUnit(new ParticularReferenceValueFactory());
-    LibraryClass clazz = new LibraryClass();
-    FieldrefConstant refConstant = new FieldrefConstant();
-    AnalyzedObject value = mock(AnalyzedObject.class);
-    when(value.getType()).thenReturn("Type");
-    LibraryClass referencedClass = new LibraryClass();
-
-    // Act
-    storingInvocationUnit.setFieldClassValue(clazz, refConstant,
-        new ParticularReferenceValue(referencedClass, new ParticularReferenceValueFactory(), "Reference ID", value));
-
-    // Assert that nothing has changed
-    verify(value, atLeast(1)).getType();
-  }
-
-  /**
-   * Method under test:
-   * {@link StoringInvocationUnit#setFieldValue(Clazz, FieldrefConstant, Value)}
-   */
-  @Test
-  void testSetFieldValue() {
-    // Arrange
-    StoringInvocationUnit storingInvocationUnit = new StoringInvocationUnit(new ParticularReferenceValueFactory());
-    LibraryClass clazz = new LibraryClass();
-    Field referencedField = mock(Field.class);
-    when(referencedField.getProcessingInfo()).thenReturn(new FieldOptimizationInfo());
-    FieldrefConstant refConstant = new FieldrefConstant(1, 1, new LibraryClass(), referencedField);
-
-    // Act
-    storingInvocationUnit.setFieldValue(clazz, refConstant, new TopValue());
-
-    // Assert that nothing has changed
-    verify(referencedField).getProcessingInfo();
-  }
-
-  /**
-   * Method under test:
-   * {@link StoringInvocationUnit#setFieldValue(Clazz, FieldrefConstant, Value)}
-   */
-  @Test
-  void testSetFieldValue2() {
-    // Arrange
-    StoringInvocationUnit storingInvocationUnit = new StoringInvocationUnit(new ParticularReferenceValueFactory());
-    LibraryClass clazz = new LibraryClass();
-    FieldOptimizationInfo fieldOptimizationInfo = mock(FieldOptimizationInfo.class);
-    when(fieldOptimizationInfo.isKept()).thenReturn(true);
-    Field referencedField = mock(Field.class);
-    when(referencedField.getProcessingInfo()).thenReturn(fieldOptimizationInfo);
-    FieldrefConstant refConstant = new FieldrefConstant(1, 1, new LibraryClass(), referencedField);
-
-    // Act
-    storingInvocationUnit.setFieldValue(clazz, refConstant, new TopValue());
-
-    // Assert
-    verify(fieldOptimizationInfo).isKept();
-    verify(referencedField).getProcessingInfo();
-  }
-
-  /**
-   * Method under test:
-   * {@link StoringInvocationUnit#setMethodParameterValue(Clazz, AnyMethodrefConstant, int, Value)}
-   */
-  @Test
-  void testSetMethodParameterValue() {
-    // Arrange
-    StoringInvocationUnit storingInvocationUnit = new StoringInvocationUnit(new ParticularReferenceValueFactory());
-    LibraryClass clazz = new LibraryClass();
-    Method referencedMethod = mock(Method.class);
-    when(referencedMethod.getProcessingInfo()).thenReturn(new MethodOptimizationInfo());
-    InterfaceMethodrefConstant refConstant = new InterfaceMethodrefConstant(1, 1, new LibraryClass(), referencedMethod);
-
-    // Act
-    storingInvocationUnit.setMethodParameterValue(clazz, refConstant, 1, new TopValue());
-
-    // Assert that nothing has changed
-    verify(referencedMethod, atLeast(1)).getProcessingInfo();
-  }
-
-  /**
-   * Method under test:
-   * {@link StoringInvocationUnit#setMethodParameterValue(Clazz, AnyMethodrefConstant, int, Value)}
-   */
-  @Test
-  void testSetMethodParameterValue2() {
-    // Arrange
-    StoringInvocationUnit storingInvocationUnit = new StoringInvocationUnit(new ParticularReferenceValueFactory());
-    LibraryClass clazz = new LibraryClass();
-    MethodOptimizationInfo methodOptimizationInfo = mock(MethodOptimizationInfo.class);
-    when(methodOptimizationInfo.isKept()).thenReturn(true);
-    Method referencedMethod = mock(Method.class);
-    when(referencedMethod.getProcessingInfo()).thenReturn(methodOptimizationInfo);
-    InterfaceMethodrefConstant refConstant = new InterfaceMethodrefConstant(1, 1, new LibraryClass(), referencedMethod);
-
-    // Act
-    storingInvocationUnit.setMethodParameterValue(clazz, refConstant, 1, new TopValue());
-
-    // Assert
-    verify(methodOptimizationInfo).isKept();
-    verify(referencedMethod, atLeast(1)).getProcessingInfo();
-  }
-
-  /**
-   * Method under test:
-   * {@link StoringInvocationUnit#setMethodReturnValue(Clazz, Method, Value)}
-   */
-  @Test
-  void testSetMethodReturnValue() {
-    // Arrange
-    StoringInvocationUnit storingInvocationUnit = new StoringInvocationUnit(new ParticularReferenceValueFactory());
-    LibraryClass clazz = new LibraryClass();
-    Method method = mock(Method.class);
-    when(method.getProcessingInfo()).thenReturn(new MethodOptimizationInfo());
-
-    // Act
-    storingInvocationUnit.setMethodReturnValue(clazz, method, new TopValue());
-
-    // Assert that nothing has changed
-    verify(method, atLeast(1)).getProcessingInfo();
-  }
-
-  /**
-   * Method under test:
-   * {@link StoringInvocationUnit#setMethodReturnValue(Clazz, Method, Value)}
-   */
-  @Test
-  void testSetMethodReturnValue2() {
-    // Arrange
-    StoringInvocationUnit storingInvocationUnit = new StoringInvocationUnit(new ParticularReferenceValueFactory());
-    LibraryClass clazz = new LibraryClass();
-    MethodOptimizationInfo methodOptimizationInfo = mock(MethodOptimizationInfo.class);
-    when(methodOptimizationInfo.isKept()).thenReturn(true);
-    Method method = mock(Method.class);
-    when(method.getProcessingInfo()).thenReturn(methodOptimizationInfo);
-
-    // Act
-    storingInvocationUnit.setMethodReturnValue(clazz, method, new TopValue());
-
-    // Assert
-    verify(methodOptimizationInfo).isKept();
-    verify(method, atLeast(1)).getProcessingInfo();
-  }
-
-  /**
-   * Method under test: {@link StoringInvocationUnit#getFieldClassValue(Field)}
-   */
-  @Test
-  void testGetFieldClassValue() {
-    // Arrange
-    LibraryField field = new LibraryField(1, "Name", "Descriptor");
-    field.setProcessingInfo(new FieldOptimizationInfo());
-
-    // Act and Assert
-    assertNull(StoringInvocationUnit.getFieldClassValue(field));
-  }
-
-  /**
-   * Method under test: {@link StoringInvocationUnit#getFieldClassValue(Field)}
-   */
-  @Test
-  void testGetFieldClassValue2() {
-    // Arrange
-    LibraryField field = new LibraryField(1, "Name", "Descriptor");
-    LibraryClass clazz = new LibraryClass();
-    field.setProcessingInfo(new ProgramFieldOptimizationInfo(clazz, new LibraryField(1, "Name", "Descriptor"), true));
-
-    // Act and Assert
-    assertNull(StoringInvocationUnit.getFieldClassValue(field));
-  }
-
-  /**
-   * Method under test: {@link StoringInvocationUnit#getFieldValue(Field)}
-   */
-  @Test
-  void testGetFieldValue() {
-    // Arrange
-    LibraryField field = new LibraryField(1, "Name", "Descriptor");
-    field.setProcessingInfo(new FieldOptimizationInfo());
-
-    // Act and Assert
-    assertNull(StoringInvocationUnit.getFieldValue(field));
-  }
-
-  /**
-   * Method under test:
-   * {@link StoringInvocationUnit#getMethodParameterValue(Method, int)}
-   */
-  @Test
-  void testGetMethodParameterValue() {
-    // Arrange
-    LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
-    method.setProcessingInfo(new MethodOptimizationInfo());
-
-    // Act and Assert
-    assertNull(StoringInvocationUnit.getMethodParameterValue(method, 1));
-  }
-
-  /**
-   * Method under test: {@link StoringInvocationUnit#getMethodReturnValue(Method)}
-   */
-  @Test
-  void testGetMethodReturnValue() {
-    // Arrange
-    LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
-    method.setProcessingInfo(new MethodOptimizationInfo());
-
-    // Act and Assert
-    assertNull(StoringInvocationUnit.getMethodReturnValue(method));
-  }
-
-  /**
-   * Method under test:
-   * {@link StoringInvocationUnit#StoringInvocationUnit(ValueFactory)}
-   */
-  @Test
+  @DisplayName("Test new StoringInvocationUnit(ValueFactory)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void StoringInvocationUnit.<init>(ValueFactory)"})
   void testNewStoringInvocationUnit() {
     // Arrange, Act and Assert
     Value exceptionValue = (new StoringInvocationUnit(new ParticularReferenceValueFactory())).getExceptionValue(null,
@@ -271,10 +62,14 @@ class StoringInvocationUnitDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link StoringInvocationUnit#StoringInvocationUnit(ValueFactory, boolean, boolean, boolean)}
+   * Test {@link StoringInvocationUnit#StoringInvocationUnit(ValueFactory, boolean, boolean, boolean)}.
+   * <p>
+   * Method under test: {@link StoringInvocationUnit#StoringInvocationUnit(ValueFactory, boolean, boolean, boolean)}
    */
   @Test
+  @DisplayName("Test new StoringInvocationUnit(ValueFactory, boolean, boolean, boolean)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void StoringInvocationUnit.<init>(ValueFactory, boolean, boolean, boolean)"})
   void testNewStoringInvocationUnit2() {
     // Arrange, Act and Assert
     Value exceptionValue = (new StoringInvocationUnit(new ParticularReferenceValueFactory(), true, true, true))
@@ -291,5 +86,233 @@ class StoringInvocationUnitDiffblueTest {
     assertFalse(exceptionValue.isParticular());
     assertTrue(((IdentifiedReferenceValue) exceptionValue).mayBeExtension());
     assertTrue(exceptionValue.isSpecific());
+  }
+
+  /**
+   * Test {@link StoringInvocationUnit#setFieldClassValue(Clazz, FieldrefConstant, ReferenceValue)}.
+   * <p>
+   * Method under test: {@link StoringInvocationUnit#setFieldClassValue(Clazz, FieldrefConstant, ReferenceValue)}
+   */
+  @Test
+  @DisplayName("Test setFieldClassValue(Clazz, FieldrefConstant, ReferenceValue)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void StoringInvocationUnit.setFieldClassValue(Clazz, FieldrefConstant, ReferenceValue)"})
+  void testSetFieldClassValue() {
+    // Arrange
+    StoringInvocationUnit storingInvocationUnit = new StoringInvocationUnit(new ParticularReferenceValueFactory());
+    LibraryClass clazz = new LibraryClass();
+    FieldrefConstant refConstant = new FieldrefConstant();
+
+    // Act
+    storingInvocationUnit.setFieldClassValue(clazz, refConstant, new UnknownReferenceValue());
+
+    // Assert
+    assertTrue(storingInvocationUnit.getExceptionValue(null, null) instanceof IdentifiedReferenceValue);
+  }
+
+  /**
+   * Test {@link StoringInvocationUnit#setFieldValue(Clazz, FieldrefConstant, Value)}.
+   * <p>
+   * Method under test: {@link StoringInvocationUnit#setFieldValue(Clazz, FieldrefConstant, Value)}
+   */
+  @Test
+  @DisplayName("Test setFieldValue(Clazz, FieldrefConstant, Value)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void StoringInvocationUnit.setFieldValue(Clazz, FieldrefConstant, Value)"})
+  void testSetFieldValue() {
+    // Arrange
+    StoringInvocationUnit storingInvocationUnit = new StoringInvocationUnit(new ParticularReferenceValueFactory());
+    LibraryClass clazz = new LibraryClass();
+    FieldrefConstant refConstant = new FieldrefConstant();
+
+    // Act
+    storingInvocationUnit.setFieldValue(clazz, refConstant, new TopValue());
+
+    // Assert
+    assertTrue(storingInvocationUnit.getExceptionValue(null, null) instanceof IdentifiedReferenceValue);
+  }
+
+  /**
+   * Test {@link StoringInvocationUnit#setMethodParameterValue(Clazz, AnyMethodrefConstant, int, Value)}.
+   * <p>
+   * Method under test: {@link StoringInvocationUnit#setMethodParameterValue(Clazz, AnyMethodrefConstant, int, Value)}
+   */
+  @Test
+  @DisplayName("Test setMethodParameterValue(Clazz, AnyMethodrefConstant, int, Value)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void StoringInvocationUnit.setMethodParameterValue(Clazz, AnyMethodrefConstant, int, Value)"})
+  void testSetMethodParameterValue() {
+    // Arrange
+    StoringInvocationUnit storingInvocationUnit = new StoringInvocationUnit(new ParticularReferenceValueFactory());
+    LibraryClass clazz = new LibraryClass();
+    InterfaceMethodrefConstant refConstant = new InterfaceMethodrefConstant();
+
+    // Act
+    storingInvocationUnit.setMethodParameterValue(clazz, refConstant, 1, new TopValue());
+
+    // Assert
+    assertTrue(storingInvocationUnit.getExceptionValue(null, null) instanceof IdentifiedReferenceValue);
+  }
+
+  /**
+   * Test {@link StoringInvocationUnit#setMethodReturnValue(Clazz, Method, Value)}.
+   * <ul>
+   *   <li>Given {@link MethodOptimizationInfo} (default constructor).</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link StoringInvocationUnit#setMethodReturnValue(Clazz, Method, Value)}
+   */
+  @Test
+  @DisplayName("Test setMethodReturnValue(Clazz, Method, Value); given MethodOptimizationInfo (default constructor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void StoringInvocationUnit.setMethodReturnValue(Clazz, Method, Value)"})
+  void testSetMethodReturnValue_givenMethodOptimizationInfo() {
+    // Arrange
+    StoringInvocationUnit storingInvocationUnit = new StoringInvocationUnit(new ParticularReferenceValueFactory());
+    LibraryClass clazz = new LibraryClass();
+    Method method = mock(Method.class);
+    when(method.getProcessingInfo()).thenReturn(new MethodOptimizationInfo());
+
+    // Act
+    storingInvocationUnit.setMethodReturnValue(clazz, method, new TopValue());
+
+    // Assert
+    verify(method, atLeast(1)).getProcessingInfo();
+    assertTrue(storingInvocationUnit.getExceptionValue(null, null) instanceof IdentifiedReferenceValue);
+  }
+
+  /**
+   * Test {@link StoringInvocationUnit#setMethodReturnValue(Clazz, Method, Value)}.
+   * <ul>
+   *   <li>Then calls {@link MethodOptimizationInfo#isKept()}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link StoringInvocationUnit#setMethodReturnValue(Clazz, Method, Value)}
+   */
+  @Test
+  @DisplayName("Test setMethodReturnValue(Clazz, Method, Value); then calls isKept()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void StoringInvocationUnit.setMethodReturnValue(Clazz, Method, Value)"})
+  void testSetMethodReturnValue_thenCallsIsKept() {
+    // Arrange
+    StoringInvocationUnit storingInvocationUnit = new StoringInvocationUnit(new ParticularReferenceValueFactory());
+    LibraryClass clazz = new LibraryClass();
+    MethodOptimizationInfo methodOptimizationInfo = mock(MethodOptimizationInfo.class);
+    when(methodOptimizationInfo.isKept()).thenReturn(true);
+    Method method = mock(Method.class);
+    when(method.getProcessingInfo()).thenReturn(methodOptimizationInfo);
+
+    // Act
+    storingInvocationUnit.setMethodReturnValue(clazz, method, new TopValue());
+
+    // Assert
+    verify(methodOptimizationInfo).isKept();
+    verify(method, atLeast(1)).getProcessingInfo();
+    assertTrue(storingInvocationUnit.getExceptionValue(null, null) instanceof IdentifiedReferenceValue);
+  }
+
+  /**
+   * Test {@link StoringInvocationUnit#getFieldClassValue(Field)} with {@code field}.
+   * <p>
+   * Method under test: {@link StoringInvocationUnit#getFieldClassValue(Field)}
+   */
+  @Test
+  @DisplayName("Test getFieldClassValue(Field) with 'field'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"ReferenceValue StoringInvocationUnit.getFieldClassValue(Field)"})
+  void testGetFieldClassValueWithField() {
+    // Arrange
+    LibraryField field = new LibraryField(1, "Name", "Descriptor");
+    LibraryClass clazz = new LibraryClass();
+    field.setProcessingInfo(new ProgramFieldOptimizationInfo(clazz, new LibraryField(1, "Name", "Descriptor"), true));
+
+    // Act and Assert
+    assertNull(StoringInvocationUnit.getFieldClassValue(field));
+  }
+
+  /**
+   * Test {@link StoringInvocationUnit#getFieldClassValue(Field)} with {@code field}.
+   * <ul>
+   *   <li>Given {@link FieldOptimizationInfo} (default constructor).</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link StoringInvocationUnit#getFieldClassValue(Field)}
+   */
+  @Test
+  @DisplayName("Test getFieldClassValue(Field) with 'field'; given FieldOptimizationInfo (default constructor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"ReferenceValue StoringInvocationUnit.getFieldClassValue(Field)"})
+  void testGetFieldClassValueWithField_givenFieldOptimizationInfo() {
+    // Arrange
+    LibraryField field = new LibraryField(1, "Name", "Descriptor");
+    field.setProcessingInfo(new FieldOptimizationInfo());
+
+    // Act and Assert
+    assertNull(StoringInvocationUnit.getFieldClassValue(field));
+  }
+
+  /**
+   * Test {@link StoringInvocationUnit#getFieldValue(Field)} with {@code field}.
+   * <ul>
+   *   <li>Given {@link FieldOptimizationInfo} (default constructor).</li>
+   *   <li>Then return {@code null}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link StoringInvocationUnit#getFieldValue(Field)}
+   */
+  @Test
+  @DisplayName("Test getFieldValue(Field) with 'field'; given FieldOptimizationInfo (default constructor); then return 'null'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"Value StoringInvocationUnit.getFieldValue(Field)"})
+  void testGetFieldValueWithField_givenFieldOptimizationInfo_thenReturnNull() {
+    // Arrange
+    LibraryField field = new LibraryField(1, "Name", "Descriptor");
+    field.setProcessingInfo(new FieldOptimizationInfo());
+
+    // Act and Assert
+    assertNull(StoringInvocationUnit.getFieldValue(field));
+  }
+
+  /**
+   * Test {@link StoringInvocationUnit#getMethodParameterValue(Method, int)} with {@code method}, {@code parameterIndex}.
+   * <ul>
+   *   <li>Then return {@code null}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link StoringInvocationUnit#getMethodParameterValue(Method, int)}
+   */
+  @Test
+  @DisplayName("Test getMethodParameterValue(Method, int) with 'method', 'parameterIndex'; then return 'null'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"Value StoringInvocationUnit.getMethodParameterValue(Method, int)"})
+  void testGetMethodParameterValueWithMethodParameterIndex_thenReturnNull() {
+    // Arrange
+    LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
+    method.setProcessingInfo(new MethodOptimizationInfo());
+
+    // Act and Assert
+    assertNull(StoringInvocationUnit.getMethodParameterValue(method, 1));
+  }
+
+  /**
+   * Test {@link StoringInvocationUnit#getMethodReturnValue(Method)} with {@code method}.
+   * <ul>
+   *   <li>Given {@link MethodOptimizationInfo} (default constructor).</li>
+   *   <li>Then return {@code null}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link StoringInvocationUnit#getMethodReturnValue(Method)}
+   */
+  @Test
+  @DisplayName("Test getMethodReturnValue(Method) with 'method'; given MethodOptimizationInfo (default constructor); then return 'null'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"Value StoringInvocationUnit.getMethodReturnValue(Method)"})
+  void testGetMethodReturnValueWithMethod_givenMethodOptimizationInfo_thenReturnNull() {
+    // Arrange
+    LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
+    method.setProcessingInfo(new MethodOptimizationInfo());
+
+    // Act and Assert
+    assertNull(StoringInvocationUnit.getMethodReturnValue(method));
   }
 }

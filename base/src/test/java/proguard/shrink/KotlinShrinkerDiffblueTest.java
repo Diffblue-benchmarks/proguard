@@ -7,8 +7,11 @@ import static org.mockito.Mockito.atLeast;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.util.ArrayList;
 import java.util.List;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.Clazz;
@@ -32,11 +35,19 @@ import proguard.util.Processable;
 
 class KotlinShrinkerDiffblueTest {
   /**
-   * Method under test:
-   * {@link KotlinShrinker#visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata)}
+   * Test {@link KotlinShrinker#visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata)}.
+   * <ul>
+   *   <li>Then calls {@link KotlinPropertyMetadata#contextReceiverTypesAccept(Clazz, KotlinMetadata, KotlinTypeVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link KotlinShrinker#visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata)}
    */
   @Test
-  void testVisitAnyProperty() {
+  @DisplayName("Test visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata); then calls contextReceiverTypesAccept(Clazz, KotlinMetadata, KotlinTypeVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void KotlinShrinker.visitAnyProperty(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata)"})
+  void testVisitAnyProperty_thenCallsContextReceiverTypesAccept() {
     // Arrange
     KotlinShrinker kotlinShrinker = new KotlinShrinker(new SimpleUsageMarker());
     LibraryClass clazz = new LibraryClass();
@@ -82,11 +93,18 @@ class KotlinShrinkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link KotlinShrinker#visitConstructor(Clazz, KotlinClassKindMetadata, KotlinConstructorMetadata)}
+   * Test {@link KotlinShrinker#visitConstructor(Clazz, KotlinClassKindMetadata, KotlinConstructorMetadata)}.
+   * <ul>
+   *   <li>Then calls {@link KotlinConstructorMetadata#valueParametersAccept(Clazz, KotlinClassKindMetadata, KotlinValueParameterVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link KotlinShrinker#visitConstructor(Clazz, KotlinClassKindMetadata, KotlinConstructorMetadata)}
    */
   @Test
-  void testVisitConstructor() {
+  @DisplayName("Test visitConstructor(Clazz, KotlinClassKindMetadata, KotlinConstructorMetadata); then calls valueParametersAccept(Clazz, KotlinClassKindMetadata, KotlinValueParameterVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void KotlinShrinker.visitConstructor(Clazz, KotlinClassKindMetadata, KotlinConstructorMetadata)"})
+  void testVisitConstructor_thenCallsValueParametersAccept() {
     // Arrange
     KotlinShrinker kotlinShrinker = new KotlinShrinker(new SimpleUsageMarker());
     LibraryClass clazz = new LibraryClass();
@@ -112,11 +130,19 @@ class KotlinShrinkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link KotlinShrinker#visitConstructorValParameter(Clazz, KotlinClassKindMetadata, KotlinConstructorMetadata, KotlinValueParameterMetadata)}
+   * Test {@link KotlinShrinker#visitConstructorValParameter(Clazz, KotlinClassKindMetadata, KotlinConstructorMetadata, KotlinValueParameterMetadata)}.
+   * <ul>
+   *   <li>Then calls {@link KotlinValueParameterMetadata#typeAccept(Clazz, KotlinClassKindMetadata, KotlinConstructorMetadata, KotlinTypeVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link KotlinShrinker#visitConstructorValParameter(Clazz, KotlinClassKindMetadata, KotlinConstructorMetadata, KotlinValueParameterMetadata)}
    */
   @Test
-  void testVisitConstructorValParameter() {
+  @DisplayName("Test visitConstructorValParameter(Clazz, KotlinClassKindMetadata, KotlinConstructorMetadata, KotlinValueParameterMetadata); then calls typeAccept(Clazz, KotlinClassKindMetadata, KotlinConstructorMetadata, KotlinTypeVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void KotlinShrinker.visitConstructorValParameter(Clazz, KotlinClassKindMetadata, KotlinConstructorMetadata, KotlinValueParameterMetadata)"})
+  void testVisitConstructorValParameter_thenCallsTypeAccept() {
     // Arrange
     KotlinShrinker kotlinShrinker = new KotlinShrinker(new SimpleUsageMarker());
     LibraryClass clazz = new LibraryClass();
@@ -147,11 +173,19 @@ class KotlinShrinkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link KotlinShrinker#visitPropertyValParameter(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata, KotlinValueParameterMetadata)}
+   * Test {@link KotlinShrinker#visitPropertyValParameter(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata, KotlinValueParameterMetadata)}.
+   * <ul>
+   *   <li>Then calls {@link KotlinValueParameterMetadata#typeAccept(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata, KotlinTypeVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link KotlinShrinker#visitPropertyValParameter(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata, KotlinValueParameterMetadata)}
    */
   @Test
-  void testVisitPropertyValParameter() {
+  @DisplayName("Test visitPropertyValParameter(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata, KotlinValueParameterMetadata); then calls typeAccept(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata, KotlinTypeVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void KotlinShrinker.visitPropertyValParameter(Clazz, KotlinDeclarationContainerMetadata, KotlinPropertyMetadata, KotlinValueParameterMetadata)"})
+  void testVisitPropertyValParameter_thenCallsTypeAccept() {
     // Arrange
     KotlinShrinker kotlinShrinker = new KotlinShrinker(new SimpleUsageMarker());
     LibraryClass clazz = new LibraryClass();
@@ -216,30 +250,15 @@ class KotlinShrinkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link KotlinShrinker#shrinkArray(SimpleUsageMarker, List, List)}
+   * Test {@link KotlinShrinker#shrinkArray(SimpleUsageMarker, List, List)} with {@code usageMarker}, {@code elements}, {@code referencedJavaElements}.
+   * <p>
+   * Method under test: {@link KotlinShrinker#shrinkArray(SimpleUsageMarker, List, List)}
    */
   @Test
-  void testShrinkArray() {
-    // Arrange
-    SimpleUsageMarker usageMarker = new SimpleUsageMarker();
-    ArrayList<Object> elements = new ArrayList<>();
-    ArrayList<Processable> referencedJavaElements = new ArrayList<>();
-
-    // Act
-    KotlinShrinker.shrinkArray(usageMarker, elements, referencedJavaElements);
-
-    // Assert that nothing has changed
-    assertTrue(elements.isEmpty());
-    assertTrue(referencedJavaElements.isEmpty());
-  }
-
-  /**
-   * Method under test:
-   * {@link KotlinShrinker#shrinkArray(SimpleUsageMarker, List, List)}
-   */
-  @Test
-  void testShrinkArray2() {
+  @DisplayName("Test shrinkArray(SimpleUsageMarker, List, List) with 'usageMarker', 'elements', 'referencedJavaElements'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void KotlinShrinker.shrinkArray(SimpleUsageMarker, List, List)"})
+  void testShrinkArrayWithUsageMarkerElementsReferencedJavaElements() {
     // Arrange
     SimpleUsageMarker usageMarker = new SimpleUsageMarker();
     ArrayList<Object> elements = new ArrayList<>();
@@ -256,11 +275,15 @@ class KotlinShrinkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link KotlinShrinker#shrinkArray(SimpleUsageMarker, List, List)}
+   * Test {@link KotlinShrinker#shrinkArray(SimpleUsageMarker, List, List)} with {@code usageMarker}, {@code elements}, {@code referencedJavaElements}.
+   * <p>
+   * Method under test: {@link KotlinShrinker#shrinkArray(SimpleUsageMarker, List, List)}
    */
   @Test
-  void testShrinkArray3() {
+  @DisplayName("Test shrinkArray(SimpleUsageMarker, List, List) with 'usageMarker', 'elements', 'referencedJavaElements'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void KotlinShrinker.shrinkArray(SimpleUsageMarker, List, List)"})
+  void testShrinkArrayWithUsageMarkerElementsReferencedJavaElements2() {
     // Arrange
     SimpleUsageMarker usageMarker = new SimpleUsageMarker();
     ArrayList<Object> elements = new ArrayList<>();
@@ -278,11 +301,44 @@ class KotlinShrinkerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link KotlinShrinker#shrinkArray(SimpleUsageMarker, List, List)}
+   * Test {@link KotlinShrinker#shrinkArray(SimpleUsageMarker, List, List)} with {@code usageMarker}, {@code elements}, {@code referencedJavaElements}.
+   * <ul>
+   *   <li>Then {@link ArrayList#ArrayList()} Empty.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link KotlinShrinker#shrinkArray(SimpleUsageMarker, List, List)}
    */
   @Test
-  void testShrinkArray4() {
+  @DisplayName("Test shrinkArray(SimpleUsageMarker, List, List) with 'usageMarker', 'elements', 'referencedJavaElements'; then ArrayList() Empty")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void KotlinShrinker.shrinkArray(SimpleUsageMarker, List, List)"})
+  void testShrinkArrayWithUsageMarkerElementsReferencedJavaElements_thenArrayListEmpty() {
+    // Arrange
+    SimpleUsageMarker usageMarker = new SimpleUsageMarker();
+    ArrayList<Object> elements = new ArrayList<>();
+    ArrayList<Processable> referencedJavaElements = new ArrayList<>();
+
+    // Act
+    KotlinShrinker.shrinkArray(usageMarker, elements, referencedJavaElements);
+
+    // Assert that nothing has changed
+    assertTrue(elements.isEmpty());
+    assertTrue(referencedJavaElements.isEmpty());
+  }
+
+  /**
+   * Test {@link KotlinShrinker#shrinkArray(SimpleUsageMarker, List, List)} with {@code usageMarker}, {@code elements}, {@code referencedJavaElements}.
+   * <ul>
+   *   <li>Then {@link ArrayList#ArrayList()} Empty.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link KotlinShrinker#shrinkArray(SimpleUsageMarker, List, List)}
+   */
+  @Test
+  @DisplayName("Test shrinkArray(SimpleUsageMarker, List, List) with 'usageMarker', 'elements', 'referencedJavaElements'; then ArrayList() Empty")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void KotlinShrinker.shrinkArray(SimpleUsageMarker, List, List)"})
+  void testShrinkArrayWithUsageMarkerElementsReferencedJavaElements_thenArrayListEmpty2() {
     // Arrange
     SimpleUsageMarker usageMarker = new SimpleUsageMarker();
 
@@ -298,26 +354,5 @@ class KotlinShrinkerDiffblueTest {
     // Assert
     assertTrue(elements.isEmpty());
     assertTrue(referencedJavaElements.isEmpty());
-  }
-
-  /**
-   * Method under test:
-   * {@link KotlinShrinker#shrinkArray(SimpleUsageMarker, List, List)}
-   */
-  @Test
-  void testShrinkArray5() {
-    // Arrange
-    SimpleUsageMarker usageMarker = new SimpleUsageMarker();
-    ArrayList<Object> elements = new ArrayList<>();
-
-    ArrayList<Processable> referencedJavaElements = new ArrayList<>();
-    referencedJavaElements.add(mock(Processable.class));
-
-    // Act
-    KotlinShrinker.shrinkArray(usageMarker, elements, referencedJavaElements);
-
-    // Assert that nothing has changed
-    assertEquals(1, referencedJavaElements.size());
-    assertTrue(elements.isEmpty());
   }
 }

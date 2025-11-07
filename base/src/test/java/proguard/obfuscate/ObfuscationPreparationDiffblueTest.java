@@ -3,10 +3,13 @@ package proguard.obfuscate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
+import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import proguard.AppView;
 import proguard.ClassPath;
@@ -14,22 +17,14 @@ import proguard.Configuration;
 
 class ObfuscationPreparationDiffblueTest {
   /**
-   * Method under test: {@link ObfuscationPreparation#execute(AppView)}
+   * Test {@link ObfuscationPreparation#ObfuscationPreparation(Configuration)}.
+   * <p>
+   * Method under test: {@link ObfuscationPreparation#ObfuscationPreparation(Configuration)}
    */
   @Test
-  void testExecute() throws IOException {
-    // Arrange
-    ObfuscationPreparation obfuscationPreparation = new ObfuscationPreparation(mock(Configuration.class));
-
-    // Act and Assert
-    assertThrows(IOException.class, () -> obfuscationPreparation.execute(new AppView()));
-  }
-
-  /**
-   * Method under test:
-   * {@link ObfuscationPreparation#ObfuscationPreparation(Configuration)}
-   */
-  @Test
+  @DisplayName("Test new ObfuscationPreparation(Configuration)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ObfuscationPreparation.<init>(Configuration)"})
   void testNewObfuscationPreparation() throws MalformedURLException {
     // Arrange
     Configuration configuration = new Configuration();
@@ -102,5 +97,26 @@ class ObfuscationPreparationDiffblueTest {
 
     // Act and Assert
     assertEquals("proguard.obfuscate.ObfuscationPreparation", (new ObfuscationPreparation(configuration)).getName());
+  }
+
+  /**
+   * Test {@link ObfuscationPreparation#execute(AppView)}.
+   * <ul>
+   *   <li>Given {@link ObfuscationPreparation#ObfuscationPreparation(Configuration)} with {@link Configuration}.</li>
+   *   <li>Then throw {@link IOException}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link ObfuscationPreparation#execute(AppView)}
+   */
+  @Test
+  @DisplayName("Test execute(AppView); given ObfuscationPreparation(Configuration) with Configuration; then throw IOException")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void ObfuscationPreparation.execute(AppView)"})
+  void testExecute_givenObfuscationPreparationWithConfiguration_thenThrowIOException() throws IOException {
+    // Arrange
+    ObfuscationPreparation obfuscationPreparation = new ObfuscationPreparation(mock(Configuration.class));
+
+    // Act and Assert
+    assertThrows(IOException.class, () -> obfuscationPreparation.execute(new AppView()));
   }
 }

@@ -5,7 +5,9 @@ import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.AppView;
@@ -19,34 +21,25 @@ import proguard.classfile.attribute.Attribute;
 import proguard.classfile.attribute.BootstrapMethodsAttribute;
 import proguard.classfile.attribute.CodeAttribute;
 import proguard.classfile.attribute.LineNumberTableAttribute;
-import proguard.classfile.attribute.visitor.AttributeVisitor;
 import proguard.classfile.attribute.visitor.LineNumberInfoVisitor;
 import proguard.classfile.visitor.ClassVisitor;
 import proguard.classfile.visitor.MemberVisitor;
 
 class LineNumberLinearizerDiffblueTest {
   /**
+   * Test {@link LineNumberLinearizer#execute(AppView)}.
+   * <ul>
+   *   <li>Given {@link LibraryClass} {@link LibraryClass#accept(ClassVisitor)} does nothing.</li>
+   *   <li>Then calls {@link LibraryClass#accept(ClassVisitor)}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link LineNumberLinearizer#execute(AppView)}
    */
   @Test
-  void testExecute() {
-    // Arrange
-    LineNumberLinearizer lineNumberLinearizer = new LineNumberLinearizer();
-    ClassPool programClassPool = mock(ClassPool.class);
-    doNothing().when(programClassPool).classesAccept(Mockito.<ClassVisitor>any());
-
-    // Act
-    lineNumberLinearizer.execute(new AppView(programClassPool, new ClassPool()));
-
-    // Assert
-    verify(programClassPool).classesAccept(isA(ClassVisitor.class));
-  }
-
-  /**
-   * Method under test: {@link LineNumberLinearizer#execute(AppView)}
-   */
-  @Test
-  void testExecute2() {
+  @DisplayName("Test execute(AppView); given LibraryClass accept(ClassVisitor) does nothing; then calls accept(ClassVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void LineNumberLinearizer.execute(AppView)"})
+  void testExecute_givenLibraryClassAcceptDoesNothing_thenCallsAccept() {
     // Arrange
     LineNumberLinearizer lineNumberLinearizer = new LineNumberLinearizer();
     LibraryClass clazz = mock(LibraryClass.class);
@@ -63,11 +56,44 @@ class LineNumberLinearizerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link LineNumberLinearizer#visitProgramClass(ProgramClass)}
+   * Test {@link LineNumberLinearizer#execute(AppView)}.
+   * <ul>
+   *   <li>When {@link ClassPool} {@link ClassPool#classesAccept(ClassVisitor)} does nothing.</li>
+   *   <li>Then calls {@link ClassPool#classesAccept(ClassVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link LineNumberLinearizer#execute(AppView)}
    */
   @Test
-  void testVisitProgramClass() {
+  @DisplayName("Test execute(AppView); when ClassPool classesAccept(ClassVisitor) does nothing; then calls classesAccept(ClassVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void LineNumberLinearizer.execute(AppView)"})
+  void testExecute_whenClassPoolClassesAcceptDoesNothing_thenCallsClassesAccept() {
+    // Arrange
+    LineNumberLinearizer lineNumberLinearizer = new LineNumberLinearizer();
+    ClassPool programClassPool = mock(ClassPool.class);
+    doNothing().when(programClassPool).classesAccept(Mockito.<ClassVisitor>any());
+
+    // Act
+    lineNumberLinearizer.execute(new AppView(programClassPool, new ClassPool()));
+
+    // Assert
+    verify(programClassPool).classesAccept(isA(ClassVisitor.class));
+  }
+
+  /**
+   * Test {@link LineNumberLinearizer#visitProgramClass(ProgramClass)}.
+   * <ul>
+   *   <li>Then calls {@link ProgramClass#methodsAccept(MemberVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link LineNumberLinearizer#visitProgramClass(ProgramClass)}
+   */
+  @Test
+  @DisplayName("Test visitProgramClass(ProgramClass); then calls methodsAccept(MemberVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void LineNumberLinearizer.visitProgramClass(ProgramClass)"})
+  void testVisitProgramClass_thenCallsMethodsAccept() {
     // Arrange
     LineNumberLinearizer lineNumberLinearizer = new LineNumberLinearizer();
     ProgramClass programClass = mock(ProgramClass.class);
@@ -81,58 +107,22 @@ class LineNumberLinearizerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link LineNumberLinearizer#visitCodeAttribute(Clazz, Method, CodeAttribute)}
+   * Test {@link LineNumberLinearizer#visitLineNumberTableAttribute(Clazz, Method, CodeAttribute, LineNumberTableAttribute)}.
+   * <ul>
+   *   <li>Then calls {@link LineNumberTableAttribute#lineNumbersAccept(Clazz, Method, CodeAttribute, LineNumberInfoVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link LineNumberLinearizer#visitLineNumberTableAttribute(Clazz, Method, CodeAttribute, LineNumberTableAttribute)}
    */
   @Test
-  void testVisitCodeAttribute() {
+  @DisplayName("Test visitLineNumberTableAttribute(Clazz, Method, CodeAttribute, LineNumberTableAttribute); then calls lineNumbersAccept(Clazz, Method, CodeAttribute, LineNumberInfoVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void LineNumberLinearizer.visitLineNumberTableAttribute(Clazz, Method, CodeAttribute, LineNumberTableAttribute)"})
+  void testVisitLineNumberTableAttribute_thenCallsLineNumbersAccept() {
     // Arrange
     LineNumberLinearizer lineNumberLinearizer = new LineNumberLinearizer();
     LibraryClass clazz = new LibraryClass();
-    LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
-
-    CodeAttribute codeAttribute = mock(CodeAttribute.class);
-    doNothing().when(codeAttribute)
-        .attributesAccept(Mockito.<Clazz>any(), Mockito.<Method>any(), Mockito.<AttributeVisitor>any());
-
-    // Act
-    lineNumberLinearizer.visitCodeAttribute(clazz, method, codeAttribute);
-
-    // Assert
-    verify(codeAttribute).attributesAccept(isA(Clazz.class), isA(Method.class), isA(AttributeVisitor.class));
-  }
-
-  /**
-   * Method under test:
-   * {@link LineNumberLinearizer#visitLineNumberTableAttribute(Clazz, Method, CodeAttribute, LineNumberTableAttribute)}
-   */
-  @Test
-  void testVisitLineNumberTableAttribute() {
-    // Arrange
-    LineNumberLinearizer lineNumberLinearizer = new LineNumberLinearizer();
-    LibraryClass clazz = mock(LibraryClass.class);
-    when(clazz.getName()).thenReturn("Name");
-    LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
-
-    CodeAttribute codeAttribute = new CodeAttribute(1);
-
-    // Act
-    lineNumberLinearizer.visitLineNumberTableAttribute(clazz, method, codeAttribute, new LineNumberTableAttribute());
-
-    // Assert
-    verify(clazz).getName();
-  }
-
-  /**
-   * Method under test:
-   * {@link LineNumberLinearizer#visitLineNumberTableAttribute(Clazz, Method, CodeAttribute, LineNumberTableAttribute)}
-   */
-  @Test
-  void testVisitLineNumberTableAttribute2() {
-    // Arrange
-    LineNumberLinearizer lineNumberLinearizer = new LineNumberLinearizer();
-    LibraryClass clazz = mock(LibraryClass.class);
-    when(clazz.getName()).thenReturn("Name");
     LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
 
     CodeAttribute codeAttribute = new CodeAttribute(1);
@@ -145,12 +135,13 @@ class LineNumberLinearizerDiffblueTest {
     lineNumberLinearizer.visitLineNumberTableAttribute(clazz, method, codeAttribute, lineNumberTableAttribute);
 
     // Assert
-    verify(clazz).getName();
     verify(lineNumberTableAttribute).lineNumbersAccept(isA(Clazz.class), isA(Method.class), isA(CodeAttribute.class),
         isA(LineNumberInfoVisitor.class));
   }
 
   /**
+   * Test getters and setters.
+   * <p>
    * Methods under test:
    * <ul>
    *   <li>default or parameterless constructor of {@link LineNumberLinearizer}
@@ -159,6 +150,11 @@ class LineNumberLinearizerDiffblueTest {
    * </ul>
    */
   @Test
+  @DisplayName("Test getters and setters")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void LineNumberLinearizer.<init>()",
+      "void LineNumberLinearizer.visitAnyAttribute(Clazz, Attribute)",
+      "void LineNumberLinearizer.visitAnyClass(Clazz)"})
   void testGettersAndSetters() {
     // Arrange and Act
     LineNumberLinearizer actualLineNumberLinearizer = new LineNumberLinearizer();
@@ -166,7 +162,7 @@ class LineNumberLinearizerDiffblueTest {
     actualLineNumberLinearizer.visitAnyAttribute(clazz, new BootstrapMethodsAttribute());
     actualLineNumberLinearizer.visitAnyClass(new LibraryClass());
 
-    // Assert that nothing has changed
+    // Assert
     assertEquals("proguard.optimize.peephole.LineNumberLinearizer", actualLineNumberLinearizer.getName());
   }
 }

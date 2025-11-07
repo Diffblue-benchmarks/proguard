@@ -7,6 +7,9 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.Clazz;
@@ -18,12 +21,7 @@ import proguard.classfile.ProgramField;
 import proguard.classfile.ProgramMethod;
 import proguard.classfile.attribute.CodeAttribute;
 import proguard.classfile.attribute.LocalVariableInfo;
-import proguard.classfile.attribute.LocalVariableTableAttribute;
-import proguard.classfile.attribute.LocalVariableTypeTableAttribute;
 import proguard.classfile.attribute.SignatureAttribute;
-import proguard.classfile.attribute.visitor.AttributeVisitor;
-import proguard.classfile.attribute.visitor.LocalVariableInfoVisitor;
-import proguard.classfile.attribute.visitor.LocalVariableTypeInfoVisitor;
 import proguard.classfile.constant.InvokeDynamicConstant;
 import proguard.classfile.constant.MethodTypeConstant;
 import proguard.classfile.constant.visitor.ConstantVisitor;
@@ -33,11 +31,19 @@ import proguard.optimize.info.ProgramClassOptimizationInfo;
 
 class SimpleEnumDescriptorSimplifierDiffblueTest {
   /**
-   * Method under test:
-   * {@link SimpleEnumDescriptorSimplifier#visitProgramClass(ProgramClass)}
+   * Test {@link SimpleEnumDescriptorSimplifier#visitProgramClass(ProgramClass)}.
+   * <ul>
+   *   <li>Given {@code Name}.</li>
+   *   <li>Then calls {@link ProgramClass#constantPoolEntriesAccept(ConstantVisitor)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SimpleEnumDescriptorSimplifier#visitProgramClass(ProgramClass)}
    */
   @Test
-  void testVisitProgramClass() {
+  @DisplayName("Test visitProgramClass(ProgramClass); given 'Name'; then calls constantPoolEntriesAccept(ConstantVisitor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SimpleEnumDescriptorSimplifier.visitProgramClass(ProgramClass)"})
+  void testVisitProgramClass_givenName_thenCallsConstantPoolEntriesAccept() {
     // Arrange
     SimpleEnumDescriptorSimplifier simpleEnumDescriptorSimplifier = new SimpleEnumDescriptorSimplifier();
     ProgramClass programClass = mock(ProgramClass.class);
@@ -57,48 +63,19 @@ class SimpleEnumDescriptorSimplifierDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link SimpleEnumDescriptorSimplifier#visitInvokeDynamicConstant(Clazz, InvokeDynamicConstant)}
+   * Test {@link SimpleEnumDescriptorSimplifier#visitInvokeDynamicConstant(Clazz, InvokeDynamicConstant)}.
+   * <ul>
+   *   <li>Given {@code Before: [{}]}.</li>
+   *   <li>When {@link LibraryClass} {@link LibraryClass#getType(int)} return {@code Before: [{}]}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SimpleEnumDescriptorSimplifier#visitInvokeDynamicConstant(Clazz, InvokeDynamicConstant)}
    */
   @Test
-  void testVisitInvokeDynamicConstant() {
-    // Arrange
-    SimpleEnumDescriptorSimplifier simpleEnumDescriptorSimplifier = new SimpleEnumDescriptorSimplifier();
-    LibraryClass clazz = mock(LibraryClass.class);
-    when(clazz.getType(anyInt())).thenReturn("Type");
-
-    // Act
-    simpleEnumDescriptorSimplifier.visitInvokeDynamicConstant(clazz, new InvokeDynamicConstant());
-
-    // Assert
-    verify(clazz).getType(eq(0));
-  }
-
-  /**
-   * Method under test:
-   * {@link SimpleEnumDescriptorSimplifier#visitInvokeDynamicConstant(Clazz, InvokeDynamicConstant)}
-   */
-  @Test
-  void testVisitInvokeDynamicConstant2() {
-    // Arrange
-    SimpleEnumDescriptorSimplifier simpleEnumDescriptorSimplifier = new SimpleEnumDescriptorSimplifier();
-    LibraryClass clazz = mock(LibraryClass.class);
-    InvokeDynamicConstant invokeDynamicConstant = mock(InvokeDynamicConstant.class);
-    when(invokeDynamicConstant.getType(Mockito.<Clazz>any())).thenReturn("Type");
-
-    // Act
-    simpleEnumDescriptorSimplifier.visitInvokeDynamicConstant(clazz, invokeDynamicConstant);
-
-    // Assert
-    verify(invokeDynamicConstant).getType(isA(Clazz.class));
-  }
-
-  /**
-   * Method under test:
-   * {@link SimpleEnumDescriptorSimplifier#visitInvokeDynamicConstant(Clazz, InvokeDynamicConstant)}
-   */
-  @Test
-  void testVisitInvokeDynamicConstant3() {
+  @DisplayName("Test visitInvokeDynamicConstant(Clazz, InvokeDynamicConstant); given 'Before: [{}]'; when LibraryClass getType(int) return 'Before: [{}]'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SimpleEnumDescriptorSimplifier.visitInvokeDynamicConstant(Clazz, InvokeDynamicConstant)"})
+  void testVisitInvokeDynamicConstant_givenBefore_whenLibraryClassGetTypeReturnBefore() {
     // Arrange
     SimpleEnumDescriptorSimplifier simpleEnumDescriptorSimplifier = new SimpleEnumDescriptorSimplifier();
     LibraryClass clazz = mock(LibraryClass.class);
@@ -113,67 +90,72 @@ class SimpleEnumDescriptorSimplifierDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link SimpleEnumDescriptorSimplifier#visitMethodTypeConstant(Clazz, MethodTypeConstant)}
+   * Test {@link SimpleEnumDescriptorSimplifier#visitInvokeDynamicConstant(Clazz, InvokeDynamicConstant)}.
+   * <ul>
+   *   <li>Given {@code Type}.</li>
+   *   <li>When {@link LibraryClass}.</li>
+   *   <li>Then calls {@link InvokeDynamicConstant#getType(Clazz)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SimpleEnumDescriptorSimplifier#visitInvokeDynamicConstant(Clazz, InvokeDynamicConstant)}
    */
   @Test
-  void testVisitMethodTypeConstant() {
+  @DisplayName("Test visitInvokeDynamicConstant(Clazz, InvokeDynamicConstant); given 'Type'; when LibraryClass; then calls getType(Clazz)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SimpleEnumDescriptorSimplifier.visitInvokeDynamicConstant(Clazz, InvokeDynamicConstant)"})
+  void testVisitInvokeDynamicConstant_givenType_whenLibraryClass_thenCallsGetType() {
     // Arrange
     SimpleEnumDescriptorSimplifier simpleEnumDescriptorSimplifier = new SimpleEnumDescriptorSimplifier();
     LibraryClass clazz = mock(LibraryClass.class);
-    when(clazz.getString(anyInt())).thenReturn("String");
+    InvokeDynamicConstant invokeDynamicConstant = mock(InvokeDynamicConstant.class);
+    when(invokeDynamicConstant.getType(Mockito.<Clazz>any())).thenReturn("Type");
 
     // Act
-    simpleEnumDescriptorSimplifier.visitMethodTypeConstant(clazz, new MethodTypeConstant());
+    simpleEnumDescriptorSimplifier.visitInvokeDynamicConstant(clazz, invokeDynamicConstant);
 
     // Assert
-    verify(clazz).getString(eq(0));
+    verify(invokeDynamicConstant).getType(isA(Clazz.class));
   }
 
   /**
-   * Method under test:
-   * {@link SimpleEnumDescriptorSimplifier#visitMethodTypeConstant(Clazz, MethodTypeConstant)}
+   * Test {@link SimpleEnumDescriptorSimplifier#visitInvokeDynamicConstant(Clazz, InvokeDynamicConstant)}.
+   * <ul>
+   *   <li>Then calls {@link LibraryClass#getType(int)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SimpleEnumDescriptorSimplifier#visitInvokeDynamicConstant(Clazz, InvokeDynamicConstant)}
    */
   @Test
-  void testVisitMethodTypeConstant2() {
+  @DisplayName("Test visitInvokeDynamicConstant(Clazz, InvokeDynamicConstant); then calls getType(int)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SimpleEnumDescriptorSimplifier.visitInvokeDynamicConstant(Clazz, InvokeDynamicConstant)"})
+  void testVisitInvokeDynamicConstant_thenCallsGetType() {
     // Arrange
     SimpleEnumDescriptorSimplifier simpleEnumDescriptorSimplifier = new SimpleEnumDescriptorSimplifier();
     LibraryClass clazz = mock(LibraryClass.class);
-    when(clazz.getString(anyInt())).thenReturn("String");
+    when(clazz.getType(anyInt())).thenReturn("Type");
 
     // Act
-    simpleEnumDescriptorSimplifier.visitMethodTypeConstant(clazz,
-        new MethodTypeConstant(1, new Clazz[]{new LibraryClass()}));
+    simpleEnumDescriptorSimplifier.visitInvokeDynamicConstant(clazz, new InvokeDynamicConstant());
 
     // Assert
-    verify(clazz).getString(eq(1));
+    verify(clazz).getType(eq(0));
   }
 
   /**
-   * Method under test:
-   * {@link SimpleEnumDescriptorSimplifier#visitMethodTypeConstant(Clazz, MethodTypeConstant)}
+   * Test {@link SimpleEnumDescriptorSimplifier#visitMethodTypeConstant(Clazz, MethodTypeConstant)}.
+   * <ul>
+   *   <li>Given {@code Before: [{}]}.</li>
+   *   <li>When {@link LibraryClass} {@link LibraryClass#getString(int)} return {@code Before: [{}]}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SimpleEnumDescriptorSimplifier#visitMethodTypeConstant(Clazz, MethodTypeConstant)}
    */
   @Test
-  void testVisitMethodTypeConstant3() {
-    // Arrange
-    SimpleEnumDescriptorSimplifier simpleEnumDescriptorSimplifier = new SimpleEnumDescriptorSimplifier();
-    LibraryClass clazz = mock(LibraryClass.class);
-    MethodTypeConstant methodTypeConstant = mock(MethodTypeConstant.class);
-    when(methodTypeConstant.getType(Mockito.<Clazz>any())).thenReturn("Type");
-
-    // Act
-    simpleEnumDescriptorSimplifier.visitMethodTypeConstant(clazz, methodTypeConstant);
-
-    // Assert
-    verify(methodTypeConstant).getType(isA(Clazz.class));
-  }
-
-  /**
-   * Method under test:
-   * {@link SimpleEnumDescriptorSimplifier#visitMethodTypeConstant(Clazz, MethodTypeConstant)}
-   */
-  @Test
-  void testVisitMethodTypeConstant4() {
+  @DisplayName("Test visitMethodTypeConstant(Clazz, MethodTypeConstant); given 'Before: [{}]'; when LibraryClass getString(int) return 'Before: [{}]'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SimpleEnumDescriptorSimplifier.visitMethodTypeConstant(Clazz, MethodTypeConstant)"})
+  void testVisitMethodTypeConstant_givenBefore_whenLibraryClassGetStringReturnBefore() {
     // Arrange
     SimpleEnumDescriptorSimplifier simpleEnumDescriptorSimplifier = new SimpleEnumDescriptorSimplifier();
     LibraryClass clazz = mock(LibraryClass.class);
@@ -188,29 +170,99 @@ class SimpleEnumDescriptorSimplifierDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link SimpleEnumDescriptorSimplifier#visitProgramField(ProgramClass, ProgramField)}
+   * Test {@link SimpleEnumDescriptorSimplifier#visitMethodTypeConstant(Clazz, MethodTypeConstant)}.
+   * <ul>
+   *   <li>Given {@code String}.</li>
+   *   <li>When {@link LibraryClass} {@link LibraryClass#getString(int)} return {@code String}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SimpleEnumDescriptorSimplifier#visitMethodTypeConstant(Clazz, MethodTypeConstant)}
    */
   @Test
-  void testVisitProgramField() {
+  @DisplayName("Test visitMethodTypeConstant(Clazz, MethodTypeConstant); given 'String'; when LibraryClass getString(int) return 'String'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SimpleEnumDescriptorSimplifier.visitMethodTypeConstant(Clazz, MethodTypeConstant)"})
+  void testVisitMethodTypeConstant_givenString_whenLibraryClassGetStringReturnString() {
     // Arrange
     SimpleEnumDescriptorSimplifier simpleEnumDescriptorSimplifier = new SimpleEnumDescriptorSimplifier();
-    ProgramClass programClass = mock(ProgramClass.class);
-    when(programClass.getString(anyInt())).thenReturn("String");
+    LibraryClass clazz = mock(LibraryClass.class);
+    when(clazz.getString(anyInt())).thenReturn("String");
 
     // Act
-    simpleEnumDescriptorSimplifier.visitProgramField(programClass, new ProgramField());
+    simpleEnumDescriptorSimplifier.visitMethodTypeConstant(clazz, new MethodTypeConstant());
 
     // Assert
-    verify(programClass).getString(eq(0));
+    verify(clazz).getString(eq(0));
   }
 
   /**
-   * Method under test:
-   * {@link SimpleEnumDescriptorSimplifier#visitProgramField(ProgramClass, ProgramField)}
+   * Test {@link SimpleEnumDescriptorSimplifier#visitMethodTypeConstant(Clazz, MethodTypeConstant)}.
+   * <ul>
+   *   <li>Given {@code String}.</li>
+   *   <li>When {@link LibraryClass} {@link LibraryClass#getString(int)} return {@code String}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SimpleEnumDescriptorSimplifier#visitMethodTypeConstant(Clazz, MethodTypeConstant)}
    */
   @Test
-  void testVisitProgramField2() {
+  @DisplayName("Test visitMethodTypeConstant(Clazz, MethodTypeConstant); given 'String'; when LibraryClass getString(int) return 'String'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SimpleEnumDescriptorSimplifier.visitMethodTypeConstant(Clazz, MethodTypeConstant)"})
+  void testVisitMethodTypeConstant_givenString_whenLibraryClassGetStringReturnString2() {
+    // Arrange
+    SimpleEnumDescriptorSimplifier simpleEnumDescriptorSimplifier = new SimpleEnumDescriptorSimplifier();
+    LibraryClass clazz = mock(LibraryClass.class);
+    when(clazz.getString(anyInt())).thenReturn("String");
+
+    // Act
+    simpleEnumDescriptorSimplifier.visitMethodTypeConstant(clazz,
+        new MethodTypeConstant(1, new Clazz[]{new LibraryClass()}));
+
+    // Assert
+    verify(clazz).getString(eq(1));
+  }
+
+  /**
+   * Test {@link SimpleEnumDescriptorSimplifier#visitMethodTypeConstant(Clazz, MethodTypeConstant)}.
+   * <ul>
+   *   <li>Given {@code Type}.</li>
+   *   <li>When {@link LibraryClass}.</li>
+   *   <li>Then calls {@link MethodTypeConstant#getType(Clazz)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SimpleEnumDescriptorSimplifier#visitMethodTypeConstant(Clazz, MethodTypeConstant)}
+   */
+  @Test
+  @DisplayName("Test visitMethodTypeConstant(Clazz, MethodTypeConstant); given 'Type'; when LibraryClass; then calls getType(Clazz)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SimpleEnumDescriptorSimplifier.visitMethodTypeConstant(Clazz, MethodTypeConstant)"})
+  void testVisitMethodTypeConstant_givenType_whenLibraryClass_thenCallsGetType() {
+    // Arrange
+    SimpleEnumDescriptorSimplifier simpleEnumDescriptorSimplifier = new SimpleEnumDescriptorSimplifier();
+    LibraryClass clazz = mock(LibraryClass.class);
+    MethodTypeConstant methodTypeConstant = mock(MethodTypeConstant.class);
+    when(methodTypeConstant.getType(Mockito.<Clazz>any())).thenReturn("Type");
+
+    // Act
+    simpleEnumDescriptorSimplifier.visitMethodTypeConstant(clazz, methodTypeConstant);
+
+    // Assert
+    verify(methodTypeConstant).getType(isA(Clazz.class));
+  }
+
+  /**
+   * Test {@link SimpleEnumDescriptorSimplifier#visitProgramField(ProgramClass, ProgramField)}.
+   * <ul>
+   *   <li>Given {@link ClassOptimizationInfo} (default constructor).</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SimpleEnumDescriptorSimplifier#visitProgramField(ProgramClass, ProgramField)}
+   */
+  @Test
+  @DisplayName("Test visitProgramField(ProgramClass, ProgramField); given ClassOptimizationInfo (default constructor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SimpleEnumDescriptorSimplifier.visitProgramField(ProgramClass, ProgramField)"})
+  void testVisitProgramField_givenClassOptimizationInfo() {
     // Arrange
     SimpleEnumDescriptorSimplifier simpleEnumDescriptorSimplifier = new SimpleEnumDescriptorSimplifier();
     ProgramClass programClass = mock(ProgramClass.class);
@@ -227,11 +279,18 @@ class SimpleEnumDescriptorSimplifierDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link SimpleEnumDescriptorSimplifier#visitProgramField(ProgramClass, ProgramField)}
+   * Test {@link SimpleEnumDescriptorSimplifier#visitProgramField(ProgramClass, ProgramField)}.
+   * <ul>
+   *   <li>Given {@link ProgramClassOptimizationInfo} (default constructor).</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SimpleEnumDescriptorSimplifier#visitProgramField(ProgramClass, ProgramField)}
    */
   @Test
-  void testVisitProgramField3() {
+  @DisplayName("Test visitProgramField(ProgramClass, ProgramField); given ProgramClassOptimizationInfo (default constructor)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SimpleEnumDescriptorSimplifier.visitProgramField(ProgramClass, ProgramField)"})
+  void testVisitProgramField_givenProgramClassOptimizationInfo() {
     // Arrange
     SimpleEnumDescriptorSimplifier simpleEnumDescriptorSimplifier = new SimpleEnumDescriptorSimplifier();
     ProgramClass programClass = mock(ProgramClass.class);
@@ -248,48 +307,46 @@ class SimpleEnumDescriptorSimplifierDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link SimpleEnumDescriptorSimplifier#visitProgramMethod(ProgramClass, ProgramMethod)}
+   * Test {@link SimpleEnumDescriptorSimplifier#visitProgramField(ProgramClass, ProgramField)}.
+   * <ul>
+   *   <li>Given {@code String}.</li>
+   *   <li>When {@link ProgramField#ProgramField()}.</li>
+   *   <li>Then calls {@link ProgramClass#getString(int)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SimpleEnumDescriptorSimplifier#visitProgramField(ProgramClass, ProgramField)}
    */
   @Test
-  void testVisitProgramMethod() {
+  @DisplayName("Test visitProgramField(ProgramClass, ProgramField); given 'String'; when ProgramField(); then calls getString(int)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SimpleEnumDescriptorSimplifier.visitProgramField(ProgramClass, ProgramField)"})
+  void testVisitProgramField_givenString_whenProgramField_thenCallsGetString() {
     // Arrange
     SimpleEnumDescriptorSimplifier simpleEnumDescriptorSimplifier = new SimpleEnumDescriptorSimplifier();
     ProgramClass programClass = mock(ProgramClass.class);
     when(programClass.getString(anyInt())).thenReturn("String");
 
     // Act
-    simpleEnumDescriptorSimplifier.visitProgramMethod(programClass, new ProgramMethod());
+    simpleEnumDescriptorSimplifier.visitProgramField(programClass, new ProgramField());
 
     // Assert
     verify(programClass).getString(eq(0));
   }
 
   /**
-   * Method under test:
-   * {@link SimpleEnumDescriptorSimplifier#visitProgramMethod(ProgramClass, ProgramMethod)}
+   * Test {@link SimpleEnumDescriptorSimplifier#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   * <ul>
+   *   <li>Given {@code Before: [{}]}.</li>
+   *   <li>When {@link ProgramClass} {@link ProgramClass#getString(int)} return {@code Before: [{}]}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SimpleEnumDescriptorSimplifier#visitProgramMethod(ProgramClass, ProgramMethod)}
    */
   @Test
-  void testVisitProgramMethod2() {
-    // Arrange
-    SimpleEnumDescriptorSimplifier simpleEnumDescriptorSimplifier = new SimpleEnumDescriptorSimplifier();
-    ProgramClass programClass = mock(ProgramClass.class);
-    when(programClass.getString(anyInt())).thenReturn("String");
-
-    // Act
-    simpleEnumDescriptorSimplifier.visitProgramMethod(programClass,
-        new ProgramMethod(1, 1, 1, new Clazz[]{new LibraryClass()}));
-
-    // Assert
-    verify(programClass).getString(eq(1));
-  }
-
-  /**
-   * Method under test:
-   * {@link SimpleEnumDescriptorSimplifier#visitProgramMethod(ProgramClass, ProgramMethod)}
-   */
-  @Test
-  void testVisitProgramMethod3() {
+  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); given 'Before: [{}]'; when ProgramClass getString(int) return 'Before: [{}]'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SimpleEnumDescriptorSimplifier.visitProgramMethod(ProgramClass, ProgramMethod)"})
+  void testVisitProgramMethod_givenBefore_whenProgramClassGetStringReturnBefore() {
     // Arrange
     SimpleEnumDescriptorSimplifier simpleEnumDescriptorSimplifier = new SimpleEnumDescriptorSimplifier();
     ProgramClass programClass = mock(ProgramClass.class);
@@ -304,103 +361,71 @@ class SimpleEnumDescriptorSimplifierDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link SimpleEnumDescriptorSimplifier#visitCodeAttribute(Clazz, Method, CodeAttribute)}
+   * Test {@link SimpleEnumDescriptorSimplifier#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   * <ul>
+   *   <li>Given {@code String}.</li>
+   *   <li>When {@link ProgramMethod#ProgramMethod()}.</li>
+   *   <li>Then calls {@link ProgramClass#getString(int)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SimpleEnumDescriptorSimplifier#visitProgramMethod(ProgramClass, ProgramMethod)}
    */
   @Test
-  void testVisitCodeAttribute() {
+  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); given 'String'; when ProgramMethod(); then calls getString(int)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SimpleEnumDescriptorSimplifier.visitProgramMethod(ProgramClass, ProgramMethod)"})
+  void testVisitProgramMethod_givenString_whenProgramMethod_thenCallsGetString() {
     // Arrange
     SimpleEnumDescriptorSimplifier simpleEnumDescriptorSimplifier = new SimpleEnumDescriptorSimplifier();
-    LibraryClass clazz = new LibraryClass();
-    LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
-
-    CodeAttribute codeAttribute = mock(CodeAttribute.class);
-    doNothing().when(codeAttribute)
-        .attributesAccept(Mockito.<Clazz>any(), Mockito.<Method>any(), Mockito.<AttributeVisitor>any());
+    ProgramClass programClass = mock(ProgramClass.class);
+    when(programClass.getString(anyInt())).thenReturn("String");
 
     // Act
-    simpleEnumDescriptorSimplifier.visitCodeAttribute(clazz, method, codeAttribute);
+    simpleEnumDescriptorSimplifier.visitProgramMethod(programClass, new ProgramMethod());
 
     // Assert
-    verify(codeAttribute).attributesAccept(isA(Clazz.class), isA(Method.class), isA(AttributeVisitor.class));
+    verify(programClass).getString(eq(0));
   }
 
   /**
-   * Method under test:
-   * {@link SimpleEnumDescriptorSimplifier#visitLocalVariableTableAttribute(Clazz, Method, CodeAttribute, LocalVariableTableAttribute)}
+   * Test {@link SimpleEnumDescriptorSimplifier#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   * <ul>
+   *   <li>Then calls {@link ProgramClass#getString(int)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SimpleEnumDescriptorSimplifier#visitProgramMethod(ProgramClass, ProgramMethod)}
    */
   @Test
-  void testVisitLocalVariableTableAttribute() {
+  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); then calls getString(int)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SimpleEnumDescriptorSimplifier.visitProgramMethod(ProgramClass, ProgramMethod)"})
+  void testVisitProgramMethod_thenCallsGetString() {
     // Arrange
     SimpleEnumDescriptorSimplifier simpleEnumDescriptorSimplifier = new SimpleEnumDescriptorSimplifier();
-    LibraryClass clazz = new LibraryClass();
-    LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
-
-    CodeAttribute codeAttribute = new CodeAttribute(1);
-    LocalVariableTableAttribute localVariableTableAttribute = mock(LocalVariableTableAttribute.class);
-    doNothing().when(localVariableTableAttribute)
-        .localVariablesAccept(Mockito.<Clazz>any(), Mockito.<Method>any(), Mockito.<CodeAttribute>any(),
-            Mockito.<LocalVariableInfoVisitor>any());
+    ProgramClass programClass = mock(ProgramClass.class);
+    when(programClass.getString(anyInt())).thenReturn("String");
 
     // Act
-    simpleEnumDescriptorSimplifier.visitLocalVariableTableAttribute(clazz, method, codeAttribute,
-        localVariableTableAttribute);
+    simpleEnumDescriptorSimplifier.visitProgramMethod(programClass,
+        new ProgramMethod(1, 1, 1, new Clazz[]{new LibraryClass()}));
 
     // Assert
-    verify(localVariableTableAttribute).localVariablesAccept(isA(Clazz.class), isA(Method.class),
-        isA(CodeAttribute.class), isA(LocalVariableInfoVisitor.class));
+    verify(programClass).getString(eq(1));
   }
 
   /**
-   * Method under test:
-   * {@link SimpleEnumDescriptorSimplifier#visitLocalVariableTypeTableAttribute(Clazz, Method, CodeAttribute, LocalVariableTypeTableAttribute)}
+   * Test {@link SimpleEnumDescriptorSimplifier#visitSignatureAttribute(Clazz, SignatureAttribute)} with {@code clazz}, {@code signatureAttribute}.
+   * <ul>
+   *   <li>Then calls {@link SignatureAttribute#getSignature(Clazz)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SimpleEnumDescriptorSimplifier#visitSignatureAttribute(Clazz, SignatureAttribute)}
    */
   @Test
-  void testVisitLocalVariableTypeTableAttribute() {
-    // Arrange
-    SimpleEnumDescriptorSimplifier simpleEnumDescriptorSimplifier = new SimpleEnumDescriptorSimplifier();
-    LibraryClass clazz = new LibraryClass();
-    LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
-
-    CodeAttribute codeAttribute = new CodeAttribute(1);
-    LocalVariableTypeTableAttribute localVariableTypeTableAttribute = mock(LocalVariableTypeTableAttribute.class);
-    doNothing().when(localVariableTypeTableAttribute)
-        .localVariablesAccept(Mockito.<Clazz>any(), Mockito.<Method>any(), Mockito.<CodeAttribute>any(),
-            Mockito.<LocalVariableTypeInfoVisitor>any());
-
-    // Act
-    simpleEnumDescriptorSimplifier.visitLocalVariableTypeTableAttribute(clazz, method, codeAttribute,
-        localVariableTypeTableAttribute);
-
-    // Assert
-    verify(localVariableTypeTableAttribute).localVariablesAccept(isA(Clazz.class), isA(Method.class),
-        isA(CodeAttribute.class), isA(LocalVariableTypeInfoVisitor.class));
-  }
-
-  /**
-   * Method under test:
-   * {@link SimpleEnumDescriptorSimplifier#visitSignatureAttribute(Clazz, SignatureAttribute)}
-   */
-  @Test
-  void testVisitSignatureAttribute() {
-    // Arrange
-    SimpleEnumDescriptorSimplifier simpleEnumDescriptorSimplifier = new SimpleEnumDescriptorSimplifier();
-    LibraryClass clazz = mock(LibraryClass.class);
-    when(clazz.getString(anyInt())).thenReturn("String");
-
-    // Act
-    simpleEnumDescriptorSimplifier.visitSignatureAttribute(clazz, new SignatureAttribute(1, 1));
-
-    // Assert
-    verify(clazz).getString(eq(1));
-  }
-
-  /**
-   * Method under test:
-   * {@link SimpleEnumDescriptorSimplifier#visitSignatureAttribute(Clazz, SignatureAttribute)}
-   */
-  @Test
-  void testVisitSignatureAttribute2() {
+  @DisplayName("Test visitSignatureAttribute(Clazz, SignatureAttribute) with 'clazz', 'signatureAttribute'; then calls getSignature(Clazz)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SimpleEnumDescriptorSimplifier.visitSignatureAttribute(Clazz, SignatureAttribute)"})
+  void testVisitSignatureAttributeWithClazzSignatureAttribute_thenCallsGetSignature() {
     // Arrange
     SimpleEnumDescriptorSimplifier simpleEnumDescriptorSimplifier = new SimpleEnumDescriptorSimplifier();
     LibraryClass clazz = mock(LibraryClass.class);
@@ -415,33 +440,45 @@ class SimpleEnumDescriptorSimplifierDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link SimpleEnumDescriptorSimplifier#visitLocalVariableInfo(Clazz, Method, CodeAttribute, LocalVariableInfo)}
+   * Test {@link SimpleEnumDescriptorSimplifier#visitSignatureAttribute(Clazz, SignatureAttribute)} with {@code clazz}, {@code signatureAttribute}.
+   * <ul>
+   *   <li>Then calls {@link LibraryClass#getString(int)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SimpleEnumDescriptorSimplifier#visitSignatureAttribute(Clazz, SignatureAttribute)}
    */
   @Test
-  void testVisitLocalVariableInfo() {
+  @DisplayName("Test visitSignatureAttribute(Clazz, SignatureAttribute) with 'clazz', 'signatureAttribute'; then calls getString(int)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SimpleEnumDescriptorSimplifier.visitSignatureAttribute(Clazz, SignatureAttribute)"})
+  void testVisitSignatureAttributeWithClazzSignatureAttribute_thenCallsGetString() {
     // Arrange
     SimpleEnumDescriptorSimplifier simpleEnumDescriptorSimplifier = new SimpleEnumDescriptorSimplifier();
     LibraryClass clazz = mock(LibraryClass.class);
     when(clazz.getString(anyInt())).thenReturn("String");
-    LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
-
-    CodeAttribute codeAttribute = new CodeAttribute(1);
 
     // Act
-    simpleEnumDescriptorSimplifier.visitLocalVariableInfo(clazz, method, codeAttribute,
-        new LocalVariableInfo(1, 3, 1, 1, 1));
+    simpleEnumDescriptorSimplifier.visitSignatureAttribute(clazz, new SignatureAttribute(1, 1));
 
     // Assert
     verify(clazz).getString(eq(1));
   }
 
   /**
-   * Method under test:
-   * {@link SimpleEnumDescriptorSimplifier#visitLocalVariableInfo(Clazz, Method, CodeAttribute, LocalVariableInfo)}
+   * Test {@link SimpleEnumDescriptorSimplifier#visitLocalVariableInfo(Clazz, Method, CodeAttribute, LocalVariableInfo)}.
+   * <ul>
+   *   <li>Given {@code Descriptor}.</li>
+   *   <li>Then calls {@link LocalVariableInfo#getDescriptor(Clazz)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SimpleEnumDescriptorSimplifier#visitLocalVariableInfo(Clazz, Method, CodeAttribute, LocalVariableInfo)}
    */
   @Test
-  void testVisitLocalVariableInfo2() {
+  @DisplayName("Test visitLocalVariableInfo(Clazz, Method, CodeAttribute, LocalVariableInfo); given 'Descriptor'; then calls getDescriptor(Clazz)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void SimpleEnumDescriptorSimplifier.visitLocalVariableInfo(Clazz, Method, CodeAttribute, LocalVariableInfo)"})
+  void testVisitLocalVariableInfo_givenDescriptor_thenCallsGetDescriptor() {
     // Arrange
     SimpleEnumDescriptorSimplifier simpleEnumDescriptorSimplifier = new SimpleEnumDescriptorSimplifier();
     LibraryClass clazz = mock(LibraryClass.class);
@@ -456,5 +493,36 @@ class SimpleEnumDescriptorSimplifierDiffblueTest {
 
     // Assert
     verify(localVariableInfo).getDescriptor(isA(Clazz.class));
+  }
+
+  /**
+   * Test {@link SimpleEnumDescriptorSimplifier#visitLocalVariableInfo(Clazz, Method, CodeAttribute, LocalVariableInfo)}.
+   * <ul>
+   *   <li>Given {@code String}.</li>
+   *   <li>Then calls {@link LibraryClass#getString(int)}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SimpleEnumDescriptorSimplifier#visitLocalVariableInfo(Clazz, Method, CodeAttribute, LocalVariableInfo)}
+   */
+  @Test
+  @DisplayName("Test visitLocalVariableInfo(Clazz, Method, CodeAttribute, LocalVariableInfo); given 'String'; then calls getString(int)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({
+      "void SimpleEnumDescriptorSimplifier.visitLocalVariableInfo(Clazz, Method, CodeAttribute, LocalVariableInfo)"})
+  void testVisitLocalVariableInfo_givenString_thenCallsGetString() {
+    // Arrange
+    SimpleEnumDescriptorSimplifier simpleEnumDescriptorSimplifier = new SimpleEnumDescriptorSimplifier();
+    LibraryClass clazz = mock(LibraryClass.class);
+    when(clazz.getString(anyInt())).thenReturn("String");
+    LibraryMethod method = new LibraryMethod(1, "Name", "Descriptor");
+
+    CodeAttribute codeAttribute = new CodeAttribute(1);
+
+    // Act
+    simpleEnumDescriptorSimplifier.visitLocalVariableInfo(clazz, method, codeAttribute,
+        new LocalVariableInfo(1, 3, 1, 1, 1));
+
+    // Assert
+    verify(clazz).getString(eq(1));
   }
 }

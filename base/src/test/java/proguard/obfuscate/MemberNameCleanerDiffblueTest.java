@@ -3,6 +3,9 @@ package proguard.obfuscate;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import proguard.classfile.LibraryClass;
 import proguard.classfile.LibraryField;
@@ -13,29 +16,18 @@ import proguard.classfile.ProgramMethod;
 
 class MemberNameCleanerDiffblueTest {
   /**
-   * Method under test:
-   * {@link MemberNameCleaner#visitProgramField(ProgramClass, ProgramField)}
+   * Test {@link MemberNameCleaner#visitProgramField(ProgramClass, ProgramField)}.
+   * <ul>
+   *   <li>Given {@code Processing Info}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link MemberNameCleaner#visitProgramField(ProgramClass, ProgramField)}
    */
   @Test
-  void testVisitProgramField() {
-    // Arrange
-    MemberNameCleaner memberNameCleaner = new MemberNameCleaner();
-    ProgramClass programClass = new ProgramClass();
-    ProgramField programField = new ProgramField();
-
-    // Act
-    memberNameCleaner.visitProgramField(programClass, programField);
-
-    // Assert
-    assertNull(programField.getProcessingInfo());
-  }
-
-  /**
-   * Method under test:
-   * {@link MemberNameCleaner#visitProgramField(ProgramClass, ProgramField)}
-   */
-  @Test
-  void testVisitProgramField2() {
+  @DisplayName("Test visitProgramField(ProgramClass, ProgramField); given 'Processing Info'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void MemberNameCleaner.visitProgramField(ProgramClass, ProgramField)"})
+  void testVisitProgramField_givenProcessingInfo() {
     // Arrange
     MemberNameCleaner memberNameCleaner = new MemberNameCleaner();
     ProgramClass programClass = new ProgramClass();
@@ -51,29 +43,44 @@ class MemberNameCleanerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link MemberNameCleaner#visitProgramMethod(ProgramClass, ProgramMethod)}
+   * Test {@link MemberNameCleaner#visitProgramField(ProgramClass, ProgramField)}.
+   * <ul>
+   *   <li>When {@link ProgramField#ProgramField()}.</li>
+   *   <li>Then {@link ProgramField#ProgramField()} ProcessingInfo is {@code null}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link MemberNameCleaner#visitProgramField(ProgramClass, ProgramField)}
    */
   @Test
-  void testVisitProgramMethod() {
+  @DisplayName("Test visitProgramField(ProgramClass, ProgramField); when ProgramField(); then ProgramField() ProcessingInfo is 'null'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void MemberNameCleaner.visitProgramField(ProgramClass, ProgramField)"})
+  void testVisitProgramField_whenProgramField_thenProgramFieldProcessingInfoIsNull() {
     // Arrange
     MemberNameCleaner memberNameCleaner = new MemberNameCleaner();
     ProgramClass programClass = new ProgramClass();
-    ProgramMethod programMethod = new ProgramMethod();
+    ProgramField programField = new ProgramField();
 
     // Act
-    memberNameCleaner.visitProgramMethod(programClass, programMethod);
+    memberNameCleaner.visitProgramField(programClass, programField);
 
-    // Assert
-    assertNull(programMethod.getProcessingInfo());
+    // Assert that nothing has changed
+    assertNull(programField.getProcessingInfo());
   }
 
   /**
-   * Method under test:
-   * {@link MemberNameCleaner#visitProgramMethod(ProgramClass, ProgramMethod)}
+   * Test {@link MemberNameCleaner#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   * <ul>
+   *   <li>Given {@code Processing Info}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link MemberNameCleaner#visitProgramMethod(ProgramClass, ProgramMethod)}
    */
   @Test
-  void testVisitProgramMethod2() {
+  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); given 'Processing Info'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void MemberNameCleaner.visitProgramMethod(ProgramClass, ProgramMethod)"})
+  void testVisitProgramMethod_givenProcessingInfo() {
     // Arrange
     MemberNameCleaner memberNameCleaner = new MemberNameCleaner();
     ProgramClass programClass = new ProgramClass();
@@ -89,29 +96,73 @@ class MemberNameCleanerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link MemberNameCleaner#visitLibraryField(LibraryClass, LibraryField)}
+   * Test {@link MemberNameCleaner#visitProgramMethod(ProgramClass, ProgramMethod)}.
+   * <ul>
+   *   <li>When {@link ProgramMethod#ProgramMethod()}.</li>
+   *   <li>Then {@link ProgramMethod#ProgramMethod()} ProcessingInfo is {@code null}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link MemberNameCleaner#visitProgramMethod(ProgramClass, ProgramMethod)}
    */
   @Test
+  @DisplayName("Test visitProgramMethod(ProgramClass, ProgramMethod); when ProgramMethod(); then ProgramMethod() ProcessingInfo is 'null'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void MemberNameCleaner.visitProgramMethod(ProgramClass, ProgramMethod)"})
+  void testVisitProgramMethod_whenProgramMethod_thenProgramMethodProcessingInfoIsNull() {
+    // Arrange
+    MemberNameCleaner memberNameCleaner = new MemberNameCleaner();
+    ProgramClass programClass = new ProgramClass();
+    ProgramMethod programMethod = new ProgramMethod();
+
+    // Act
+    memberNameCleaner.visitProgramMethod(programClass, programMethod);
+
+    // Assert that nothing has changed
+    assertNull(programMethod.getProcessingInfo());
+  }
+
+  /**
+   * Test {@link MemberNameCleaner#visitLibraryField(LibraryClass, LibraryField)}.
+   * <p>
+   * Method under test: {@link MemberNameCleaner#visitLibraryField(LibraryClass, LibraryField)}
+   */
+  @Test
+  @DisplayName("Test visitLibraryField(LibraryClass, LibraryField)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void MemberNameCleaner.visitLibraryField(LibraryClass, LibraryField)"})
   void testVisitLibraryField() {
     // Arrange
     MemberNameCleaner memberNameCleaner = new MemberNameCleaner();
     LibraryClass libraryClass = new LibraryClass();
+
     LibraryField libraryField = new LibraryField(1, "Name", "Descriptor");
+    libraryField.setProcessingInfo(null);
+
+    LibraryField libraryField2 = new LibraryField(1, "Name", "Descriptor");
+    libraryField2.setProcessingInfo(libraryField);
 
     // Act
-    memberNameCleaner.visitLibraryField(libraryClass, libraryField);
+    memberNameCleaner.visitLibraryField(libraryClass, libraryField2);
 
-    // Assert
-    assertNull(libraryField.getProcessingInfo());
+    // Assert that nothing has changed
+    Object processingInfo = libraryField2.getProcessingInfo();
+    assertTrue(processingInfo instanceof LibraryField);
+    assertSame(libraryField, processingInfo);
   }
 
   /**
-   * Method under test:
-   * {@link MemberNameCleaner#visitLibraryField(LibraryClass, LibraryField)}
+   * Test {@link MemberNameCleaner#visitLibraryField(LibraryClass, LibraryField)}.
+   * <ul>
+   *   <li>Given {@code Library Field}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link MemberNameCleaner#visitLibraryField(LibraryClass, LibraryField)}
    */
   @Test
-  void testVisitLibraryField2() {
+  @DisplayName("Test visitLibraryField(LibraryClass, LibraryField); given 'Library Field'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void MemberNameCleaner.visitLibraryField(LibraryClass, LibraryField)"})
+  void testVisitLibraryField_givenLibraryField() {
     // Arrange
     MemberNameCleaner memberNameCleaner = new MemberNameCleaner();
     LibraryClass libraryClass = new LibraryClass();
@@ -127,35 +178,39 @@ class MemberNameCleanerDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link MemberNameCleaner#visitLibraryField(LibraryClass, LibraryField)}
+   * Test {@link MemberNameCleaner#visitLibraryField(LibraryClass, LibraryField)}.
+   * <ul>
+   *   <li>When {@link LibraryField#LibraryField(int, String, String)} with u2accessFlags is one and {@code Name} and {@code Descriptor}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link MemberNameCleaner#visitLibraryField(LibraryClass, LibraryField)}
    */
   @Test
-  void testVisitLibraryField3() {
+  @DisplayName("Test visitLibraryField(LibraryClass, LibraryField); when LibraryField(int, String, String) with u2accessFlags is one and 'Name' and 'Descriptor'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void MemberNameCleaner.visitLibraryField(LibraryClass, LibraryField)"})
+  void testVisitLibraryField_whenLibraryFieldWithU2accessFlagsIsOneAndNameAndDescriptor() {
     // Arrange
     MemberNameCleaner memberNameCleaner = new MemberNameCleaner();
     LibraryClass libraryClass = new LibraryClass();
-
     LibraryField libraryField = new LibraryField(1, "Name", "Descriptor");
-    libraryField.setProcessingInfo(null);
-
-    LibraryField libraryField2 = new LibraryField(1, "Name", "Descriptor");
-    libraryField2.setProcessingInfo(libraryField);
 
     // Act
-    memberNameCleaner.visitLibraryField(libraryClass, libraryField2);
+    memberNameCleaner.visitLibraryField(libraryClass, libraryField);
 
-    // Assert
-    Object processingInfo = libraryField2.getProcessingInfo();
-    assertTrue(processingInfo instanceof LibraryField);
-    assertSame(libraryField, processingInfo);
+    // Assert that nothing has changed
+    assertNull(libraryField.getProcessingInfo());
   }
 
   /**
-   * Method under test:
-   * {@link MemberNameCleaner#visitLibraryMethod(LibraryClass, LibraryMethod)}
+   * Test {@link MemberNameCleaner#visitLibraryMethod(LibraryClass, LibraryMethod)}.
+   * <p>
+   * Method under test: {@link MemberNameCleaner#visitLibraryMethod(LibraryClass, LibraryMethod)}
    */
   @Test
+  @DisplayName("Test visitLibraryMethod(LibraryClass, LibraryMethod)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void MemberNameCleaner.visitLibraryMethod(LibraryClass, LibraryMethod)"})
   void testVisitLibraryMethod() {
     // Arrange
     MemberNameCleaner memberNameCleaner = new MemberNameCleaner();
@@ -165,16 +220,23 @@ class MemberNameCleanerDiffblueTest {
     // Act
     memberNameCleaner.visitLibraryMethod(libraryClass, libraryMethod);
 
-    // Assert
+    // Assert that nothing has changed
     assertNull(libraryMethod.getProcessingInfo());
   }
 
   /**
-   * Method under test:
-   * {@link MemberNameCleaner#visitLibraryMethod(LibraryClass, LibraryMethod)}
+   * Test {@link MemberNameCleaner#visitLibraryMethod(LibraryClass, LibraryMethod)}.
+   * <ul>
+   *   <li>Given {@code Processing Info}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link MemberNameCleaner#visitLibraryMethod(LibraryClass, LibraryMethod)}
    */
   @Test
-  void testVisitLibraryMethod2() {
+  @DisplayName("Test visitLibraryMethod(LibraryClass, LibraryMethod); given 'Processing Info'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void MemberNameCleaner.visitLibraryMethod(LibraryClass, LibraryMethod)"})
+  void testVisitLibraryMethod_givenProcessingInfo() {
     // Arrange
     MemberNameCleaner memberNameCleaner = new MemberNameCleaner();
     LibraryClass libraryClass = new LibraryClass();

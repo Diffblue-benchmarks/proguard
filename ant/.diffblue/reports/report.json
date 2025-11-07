@@ -3,19 +3,19 @@
     "reportVersion" : "2.6"
   },
   "run" : {
-    "version" : "2024.10.01-2ee2e3d-licensed",
-    "creationTimestamp" : "2025-11-05T13:23:12.16Z",
+    "version" : "2025.02.02-08b2a5a-licensed",
+    "creationTimestamp" : "2025-11-06T22:25:17.799Z",
     "command" : "dcover create --exclude-modules=proguard-app --coverage-reports --upload http://localhost:8080 --project-name proguard --name with-diffblue-tests",
-    "totalTime" : 2809.907,
-    "environmentDetectionTime" : 0.457,
-    "indexingTime" : 0.301,
-    "entryPointsTime" : 0.454,
-    "generationTime" : 2346.742,
-    "timeToFirstTest" : 155.397,
-    "timeToLastTest" : 2129.541,
-    "indexQueryTime" : 4.442,
-    "verificationTime" : 16.661,
-    "validationTime" : 21.661
+    "totalTime" : 407.115,
+    "environmentDetectionTime" : 0.416,
+    "indexingTime" : 0.284,
+    "entryPointsTime" : 0.412,
+    "generationTime" : 1568.466,
+    "timeToFirstTest" : 731.324,
+    "timeToLastTest" : 1787.15,
+    "indexQueryTime" : 4.386,
+    "verificationTime" : 16.774,
+    "validationTime" : 21.478
   },
   "codes" : {
     "R000" : "Success",
@@ -29,9 +29,9 @@
   "summary" : {
     "classesCount" : 8,
     "methodsCount" : 135,
-    "cumulativeDiffblueTestCount" : 305,
+    "cumulativeDiffblueTestCount" : 302,
     "cumulativeManualTestCount" : 0,
-    "completeTestCount" : 305,
+    "completeTestCount" : 302,
     "incompleteTestCount" : 0,
     "skeletonTestCount" : 0,
     "totalPhysicalLineCount" : 1243,
@@ -47,16 +47,16 @@
       "T003" : 16
     },
     "perTestOutcome" : {
-      "R000" : 305
+      "R000" : 302
     },
     "perTestValidation" : {
-      "V000" : 305
+      "V000" : 302
     }
   },
   "classes" : {
     "proguard.ant.ClassPathElement" : {
       "methodsCount" : 12,
-      "completeTestCount" : 14,
+      "completeTestCount" : 12,
       "incompleteTestCount" : 0,
       "perMethodTestability" : {
         "T000" : 5,
@@ -67,7 +67,7 @@
         "R002" : 7
       },
       "perTestOutcome" : {
-        "R000" : 14
+        "R000" : 12
       }
     },
     "proguard.ant.ClassSpecificationElement" : {
@@ -105,7 +105,7 @@
     },
     "proguard.ant.ConfigurationTask" : {
       "methodsCount" : 40,
-      "completeTestCount" : 112,
+      "completeTestCount" : 111,
       "incompleteTestCount" : 0,
       "perMethodTestability" : {
         "T000" : 32,
@@ -116,7 +116,7 @@
         "T003" : 8
       },
       "perTestOutcome" : {
-        "R000" : 112
+        "R000" : 111
       }
     },
     "proguard.ant.FilterElement" : {
@@ -190,12 +190,12 @@
   },
   "methods" : {
     "proguard.ant.ClassPathElement.<init>:(Lorg/apache/tools/ant/Project;)V" : {
-      "completeTestCount" : 2,
+      "completeTestCount" : 1,
       "incompleteTestCount" : 0,
       "perMethodTestability" : "T000",
       "perMethodOutcome" : "R000",
       "perTestOutcome" : {
-        "R000" : 2
+        "R000" : 1
       },
       "lineNumbers" : [
         52,
@@ -203,12 +203,12 @@
       ]
     },
     "proguard.ant.ClassPathElement.appendClassPathEntriesTo:(Lproguard/ClassPath;Z)V" : {
-      "completeTestCount" : 6,
+      "completeTestCount" : 8,
       "incompleteTestCount" : 0,
       "perMethodTestability" : "T000",
       "perMethodOutcome" : "R000",
       "perTestOutcome" : {
-        "R000" : 6
+        "R000" : 8
       },
       "lineNumbers" : [
         63,
@@ -270,12 +270,12 @@
       ]
     },
     "proguard.ant.ClassPathElement.setDir:(Ljava/io/File;)V" : {
-      "completeTestCount" : 2,
+      "completeTestCount" : 1,
       "incompleteTestCount" : 0,
       "perMethodTestability" : "T000",
       "perMethodOutcome" : "R000",
       "perTestOutcome" : {
-        "R000" : 2
+        "R000" : 1
       },
       "lineNumbers" : [
         154,
@@ -293,12 +293,12 @@
       ]
     },
     "proguard.ant.ClassPathElement.setFile:(Ljava/io/File;)V" : {
-      "completeTestCount" : 2,
+      "completeTestCount" : 1,
       "incompleteTestCount" : 0,
       "perMethodTestability" : "T000",
       "perMethodOutcome" : "R000",
       "perTestOutcome" : {
-        "R000" : 2
+        "R000" : 1
       },
       "lineNumbers" : [
         145,
@@ -326,12 +326,12 @@
       ]
     },
     "proguard.ant.ClassPathElement.setName:(Ljava/io/File;)V" : {
-      "completeTestCount" : 2,
+      "completeTestCount" : 1,
       "incompleteTestCount" : 0,
       "perMethodTestability" : "T000",
       "perMethodOutcome" : "R000",
       "perTestOutcome" : {
-        "R000" : 2
+        "R000" : 1
       },
       "lineNumbers" : [
         163,
@@ -790,12 +790,12 @@
       ]
     },
     "proguard.ant.ConfigurationTask.addConfiguredInjar:(Lproguard/ant/ClassPathElement;)V" : {
-      "completeTestCount" : 8,
+      "completeTestCount" : 7,
       "incompleteTestCount" : 0,
       "perMethodTestability" : "T000",
       "perMethodOutcome" : "R000",
       "perTestOutcome" : {
-        "R000" : 8
+        "R000" : 7
       },
       "lineNumbers" : [
         106,
@@ -962,12 +962,12 @@
       ]
     },
     "proguard.ant.ConfigurationTask.addConfiguredLibraryjar:(Lproguard/ant/ClassPathElement;)V" : {
-      "completeTestCount" : 8,
+      "completeTestCount" : 7,
       "incompleteTestCount" : 0,
       "perMethodTestability" : "T000",
       "perMethodOutcome" : "R000",
       "perTestOutcome" : {
-        "R000" : 8
+        "R000" : 7
       },
       "lineNumbers" : [
         122,
@@ -1027,12 +1027,12 @@
       ]
     },
     "proguard.ant.ConfigurationTask.addText:(Ljava/lang/String;)V" : {
-      "completeTestCount" : 2,
+      "completeTestCount" : 3,
       "incompleteTestCount" : 0,
       "perMethodTestability" : "T000",
       "perMethodOutcome" : "R000",
       "perTestOutcome" : {
-        "R000" : 2
+        "R000" : 3
       },
       "lineNumbers" : [
         340,

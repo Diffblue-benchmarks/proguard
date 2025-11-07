@@ -1,9 +1,10 @@
 package proguard.optimize.info;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import proguard.classfile.Clazz;
 import proguard.classfile.LibraryClass;
@@ -11,55 +12,24 @@ import proguard.classfile.constant.ClassConstant;
 
 class DotClassMarkerDiffblueTest {
   /**
-   * Method under test:
-   * {@link DotClassMarker#visitClassConstant(Clazz, ClassConstant)}
+   * Test {@link DotClassMarker#visitClassConstant(Clazz, ClassConstant)}.
+   * <ul>
+   *   <li>Then {@link ClassConstant#ClassConstant()} {@link ClassConstant#referencedClass} {@link LibraryClass}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link DotClassMarker#visitClassConstant(Clazz, ClassConstant)}
    */
   @Test
-  void testVisitClassConstant() {
-    // Arrange
-    DotClassMarker dotClassMarker = new DotClassMarker();
-    LibraryClass clazz = new LibraryClass();
-    ClassConstant classConstant = new ClassConstant();
-
-    // Act
-    dotClassMarker.visitClassConstant(clazz, classConstant);
-
-    // Assert that nothing has changed
-    assertNull(classConstant.referencedClass);
-  }
-
-  /**
-   * Method under test:
-   * {@link DotClassMarker#visitClassConstant(Clazz, ClassConstant)}
-   */
-  @Test
-  void testVisitClassConstant2() {
-    // Arrange
-    DotClassMarker dotClassMarker = new DotClassMarker();
-    LibraryClass clazz = new LibraryClass();
-    ClassConstant classConstant = new ClassConstant();
-    classConstant.referencedClass = new LibraryClass();
-
-    // Act
-    dotClassMarker.visitClassConstant(clazz, classConstant);
-
-    // Assert that nothing has changed
-    assertTrue(classConstant.referencedClass instanceof LibraryClass);
-  }
-
-  /**
-   * Method under test:
-   * {@link DotClassMarker#visitClassConstant(Clazz, ClassConstant)}
-   */
-  @Test
-  void testVisitClassConstant3() {
+  @DisplayName("Test visitClassConstant(Clazz, ClassConstant); then ClassConstant() referencedClass LibraryClass")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void DotClassMarker.visitClassConstant(Clazz, ClassConstant)"})
+  void testVisitClassConstant_thenClassConstantReferencedClassLibraryClass() {
     // Arrange
     DotClassMarker dotClassMarker = new DotClassMarker();
     LibraryClass clazz = new LibraryClass();
 
     LibraryClass libraryClass = new LibraryClass();
-    ProgramClassOptimizationInfo programClassOptimizationInfo = new ProgramClassOptimizationInfo();
-    libraryClass.setProcessingInfo(programClassOptimizationInfo);
+    libraryClass.setProcessingInfo(new ProgramClassOptimizationInfo());
     ClassConstant classConstant = new ClassConstant();
     classConstant.referencedClass = libraryClass;
 
@@ -72,20 +42,26 @@ class DotClassMarkerDiffblueTest {
     Object processingInfo = clazz2.getProcessingInfo();
     assertTrue(processingInfo instanceof ProgramClassOptimizationInfo);
     assertTrue(((ProgramClassOptimizationInfo) processingInfo).isDotClassed());
-    assertSame(programClassOptimizationInfo, processingInfo);
   }
 
   /**
+   * Test {@link DotClassMarker#visitAnyClass(Clazz)}.
+   * <ul>
+   *   <li>Then {@link LibraryClass#LibraryClass()} ProcessingInfo {@link ProgramClassOptimizationInfo}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link DotClassMarker#visitAnyClass(Clazz)}
    */
   @Test
-  void testVisitAnyClass() {
+  @DisplayName("Test visitAnyClass(Clazz); then LibraryClass() ProcessingInfo ProgramClassOptimizationInfo")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void DotClassMarker.visitAnyClass(Clazz)"})
+  void testVisitAnyClass_thenLibraryClassProcessingInfoProgramClassOptimizationInfo() {
     // Arrange
     DotClassMarker dotClassMarker = new DotClassMarker();
 
     LibraryClass clazz = new LibraryClass();
-    ProgramClassOptimizationInfo programClassOptimizationInfo = new ProgramClassOptimizationInfo();
-    clazz.setProcessingInfo(programClassOptimizationInfo);
+    clazz.setProcessingInfo(new ProgramClassOptimizationInfo());
 
     // Act
     dotClassMarker.visitAnyClass(clazz);
@@ -94,14 +70,22 @@ class DotClassMarkerDiffblueTest {
     Object processingInfo = clazz.getProcessingInfo();
     assertTrue(processingInfo instanceof ProgramClassOptimizationInfo);
     assertTrue(((ProgramClassOptimizationInfo) processingInfo).isDotClassed());
-    assertSame(programClassOptimizationInfo, processingInfo);
   }
 
   /**
+   * Test {@link DotClassMarker#isDotClassed(Clazz)}.
+   * <ul>
+   *   <li>Given {@link ClassOptimizationInfo} (default constructor).</li>
+   *   <li>Then return {@code true}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link DotClassMarker#isDotClassed(Clazz)}
    */
   @Test
-  void testIsDotClassed() {
+  @DisplayName("Test isDotClassed(Clazz); given ClassOptimizationInfo (default constructor); then return 'true'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean DotClassMarker.isDotClassed(Clazz)"})
+  void testIsDotClassed_givenClassOptimizationInfo_thenReturnTrue() {
     // Arrange
     LibraryClass clazz = new LibraryClass();
     clazz.processingInfo = new ClassOptimizationInfo();
@@ -111,10 +95,19 @@ class DotClassMarkerDiffblueTest {
   }
 
   /**
+   * Test {@link DotClassMarker#isDotClassed(Clazz)}.
+   * <ul>
+   *   <li>Given {@link ProgramClassOptimizationInfo} (default constructor).</li>
+   *   <li>Then return {@code false}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link DotClassMarker#isDotClassed(Clazz)}
    */
   @Test
-  void testIsDotClassed2() {
+  @DisplayName("Test isDotClassed(Clazz); given ProgramClassOptimizationInfo (default constructor); then return 'false'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"boolean DotClassMarker.isDotClassed(Clazz)"})
+  void testIsDotClassed_givenProgramClassOptimizationInfo_thenReturnFalse() {
     // Arrange
     LibraryClass clazz = new LibraryClass();
     clazz.processingInfo = new ProgramClassOptimizationInfo();

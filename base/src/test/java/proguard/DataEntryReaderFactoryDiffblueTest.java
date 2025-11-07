@@ -6,10 +6,12 @@ import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import com.diffblue.cover.annotations.MethodsUnderTest;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.io.ClassPathDataEntry;
@@ -19,10 +21,14 @@ import proguard.io.FilteredDataEntryReader;
 
 class DataEntryReaderFactoryDiffblueTest {
   /**
-   * Method under test:
-   * {@link DataEntryReaderFactory#createDataEntryReader(ClassPathEntry, DataEntryReader)}
+   * Test {@link DataEntryReaderFactory#createDataEntryReader(ClassPathEntry, DataEntryReader)}.
+   * <p>
+   * Method under test: {@link DataEntryReaderFactory#createDataEntryReader(ClassPathEntry, DataEntryReader)}
    */
   @Test
+  @DisplayName("Test createDataEntryReader(ClassPathEntry, DataEntryReader)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"DataEntryReader DataEntryReaderFactory.createDataEntryReader(ClassPathEntry, DataEntryReader)"})
   void testCreateDataEntryReader() throws IOException {
     // Arrange
     DataEntryReaderFactory dataEntryReaderFactory = new DataEntryReaderFactory(true);
@@ -42,10 +48,14 @@ class DataEntryReaderFactoryDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link DataEntryReaderFactory#createDataEntryReader(ClassPathEntry, DataEntryReader)}
+   * Test {@link DataEntryReaderFactory#createDataEntryReader(ClassPathEntry, DataEntryReader)}.
+   * <p>
+   * Method under test: {@link DataEntryReaderFactory#createDataEntryReader(ClassPathEntry, DataEntryReader)}
    */
   @Test
+  @DisplayName("Test createDataEntryReader(ClassPathEntry, DataEntryReader)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"DataEntryReader DataEntryReaderFactory.createDataEntryReader(ClassPathEntry, DataEntryReader)"})
   void testCreateDataEntryReader2() throws IOException {
     // Arrange
     DataEntryReaderFactory dataEntryReaderFactory = new DataEntryReaderFactory(true);
@@ -66,10 +76,14 @@ class DataEntryReaderFactoryDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link DataEntryReaderFactory#getFilterExcludingVersionedClasses(ClassPathEntry)}
+   * Test {@link DataEntryReaderFactory#getFilterExcludingVersionedClasses(ClassPathEntry)}.
+   * <p>
+   * Method under test: {@link DataEntryReaderFactory#getFilterExcludingVersionedClasses(ClassPathEntry)}
    */
   @Test
+  @DisplayName("Test getFilterExcludingVersionedClasses(ClassPathEntry)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"List DataEntryReaderFactory.getFilterExcludingVersionedClasses(ClassPathEntry)"})
   void testGetFilterExcludingVersionedClasses() {
     // Arrange and Act
     List<String> actualFilterExcludingVersionedClasses = DataEntryReaderFactory
@@ -81,11 +95,18 @@ class DataEntryReaderFactoryDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link DataEntryReaderFactory#getFilterExcludingVersionedClasses(ClassPathEntry)}
+   * Test {@link DataEntryReaderFactory#getFilterExcludingVersionedClasses(ClassPathEntry)}.
+   * <ul>
+   *   <li>Then return first is {@code META-INF/versions}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link DataEntryReaderFactory#getFilterExcludingVersionedClasses(ClassPathEntry)}
    */
   @Test
-  void testGetFilterExcludingVersionedClasses2() {
+  @DisplayName("Test getFilterExcludingVersionedClasses(ClassPathEntry); then return first is 'META-INF/versions'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"List DataEntryReaderFactory.getFilterExcludingVersionedClasses(ClassPathEntry)"})
+  void testGetFilterExcludingVersionedClasses_thenReturnFirstIsMetaInfVersions() {
     // Arrange
     ArrayList<String> filter = new ArrayList<>();
     filter.add("META-INF/versions");
@@ -103,46 +124,63 @@ class DataEntryReaderFactoryDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link DataEntryReaderFactory#getFilterExcludingVersionedClasses(ClassPathEntry)}
+   * Test {@link DataEntryReaderFactory#getFilterExcludingVersionedClasses(ClassPathEntry)}.
+   * <ul>
+   *   <li>Then return second is {@code foo}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link DataEntryReaderFactory#getFilterExcludingVersionedClasses(ClassPathEntry)}
    */
   @Test
-  void testGetFilterExcludingVersionedClasses3() {
+  @DisplayName("Test getFilterExcludingVersionedClasses(ClassPathEntry); then return second is 'foo'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"List DataEntryReaderFactory.getFilterExcludingVersionedClasses(ClassPathEntry)"})
+  void testGetFilterExcludingVersionedClasses_thenReturnSecondIsFoo() {
     // Arrange
-    ClassPathEntry classPathEntry = mock(ClassPathEntry.class);
-    when(classPathEntry.getFilter()).thenReturn(new ArrayList<>());
+    ArrayList<String> filter = new ArrayList<>();
+    filter.add("foo");
+
+    ClassPathEntry classPathEntry = new ClassPathEntry(Configuration.STD_OUT, true);
+    classPathEntry.setFilter(filter);
 
     // Act
     List<String> actualFilterExcludingVersionedClasses = DataEntryReaderFactory
         .getFilterExcludingVersionedClasses(classPathEntry);
 
     // Assert
-    verify(classPathEntry).getFilter();
-    assertEquals(1, actualFilterExcludingVersionedClasses.size());
+    assertEquals(2, actualFilterExcludingVersionedClasses.size());
     assertEquals("!META-INF/versions/**", actualFilterExcludingVersionedClasses.get(0));
+    assertEquals("foo", actualFilterExcludingVersionedClasses.get(1));
   }
 
   /**
-   * Method under test:
-   * {@link DataEntryReaderFactory#getFilterExcludingVersionedClasses(ClassPathEntry)}
+   * Test {@link DataEntryReaderFactory#getFilterExcludingVersionedClasses(ClassPathEntry)}.
+   * <ul>
+   *   <li>Then return second is {@code META-INF/versions}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link DataEntryReaderFactory#getFilterExcludingVersionedClasses(ClassPathEntry)}
    */
   @Test
-  void testGetFilterExcludingVersionedClasses4() {
+  @DisplayName("Test getFilterExcludingVersionedClasses(ClassPathEntry); then return second is 'META-INF/versions'")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"List DataEntryReaderFactory.getFilterExcludingVersionedClasses(ClassPathEntry)"})
+  void testGetFilterExcludingVersionedClasses_thenReturnSecondIsMetaInfVersions() {
     // Arrange
-    ArrayList<String> stringList = new ArrayList<>();
-    stringList.add("42");
-    stringList.add("!META-INF/versions/**");
-    ClassPathEntry classPathEntry = mock(ClassPathEntry.class);
-    when(classPathEntry.getFilter()).thenReturn(stringList);
+    ArrayList<String> filter = new ArrayList<>();
+    filter.add("foo");
+    filter.add("META-INF/versions");
+
+    ClassPathEntry classPathEntry = new ClassPathEntry(Configuration.STD_OUT, true);
+    classPathEntry.setFilter(filter);
 
     // Act
     List<String> actualFilterExcludingVersionedClasses = DataEntryReaderFactory
         .getFilterExcludingVersionedClasses(classPathEntry);
 
     // Assert
-    verify(classPathEntry).getFilter();
     assertEquals(2, actualFilterExcludingVersionedClasses.size());
-    assertEquals("!META-INF/versions/**", actualFilterExcludingVersionedClasses.get(1));
-    assertEquals("42", actualFilterExcludingVersionedClasses.get(0));
+    assertEquals("META-INF/versions", actualFilterExcludingVersionedClasses.get(1));
+    assertEquals("foo", actualFilterExcludingVersionedClasses.get(0));
   }
 }

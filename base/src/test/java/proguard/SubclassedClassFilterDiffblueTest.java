@@ -6,6 +6,9 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import com.diffblue.cover.annotations.MethodsUnderTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import proguard.classfile.Clazz;
@@ -16,10 +19,19 @@ import proguard.classfile.visitor.ImplementedClassFilter;
 
 class SubclassedClassFilterDiffblueTest {
   /**
+   * Test {@link SubclassedClassFilter#visitAnyClass(Clazz)}.
+   * <ul>
+   *   <li>When {@link LibraryClass#LibraryClass()}.</li>
+   *   <li>Then throw {@link UnsupportedOperationException}.</li>
+   * </ul>
+   * <p>
    * Method under test: {@link SubclassedClassFilter#visitAnyClass(Clazz)}
    */
   @Test
-  void testVisitAnyClass() {
+  @DisplayName("Test visitAnyClass(Clazz); when LibraryClass(); then throw UnsupportedOperationException")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SubclassedClassFilter.visitAnyClass(Clazz)"})
+  void testVisitAnyClass_whenLibraryClass_thenThrowUnsupportedOperationException() {
     // Arrange
     SubclassedClassFilter subclassedClassFilter = new SubclassedClassFilter(mock(ClassVisitor.class));
 
@@ -28,11 +40,19 @@ class SubclassedClassFilterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link SubclassedClassFilter#visitProgramClass(ProgramClass)}
+   * Test {@link SubclassedClassFilter#visitProgramClass(ProgramClass)}.
+   * <ul>
+   *   <li>Given one.</li>
+   *   <li>When {@link ProgramClass#ProgramClass()} {@link ProgramClass#subClassCount} is one.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SubclassedClassFilter#visitProgramClass(ProgramClass)}
    */
   @Test
-  void testVisitProgramClass() {
+  @DisplayName("Test visitProgramClass(ProgramClass); given one; when ProgramClass() subClassCount is one")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SubclassedClassFilter.visitProgramClass(ProgramClass)"})
+  void testVisitProgramClass_givenOne_whenProgramClassSubClassCountIsOne() {
     // Arrange
     ClassVisitor classVisitor = mock(ClassVisitor.class);
     doNothing().when(classVisitor).visitProgramClass(Mockito.<ProgramClass>any());
@@ -48,11 +68,18 @@ class SubclassedClassFilterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link SubclassedClassFilter#visitProgramClass(ProgramClass)}
+   * Test {@link SubclassedClassFilter#visitProgramClass(ProgramClass)}.
+   * <ul>
+   *   <li>Then throw {@link UnsupportedOperationException}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SubclassedClassFilter#visitProgramClass(ProgramClass)}
    */
   @Test
-  void testVisitProgramClass2() {
+  @DisplayName("Test visitProgramClass(ProgramClass); then throw UnsupportedOperationException")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SubclassedClassFilter.visitProgramClass(ProgramClass)"})
+  void testVisitProgramClass_thenThrowUnsupportedOperationException() {
     // Arrange
     ClassVisitor classVisitor = mock(ClassVisitor.class);
     doThrow(new UnsupportedOperationException("foo")).when(classVisitor).visitProgramClass(Mockito.<ProgramClass>any());
@@ -66,11 +93,18 @@ class SubclassedClassFilterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link SubclassedClassFilter#visitProgramClass(ProgramClass)}
+   * Test {@link SubclassedClassFilter#visitProgramClass(ProgramClass)}.
+   * <ul>
+   *   <li>When {@link ProgramClass#ProgramClass()} addSubClass {@link LibraryClass#LibraryClass()}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SubclassedClassFilter#visitProgramClass(ProgramClass)}
    */
   @Test
-  void testVisitProgramClass3() {
+  @DisplayName("Test visitProgramClass(ProgramClass); when ProgramClass() addSubClass LibraryClass()")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SubclassedClassFilter.visitProgramClass(ProgramClass)"})
+  void testVisitProgramClass_whenProgramClassAddSubClassLibraryClass() {
     // Arrange
     ClassVisitor rejectedClassVisistor = mock(ClassVisitor.class);
     doNothing().when(rejectedClassVisistor).visitProgramClass(Mockito.<ProgramClass>any());
@@ -88,11 +122,44 @@ class SubclassedClassFilterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link SubclassedClassFilter#visitLibraryClass(LibraryClass)}
+   * Test {@link SubclassedClassFilter#visitLibraryClass(LibraryClass)}.
+   * <p>
+   * Method under test: {@link SubclassedClassFilter#visitLibraryClass(LibraryClass)}
    */
   @Test
+  @DisplayName("Test visitLibraryClass(LibraryClass)")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SubclassedClassFilter.visitLibraryClass(LibraryClass)"})
   void testVisitLibraryClass() {
+    // Arrange
+    ClassVisitor rejectedClassVisistor = mock(ClassVisitor.class);
+    doNothing().when(rejectedClassVisistor).visitLibraryClass(Mockito.<LibraryClass>any());
+    SubclassedClassFilter subclassedClassFilter = new SubclassedClassFilter(
+        new ImplementedClassFilter(new LibraryClass(), true, mock(ClassVisitor.class), rejectedClassVisistor));
+
+    LibraryClass libraryClass = new LibraryClass();
+    libraryClass.addSubClass(new LibraryClass());
+
+    // Act
+    subclassedClassFilter.visitLibraryClass(libraryClass);
+
+    // Assert
+    verify(rejectedClassVisistor).visitLibraryClass(isA(LibraryClass.class));
+  }
+
+  /**
+   * Test {@link SubclassedClassFilter#visitLibraryClass(LibraryClass)}.
+   * <ul>
+   *   <li>Given {@link ClassVisitor} {@link ClassVisitor#visitLibraryClass(LibraryClass)} does nothing.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SubclassedClassFilter#visitLibraryClass(LibraryClass)}
+   */
+  @Test
+  @DisplayName("Test visitLibraryClass(LibraryClass); given ClassVisitor visitLibraryClass(LibraryClass) does nothing")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SubclassedClassFilter.visitLibraryClass(LibraryClass)"})
+  void testVisitLibraryClass_givenClassVisitorVisitLibraryClassDoesNothing() {
     // Arrange
     ClassVisitor classVisitor = mock(ClassVisitor.class);
     doNothing().when(classVisitor).visitLibraryClass(Mockito.<LibraryClass>any());
@@ -108,11 +175,18 @@ class SubclassedClassFilterDiffblueTest {
   }
 
   /**
-   * Method under test:
-   * {@link SubclassedClassFilter#visitLibraryClass(LibraryClass)}
+   * Test {@link SubclassedClassFilter#visitLibraryClass(LibraryClass)}.
+   * <ul>
+   *   <li>Then throw {@link UnsupportedOperationException}.</li>
+   * </ul>
+   * <p>
+   * Method under test: {@link SubclassedClassFilter#visitLibraryClass(LibraryClass)}
    */
   @Test
-  void testVisitLibraryClass2() {
+  @DisplayName("Test visitLibraryClass(LibraryClass); then throw UnsupportedOperationException")
+  @Tag("MaintainedByDiffblue")
+  @MethodsUnderTest({"void SubclassedClassFilter.visitLibraryClass(LibraryClass)"})
+  void testVisitLibraryClass_thenThrowUnsupportedOperationException() {
     // Arrange
     ClassVisitor classVisitor = mock(ClassVisitor.class);
     doThrow(new UnsupportedOperationException("foo")).when(classVisitor).visitLibraryClass(Mockito.<LibraryClass>any());
@@ -123,27 +197,5 @@ class SubclassedClassFilterDiffblueTest {
     // Act and Assert
     assertThrows(UnsupportedOperationException.class, () -> subclassedClassFilter.visitLibraryClass(libraryClass));
     verify(classVisitor).visitLibraryClass(isA(LibraryClass.class));
-  }
-
-  /**
-   * Method under test:
-   * {@link SubclassedClassFilter#visitLibraryClass(LibraryClass)}
-   */
-  @Test
-  void testVisitLibraryClass3() {
-    // Arrange
-    ClassVisitor rejectedClassVisistor = mock(ClassVisitor.class);
-    doNothing().when(rejectedClassVisistor).visitLibraryClass(Mockito.<LibraryClass>any());
-    SubclassedClassFilter subclassedClassFilter = new SubclassedClassFilter(
-        new ImplementedClassFilter(new LibraryClass(), true, mock(ClassVisitor.class), rejectedClassVisistor));
-
-    LibraryClass libraryClass = new LibraryClass();
-    libraryClass.addSubClass(new LibraryClass());
-
-    // Act
-    subclassedClassFilter.visitLibraryClass(libraryClass);
-
-    // Assert
-    verify(rejectedClassVisistor).visitLibraryClass(isA(LibraryClass.class));
   }
 }
